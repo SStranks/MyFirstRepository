@@ -30,7 +30,7 @@
 ### Examples of Temporary Files to Ignore
 
 *~ <br>
-~$*.doc* <br>
-~$*.xls* <br>
+~$\*.doc\* <br>
+~$\*.xls\* <br>
 *.xlk <br>
-~$*.ppt*
+~$\*.ppt\*
