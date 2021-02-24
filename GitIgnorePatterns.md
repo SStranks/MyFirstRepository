@@ -29,8 +29,8 @@
 
 ### Examples of Temporary Files to Ignore
 
-*~
-~$*.doc*
-~$*.xls*
-*.xlk
+*~ <br>
+~$*.doc* <br>
+~$*.xls* <br>
+*.xlk <br>
 ~$*.ppt*
