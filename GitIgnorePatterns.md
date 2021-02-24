@@ -26,3 +26,11 @@
 | logs/debug.log | logs/debug.log <br> *but not* <br> debug.log <br> build/logs/debug.log |	Patterns specifying a file in a particular directory are relative to the repository root. (You can prepend a slash if you like, but it doesn't do anything special.) |
 
 ** these explanations assume your .gitignore file is in the top level directory of your repository, as is the convention. If your repository has multiple .gitignore files, simply mentally replace "repository root" with "directory containing the .gitignore file" (and consider unifying them, for the sanity of your team). **
+
+### Examples of Temporary Files to Ignore
+
+*~
+~$*.doc*
+~$*.xls*
+*.xlk
+~$*.ppt*
