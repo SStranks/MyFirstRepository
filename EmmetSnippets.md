@@ -186,6 +186,8 @@
 
 ```
 
+### Extended Structure
+
 ```HTML
 <!-- EXTENDED STRUCTURE -->
 <!-- BUG: Doesn't work in VSCode - Bug not fixed -->
