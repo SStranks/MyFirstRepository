@@ -2,6 +2,8 @@
 
 [Emmet Snippets CheatSheet](https://docs.emmet.io/cheat-sheet/)
 
+### Basic Tags, Classes & IDs
+
 ```html
 
 <!-- BASIC TAGS, CLASSES & IDS -->
@@ -33,6 +35,11 @@
 <!-- #myid.myclass -->
 <div id="myid" class="myclass"></div>
 
+```
+### Adding Content
+
+```HTML
+
 <!-- ADDING CONTENT -->
 
 <!-- h1{My Title} -->
@@ -40,6 +47,11 @@
 
 <!-- h1.red{My Red Title} -->
 <h1 class="red">My Red Title</h1>
+
+```
+### Nesting
+
+```HTML
 
 <!-- NESTING -->
 
@@ -56,6 +68,11 @@
     <li>List Item 1</li>
   </ul>
 </div>
+
+```
+### Multiplication
+
+```HTML
 
 <!-- MULTIPLICATION -->
 
@@ -77,6 +94,12 @@
   <li>List Item 5</li>
 </ul>
 
+```
+
+### Siblings
+
+```HTML
+
 <!-- SIBLINGS + -->
 
 <!-- div+ul+li -->
@@ -94,6 +117,12 @@
   <p class="body"></p>
 </div>
 
+```
+
+### Grouping
+
+```HTML
+
 <!-- GROUPING -->
 
 <!-- div>(header>ul>li*2>a)+footer>p -->
@@ -109,10 +138,22 @@
   </footer>
 </div>
 
+```
+
+### Attributes
+
+```HTML
+
 <!-- ATTRIBUTES -->
 
 <!-- a[href="http//google.com" target="_blank"] -->
 <a href="http//google.com" target="_blank"></a>
+
+```
+
+### Forms and Input
+
+```HTML
 
 <!-- FORMS AND INPUT -->
 
@@ -143,8 +184,16 @@
 <!-- select -->
 <select name="" id=""></select>
 
+```
+
+```HTML
 <!-- EXTENDED STRUCTURE -->
 <!-- BUG: Doesn't work in VSCode - Bug not fixed -->
+```
+
+### DocType and Structure
+
+```HTML
 
 <!-- DOCTYPE AND STRUCTURE -->
 
@@ -163,6 +212,12 @@
 </body>
 </html>
 
+```
+
+### Lorem Ipsum Generator
+
+```HTML
+
 <!-- LOREM IPSUM GENERATOR -->
 
 <!-- lorem -->
@@ -178,8 +233,5 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim, aliquam.
   <li>Ab odio possimus minus laboriosam, animi optio illum illo debitis.</li>
   <li>Impedit velit unde, expedita neque nam recusandae quae veritatis ducimus.</li>
 </ul>
-
-
-
 
 ```
