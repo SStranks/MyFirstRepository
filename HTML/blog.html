@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Head: Non-visible meta page information -->
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My First Blog</title>
+  <title>HTML Formatting</title>
   <meta name="description" content="A great blog by Simon Stranks!">
   <meta name="keyowrds" content="web design blog, web dev blog, SStranks">
 
   <style type="text/css">
+
+    #main-body{
+      background-color: mediumvioletred;
+      padding: 15px;
+    }
+
+    #main-span{
+      font-size: 25px;
+      font-weight: bold;
+      padding: 10px;
+      display: block;
+    }
+    
     #main-header{
       text-align: center;
+      font-size: 15px;
       background-color: black;
       color: white;
       padding: 10px;
@@ -19,43 +34,115 @@
 
     #main-footer{
       text-align: center;
-      font-size: 10px;
+      background-color: black;
+      color: white;
+      padding: 10px;
     }
+
+    #primary-navigation{
+      text-align: center;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background-color: darkgray;
+    }
+
+    #secondary-navigation{
+      text-align: center;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background-color: darkgray
+    }
+
+    a{
+      color:maroon
+    }
+
+    a:visited{
+      colour: magenta
+    }
+
+    a:hover{
+      color: red;
+    }
+
+    a:active{
+      color:green;
+    }
+
+    #section{
+      background-color: lightgreen;
+      padding: 10px;
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .post{
+      background-color:lightblue;
+      font-size: 15px;
+      font-weight: normal;
+    }
+
+    #aside{
+      background-color: mediumpurple;
+    }
+
   </style>
 </head>
 
-<body>
+<!-- Body: The main visible page information of the website -->
+<body id="main-body">
+
+  <span id="main-span">Body</span>
+
   <header id="main-header">
-    <h1>My Website</h1>
+    <!-- Secondary Navigation -->
+    <nav id="secondary-navigation">      
+      <span>Secondary Navigation Bar</span> |
+      <a href="">About</a> |
+      <a href="">Blog</a> |
+      <a href="">Legal</a>
+    </nav>
+    <h1>Main Header</h1>
   </header>
 
-  <a href="index.html">Go to Homepage</a>
+  <!-- Primary Navigation -->
+  <nav id="primary-navigation">
+    <span>Primary Navigation Bar</span> |
+    <a href="index.html">Home</a> |
+    <a href="">Page 2</a> |
+    <a href="">Page 3</a> |
+    <a href="">Page 4</a>
+  </nav>
 
-  <section>
+  <!-- Section -->
+  <section id="section">
+
+    <span id="section-span">Section</span>
+
     <article class="post">
-      <h3>Blog Post 1</h3>
+      <h3>Article 1</h3>
       <small>Posted by Simon 25/02/2021</small>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, eligendi alias exercitationem obcaecati illum saepe ipsam, veritatis ipsa explicabo quasi earum nam? Fugit facilis deleniti aspernatur, sequi necessitatibus quo rerum hic recusandae modi veritatis dolore molestiae magni. Veritatis voluptatibus voluptas, tempora tempore modi assumenda perferendis sapiente quae odit! Eligendi, nisi?</p>
       <a href="post.html">Read More</a>
     </article>
 
     <article class="post">
-      <h3>Blog Post 2</h3>
+      <h3>Article 2</h3>
       <small>Posted by Simon 25/02/2021</small>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, eligendi alias exercitationem obcaecati illum saepe ipsam, veritatis ipsa explicabo quasi earum nam? Fugit facilis deleniti aspernatur, sequi necessitatibus quo rerum hic recusandae modi veritatis dolore molestiae magni. Veritatis voluptatibus voluptas, tempora tempore modi assumenda perferendis sapiente quae odit! Eligendi, nisi?</p>
       <a href="post.html">Read More</a>
     </article>
 
     <article class="post">
-      <h3>Blog Post 3</h3>
+      <h3>Article 3</h3>
       <small>Posted by Simon 25/02/2021</small>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, eligendi alias exercitationem obcaecati illum saepe ipsam, veritatis ipsa explicabo quasi earum nam? Fugit facilis deleniti aspernatur, sequi necessitatibus quo rerum hic recusandae modi veritatis dolore molestiae magni. Veritatis voluptatibus voluptas, tempora tempore modi assumenda perferendis sapiente quae odit! Eligendi, nisi?</p>
       <a href="post.html">Read More</a>
     </article>
   </section>
 
-  <aside>
-    <h3>Categories</h3>
+  <!-- Aside -->
+  <aside id="aside">
+    <h3>Aside</h3>
     <nav>
       <ul>
         <li><a href="#">Category 1</a></li>
@@ -66,6 +153,7 @@
   </aside>
 
   <footer id="main-footer"> 
+    <h2>Footer</h2>
     <p>Copyright &copy; 2021 SStranks87</p>
   </footer>
 
