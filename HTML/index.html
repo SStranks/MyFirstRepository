@@ -7,8 +7,11 @@
   <!-- Refresh entire webpage at second intervals -->
   <!-- <meta http-equiv="refresh" content="3"> -->
   <title>HTML Cheat Sheet</title>
+  
+  <!-- Conditional Comment; Internet Explorer hack to patch an additional CSS for older browsers that can't handle HTML5 well -->
+  <!--[if IE]><link href="stupidie.css" rel="stylesheet"><![endif]-->
+  
   <!-- Table Styling; HTML Table attributes may not be supported so CSS recommended  -->
-
   <style type="text/css">
   table, th, td {
     border: 1px solid black;
@@ -69,9 +72,14 @@
 
   <br>
 
-  <!-- Tables -->
+  <!-- Table with colgroup -->
   <h3>Tables</h3>
   <table>
+    <caption>Contacts Table</caption>
+    <colgroup>
+      <col>
+      <col span="2" style="background-color: lightcoral;">
+    </colgroup>
     <thead>
       <tr>
         <th>Name</th>
@@ -102,24 +110,36 @@
 
   <!-- Table with row/column spans -->
   <table style="width: 600px;" style="border: 1px solid black;">
-    <tr>
-        <th>Column 1 heading</th>
-        <th>Column 2 heading</th>
-        <th>Column 3 heading</th>
-    </tr>
-    <tr>
-        <td>Row 2, cell 1</td>
-        <td id="span" colspan="2">Row 2, cell 2, also spanning Row 2, cell 3</td>
-    </tr>
-    <tr>
-        <td id="span" rowspan="2">Row 3, cell 1, also <br>spanning Row 4, cell 1</td>
-        <td>Row 3, cell 2</td>
-        <td>Row 3, cell 3</td>
-    </tr>
-    <tr>
-        <td>Row 4, cell 2</td>
-        <td>Row 4, cell 3</td>
-    </tr>
+    <caption>Table Formatting Example</caption>
+    <thead>
+      <tr>
+          <th>Column 1 heading</th>
+          <th>Column 2 heading</th>
+          <th>Column 3 heading</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+          <td>Row 2, cell 1</td>
+          <td id="span" colspan="2">Row 2, cell 2, also spanning Row 2, cell 3</td>
+      </tr>
+      <tr>
+          <td id="span" rowspan="2">Row 3, cell 1, also <br>spanning Row 4, cell 1</td>
+          <td>Row 3, cell 2</td>
+          <td>Row 3, cell 3</td>
+      </tr>
+      <tr>
+          <td>Row 4, cell 2</td>
+          <td>Row 4, cell 3</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Footer 1</td>
+        <td>Footer 2</td>
+        <td>Footer 3</td>
+      </tr>
+    </tfoot>
 </table>
 
 <h4>&lt;Address&gt; Tag</h4>
@@ -131,6 +151,9 @@
 </ul>
 </address>
 
+<h4>&lt;Time&gt; Tag</h4>
+<p>Address of Author Dude, compiled on <time datetime="2021-11-21">Thursday 21st November 2021</time>.</p>
+
   <br>
   <hr>
   <br>
@@ -138,29 +161,27 @@
 <!-- Forms -->
 <form action="process.php" method="POST">
 
+  <fieldset>
+    <legend>Name</legend>
+    <label for="first-name">First Name</label>
+    <input id="first-name" type="text" name="first-name" placeholder="Enter First Name">
+    <label for="last-name">Last Name</label>
+    <input id="last-name" type="text" name="last-name" placeholder="Enter Last Name"> 
+  </fieldset>
+  <br>
   <div>
-    <label>First Name</label>
-    <input type="text" name="first-name" placeholder="Enter First Name">
+    <label for="email">Email</label>
+    <input id="email" type="email" name="email" placeholder="Enter Email">
   </div>
   <br>
   <div>
-    <label>Last Name</label>
-    <input type="text" name="last-name" placeholder="Enter Last Name"> 
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Enter Message"></textarea>
   </div>
   <br>
   <div>
-    <label>Email</label>
-    <input type="email" name="email" placeholder="Enter Email">
-  </div>
-  <br>
-  <div>
-    <label>Message</label>
-    <textarea name="message"></textarea>
-  </div>
-  <br>
-  <div>
-    <label>Gender</label>
-    <select name="gender">
+    <label for="gender">Gender</label>
+    <select id="gender" name="gender">
       <option value="male">Male</option>
       <option value="female">Female</option>
       <option value="other">Other</option>
@@ -168,23 +189,305 @@
   </div>
   <br>
   <div>
-    <label>Age:</label>
-    <input type="number" name="age" value="30">
+    <label for="age">Age:</label>
+    <input id="age" type="number" name="age" value="30">
   </div>
   <br>
-  <div>
-    <label>Birthday:</label>
-    <input type="date" name="birthday">
-  </div>
+  <!-- Country Selector - Example 1 -->
+  <label for="country">Country Selector - Example 1</label>
+  <select id="country" name="country">
+    <optgroup label="Africa">
+        <option value="gam">Gambia</option>
+        <option value="mad">Madagascar</option>
+        <option value="nam">Namibia</option>
+    </optgroup>
+    <optgroup label="Europe">
+        <option value="fra">France</option>
+        <option value="rus">Russia</option>
+        <option value="uk">UK</option>
+    </optgroup>
+    <optgroup label="North America">
+        <option value="can">Canada</option>
+        <option value="mex">Mexico</option>
+        <option value="usa">USA</option>
+    </optgroup>
+  </select>
+  <!-- Country Selector - Example 2 -->
+  <label for="country">Country Selector - Example 2</label>
+  <input name="country" list="country_name">
+  <datalist id="country_name">
+    <option value="Afganistan">Afghanistan</option>
+    <option value="Albania">Albania</option>
+    <option value="Algeria">Algeria</option>
+    <option value="American Samoa">American Samoa</option>
+    <option value="Andorra">Andorra</option>
+    <option value="Angola">Angola</option>
+    <option value="Anguilla">Anguilla</option>
+    <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+    <option value="Argentina">Argentina</option>
+    <option value="Armenia">Armenia</option>
+    <option value="Aruba">Aruba</option>
+    <option value="Australia">Australia</option>
+    <option value="Austria">Austria</option>
+    <option value="Azerbaijan">Azerbaijan</option>
+    <option value="Bahamas">Bahamas</option>
+    <option value="Bahrain">Bahrain</option>
+    <option value="Bangladesh">Bangladesh</option>
+    <option value="Barbados">Barbados</option>
+    <option value="Belarus">Belarus</option>
+    <option value="Belgium">Belgium</option>
+    <option value="Belize">Belize</option>
+    <option value="Benin">Benin</option>
+    <option value="Bermuda">Bermuda</option>
+    <option value="Bhutan">Bhutan</option>
+    <option value="Bolivia">Bolivia</option>
+    <option value="Bonaire">Bonaire</option>
+    <option value="Bosnia & Herzegovina">Bosnia & Herzegovina</option>
+    <option value="Botswana">Botswana</option>
+    <option value="Brazil">Brazil</option>
+    <option value="British Indian Ocean Ter">British Indian Ocean Ter</option>
+    <option value="Brunei">Brunei</option>
+    <option value="Bulgaria">Bulgaria</option>
+    <option value="Burkina Faso">Burkina Faso</option>
+    <option value="Burundi">Burundi</option>
+    <option value="Cambodia">Cambodia</option>
+    <option value="Cameroon">Cameroon</option>
+    <option value="Canada">Canada</option>
+    <option value="Canary Islands">Canary Islands</option>
+    <option value="Cape Verde">Cape Verde</option>
+    <option value="Cayman Islands">Cayman Islands</option>
+    <option value="Central African Republic">Central African Republic</option>
+    <option value="Chad">Chad</option>
+    <option value="Channel Islands">Channel Islands</option>
+    <option value="Chile">Chile</option>
+    <option value="China">China</option>
+    <option value="Christmas Island">Christmas Island</option>
+    <option value="Cocos Island">Cocos Island</option>
+    <option value="Colombia">Colombia</option>
+    <option value="Comoros">Comoros</option>
+    <option value="Congo">Congo</option>
+    <option value="Cook Islands">Cook Islands</option>
+    <option value="Costa Rica">Costa Rica</option>
+    <option value="Cote DIvoire">Cote DIvoire</option>
+    <option value="Croatia">Croatia</option>
+    <option value="Cuba">Cuba</option>
+    <option value="Curaco">Curacao</option>
+    <option value="Cyprus">Cyprus</option>
+    <option value="Czech Republic">Czech Republic</option>
+    <option value="Denmark">Denmark</option>
+    <option value="Djibouti">Djibouti</option>
+    <option value="Dominica">Dominica</option>
+    <option value="Dominican Republic">Dominican Republic</option>
+    <option value="East Timor">East Timor</option>
+    <option value="Ecuador">Ecuador</option>
+    <option value="Egypt">Egypt</option>
+    <option value="El Salvador">El Salvador</option>
+    <option value="Equatorial Guinea">Equatorial Guinea</option>
+    <option value="Eritrea">Eritrea</option>
+    <option value="Estonia">Estonia</option>
+    <option value="Ethiopia">Ethiopia</option>
+    <option value="Falkland Islands">Falkland Islands</option>
+    <option value="Faroe Islands">Faroe Islands</option>
+    <option value="Fiji">Fiji</option>
+    <option value="Finland">Finland</option>
+    <option value="France">France</option>
+    <option value="French Guiana">French Guiana</option>
+    <option value="French Polynesia">French Polynesia</option>
+    <option value="French Southern Ter">French Southern Ter</option>
+    <option value="Gabon">Gabon</option>
+    <option value="Gambia">Gambia</option>
+    <option value="Georgia">Georgia</option>
+    <option value="Germany">Germany</option>
+    <option value="Ghana">Ghana</option>
+    <option value="Gibraltar">Gibraltar</option>
+    <option value="Great Britain">Great Britain</option>
+    <option value="Greece">Greece</option>
+    <option value="Greenland">Greenland</option>
+    <option value="Grenada">Grenada</option>
+    <option value="Guadeloupe">Guadeloupe</option>
+    <option value="Guam">Guam</option>
+    <option value="Guatemala">Guatemala</option>
+    <option value="Guinea">Guinea</option>
+    <option value="Guyana">Guyana</option>
+    <option value="Haiti">Haiti</option>
+    <option value="Hawaii">Hawaii</option>
+    <option value="Honduras">Honduras</option>
+    <option value="Hong Kong">Hong Kong</option>
+    <option value="Hungary">Hungary</option>
+    <option value="Iceland">Iceland</option>
+    <option value="Indonesia">Indonesia</option>
+    <option value="India">India</option>
+    <option value="Iran">Iran</option>
+    <option value="Iraq">Iraq</option>
+    <option value="Ireland">Ireland</option>
+    <option value="Isle of Man">Isle of Man</option>
+    <option value="Israel">Israel</option>
+    <option value="Italy">Italy</option>
+    <option value="Jamaica">Jamaica</option>
+    <option value="Japan">Japan</option>
+    <option value="Jordan">Jordan</option>
+    <option value="Kazakhstan">Kazakhstan</option>
+    <option value="Kenya">Kenya</option>
+    <option value="Kiribati">Kiribati</option>
+    <option value="Korea North">Korea North</option>
+    <option value="Korea Sout">Korea South</option>
+    <option value="Kuwait">Kuwait</option>
+    <option value="Kyrgyzstan">Kyrgyzstan</option>
+    <option value="Laos">Laos</option>
+    <option value="Latvia">Latvia</option>
+    <option value="Lebanon">Lebanon</option>
+    <option value="Lesotho">Lesotho</option>
+    <option value="Liberia">Liberia</option>
+    <option value="Libya">Libya</option>
+    <option value="Liechtenstein">Liechtenstein</option>
+    <option value="Lithuania">Lithuania</option>
+    <option value="Luxembourg">Luxembourg</option>
+    <option value="Macau">Macau</option>
+    <option value="Macedonia">Macedonia</option>
+    <option value="Madagascar">Madagascar</option>
+    <option value="Malaysia">Malaysia</option>
+    <option value="Malawi">Malawi</option>
+    <option value="Maldives">Maldives</option>
+    <option value="Mali">Mali</option>
+    <option value="Malta">Malta</option>
+    <option value="Marshall Islands">Marshall Islands</option>
+    <option value="Martinique">Martinique</option>
+    <option value="Mauritania">Mauritania</option>
+    <option value="Mauritius">Mauritius</option>
+    <option value="Mayotte">Mayotte</option>
+    <option value="Mexico">Mexico</option>
+    <option value="Midway Islands">Midway Islands</option>
+    <option value="Moldova">Moldova</option>
+    <option value="Monaco">Monaco</option>
+    <option value="Mongolia">Mongolia</option>
+    <option value="Montserrat">Montserrat</option>
+    <option value="Morocco">Morocco</option>
+    <option value="Mozambique">Mozambique</option>
+    <option value="Myanmar">Myanmar</option>
+    <option value="Nambia">Nambia</option>
+    <option value="Nauru">Nauru</option>
+    <option value="Nepal">Nepal</option>
+    <option value="Netherland Antilles">Netherland Antilles</option>
+    <option value="Netherlands">Netherlands (Holland, Europe)</option>
+    <option value="Nevis">Nevis</option>
+    <option value="New Caledonia">New Caledonia</option>
+    <option value="New Zealand">New Zealand</option>
+    <option value="Nicaragua">Nicaragua</option>
+    <option value="Niger">Niger</option>
+    <option value="Nigeria">Nigeria</option>
+    <option value="Niue">Niue</option>
+    <option value="Norfolk Island">Norfolk Island</option>
+    <option value="Norway">Norway</option>
+    <option value="Oman">Oman</option>
+    <option value="Pakistan">Pakistan</option>
+    <option value="Palau Island">Palau Island</option>
+    <option value="Palestine">Palestine</option>
+    <option value="Panama">Panama</option>
+    <option value="Papua New Guinea">Papua New Guinea</option>
+    <option value="Paraguay">Paraguay</option>
+    <option value="Peru">Peru</option>
+    <option value="Phillipines">Philippines</option>
+    <option value="Pitcairn Island">Pitcairn Island</option>
+    <option value="Poland">Poland</option>
+    <option value="Portugal">Portugal</option>
+    <option value="Puerto Rico">Puerto Rico</option>
+    <option value="Qatar">Qatar</option>
+    <option value="Republic of Montenegro">Republic of Montenegro</option>
+    <option value="Republic of Serbia">Republic of Serbia</option>
+    <option value="Reunion">Reunion</option>
+    <option value="Romania">Romania</option>
+    <option value="Russia">Russia</option>
+    <option value="Rwanda">Rwanda</option>
+    <option value="St Barthelemy">St Barthelemy</option>
+    <option value="St Eustatius">St Eustatius</option>
+    <option value="St Helena">St Helena</option>
+    <option value="St Kitts-Nevis">St Kitts-Nevis</option>
+    <option value="St Lucia">St Lucia</option>
+    <option value="St Maarten">St Maarten</option>
+    <option value="St Pierre & Miquelon">St Pierre & Miquelon</option>
+    <option value="St Vincent & Grenadines">St Vincent & Grenadines</option>
+    <option value="Saipan">Saipan</option>
+    <option value="Samoa">Samoa</option>
+    <option value="Samoa American">Samoa American</option>
+    <option value="San Marino">San Marino</option>
+    <option value="Sao Tome & Principe">Sao Tome & Principe</option>
+    <option value="Saudi Arabia">Saudi Arabia</option>
+    <option value="Senegal">Senegal</option>
+    <option value="Seychelles">Seychelles</option>
+    <option value="Sierra Leone">Sierra Leone</option>
+    <option value="Singapore">Singapore</option>
+    <option value="Slovakia">Slovakia</option>
+    <option value="Slovenia">Slovenia</option>
+    <option value="Solomon Islands">Solomon Islands</option>
+    <option value="Somalia">Somalia</option>
+    <option value="South Africa">South Africa</option>
+    <option value="Spain">Spain</option>
+    <option value="Sri Lanka">Sri Lanka</option>
+    <option value="Sudan">Sudan</option>
+    <option value="Suriname">Suriname</option>
+    <option value="Swaziland">Swaziland</option>
+    <option value="Sweden">Sweden</option>
+    <option value="Switzerland">Switzerland</option>
+    <option value="Syria">Syria</option>
+    <option value="Tahiti">Tahiti</option>
+    <option value="Taiwan">Taiwan</option>
+    <option value="Tajikistan">Tajikistan</option>
+    <option value="Tanzania">Tanzania</option>
+    <option value="Thailand">Thailand</option>
+    <option value="Togo">Togo</option>
+    <option value="Tokelau">Tokelau</option>
+    <option value="Tonga">Tonga</option>
+    <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+    <option value="Tunisia">Tunisia</option>
+    <option value="Turkey">Turkey</option>
+    <option value="Turkmenistan">Turkmenistan</option>
+    <option value="Turks & Caicos Is">Turks & Caicos Is</option>
+    <option value="Tuvalu">Tuvalu</option>
+    <option value="Uganda">Uganda</option>
+    <option value="United Kingdom">United Kingdom</option>
+    <option value="Ukraine">Ukraine</option>
+    <option value="United Arab Erimates">United Arab Emirates</option>
+    <option value="United States of America">United States of America</option>
+    <option value="Uraguay">Uruguay</option>
+    <option value="Uzbekistan">Uzbekistan</option>
+    <option value="Vanuatu">Vanuatu</option>
+    <option value="Vatican City State">Vatican City State</option>
+    <option value="Venezuela">Venezuela</option>
+    <option value="Vietnam">Vietnam</option>
+    <option value="Virgin Islands (Brit)">Virgin Islands (Brit)</option>
+    <option value="Virgin Islands (USA)">Virgin Islands (USA)</option>
+    <option value="Wake Island">Wake Island</option>
+    <option value="Wallis & Futana Is">Wallis & Futana Is</option>
+    <option value="Yemen">Yemen</option>
+    <option value="Zaire">Zaire</option>
+    <option value="Zambia">Zambia</option>
+    <option value="Zimbabwe">Zimbabwe</option>
+  </datalist>
   <br>
-  <input type="submit" name="submit" value="Submit">
+  <br>
 
+  <div>
+    <label for="birthday">Birthday:</label>
+    <input id="birthday" type="date" name="birthday">
+  </div>
+  <br>
+  <label for="number">Number Selector: 20-30; Span 2</label>
+  <input id="number" type="number" name="quantity" step="2" min="20" max="30">
+  <br><br>
+  <label for="range">Range Slider</label>
+  <input for="range" type="range" name="temperature" min="15" max="25" step="0.5" value="18.5">
+  <br><br>
+  <label for="colour">Colour Picker</label>
+  <input id="colour" name="color" type="color" value="#ff8800">
+  <br><br>
+  <input type="submit" name="submit" value="Submit">
+  <br><br>
 </form>
 
 <!-- Button -->
 <button>Click Me</button>
 
-<br>
+<br><br>
 
 <!-- Image -->
 <a href="EuroStarling.jpg">
@@ -231,8 +534,8 @@
 -->
 
 <!-- Definition Terms -->
-<h4>Definition Terms and Editorial</h4>
-<p>Lorem ipsum dolor sit amet <dfn title="Consecutive Executioner" style="color:red">consectetur</dfn> adipisicing elit. Dolorem <del datetime="2021-03-01" style="color:red">blanditiis laudantium</del> nisi ullam id corrupti error mollitia suscipit tempora ea consequuntur nam asperiores eaque accusamus aspernatur eos, distinctio dolore. Reprehenderit <ins cite="http://www.google.com" style="color:red">sit aut nihil</ins> quidem beatae adipisci rerum dolore assumenda, ea vero delectus id consequatur voluptates eos culpa? Inventore, maxime veniam!</p>
+<h4><span style=color:red>Definition Terms</span>. <span style="color:blue">Editorial</span>. <span style="color:yellow">Mark</span>.</h4>
+<p>Lorem ipsum dolor sit amet <dfn title="Consecutive Executioner" style="color:red">consectetur</dfn> adipisicing elit. Dolorem <del datetime="2021-03-01" style="color:blue">blanditiis laudantium</del> nisi ullam id corrupti error mollitia suscipit tempora ea consequuntur nam asperiores eaque accusamus aspernatur eos, distinctio dolore. Reprehenderit <ins cite="http://www.google.com" style="color:blue">sit aut nihil</ins> quidem beatae adipisci rerum dolore assumenda, ea <mark>vero delectus</mark> id consequatur voluptates eos culpa? Inventore, maxime veniam!</p>
 
 <!-- Abbreviation -->
 <h4>Abbreviation</h4>
@@ -241,6 +544,24 @@
 <!-- Citation -->
 <h4>Citation</h4>
 <p><cite>HTML Crash Course</cite> Completed by Simon Stranks</p>
+
+<!-- Accessibility -->
+<h3>Accessibility</h3>
+<p>&lt;tabindex&gt; Used to set the tabbing order of focusable elements.</p>
+<ol>
+  <li>Avoid using positive tabindex to the extent possible.</li>
+  <li>Use tabindex="0" only for non focusable elements to receive focus.</li>
+  <li>Use negative tabindex to move focus to elements that have focus set using scripts. Never use negative tabindex for the elements that need to be navigated and are actionable.</li>
+</ol>
+
+<p><strong>Tip: </strong>Don't have links open in new window/tab, unless stated in the link title.</p>
+<p><strong>Tip: </strong>Use href="#id" links in the &lt;header&gt; to direct user straight to important page content, without rendering the links visible.</p>
+<p><strong>Tip: </strong>In forms use the 'for' attribute in &lt;label&gt; in conjunction with an 'id' attribute in the &lt;input&gt;. This makes the label clickable and places focus on the form field.</p>
+<p><strong>Tip: </strong>To automatically focus on an input element on page load; use attribute 'autofocus'. e.g. search engine field</p>
+
+<!-- Access Keys -->
+<!-- User presses Alt/Ctrl + accesskey to activate the link directly -->
+<a href="http://www.google.com" accesskey="s">Google</a>
 
 
 </body>
