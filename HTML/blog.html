@@ -89,6 +89,16 @@
       display: block;
     }
 
+    figure{
+      background-color:lightblue;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    figure h3, figure img, figure figcaption{
+      padding: 10px;
+    }
+
     #aside{
       background-color: mediumpurple;
     }
@@ -125,9 +135,9 @@
   <nav id="primary-navigation">
     <span>Primary Navigation Bar</span> |
     <a href="index.html">Home</a> |
-    <a href="">Page 2</a> |
-    <a href="">Page 3</a> |
-    <a href="">Page 4</a>
+    <a href="#Article-1">Article 1</a> |
+    <a href="#Article-2">Article 2</a> |
+    <a href="#Article-3">Article 3</a>
   </nav>
 
   <!-- Section -->
@@ -135,26 +145,36 @@
 
     <span id="section-span">Section</span>
 
-    <article class="post">
+    <article class="post" id="Article-1">
       <h3>Article 1</h3>
       <small>Posted by Simon 25/02/2021</small>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, eligendi alias exercitationem obcaecati illum saepe ipsam, veritatis ipsa explicabo quasi earum nam? Fugit facilis deleniti aspernatur, sequi necessitatibus quo rerum hic recusandae modi veritatis dolore molestiae magni. Veritatis voluptatibus voluptas, tempora tempore modi assumenda perferendis sapiente quae odit! Eligendi, nisi?</p>
+      <footer>
+        <p>[Article Footer]</p>
+      </footer>
       <a href="post.html">Read More</a>
     </article>
 
-    <article class="post">
+    <article class="post" id="Article-2">
       <h3>Article 2</h3>
       <small>Posted by Simon 25/02/2021</small>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, eligendi alias exercitationem obcaecati illum saepe ipsam, veritatis ipsa explicabo quasi earum nam? Fugit facilis deleniti aspernatur, sequi necessitatibus quo rerum hic recusandae modi veritatis dolore molestiae magni. Veritatis voluptatibus voluptas, tempora tempore modi assumenda perferendis sapiente quae odit! Eligendi, nisi?</p>
       <a href="post.html">Read More</a>
     </article>
 
-    <article class="post">
+    <article class="post" id="Article-3">
       <h3>Article 3</h3>
       <small>Posted by Simon 25/02/2021</small>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi, eligendi alias exercitationem obcaecati illum saepe ipsam, veritatis ipsa explicabo quasi earum nam? Fugit facilis deleniti aspernatur, sequi necessitatibus quo rerum hic recusandae modi veritatis dolore molestiae magni. Veritatis voluptatibus voluptas, tempora tempore modi assumenda perferendis sapiente quae odit! Eligendi, nisi?</p>
       <a href="post.html">Read More</a>
     </article>
+
+    <figure>
+      <h3>Figure 2</h3>
+      <img src="GraphSample.png" alt="Example of a data graph" width="350">
+      <figcaption id="figcaption">Fig.2 - Basic Data Graph, <cite>Wikipedia.</cite></figcaption>
+    </figure>
+
   </section>
 
   <!-- Aside -->

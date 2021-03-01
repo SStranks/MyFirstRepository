@@ -4,7 +4,20 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Refresh entire webpage at second intervals -->
+  <!-- <meta http-equiv="refresh" content="3"> -->
   <title>HTML Cheat Sheet</title>
+  <!-- Table Styling; HTML Table attributes may not be supported so CSS recommended  -->
+
+  <style type="text/css">
+  table, th, td {
+    border: 1px solid black;
+  }
+
+  #span {
+    background-color: lightcoral;
+  }
+</style>
 </head>
 
 <body style="background-color: darkgray;">
@@ -24,22 +37,40 @@
   <!-- Paragraph; In-line Styles -->
   <p style="color: blue; background-color: blueviolet;">Lorem ipsum dolor sit amet consectetur adipisicing elit. <a href="http://www.google.com" target="_blank">Doloribus</a> aspernatur consequuntur totam, iste quo laborum doloremque excepturi ducimus. Doloremque reiciendis voluptate sed saepe dolorum hic ut illo fugiat consectetur. Architecto totam harum voluptates sed accusamus dolorum quod cumque nesciunt fugit soluta velit accusantium ducimus ipsum commodi, recusandae ea facilis maxime?</p>
 
-  <!-- List -->
+  <!-- Lists -->
+  <!-- Unordered -->
+  <h4>Unordered List</h4>
   <ul>
     <li>List Item 1</li>
     <li>List Item 2</li>
     <li>List Item 3</li>
     <li>List Item 4</li>
   </ul>
-
+  <!-- Ordered -->
+  <h4>Ordered List</h4>
   <ol>
     <li>List Item 1</li>
     <li>List Item 2</li>
     <li>List Item 3</li>
     <li>List Item 4</li>
   </ol>
+  <!-- Definitions -->
+  <h4>Definitions List</h4>
+  <dl>
+    <dt>Item 1</dt>
+    <dd>Description for Item 1</dd>
+    <dt>Item 2</dt>
+    <dd>Description for Item 2</dd>
+    <dt>Item 3</dt>
+    <dt>Item 4</dt>
+    <dt>Item 5</dt>
+    <dd>Description for Item 5</dd>
+  </dl>
+
+  <br>
 
   <!-- Tables -->
+  <h3>Tables</h3>
   <table>
     <thead>
       <tr>
@@ -66,6 +97,39 @@
       </tr>
     </tbody>
   </table>
+
+<br>
+
+  <!-- Table with row/column spans -->
+  <table style="width: 600px;" style="border: 1px solid black;">
+    <tr>
+        <th>Column 1 heading</th>
+        <th>Column 2 heading</th>
+        <th>Column 3 heading</th>
+    </tr>
+    <tr>
+        <td>Row 2, cell 1</td>
+        <td id="span" colspan="2">Row 2, cell 2, also spanning Row 2, cell 3</td>
+    </tr>
+    <tr>
+        <td id="span" rowspan="2">Row 3, cell 1, also <br>spanning Row 4, cell 1</td>
+        <td>Row 3, cell 2</td>
+        <td>Row 3, cell 3</td>
+    </tr>
+    <tr>
+        <td>Row 4, cell 2</td>
+        <td>Row 4, cell 3</td>
+    </tr>
+</table>
+
+<h4>&lt;Address&gt; Tag</h4>
+<address>
+<ul>
+    <li>0123-456-7890</li>
+    <li>author_dude@noplaceinteresting.com</li>
+    <li>http://www.noplaceinteresting.com/contactme/</li>
+</ul>
+</address>
 
   <br>
   <hr>
@@ -128,12 +192,54 @@
 </a>
 
 <!-- Quotations -->
-<blockquote cite="http://www.google.com">
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, quam. Eveniet tenetur consectetur ducimus illum sit asperiores laboriosam quidem aliquam quisquam fugiat eum tempora labore eius voluptatum, ipsa in error quam quis veritatis harum. Optio architecto nesciunt facere, neque quidem unde amet tempora sint culpa animi laudantium beatae laboriosam facilis?
-</blockquote>
+<!-- Figures and Blockquote -->
+<figure>
+  <blockquote cite="http://www.google.com">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, quam. Eveniet tenetur consectetur ducimus illum sit asperiores laboriosam quidem aliquam quisquam fugiat eum tempora labore eius voluptatum, ipsa in error quam quis veritatis harum. Optio architecto nesciunt facere, neque quidem unde amet tempora sint culpa animi laudantium beatae laboriosam facilis?
+  </blockquote>
+  <figcaption>Fig.1 - Ipsum Giberisho, <cite>Lorem50 Text.</cite></figcaption>
+</figure>
 
+<!-- Figures-->
+<figure>
+  <img src="GraphSample.png" alt="Example of a data graph" width="350">
+  <figcaption>Fig.2 - Basic Data Graph, <cite>Wikipedia.</cite></figcaption>
+</figure>
+
+<br>
+
+<!-- Code -->
+<p>&lt;Code&gt; Used to represent any form of computer code.</p>
+<p>&lt;Var&gt; Used to represent any form of variable (any variable, even equation).</p> 
+<p>&lt;kbd&gt; Used to represent keyboard user-input.</p>
+<p>&lt;samp&gt; Used to represent sample output.</p>
+
+<pre>     <code>Code/Var/kbd/samp outputs looks like this</code></pre>
+
+<!-- Pre -->
+<p>&lt;Pre&gt; Preformatted text. Takes notice of every character in it, including the <strong>white space</strong> and <strong>indentations.</strong></p>
+
+<!-- HTML Special Characters -->
+<h3>Special Characters</h3>
+<p>Open up console tools and examine the HTML code for this page; browser parses special characters!</p>
+<!-- 
+  & (ampersand) becomes &amp;
+  " (double quote) becomes &quot; when ENT_NOQUOTES is not set.
+  ' (single quote) becomes &#039; only when ENT_QUOTES is set.
+  < (less than) becomes &lt;
+  >(greater than) becomes &gt; 
+-->
+
+<!-- Definition Terms -->
+<h4>Definition Terms and Editorial</h4>
+<p>Lorem ipsum dolor sit amet <dfn title="Consecutive Executioner" style="color:red">consectetur</dfn> adipisicing elit. Dolorem <del datetime="2021-03-01" style="color:red">blanditiis laudantium</del> nisi ullam id corrupti error mollitia suscipit tempora ea consequuntur nam asperiores eaque accusamus aspernatur eos, distinctio dolore. Reprehenderit <ins cite="http://www.google.com" style="color:red">sit aut nihil</ins> quidem beatae adipisci rerum dolore assumenda, ea vero delectus id consequatur voluptates eos culpa? Inventore, maxime veniam!</p>
+
+<!-- Abbreviation -->
+<h4>Abbreviation</h4>
 <p>The <abbr title="World Wide Web">WWW</abbr> is fantastic!</p>
 
+<!-- Citation -->
+<h4>Citation</h4>
 <p><cite>HTML Crash Course</cite> Completed by Simon Stranks</p>
 
 
