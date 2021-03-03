@@ -29,10 +29,12 @@
 
 <br>
 
-<pre>
-An inline element does not start on a new line.
+```diff
++ An inline element does not start on a new line.
 
-An inline element only takes up as much width as necessary.
++ An inline element only takes up as much width as necessary.
 
-<b>An inline element cannot contain a block-level element!</b></pre>
+- An inline element cannot contain a block-level element!
+
+```
 
