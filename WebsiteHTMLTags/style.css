@@ -1,0 +1,172 @@
+/* Import Font Style: Source Code Pro, Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+/* Colours */
+:root {
+  --primary-color:#3a3d4d;
+  --secondary-color: #303030;
+  --text-color-main: white;
+  --success-color: #5cb85c;
+  --error-color: #d9534f;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Source Code Pro', sans-serif;
+  color: var(--text-color-main);
+  line-height: 1.6;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color-main);
+}
+
+h2 {
+  font-weight: 200;
+  line-height: 1.2;
+  margin: 5px 0;
+}
+
+h1 {
+  font-weight: 200;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 5px 0;
+}
+
+h1:hover {
+  background-color:rgb(0, 153, 255);
+  text-shadow: 0px 0.5px 3px rgba(3, 5, 112, 0.3);
+}
+
+p {
+  margin: 10px 0;
+}
+
+/* Nav Bar */
+.navbar {
+  background-color: var(--primary-color);
+  color: var(--text-color-main);
+  height: 70px;
+}
+
+.navbar ul {
+  display: flex;
+}
+
+.navbar a {
+  font-family: sans-serif;
+  padding: 10px;
+  margin: 10px;
+}
+
+.navbar li .curren {
+  background-color:rgb(0, 153, 255);
+  text-shadow: 0px 0.5px 3px rgba(3, 5, 112, 0.3);
+}
+
+
+.navbar a:hover {
+  background-color:rgb(0, 153, 255);
+  text-shadow: 0px 0.5px 3px rgba(3, 5, 112, 0.3);
+}
+
+.navbar .flex {
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Main */
+.main {
+  background-color: var(--secondary-color);
+}
+
+.main .card-title {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.main .tags {
+  grid-row: 1 / span 3 ;
+  height: 100%;
+}
+
+.main .def-use {
+  grid-row: 1 / span 1;
+  grid-column: 2 / span 2;
+  height: 100%;
+}
+
+.main .example {
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 2;
+  height: 100%
+}
+
+.main .side {
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 2;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.main .side .card {
+  margin: 0px 0px 10px 0px;
+}
+
+.main .side .browser-images {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+
+.browser-images img {
+  margin: 0px 15px;
+  width: 35px;
+}
+
+.rounded {
+  border: 1px solid rgba(48, 48, 48, 0.05);
+  border-radius: 10px;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--primary-color);
+}
+
+.footer ul {
+  display: flex;
+}
+
+.footer .flex {
+  justify-content: space-between;
+}
+
+.footer a {
+  padding: 10px;
+  margin: 10px;
+}
+
+.footer h2 {
+  font-size: 20px;
+}
+
+.footer p {
+  margin: 0px 0px 5px 0px;
+}

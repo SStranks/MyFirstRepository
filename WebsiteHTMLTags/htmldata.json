@@ -1,0 +1,36 @@
+{
+  "elements": [
+      {
+          "name": "<!--...-->",
+          "category" : "Basic",
+          "description": "Defines a comment",
+          "definition": "The comment tag is used to insert comments in the source code. Comments are not displayed in the browsers.\n\nYou can use comments to explain your code, which can help you when you edit the source code at a later date. This is especially useful if you have a lot of code.",
+          "example": "<!--This is a comment. Comments are not displayed in the browser-->\n\n<p>This is a paragraph.</p>",
+          "attribute": "none",
+          "globalattribute": "none",
+          "eventattribute": "none",
+          "defaultCSS": "none",
+          "browserChrome": "Yes",
+          "browserEdge": "Yes",
+          "browserFirefox": "Yes",
+          "browserOpera": "Yes",
+          "browserSafari": "Yes",
+      }, 
+      {
+          "name": "<!DOCTYPE>",
+          "category" : "Basic",
+          "description": "Defines the document type",
+          "definition": "All HTML documents must start with a <!DOCTYPE> declaration.\n\nThe declaration is not an HTML tag. It is an \"information\" to the browser about what document type to expect.\n\nIn HTML 5, the declaration is simple:",
+          "example": "<!DOCTYPE html>\n<!DocType html>\n<!Doctype html>\n<!doctype html>",
+          "attribute": "none",
+          "globalattribute": "none",
+          "eventattribute": "none",
+          "defaultCSS": "none",
+          "browserChrome": "Yes",
+          "browserEdge": "Yes",
+          "browserFirefox": "Yes",
+          "browserOpera": "Yes",
+          "browserSafari": "Yes",
+      }, 
+    ]
+  }
