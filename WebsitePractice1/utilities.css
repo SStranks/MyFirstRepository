@@ -1,0 +1,20 @@
+/* -----|| Contents ||----- */
+/* ------------------------ */
+/*   1. || Utilities      */
+
+/* ------------------------ */
+
+
+/* -----|| Utilities ||----- */
+.container {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 0 auto;
+  overflow: auto;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
