@@ -151,7 +151,7 @@ code, pre {
   bottom: -70px;
   right: 0;
   left: 0;
-  background: #fff;
+  background: red;
   transform: skewY(-3deg);
   -webkit-transform: skewY(-3deg);
   -moz-transform: skewY(-3deg);
@@ -253,11 +253,18 @@ code, pre {
   align-items: flex-start;
 }
 
-.docs-main nav li {
+/* .docs-main nav li {
   font-size: 17px;
   padding-bottom: 5px;
   margin-bottom: 5px;
   border-bottom: 1px #ccc solid;
+} */
+
+.docs-main nav li ~ li {
+  font-size: 17px;
+  padding-top: 5px;
+  margin-top: 5px;
+  border-top: 1px #ccc solid;
 }
 
 .docs-main a:hover {
