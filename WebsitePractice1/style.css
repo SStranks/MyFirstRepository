@@ -98,6 +98,7 @@ header {
   left: -10rem;
   min-height: 12rem;
   min-width: 12rem;
+  transition: transform 1s;
 }
 
 .navbar--side::after {
@@ -122,14 +123,19 @@ header {
   top: 9rem;
   bottom: 0;
   right: -3.8rem;
-  height: 2rem
+  height: 2rem;
 }
 
-.navbar--side:hover {
+/* The keyframe animation only works in one direction - removal of hover snaps animation to 0% */
+/* .navbar--side:hover {
   animation-name: side-slide;
   animation-duration: 1000ms;
   animation-timing-function: ease-out;
   animation-fill-mode: both;
+
+} */
+.navbar--side:hover {
+  transform: translateX(10rem);
 }
 
 .navbar--side .flex {
@@ -150,8 +156,8 @@ header {
 }
 
 
-/* -----|| Animations ||----- */
+/* -----|| Animations ||-----
 @keyframes side-slide {
   0% {left: -10rem}
   100% {left: 0}
-}
+} */
