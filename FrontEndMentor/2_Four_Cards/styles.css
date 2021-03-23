@@ -1,0 +1,156 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */    
+/*   3. || Globals                  */
+/*   4. || Header                   */
+/*   5. || Card                     */ 
+/*   6. || FrontEnd Mentor Footer   */
+/* -------------------------------- */
+
+
+/*   1. || Imports          */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+
+/* -----|| Variables ||----- */
+:root {
+  /* HSL Values  */
+  --red: 0, 78%, 62%;
+  --cyan: 180, 62%, 55%;
+  --orange: 34, 97%, 64%;
+  --blue: 212, 86%, 64%;
+  --dark-blue: 234, 12%, 34%;
+  --gray-blue: 229, 6%, 66%;
+  --light-grey: 0, 0%, 98%;
+}
+
+/* -----|| Globals || -----*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* LAYOUT DIMS  */
+/* - Mobile: 375px
+- Desktop: 1440px */
+
+html, body {
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: #111;
+  background: hsl(var(--light-grey));
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 25px;
+  height: auto;
+  width: max-content;
+  justify-items: center;
+  align-items: center;
+  margin: 0 auto 40px;
+}
+
+p {
+  color: hsl(var(--gray-blue));
+}
+
+/* Header  */
+header {
+  line-height: 1.4;
+}
+
+header span {
+  font-size: 2.4rem;
+  font-weight: 200;
+  display: inline-block;
+  margin: 50px auto 15px;
+}
+
+header p {
+  max-width: 54ch;
+  margin: 0 auto 75px;
+}
+
+/* Card  */
+.card {
+  background: white;
+  width: 350px;
+  height: 250px;
+  text-align: left;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px 1px rgba(0,0,0,0.1);
+}
+
+.card img {
+  float: right;
+  margin-top: 50px;
+}
+
+.blue {
+  grid-row: 1 / span 2;
+  grid-column: 3 / span 1;
+  border-top: 5px solid hsl(var(--blue));
+}
+
+.cyan {
+  grid-row: 1 / span 2;
+  border-top: 5px solid hsl(var(--cyan));
+}
+
+.orange {
+  border-top: 5px solid hsl(var(--orange));
+}
+
+.red {
+  border-top: 5px solid hsl(var(--red));
+}
+
+/* FrontEnd Mentor Footer  */
+.attribution {
+  font-size: 11px; 
+  text-align: center;
+}
+
+.attribution a { 
+  color: hsl(228, 45%, 44%); 
+}
+
+@media (max-width: 400px) {
+  header span {
+    font-size: 1.8rem;
+    font-weight: 200;
+    display: inline-block;
+    margin: 50px auto 15px;
+  }
+  
+  header p {
+    max-width: 32ch;
+    margin: 0 auto 75px;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4;
+  }
+  
+  .blue, .cyan, .orange, .red {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+}
