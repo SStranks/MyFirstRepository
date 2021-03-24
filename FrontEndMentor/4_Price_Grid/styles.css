@@ -1,0 +1,207 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */    
+/*   3. || Globals                  */
+/*   4. || Section Top              */
+/*   5. || Section Bottom           */
+/*   6. || FrontEnd Mentor Footer   */
+/*   7. || Media Queries            */
+/* -------------------------------- */
+
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+
+/*   2. || Variables                */ 
+:root {
+   /* HSL Values  */
+  --cyan: 179, 62%, 43%;
+  --yellow: 71, 73%, 54%;
+  --gray: 204, 43%, 93%;
+  --blue: 218, 22%, 67%;
+}
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-size: 16px;
+  font-family: 'Karla', sans-serif;
+  line-height: 1.6;
+  background-color: hsl(var(--gray));
+  color: hsl(var(--gray));
+  height: 100%;
+}
+
+.container {
+  max-width: 1440px;
+  min-height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr minmax(1fr, auto);
+  max-width: 1000px;
+  box-shadow: 0 0 20px 5px rgba(0,0,0,0.2);
+  margin: 2em 3em;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/*   4. || Section Top              */
+.panel-join {
+  grid-column: 1 / span 2;
+  padding: 3em 4em;
+  background-color: white;
+}
+
+.panel-join h3 {
+  color: hsl(var(--cyan));
+  font-size: 2.5rem;
+  margin-bottom: 0.25em;
+}
+.panel-join h4 {
+  color: hsl(var(--yellow));
+  font-size: 1.75rem;
+  margin-bottom: 0.25em;
+}
+
+.panel-join p {
+  color: hsl(var(--blue));
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+/*   5. || Section Bottom           */
+.panel-subscribe {
+  background-color: hsl(var(--cyan));
+  padding: 3em 4em;
+}
+
+.panel-subscribe h4 {
+  font-size: 1.75rem;
+  margin-bottom: 0.25em;
+}
+
+.panel-subscribe span.price{
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+
+.panel-subscribe > p {
+ font-size: 1.5rem;
+ margin-bottom: 1.5em;
+}
+
+.panel-why {
+  background-color: hsl(var(--cyan), 75%);
+  padding: 3em 4em;
+}
+
+.panel-why h4 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5em;
+}
+
+.panel-why ul {
+  list-style: none;
+  font-size: 1.1rem;
+}
+
+#sign-up {
+  background-color: hsl(var(--yellow));
+  color: hsl(var(--gray));
+  width: 100%;
+  height: 65px;
+  border-radius: 7px;
+  border: none;
+  box-shadow: 0 0 10px 1px rgba(0,0,0,0.2);
+  transition: transform 0.25s ease-in-out;
+}
+
+#sign-up p {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+#sign-up:hover {
+  transform: scale(1.05);
+}
+
+/*   6. || FrontEnd Mentor Footer   */
+.attribution {
+  font-size: 1rem; 
+  text-align: center;
+  color:#000;
+}
+
+.attribution a { 
+  color: hsl(228, 45%, 44%); 
+}
+
+/*   7. || Media Queries            */
+/*      Tablets and Under           */
+@media (max-width: 768px) {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    max-width: 100%;
+    box-shadow: 0 0 20px 5px rgba(0,0,0,0.2);
+    margin: 5em 2em;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .panel-join {
+    grid-column: 1;
+    padding: 3em 4em;
+    background-color: white;
+  }
+
+  .panel-join h3 {
+    font-size: 2rem;
+  }
+
+  .panel-join h4, .panel-subscribe h4, .panel-why h4 {
+    font-size: 1.25rem;
+  }
+
+  .panel-join p, .panel-subscribe p, .panel-why p, ul li {
+    font-size: 1rem;
+  }
+}
+
+/*      Mobile                      */
+@media (max-width: 500px) {
+  .panel-join, .panel-subscribe, .panel-why {
+    grid-column: 1;
+    padding: 2em 2em;
+  }
+
+  .panel-join h3 {
+    font-size: 1.5rem;
+  }
+
+  .panel-join h4, .panel-subscribe h4, .panel-why h4 {
+    font-size: 1.2rem;
+  }
+
+  .panel-join p, .panel-subscribe p, .panel-why p, ul li {
+    font-size: 1rem;
+  }
+}
