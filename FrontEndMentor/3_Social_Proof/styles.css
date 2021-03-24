@@ -9,7 +9,7 @@
 /* -------------------------------- */
 
 
-/* 1. || Imports                    */
+/*   1. || Imports                  */
 @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@400;500;700&display=swap');
 
 /*   2. || Variables                */ 
@@ -182,10 +182,6 @@ p {
 }
 
 @media (max-width: 1040px) {
-  body {
-    height: max-content;
-  }
-  
   body::before {
     content: '';
     height: 100%;
@@ -199,7 +195,7 @@ p {
   }
   
   .container {
-    height: 100%;
+    height: max-content;
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
