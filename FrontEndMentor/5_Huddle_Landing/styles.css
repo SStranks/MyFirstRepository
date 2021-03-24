@@ -1,0 +1,173 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */    
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+/*   6. || Media Queries            */
+/* -------------------------------- */
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/*   2. || Variables                */    
+:root {
+  /* HSL Values  */
+  --violet: 257, 40%, 49%;
+  --magenta: 300, 69%, 71%;
+}
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-size: 16px;
+  font-family: 'Poppins', 'Open-Sans', sans-serif;
+  line-height: 1.6;
+  color: #111;
+  height: 100%;
+  background: hsl(var(--violet)) url('./images/bg-desktop.svg');
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container {
+  max-width: 1440px;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 3em 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*   4. || Main                     */
+#logo {
+  align-self: flex-start;
+  margin-bottom: 6em;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  width: 100%;
+}
+
+#illustration {
+  grid-column: 1 / span 1;
+  margin-right: 3em;
+}
+
+#info {
+  grid-column: 2 / span 1;
+  margin-top: 3em;
+  color: white;
+}
+
+#info h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+
+#info p {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 2em;
+}
+
+#register {
+  background-color: #fff;
+  color: #000;
+  padding: 1em 5em;
+  border-radius: 2em;
+  border-style: none;
+  box-shadow: 0 0 8px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#register:hover {
+  background-color: hsl(var(--magenta));
+  color: #fff;
+}
+
+#icons {
+  align-self: flex-end;
+  color: #fff;
+  font-size: 2.5rem;
+  z-index: 2;
+}
+
+#icons i {
+  margin: 0.2em;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#icons i:hover {
+  color: hsl(var(--magenta));
+}
+
+/*   5. || FrontEnd Mentor Footer   */
+.attribution {
+  font-size: 1rem; 
+  text-align: center;
+  color:#000;
+}
+
+.attribution a { 
+  color: #fff; 
+}
+
+/*   6. || Media Queries            */
+@media (max-width: 1080px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content;
+    width: 100%;
+    margin-bottom: 4em;
+  }
+
+  #illustration {
+    grid-column: 1;
+    grid-row: 1 / span 1;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 100%;
+  }
+  
+  #info {
+    grid-column: 1;
+    grid-row: 2 / span 1;
+    margin-top: 3em;
+    color: white;
+    text-align: center;
+  }
+
+  #icons {
+    align-self: center;
+  }
+}
+
+@media (max-width: 500px) {
+  body {
+    background: hsl(var(--violet)) url('./images/bg-mobile.svg');
+    background-size: 100% auto;
+    background-position: top;
+    background-repeat: no-repeat;
+  }
+
+  #info {
+    padding-top: 0em;
+  }
+}
