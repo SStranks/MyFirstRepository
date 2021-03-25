@@ -4,37 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="styles.css">
   <title>Frontend Mentor | FAQ Accordion Card</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
+
 <body>
-  How many team members can I invite?
-  You can invite up to 2 additional users on the Free plan. There is no limit on 
-  team members for the Premium plan.
+  
+  <main class="container">
 
-  What is the maximum file upload size?
-  No more than 2GB. All files in your account must fit your allotted storage space.
+    <section class="card">
+      
+      <div class="images">
+        <img id="img-box" src="./images/illustration-box-desktop.svg" alt="Illustration of a box">
+        <img id="img-main" src="./images/illustration-woman-online-desktop.svg" alt="Illustration main graphic">
+      </div>
+      
+      <div class="info">
+        <h2>FAQ</h2>
+        <ul>
+          <li id="Q1">
+            <div class="inline">
+              <a class="text-bold" href="#Q1">How many team members can I invite?</a>
+              <p class="expand" id="Q1">You can invite up to 2 additional users on the Free plan. There is no limit on team members for the Premium plan.</p>
+            </div>
+            <a class="arrow" href="#Q1"><img src="./images/icon-arrow-down.svg" alt="Arrow"></a>
+          </li>
 
-  How do I reset my password?
-  Click “Forgot password” from the login page or “Change password” from your profile page.
-  A reset link will be emailed to you.
+          <li id="Q2">
+            <div class="inline">
+              <a class="text-bold" href="#Q2">What is the maximum file upload size?</a>
+              <p class="expand" id="Q2">No more than 2GB. All files in your account must fit your allotted storage space.</p>
+            </div>
+            <a class="arrow" href="#Q2"><img src="./images/icon-arrow-down.svg" alt="Arrow"></a>
+          </li>
 
-  Can I cancel my subscription?
-  Yes! Send us a message and we’ll process your request no questions asked.
+          <li id="Q3">
+            <div class="inline">
+              <a class="text-bold" href="#Q3">How do I reset my password?</a>
+              <p class="expand" id="Q3">Click “Forgot password” from the login page or “Change password” from your profile page. A reset link will be emailed to you.</p>
+            </div>
+            <a class="arrow" href="#Q3"><img src="./images/icon-arrow-down.svg" alt="Arrow"></a>
+          </li>
+          
+          <li id="Q4">
+            <div class="inline">
+              <a class="text-bold" href="#Q4">Can I cancel my subscription?</a>
+              <p class="expand" id="Q4">Yes! Send us a message and we’ll process your request no questions asked.</p>
+            </div>
+            <a class="arrow" href="#Q4"><img src="./images/icon-arrow-down.svg" alt="Arrow"></a>
+          </li>
 
-  Do you provide additional support?
-  Chat and email support is available 24/7. Phone lines are open during normal business hours.
+          <li id="Q5">
+            <div class="inline">
+              <a class="text-bold" href="#Q5">Do you provide additional support?</a>
+              <p class="expand">Chat and email support is available 24/7. Phone lines are open during normal business hours.</p>
+            </div>
+            <a class="arrow" href="#Q5"><img src="./images/icon-arrow-down.svg" alt="Arrow"></a>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+    <footer>
+      <p class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+        Coded by <a href="https://github.com/SStranks">Simon Stranks</a>.
+      </p>
+    </footer>
+
+  </main>
 </body>
 </html>
