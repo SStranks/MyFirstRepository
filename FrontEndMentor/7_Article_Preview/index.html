@@ -4,33 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="./styles.css">
   <title>Frontend Mentor | Article preview component</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
+
 <body>
+  <div class="container">
+    <div class="card">
+      
+      <div class="img-panel">
+        <img src="./images/drawers.jpg" alt="image-main">
+      </div>
+      
+      <div class="info-panel">
+        <h3>
+          Shift the overall look and feel by adding these wonderful
+          touches to furniture in your home
+        </h3>
 
-  Shift the overall look and feel by adding these wonderful 
-  touches to furniture in your home
+        <p>
+          Ever been in a room and felt like something was missing? Perhaps
+          it felt slightly bare and uninviting. I’ve got some simple tips
+          to help you make any room feel complete.
+        </p>
+        
+        <div class="flex">
+          <div class="person">
+            <img src="./images/avatar-michelle.jpg" alt="Michelle Profile Picture">
+            <p>
+              <span>Michelle Appleton</span><br>
+              28 Jun 2020
+            </p>
+          </div>
+          <div class="share-nav">
+            <p>Share</p>
+            <img src="./images/icon-facebook.svg" alt="Facebook Icon">
+            <img src="./images/icon-twitter.svg" alt="Twitter Icon">
+            <img src="./images/icon-pinterest.svg" alt="Pinterest Icon">
+          </div>
+          <div class="share-icon">
+            <img src="./images/icon-share.svg" alt="Share Icon Toggle">
+          </div>
+        </div>
 
-  Ever been in a room and felt like something was missing? Perhaps 
-  it felt slightly bare and uninviting. I’ve got some simple tips 
-  to help you make any room feel complete.
+      </div>
+    </div>
 
-  Michelle Appleton
-  28 Jun 2020
-
-  Share
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+      <footer>
+        <p class="attribution">
+          Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+          Coded by <a href="https://github.com/SStranks">Simon Stranks</a>.
+        </p>
+      </footer>
+    
+</div>
+<script src="script.js"></script>
 </body>
 </html>
