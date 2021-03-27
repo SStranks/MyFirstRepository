@@ -4,8 +4,9 @@
 /*   2. || Variables                */    
 /*   3. || Globals                  */
 /*   4. || Main                     */
-/*   5. || FrontEnd Mentor Footer   */
-/*   6. || Media Queries            */
+/*   5. || JS Toggle Class          */
+/*   6. || FrontEnd Mentor Footer   */
+/*   7. || Media Queries            */
 /* -------------------------------- */
 
 
@@ -35,9 +36,11 @@ html, body {
   height: 100%;
   width: 100%;
   background-color: hsl(var(--Light-blue));
+  color: hsl(var(--Desat-Blue));
 }
 
 .container {
+  width: 80%;
   max-width: 1000px;
   min-height: 100%;
   margin: 0 auto;
@@ -129,13 +132,10 @@ html, body {
   align-items: center;
   background-color: hsl(var(--Light-blue));
   border-radius: 50%;
+  z-index: 2;
 }
 
-.share-icon-color {
-  height: 40px;
-  width: 40px;
-  background-color: hsl(var(--Dark-Gray-Blue));
-}
+
 
 .share-icon img {
   width: 35%;
@@ -157,10 +157,6 @@ html, body {
   position: absolute;
   right: -105px;
   bottom: 80px
-}
-
-.display {
-  display: flex;
 }
 
 .share-nav::after {
@@ -185,7 +181,18 @@ html, body {
   margin: 0 0.4em;
 }
 
-/*   5. || FrontEnd Mentor Footer   */
+/*   5. || JS Toggle Class          */
+.display {
+  display: flex;
+}
+
+.share-icon-color {
+  height: 40px;
+  width: 40px;
+  background-color: hsl(var(--Dark-Gray-Blue));
+}
+
+/*   6. || FrontEnd Mentor Footer   */
 .attribution {
   font-size: 1rem; 
   text-align: center;
@@ -196,7 +203,7 @@ html, body {
   color: rgb(211, 47, 226); 
 }
 
-/*   6. || Media Queries            */
+/*   7. || Media Queries            */
 @media (max-width: 768px) {
   .container {
     max-width: 1000px;
@@ -221,29 +228,59 @@ html, body {
     margin: 2em;
   }
 
+  .img-panel {
+    border-radius: 0;
+  }
+
   .img-panel img {
     max-height: 100%;
     max-width: 100%;
   }
 
   .info-panel {
-    padding: 1em 2em;
+    padding: 0;
     display: flex;
     flex-direction: column;
   }
 
   .info-panel h3 {
-    margin: 1em 0;
-    padding-right: 0;
+    margin: 0;
+    padding: 2em 1.5em;
   }
   
   .info-panel > p {
     font-size: 1.1rem;
     margin-bottom: 1em;
-    padding-right: 0;
+    padding: 0 2em 2em 2em;
   }
 
   .flex {
-    grid-row: 3 / span 1;
+    width: 100%;
+    padding: 0 2em;
+    justify-content: space-between;
+  }
+
+  .share-nav {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: hsl(var(--Dark-Gray-Blue));
+    border-radius: 0 0 5px 5px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 2em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+  }
+
+  .display {
+    display: flex;
+  }
+
+  .share-icon-color {
+    background-color: hsl(var(--Desat-Blue));
   }
 }
