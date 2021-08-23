@@ -1,0 +1,199 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */    
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+
+
+/*   6. || Media Queries            */
+@media(max-width: 500px) {
+
+}
+/* -------------------------------- */
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Lexend+Deca&display=swap');
+
+/*   2. || Variables                */ 
+:root {
+  /* ### Primary
+- Very dark blue (main background): hsl(233, 47%, 7%)
+- Dark desaturated blue (card background): hsl(244, 38%, 16%)
+- Soft violet (accent): hsl(277, 64%, 61%)
+  ### Neutral
+- White (main heading, stats): hsl(0, 0%, 100%)
+- Slightly transparent white (main paragraph): hsla(0, 0%, 100%, 0.75)
+- Slightly transparent white (stat headings): hsla(0, 0%, 100%, 0.6) */
+  /* HSL Values */
+  /* Primary */
+  --Very-dark-blue: 233, 47%, 7%;
+  --Dark-desaturated-blue: 244, 38%, 16%;
+  --Soft-violet: 277, 64%, 61%;
+  /* Neutral */
+  --Trans-white-p: 0, 0%, 100%, 0.75;
+  --Trans-white-h: 0, 0%, 100%, 0.6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*   3. || Globals                  */
+html, body {
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  height: 100%;
+  width: 100%;
+  background: hsl(var(--Very-dark-blue));
+}
+
+/*   4. || Main                     */
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  max-width: 100%;
+  width: 75%;
+  height: 375px;
+  background: hsl(var(--Dark-desaturated-blue));
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.info-panel {
+  padding: 3.5rem 6rem 2rem 4rem;
+}
+
+.info-panel h1 {
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  font-size: 2.2rem;
+}
+
+.info-panel span {
+  color: hsl(var(--Soft-violet));
+}
+
+.info-panel p {
+  font-family: 'Lexend Deca', sans-serif;
+  color: hsl(var(--Trans-white-p));
+  margin-top: 1.5rem;
+  padding-right: 2rem;
+}
+
+.stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 3rem 2rem 0 0;
+  padding-right: 2rem;
+  color: hsl(var(--Trans-white-p));
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.stats h2 {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.card-image {
+  height: 100%;
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  background-image: linear-gradient(hsla(var(--Soft-violet), 0.65), hsla(var(--Soft-violet), 0.65)), url('./images/image-header-mobile.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  mix-blend-mode: normal;
+  border-radius: 0 10px 10px 0;
+}
+
+/*   5. || FrontEnd Mentor Footer   */
+.attribution {
+  font-size: 1rem; 
+  text-align: center;
+  color:#000;
+}
+
+footer a { 
+  color: blue;
+  font-size: 1rem; 
+}
+
+footer a:hover {
+  color: red;
+}
+
+/*   6. || Media Queries            */
+/*      Mobile                      */
+@media (max-width: 375px) {
+  .card {
+  max-width: 100%;
+  width: 90%;
+  height: 90%;
+  background: hsl(var(--Dark-desaturated-blue));
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 30% 70%;
+  }
+
+  .info-panel {
+    order: 2;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .info-panel h1 {
+    font-family: 'Lexend Deca', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.25;
+    font-size: 2rem;
+  }
+
+  .info-panel p {
+    padding: 0;
+  }
+
+  .card-image {
+    order: 1;
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    background-image: linear-gradient(hsla(var(--Soft-violet), 0.65), hsla(var(--Soft-violet), 0.65)), url('./images/image-header-mobile.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    mix-blend-mode: normal;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .stats {
+    flex-direction: column;
+    margin: 1rem 0 0 0;
+    padding: 0;
+  }
+
+  .stats div {
+    padding: 0.75rem 0;
+  }
+}
