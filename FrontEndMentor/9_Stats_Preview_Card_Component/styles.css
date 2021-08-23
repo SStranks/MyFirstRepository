@@ -67,7 +67,7 @@ html, body {
 .card {
   max-width: 100%;
   width: 75%;
-  height: 375px;
+  height: 400px;
   background: hsl(var(--Dark-desaturated-blue));
   border-radius: 10px;
   display: grid;
@@ -101,7 +101,7 @@ html, body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 3rem 2rem 0 0;
+  margin: 5rem 2rem 0 0;
   padding-right: 2rem;
   color: hsl(var(--Trans-white-p));
   font-size: 0.75rem;
