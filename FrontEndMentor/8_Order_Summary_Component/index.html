@@ -2,36 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
   <title>Frontend Mentor | Order summary card</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
+  <div class="container">
+    <div class="card">
 
-  Order Summary
+      <div class="img-panel">
+        <img src="./images/illustration-hero.svg" alt="image-main-illustration-hero">
+      </div>
 
-  You can now listen to millions of songs, audiobooks, and podcasts on any 
-  device anywhere you like!
+      <div class="info-panel">
+        <div class="info-summary">
+          <h3>Order Summary</h3>
+          <p>
+            You can now listen to millions of songs, audiobooks, and podcasts on any
+            device anywhere you like!
+          </p>
+        </div>
 
-  Annual Plan
-  $59.99/year
+        <div class="info-pricing">
+          <div class="info-pricing-plan">
+            <img src="./images/icon-music.svg" alt="image-main-musicIcon">
+            <div>
+              <span>Annual Plan</span>
+              <p>$59.99/year</p>
+            </div>
+          </div>
+          <a href="#">Change</a>
+        </div>   
 
-  Change
+        <div class="info-payment">
+          <button id="btn">Proceed to Payment</button>
+          <p id="cancel">Cancel Order</p>
+        </div>
 
-  Proceed to Payment
-  Cancel Order
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+      </div>
+    </div>
   </div>
+
+  <footer>
+    <p class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="https://github.com/SStranks">Simon Stranks</a>.
+    </p>
+  </footer>
 </body>
 </html>

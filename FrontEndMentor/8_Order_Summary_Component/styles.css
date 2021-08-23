@@ -1,0 +1,186 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */    
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+/*   6. || Media Queries            */
+/* -------------------------------- */
+
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap');
+
+/*   2. || Variables                */
+:root {
+  /* HSL Values */
+  /* Primary */
+  --Pale-blue: 225, 100%, 94%;
+  --Bright-blue: 245, 75%, 52%;
+  /* Neutral */
+  --Very-pale-blue: 225, 100%, 98%;
+  --Desaturated-blue: 224, 23%, 55%;
+  --Dark-blue: 223, 47%, 23%;
+}
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-size: 16px;
+  font-family: 'Red Hat Display', sans-serif;
+  line-height: 1.6;
+  height: 100%;
+  width: 100%;
+  background: hsl(var(--Pale-blue)) url('./images/pattern-background-desktop.svg');
+  background-size: 100% auto;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*   4. || Main                     */
+/* Card */
+.card {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 30% 70%;
+  background-color: white;
+  height: 700px;
+  width: 475px;
+  position: relative;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 50px 10px rgba(0,0,0,0.2);
+}
+
+.img-panel {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.img-panel img {
+  max-height: 100%;
+  max-width: 100%;
+  height: 100%;
+  width: 100%;
+}
+
+.info-panel {
+  padding: 3em;
+}
+
+.info-panel h3 {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: hsl(var(--Dark-blue));
+}
+
+.info-panel p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: hsl(var(--Desaturated-blue));
+}
+
+.info-summary {
+  text-align: center;
+}
+
+.info-summary p {
+  padding: 1rem;
+}
+
+.info-pricing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: hsl(var(--Very-pale-blue));
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.info-pricing span {
+  font-weight: 900;
+  color: hsl(var(--Dark-blue));
+}
+
+.info-pricing a {
+  font-weight: 700;
+  color: hsl(var(--Bright-blue));
+}
+
+.info-pricing a:hover {
+  text-decoration: none;
+  opacity: 0.65;
+}
+
+.info-pricing img {
+  height: 50px;
+  width: 50px;
+  margin-right: 1rem;
+}
+
+.info-pricing-plan {
+  display: flex;
+
+}
+
+#btn {
+  background: hsl(var(--Bright-blue));
+  border: none;
+  width: 100%;
+  height: 50px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 2rem 0rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+#btn:hover {
+  opacity: 0.65;
+}
+
+.info-payment #cancel {
+  text-align: center;
+  font-weight: 700;
+  color: hsl(var(--Desaturated-blue));
+  cursor: pointer;
+}
+
+.info-payment #cancel:hover {
+  color: hsl(var(--Dark-blue));
+}
+
+/*   5. || FrontEnd Mentor Footer   */
+.attribution {
+  font-size: 1rem; 
+  text-align: center;
+  color:#000;
+}
+
+.attribution a { 
+  color: #fff; 
+}
+
+/*   6. || Media Queries            */
