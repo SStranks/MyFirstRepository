@@ -1,0 +1,107 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+/*   6. || Media Queries            */
+/* -------------------------------- */
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&display=swap');
+
+/*   2. || Variables                */
+:root {
+  /* HSL Values */
+  /* Primary */
+  --Desaturated-Red: 0, 36%, 70%;
+  --Soft-Red: 0, 93%, 68%;
+  /* Neutral */
+  --Dark-Grayish-Red: 0, 6%, 24%;
+  /* Gradients */
+  --Linear1: linear-gradient(135, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+  --Linear2: linear-gradient(135, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+}
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  font-family: 'Josefin Sans', sans-serif;
+  line-height: 1.6;
+  background: #fff;
+  color: hsl(var(--Desaturated-Red));
+}
+
+/*   4. || Main                     */
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+.card {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-template-rows: 1fr;
+}
+
+h1 {
+  font-size: 4rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1rem;
+  line-height: 1.2;
+  margin-top: 5rem;
+}
+
+span {
+  font-weight: 600;
+  color: hsl(var(--Dark-Grayish-Red));
+}
+
+p {
+  font-weight: 400;
+  margin-top: 2rem;
+}
+
+button {
+  border: 1px solid hsla(var(--Desaturated-Red), 0.4);
+  background: #fff;
+  color: hsla(var(--Desaturated-Red), 0.4);
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: left;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  border-radius: 25px;
+  margin-top: 2rem;
+}
+
+button:hover {
+  border: 2px solid hsla(var(--Soft-Red), 0.7);
+}
+
+.card-left {
+  background-image: url(./images/bg-pattern-desktop.svg);
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 4rem 12rem 8rem 10rem;
+}
+
+.card-right {
+  background: url('./images/hero-desktop.jpg');
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
