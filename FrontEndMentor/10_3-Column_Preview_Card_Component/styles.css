@@ -1,0 +1,206 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */    
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+
+
+/*   6. || Media Queries            */
+/*      Mobile                      {
+
+
+
+
+
+}
+/* -------------------------------- */
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Lexend+Deca&display=swap');
+
+/*   2. || Variables                */
+:root {
+/* HSL Values */
+  /* Primary */
+  --Bright-orange: 31, 77%, 52%;
+  --Dark-cyan: 184, 100%, 22%;
+  --Very-dark-cyan: 179, 100%, 13%;
+  /* Neutral */
+  --Transparent-white: 0, 0%, 100%, 0.75;
+  --Very-light-gray: 0, 0%, 95%;
+}
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  font-size: 15px;
+  font-family: 'Big Shoulders Display', cursive, 'Lexend Deca', sans-serif;;
+  line-height: 1.6;
+  height: 100%;
+  width: 100%;
+  background: hsl(var(--Very-light-gray));
+  color: hsl(var(--Very-light-gray));
+  position: relative;
+}
+
+/*   4. || Main                     */
+.container {
+  height: 100%;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  max-width: 65%;
+  max-height: 70%;
+  min-height: 480px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background: linear-gradient(to right, hsl(var(--Bright-orange)) 33.33%, hsl(var(--Dark-cyan)) 33.33% 66.66%, hsl(var(--Very-dark-cyan)) 66.66%);
+  border-radius: 7.5px;
+}
+
+.card span {
+  font-weight: 700;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 2rem;
+}
+
+.card p {
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: 400;
+  color: hsl(var(--Transparent-white));
+  margin-top: 2rem;
+}
+
+.card img {
+  display: block;
+}
+
+.card button {
+  margin-top: 5rem;
+  border-radius: 50px;
+  border: none;
+  background: hsl(var(--Very-light-gray));
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.85rem 2.2rem;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background: none;
+  border: 2px solid hsl(var(--Very-light-gray));
+  color: hsl(var(--Very-light-gray));
+}
+
+.sg-1 button {
+  color: hsl(var(--Bright-orange));
+}
+
+.sg-2 button {
+  color: hsl(var(--Dark-cyan));
+}
+
+.sg-3 button {
+  color: hsl(var(--Very-dark-cyan));
+}
+
+.card-segment {
+  padding: 3rem;
+  text-align: left;
+}
+
+/*   5. || FrontEnd Mentor Footer   */
+.attribution {
+  font-size: 1rem; 
+  text-align: center;
+  color:#000;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+footer a { 
+  color: blue;
+  font-size: 1rem; 
+}
+
+footer a:hover {
+  color: red;
+}
+
+/*   6. || Media Queries            */
+@media (max-width: 375px) {
+  body {
+    height: max-content;
+  }
+  
+  .container {
+    max-width: 375px;
+    height: max-content;
+  }
+  
+  .card {
+    max-width: 100%;
+    width: 90%;
+    height: max-content;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    background: none;
+    margin: 5rem 0;
+    }
+
+    .card-segment {
+      height: 450px;
+      padding: 3.5rem 3.5rem;
+    }
+
+    .card-segment button {
+      margin-top: 2rem;
+    }
+
+    .sg-1 {
+      background: hsl(var(--Bright-orange));
+      border-radius: 10px 10px 0 0;
+    }
+
+    .sg-2 {
+      background: hsl(var(--Dark-cyan));
+    }
+
+    .sg-3 {
+      background: hsl(var(--Very-dark-cyan));
+      border-radius: 0 0 10px 10px;
+    }
+
+    .sg-1 button {
+      color: hsl(var(--Bright-orange));
+    }
+
+    .sg-2 button {
+      color: hsl(var(--Dark-cyan));
+    }
+
+    .sg-3 button {
+      color: hsl(var(--Very-dark-cyan));
+    }
+}
