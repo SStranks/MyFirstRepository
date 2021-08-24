@@ -95,7 +95,7 @@ html, body {
 .card button {
   margin-top: 5rem;
   border-radius: 50px;
-  border: none;
+  border: 2px solid transparent;
   background: hsl(var(--Very-light-gray));
   font-size: 1rem;
   font-weight: 700;
