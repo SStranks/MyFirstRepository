@@ -93,17 +93,24 @@ html, body {
 
 .form-panel button {
   width: 100%;
-  height: 50px;
+  height: 60px;
   border: none;
   border-radius: 10px;
   background-color: hsl(var(--Blue));
   box-shadow: 0 7px 2px 1px hsla(var(--Dark-Blue), 0.2);
-  color: #fff;
+  color: hsla(100, 100%, 100%, 0.9);
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.form-panel button span {
+  font-weight: 700;
 }
 
 .form-panel .form {
   width: 100%;
-  height: 100%;
+  height: min-content;
   border-radius: 10px;
   box-shadow: 0 7px 2px 1px hsla(var(--Dark-Blue), 0.2);
   background: #fff;
@@ -112,12 +119,39 @@ html, body {
   padding: 2.5rem;
 }
 
+.form input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid hsla(0, 0%, 0%, 0.4);
+  font-family: inherit;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  margin-bottom: 1.5rem;
+}
+
 .form button {
   background: hsl(var(--Green));
   border-radius: 5px;
   box-shadow: 0 2px 2px 1px hsla(var(--Dark-Blue), 0.2);
   text-transform: uppercase;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.form button:hover {
+  opacity: 75%;
+}
+
+.form p {
+  text-align: center;
+  font-size: 0.65rem;
+  color: hsla(0, 0%, 0%, 0.4);
+  margin-top: 1rem;
+}
+
+.form span {
+  color: hsl(var(--Red));
+  font-weight: 500;
 }
 
 /*   5. || FrontEnd Mentor Footer   */
