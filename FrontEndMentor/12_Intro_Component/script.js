@@ -2,8 +2,9 @@
 
 // Variables
 const btn = document.querySelector('button[type="submit"]');
-const firstNameInput = document.querySelector('input[name="firstName"]')
-const lastNameInput = document.querySelector('input[name="lastName"]')
+const inputFields = document.querySelectorAll('input');
+const firstNameInput = document.querySelector('input[name="firstName"]');
+const lastNameInput = document.querySelector('input[name="lastName"]');
 const emailInput = document.querySelector('input[name="email"]');
 const passwordInput = document.querySelector('input[name="password"]');
 const errorIcon = document.querySelectorAll('.error-icon');
@@ -21,12 +22,14 @@ const validate = (e) => {
   if (firstNameInput.value == '') {
     errorIcon[0].classList.remove('hidden');
     errorMsg[0].classList.remove('hidden');
+    inputFields[0].style.border = "2px solid hsla(var(--Red), 0.6)";
     checkBool = true;
   }
 
   if (lastNameInput.value == '') {
     errorIcon[1].classList.remove('hidden');
     errorMsg[1].classList.remove('hidden');
+    inputFields[1].style.border = "2px solid hsla(var(--Red), 0.6)";
     checkBool = true;
   }
 
@@ -34,17 +37,14 @@ const validate = (e) => {
   if (emailInput.value == '' || !(emailInput.value.match(emailReg))) {
     errorIcon[2].classList.remove('hidden');
     errorMsg[2].classList.remove('hidden');
+    inputFields[2].style.border = "2px solid hsla(var(--Red), 0.6)";
     checkBool = true;
   } 
-  
-    // btn.style.background = "linear-gradient(135deg, hsla(0, 80%, 86%, 0.5), hsla(0, 74%, 74%, 0.5))";
-    // errorIcon.classList.remove('hidden');
-    // errorMsg.classList.remove('hidden');
-    // checkBool = true;
 
   if (passwordInput.value == '') {
     errorIcon[3].classList.remove('hidden');
     errorMsg[3].classList.remove('hidden');
+    inputFields[3].style.border = "2px solid hsla(var(--Red), 0.6)";
     checkBool = true;
   }
 }
@@ -54,10 +54,11 @@ const resetErrors = () => {
   errorIcon.forEach (function(_, index) {
     errorIcon[index].classList.add('hidden');
     errorMsg[index].classList.add('hidden');
+    inputFields[index].style.border = "1px solid hsla(0, 0%, 0%, 0.4)";
     });
 };
   
-  // btn.style.background = "linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%))";
+  // input.style.background = "border: 1px solid hsla(0, 0%, 0%, 0.4)"";
 
 // Event Listeners
 btn.addEventListener('click', validate);
