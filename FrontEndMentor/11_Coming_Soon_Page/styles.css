@@ -51,7 +51,7 @@ html, body {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: min-content auto;
+  grid-template-columns: minmax(min-content, auto) minmax(auto, auto);
   grid-template-rows: 1fr;
 }
 
@@ -76,14 +76,6 @@ p {
 
 .email-submit {
   position: relative;
-}
-
-.email-submit::after {
-  content: 'Please provide a valid email';
-  position: absolute;
-  transform: translate(15%, 40%);
-  color: hsla(var(--Soft-Red), 0.7);
-  font-size: 0.75rem;
 }
 
 input {
@@ -116,25 +108,73 @@ button {
   cursor: pointer;
 }
 
-button::after {
-  content: url('./images/icon-error.svg');
+.error-icon {
   position: absolute;
   left: -40px;
   cursor: default;
+}
+
+.error-msg {
+  position: absolute;
+  transform: translate(15%, 40%);
+  color: hsla(var(--Soft-Red), 0.7);
+  font-size: 0.75rem;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
 }
 
 .card-left {
   background-image: url(./images/bg-pattern-desktop.svg);
   background-position: top left;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   padding: 4rem 12rem 8rem 10rem;
+  position: relative;
 }
 
 .card-right {
+  height: 100%;
+}
+
+/* .card-right {
   background: url('./images/hero-desktop.jpg');
   background-position: left top;
   background-repeat: no-repeat;
   background-size: contain;
+} */
+
+/*   5. || FrontEnd Mentor Footer   */
+.attribution {
+  font-size: 1rem; 
+  text-align: center;
+  /* color:#000; */
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100%;
 }
 
+.attribution a { 
+  color: hsl(var(--Dark-Grayish-Red));
+}
+
+.attribution a:hover {
+  color: hsla(var(--Soft-Red), 0.7);
+}
+
+/*   6. || Media Queries            */
+/*      Tablets and Under           */
+@media (max-width: 500px) {
+  
+}
+
+/*      Mobile                      */
+@media (max-width: 375px) {
+
+}
