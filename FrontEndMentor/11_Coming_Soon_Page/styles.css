@@ -20,8 +20,8 @@
   /* Neutral */
   --Dark-Grayish-Red: 0, 6%, 24%;
   /* Gradients */
-  /* --Linear1: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
-  --Linear2: (0, 80%, 86%), (0, 74%, 74%); */
+  /* --Linear1: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%)); */
+  /* --Linear2: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%); */
 }
 
 /*   3. || Globals                  */
@@ -143,31 +143,11 @@ button {
   grid-column: 1;
 }
 
-/* .content::before {
-  content: '';
-  background: url(./images/bg-pattern-desktop.svg), linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
-  display: block;
-  position: absolute;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  z-index: -1;
-} */
-
 .card-right {
   height: 100%;
   grid-row: 1 / span 2;
   grid-column: 2;
 }
-
-/* .card-right {
-  background: url('./images/hero-desktop.jpg');
-  background-position: left top;
-  background-repeat: no-repeat;
-  background-size: contain;
-} */
 
 /*   5. || FrontEnd Mentor Footer   */
 .attribution {
@@ -192,16 +172,11 @@ button {
 }
 
 /*   6. || Media Queries            */
-/*      Tablets and Under           */
-/* @media (max-width: 500px) {
-
-} */
-
 /*      Mobile                      */
 @media (max-width: 375px) {
   .card {
     grid-template-columns: 1fr;
-    grid-template-rows: 10% 1fr 1fr;
+    grid-template-rows: 10% auto 1fr;
     width: 100%;
   }
 
@@ -210,29 +185,26 @@ button {
     padding: 1.75rem 0 0 0;
     transform: scale(70%);
   }
-/*   
-  .card-left {
-    background: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
-    text-align: center;
-    height: 100%;
-    width: 100%;
-    padding: 0rem;
-  } */
-
-  /* .card-left p {
-    line-height: 1.6;
-  } */
 
   .content {
     grid-column: 1;
     grid-row: 3;
-    padding: 0;
+    background: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+    padding: 0 2rem;
     margin: 0;
     text-align: center;
   }
 
   .content h1 {
     font-size: 2.5rem;
+    letter-spacing: 0.5rem;
+    line-height: 1.1;
+    margin-top: 4rem;
+  }
+
+  .content #content-info {
+    font-size: 0.9rem;
+    margin-top: 1rem;
   }
 
   .card-right {
@@ -256,4 +228,12 @@ button {
     width: 68px;
   }
 
+  .error-msg {
+    transform: translate(15%, 20%);
+    font-size: 0.8rem;
+  }
+
+  .content .attribution {
+    font-size: 0.75rem; 
+  }
 }
