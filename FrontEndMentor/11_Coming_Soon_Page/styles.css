@@ -52,14 +52,14 @@ html, body {
   width: 100%;
   display: grid;
   grid-template-columns: minmax(min-content, auto) minmax(auto, auto);
-  grid-template-rows: 1fr;
+  grid-template-rows: 15% 1fr;
 }
 
 h1 {
   font-size: 4rem;
   font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 1rem;
+  letter-spacing: 1.1rem;
   line-height: 1.2;
   margin-top: 5rem;
 }
@@ -126,17 +126,40 @@ button {
   display: none;
 }
 
-.card-left {
-  background-image: url(./images/bg-pattern-desktop.svg);
+.logo {
+  background: transparent;
+  padding: 4rem 0 0 10rem;
+  z-index: 5;
+}
+
+.content {
+  background: url(./images/bg-pattern-desktop.svg), linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
   background-position: top left;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 4rem 12rem 8rem 10rem;
+  padding: 10rem 14rem 8rem 10rem;
+  margin: -10rem 0 0 0;
   position: relative;
+  grid-column: 1;
 }
+
+/* .content::before {
+  content: '';
+  background: url(./images/bg-pattern-desktop.svg), linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+  display: block;
+  position: absolute;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  z-index: -1;
+} */
 
 .card-right {
   height: 100%;
+  grid-row: 1 / span 2;
+  grid-column: 2;
 }
 
 /* .card-right {
@@ -176,54 +199,48 @@ button {
 
 /*      Mobile                      */
 @media (max-width: 375px) {
-  /* body, .container {
-    height: 100%;
-    width: 100%;
-  } */
-
   .card {
     grid-template-columns: 1fr;
-    grid-template-rows: 3fr;
+    grid-template-rows: 10% 1fr 1fr;
     width: 100%;
   }
-  
+
+  .logo {
+    grid-row: 1;
+    padding: 1.75rem 0 0 0;
+    transform: scale(70%);
+  }
+/*   
   .card-left {
-    order: 2;
-    position: relative;
     background: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
     text-align: center;
     height: 100%;
-    width: 375px;
-    padding: 4rem;
-    margin-top: 5rem;
-  }
+    width: 100%;
+    padding: 0rem;
+  } */
 
-  .card-left .logo {
-    position: absolute;
-    top: -24.75rem;
-    left: 2.5rem;
-  }
-
-  .card-left p {
+  /* .card-left p {
     line-height: 1.6;
-  }
-  
-  h1 {
-    margin-top: 2rem;
-    line-height: 1;
+  } */
+
+  .content {
+    grid-column: 1;
+    grid-row: 3;
+    padding: 0;
+    margin: 0;
+    text-align: center;
   }
 
-  span {
-    /* width: 100%; */
+  .content h1 {
+    font-size: 2.5rem;
   }
 
   .card-right {
     content: url('./images/hero-mobile.jpg');
-    order: 1;
-    object-fit: contain;
-    height: 100%;
-    width: 375px;
-    margin-top: 6rem;
+    grid-row: 2;
+    grid-column: 1;
+    width: 100%;
+    height: auto;
   }
 
   input {
