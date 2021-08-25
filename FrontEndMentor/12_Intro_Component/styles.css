@@ -119,14 +119,22 @@ html, body {
   padding: 2.5rem;
 }
 
+.form div {
+  margin-top: 1.5rem;
+}
+
+.form div:first-child {
+  margin-top: 0rem;
+}
+
 .form input {
+  position: relative;
   width: 100%;
   border-radius: 5px;
   border: 1px solid hsla(0, 0%, 0%, 0.4);
   font-family: inherit;
   font-weight: 600;
   padding: 1rem 2rem;
-  margin-bottom: 1.5rem;
 }
 
 .form button {
@@ -136,6 +144,7 @@ html, body {
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
+  margin-top: 1rem;
 }
 
 .form button:hover {
@@ -152,6 +161,21 @@ html, body {
 .form span {
   color: hsl(var(--Red));
   font-weight: 500;
+}
+
+.form .error-icon {
+  position: absolute;
+  transform: translate(-200%, 60%);
+}
+
+.form .error-msg {
+  color: hsl(var(--Red));
+  text-align: right;
+  margin-top: 0.2rem;
+}
+
+.hidden {
+  display: none;
 }
 
 /*   5. || FrontEnd Mentor Footer   */

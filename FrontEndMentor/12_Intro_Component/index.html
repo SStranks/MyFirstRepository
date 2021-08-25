@@ -22,10 +22,26 @@
       <div class="form-panel">
         <button><span>Try it free 7 days</span> then $20/mo. thereafter</button>
         <div class="form">
-          <input type="text" placeholder="First Name"></input>
-          <input type="text" placeholder="Last Name"></input>
-          <input type="email" placeholder="Email Address"></input>
-          <input type="password" placeholder="Password"></input>
+          <div class="form-input">
+            <input type="text" placeholder="First Name" name="firstName"><img class ="error-icon hidden" src="./images/icon-error.svg" alt="icon-error"></input>
+          </div>
+          <p class="error-msg hidden">First Name cannot be empty</p>
+
+          <div class="form-input">
+            <input type="text" placeholder="Last Name" name="lastName"><img class ="error-icon hidden" src="./images/icon-error.svg" alt="icon-error"></input>
+          </div>
+          <p class="error-msg hidden">Last Name cannot be empty</p>
+
+          <div class="form-input">
+            <input type="email" placeholder="Email Address" name="email"><img class ="error-icon hidden" src="./images/icon-error.svg" alt="icon-error"></input>
+          </div>
+          <p class="error-msg hidden">Looks like this is not an email</p>
+
+          <div class="form-input">
+            <input type="password" placeholder="Password" name="password"><img class ="error-icon hidden" src="./images/icon-error.svg" alt="icon-error"></input>
+          </div>
+          <p class="error-msg hidden">Password cannot be empty</p>
+
           <button type="submit" value="Submit" aria-label="Submit">Claim your free trial</button>
           <p>By clicking the button, you are agreeing to our <span>Terms and Services</span></p>
         </div>
