@@ -64,20 +64,56 @@ html, body {
   width: 70%;
   background: #fff;
   border-radius: 25px;
+  box-shadow: 2px 5px 30px 10px hsla(var(--Dark-grayish-cyan2), 0.5);
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-h1 {
-  font-size: 1.2rem;
-  letter-spacing: 0.5rem;
-  color: hsl(var(--Dark-grayish-cyan));
-  margin-bottom: 3rem;
+#main-logo {
+  margin-bottom: 4rem;
 }
 
 .input {
   grid-column: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.5rem;
+  margin: 1.4rem 1.4rem 1.4rem 1.4rem;
 }
+
+.input-field {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  background: hsl(var(--Light-grayish-cyan2));
+  margin-top: 0.25rem;
+}
+
+.input-field img {
+  grid-column: 1/2;
+  padding: 0.75rem;
+}
+
+.input input {
+  grid-column: 2/2;
+  width: 100%;
+  height: 50px;
+  font-size: 1.1rem;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  text-align: right;
+  border: none;
+  background: transparent;
+  padding-right: 0.75rem;
+}
+
+.input input::placeholder {
+  color: hsla(var(--Dark-grayish-cyan2), 0.7);
+}
+
 
 .output {
   grid-column: 2;
@@ -87,7 +123,7 @@ h1 {
   background: hsl(var(--Very-dark-cyan));
   color: #fff;
   border-radius: 20px;
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
   margin: 1.4rem 1.4rem 1.4rem 0;
 }
 
@@ -95,10 +131,11 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-start;
 }
 
 .amounts p {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: 700;
   line-height: 1.3;
 }
@@ -111,7 +148,9 @@ h1 {
 .amounts .totals {
   font-size: 2rem;
   font-weight: 700;
+  line-height: 0.8;
   color: hsl(var(--Strong-cyan));
+  margin-bottom: 2.5rem;
 }
 
 .output #reset {
