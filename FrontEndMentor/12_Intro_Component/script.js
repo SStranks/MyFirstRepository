@@ -57,10 +57,8 @@ const resetErrors = () => {
     inputFields[index].style.border = "1px solid hsla(0, 0%, 0%, 0.4)";
     });
 };
-  
-  // input.style.background = "border: 1px solid hsla(0, 0%, 0%, 0.4)"";
+
 
 // Event Listeners
 btn.addEventListener('click', validate);
-// emailInput.addEventListener('input', reset);
 

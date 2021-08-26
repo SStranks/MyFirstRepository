@@ -66,6 +66,8 @@ html, body {
   margin: 2rem 4rem;
 }
 
+
+
 .info-panel {
   grid-column: 1;
   padding: 2rem;
@@ -102,6 +104,7 @@ html, body {
   font-family: inherit;
   font-weight: 400;
   font-size: 0.9rem;
+  cursor: pointer;
 }
 
 .form-panel button span {
@@ -198,4 +201,103 @@ html, body {
 
 .attribution a:hover {
   color: hsl(var(--Green));
+}
+
+
+
+/*   6. || Media Queries            */
+/*      Mobile                      */
+@media (max-width: 375px) {
+  .container {
+    width: 100%;
+    height: 100%;
+    max-width: 375px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('./images/bg-intro-desktop.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .card {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    margin: 5rem 0rem;
+    padding: 0 1.5rem;
+  }
+
+  .info-panel {
+    grid-column: 1;
+    grid-row: 1;
+    padding: 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .form-panel {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-panel h1 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  .info-panel p {
+    font-size: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .form-panel button {
+    height: 85px;
+    margin-top: 3.5rem;
+    padding: 1rem 4rem;
+  }
+
+  .form-panel button span {
+    font-weight: 600;
+  }
+
+  .form-panel .form {
+    height: min-content;
+    padding: 1.5rem;
+  }
+
+  .form div {
+    margin-top: 1rem;
+  }
+
+  .form input {
+    border: 1px solid hsla(0, 0%, 0%, 0.2);
+    padding: 1rem 1rem;
+  }
+
+  .form button {
+    height: 55px;
+    margin-top: 1rem;
+    padding: 0rem;
+  }
+
+  .form p {
+    line-height: 2;
+    padding: 0 1rem;
+  }
+
+  .attribution {
+    font-size: 0.75rem; 
+    padding: 0 5rem;
+  }
 }
