@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="./styles.css">
   <title>Frontend Mentor | Tip calculator app</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -15,30 +14,42 @@
   </style>
 </head>
 <body>
+  <main class="container">
+    <h1>SPLI<br>TTER</h1>
+    <div class="card">
+      <div class="input">
+        Bill
+        Select Tip %
+        5%
+        10%
+        15%
+        25%
+        50%
+        Custom
+        Number of People
+      </div>
+      <div class="output">
+        <div class="output-amounts">
+          <div class="amounts">
+            <p>Tip Amount<br><span>/ person</span></p>
+            <p class="totals">$4.27</p>
+          </div>
+          <div class="amounts">
+            <p>Total<br><span>/ person</span></p>
+            <p class="totals">$32.79</p>
+          </div>
+        </div>
+        <button id="reset" type="button" name="reset">Reset</button>
+      </div>
+    </div>
+  </main>
 
-  Bill
-
-  Select Tip %
-  5%
-  10%
-  15%
-  25%
-  50%
-  Custom
-
-  Number of People
-
-  Tip Amount
-  / person
-
-  Total
-  / person
-
-  Reset
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+  <footer>
+    <p class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="https://github.com/SStranks">Simon Stranks</a>.
+    </p>
+  </footer>
+  <script src="./script.js"></script>
 </body>
 </html>
