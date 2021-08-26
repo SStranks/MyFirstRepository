@@ -76,6 +76,7 @@ h1 span {
 }
 
 .form-submit {
+  position: relative;
   display: flex;
   margin-top: 1.5rem;
   margin-bottom: 3rem;
@@ -87,13 +88,25 @@ h1 span {
   border: 1px solid hsla(var(--Gray), 0.5);
   border-radius: 25px;
   font-family: inherit;
-  color: hsla(var(--Gray), 0.5);
+  color: hsl(var(--Very-Dark-Blue));
   padding: 1rem 1.5rem;
   margin-right: 0.5rem;
 }
 
 .form-submit input::placeholder {
   color: hsla(var(--Gray), 0.5);
+}
+
+.form-submit .error-msg {
+  position: absolute;
+  bottom: -25px;
+  left: 32px;
+  font-size: 0.65rem;
+  color: hsl(var(--Light-Red));
+}
+
+.hidden {
+  display: none;
 }
 
 .form-submit button {
@@ -206,6 +219,12 @@ h1 span {
     align-content: center;
     justify-items: center;
     margin-bottom: 4rem;
+  }
+
+  .form-submit .error-msg {
+    position: unset;
+    margin: 0.25rem 0 0.75rem 0;
+    font-size: 0.65rem;
   }
 
   .form-submit button {
