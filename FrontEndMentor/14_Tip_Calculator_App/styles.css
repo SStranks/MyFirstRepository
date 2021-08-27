@@ -138,7 +138,6 @@ input::-webkit-inner-spin-button {
 
 .button-tip {
   font-size: 1rem;
-  font-family: ;
   text-align: center;
   border: none;
   background: hsl(var(--Very-dark-cyan));
@@ -194,6 +193,10 @@ input::-webkit-inner-spin-button {
 
 .hidden {
   display: none;
+}
+
+.active {
+  background: hsl(var(--Strong-cyan));
 }
 
 .output {

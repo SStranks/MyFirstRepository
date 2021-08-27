@@ -26,16 +26,11 @@
         <div>
           <p>Select Tip %</p>
           <div class="buttons">
-            <button class="button-tip"><p>5%</p></button>
-            <button class="button-tip"><p>10%</p></button>
-            <button class="button-tip"><p>15%</p></button>
-            <button class="button-tip"><p>25%</p></button>
-            <button class="button-tip"><p>50%</p></button>
-            <!-- <div class="button-tip"><p>5%</p></div>
-            <div class="button-tip"><p>10%</p></div>
-            <div class="button-tip"><p>15%</p></div>
-            <div class="button-tip"><p>25%</p></div>
-            <div class="button-tip"><p>50%</p></div> -->
+            <button class="button-tip" type="button" name="5%">5%</button>
+            <button class="button-tip" type="button" name="10%">10%</button>
+            <button class="button-tip" type="button" name="15%">15%</button>
+            <button class="button-tip" type="button" name="25%">25%</button>
+            <button class="button-tip" type="button" name="50%">50%</button>
             <div class="button-custom"><input class="button-custom" id="input-custom" type="number"  name="custom" placeholder="Custom" onfocus="this.placeholder = '0'"></div>
           </div>
         </div>
@@ -50,11 +45,11 @@
         <div class="output-amounts">
           <div class="amounts">
             <p>Tip Amount<br><span>/ person</span></p>
-            <p class="totals">$0.00</p>
+            <p class="totals" id="tip-person">$0.00</p>
           </div>
           <div class="amounts">
             <p>Total<br><span>/ person</span></p>
-            <p class="totals">$0.00</p>
+            <p class="totals" id="tip-total">$0.00</p>
           </div>
         </div>
         <button id="reset" type="button" name="reset">Reset</button>
