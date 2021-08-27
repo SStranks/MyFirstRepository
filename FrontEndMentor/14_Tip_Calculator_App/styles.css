@@ -256,6 +256,8 @@ input::-webkit-inner-spin-button {
 }
 
 /*   5. || FrontEnd Mentor Footer   */
+
+
 .attribution {
   font-size: 0.75rem; 
   text-align: center;
@@ -280,3 +282,59 @@ input::-webkit-inner-spin-button {
 
 
 /*   6. || Media Queries            */
+/*      Mobile                      */
+@media (max-width: 375px) {
+  .container {
+    max-width: 375px;
+  }
+  
+  .card {
+    height: 100%;
+    width: 100%;
+    grid-template-columns: 1fr;
+    border-radius: 25px 25px 0 0;
+  }
+
+  #main-logo {
+    margin: 2rem;
+  }
+
+  .input {
+    grid-column: 1;
+    padding: 0rem;
+    margin: 1.5rem 1rem 0rem 1rem;
+  }
+
+  .input-segments {
+    margin-bottom: 1.25rem;
+  }
+
+  .buttons {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
+  .output {
+    grid-column: 1;
+    padding: 2rem 1rem 1rem 1rem;
+    margin: 0 1rem 1rem 1rem;
+  }
+
+  .output .reset {
+    font-size: 0.9rem;
+    padding: 0.4rem 0;
+  }
+
+  .amounts .totals {
+    font-size: 1.5rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .attribution {
+    font-size: 0.5rem; 
+    color:inherit;
+    position: unset;
+    transform: unset;
+    padding: 0 2.5rem;
+  }
+}

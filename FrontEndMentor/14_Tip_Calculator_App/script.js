@@ -67,8 +67,16 @@ function customTip(e) {
   // Check ivalid inputs: Bill, People
   if (numValidate()) return;
 
+  // Check invalid input: Custom Tip; if input is a positive integer (input[number] accepts '-.e')
+  if (customPercent.value == '' || customPercent.value < 0 || ((customPercent.value - Math.floor(customPercent.value)) !== 0)) {
+    customPercent.focus();
+    customPercent.style.outlineColor = "hsla(var(--Red), 0.65)";
+    return;
+  }
+
   // Deactivate active button
   if (activeButton) activeButton.classList.remove('active');
+  customPercent.style.outlineColor = 'hsl(var(--Strong-cyan))';
 
   // Output Caculation
   let percentage = e.target.value / 100;
@@ -79,6 +87,7 @@ function customTip(e) {
 function checkNum() {
   errorMsg.classList.add('hidden');
   numPeople.style.outlineColor = "hsl(var(--Strong-cyan))";
+  numBill.style.outlineColor = "hsl(var(--Strong-cyan))";
 };
 
 // Reset App
@@ -96,4 +105,5 @@ function reset() {
 resetBtn.addEventListener('click', reset);
 tipBtns.addEventListener('click', addTip);
 numPeople.addEventListener('input', checkNum);
-customPercent.addEventListener('change', customTip);
+numBill.addEventListener('input', checkNum);
+customPercent.addEventListener('input', customTip);
