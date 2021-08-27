@@ -25,6 +25,7 @@
   --Light-grayish-cyan: 185, 41%, 84%;
   --Light-grayish-cyan2: 189, 41%, 97%;
   --White: 0, 0%, 100%;
+  --Red: 0, 100%, 50%;
 }
 
 
@@ -43,7 +44,7 @@ html, body {
   font-weight: 400, 500, 700;
   line-height: 1.6;
   background: hsl(var(--Light-grayish-cyan));
-  color: hsl(var(--Very-dark-cyan));
+  color: hsl(var(--Dark-grayish-cyan));
 }
 
 
@@ -73,6 +74,17 @@ html, body {
   margin-bottom: 4rem;
 }
 
+button, input {
+  font-family: inherit;
+  font-weight: 700;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .input {
   grid-column: 1;
   position: relative;
@@ -86,23 +98,19 @@ html, body {
 }
 
 .input-field {
-  display: grid;
-  grid-template-columns: 1.5rem 1fr;
   background: hsl(var(--Light-grayish-cyan2));
   margin-top: 0.25rem;
 }
 
 .input-field img {
-  grid-column: 1/2;
+  position: absolute;
   padding: 0.75rem;
 }
 
 .input input {
-  grid-column: 2/2;
   width: 100%;
   height: 50px;
   font-size: 1.1rem;
-  font-family: 'Space Mono', monospace;
   font-weight: 700;
   text-align: right;
   border: none;
@@ -116,10 +124,8 @@ html, body {
   color: hsla(var(--Dark-grayish-cyan2), 0.7);
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.input input:focus {
+  outline-color: hsl(var(--Strong-cyan));
 }
 
 .buttons {
@@ -132,11 +138,13 @@ input::-webkit-inner-spin-button {
 
 .button-tip {
   font-size: 1rem;
+  font-family: ;
   text-align: center;
+  border: none;
   background: hsl(var(--Very-dark-cyan));
   color: #fff;
   border-radius: 5px;
-  padding: 0.25rem 0;
+  padding: 0.4rem 0;
   cursor: pointer;
 }
 
@@ -144,6 +152,11 @@ input::-webkit-inner-spin-button {
   background: hsl(var(--Light-grayish-cyan));
   color: hsl(var(--Very-dark-cyan));
 }
+
+/* .button-tip:active {
+  background: hsl(var(--Strong-cyan));
+  color: hsl(var(--Very-dark-cyan));
+} */
 
 .button-custom {
   background: hsl(var(--Light-grayish-cyan2));
@@ -166,6 +179,21 @@ input::-webkit-inner-spin-button {
 
 #input-custom:focus::placeholder {
   color: transparent;
+}
+
+#number-people {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#error-msg {
+  color: hsla(var(--Red), 0.65);
+}
+
+.hidden {
+  display: none;
 }
 
 .output {
@@ -212,11 +240,11 @@ input::-webkit-inner-spin-button {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  background: hsl(var(--Strong-cyan));
+  background: hsla(var(--Strong-cyan), 0.2);
   color: hsl(var(--Very-dark-cyan));
   border: none;
   border-radius: 5px;
-  padding: 0.75rem 0;
+  padding: 0.7rem 0;
   cursor: pointer;
 }
 
