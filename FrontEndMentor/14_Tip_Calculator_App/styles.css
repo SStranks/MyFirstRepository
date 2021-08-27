@@ -152,11 +152,6 @@ input::-webkit-inner-spin-button {
   color: hsl(var(--Very-dark-cyan));
 }
 
-/* .button-tip:active {
-  background: hsl(var(--Strong-cyan));
-  color: hsl(var(--Very-dark-cyan));
-} */
-
 .button-custom {
   background: hsl(var(--Light-grayish-cyan2));
   border-radius: 5px;
@@ -237,8 +232,7 @@ input::-webkit-inner-spin-button {
   margin-bottom: 2.5rem;
 }
 
-.output #reset {
-  /* height: ; */
+.output .reset {
   width: 100%;
   font-size: 0.75rem;
   font-weight: 700;
@@ -251,9 +245,14 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
 }
 
-.output #reset:hover {
+.output .reset:hover {
   background: hsl(var(--Light-grayish-cyan));
   color: hsl(var(--Very-dark-cyan));
+}
+
+.reset-active {
+  background: hsl(var(--Strong-cyan)) !important;
+  color: hsl(var(--Very-dark-cyan)) !important;
 }
 
 /*   5. || FrontEnd Mentor Footer   */

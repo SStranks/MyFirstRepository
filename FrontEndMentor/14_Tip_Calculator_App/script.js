@@ -30,9 +30,12 @@ function addTip(e) {
 
   // Event Delegation: Get Percentage from Button
   if (e.target.classList.contains('button-tip')) {
+    // Button States
     if (activeButton) activeButton.classList.remove('active');
     activeButton = e.target;
     e.target.classList.add('active');
+    resetBtn.classList.add('reset-active');
+
     // Output Calculation
     let percentage = e.target.textContent;
     let tipPerPerson
@@ -56,6 +59,8 @@ function reset() {
   numPeople.value = '';
   tipPerson.innerText = '$0.00';
   tipTotal.innerText = '$0.00';
+  resetBtn.classList.remove('reset-active');
+  if (activeButton) activeButton.classList.remove('active');
 }
 
 // Event Handlers
