@@ -107,13 +107,66 @@ html, body {
   text-align: right;
   border: none;
   background: transparent;
+  color: hsl(var(--Very-dark-cyan));
   padding-right: 0.75rem;
+  cursor: pointer;
 }
 
 .input input::placeholder {
   color: hsla(var(--Dark-grayish-cyan2), 0.7);
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.button-tip {
+  font-size: 1rem;
+  text-align: center;
+  background: hsl(var(--Very-dark-cyan));
+  color: #fff;
+  border-radius: 5px;
+  padding: 0.25rem 0;
+  cursor: pointer;
+}
+
+.button-tip:hover {
+  background: hsl(var(--Light-grayish-cyan));
+  color: hsl(var(--Very-dark-cyan));
+}
+
+.button-custom {
+  background: hsl(var(--Light-grayish-cyan2));
+  border-radius: 5px;
+  padding: 0;
+  cursor: pointer;
+}
+
+#input-custom {
+  height: 100%;
+  background: hsl(var(--Light-grayish-cyan2));
+  text-align: center;
+  padding: initial;
+}
+
+#input-custom:focus {
+  text-align: right;
+  padding-right: 0.75rem;
+}
+
+#input-custom:focus::placeholder {
+  color: transparent;
+}
 
 .output {
   grid-column: 2;
@@ -164,6 +217,12 @@ html, body {
   border: none;
   border-radius: 5px;
   padding: 0.75rem 0;
+  cursor: pointer;
+}
+
+.output #reset:hover {
+  background: hsl(var(--Light-grayish-cyan));
+  color: hsl(var(--Very-dark-cyan));
 }
 
 /*   5. || FrontEnd Mentor Footer   */
