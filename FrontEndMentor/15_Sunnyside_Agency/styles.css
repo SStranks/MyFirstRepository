@@ -54,7 +54,7 @@ html, body {
 /*   4. || Main                     */
 .container {
   height: fit-content;
-  width: 100%;
+  width: fit-content;
   max-width: 1440px;
   display: flex;
   flex-direction: column;
@@ -66,13 +66,13 @@ html, body {
 .main-header {
   position: relative;
   width: 100%;
-  height: 100%;
+  max-width: 1440px;
+  height: 800px;
 }
 
 .main-header #header-image {
   width: 100%;
   height: 100%;
-  max-width: 1440px;
 }
 
 .main-header nav {
@@ -177,6 +177,10 @@ html, body {
   background-color: hsl(var(--Soft-red));
 }
 
+.services img {
+  width: 100%;
+}
+
 .align-left {
   grid-column: 1;
   grid-row: 2;
@@ -197,6 +201,7 @@ html, body {
 }
 
 .graphic-design {
+  width: 100%;
   background-image: url('./images/desktop/image-graphic-design.jpg');
   color: hsl(var(--Dark-desaturated-cyan));
 }
