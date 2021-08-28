@@ -1,0 +1,64 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+/*   6. || Media Queries            */
+/* -------------------------------- */
+
+
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@600&family=Fraunces:wght@700;900&display=swap');
+
+
+/*   2. || Variables                */
+:root {
+  /* HSL Values */
+  /* Primary */
+  --Soft-red: 7, 99%, 70%;
+  --Yellow: 51, 100%, 49%;
+  --Dark-desaturated-cyan: 167, 40%, 24%;
+  --Dark-blue: 198, 62%, 26%;
+  --Dark-moderate-cyan: 168, 34%, 41%;
+  /* Neutral */
+  --Very-dark-desaturated-blue: 212, 27%, 19%;
+  --Very-dark-grayish-blue: 213, 9%, 39%;
+  --Dark-grayish-blue: 232, 10%, 55%;
+  --Grayish-blue: 210, 4%, 67%;
+  --White: 0, 0%, 100%;
+}
+
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600, 700, 900;
+  font-family: 'Barlow', 'Fraunces', serif;
+  line-height: 1.6;
+  background: #fff;
+  color: hsl(var(--Very-dark-desaturated-blue));
+}
+
+
+/*   4. || Main                     */
+.container {
+  height: 100%;
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
