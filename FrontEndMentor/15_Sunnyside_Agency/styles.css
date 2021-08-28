@@ -53,12 +53,105 @@ html, body {
 
 /*   4. || Main                     */
 .container {
-  height: 100%;
+  height: fit-content;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1440px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   justify-content: center;
   align-items: center;
 }
+
+.main-header {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.main-header #header-image {
+  width: 100%;
+  height: 100%;
+  max-width: 1440px;
+}
+
+.main-header nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.main-header nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+}
+
+.main-header nav ul li {
+  color: #fff;
+  margin: 0 1rem;
+}
+
+#contact {
+  border: none;
+  background: #fff;
+  color: inherit;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-family: 'Fraunces';
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.8rem 1.5rem;
+  margin: 0 1rem;
+}
+
+.main-header h1 {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 3rem;
+  font-family: 'Fraunces';
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  color: #fff;
+}
+
+.services {
+  display: none;
+}
+
+.images {
+  display: none;
+}
+
+
+/*   5. || FrontEnd Mentor Footer   */
+/* .attribution {
+  font-size: 0.75rem; 
+  text-align: center;
+  color:inherit;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100%;
+}
+
+.attribution a { 
+  color: hsl(var(--Blue));
+}
+
+.attribution a:hover {
+  background: hsl(var(--Very-dark-cyan));
+  color: hsl(var(--Strong-cyan));
+} */
