@@ -67,12 +67,12 @@ html, body {
   position: relative;
   width: 100%;
   max-width: 1440px;
-  height: 800px;
 }
 
 .main-header #header-image {
   width: 100%;
   height: 100%;
+  display: block;
 }
 
 .main-header nav {
@@ -110,6 +110,12 @@ html, body {
   text-transform: uppercase;
   padding: 0.8rem 1.5rem;
   margin: 0 1rem;
+  cursor: pointer;
+}
+
+#contact:hover {
+  background-color: hsla(100, 100%, 100%, 0.3);
+  color: #fff;
 }
 
 .main-header h1 {
@@ -121,6 +127,7 @@ html, body {
   font-family: 'Fraunces';
   text-transform: uppercase;
   letter-spacing: 0.5rem;
+  text-align: center;
   color: #fff;
 }
 
@@ -158,6 +165,7 @@ html, body {
   color: hsl(var(--Very-dark-desaturated-blue));
   text-transform: uppercase;
   padding: 0 10px;
+  cursor: pointer;
 }
 
 .service-text span::after {
@@ -173,8 +181,16 @@ html, body {
   z-index: -1;
 }
 
+.service-text span:hover::after {
+  opacity: 80%;
+}
+
 .span-red span::after {
   background-color: hsl(var(--Soft-red));
+}
+
+.span-red span:hover::after {
+  opacity: 80%;
 }
 
 .services img {
@@ -207,6 +223,7 @@ html, body {
 }
 
 .photography {
+  width: 100%;
   background-image: url('./images/desktop/image-photography.jpg');
   color: hsl(var(--Dark-blue));
 }
@@ -283,7 +300,6 @@ footer {
 
 footer > img {
   transform: scale(150%);
-  /* background-color: hsl(var(--Dark-desaturated-cyan)); */
   margin-bottom: 2rem;
 }
 
@@ -292,13 +308,23 @@ footer > img {
 }
 
 .footer-info span {
-  padding: 0 1.5rem;
+  margin: 0 1.5rem;
+  cursor: pointer;
+}
+
+.footer-info span:hover {
+  color: #fff;
 }
 
 .footer-icons img {
   margin: 0 0.75rem;
+  cursor: pointer;
 }
 
+.footer-icons img:hover {
+  filter: invert(0.5);
+  filter: brightness(100);
+}
 
 /*   5. || FrontEnd Mentor Footer   */
 /* .attribution {
@@ -322,3 +348,92 @@ footer > img {
   background: hsl(var(--Very-dark-cyan));
   color: hsl(var(--Strong-cyan));
 } */
+
+
+/*   6. || Media Queries            */
+/*      Mobile                      */
+@media (max-width: 375px) {
+  .container {
+    height: fit-content;
+    width: fit-content;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .main-header #header-image {
+    content: url('./images/mobile/image-header.jpg');
+    width: 100%;
+    height: auto;
+    border: none;
+    /* display: none; */
+  }
+
+  .main-header nav {
+    display: none;
+  }
+
+  .main-header h1 {
+    font: 900 2rem 'Fraunces';
+  }
+
+  .main-header #header-arrow {
+    transform: translate(-50%, 45%);
+  }
+  
+  .services {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .service-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    color: hsl(var(--Dark-grayish-blue));
+    padding: 18%;
+  }
+  
+  .service-text h3 {
+    font: 900 1.5rem 'Fraunces';
+    color: hsl(var(--Very-dark-desaturated-blue));
+  }
+
+  .services-images {
+    padding: 3.25rem 2rem;
+    /* display: none; */
+  }
+
+  .graphic-design {
+    background-image: url('./images/mobile/image-graphic-design.jpg');
+  }
+
+  .photography {
+    background-image: url('./images/mobile/image-photography.jpg');
+  }
+
+  section.testimonials {
+    /* display: none; */
+  }
+
+  .clients {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    margin: 0 6rem;
+    margin-bottom: 8rem;
+  }
+
+  section.images {
+    /* display: none; */
+  }
+
+  footer {
+    /* display: none; */
+  }
+}
