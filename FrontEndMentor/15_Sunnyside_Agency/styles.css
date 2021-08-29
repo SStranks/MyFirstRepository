@@ -388,52 +388,112 @@ footer > img {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+    /* display: none; */
   }
 
   .service-text {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     text-align: center;
     color: hsl(var(--Dark-grayish-blue));
-    padding: 18%;
+    padding: 3rem 1.5rem;
   }
   
   .service-text h3 {
-    font: 900 1.5rem 'Fraunces';
+    font: 900 1.75rem 'Fraunces';
     color: hsl(var(--Very-dark-desaturated-blue));
+    margin-bottom: 1rem;
+  }
+
+  .service-text p {
+    margin-bottom: 1.5rem;
   }
 
   .services-images {
-    padding: 3.25rem 2rem;
-    /* display: none; */
+    height: 600px;
+    padding: 3.25rem 1.25rem;
+  }
+
+  .services-images p {
+    font-size: 0.85rem;
+  }
+
+  .row-1 {
+    grid-row: 1;
+  }
+
+  .row-3 {
+    grid-row: 3;
   }
 
   .graphic-design {
     background-image: url('./images/mobile/image-graphic-design.jpg');
+    background-size: contain;
   }
 
   .photography {
     background-image: url('./images/mobile/image-photography.jpg');
+    background-size: contain;
   }
 
-  section.testimonials {
-    /* display: none; */
+  .testimonials h3 {
+    font: 700 0.85rem 'Fraunces';
+    margin-top: 3.5rem;
+    margin-bottom: 0;
   }
 
   .clients {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    margin: 0 6rem;
-    margin-bottom: 8rem;
+    margin: 0;
+    padding: 1.25rem;
+    margin: 0 0 3.5rem 0;
   }
 
-  section.images {
-    /* display: none; */
+  .client {
+    margin-top: 3rem;
+  }
+
+  .client p {
+    margin: 2rem 0;
+  }
+
+  .images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .images .img1 {
+    content: url('./images/mobile/image-gallery-milkbottles.jpg');
+  }
+
+  .images .img2 {
+    content: url('./images/mobile/image-gallery-orange.jpg');
+  }
+
+  .images .img3 {
+    content: url('./images/mobile/image-gallery-cone.jpg');
+  }
+
+  .images .img4 {
+    content: url('./images/mobile/image-gallery-sugar-cubes.jpg');
   }
 
   footer {
-    /* display: none; */
+    padding: 4rem 2rem;
+  }
+
+  .footer-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer-info span {
+    margin: 0;
   }
 }
