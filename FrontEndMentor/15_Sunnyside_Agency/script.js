@@ -12,7 +12,6 @@ function toggleMenu() {
 
 // Window Resize Event
 function mobileLayout(x) {
-  alert('change');
   if (x.matches) {
     navMenu.classList.add('hidden');
     menuButton.classList.remove('hidden');
@@ -24,5 +23,5 @@ function mobileLayout(x) {
 
 // Event Handler
 menuButton.addEventListener('click', toggleMenu);
-windowResize.addListener(mobileLayout);
+windowResize.addEventListener('change', mobileLayout);
 mobileLayout(windowResize);
