@@ -50,6 +50,10 @@ html, body {
   color: hsl(var(--Very-dark-desaturated-blue));
 }
 
+.hidden {
+  display: none !important;
+}
+
 
 /*   4. || Main                     */
 .container {
@@ -369,12 +373,52 @@ footer > img {
     width: 100%;
     height: auto;
     border: none;
-    /* display: none; */
   }
 
   .main-header nav {
-    display: none;
+    padding: 2rem 1.5rem;
   }
+
+  .main-header nav ul {
+    position: absolute;
+    top: 120%;
+    left: 50%;  display: flex;
+    flex-direction: column;
+    background: #fff;
+    transform: translate(-50%, 0);
+    padding: 1.5rem 4.25rem;
+    z-index: 2;
+  }
+
+  .main-header nav ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 30px solid #fff;
+    border-left: 30px solid transparent;
+    transform: translate(0, -100%);
+  }
+
+  .main-header nav ul li {
+    color: hsl(var(--Grayish-blue));
+    margin: 0.75rem 0;
+  }
+
+  #contact {
+    border: none;
+    background: hsl(var(--Yellow));
+    padding: 0.8rem 1.5rem;
+    margin: 0.75rem 1rem;
+  }
+
+  #contact:hover {
+    background: hsl(var(--Yellow));
+    color: hsl(var(--Very-dark-desaturated-blue));
+  }
+  
 
   .main-header h1 {
     font: 900 2rem 'Fraunces';
