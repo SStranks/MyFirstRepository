@@ -29,11 +29,11 @@
   --Very-dark-black-blue: 240, 10%, 16%;            /*(footer background)*/
   /* Gradient */
   /* Background gradient - Intro/CTA mobile nav: */
-  --Very-light-red: 13, 100%, 72%;
-  --Light-red: 353, 100%, 62%;
+  --Grad-1-1: 13, 100%, 72%;
+  --Grad-1-2: 353, 100%, 62%;
   /* Background gradient - body: */
-  --Very-dark-gray-blue: 237, 17%, 21%;
-  --Very-dark-desaturated-blue: 237, 23%, 32%;
+  --Grad-2-1: 237, 17%, 21%;
+  --Grad-2-2: 237, 23%, 32%;
 }
 
 
@@ -46,10 +46,12 @@
 }
 
 img {display: block; height: 100%}
-a {text-decoration: none}
+a {text-decoration: none; color: #fff;}
 li {list-style: none}
 h1 {font-size: 3.5rem}
+h2 {font-size: 2.2rem}
 h3 {font-size: 1.75rem; margin-bottom: 1rem;}
+p {line-height: 1.8;}
 button {
   width: 125px;
   height: 40px;
@@ -62,6 +64,7 @@ button {
   font: 600 1rem 'Ubuntu'; 
   color: hsl(var(--Light-red));
   margin-left: 2rem;
+  cursor: pointer;
 }
 
 .hidden {display: none !important;}
@@ -93,7 +96,7 @@ html, body {
 
 header {
   width: 100%;
-  background: linear-gradient(to right, hsl(var(--Very-light-red)), hsl(var(--Light-red)));
+  background: linear-gradient(to right, hsl(var(--Grad-1-1)), hsl(var(--Grad-1-2)));
   border-radius: 0 0 0 75px;
   text-align: center;
   padding: 0 0 0 10rem;
@@ -140,7 +143,8 @@ nav > ul > li::after {
 }
 
 nav a {
-  display: none;
+  
+  /* display: none; */
 }
 
 header h1 {
@@ -157,11 +161,21 @@ header span {
   margin-top: 3rem;
 }
 
-#learn-more {
+button:hover {
+  background: hsl(var(--Very-light-red));
+  color: #fff;
+}
+
+#btn-learn {
   background: transparent;
   border: 1px solid #fff;
   color: #fff;
   margin-left: 1rem;
+}
+
+#btn-learn:hover {
+  background: #fff;
+  color: hsl(var(--Very-light-red));
 }
 
 section {
@@ -180,7 +194,6 @@ section h2, section h3 {
 }
 
 .sec-1 h2 {
-  font-size: 2.5rem;
   text-align: center;
   grid-column: 1 / span 2;
   margin-bottom: 5rem;
@@ -205,8 +218,57 @@ section h2, section h3 {
 }
 
 .sec-2 {
-  background: linear-gradient(to right, hsl(var(--Very-dark-gray-blue)), hsl(var(--Very-dark-desaturated-blue)));
+  position: relative;
+  background: url('./images/bg-pattern-circles.svg'), linear-gradient(to right, hsl(var(--Grad-2-1)), hsl(var(--Grad-2-2)));
+  background-repeat: no-repeat;
+  background-position: left;
+  border-radius: 0 75px 0 75px;
+  padding: 6rem 8rem;
+}
 
+.sec-2 img {
+  position: absolute;
+  transform: scale(150%) translate(40%, 3%);
+}
+
+.sec-2 h2, .sec-2 p {
+  grid-column: 2;
+  color: #fff;
+  margin-bottom: 1rem;
+  margin-right: 4rem;
+}
+
+.sec-2 p {
+  margin-bottom: 0;
+}
+
+.sec-3 {
+  position: relative;
+  padding: 0 8rem;
+}
+
+.sec-3::after {
+  content: url('./images/illustration-laptop-desktop.svg');
+  position: absolute;
+  top: 50%;
+  transform: translate(-28%, -50%);
+}
+
+.sec-3 h3, .sec-3 p{
+ grid-column: 2;
+}
+
+.sec-3 h3:first-of-type {
+  margin-top: 16rem;
+}
+
+.sec-3 p {
+  margin-bottom: 4rem;
+  margin-right: 5rem;
+}
+
+.sec-3 p:last-of-type {
+  margin-bottom: 16rem;
 }
 
 footer {
@@ -230,4 +292,12 @@ footer span {
 footer li {
   color: hsl(var(--Grayish-blue-));
   margin-bottom: 0.5rem;
+}
+
+footer a {
+  color: hsl(var(--Grayish-blue-));
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
