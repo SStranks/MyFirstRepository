@@ -49,6 +49,7 @@ img {display: block; height: 100%}
 a {text-decoration: none}
 li {list-style: none}
 h1 {font-size: 3.5rem}
+h3 {font-size: 1.75rem; margin-bottom: 1rem;}
 button {
   width: 125px;
   height: 40px;
@@ -87,17 +88,23 @@ html, body {
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
+  overflow: hidden;
 }
 
 header {
   width: 100%;
-  background: url('./images/bg-pattern-intro.svg'), linear-gradient(to right, hsl(var(--Very-light-red)), hsl(var(--Light-red)));
-  background-size: 200%;
-  background-position: left;
+  background: linear-gradient(to right, hsl(var(--Very-light-red)), hsl(var(--Light-red)));
   border-radius: 0 0 0 75px;
   text-align: center;
-  padding: 4rem 10rem;
+  padding: 0 0 0 10rem;
 }
+
+.background {
+  background: url('./images/bg-pattern-intro.svg'); 
+  background-size: 250%;
+  background-position: 31% 51%;
+  padding: 4rem 10rem 8rem 0;
+} 
 
 .top-nav {
   width: 100%;
@@ -155,6 +162,51 @@ header span {
   border: 1px solid #fff;
   color: #fff;
   margin-left: 1rem;
+}
+
+section {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  color: hsl(var(--Very-dark-grayish-blue));
+}
+
+section h2, section h3 {
+  color: hsl(var(--Very-dark-blue));
+}
+
+.sec-1 {
+  position: relative;
+  padding: 8rem 0 10rem 0;
+}
+
+.sec-1 h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  grid-column: 1 / span 2;
+  margin-bottom: 5rem;
+}
+
+.sec-1 h3, .sec-1 p {
+  grid-column: 1;
+  padding-left: 10rem;
+  padding-right: 3rem;
+}
+
+.sec-1 p {
+  margin-bottom: 5rem;
+}
+
+.sec-1 img {
+  position: absolute;
+  height: 90%;
+  right: 0;
+  top: 50%;
+  transform: translate(30%, -50%);
+}
+
+.sec-2 {
+  background: linear-gradient(to right, hsl(var(--Very-dark-gray-blue)), hsl(var(--Very-dark-desaturated-blue)));
+
 }
 
 footer {
