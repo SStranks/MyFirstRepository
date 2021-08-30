@@ -95,11 +95,13 @@ html, body {
 }
 
 header {
+  position: relative;
   width: 100%;
   background: linear-gradient(to right, hsl(var(--Grad-1-1)), hsl(var(--Grad-1-2)));
   border-radius: 0 0 0 75px;
   text-align: center;
   padding: 0 0 0 10rem;
+  z-index: 0;
 }
 
 .background {
@@ -259,10 +261,20 @@ section h2, section h3 {
   position: relative;
   background: url('./images/bg-pattern-circles.svg'), linear-gradient(to right, hsl(var(--Grad-2-1)), hsl(var(--Grad-2-2)));
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: -50% 75%;
   border-radius: 0 75px 0 75px;
   padding: 6rem 8rem;
 }
+
+/* .circles {
+  background: url('./images/bg-pattern-circles.svg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 31% 51%;
+  opacity: 50%;
+  padding: 4rem 10rem 8rem 0;
+  z-index: -1;
+} */
 
 .sec-2 img {
   position: absolute;
