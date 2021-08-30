@@ -127,24 +127,62 @@ header {
 nav {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: space-between;
   margin: 0 0 0 3rem;
 }
 
-nav ul {
-  display: flex;
-  flex-direction: row;
+.menu a {
   margin: 0 1rem;
 }
 
-nav > ul > li::after {
+.menu > a::after {
   content: url('./images/icon-arrow-light.svg');
   margin-left: 0.5rem;
 }
 
-nav a {
-  
-  /* display: none; */
+nav .menu-drop {
+  display: none;
+  position: absolute;
+  width: 140px;
+  text-align: left;
+  top: 12%;
+  background: #fff;
+  border-radius: 5px;
+  padding: 1.25rem 0.5rem;
+  box-shadow: 0 0 25px 2px hsla(0, 0%, 0%, 0.3);
+}
+
+.menu-drop::before {
+  content: '';
+  position: absolute;
+  top: -35px;
+  left: 0;
+  height: 35px;
+  width: 100%;
+}
+
+.menu-drop a {
+  color: #000;
+}
+
+.menu-drop a:hover {
+  font-weight: 700;
+}
+
+.menu-drop li {
+  margin: 0.25rem;
+}
+
+.menu-1:hover .sub-1{
+  display: block;
+}
+
+.menu-2:hover .sub-2{
+  display: block;
+}
+
+.menu-3:hover .sub-3{
+  display: block;
 }
 
 header h1 {
