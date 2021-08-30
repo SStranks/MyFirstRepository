@@ -1,0 +1,158 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+/*   6. || Media Queries            */
+/* -------------------------------- */
+
+
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@300;600&family=Ubuntu:wght@400;500;700&display=swap');
+
+
+
+/*   2. || Variables                */
+:root {
+  /* HSL Values */
+  /* Primary */
+  --Light-red: 356, 100%, 66%;                      /*(CTA text)*/
+  --Very-light-red: 355, 100%, 74%;                 /*(CTA hover background)*/
+  --Very-dark-blue: 208, 49%, 24%;                  /*(headings)*/
+  /* Neutral */
+  --White: 0, 0%, 100%;                             /*(text)*/
+  --Grayish-blue-: 240, 2%, 79%;                    /*(footer text)*/
+  --Very-dark-grayish-blue: 207, 13%, 34%;          /*(body copy)*/
+  --Very-dark-black-blue: 240, 10%, 16%;            /*(footer background)*/
+  /* Gradient */
+  /* Background gradient - Intro/CTA mobile nav: */
+  --Very-light-red: 13, 100%, 72%;
+  --Light-red: 353, 100%, 62%;
+  /* Background gradient - body: */
+  --Very-dark-gray-blue: 237, 17%, 21%;
+  --Very-dark-desaturated-blue: 237, 23%, 32%;
+}
+
+
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+img {display: block;}
+a {text-decoration: none}
+li {list-style: none}
+h1 {font-size: 3.5rem}
+button {
+  width: 125px;
+  height: 40px;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  border: none; 
+  border-radius: 25px;
+  background: #fff;
+  font: 600 1rem 'Ubuntu'; 
+  color: hsl(var(--Light-red));
+  margin-left: 2rem;
+}
+
+.hidden {display: none !important;}
+
+
+
+/*   4. || Main                     */
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 300, 400, 500, 600, 700;
+  font-family: 'Overpass', 'Ubuntu', sans-serif;
+  line-height: 1.6;
+  background: #fff;
+  color: hsl(var(--White));
+}
+
+.container {
+  height: fit-content;
+  width: fit-content;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  background: url('./images/bg-pattern-intro.svg'), linear-gradient(to right, hsl(var(--Very-light-red)), hsl(var(--Light-red)));
+  background-size: 200%;
+  background-position: left;
+  border-radius: 0 0 0 75px;
+  text-align: center;
+  padding: 4rem 10rem;
+}
+
+.top-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-nav .login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 0 0 3rem;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  margin: 0 1rem;
+}
+
+nav > ul > li::after {
+  content: url('./images/icon-arrow-light.svg');
+  margin-left: 0.5rem;
+}
+
+nav a {
+  display: none;
+}
+
+header h1 {
+  padding-top: 7rem;
+}
+
+header span {
+  font: 300 1.15rem 'Overpass';
+}
+
+.start-learn {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+#learn-more {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  margin-left: 1rem;
+}

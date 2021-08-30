@@ -5,95 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="./styles.css">
   <title>Frontend Mentor | [Blogr]</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
+
 <body>
-  Product
+  <div class="container">
+    <header>
+      <div class="top-nav">
+        <img src="./images/logo.svg" alt="Blogr">
+        <nav>
+          <ul>
+            <li>Product</li>
+              <ul>
+                <li><a href="#">Overview</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Marketplace</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Integrations</a></li>
+              </ul>
+            <li>Company</li>
+              <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Careers</a></li>
+              </ul>
+            <li>Connect</li>
+              <ul>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Newsletter</a></li>
+                <li><a href="#">LinkedIn</a></li>
+              </ul>
+          </ul>
+        </nav>
+        <div class="login">
+          <p>Login</p>
+          <button>Sign Up</button>
+        </div>
+      </div>
 
-  Overview
-  Pricing
-  Marketplace
-  Features
-  Integrations
+      <h1>A modern publishing platform</h1>
+      <span>Grow your audience and build your online brand</span>
 
-  Company
+      <div class="start-learn">
+        <button>Start for Free</button>
+        <button id="learn-more" >Learn More</button>
+      </div>
+    </header>
 
-  About
-  Team
-  Blog
-  Careers
 
-  Connect
 
-  Contact
-  Newsletter
-  LinkedIn
-  
-  Login
-  Sign Up
+    Designed for the future
 
-  A modern publishing platform
-  Grow your audience and build your online brand
+    Introducing an extensible editor
+    Blogr features an exceedingly intuitive interface which lets you focus on one thing: creating content. 
+    The editor supports management of multiple blogs and allows easy manipulation of embeds such as images, 
+    videos, and Markdown. Extensibility with plugins and themes provide easy ways to add functionality or 
+    change the looks of a blog.
 
-  Start for Free
-  Learn More
+    Robust content management
+    Flexible content management enables users to easily move through posts. Increase the usability of your blog 
+    by adding customized categories, sections, format, or flow. With this functionality, you’re in full control.
 
-  Designed for the future
+    State of the Art Infrastructure
+    With reliability and speed in mind, worldwide data centers provide the backbone for ultra-fast connectivity. 
+    This ensures your site will load instantly, no matter where your readers are, keeping your site competitive.
 
-  Introducing an extensible editor
-  Blogr features an exceedingly intuitive interface which lets you focus on one thing: creating content. 
-  The editor supports management of multiple blogs and allows easy manipulation of embeds such as images, 
-  videos, and Markdown. Extensibility with plugins and themes provide easy ways to add functionality or 
-  change the looks of a blog.
+    Free, open, simple
+    Blogr is a free and open source application backed by a large community of helpful developers. It supports 
+    features such as code syntax highlighting, RSS feeds, social media integration, third-party commenting tools, 
+    and works seamlessly with Google Analytics. The architecture is clean and is relatively easy to learn.
 
-  Robust content management
-  Flexible content management enables users to easily move through posts. Increase the usability of your blog 
-  by adding customized categories, sections, format, or flow. With this functionality, you’re in full control.
+    Powerful tooling
+    Batteries included. We built a simple and straightforward CLI tool that makes customization and deployment a breeze, but
+    capable of producing even the most complicated sites.
 
-  State of the Art Infrastructure
-  With reliability and speed in mind, worldwide data centers provide the backbone for ultra-fast connectivity. 
-  This ensures your site will load instantly, no matter where your readers are, keeping your site competitive.
+    Product
 
-  Free, open, simple
-  Blogr is a free and open source application backed by a large community of helpful developers. It supports 
-  features such as code syntax highlighting, RSS feeds, social media integration, third-party commenting tools, 
-  and works seamlessly with Google Analytics. The architecture is clean and is relatively easy to learn.
+    Overview
+    Pricing
+    Marketplace
+    Features
+    Integrations
 
-  Powerful tooling
-  Batteries included. We built a simple and straightforward CLI tool that makes customization and deployment a breeze, but
-  capable of producing even the most complicated sites.
+    Company
 
-  Product
+    About
+    Team
+    Blog
+    Careers
 
-  Overview
-  Pricing
-  Marketplace
-  Features
-  Integrations
+    Connect
+    
+    Contact
+    Newsletter
+    LinkedIn
 
-  Company
-
-  About
-  Team
-  Blog
-  Careers
-
-  Connect
-  
-  Contact
-  Newsletter
-  LinkedIn
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">Your Name Here</a>.
+    </div>
   </div>
+  <script src="./script.js"></script>
 </body>
 </html>
