@@ -45,7 +45,7 @@
   margin: 0;
 }
 
-img {display: block;}
+img {display: block; height: 100%}
 a {text-decoration: none}
 li {list-style: none}
 h1 {font-size: 3.5rem}
@@ -155,4 +155,27 @@ header span {
   border: 1px solid #fff;
   color: #fff;
   margin-left: 1rem;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: hsl(var(--Very-dark-black-blue));
+  border-radius: 0 75px 0 0;
+  padding: 4rem 10rem;
+}
+
+footer ul {
+  display: flex;
+  flex-direction: column;
+}
+
+footer span {
+  margin-bottom: 2rem;
+}
+
+footer li {
+  color: hsl(var(--Grayish-blue-));
+  margin-bottom: 0.5rem;
 }
