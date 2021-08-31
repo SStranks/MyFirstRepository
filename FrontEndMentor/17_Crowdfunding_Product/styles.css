@@ -45,8 +45,8 @@ a:visited {color: inherit}
 a:active {color: inherit}
 li {list-style: none}
 h1 {font-size: 1.8rem; color: #000}
-h2 {font-size: 2.2rem; color: #000}
-h3 {font-size: 1.75rem; color: #000}
+h2 {font-size: 1.3rem; color: #000}
+h3 {font-size: 1.2rem; color: #000}
 p {line-height: 1.8;}
 button {
   display: flex;
@@ -58,6 +58,7 @@ button {
   cursor: pointer
 }
 
+.flex-row {display: flex; justify-content: space-between; align-items: center}
 .hidden {display: none !important;}
 
 
@@ -89,7 +90,7 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0 10.5rem;
-  margin: 3rem 0;
+  margin: 3rem 0 15rem 0;
 }
 
 nav {
@@ -120,8 +121,13 @@ main {
   background: #fff;
   color: hsl(var(--Dark-gray));
   border-radius: 8px;
-  text-align: center;
+  text-align: left;
   padding: 3rem 3rem;
+  margin: 0 0 2rem 0;
+}
+
+.card-1 {
+  text-align: center;
 }
 
 .card-1 p {
@@ -144,10 +150,73 @@ main {
 }
 
 .btns-flex button {
-  height: 50px;
-  width: 200px;
-  border-radius: 25px;
+  height: 55px;
+  width: 210px;
+  border-radius: 27.5px;
   font-size: 1rem;
   font-weight: 700;
 }
 
+#bookmark {
+  position: relative;
+  width: 170px;
+  background: hsla(var(--Dark-gray), 0.1);
+  color: hsl(var(--Dark-gray));
+  justify-content: flex-end;
+  padding: 0 1.5rem 0 0;
+}
+
+#bookmark::before {
+  content: url('./images/icon-bookmark.svg');
+  position: absolute;
+  height: 55px;
+  width: 55px;
+  left: 0;
+  background: hsl(var(--Dark-gray));
+  border-radius: 50%;
+}
+
+.card-2 .vl {
+  height: 100%;
+  border-left: 1px solid hsl(var(--Dark-gray), 0.3);
+}
+
+.card-3 p {
+  margin: 2rem 0;
+}
+
+.pledge {
+  font-weight: 500;
+  color: hsl(var(--Moderate-cyan));
+}
+
+.total {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000;
+  margin-right: 0.5rem;
+}
+
+.reward {
+  width: 100%;
+  border: 1px solid hsla(var(--Dark-gray), 0.2);
+  border-radius: 5px;
+  padding: 2rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.reward button {
+  height: 48px;
+  width: 165px;
+  background: hsl(var(--Moderate-cyan));
+  border-radius: 25px;
+  font-weight: 700;
+}
+
+.out-of-stock {
+  opacity: 50%;
+}
+
+.out-of-stock button {
+  background: hsl(var(--Dark-gray));
+}
