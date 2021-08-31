@@ -53,7 +53,7 @@ button {
   justify-content: center;
   align-items: center;
   border: none; 
-  background: hsl(var(--Moderate-cyan));
+  background: hsl(var(--Dark-cyan));
   color: #fff;
   cursor: pointer
 }
@@ -149,7 +149,7 @@ main {
   margin-top: 2rem;
 }
 
-.btns-flex button {
+.btns-flex .c1-btn {
   height: 55px;
   width: 210px;
   border-radius: 27.5px;
@@ -157,23 +157,22 @@ main {
   font-weight: 700;
 }
 
-#bookmark {
+.btns-flex .bookmark {
   position: relative;
-  width: 170px;
+  width: 190px;
   background: hsla(var(--Dark-gray), 0.1);
   color: hsl(var(--Dark-gray));
   justify-content: flex-end;
   padding: 0 1.5rem 0 0;
 }
 
-#bookmark::before {
-  content: url('./images/icon-bookmark.svg');
-  position: absolute;
-  height: 55px;
-  width: 55px;
-  left: 0;
-  background: hsl(var(--Dark-gray));
-  border-radius: 50%;
+.btns-flex object {
+  transform: translate(100%, 0);
+} 
+
+.bookmarked {
+  background: hsl(var(--Dark-cyan), 0.05) !important;
+  color: hsl(var(--Dark-cyan)) !important;
 }
 
 .card-2 .vl {
@@ -208,7 +207,7 @@ main {
 .reward button {
   height: 48px;
   width: 165px;
-  background: hsl(var(--Moderate-cyan));
+  background: hsl(var(--Dark-cyan));
   border-radius: 25px;
   font-weight: 700;
 }
