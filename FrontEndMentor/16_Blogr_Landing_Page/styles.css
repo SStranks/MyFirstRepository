@@ -118,6 +118,10 @@ header {
   display: none;
 }
 
+hr {
+  display: none;
+}
+
 .top-nav .login {
   display: flex;
   flex-direction: row;
@@ -368,6 +372,7 @@ footer a:hover {
   }
 
   .top-nav {
+    position: relative;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -375,53 +380,85 @@ footer a:hover {
     align-items: center;
     margin-top: 4rem;
   }
-  
-  .top-nav .login {
-    display: none;
-    flex-direction: row;
-    align-items: center;
-    margin-left: auto;
+
+  hr {
+    display: block;
+    border: none;
+    height: 1px;
+    background-color: hsl(var(--Grayish-blue-));
   }
   
+  .top-nav .login {
+    /* display: none; */
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0 0 0;
+  }
+
+  .login a {
+    color: hsl(var(--Very-dark-black-blue));
+  }
+
+  #sign-up {
+    background: linear-gradient(to right, hsl(var(--Grad-1-1)), hsl(var(--Grad-1-2)));
+    color: #fff;
+    margin: 1rem 0;
+  }
+  
+  .menu-nav {
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    top: 150%;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 25px 5px hsla(0, 0%, 0%, 0.2);
+    padding: 1rem 1.5rem;
+  }
+
+  .menu-nav a {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: hsl(var(--Very-dark-black-blue));
+  }
+
   nav {
-    display: none;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    margin: 0 0 0 3rem;
+    margin: 0;
+  }
+
+  .menu {
+    margin: 0.75rem 0;
   }
   
   .menu a {
-    margin: 0 1rem;
+    margin: 2rem 1rem;
   }
   
   .menu > a::after {
-    content: url('./images/icon-arrow-light.svg');
+    content: url('./images/icon-arrow-dark.svg');
     margin-left: 0.5rem;
   }
   
   nav .menu-drop {
     display: none;
-    position: absolute;
-    width: 140px;
-    text-align: left;
-    top: 12%;
-    background: #fff;
+    position: relative;
+    width: 100%;
+    text-align: center;
+    background: hsla(var(--Grayish-blue-), 0.3);
     border-radius: 5px;
     padding: 1.25rem 0.5rem;
-    box-shadow: 0 0 25px 2px hsla(0, 0%, 0%, 0.3);
+    box-shadow: none;
+    margin: 1rem 0;
   }
   
   .menu-drop::before {
-    content: '';
-    position: absolute;
-    top: -35px;
-    left: 0;
-    height: 35px;
-    width: 100%;
+    display: none;
   }
   
   .menu-drop a {
-    color: #000;
+    color: hsl(var(--Very-dark-grayish-blue));
   }
   
   .menu-drop a:hover {
@@ -429,7 +466,7 @@ footer a:hover {
   }
   
   .menu-drop li {
-    margin: 0.25rem;
+    margin: 0.75rem 0;
   }
   
   .menu-1:hover .sub-1{
@@ -494,6 +531,10 @@ footer a:hover {
   #btn-learn:hover {
     background: #fff;
     color: hsl(var(--Very-light-red));
+  }
+
+  .exit {
+    content: url('./images/icon-close.svg')
   }
 
   section {
