@@ -182,13 +182,28 @@ nav .menu-drop {
   display: block;
 }
 
+.menu-1:hover a::after {
+    display: inline-block;
+    transform: rotate(180deg);
+  }
+
 .menu-2:hover .sub-2{
   display: block;
 }
 
+.menu-2:hover a::after {
+    display: inline-block;
+    transform: rotate(180deg);
+  }
+
 .menu-3:hover .sub-3{
   display: block;
 }
+
+.menu-3:hover a::after {
+    display: inline-block;
+    transform: rotate(180deg);
+  }
 
 header h1 {
   padding-top: 7rem;
@@ -429,7 +444,7 @@ footer a:hover {
   }
 
   .menu {
-    margin: 0.75rem 0;
+    padding: 0.75rem 0;
   }
   
   .menu a {
@@ -460,24 +475,23 @@ footer a:hover {
   .menu-drop a {
     color: hsl(var(--Very-dark-grayish-blue));
   }
-  
-  .menu-drop a:hover {
-    font-weight: 700;
-  }
-  
+
   .menu-drop li {
     margin: 0.75rem 0;
   }
   
   .menu-1:hover .sub-1{
+    transition-delay: 0.5s;
     display: block;
   }
   
   .menu-2:hover .sub-2{
+    transition-delay: 0.5s;
     display: block;
   }
   
   .menu-3:hover .sub-3{
+    transition-delay: 0.5s;
     display: block;
   }
   
