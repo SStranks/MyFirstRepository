@@ -46,7 +46,7 @@
 }
 
 img {display: block; height: 100%}
-a {text-decoration: none; color: #fff;}
+a {text-decoration: none; color: #fff}
 li {list-style: none}
 h1 {font-size: 3.5rem}
 h2 {font-size: 2.2rem}
@@ -89,7 +89,6 @@ html, body {
   max-width: 1440px;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   overflow: hidden;
 }
@@ -147,6 +146,11 @@ nav {
   margin: 0 1rem;
 }
 
+.menu a:hover {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 .menu > a::after {
   content: url('./images/icon-arrow-light.svg');
   margin-left: 0.5rem;
@@ -157,7 +161,7 @@ nav .menu-drop {
   position: absolute;
   width: 140px;
   text-align: left;
-  top: 12%;
+  top: 20%;
   background: #fff;
   border-radius: 5px;
   padding: 1.25rem 0.5rem;
@@ -167,9 +171,9 @@ nav .menu-drop {
 .menu-drop::before {
   content: '';
   position: absolute;
-  top: -35px;
+  top: -15px;
   left: 0;
-  height: 35px;
+  height: 15px;
   width: 100%;
 }
 
@@ -334,6 +338,10 @@ section h2, section h3 {
 
 .sec-3 p:last-of-type {
   margin-bottom: 16rem;
+}
+
+.sec-3 img {
+  display: none;
 }
 
 footer {
@@ -626,7 +634,9 @@ footer a:hover {
   .sec-2 {
     width: 100%;
     background: url('./images/bg-pattern-circles.svg'), linear-gradient(to right, hsl(var(--Grad-2-1)), hsl(var(--Grad-2-2)));
-    background-position: -50% 75%;
+    background-size: 155%, 100%;
+    background-position: 52% -350%, 0;
+    background-repeat: no-repeat;
     border-radius: 0 100px 0 100px;
     text-align: center;
     padding: 0;
@@ -636,7 +646,7 @@ footer a:hover {
   .sec-2 img {
     position: absolute;
     left: 50%;
-    transform: scale(70%) translate(-72%, -70%);
+    transform: scale(63%) translate(-80%, -78%);
   }
   
   .sec-2 h2, .sec-2 p {
@@ -693,10 +703,11 @@ footer a:hover {
   }
 
   .sec-3 img {
+    display: block;
     width: 100%;
     height: 100%;
     grid-row: 1;
-    transform: scale(175%);
+    transform: scale(150%);
   }
 
   footer {
