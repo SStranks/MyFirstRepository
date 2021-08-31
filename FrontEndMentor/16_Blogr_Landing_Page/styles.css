@@ -114,6 +114,13 @@ header {
   align-items: center;
 }
 
+.menu-nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .top-nav img:last-of-type{
   display: none;
 }
@@ -376,6 +383,7 @@ footer a:hover {
     background-position: 35% 30%;
     border-radius: 0 0 0 100px;
     padding: 0 1.5rem;
+    z-index: 3;
   }
 
   .top-nav img:first-of-type {
@@ -400,6 +408,7 @@ footer a:hover {
     display: block;
     border: none;
     height: 1px;
+    width: 100%;
     background-color: hsl(var(--Grayish-blue-));
   }
   
@@ -422,6 +431,7 @@ footer a:hover {
   
   .menu-nav {
     position: absolute;
+    flex-direction: column;
     width: 100%;
     height: fit-content;
     top: 150%;
@@ -438,12 +448,14 @@ footer a:hover {
   }
 
   nav {
+    width: 100%;
     flex-direction: column;
     justify-content: space-between;
     margin: 0;
   }
 
   .menu {
+    width: 100%;
     padding: 0.75rem 0;
   }
   
@@ -574,6 +586,7 @@ footer a:hover {
     grid-row: 1;
     font-size: 1.75rem;
     margin: 6rem 0 3.5rem 0;
+    z-index: 1;
   }
   
   .sec-1 h3 {
