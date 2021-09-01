@@ -53,9 +53,12 @@ button {
   justify-content: center;
   align-items: center;
   border: none; 
-  background: hsl(var(--Dark-cyan));
+  background: hsl(var(--Moderate-cyan));
   color: #fff;
   cursor: pointer
+}
+button:hover {
+  background: hsl(var(--Dark-cyan));
 }
 
 .flex-row {display: flex; justify-content: space-between; align-items: center}
@@ -120,6 +123,7 @@ main {
   max-width: 730px;
   background: #fff;
   color: hsl(var(--Dark-gray));
+  border: 1px solid hsl(var(--Dark-gray), 0.1);
   border-radius: 8px;
   text-align: left;
   padding: 3rem 3rem;
@@ -175,9 +179,51 @@ main {
   color: hsl(var(--Dark-cyan)) !important;
 }
 
-.card-2 .vl {
+.card-2 .grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; 
+}
+
+.grid-row div {
+  position: relative;
+  padding-left: 3rem;
+}
+
+.grid-row div::after {
+  content: '';
+  position: absolute;
   height: 100%;
+  top: 0;
+  left: 0;
   border-left: 1px solid hsl(var(--Dark-gray), 0.3);
+}
+
+.grid-row div:first-child {
+  padding-left: 0;
+}
+
+.grid-row div:first-child::after {
+  display: none;
+}
+
+/* .card-2 .flex-row .vl {
+  height: 50px;
+  border-left: 1px solid hsl(var(--Dark-gray), 0.3);
+} */
+
+.prog-bar {
+  height: 12px;
+  width: 100%;
+  background: hsla(var(--Dark-gray), 0.1);
+  border-radius: 6px;
+  margin-top: 2rem;
+}
+
+.prog-bar-val {
+  height: 12px;
+  width: 70%;
+  background: hsl(var(--Moderate-cyan));
+  border-radius: 6px;
 }
 
 .card-3 p {
@@ -207,7 +253,6 @@ main {
 .reward button {
   height: 48px;
   width: 165px;
-  background: hsl(var(--Dark-cyan));
   border-radius: 25px;
   font-weight: 700;
 }

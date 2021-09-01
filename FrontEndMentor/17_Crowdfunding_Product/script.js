@@ -12,9 +12,11 @@ function bookmark() {
   if (btn_bookmark.classList.contains('bookmarked')) {
     circle[0].setAttribute("fill", "hsl(176, 72%, 28%)"); 
     path[0].setAttribute("fill", "#FFFFFF");
+    btn_bookmark.textContent = 'Bookmarked';
   } else {
     circle[0].setAttribute("fill", "#2F2F2F"); 
     path[0].setAttribute("fill", "#B1B1B1"); 
+    btn_bookmark.textContent = 'Bookmark';
   }
 }
 
