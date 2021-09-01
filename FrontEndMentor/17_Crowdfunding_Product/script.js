@@ -9,6 +9,7 @@ const radioBtn  = document.querySelectorAll('input[name="radio-btn-1"]')
 const backProj = document.querySelector('.backProjectWindow');
 const modalPledges = document.querySelectorAll('.modalPledge');
 const modalWindow = document.querySelector('.modal');
+const successWindow = document.querySelector('.modalSuccess');
 let btl_bookmark_icon;
 let circle;
 let path;
@@ -31,7 +32,7 @@ function bookmark() {
 
 // Modal: Show
 function showModal() {
-  modalWindow.classList.toggle('hidden');
+  modalWindow.classList.remove('hidden');
   backProj.classList.remove('hidden');
 }
 
@@ -68,6 +69,12 @@ function radioSelect (e) {
     }
 };
 
+// Show Success Window
+function showSuccess() {
+  successWindow.classList.remove('hidden');
+  backProj.classList.add('hidden');
+}
+
 // Close Back Project Window
 function closeBackProject() {
   backProj.classList.add('hidden');
@@ -96,3 +103,21 @@ radioBtn.forEach(radio => radio.addEventListener('change', radioSelect));
 btn_backProject.addEventListener('click', showModal);
 btn_closeSuccess.addEventListener('click', closeSuccess)
 btn_closeBackProject.addEventListener('click', closeBackProject)
+
+
+
+function donateAmount(e) {
+  e.preventDefault;
+  // Listen for Button 'Continue'; get the numerical value of the preceeding Input field.
+  if (e.target.textContent == 'Continue') {
+    let previousElement = e.target.previousElementSibling;
+    let donateValue = previousElement.children[0].value;
+    if (donateValue == '') {
+      donateValue = previousElement.children[0].placeholder
+    }
+    showSuccess();
+  }
+}
+
+
+backProj.addEventListener('click', donateAmount);
