@@ -74,6 +74,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+label {font-size: 1.0rem; font-weight:bold; color: #000; cursor: pointer}
 
 .flex-row {display: flex; justify-content: space-between; align-items: center}
 .hidden {display: none !important;}
@@ -141,7 +142,7 @@ main {
   border-radius: 8px;
   text-align: left;
   padding: 3rem 3rem;
-  margin: 0 0 2rem 0;
+  margin: 0 auto 2rem auto;
 }
 
 .card-1 {
@@ -286,11 +287,27 @@ main {
 
 } */
 
+.closeModal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-200%, 200%);
+  cursor: pointer;
+}
+
+.closeModal path:hover {
+  opacity: 1;
+}
+
 .modalPledge {
   width: 100%;
   border: 1px solid hsla(var(--Dark-gray), 0.2);
   border-radius: 5px;
   margin-bottom: 1.5rem;
+}
+
+.modalPledge label:hover {
+  color: hsl(var(--Moderate-cyan));
 }
 
 .modalSelect {
@@ -366,4 +383,44 @@ main {
   outline: none;
 }
 
+.modalSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  border: none;
+  background: #fff;
+  color: hsl(var(--Dark-gray));
+  border-radius: 5px;
+  text-align: center;
+  padding: 3rem 5rem;
+  margin: 0 auto 1.5rem auto;
+}
 
+.modalSuccess img {
+  margin-bottom: 2.5rem;
+}
+
+.modalSuccess h2, .modalSuccess p {
+  margin-bottom: 1.5rem;
+}
+
+.modalSuccess button {
+  height: 48px;
+  width: 100px;
+  border-radius: 25px;
+  font-weight: 700;
+}
+
+
+
+/* position: relative;
+  width: 100%;
+  max-width: 730px;
+  background: #fff;
+  color: hsl(var(--Dark-gray));
+  border: 1px solid hsl(var(--Dark-gray), 0.1);
+  border-radius: 8px;
+  text-align: left;
+  padding: 3rem 3rem;
+  margin: 0 0 2rem 0; */
