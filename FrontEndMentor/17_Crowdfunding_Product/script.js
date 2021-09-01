@@ -2,9 +2,13 @@
 
 // Selectors
 const btn_bookmark = document.querySelector('.bookmark');
+const btn_backProject = document.querySelector('.backProj-btn');
+const btn_closeSuccess = document.getElementById('btn-gotIt');
+const btn_closeBackProject = document.querySelector('.closeModal')
 const radioBtn  = document.querySelectorAll('input[name="radio-btn-1"]')
+const backProj = document.querySelector('.backProjectWindow');
 const modalPledges = document.querySelectorAll('.modalPledge');
-// const enterPledge = document.querySelectorAll('.enterPledge');
+const modalWindow = document.querySelector('.modal');
 let btl_bookmark_icon;
 let circle;
 let path;
@@ -25,7 +29,13 @@ function bookmark() {
   }
 }
 
-// Model: Toggle Pledge Boxs - Radio Button
+// Modal: Show
+function showModal() {
+  modalWindow.classList.toggle('hidden');
+  backProj.classList.remove('hidden');
+}
+
+// Modal: Toggle Pledge Boxs - Radio Button
 let currentPledge
 let targetPledge
 let elementChildren
@@ -58,6 +68,19 @@ function radioSelect (e) {
     }
 };
 
+// Close Back Project Window
+function closeBackProject() {
+  backProj.classList.add('hidden');
+  modalWindow.classList.add('hidden');
+}
+
+// Close Success Window
+function closeSuccess() {
+  let closeWindow = document.querySelector('.modalSuccess');
+  closeWindow.classList.add('hidden');
+  modalWindow.classList.add('hidden');
+}
+
 
 // Event Handlers
 btn_bookmark.addEventListener('click', bookmark);
@@ -70,3 +93,6 @@ window.addEventListener("load", function() {
   // path = btl_bookmark_icon.getElementById('path');
 });
 radioBtn.forEach(radio => radio.addEventListener('change', radioSelect));
+btn_backProject.addEventListener('click', showModal);
+btn_closeSuccess.addEventListener('click', closeSuccess)
+btn_closeBackProject.addEventListener('click', closeBackProject)
