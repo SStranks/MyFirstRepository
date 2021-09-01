@@ -4,6 +4,7 @@
 const btn_bookmark = document.querySelector('.bookmark');
 const radioBtn  = document.querySelectorAll('input[name="radio-btn-1"]')
 const modalPledges = document.querySelectorAll('.modalPledge');
+// const enterPledge = document.querySelectorAll('.enterPledge');
 let btl_bookmark_icon;
 let circle;
 let path;
@@ -27,6 +28,7 @@ function bookmark() {
 // Model: Toggle Pledge Boxs - Radio Button
 let currentPledge
 let targetPledge
+let elementChildren
 function radioSelect (e) {
   // Selecting already selected pledge radio button
   if (e.target.value == currentPledge) return;
@@ -34,12 +36,26 @@ function radioSelect (e) {
   // Reset any existing moralPledge border styles
   if (currentPledge) {
     currentPledge.style.border = "1px solid hsla(var(--Dark-gray), 0.2)";
+    // Hide the pledge section of the modalPledge
+    elementChildren = currentPledge.children;
+    for (let element of elementChildren) {
+      if (element.classList.contains('enterPledge')) {
+        element.classList.add('hidden');
+      }
+    }
   }
 
   // Find radio button value, extract number; Loop moralPledge array and apply style
   targetPledge = (e.target.value).slice(-1);
   modalPledges[targetPledge - 1].style.border = "1px solid hsla(var(--Moderate-cyan))";
   currentPledge = modalPledges[targetPledge - 1];
+  // Show the pledge section of the modalPledge
+  elementChildren = currentPledge.children;
+  for (let element of elementChildren) {
+      if (element.classList.contains('enterPledge')) {
+        element.classList.remove('hidden');
+      }
+    }
 };
 
 
