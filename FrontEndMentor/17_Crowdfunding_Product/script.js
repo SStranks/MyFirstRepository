@@ -117,11 +117,12 @@ function donateAmount(e) {
     }
     // Show Success Modal, Process Donation, Adjust Values
     showSuccess();
-    processDonation(donateValue);
+    // Process Donations; Passes Button Element
+    processDonation(donateValue, e.target);
   }
 }
 
-function processDonation(donation) {
+function processDonation(donation, element) {
   // Add Donation to Total Donations
   let totalDonation = parseInt(document.querySelector('.totalDonation').textContent.replace('$', '').replace(',',''));
   totalDonation += parseInt(donation);
@@ -134,7 +135,21 @@ function processDonation(donation) {
   totalBackers.textContent = total.toLocaleString('en-US');
   // Adjust Progress Bar
   let progressVal = (((totalDonation.replace('$', '').replace(',','')) / 100000) * 100).toFixed(2);
+  if (progressVal > 100) progressVal = 100;
   document.querySelector('.prog-bar-val').style.width = `${progressVal}%`
+  // Adjust Rewards Remaining Totals; Search Up Tree then back down to the value of the selected modalPledge
+  let pledgeType = element.closest('.modalPledge');
+  let rewardTotal;
+  rewardTotal = parseInt(pledgeType.querySelector('.total').textContent);
+  if (rewardTotal - 1 == -1) {
+    pledgeType.classList.add('out-of-stock');
+    return
+  }
+  pledgeType.querySelector('.total').textContent = `${rewardTotal - 1}`;
+  let rewardItems = document.querySelectorAll('.total');
+  for (let item of rewardItems) {
+    if (item.textContent == rewardTotal) item.textContent = `${rewardTotal - 1}`;
+  }
 }
 
 backProj.addEventListener('click', donateAmount);
