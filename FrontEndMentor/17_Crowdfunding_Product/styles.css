@@ -63,6 +63,17 @@ button {
 button:hover {
   background: hsl(var(--Dark-cyan));
 }
+input {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  color: #000;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 .flex-row {display: flex; justify-content: space-between; align-items: center}
 .hidden {display: none !important;}
@@ -330,12 +341,29 @@ main {
   font-weight: 700;
 }
 
-.enterPledge button:first-of-type {
-  min-width: 110px;
-  max-width: fit-content;
+.enterPledge .donation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 100px;
   background: #fff;
   color: #000;
   border: 1px solid hsl(var(--Moderate-cyan));
+  border-radius: 25px;
   margin-right: 1rem;
   margin-left: auto;
 }
+
+.enterPledge .donation input {
+  position: relative;
+  width: 50%;
+  border: none;
+  text-align: center;
+}
+
+.enterPledge .donation input:focus {
+  outline: none;
+}
+
+

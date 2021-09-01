@@ -2,11 +2,15 @@
 
 // Selectors
 const btn_bookmark = document.querySelector('.bookmark');
+const radioBtn  = document.querySelectorAll('input[name="radio-btn-1"]')
+const modalPledges = document.querySelectorAll('.modalPledge');
 let btl_bookmark_icon;
 let circle;
 let path;
 
-// Toggle Bookmark
+
+
+// Main: Toggle Bookmark
 function bookmark() {
   btn_bookmark.classList.toggle('bookmarked');
   if (btn_bookmark.classList.contains('bookmarked')) {
@@ -20,6 +24,25 @@ function bookmark() {
   }
 }
 
+// Model: Toggle Pledge Boxs - Radio Button
+let currentPledge
+let targetPledge
+function radioSelect (e) {
+  // Selecting already selected pledge radio button
+  if (e.target.value == currentPledge) return;
+
+  // Reset any existing moralPledge border styles
+  if (currentPledge) {
+    currentPledge.style.border = "1px solid hsla(var(--Dark-gray), 0.2)";
+  }
+
+  // Find radio button value, extract number; Loop moralPledge array and apply style
+  targetPledge = (e.target.value).slice(-1);
+  modalPledges[targetPledge - 1].style.border = "1px solid hsla(var(--Moderate-cyan))";
+  currentPledge = modalPledges[targetPledge - 1];
+};
+
+
 // Event Handlers
 btn_bookmark.addEventListener('click', bookmark);
 window.addEventListener("load", function() {
@@ -30,3 +53,4 @@ window.addEventListener("load", function() {
   // circle = btl_bookmark_icon.getElementById('circle');
   // path = btl_bookmark_icon.getElementById('path');
 });
+radioBtn.forEach(radio => radio.addEventListener('change', radioSelect));
