@@ -4,8 +4,9 @@
 /*   2. || Variables                */
 /*   3. || Globals                  */
 /*   4. || Main                     */
-/*   5. || FrontEnd Mentor Footer   */
-/*   6. || Media Queries            */
+/*   5. || Main: Modal Windows      */
+/*   6. || FrontEnd Mentor Footer   */
+/*   7. || Media Queries            */
 /* -------------------------------- */
 
 /*   version:   1.0                 */
@@ -47,6 +48,7 @@ li {list-style: none}
 h1 {font-size: 1.8rem; color: #000}
 h2 {font-size: 1.3rem; color: #000}
 h3 {font-size: 1.2rem; color: #000}
+h4 {font-size: 1.0rem; color: #000}
 p {line-height: 1.8;}
 button {
   display: flex;
@@ -54,6 +56,7 @@ button {
   align-items: center;
   border: none; 
   background: hsl(var(--Moderate-cyan));
+  font-family: 'Commissioner', sans-serif;
   color: #fff;
   cursor: pointer
 }
@@ -259,8 +262,80 @@ main {
 
 .out-of-stock {
   opacity: 50%;
+  pointer-events: none;
 }
 
 .out-of-stock button {
   background: hsl(var(--Dark-gray));
+}
+
+
+/*   5. || Main: Modal Windows      */
+/* .modal {
+
+} */
+
+.modalPledge {
+  width: 100%;
+  border: 1px solid hsla(var(--Dark-gray), 0.2);
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.modalSelect {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  padding: 2rem 1.5rem;
+}
+
+.modalSelect input {
+  grid-column: 1;
+  height: 24px;
+  width: 24px;
+  margin-right: 1.5rem;
+}
+
+.modalSelect .flex-row {
+  align-items: flex-start;
+}
+
+.pledge {
+  font-weight: 700;
+  margin-left: 1rem;
+}
+
+.modalSelect p {
+  grid-column: 2;
+  font-size: 0.90rem;
+  margin-top: 0.75rem;
+}
+
+.total {
+  font-size: 1.15rem;
+  line-height: 1.15rem;
+  margin-left: auto;
+}
+
+.enterPledge {
+  grid-column: 1 / span 2;
+  border-top: 1px solid hsl(var(--Dark-gray), 0.1);
+  padding: 2rem 1.5rem;
+}
+
+.enterPledge button {
+  height: 48px;
+  width: 110px;
+  border-radius: 25px;
+  font-weight: 700;
+}
+
+.enterPledge button:first-of-type {
+  min-width: 110px;
+  max-width: fit-content;
+  background: #fff;
+  color: #000;
+  border: 1px solid hsl(var(--Moderate-cyan));
+  margin-right: 1rem;
+  margin-left: auto;
 }
