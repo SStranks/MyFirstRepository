@@ -115,9 +115,26 @@ function donateAmount(e) {
     if (donateValue == '') {
       donateValue = previousElement.children[0].placeholder
     }
+    // Show Success Modal, Process Donation, Adjust Values
     showSuccess();
+    processDonation(donateValue);
   }
 }
 
+function processDonation(donation) {
+  // Add Donation to Total Donations
+  let totalDonation = parseInt(document.querySelector('.totalDonation').textContent.replace('$', '').replace(',',''));
+  totalDonation += parseInt(donation);
+  totalDonation = "$" + totalDonation.toLocaleString('en-US')
+  document.querySelector('.totalDonation').textContent = totalDonation;
+  // Add +1 Backer
+  let totalBackers = document.querySelector('.totalBackers');
+  let total = parseInt(totalBackers.textContent.replace(',',''));
+  total += 1;
+  totalBackers.textContent = total.toLocaleString('en-US');
+  // Adjust Progress Bar
+  let progressVal = (((totalDonation.replace('$', '').replace(',','')) / 100000) * 100).toFixed(2);
+  document.querySelector('.prog-bar-val').style.width = `${progressVal}%`
+}
 
 backProj.addEventListener('click', donateAmount);
