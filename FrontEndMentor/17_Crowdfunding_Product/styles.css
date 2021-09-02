@@ -111,6 +111,10 @@ header {
   margin: 3rem 0 15rem 0;
 }
 
+header img:last-of-type {
+  display: none;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -431,14 +435,163 @@ main {
 }
 
 
+/*   6. || FrontEnd Mentor Footer   */
 
-/* position: relative;
-  width: 100%;
-  max-width: 730px;
-  background: #fff;
-  color: hsl(var(--Dark-gray));
-  border: 1px solid hsl(var(--Dark-gray), 0.1);
-  border-radius: 8px;
-  text-align: left;
-  padding: 3rem 3rem;
-  margin: 0 0 2rem 0; */
+
+/*   7. || Media Queries            */
+@media (max-width: 375px) {
+  .container {
+    height: 100%;
+    width: 100%;
+    max-width: 375px;
+    background: url('./images/image-hero-mobile.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 375px;
+    text-align: left;
+    padding: 2rem;
+    margin: 0 auto 2rem auto;
+  }
+
+  h3 {
+    font-size: 0.9rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  header {
+    padding: 0rem;
+    margin: 2rem 0 10rem 0;
+  }
+
+  header img:first-of-type {
+    margin-left: 1.5rem;
+  }
+
+  header img:last-of-type {
+    display: block;
+    margin-right: 1.5rem;
+    z-index: 20;
+  }
+
+  header nav {
+    position: absolute;
+    flex-direction: column;
+    width: 90%;
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%, 0);
+    background: #fff;
+    color: #000;
+    border-radius: 8px;
+    z-index: 10;
+  }
+
+  header nav a {
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-bottom: 1px solid hsl(var(--Dark-gray), 0.1);
+    padding: 1.5rem;
+    margin: 0;
+  }
+
+  .exit {
+    content: url('./images/icon-close-menu.svg');
+  }
+
+  .card-1 {
+    text-align: center;
+  }
+
+  .card-1 h1 {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .card-1 .bookmark {
+    display: none;
+  }
+
+  .btns-flex object {
+    transform: none;
+    margin-left: 0.5rem;
+  } 
+
+  .card-2 span {
+    font-size: 1.9rem;
+    margin: 0 0 1rem 0;
+  }
+
+  .card-2 p {
+    margin: 0.75rem 0;
+  }
+
+  .card-2 .grid-row {
+    display: grid;
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 1fr 1fr;
+    text-align: center; 
+  }
+
+  .grid-row div {
+    position: relative;
+    padding: 0;
+    margin: 1rem 0;
+  }
+  
+  .grid-row div::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 30%;
+    top: -35%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-top: 1px solid hsl(var(--Dark-gray), 0.3);
+  }
+  
+  .grid-row div:last-child {
+    margin-bottom: 0;
+  }
+  
+  .card-2 .prog-bar {
+    margin: 0;
+  }
+
+  .card-3 .flex-row {
+    flex-direction: column;
+  }
+
+  .card-3 .pledge {
+    font-size: 0.85rem;
+    margin: 0.5rem 0 0 0;
+  }
+
+  .reward .flex-row {
+    align-items: flex-start;
+  }
+
+  .reward p {
+    margin: 1.25rem 0 2rem 0;
+  }
+
+  .reward .flex-row .flex-row {
+    flex-direction: row;
+  }
+
+  .reward .total {
+    font-size: 2.2rem;
+  }
+
+  .reward button {
+    margin-top: 1.75rem;
+  }
+  
+}

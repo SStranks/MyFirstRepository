@@ -2,15 +2,18 @@
 
 // Selectors
 const btn_selectReward = document.querySelector('.card-3');
-const btn_bookmark = document.querySelector('.bookmark');
+const btn_bookmark = document.querySelector('.bookmarkSelect');
 const btn_backProject = document.querySelector('.backProj-btn');
 const btn_closeSuccess = document.getElementById('btn-gotIt');
-const btn_closeBackProject = document.querySelector('.closeModal')
-const btn_radio  = document.querySelectorAll('input[name="radio-btn-1"]')
+const btn_closeBackProject = document.querySelector('.closeModal');
+const btn_radio = document.querySelectorAll('input[name="radio-btn-1"]');
+const btn_hamburger = document.querySelector('.icon-mobmenu');
 const backProj = document.querySelector('.backProjectWindow');
 const modalPledges = document.querySelectorAll('.modalPledge');
 const modalWindow = document.querySelector('.modal');
 const successWindow = document.querySelector('.modalSuccess');
+const navBar = document.querySelector('nav');
+const windowResize = window.matchMedia("(max-width: 375px)");
 let btl_bookmark_icon;
 let circle;
 let path;
@@ -19,15 +22,16 @@ let path;
 
 // Main: Toggle Bookmark
 function bookmark() {
-  btn_bookmark.classList.toggle('bookmarked');
-  if (btn_bookmark.classList.contains('bookmarked')) {
+  let textButton = document.querySelector('.bookmark')
+  textButton.classList.toggle('bookmarked');
+  if (textButton.classList.contains('bookmarked')) {
     circle[0].setAttribute("fill", "hsl(176, 72%, 28%)"); 
     path[0].setAttribute("fill", "#FFFFFF");
-    btn_bookmark.textContent = 'Bookmarked';
+    textButton.textContent = 'Bookmarked';
   } else {
     circle[0].setAttribute("fill", "#2F2F2F"); 
     path[0].setAttribute("fill", "#B1B1B1"); 
-    btn_bookmark.textContent = 'Bookmark';
+    textButton.textContent = 'Bookmark';
   }
 }
 
@@ -151,6 +155,21 @@ function closeSuccess() {
   modalWindow.classList.add('hidden');
 }
 
+// Mobile Menu
+function mobMenu() {
+  btn_hamburger.classList.toggle('exit');
+  navBar.classList.toggle('hidden');
+  modalWindow.classList.toggle('hidden');
+}
+
+// Window Resize Event
+function mobileLayout(x) {
+  if (x.matches) {
+    navBar.classList.add('hidden');
+  } else {
+    navBar.classList.remove('hidden');
+  }
+};
 
 // Event Handlers
 btn_bookmark.addEventListener('click', bookmark);
@@ -164,9 +183,12 @@ window.addEventListener("load", function() {
 });
 btn_radio.forEach(radio => radio.addEventListener('change', radioSelect));
 btn_backProject.addEventListener('click', showModal);
-btn_closeSuccess.addEventListener('click', closeSuccess)
-btn_closeBackProject.addEventListener('click', closeBackProject)
-btn_selectReward.addEventListener('click', selectReward)
+btn_closeSuccess.addEventListener('click', closeSuccess);
+btn_closeBackProject.addEventListener('click', closeBackProject);
+btn_selectReward.addEventListener('click', selectReward);
+btn_hamburger.addEventListener('click', mobMenu)
 backProj.addEventListener('click', donateAmount);
 
-
+// Mobile Resize Event
+windowResize.addEventListener('change', mobileLayout);
+mobileLayout(windowResize);
