@@ -1,0 +1,145 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+/*   6. || Media Queries            */
+/* -------------------------------- */
+
+/*   version:   1.0                 */
+/*   date:      02/09/2021          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+
+
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;800&display=swap');
+
+
+/*   2. || Variables                */
+:root {
+  /* HSL Values                     */
+  /* Primary                        */
+  --Soft-Cyan: 174, 77%, 80%;               /*(Full Slider Bar)*/
+  --Strong-Cyan: 174, 86%, 45%;             /*(Slider Backround)*/
+  --Light-Grayish-Red: 14, 92%, 95%;        /*(Discount Background)*/
+  --Light-Red: 15, 100%, 70%;               /*(Discount Text)*/
+  --Pale-Blue: 226, 100%, 87%;              /*(CTA Text)*/
+  /* Neutral                        */
+  --White: 0, 0%, 100%;                     /*(Pricing Component Background)*/
+  --Very-Pale-Blue: 230, 100%, 99%;         /*(Main Background)*/
+  --Light-Grayish-Blue: 224, 65%, 95%;      /*(Empty Slider Bar)*/
+  --Light-Grayish-Blue: 223, 50%, 87%;      /*(Toggle Background)*/
+  --Grayish-Blue: 225, 20%, 60%;            /*(Text)*/
+  --Dark-Desaturated-Blue: 227, 35%, 25%;   /*(Text & CTA Background)*/
+}
+
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+img {display: block; height: 100%}
+a {text-decoration: none}
+a:visited {color: inherit}
+a:active {color: inherit}
+li {list-style: none}
+h1 {font-size: 1.7rem; color: #000}
+h2 {font-size: 1.3rem; color: #000}
+h3 {font-size: 1.2rem; color: #000}
+h4 {font-size: 1.0rem; color: #000}
+p {font-size: 0.9rem; line-height: 1.8;}
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none; 
+  background: hsl(var(--Moderate-cyan));
+  font-family: 'Commissioner', sans-serif;
+  color: #fff;
+  cursor: pointer
+}
+button:hover {
+  background: hsl(var(--Dark-cyan));
+}
+input {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  color: #000;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+label {font-size: 1.0rem; font-weight:bold; color: #000; cursor: pointer}
+
+.flex-row {display: flex; justify-content: space-between; align-items: center}
+.hidden {display: none !important;}
+
+
+/*   4. || Main                     */
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 15px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600, 800;
+  line-height: 1.6;
+  background: hsl(var(--Very-Pale-Blue));
+  color: hsl(var(--Grayish-Blue));;=
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url('./images/bg-pattern.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-align: center;
+}
+
+.card {
+  height: fit-content;
+  width: 35%;
+  background: hsl(var(--White));
+  border-radius: 5px;
+  box-shadow: 3px 5px 25px 1px hsla(0, 0%, 0%, 0.1);
+}
+
+img {
+  position: absolute;
+  height: 140px;
+  width: 140px;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.svgHeader {
+  z-index: 1;
+}
+
+h1 {
+  position: relative;
+  margin-top: 6rem;
+  z-index: 3;
+}
+
+p {
+  position: relative;
+  margin: 0.5rem 0 5rem 0;
+  z-index: 3;
+}

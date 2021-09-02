@@ -5,35 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="./styles.css">
   <title>Frontend Mentor | Interactive pricing component</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
+
 <body>
+  <div class="container">
+    <header>
+      <div class="svgHeader"><img src="./images/pattern-circles.svg" alt=""></div>
+      <h1>Simple, traffic-based pricing</h1>
+      <p>Sign-up for our 30-day trial. No credit card required. </p>
+    </header>
+    <main class="card">
+      <span>Pageviews</span>
+      <span>$ /month</span>
 
-  Simple, traffic-based pricing
-  Sign-up for our 30-day trial. No credit card required. 
+      <div class="slider"></div>
 
-  Pageviews
-  $ /month
-
-  Monthly Billing
-  Yearly Billing 25% discount
-
-  Unlimited websites
-  100% data ownership
-  Email reports
-
-  Start my trial
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+      <div class="flex-row">
+        Monthly Billing
+        Yearly Billing 25% discount
+      </div>
+      <div class="flex-row">
+        <p>Unlimited websites</p>
+        <p>100% data ownership</p>
+        <p>Email reports</p>
+        <button>Start my trial</button>
+      </div>
+    </main>
+    
+    <footer>
+      <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+        Coded by <a href="#">Your Name Here</a>.
+      </div>
+    </footer>
   </div>
+  <script src="./script.js"></script>
 </body>
 </html>
