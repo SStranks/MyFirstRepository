@@ -304,6 +304,10 @@ main {
   margin-bottom: 10rem;
 }
 
+.mobSpan {
+  margin-left: 0;
+}
+
 .closeModal {
   position: absolute;
   top: 0;
@@ -329,7 +333,7 @@ main {
 
 .modalSelect {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto auto 10% 10%;
   grid-template-rows: auto auto;
   padding: 2rem 1.5rem;
 }
@@ -343,6 +347,7 @@ main {
 
 .modalSelect .flex-row {
   align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .pledge {
@@ -351,7 +356,7 @@ main {
 }
 
 .modalSelect p {
-  grid-column: 2;
+  grid-column: 2 / span 3;
   font-size: 0.90rem;
   margin-top: 0.75rem;
 }
@@ -522,6 +527,7 @@ main {
   .btns-flex object {
     transform: none;
     margin-left: 0.5rem;
+    pointer-events: none;
   } 
 
   .card-2 span {
@@ -594,4 +600,52 @@ main {
     margin-top: 1.75rem;
   }
   
+  .closeModal {
+    transform: translate(-200%, 250%);
+  }
+
+  .backProjectWindow > p {
+    margin: 1rem 0;
+  }
+
+  .modalSelect {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .modalSelect input {
+    margin: auto 1rem auto 0;
+  }
+
+  .modalSelect .flex-row {
+    flex-direction: column;
+  }
+
+  .pledge {
+    margin: 0.25rem 0 0 0;
+  }
+
+  .modalSelect .mobSpan {
+    grid-row: 3;
+  }
+
+  .modalSelect p {
+    grid-column: 1 / span 2;
+    margin: 1.5rem 0;
+  }
+
+  .total {
+    margin: 0;
+  }
+
+  .modalSuccess {
+    width: 90%;
+    top: 40%;
+    padding: 3rem 1.5rem;
+  }
+
+  .modalSuccess img {
+    margin-bottom: 1.5rem;
+  }
 }
