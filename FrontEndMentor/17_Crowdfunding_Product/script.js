@@ -1,11 +1,12 @@
 'use strict'
 
 // Selectors
+const btn_selectReward = document.querySelector('.card-3');
 const btn_bookmark = document.querySelector('.bookmark');
 const btn_backProject = document.querySelector('.backProj-btn');
 const btn_closeSuccess = document.getElementById('btn-gotIt');
 const btn_closeBackProject = document.querySelector('.closeModal')
-const radioBtn  = document.querySelectorAll('input[name="radio-btn-1"]')
+const btn_radio  = document.querySelectorAll('input[name="radio-btn-1"]')
 const backProj = document.querySelector('.backProjectWindow');
 const modalPledges = document.querySelectorAll('.modalPledge');
 const modalWindow = document.querySelector('.modal');
@@ -29,6 +30,13 @@ function bookmark() {
     btn_bookmark.textContent = 'Bookmark';
   }
 }
+
+// Select Reward Buttons
+function selectReward(e) {
+  if (e.target.textContent == "Select Reward") {
+    showModal();
+  }
+};
 
 // Modal: Show
 function showModal() {
@@ -55,7 +63,7 @@ function radioSelect (e) {
       }
     }
   }
-
+  
   // Find radio button value, extract number; Loop moralPledge array and apply style
   targetPledge = (e.target.value).slice(-1);
   modalPledges[targetPledge - 1].style.border = "1px solid hsla(var(--Moderate-cyan))";
@@ -63,48 +71,11 @@ function radioSelect (e) {
   // Show the pledge section of the modalPledge
   elementChildren = currentPledge.children;
   for (let element of elementChildren) {
-      if (element.classList.contains('enterPledge')) {
-        element.classList.remove('hidden');
-      }
+    if (element.classList.contains('enterPledge')) {
+      element.classList.remove('hidden');
     }
+  }
 };
-
-// Show Success Window
-function showSuccess() {
-  successWindow.classList.remove('hidden');
-  backProj.classList.add('hidden');
-}
-
-// Close Back Project Window
-function closeBackProject() {
-  backProj.classList.add('hidden');
-  modalWindow.classList.add('hidden');
-}
-
-// Close Success Window
-function closeSuccess() {
-  let closeWindow = document.querySelector('.modalSuccess');
-  closeWindow.classList.add('hidden');
-  modalWindow.classList.add('hidden');
-}
-
-
-// Event Handlers
-btn_bookmark.addEventListener('click', bookmark);
-window.addEventListener("load", function() {
-  btl_bookmark_icon = document.querySelector('.svgClass').contentDocument;
-  circle = btl_bookmark_icon.getElementsByTagName('circle')
-  path = btl_bookmark_icon.getElementsByTagName('path');
-  // Alternative: Using ID (but requires editing of the SVG file to include IDs on elements)
-  // circle = btl_bookmark_icon.getElementById('circle');
-  // path = btl_bookmark_icon.getElementById('path');
-});
-radioBtn.forEach(radio => radio.addEventListener('change', radioSelect));
-btn_backProject.addEventListener('click', showModal);
-btn_closeSuccess.addEventListener('click', closeSuccess)
-btn_closeBackProject.addEventListener('click', closeBackProject)
-
-
 
 function donateAmount(e) {
   e.preventDefault;
@@ -137,19 +108,65 @@ function processDonation(donation, element) {
   let progressVal = (((totalDonation.replace('$', '').replace(',','')) / 100000) * 100).toFixed(2);
   if (progressVal > 100) progressVal = 100;
   document.querySelector('.prog-bar-val').style.width = `${progressVal}%`
+
   // Adjust Rewards Remaining Totals; Search Up Tree then back down to the value of the selected modalPledge
   let pledgeType = element.closest('.modalPledge');
   let rewardTotal;
+  // Adjust Reward Number on Modal
   rewardTotal = parseInt(pledgeType.querySelector('.total').textContent);
-  if (rewardTotal - 1 == -1) {
-    pledgeType.classList.add('out-of-stock');
-    return
-  }
   pledgeType.querySelector('.total').textContent = `${rewardTotal - 1}`;
-  let rewardItems = document.querySelectorAll('.total');
-  for (let item of rewardItems) {
-    if (item.textContent == rewardTotal) item.textContent = `${rewardTotal - 1}`;
+  // Search for reward on main-page by using the "Item-n" class of the modal reward selection
+  let rewardItem = document.querySelector(`.${pledgeType.classList[1]}`)
+  let rewardTotal2 = rewardItem.querySelector('.total');
+  rewardTotal2.textContent = `${rewardTotal - 1}`;
+
+  // When available rewards is 0; Grey Out Option, Disable Radio
+  if (rewardTotal - 1 == 0) {
+    pledgeType.classList.add('out-of-stock');
+    rewardItem.classList.add('out-of-stock');
+    rewardItem.querySelector('button').textContent = "Out of Stock";
+    // Uncheck Radio Buttons; Check first one as default
+    for (let btn of btn_radio) {
+      btn.checked = false;
+    }
   }
 }
 
+// Show Success Window
+function showSuccess() {
+  successWindow.classList.remove('hidden');
+  backProj.classList.add('hidden');
+}
+
+// Close Back Project Window
+function closeBackProject() {
+  backProj.classList.add('hidden');
+  modalWindow.classList.add('hidden');
+}
+
+// Close Success Window
+function closeSuccess() {
+  let closeWindow = document.querySelector('.modalSuccess');
+  closeWindow.classList.add('hidden');
+  modalWindow.classList.add('hidden');
+}
+
+
+// Event Handlers
+btn_bookmark.addEventListener('click', bookmark);
+window.addEventListener("load", function() {
+  btl_bookmark_icon = document.querySelector('.svgClass').contentDocument;
+  circle = btl_bookmark_icon.getElementsByTagName('circle')
+  path = btl_bookmark_icon.getElementsByTagName('path');
+  // Alternative: Using ID (but requires editing of the SVG file to include IDs on elements)
+  // circle = btl_bookmark_icon.getElementById('circle');
+  // path = btl_bookmark_icon.getElementById('path');
+});
+btn_radio.forEach(radio => radio.addEventListener('change', radioSelect));
+btn_backProject.addEventListener('click', showModal);
+btn_closeSuccess.addEventListener('click', closeSuccess)
+btn_closeBackProject.addEventListener('click', closeBackProject)
+btn_selectReward.addEventListener('click', selectReward)
 backProj.addEventListener('click', donateAmount);
+
+
