@@ -4,8 +4,10 @@
 /*   2. || Variables                */
 /*   3. || Globals                  */
 /*   4. || Main                     */
-/*   5. || FrontEnd Mentor Footer   */
-/*   6. || Media Queries            */
+/*   5. || Main: Toggle Switch      */
+/*   6. || Main: Slider             */
+/*   7. || FrontEnd Mentor Footer   */
+/*   8. || Media Queries            */
 /* -------------------------------- */
 
 /*   version:   1.0                 */
@@ -94,7 +96,7 @@ html, body {
   font-weight: 600, 800;
   line-height: 1.6;
   background: hsl(var(--Very-Pale-Blue));
-  color: hsl(var(--Grayish-Blue));;=
+  color: hsl(var(--Grayish-Blue));
 }
 
 .container {
@@ -119,7 +121,7 @@ html, body {
   box-shadow: 3px 5px 25px 1px hsla(0, 0%, 0%, 0.1);
 }
 
-img {
+header img {
   position: absolute;
   height: 140px;
   width: 140px;
@@ -128,18 +130,172 @@ img {
   transform: translate(-50%, 0);
 }
 
-.svgHeader {
+header .svgHeader {
   z-index: 1;
 }
 
-h1 {
+header h1 {
   position: relative;
   margin-top: 6rem;
   z-index: 3;
 }
 
-p {
+header p {
   position: relative;
   margin: 0.5rem 0 5rem 0;
   z-index: 3;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.grid .slider {
+  grid-column: 1 / span 2;
+}
+
+.grid .flex-row {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+  justify-content: flex-end;
+}
+
+.page-views {
+  font-size: 0.85em;
+  font-weight: 800;
+  color: hsl(var(--Grayish-Blue));
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  margin: auto;
+}
+
+.pricing {
+  margin: auto;
+}
+
+.amount {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: hsl(var(--Dark-Desaturated-Blue));
+}
+
+.discount {
+  font-size: 0.75rem;
+  background: hsl(var(--Light-Grayish-Red));
+  color: hsl(var(--Light-Red));
+  border-radius: 15px;
+  padding: 0 0.5rem;
+  margin: 0 0 0 1rem;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+}
+
+.fl-1 {
+  justify-content: flex-end;
+}
+
+.fl-2 {
+  justify-content: space-between;
+  border-top: 1px solid hsla(0, 0%, 0%, 0.1);
+}
+
+.flex-row .product-features {
+  text-align: left;
+  margin-left: 2rem;
+}
+
+.fl-2 .product-features div {
+  position: relative;
+}
+
+.fl-2 .product-features p::before {
+  content: url('./images/icon-check.svg');
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  left: 0;
+  top: 0;
+  transform: translate(-200%, 0);
+}
+
+.fl-2:last-of-type p:not(:first-of-type) {
+  margin-top: 0.25rem;
+}
+
+button {
+  height: 35px;
+  width: 150px;
+  background: hsl(var(--Dark-Desaturated-Blue));
+  color: hsl(var(--Pale-Blue));
+  border-radius: 20px;
+}
+
+/*   5. || Main: Toggle Switch      */
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 22px;
+  margin: 0 0.75rem;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.toggle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: hsl(var(--Light-Grayish-Blue));
+  transition: .4s;
+}
+
+.toggle:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 50%;
+  transform: translate(0, 50%);
+  /* left: 4px;
+  bottom: 4px; */
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .toggle {
+  background-color: hsl(var(--Soft-Cyan));
+}
+
+input:focus + .toggle {
+  box-shadow: 0 0 1px hsl(var(--Soft-Cyan));
+}
+
+input:checked + .toggle:before {
+  transform: translate(22px, 50%);
+}
+
+/* Rounded toggles */
+.toggle.round {
+  border-radius: 34px;
+}
+
+.toggle.round:before {
+  border-radius: 50%;
 }
