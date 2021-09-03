@@ -20,7 +20,14 @@
       <div class="grid">
         <span class="page-views">Pageviews</span>
         <div class="pricing"><span class="amount">$16.00</span><span class="amount-time">/month</span></div>
-        <div class="slidercontainer"><input type="range" min="1" max="100" value="50" class="slider" id="myRange"></div>
+
+        <div class="slidercontainer">
+          <div class="track">
+            <div class="track-inner"></div>
+          </div>
+          <input type="range" min="0" max="100" value="50" step="0.1" class="slider">
+        </div>
+
         <div class="flex-row fl-1">
           <p>Monthly Billing</p>
           <label class="switch"><input type="checkbox"><span class="toggle round"></span></label>

@@ -49,7 +49,8 @@ Users should be able to:
 ### Useful resources
 
 - [How to Create a Toggle Switch](https://www.w3schools.com/howto/howto_css_switch.asp) - This guide from W3 showed me the fundamentals for creating a toggle switch for the page.
-- [How to Create a Toggle Switch](https://www.w3schools.com/howto/howto_js_rangeslider.asp) - This guide from W3 showed me the fundamentals for creating a slider for the page.
+- [How to Create a Slider Switch](https://www.w3schools.com/howto/howto_js_rangeslider.asp) - This guide from W3 showed me the fundamentals for creating a slider for the page.
+- [Range Slider with fill colour](https://codepen.io/steveholgado/pen/OEpGXq) - Pen by S. Holgado showing how to add colour to the range.
 
 ## Author
 
