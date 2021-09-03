@@ -62,13 +62,8 @@ button {
   justify-content: center;
   align-items: center;
   border: none; 
-  background: hsl(var(--Moderate-cyan));
-  font-family: 'Commissioner', sans-serif;
-  color: #fff;
+  font-family: inherit;
   cursor: pointer
-}
-button:hover {
-  background: hsl(var(--Dark-cyan));
 }
 input {
   font-size: inherit;
@@ -237,6 +232,10 @@ button {
   border-radius: 20px;
 }
 
+button:hover {
+  color: hsl(var(--White));
+}
+
 
 /*   5. || Main: Toggle Switch      */
 /* The switch - the box around the slider */
@@ -344,6 +343,7 @@ input:checked + .toggle:before {
   box-shadow: 0 10px 10px 5px hsla(var(--Soft-Cyan), 0.5);
   cursor: pointer;
   transition: background 0.2s;
+  transition: box-shadow 0.2s;
 }
 
 .slider::-webkit-slider-thumb:active {
@@ -351,6 +351,8 @@ input:checked + .toggle:before {
   background-repeat: no-repeat;
   background-size: 55% 35%;
   background-position: center;
+  box-shadow: 0 10px 10px 5px hsla(var(--Soft-Cyan), 0.7);
+  cursor: grab;
 }
 
 /* .slider::-moz-range-thumb {
