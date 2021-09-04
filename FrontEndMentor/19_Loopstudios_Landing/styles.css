@@ -44,8 +44,8 @@ a:visited {color: inherit}
 a:active {color: inherit}
 li {list-style: none}
 h1 {font-size: 1.7rem; color: #000}
-h2 {font-size: 1.3rem; color: #000}
-h3 {font-size: 1.2rem; color: #000}
+h2 {font-size: 3.25rem; font-family: 'Josefin Sans'; font-weight: 400; line-height: 1; color: #000; text-transform: uppercase}
+h3 {font-size: 2.2rem; font-family: 'Josefin Sans'; font-weight: 400; line-height: 1; color: #fff}
 h4 {font-size: 1.0rem; color: #000}
 p {font-size: 0.9rem; line-height: 1.8;}
 button {
@@ -86,13 +86,16 @@ html, body {
   background: #fff;
 }
 
+.container {
+}
+
 header {
-  height: 100%;
-  width: 100%;
   background: url(./images/desktop/image-hero.jpg);
   background-repeat: no-repeat;
-  background-size: contain;
-  padding: 4rem 10rem 4rem 12rem;
+  background-size: cover;
+  min-height: 650px;
+  width: 100%;
+  padding: 4rem 10rem 4rem 10rem;
 }
 
 header nav {
@@ -122,4 +125,78 @@ header h1 {
   color: hsl(var(--White));
   text-transform: uppercase;
   padding-top: 1rem;
+}
+
+.intro {
+  position: relative;
+  padding: 10rem 10rem 0 10rem;
+}
+
+.intro img {
+  height: 100%;
+}
+
+.intro-text {
+  position: absolute;
+  width: 36%;
+  bottom: 0;
+  right: 0;
+  background: hsl(var(--White));
+  padding: 6.5rem 0 0 5rem;
+  margin-right: 10rem;
+}
+
+.intro h2 {
+  margin-bottom: 1rem;
+}
+
+.intro p {
+  color: hsl(var(--Dark-Gray));
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 0 10rem;
+  margin: 10rem 0;
+}
+
+.grid h2 {
+  grid-column: 1 / span 3;
+  grid-row: 1;
+}
+
+.grid button {
+  width: fit-content;
+  grid-column: 4;
+  grid-row: 1;
+  justify-self: end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid hsl(var(--Black));
+  padding: 0.5rem 4rem;
+}
+
+.creations {
+  position: relative;
+}
+ 
+.creations h3 {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-transform: uppercase;
+  margin: 2rem 2rem;
+}
+
+footer {
+  color: hsl(var(--White));
+  background: hsl(var(--Black));
+  padding: 0 10rem;
 }
