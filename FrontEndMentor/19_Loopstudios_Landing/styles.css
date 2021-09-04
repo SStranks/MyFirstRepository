@@ -1,0 +1,125 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+/*   6. || Media Queries            */
+/* -------------------------------- */
+
+/*   version:   1.0                 */
+/*   date:      04/09/2021          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+
+
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Josefin+Sans:wght@300&display=swap');
+
+
+/*   2. || Variables                */
+:root {
+  /* HSL Values                     */
+  /* Primary                        */
+--White: 0, 0%, 100%;
+--Black: 0, 0%, 0%;
+--Dark-Gray: 0, 0%, 55%;
+--Very-Dark-Gray: 0, 0%, 41%;
+  /* Neutral                        */
+}
+
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+img {display: block; height: 100%}
+a {text-decoration: none}
+a:visited {color: inherit}
+a:active {color: inherit}
+li {list-style: none}
+h1 {font-size: 1.7rem; color: #000}
+h2 {font-size: 1.3rem; color: #000}
+h3 {font-size: 1.2rem; color: #000}
+h4 {font-size: 1.0rem; color: #000}
+p {font-size: 0.9rem; line-height: 1.8;}
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none; 
+  font-family: inherit;
+  cursor: pointer
+}
+input {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  color: #000;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+label {font-size: 1.0rem; font-weight:bold; color: #000; cursor: pointer}
+
+.flex-row {display: flex; justify-content: space-between; align-items: center}
+.flex-column {display: flex; flex-direction: column; justify-content: space-between; align-items: center}
+.hidden {display: none !important;}
+
+
+/*   4. || Main                     */
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 400, 300;
+  font-family: 'Alata', 'Josefin Sans', sans-serif;
+  line-height: 1.6;
+  color: #000;
+  background: #fff;
+}
+
+header {
+  height: 100%;
+  width: 100%;
+  background: url(./images/desktop/image-hero.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 4rem 10rem 4rem 12rem;
+}
+
+header nav {
+  color: #fff;
+}
+
+header nav a {
+  font-size: 1.1rem;
+  margin: 0 1rem;
+}
+
+header .title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 700px;
+  border: 3px solid hsl(var(--White));
+  padding: 1.75rem 3.25rem;
+  margin-top: 8rem;
+}
+
+header h1 {
+  font-size: 4.75rem;
+  font-weight: 400;
+  font-family: 'Josefin Sans';
+  line-height: 1;
+  color: hsl(var(--White));
+  text-transform: uppercase;
+  padding-top: 1rem;
+}
