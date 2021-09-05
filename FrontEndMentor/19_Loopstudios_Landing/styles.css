@@ -71,7 +71,9 @@ label {font-size: 1.0rem; font-weight:bold; color: #000; cursor: pointer}
 
 .flex-row {display: flex; justify-content: space-between; align-items: center}
 .flex-column {display: flex; flex-direction: column; justify-content: space-between; align-items: center}
-.hidden {display: none !important;}
+.hidden {display: none !important}
+.show {display:inherit !important}
+.modal-open {overflow: hidden}
 
 
 /*   4. || Main                     */
@@ -284,7 +286,7 @@ footer span {
   height: 2px;
   width: 0px;
   left: 50%;
-  bottom: -40%;
+  bottom: -5px;
   transform: translate(-50%, 0);
   background: hsl(var(--White));
   opacity: 0;
@@ -326,6 +328,21 @@ footer span {
 /*   6. || Media Queries            */
 /*      Mobile                      */
 @media (max-width: 375px) {
+  /* Modal Mobile Menu              */
+  .modal {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    background: hsl(var(--Black));
+    z-index: 10;
+  }
+
+  .btn-close {
+    content: url('./images/icon-close.svg');
+  }
+
+  /* Main                           */
   header {
     background: url('./images/mobile/image-hero.jpg');
     background-repeat: no-repeat;
@@ -347,7 +364,12 @@ footer span {
     padding: 0.75rem 1rem;
     margin-top: 11rem;
   }
-  
+
+  header .flex-row img {
+    position: relative;
+    z-index: 5;
+  }
+
   header .flex-row img:first-of-type {
     height: 25px;
   }
@@ -358,6 +380,25 @@ footer span {
 
   header .flex-row nav {
     display: none;
+    position: fixed;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: hsl(var(--Black));
+    margin: 0;
+    z-index: 2;
+  }
+
+  header .flex-row nav a {
+    font-size: 2rem;
+    font-family: 'Josefin Sans';
+    font-weight: 300;
+    text-transform: uppercase;
+    margin: 0.25rem 1.5rem;
   }
 
   header h1 {
