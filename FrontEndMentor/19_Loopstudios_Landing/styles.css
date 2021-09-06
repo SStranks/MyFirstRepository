@@ -312,7 +312,6 @@ footer span {
   transform: translate(-50%, 0);
   width: 100%; */
   grid-column: 1 / span 2;
-  margin-bottom: 15rem;
 }
 
 /* .attribution a { 
