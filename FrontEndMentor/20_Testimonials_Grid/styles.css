@@ -1,0 +1,226 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+/*   6. || Media Queries            */
+/* -------------------------------- */
+
+/*   version:   1.0                 */
+/*   date:      06/09/2021          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+
+
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&display=swap');
+
+
+/*   2. || Variables                */
+:root {
+  /* HSL Values                     */
+  /* Primary                        */
+  --Moderate-violet: 263, 55%, 52%;
+  --Very-dark-grayish-blue: 217, 19%, 35%;
+  --Very-dark-blackish-blue: 219, 29%, 14%;
+  --White: 0, 0%, 100%;
+  /* Neutral                        */
+  --Light-gray: 0, 0%, 81%;
+  --Light-grayish-blue: 210, 46%, 95%;
+
+  /* Note for text colors:
+  1. "Verified Graduate" has the same color as the person's name with 50% opacity
+  2. Review paragraphs inside the quotations have the same color as well, but are at 70% opacity */
+}
+
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+img {display: block; height: 100%}
+a {text-decoration: none}
+a:visited {color: inherit}
+a:active {color: inherit}
+li {list-style: none}
+h1 {font-size: 1.7rem; color: #000}
+h2 {font-size: 3.25rem; font-family: 'Josefin Sans'; font-weight: 400; line-height: 1; color: #000; text-transform: uppercase}
+h3 {font-size: 2.2rem; font-family: 'Josefin Sans'; font-weight: 400; line-height: 1; color: #fff}
+h4 {font-size: 1.0rem; color: #000}
+p {font-size: 0.9rem; line-height: 1.8;}
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none; 
+  font-family: inherit;
+  cursor: pointer
+}
+input {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  color: #000;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+label {font-size: 1.0rem; font-weight:bold; color: #000; cursor: pointer}
+
+.flex-row {display: flex; justify-content: space-between; align-items: center}
+.flex-column {display: flex; flex-direction: column; justify-content: space-between; align-items: center}
+.hidden {display: none !important}
+.show {display:inherit !important}
+.modal-open {overflow: hidden}
+
+
+/*   4. || Main                     */
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 13px;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: 500, 600;
+  line-height: 1.6;
+  color: hsl(var(--White));
+  background: hsl(var(--Light-grayish-blue));
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 13em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 25px
+}
+
+.card {
+  background: hsl(var(--White));
+  border-radius: 7px;
+  box-shadow: 5px 15px 45px 1px hsla(0, 0%, 0%, 0.1);
+  padding: 2rem 2.5rem;
+}
+
+.c-1 {
+  position: relative;
+  grid-column: 1 / span 2;
+  background: hsl(var(--Moderate-violet)) url('./images/bg-pattern-quotation.svg');
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: 80% 0%;
+}
+
+.c-2 {
+  background: hsl(var(--Very-dark-grayish-blue));
+}
+
+.c-3 {
+  color: hsl(var(--Very-dark-grayish-blue));
+}
+
+.c-4 {
+  grid-row: 2;
+  grid-column: 2 / span 2;
+  background: hsl(var(--Very-dark-blackish-blue));
+}
+
+.c-5 {
+  grid-row: 1 / span 2;
+  grid-column: 4;
+  color: #000;
+}
+
+.person {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+}
+
+img {
+  grid-row: 1 / span 2;
+  justify-self: center;
+  align-self: center;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: 2px solid hsla(var(--White), 0.5);
+  margin: 0 1rem 0 0;
+}
+
+.person p {
+  justify-self: center;
+  align-self: center;
+  line-height: 1.4;
+  color: hsla(var(--White), 0.5);
+}
+
+.person .name {
+  font-size: 1.1rem;
+  color: hsl(var(--White));
+}
+
+.c-3 .person p, .c-5 .person p {
+  color: hsla(var(--Very-dark-grayish-blue), 0.5);
+}
+
+.c-3 .person .name, .c-5 .person .name {
+  color: hsl(var(--Very-dark-grayish-blue));
+}
+
+.text-emphasis {
+  display: inline-block;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin: 1rem 0;
+}
+
+.review {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.4;
+  opacity: 50%;
+}
+
+
+/*   5. || FrontEnd Mentor Footer   */
+.attribution {
+  font-size: 1rem; 
+  text-align: center;
+  color: hsl(var(--Very-dark-blackish-blue));
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100%;
+}
+
+/* .attribution a { 
+  color: hsl(var(--Dark-Desaturated-Blue));
+} */
+
+.attribution a:hover {
+  /* background: hsl(var(--Moderate-violet)); */
+  color: hsl(var(--Moderate-violet));
+}
+
+
+/*   6. || Media Queries            */
+/*      Mobile                      */
+@media (max-width: 375px) {
