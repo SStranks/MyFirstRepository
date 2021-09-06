@@ -174,21 +174,26 @@ html, body {
   border-left: 25px solid transparent;
 }
 
-.c-2 #GBnum {
+.c-2 #GBnum2 {
   font-size: 3rem;
   color: #000;
 }
 
 .c-2 .slidercontainer {
   position: relative;
+  height: 10px;
   width: 450px;
+  margin: 1rem 0;
 }
 
 .c-2 .slider {
   -webkit-appearance: none;
-  position: relative;
   appearance: none;
-  width: 100%; 
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translate(0, -50%);
+  width: 438px; 
   height: 10px;
   background: transparent;
 }
