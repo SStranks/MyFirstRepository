@@ -228,10 +228,12 @@ img {
 @media (max-width: 768px) {
     body {
       position: relative;
-      height: fit-content;
+      height: 100%;
     }
 
   .container {
+    height: fit-content;
+    margin: auto 0;
     padding: 2.5rem 1.5rem
   }
   
@@ -245,6 +247,11 @@ img {
     grid-column: 1 / span 3;
     color: #000;
   }
+
+  .attribution {
+    position: relative;
+  }
+
 }
 
 /*      Mobile                      */
