@@ -3,29 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="./styles.css">
   <title>Frontend Mentor | Fylo data storage component</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
+
 <body>
+  <header></header>
 
-  You’ve used 815 GB of your storage
+  <main class="container">
+    <div class="flex-row">
+      <div class="card c-1">
+        <img src="./images/logo.svg" alt="Fylo">
+        <div class="flex-row">
+          <div class="icon"><img src="./images/icon-document.svg" alt=""></div>
+          <div class="icon"><img src="./images/icon-folder.svg" alt=""></div>
+          <div class="icon"><img src="./images/icon-upload.svg" alt=""></div>
+        </div>
+      </div>
+      <div class="card c-2">
+        <p>You’ve used <span>815 GB</span> of your storage</p>
+        <div class="GBleft"><span id="GBnum">185</span><span>GB Left</span></div>
+        <div class="slidercontainer">
+          <div class="track">
+            <div class="track-inner"></div>
+          </div>
+          <input type="range" min="0" max="100" value="50" step="1" class="slider">
+        </div>
+        <div class="flex-row"><span>0 GB</span><span>1000 GB</span></div>
+      </div>
+    </div>
+  </main>
 
-  185 GB Left
-  
-  0 GB
-  1000 GB
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+  <footer>
+    <p class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="https://github.com/SStranks">Simon Stranks</a>.
+    </p>
   </div>
+  </footer>
+  <script src="./script.js"></script>
 </body>
 </html>
