@@ -97,10 +97,12 @@ html, body {
 .container {
   height: 100%;
   width: 100%;
+  max-width: 1100px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 13em;
+  padding: 0 1.5rem;
+  margin: 0 auto;
 }
 
 .grid {
@@ -222,5 +224,61 @@ img {
 
 
 /*   6. || Media Queries            */
+/*      Tablet                      */
+@media (max-width: 768px) {
+    body {
+      position: relative;
+      height: fit-content;
+    }
+
+  .container {
+    padding: 2.5rem 1.5rem
+  }
+  
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+  }
+
+  .c-5 {
+    grid-row: 3;
+    grid-column: 1 / span 3;
+    color: #000;
+  }
+}
+
 /*      Mobile                      */
 @media (max-width: 375px) {
+  body {
+    position: relative;
+    height: fit-content;
+  }
+
+  .container {
+    padding: 5rem 1.75rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+  }
+
+  .c-1 {
+    position: relative;
+    grid-column: 1;
+    background: hsl(var(--Moderate-violet)) url('./images/bg-pattern-quotation.svg');
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: 80% 0%;
+  }
+  
+  .c-4 {
+    grid-row: unset;
+    grid-column: 1;
+  }
+  
+  .c-5 {
+    grid-row: unset;
+    grid-column: 1;
+  }
+}
