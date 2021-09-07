@@ -9,8 +9,8 @@ const image = document.querySelectorAll('.profile');
 
 // Cycle information and imagery
 function cycle(e) {
-  // Check: Valid Keypress. If button is disabled, return.
-  if (!(e.key == "ArrowLeft" || e.key == "ArrowRight")) return;
+  // Check: Valid user input. If button is disabled, return.
+  if (!(e.key == "ArrowLeft" || e.key == "ArrowRight" || e.type == "click")) return;
   if (e.key == "ArrowLeft" && btnPrev.classList.contains('btnToggle')) return;
   if (e.key == "ArrowRight" && btnNext.classList.contains('btnToggle')) return;
   // Toggle the hidden class on all content elements

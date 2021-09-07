@@ -196,3 +196,91 @@ html, body {
   background-clip: text;
   color: transparent; */
 }
+
+
+/*   6. || Media Queries            */
+@media (max-width: 375px) {
+  body {
+    background-size: 75% auto;
+    background-position: left bottom;
+  }
+
+  .container {
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 375px;
+    padding: 0.75rem;
+    margin: 0;
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%;
+    background: url('./images/pattern-bg.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transform: none;
+    padding: 1rem;
+    margin: 0 0 2rem 0;
+  }
+
+  .image img {
+    width: 100%;
+  }
+
+  .image .buttons {
+    left: 50%;
+    height: 40px;
+    width: 85px;
+    border-radius: 27.5px;
+    padding: 0.42rem 0.42rem;
+    transform: translate(-50%, 50%);
+  }
+
+  .buttons img {
+    height: 15px;
+    width: 10px;
+  }
+  
+  .info {
+    width: 100%;
+    max-width: 375px;
+    text-align: center;
+    margin: 0;
+  }
+
+  .info p {
+    font-size: 0.55rem;
+    margin: 0 0 0.75rem 0;
+  }
+  
+  .info::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    height: 60px;
+    width: 60px;
+    transform: translate(-50%, 0);
+    background: url('./images/pattern-quotes.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .name {
+    display: block;
+    font-size: 0.5rem;
+    line-height: 1.4;
+  }
+  
+  .job {
+    display: block;
+    font-size: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .attribution {
+    font-size: 0.35rem; 
+  }
+}
