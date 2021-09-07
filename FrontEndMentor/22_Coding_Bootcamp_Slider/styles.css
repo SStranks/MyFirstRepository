@@ -1,0 +1,161 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+/*   6. || Media Queries            */
+/* -------------------------------- */
+
+/*   version:   1.0                 */
+/*   date:      07/09/2021          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+
+
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap');
+
+
+/*   2. || Variables                */
+:root {
+  /* HSL Values                     */
+  /* Primary                        */
+  --Dark-Blue: 240, 38%, 20%;
+  --Grayish-Blue: 240, 18%, 77%;
+  /* Neutral                        */
+  --Black: 0, 0%, 0%;
+  --White: 100, 100%, 100%;
+}
+
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+img {display: block; height: 100%}
+a {text-decoration: none}
+a:visited {color: inherit}
+a:active {color: inherit}
+li {list-style: none}
+h1 {font-size: 1.7rem; color: #000}
+h2 {font-size: 3.25rem; font-family: 'Josefin Sans'; font-weight: 400; line-height: 1; color: #000; text-transform: uppercase}
+h3 {font-size: 2.2rem; font-family: 'Josefin Sans'; font-weight: 400; line-height: 1; color: #fff}
+h4 {font-size: 1.0rem; color: #000}
+p {font-size: 1rem; font-weight: 300; color: hsl(var(--Dark-Blue));line-height: 1.4}
+span {font-size: 1rem; font-weight: 700; line-height: 1}
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none; 
+  font-family: inherit;
+  cursor: pointer
+}
+input {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  color: #000;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+label {font-size: 1.0rem; font-weight:bold; color: #000; cursor: pointer}
+
+.flex-row {display: flex; justify-content: space-between; align-items: center}
+.flex-column {display: flex; flex-direction: column; justify-content: space-between; align-items: center}
+.hidden {display: none !important}
+.show {display:inherit !important}
+.modal-open {overflow: hidden}
+
+
+/*   4. || Main                     */
+html, body {
+  font-size: 32px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300, 500, 700;
+  line-height: 1.6;
+  height: 100%;
+  width: 100%;
+  background: #fff url('./images/pattern-curve.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: bottom;
+  color: #000;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+  margin: 0;
+}
+
+.info {
+  position: relative;
+  width: 50%;
+  max-width: 700px;
+  margin-right: auto;
+}
+
+.info::before {
+  content: url('./images/pattern-quotes.svg');
+  position: absolute;
+  top: -30%;
+  left: 10%;
+}
+
+.name {
+  font-size: 0.65rem;
+}
+
+.job {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: hsl(var(--Grayish-Blue));
+}
+
+.image-container {
+  position: absolute;
+  background: url('./images/pattern-bg.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  transform: translate(35%, 0);
+  padding: 3rem 3rem 2.5rem 2rem;
+}
+
+.image img {
+  box-shadow: 5px 10px 40px 2px hsl(var(--Grayish-Blue), 0.7);
+}
+
+.image {
+  position: relative;
+}
+
+.image .buttons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  height: 55px;
+  width: 110px;
+  background: hsl(var(--White));
+  box-shadow: 5px 20px 30px 1px hsl(var(--Grayish-Blue), 0.6);
+  border-radius: 27.5px;
+  padding: 0.55rem 0.6rem;
+  transform: translate(65%, 50%);
+}
