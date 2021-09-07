@@ -87,8 +87,8 @@ html, body {
   width: 100%;
   background: #fff url('./images/pattern-curve.svg');
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: bottom;
+  background-size: 50% auto;
+  background-position: left bottom;
   color: #000;
 }
 
@@ -99,6 +99,7 @@ html, body {
   align-items: center;
   height: 100%;
   width: 100%;
+  max-width: 1440px;
   padding: 2rem;
   margin: 0;
 }
@@ -107,7 +108,7 @@ html, body {
   position: relative;
   width: 50%;
   max-width: 700px;
-  margin-right: auto;
+  margin: 0 auto 0 2.5rem;
 }
 
 .info::before {
@@ -133,7 +134,7 @@ html, body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  transform: translate(35%, 0);
+  transform: translate(40%, 0);
   padding: 3rem 3rem 2.5rem 2rem;
 }
 
@@ -158,4 +159,40 @@ html, body {
   border-radius: 27.5px;
   padding: 0.55rem 0.6rem;
   transform: translate(65%, 50%);
+}
+
+.buttons img {
+  cursor: pointer;
+}
+
+.btnToggle {
+  pointer-events: none;
+  opacity: 50%;
+}
+
+
+/*   5. || FrontEnd Mentor Footer   */
+.attribution {
+  font-size: 0.5rem; 
+  text-align: center;
+  color: hsl(var(--Grayish-Blue));
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100%;
+}
+
+/* .attribution a { 
+  color: hsl(var(--Dark-Desaturated-Blue));
+} */
+
+.attribution a:hover {
+  /* background: hsl(var(--Moderate-violet)); */
+  color: hsl(var(--Dark-Blue));
+  /* -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; */
 }
