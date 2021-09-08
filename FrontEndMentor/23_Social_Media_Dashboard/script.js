@@ -14,13 +14,19 @@ function changeTheme() {
     textSwitch("Light");
     // Change Background
     document.querySelector('.bk-1').classList.toggle('opacity');
-    for (let card of cards) card.classList.toggle('card-color');
+    for (let card of cards) {
+      card.classList.toggle('card-color');
+      card.classList.toggle('card-hover');
+    }
     for (let words of text) words.classList.toggle('number-color');
   } else {
     textSwitch("Dark");
     // Change Background
     document.querySelector('.bk-1').classList.toggle('opacity');
-    for (let card of cards) card.classList.toggle('card-color');
+    for (let card of cards) {
+      card.classList.toggle('card-color');
+      card.classList.toggle('card-hover');
+    }
     for (let words of text) words.classList.toggle('number-color');
   }
 };
