@@ -93,11 +93,12 @@ label {font-size: 1.0rem; font-weight:bold; color: #000; cursor: pointer}
 .hidden {display: none !important}
 .show {display:inherit !important}
 .modal-open {overflow: hidden}
-.trans {transition: all 0.2s}
+.transition * {transition: none !important}
 
 
 /*   4. || Main                     */
 html, body {
+  position: relative;
   font-size: 14px;
   font-family: 'Inter', sans-serif;
   font-weight: 400, 700;
@@ -106,6 +107,7 @@ html, body {
   width: 100%;
   background: linear-gradient(to bottom, hsl(var(--Very-Dark-Blue2)) 25%, hsl(var(--Very-Dark-Blue)) 25%);
   color: hsl(var(--Desaturated-Blue));
+  z-index: -3;
 }
 
 .container {
@@ -116,7 +118,6 @@ html, body {
 }
 
 .card {
-  background: hsl(var(--Dark-Desaturated-Blue));
   border-radius: 5px 5px 10px 10px;
   padding-top: 4px;
 }
@@ -156,7 +157,7 @@ header {
   margin: 0 0 3.25rem 0;
 }
 
-.theme p {
+.mode {
   color: hsl(var(--White));
 }
 
@@ -167,6 +168,7 @@ header {
   background: hsl(var(--Dark-Desaturated-Blue));
   border-radius: 0 0 5px 5px;
   padding: 1.75rem;
+  transition: 1s background;
 }
 
 .c-1 .flex-row {
@@ -208,14 +210,16 @@ h2 {
 }
 
 .c-2 {
+  background: hsl(var(--Dark-Desaturated-Blue));
   padding: 1.5rem;
+  transition: 1s background;
 }
 
 .c-2 .flex-row:first-of-type {
   margin: 0 0 2rem 0;
 }
 
-.c-2 .num-overview {
+.num-overview {
   font-size: 2.25rem;
   color: hsl(var(--White));
 }
@@ -313,9 +317,40 @@ input:checked + .toggle::before {
 
 
 /*   X. || Light Theme              */
-.bk-light {
+.bk-1 {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
   background: linear-gradient(to bottom, hsl(var(--Very-Pale-Blue)) 25%, hsl(var(--White)) 25%);
+  opacity: 0%;
+  z-index: -2;
+  transition: opacity 1s;
 }
+
+.opacity {
+  opacity: 100%;
+}
+
+.trans-opacity {
+  transition: 1s color;
+}
+
+.card-color {
+  background: hsl(var(--Light-Grayish-Blue));
+  transition: 1s background;
+}
+
+.number-color {
+  color: hsl(var(--Very-Dark-Blue-Light));
+}
+
+.text-color {
+  color: hsl(var(--Dark-Grayish-Blue));
+}
+
+
 
 
 /*   5. || FrontEnd Mentor Footer   */

@@ -4,6 +4,8 @@
 const toggleSwitch = document.querySelector('input[type="checkbox"]');
 const themeText = document.querySelectorAll('p');
 const docBody = document.querySelector('body');
+const cards = document.querySelectorAll('.c-1, .c-2');
+const text = document.querySelectorAll('h1, h2, .mode, .num-follow, .num-overview');
 
 // Main: Switch Theme
 function changeTheme() {
@@ -11,11 +13,15 @@ function changeTheme() {
     // Change theme mode text
     textSwitch("Light");
     // Change Background
-    docBody.classList.toggle('bk-light');
+    document.querySelector('.bk-1').classList.toggle('opacity');
+    for (let card of cards) card.classList.toggle('card-color');
+    for (let words of text) words.classList.toggle('number-color');
   } else {
     textSwitch("Dark");
     // Change Background
-    docBody.classList.toggle('bk-light');
+    document.querySelector('.bk-1').classList.toggle('opacity');
+    for (let card of cards) card.classList.toggle('card-color');
+    for (let words of text) words.classList.toggle('number-color');
   }
 };
 
@@ -31,3 +37,5 @@ function textSwitch(theme) {
 
 // Event Handlers
 toggleSwitch.addEventListener('click', changeTheme)
+// Page Load Events
+window.addEventListener('load', () => (docBody.classList.remove('transition')));
