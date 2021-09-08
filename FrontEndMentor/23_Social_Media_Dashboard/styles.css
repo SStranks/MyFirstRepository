@@ -62,7 +62,7 @@ a:visited {color: inherit}
 a:active {color: inherit}
 li {list-style: none}
 h1 {font-size: 2rem; color: hsl(var(--White))}
-h2 {font-size: 1.5rem; font-family: 'Inter'; font-weight: 700; line-height: 1; color: hsl(var(--White))}
+h2 {font-size: 1.6rem; font-family: 'Inter'; font-weight: 700; line-height: 1; color: hsl(var(--White))}
 h3 {font-size: 2.2rem; font-family: 'Inter'; font-weight: 700; line-height: 1; color: #fff}
 h4 {font-size: 1.0rem; color: #000}
 p {font-size: 1rem; font-weight: 700; color: hsl(var(--Dark-Blue)); line-height: 1.4}
@@ -115,8 +115,25 @@ html, body {
 }
 
 .card {
+  background: hsl(var(--Dark-Desaturated-Blue));
   border-radius: 5px 5px 10px 10px;
   padding-top: 4px;
+}
+
+.card:nth-child(1) {
+  background: hsl(var(--Facebook));
+}
+
+.card:nth-child(2) {
+  background: hsl(var(--Twitter));
+}
+
+.card:nth-child(3) {
+  background: linear-gradient(to right, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+}
+
+.card:nth-child(4) {
+  background: hsl(var(--YouTube));
 }
 
 .card:hover {
@@ -135,6 +152,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 0 3.25rem 0;
 }
 
 .c-1 {
@@ -146,15 +164,24 @@ header {
   padding: 2rem;
 }
 
+.c-1 .flex-row {
+  align-items: center;
+  margin: 0 0 2rem 0;
+}
+
+.flex-row img {
+  height: 20px;
+}
+
 .handle {
   font-size: 0.85rem;
-  margin: 0 0 2rem 0;
+  margin: 0 0 0 0.5rem;
 }
 
 .num-follow {
   font-size: 4rem;
   color: hsl(var(--White));
-  margin: 0 0 0.25rem 0;
+  margin: 0 0 0.25rem;
 }
 
 .label-follow {
@@ -162,7 +189,7 @@ header {
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.4rem;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1.75rem 0;
 }
 
 .num-change {
@@ -170,18 +197,23 @@ header {
   color: hsl(var(--Lime-Green))
 }
 
-.card:nth-child(1) {
-  background: hsl(var(--Facebook));
+h2 {
+  grid-column: 1 / span 4;
 }
 
-.card:nth-child(2) {
-  background: hsl(var(--Twitter));
+.c-2 {
+  padding: 1.5rem;
 }
 
-.card:nth-child(3) {
-  background: linear-gradient(to right, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+.c-2 .flex-row:first-of-type {
+  margin: 0 0 2rem 0;
 }
 
-.card:nth-child(4) {
-  background: hsl(var(--YouTube));
+.c-2 .num-overview {
+  font-size: 2.25rem;
+  color: hsl(var(--White));
+}
+
+.c-2 .num-change {
+  align-self: flex-end;
 }
