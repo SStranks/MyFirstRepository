@@ -1,0 +1,187 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+/*   6. || Media Queries            */
+/* -------------------------------- */
+
+/*   version:   1.0                 */
+/*   date:      07/09/2021          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+
+
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+
+/*   2. || Variables                */
+:root {
+  /* HSL Values                     */
+  /* Primary                        */
+  --Lime-Green: 163, 72%, 41%;
+  --Bright-Red: 356, 69%, 56%;
+  --Facebook: 208, 92%, 53%;
+  --Twitter: 203, 89%, 53%;
+  --Instagram: linear-gradient(to right, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+  --YouTube: 348, 97%, 39%;
+  /* Dark Theme                     */
+  /* --Toggle: linear-gradient(210, 78%, 56% to 146, 68%, 55%);  */
+  /* Light Theme                    */
+  --Toggle: 230, 22%, 74%;
+  /* Neutral                        */
+  /* Dark Theme                     */
+  --Very-Dark-Blue: 230, 17%, 14%;         /*(BG)*/
+  --Very-Dark-Blue2: 232, 19%, 15%;        /*(Top BG Pattern)*/
+  --Dark-Desaturated-Blue: 228, 28%, 20%;  /*(Card BG)*/
+  --Desaturated-Blue: 228, 34%, 66%;       /*(Text)*/
+  --White: 0, 0%, 100%;                    /*(Text)*/
+  /* Light Theme                    */
+  --White: 0, 0%, 100%;                    /*(BG)*/
+  --Very-Pale-Blue: 225, 100%, 98%;        /*(Top BG Pattern)*/
+  --Light-Grayish-Blue: 227, 47%, 96%;     /*(Card BG)*/
+  --Dark-Grayish-Blue: 228, 12%, 44%;      /*(Text)*/
+  --Very-Dark-Blue: 230, 17%, 14%;         /*(Text)*/
+}
+
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+img {display: block; height: 100%}
+a {text-decoration: none}
+a:visited {color: inherit}
+a:active {color: inherit}
+li {list-style: none}
+h1 {font-size: 2rem; color: hsl(var(--White))}
+h2 {font-size: 1.5rem; font-family: 'Inter'; font-weight: 700; line-height: 1; color: hsl(var(--White))}
+h3 {font-size: 2.2rem; font-family: 'Inter'; font-weight: 700; line-height: 1; color: #fff}
+h4 {font-size: 1.0rem; color: #000}
+p {font-size: 1rem; font-weight: 700; color: hsl(var(--Dark-Blue)); line-height: 1.4}
+span {font-size: 1rem; font-weight: 700; line-height: 1}
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none; 
+  font-family: inherit;
+  cursor: pointer
+}
+input {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  color: #000;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+label {font-size: 1.0rem; font-weight:bold; color: #000; cursor: pointer}
+
+.flex-row {display: flex; justify-content: space-between; align-items: center}
+.flex-column {display: flex; flex-direction: column; justify-content: space-between; align-items: center}
+.hidden {display: none !important}
+.show {display:inherit !important}
+.modal-open {overflow: hidden}
+
+
+/*   4. || Main                     */
+html, body {
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400, 700;
+  line-height: 1.6;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to bottom, hsl(var(--Very-Dark-Blue2)) 25%, hsl(var(--Very-Dark-Blue)) 25%);
+  color: hsl(var(--Desaturated-Blue));
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  padding: 4rem 12rem;
+  margin: 0 auto;
+}
+
+.card {
+  border-radius: 5px 5px 10px 10px;
+  padding-top: 4px;
+}
+
+.card:hover {
+  filter: brightness(1.3);
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 4;
+  gap: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.c-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: hsl(var(--Dark-Desaturated-Blue));
+  border-radius: 0 0 5px 5px;
+  padding: 2rem;
+}
+
+.handle {
+  font-size: 0.85rem;
+  margin: 0 0 2rem 0;
+}
+
+.num-follow {
+  font-size: 4rem;
+  color: hsl(var(--White));
+  margin: 0 0 0.25rem 0;
+}
+
+.label-follow {
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.4rem;
+  margin: 0 0 1.5rem 0;
+}
+
+.num-change {
+  font-size: 0.85rem;
+  color: hsl(var(--Lime-Green))
+}
+
+.card:nth-child(1) {
+  background: hsl(var(--Facebook));
+}
+
+.card:nth-child(2) {
+  background: hsl(var(--Twitter));
+}
+
+.card:nth-child(3) {
+  background: linear-gradient(to right, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+}
+
+.card:nth-child(4) {
+  background: hsl(var(--YouTube));
+}
