@@ -44,7 +44,9 @@ Users should be able to:
 
 ### What I learned
 
+https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event
 https://stackoverflow.com/questions/50177348/mouseenter-delegation-using-vanilla-javascript
+http://complexspiral.com/publications/uncollapsing-margins/
 
 ## Author
 
