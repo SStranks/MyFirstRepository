@@ -3,6 +3,8 @@
 // Selectors
 const icons = document.querySelector('.icons');
 const iconsCol = document.querySelectorAll('.svgClass');
+const btnMob = document.querySelector('.mob-menu');
+const menu = document.querySelector('.menu');
 
 
 // Icons: SVG Colour Change on :hover
@@ -22,9 +24,17 @@ function iconColor(e) {
   }
 }
 
+// Toggle Mobile Menu
+function showMenu() {
+  btnMob.classList.toggle('mob-close');
+  menu.classList.toggle('show');
+};
+
 
 // Event Handlers
-// icons.addEventListener('mouseover', iconColor);
+btnMob.addEventListener('click', showMenu);
+
+// Icons
 icons.addEventListener('mouseenter', iconColor, true);
 icons.addEventListener('mouseleave', iconColor, true)
 // Load Handlers

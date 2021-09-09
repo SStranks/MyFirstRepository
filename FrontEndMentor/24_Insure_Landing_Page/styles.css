@@ -133,6 +133,10 @@ header button:hover {
   background: hsl(var(--Very-Dark-Violet));
 }
 
+header img:last-of-type {
+  display: none;
+}
+
 .s-1 {
   position: relative;
   background: hsl(var(--Dark-Violet)) url('./images/bg-pattern-intro-right-desktop.svg');
@@ -309,15 +313,33 @@ footer a:hover {
   }
 
   header {
+    position: relative;
     padding: 1.5rem;
   }
 
-  nav {
-    display: none;
+  header nav {
+    margin: 0;
   }
 
-  header button {
-    display: none;
+  .menu {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background: hsl(var(--Very-Dark-Violet));
+    padding: 1rem;
+    z-index: 3;
+  }
+
+  .menu .flex-row {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  header img:last-of-type {
+    display: block;
   }
 
   .s-1 {
@@ -369,6 +391,10 @@ footer a:hover {
     right: 0;
     height: 35%;
     width: auto;
+  }
+
+  .mob-close {
+    content: url('./images/icon-close.svg');
   }
 
   .s-2 {
