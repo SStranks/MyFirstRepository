@@ -1,0 +1,183 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || Variables                */
+/*   3. || Globals                  */
+/*   4. || Main                     */
+/*   5. || FrontEnd Mentor Footer   */
+/*   6. || Media Queries            */
+/* -------------------------------- */
+
+/*   version:   1.0                 */
+/*   date:      08/09/2021          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+
+
+
+/*   1. || Imports                  */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Karla:wght@400;700&display=swap');
+
+
+/*   2. || Variables                */
+:root {
+  /* HSL Values                     */
+  /* Primary                        */
+  --Dark-Violet: 256, 26%, 20%;
+  --Grayish-Blue: 216, 30%, 68%;
+  /* Neutral                        */
+  --Very-Dark-Violet: 270, 9%, 17%;
+  --Dark-Grayish-Violet: 273, 4%, 51%;
+  --Very-Light-Gray: 0, 0%, 98%;
+  --White: 100, 100%, 100%;
+}
+
+
+/*   3. || Globals                  */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+img {display: block; height: 100%}
+a {text-decoration: none}
+a:visited {color: hsl(var(--Dark-Grayish-Violet))}
+a:active {color: hsl(var(--Dark-Grayish-Violet))}
+a:hover {color: hsl(var(--Very-Dark-Violet))}
+li {list-style: none}
+h1 {font-size: 4.25rem; font-weight: 400; line-height: 0.9; color: hsl(var(--White))}
+h2 {font-size: 1.6rem; font-family: 'Inter'; font-weight: 700; line-height: 1; color: hsl(var(--White))}
+h3 {font-size: 2.2rem; font-family: 'Inter'; font-weight: 700; line-height: 1; color: #fff}
+h4 {font-size: 1.0rem; color: #000}
+p {font-size: 1rem; font-family: 'Karla'; font-weight: 400; color: hsl(var(--White)); line-height: 1.6}
+span {font-size: 1rem; font-weight: 700; line-height: 1}
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none; 
+  font-size: 0.85rem;
+  font-family: 'Karla';
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  padding: 0.75rem 1.75rem;
+  cursor: pointer
+}
+input {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: 700;
+  color: #000;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+label {font-size: 1.0rem; font-weight:bold; color: #000; cursor: pointer}
+
+.flex-row {display: flex; justify-content: space-between; align-items: center}
+.flex-col {display: flex; flex-direction: column; justify-content: space-between; align-items: center}
+.hidden {display: none !important}
+.show {display:inherit !important}
+.modal-open {overflow: hidden}
+.transition * {transition: none !important}
+
+.p-10 {padding: 0 10rem}
+
+
+/*   4. || Main                     */
+html, body {
+  font-size: 16px;
+  font-family: 'DM Serif Display', 'Karla', sans-serif;
+  font-weight: 400, 700;
+  line-height: 1.6;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  color: hsl(var(--Dark-Grayish-Violet));
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+header {
+  font-family: 'Karla';
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 1rem 10rem;
+}
+
+header nav {
+  margin: 0 1rem 0 auto;
+}
+
+header a {
+  font-size: 0.85rem;
+  letter-spacing: 0.1rem;
+  padding: 0 0.75rem;
+}
+
+header button {
+  color: hsl(var(--Very-Dark-Violet));
+  background: #fff;
+  border: 2px solid hsl(var(--Very-Dark-Violet));
+}
+
+header button:hover {
+  color: #fff;
+  background: hsl(var(--Very-Dark-Violet));
+}
+
+.s-1 {
+  background: hsl(var(--Dark-Violet)) url('./images/bg-pattern-intro-right-desktop.svg');
+  background-repeat: no-repeat;
+  background-position: top right;
+  padding: 1rem 10rem;
+}
+
+.s-1 .content {
+  width: 50%;
+  padding: 0 1rem 0 0;
+}
+
+.s-1 h1 {
+  padding: 0 2rem 0 0;
+  margin: 0 0 1.75rem 0;
+}
+
+.s-1 button {
+  color: hsl(var(--White));
+  background: transparent;
+  border: 2px solid hsl(var(--White));
+  margin: 2rem 0 0 0;
+}
+
+.s-1 button:hover {
+  color: hsl(var(--Dark-Violet));
+  background: hsl(var(--White));
+  border: 2px solid hsl(var(--White));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer {
+  background: hsl(var(--Very-Light-Gray));
+}
