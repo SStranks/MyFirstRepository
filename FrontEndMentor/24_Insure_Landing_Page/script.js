@@ -5,6 +5,7 @@ const icons = document.querySelector('.icons');
 const iconsCol = document.querySelectorAll('.svgClass');
 const btnMob = document.querySelector('.mob-menu');
 const menu = document.querySelector('.menu');
+const screen = document.querySelector('.modal-screen');
 
 
 // Icons: SVG Colour Change on :hover
@@ -27,6 +28,7 @@ function iconColor(e) {
 // Toggle Mobile Menu
 function showMenu() {
   btnMob.classList.toggle('mob-close');
+  screen.classList.toggle('modal');
   menu.classList.toggle('show');
 };
 

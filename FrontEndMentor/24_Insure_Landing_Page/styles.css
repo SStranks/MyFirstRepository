@@ -90,6 +90,7 @@ label {font-size: 1.0rem; font-weight:bold; color: #000; cursor: pointer}
 
 /*   4. || Main                     */
 html, body {
+  position: relative;
   font-size: 16px;
   font-family: 'DM Serif Display', 'Karla', sans-serif;
   font-weight: 400, 700;
@@ -109,6 +110,7 @@ header {
   font-family: 'Karla';
   font-weight: 700;
   text-transform: uppercase;
+  background: hsl(var(--White));
   padding: 1rem 10rem;
 }
 
@@ -315,6 +317,7 @@ footer a:hover {
   header {
     position: relative;
     padding: 1.5rem;
+    z-index: 20;
   }
 
   header nav {
@@ -322,15 +325,50 @@ footer a:hover {
   }
 
   .menu {
+    display: none;
     position: absolute;
     bottom: -100%;
     left: 0;
     flex-direction: column;
     height: 100%;
     width: 100%;
-    background: hsl(var(--Very-Dark-Violet));
-    padding: 1rem;
-    z-index: 3;
+    padding: 1.5rem;
+  }
+
+  .menu li {
+    margin: 1rem 0;
+  }
+
+  .menu a {
+    font-size: 1.25rem;
+    color: hsl(var(--White));
+  }
+
+  .menu button {
+    font-size: 1.25rem;
+    width: 100%;
+    background: transparent;
+    color: hsl(var(--White));
+    border: 2px solid hsl(var(--White));
+    margin: 1rem 0 0 0;
+  }
+
+  .menu button:hover {
+    background: hsl(var(--White));
+    color: hsl(var(--Very-Dark-Violet));
+  }
+
+  /* Modal Mobile Menu              */
+  .modal {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    bottom: 0;
+    background: hsl(var(--Very-Dark-Violet)) url('./images/bg-pattern-mobile-nav.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+    z-index: 5;
   }
 
   .menu .flex-row {
