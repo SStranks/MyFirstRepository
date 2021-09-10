@@ -41,7 +41,7 @@
 }
 
 img {display: block; height: 100%}
-a {letter-spacing: 0.1rem; text-decoration: none}
+a {color: hsl(var(--Dark-Grayish-Violet)); letter-spacing: 0.1rem; text-decoration: none}
 a:visited {color: hsl(var(--Dark-Grayish-Violet))}
 a:active {color: hsl(var(--Dark-Grayish-Violet))}
 a:hover {color: hsl(var(--Very-Dark-Violet))}
