@@ -11,5 +11,19 @@ function priceChange() {
   }
 };
 
+// Arrow Keys
+function arrowKeys(e) {
+  if (!(e.key == "ArrowLeft" || e.key == "ArrowRight")) return;
+  if (e.key == "ArrowLeft" && toggle.checked == true) {
+    toggle.checked = false;
+    priceChange();
+  }
+  if (e.key == "ArrowRight" && toggle.checked == false) {
+    toggle.checked = true;
+    priceChange();
+  }
+};
+
 // Event Handlers
-toggle.addEventListener('click', priceChange)
+toggle.addEventListener('click', priceChange);
+document.addEventListener('keydown', arrowKeys);

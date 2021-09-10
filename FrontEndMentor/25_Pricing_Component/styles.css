@@ -297,3 +297,47 @@ input:checked + .toggle::before {
   color: hsl(var(--Dark-Grayish-Blue));
   text-decoration: none;
 }
+
+
+/*   6. || Media Queries            */
+@media (max-width: 375px) {
+  body {
+    background-image:  url('./images/bg-top.svg');
+    background-repeat: no-repeat;
+    background-position: 12rem -2rem;
+  }
+  
+  .container {
+    height: fit-content;
+    padding: 1.75rem;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  main h1 {
+    margin: 2.5rem 0 0 0;
+  }
+
+  .cards {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+    margin: 1.25rem 0;
+  }
+  
+  .card:nth-of-type(1),
+  .card:nth-of-type(2),
+  .card:nth-of-type(3) {
+    border-radius: 10px;
+  }
+  
+  .attribution {
+    font-size: 0.75rem;
+    padding: 0 5rem;
+  }
+}
