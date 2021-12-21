@@ -19,3 +19,17 @@
 
 
 // My Solution
+function friends(n) {
+  let count = 0
+  while (n > 2){
+    n = n / 2
+    if (n % 1 === 0) n = Math.ceil(n)
+    count++
+  }
+  return count
+}
+  
+// Other Solutions
+function friends(n){
+  return Math.max(0, Math.ceil(Math.log2(n)) - 1);
+}
