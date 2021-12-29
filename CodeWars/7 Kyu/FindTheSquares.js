@@ -8,3 +8,12 @@
 
 
 // My Solution
+const findSquares = num => {
+  return `${Math.pow(Math.ceil(num / 2), 2)}-${Math.pow(Math.floor(num / 2), 2)}`
+};
+
+// Other Solutions
+function findSquares(n) {
+  const i = (n - 1) / 2;
+  return ((i + 1) ** 2)+ '-' + (i ** 2);
+}
