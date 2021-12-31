@@ -34,7 +34,7 @@ function paul(x){
 }
 
 // Other Solutions
-unction paul(activities) {
+function paul(activities){
   const VALUES = {'Petes kata': 10, 'kata': 5, 'eating': 1, 'life': 0};
   const score = activities.reduce((s, a) => s + VALUES[a], 0);
   switch (true) {
