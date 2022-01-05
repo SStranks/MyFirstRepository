@@ -8,6 +8,7 @@ import Stats from "three/examples/jsm/libs/stats.module";
 
 import * as dat from "dat.gui";
 import gsap from "gsap";
+import { VideoTexture } from 'three';
 
 // Debug: dat.gui
 // Canvas: Element in HTML for the scene
@@ -25,6 +26,9 @@ import gsap from "gsap";
 // Event Listeners
 
 // Debug
+// Dat.GUI
+const gui = new dat.GUI();
+const world = {}
 // Stats: FPS
 let statsFPS = new Stats();
 statsFPS.domElement.style.cssText = "position:absolute;top:3px;left:3px;";
@@ -43,7 +47,7 @@ const scene = new THREE.Scene();
 // Camera
 // Perspective Camera: FOV, Aspect Ratio, Clipping Plane Near, Clipping Plane Far
 const camera = new THREE.PerspectiveCamera(75, innerWidth / innerHeight, 0.1, 1000)
-camera.position.set(0, 0, 10);
+camera.position.set(0, 10, 30);
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -55,16 +59,34 @@ document.body.appendChild(renderer.domElement)
 
 // Elements
 // Requires: Geometry, Material (custom shaders can be made with WebGL
-let clockTextGeo;
 let fonty;
 const loader = new FontLoader();
 loader.load('helvetiker_regular.typeface.json', function(font){
   fonty = font;
-	createTextMesh(font);
   createTextMeshes(fonty); // Dictionary of chars
   addCharDict(); // Add chars to scene
   generate3DTime(currentTime);
 });
+
+let particleX;
+let particleY;
+let particleZ;
+let particlesArr = [];
+const particlesGeometry = new THREE.BufferGeometry;
+const particlesCount = 100000;
+const posArray = new Float32Array(particlesCount * 3);
+for (let i = 0; i < particlesCount * 3; i += 3){
+  posArray[i] = 2 * Math.random()      // 35 covers all nums
+  posArray[i + 1] = 10 * Math.random()
+  posArray[i + 2] = 2.5 * Math.random()
+  particlesArr.push([posArray[i], posArray[i + 1], posArray[i + 2]])
+}
+particlesGeometry.setAttribute("position", new THREE.BufferAttribute(posArray, 3));
+const material = new THREE.PointsMaterial({
+  size: 0.005
+})
+const particlesMesh = new THREE.Points(particlesGeometry, material)
+scene.add(particlesMesh)
 
 // Lights
 const light = new THREE.DirectionalLight(0xffffff, 1); // Color, brightness
@@ -72,14 +94,13 @@ light.position.set(0, 1, 1);
 
 // Helpers
 // const lightHelper = new THREE.DirectionalLightHelper(light);
-const gridHelper = new THREE.GridHelper(200, 50);
+// const gridHelper = new THREE.GridHelper(200, 50);
 
 scene.add(light);
-scene.add(gridHelper);
+// scene.add(gridHelper);
 
 // Controls
 const controls = new OrbitControls(camera, renderer.domElement)
-
 
 
 let textMeshes = {};
@@ -93,12 +114,12 @@ function createTextMeshes(font){
 function createTextCharMesh(text, font){
   const textGeometry = new TextGeometry(text, {
 		font: font,
-		size: 10,
-		height: 5,
+		size: 5,
+		height: 1,          // Depth
 		curveSegments: 12,
 		bevelEnabled: true,
 		bevelThickness: 1,
-		bevelSize: 1,
+		bevelSize: 0.5,
 		bevelOffset: 0,
 		bevelSegments: 5
 	});
@@ -111,41 +132,53 @@ function createTextCharMesh(text, font){
 }
 
 function addCharDict(){
-  // Create the original individual chars meshes; to be cloned; visibility false
+  // Create one mesh per char, visibilty false, from which to clone;
   const textChars = "0123456789:";
   for (let i = 0; i < textChars.length; i++){
     const mesh = textMeshes[textChars[i]];
     mesh.position.set(0 + (i * 10), 0, -10);
     mesh.name = textChars[i]
     mesh.visible = false;
+    mesh.geometry.computeBoundingBox();
     scene.add(mesh)
   }
-
-  let selectObject = scene.getObjectByName("6");
-  const newItem = selectObject.clone();
-  newItem.position.setZ(0)
-  newItem.visible = true;
-  scene.add(newItem)
-  console.log(newItem)
-  console.log(scene)
-
-  meshVisibility("6", false);
+  CHARSPACE = maxWidthOfCharMeshes();
 }
 
+function maxWidthOfCharMeshes(){
+  let maxWidth = 0;
+  for (const mesh in textMeshes){
+    const { boundingBox } = textMeshes[mesh].geometry;
+    const width = Math.abs(boundingBox.max.x - boundingBox.min.x);
+    if (width > maxWidth) maxWidth = width;
+  }
+  return maxWidth
+}
+
+function updateParticle(particle, time){
+  particle[1] -= 0.05
+  if (particle[1] < 0) particle[1] = 10
+}
 
 const currentTime = getTime();
 const time3DGroup = new THREE.Group();
+let CHARSPACE = 0;
 
 function generate3DTime(currentTime){
-  console.log(currentTime)
   for (let i = 0; i < currentTime.length; i++){
     const numberMesh = cloneObject(currentTime[i])
-    numberMesh.position.set(0 + (8 * i), 10, 0);
+    numberMesh.position.set((CHARSPACE * i), 0, 0);
+    if (currentTime[i] === ":"){
+      numberMesh.geometry.computeBoundingBox();
+      const width = Math.abs(numberMesh.geometry.boundingBox.max.x - numberMesh.geometry.boundingBox.min.x);
+      numberMesh.position.x += (CHARSPACE / 2) - (width / 2)
+    }
     numberMesh.name = `clone_${i}_${currentTime[i]}`
     numberMesh.visible = true;
     time3DGroup.add(numberMesh);
   }
   scene.add(time3DGroup);
+  console.log(scene)
 }
 
 function refresh3DTime(currentTime){
@@ -156,7 +189,7 @@ function refresh3DTime(currentTime){
       const newNumber = cloneObject(currentTime[i]);
       time3DGroup.children[i] = newNumber;
       oldNumber.parent.remove(oldNumber)
-      newNumber.position.set(0 + (8 * i), 10, 0);
+      newNumber.position.set((CHARSPACE * i), 0, 0);
       newNumber.name = `clone_${i}_${currentTime[i]}`
       newNumber.visible = true;
       scene.add(newNumber);
@@ -179,38 +212,9 @@ function meshVisibility(objectName, bool){
   selectObject.visible = bool;
 }
 
-function createTextMesh(font){
-  const textGeometry = new TextGeometry(getTime(), {
-		font: font,
-		size: 10,
-		height: 5,
-		curveSegments: 12,
-		bevelEnabled: true,
-		bevelThickness: 1,
-		bevelSize: 1,
-		bevelOffset: 0,
-		bevelSegments: 5
-	});
-  clockTextGeo = new THREE.Mesh(textGeometry, [
-    new THREE.MeshPhongMaterial({ color: 0xffffff }),
-    new THREE.MeshPhongMaterial({ color: 0xff0000 })
-  ])
-  clockTextGeo.castShadow = true;
-  scene.add(clockTextGeo);
-}
-
-function refreshText(){
-  scene.remove(clockTextGeo)
-  clockTextGeo.geometry.dispose();
-  clockTextGeo.material[0].dispose();
-  clockTextGeo.material[1].dispose();
-  createTextMesh(fonty)
-}
-
 function updateTime(){
   const currentTime = getTime();
   if (currentTime !== previousTime){
-    refreshText();
     refresh3DTime(currentTime);
   }
 }
@@ -227,14 +231,23 @@ function getTime(){
   return `${hour}:${mins}:${secs}`
 }
 
+
+let time = 0;
 function render(){
+  time += 0.01;
   controls.update();
   statsFPS.update();
   statsMemory.update();
   updateTime();
+  particlesArr.forEach((particle, i) =>{
+    updateParticle(particle, time);
+    posArray.set([particle[0], particle[1], particle[2]], i * 3)
+  });
+  particlesMesh.geometry.attributes.position.needsUpdate = true;
 
   requestAnimationFrame(render)
   renderer.render(scene, camera)
 }
 
 render();
+console.log(particlesArr)
