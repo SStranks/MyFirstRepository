@@ -63,6 +63,7 @@ loader.load('helvetiker_regular.typeface.json', function(font){
 	createTextMesh(font);
   createTextMeshes(fonty); // Dictionary of chars
   addCharDict(); // Add chars to scene
+  generate3DTime(currentTime);
 });
 
 // Lights
@@ -132,9 +133,36 @@ function addCharDict(){
 }
 
 
+const currentTime = getTime();
+const time3DGroup = new THREE.Group();
 
+function generate3DTime(currentTime){
+  console.log(currentTime)
+  for (let i = 0; i < currentTime.length; i++){
+    const numberMesh = cloneObject(currentTime[i])
+    numberMesh.position.set(0 + (8 * i), 10, 0);
+    numberMesh.name = `clone_${i}_${currentTime[i]}`
+    numberMesh.visible = true;
+    time3DGroup.add(numberMesh);
+  }
+  scene.add(time3DGroup);
+}
 
-
+function refresh3DTime(currentTime){
+  for (let i = 0; i < time3DGroup.children.length; i++){
+    const char = time3DGroup.children[i].name
+    if (char[char.length - 1] !== currentTime[i]){
+      const oldNumber = time3DGroup.children[i];
+      const newNumber = cloneObject(currentTime[i]);
+      time3DGroup.children[i] = newNumber;
+      oldNumber.parent.remove(oldNumber)
+      newNumber.position.set(0 + (8 * i), 10, 0);
+      newNumber.name = `clone_${i}_${currentTime[i]}`
+      newNumber.visible = true;
+      scene.add(newNumber);
+    }
+  }
+}
 
 function cloneObject(objectName){
   const selectedObject = scene.getObjectByName(objectName);
@@ -183,6 +211,7 @@ function updateTime(){
   const currentTime = getTime();
   if (currentTime !== previousTime){
     refreshText();
+    refresh3DTime(currentTime);
   }
 }
 
