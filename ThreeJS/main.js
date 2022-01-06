@@ -107,6 +107,37 @@ const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
 scene.add(planeMesh);
 generatePlane();
 
+// check out the normal attribute of a cube
+let normal = boxGeometry.getAttribute('normal');
+let position = boxGeometry.getAttribute('position');
+let index = boxGeometry.getIndex();
+console.log(index, scene)
+
+// create and set up an arrow helper to find the direction of the first normal value
+for(let i = 0; i < index.count; i+=3){
+  // let dir = new THREE.Vector3(normal.array[i], normal.array[i + 1], normal.array[i + 2]),
+  // origin = new THREE.Vector3(position.array[i], position.array[i + 1], position.array[i + 2]);
+  
+  const a = new THREE.Vector3(position.array[index.getX(i) * 3], position.array[index.getX(i) * 3 + 1], position.array[index.getX(i) * 3 + 2])
+  const b = new THREE.Vector3(position.array[index.getY(i) * 3], position.array[index.getY(i) * 3 + 1], position.array[index.getY(i) * 3 + 2])
+  const c = new THREE.Vector3(position.array[index.getZ(i) * 3], position.array[index.getZ(i) * 3 + 1], position.array[index.getZ(i) * 3 + 2])
+  const triangle = new THREE.Triangle(a, b, c);
+  
+  const normal = new THREE.Vector3()
+  const midPoint = new THREE.Vector3()
+  triangle.getNormal(normal);
+  triangle.getMidpoint(midPoint)
+
+  if (i === 0) {
+    console.log(a, b, c, normal, midPoint, index.getX(0), index.getY(0), index.getZ(0))
+  }
+  let helper = new THREE.ArrowHelper(normal, midPoint, 1, 0xff0000);
+  scene.add(helper)
+}
+
+
+
+
 
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.15, 24, 24);
@@ -152,9 +183,9 @@ const mouse = {
 
 let frame = 0;
 function render(){
-  boxMesh.rotation.x += 0.01
-  boxMesh.rotation.y += 0.01
-  boxMesh.rotation.z += 0.01
+  // boxMesh.rotation.x += 0.01
+  // boxMesh.rotation.y += 0.01
+  // boxMesh.rotation.z += 0.01
   // planeMesh.rotation.x -= 0.01
   // planeMesh.rotation.y -= 0.01
   // planeMesh.rotation.z -= 0.01
