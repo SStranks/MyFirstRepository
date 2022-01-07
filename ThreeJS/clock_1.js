@@ -171,11 +171,9 @@ function generate3DTime(currentTime){
     if (currentTime[i] === ":"){
       numberMesh.geometry.computeBoundingBox();
       const width = Math.abs(numberMesh.geometry.boundingBox.max.x - numberMesh.geometry.boundingBox.min.x);
-      numberMesh.position.x += (CHARSPACE / 2) - (width / 2)
-
-      const normal = numberMesh.geometry.getAttribute('normal');
-      const position = numberMesh.geometry.getAttribute('position');
-      createNormals(normal, position)
+      const moveXpos = (CHARSPACE / 2) - (width / 2)
+      numberMesh.position.x += moveXpos;
+      generateNormals(numberMesh, moveXpos);
     }
     numberMesh.name = `clone_${i}_${currentTime[i]}`
     numberMesh.visible = true;
@@ -185,15 +183,46 @@ function generate3DTime(currentTime){
   console.log(scene)
 }
 
-function createNormals(normal, position){
-  for (let i = 0; i < normal.length; i+=3){
-    let dir = new THREE.Vector3(normal.array[i], normal.array[i + 1], normal.array[i + 2]);
-    let origin = new THREE.Vector3(position.array[i], position.array[i + 1], position.array[i + 2]);
-    let helper = new THREE.ArrowHelper(dir, origin, 1, 0x00ff00);
-    helper.position.copy(origin);
-    scene.add(helper);
+function generateNormals(mesh, moveXpos){
+  // check out the normal attribute of a cube
+  // let normal = boxGeometry.getAttribute('normal');
+  const position = mesh.geometry.getAttribute('position');
+
+  // create and set up an arrow helper to find the direction of the first normal value
+  for(let i = 0; i < position.count; i+=3){
+    // const a = new THREE.Vector3(position.array[index.getX(i) * 3], position.array[index.getX(i) * 3 + 1], position.array[index.getX(i) * 3 + 2])
+    // const b = new THREE.Vector3(position.array[index.getY(i) * 3], position.array[index.getY(i) * 3 + 1], position.array[index.getY(i) * 3 + 2])
+    // const c = new THREE.Vector3(position.array[index.getZ(i) * 3], position.array[index.getZ(i) * 3 + 1], position.array[index.getZ(i) * 3 + 2])
+    const a = new THREE.Vector3(position.getX(i), position.getY(i), position.getZ(i));
+    const b = new THREE.Vector3(position.getX(i + 1), position.getY(i + 1), position.getZ(i + 1));
+    const c = new THREE.Vector3(position.getX(i + 2), position.getY(i + 2), position.getZ(i + 2));
+
+    const triangle = new THREE.Triangle(a, b, c);
+    
+    const normal = new THREE.Vector3()
+    const midPoint = new THREE.Vector3()
+    triangle.getNormal(normal);
+    triangle.getMidpoint(midPoint)
+
+    // if (i === 0) {
+    //   console.log(a, b, c, normal, midPoint, index.getX(0), index.getY(0), index.getZ(0))
+    // }
+
+    let helper = new THREE.ArrowHelper(normal, midPoint, 1, 0xff0000);
+    helper.position.x += moveXpos + 5 * CHARSPACE
+    scene.add(helper)
   }
 }
+
+// function createNormals(normal, position){
+//   for (let i = 0; i < normal.length; i+=3){
+//     let dir = new THREE.Vector3(normal.array[i], normal.array[i + 1], normal.array[i + 2]);
+//     let origin = new THREE.Vector3(position.array[i], position.array[i + 1], position.array[i + 2]);
+//     let helper = new THREE.ArrowHelper(dir, origin, 1, 0x00ff00);
+//     helper.position.copy(origin);
+//     scene.add(helper);
+//   }
+// }
 
 function refresh3DTime(currentTime){
   for (let i = 0; i < time3DGroup.children.length; i++){
@@ -253,11 +282,11 @@ function render(){
   statsFPS.update();
   statsMemory.update();
   updateTime();
-  particlesArr.forEach((particle, i) =>{
-    updateParticle(particle, time);
-    posArray.set([particle[0], particle[1], particle[2]], i * 3)
-  });
-  particlesMesh.geometry.attributes.position.needsUpdate = true;
+  // particlesArr.forEach((particle, i) =>{
+  //   updateParticle(particle, time);
+  //   posArray.set([particle[0], particle[1], particle[2]], i * 3)
+  // });
+  // particlesMesh.geometry.attributes.position.needsUpdate = true;
 
   requestAnimationFrame(render)
   renderer.render(scene, camera)
