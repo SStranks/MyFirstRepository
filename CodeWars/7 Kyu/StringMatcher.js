@@ -13,7 +13,8 @@
 
 // My Solution
 function isMatching(string, str1, str2){
-  let strFind = (str1 + str2).replace(" ", "").toLowerCase().split("").sort((a, b) => a < b ? 1 : -1).join("");
-  let origStr = string.replace(" ", "").split("").sort((a, b) => a < b ? 1 : -1).join("");
+  let strFind = (str1 + str2).replace(/\s/g, "").toLowerCase().split("").sort((a, b) => a < b ? 1 : -1).join("");
+  let origStr = string.replace(/\s/g, "").toLowerCase().split("").sort((a, b) => a < b ? 1 : -1).join("");
   return strFind === origStr
 }
+

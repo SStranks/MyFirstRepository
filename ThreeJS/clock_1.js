@@ -172,6 +172,10 @@ function generate3DTime(currentTime){
       numberMesh.geometry.computeBoundingBox();
       const width = Math.abs(numberMesh.geometry.boundingBox.max.x - numberMesh.geometry.boundingBox.min.x);
       numberMesh.position.x += (CHARSPACE / 2) - (width / 2)
+
+      const normal = numberMesh.geometry.getAttribute('normal');
+      const position = numberMesh.geometry.getAttribute('position');
+      createNormals(normal, position)
     }
     numberMesh.name = `clone_${i}_${currentTime[i]}`
     numberMesh.visible = true;
@@ -179,6 +183,16 @@ function generate3DTime(currentTime){
   }
   scene.add(time3DGroup);
   console.log(scene)
+}
+
+function createNormals(normal, position){
+  for (let i = 0; i < normal.length; i+=3){
+    let dir = new THREE.Vector3(normal.array[i], normal.array[i + 1], normal.array[i + 2]);
+    let origin = new THREE.Vector3(position.array[i], position.array[i + 1], position.array[i + 2]);
+    let helper = new THREE.ArrowHelper(dir, origin, 1, 0x00ff00);
+    helper.position.copy(origin);
+    scene.add(helper);
+  }
 }
 
 function refresh3DTime(currentTime){
