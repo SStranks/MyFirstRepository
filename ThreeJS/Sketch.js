@@ -1,5 +1,6 @@
 import { getTime, cloneObject } from './utils'
 import TextCharMesh from './TextCharMesh';
+import Particle from './Particle'
 
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -12,8 +13,12 @@ import { VideoTexture } from 'three';
 
 
 export default class Sketch {
-  constructor(options){
-    this.charSpace = options.charSpace || 5;
+  constructor(settings){
+    this.settings = settings.settings || {}
+    this.guiConfig = settings.guiConfig || false;
+    this.particleCount = settings.settings.particles || 1000;
+    this.particleSize = settings.settings.particleSize || 0.005;
+    this.charSpace = settings.charSpace || 5;
     this.textMeshes = {};
     this.time3DGroup = new THREE.Group();
     this._Initialize();
@@ -73,10 +78,47 @@ export default class Sketch {
       }
       this._Generate3DTime();
     }.bind(this));
+    this._PopulateParticles();
+  }
+    
+  _PopulateParticles() {
+    if (this.particles) {
+      this.particlesGeometry.dispose();
+      this.particlesMaterial.dispose();
+      this._scene.remove(this.points)
+    }
+    this.particles = [];
+    console.log(this.particles)
+    this.positions = new Float32Array(this.settings.particles * 3);
+
+    for (let i = 0; i < this.settings.particles; i++){
+      this.particles.push(new Particle())
+    }
+
+    this.particlesGeometry = new THREE.BufferGeometry;
+    this.particlesGeometry.setAttribute("position", new THREE.BufferAttribute(this.positions, 3));
+    this.particlesMaterial = new THREE.PointsMaterial({ size: this.particleSize })
+    this.points = new THREE.Points(this.particlesGeometry, this.particlesMaterial);
+    this._scene.add(this.points);
+  }
+
+  _UpdateParticles() {
+    this.particles.forEach((particle, i) => {
+      particle.position.y -= 0.05;
+      if (particle.position.y < 0) particle.position.y = 10;
+      this.positions.set([particle.position.x, particle.position.y, particle.position.z], i * 3)
+    });
+    this.points.geometry.attributes.position.needsUpdate = true;
   }
 
   _Debug() {
-    // this._gui = new dat.GUI();
+    console.log(this.settings, "Test")
+    this._gui = new dat.GUI();
+    if (this.guiConfig){
+      this._gui.add(this.settings, "particles", 1000, 100000, 1000).onFinishChange(() => {
+        this._PopulateParticles();
+      });
+    }
     // const world = {}
     // Stats: FPS
     this._statsFPS = new Stats();
@@ -151,11 +193,7 @@ export default class Sketch {
     this._statsFPS.update();
     this._statsMemory.update();
     this._UpdateTime();
-    // particlesArr.forEach((particle, i) =>{
-    //   updateParticle(particle, time);
-    //   posArray.set([particle[0], particle[1], particle[2]], i * 3)
-    // });
-    // particlesMesh.geometry.attributes.position.needsUpdate = true;
+    this._UpdateParticles();
 
     requestAnimationFrame(this._Render.bind(this))
     this._renderer.render(this._scene, this._camera)
