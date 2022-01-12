@@ -3,14 +3,12 @@
 import * as THREE from 'three';
 
 export default class Particle {
-  constructor(args){
+  constructor(args) {
+    this.args = args || {};
     this.position = new THREE.Vector3(
-      // args.x * Math.random() || 2 * Math.random(),
-      // args.y * Math.random() || 10 * Math.random(),
-      // args.z * Math.random() || 2.5 * Math.random()
-      2 * Math.random(),
-      10 * Math.random(),
-      2.5 * Math.random()
+      (this.args.x || 2) * Math.random(),
+      (this.args.y || 10) * Math.random(),
+      (this.args.z || 2.5) * Math.random()
     )
     // this.size = args.size || 0.005;
     // this.color = args.color || 
@@ -19,18 +17,12 @@ export default class Particle {
   }
 }
 
-// position: new THREE.Vector3(
-//   (Math.random() * 2 - 1) * 1.0,
-//   (Math.random() * 2 - 1) * 1.0,
-//   (Math.random() * 2 - 1) * 1.0),
+
 // colour: new THREE.Color(),
 // life: life,
 // maxLife: life,
 // velocity: new THREE.Vector3(0, -15, 0),
 
-// this.pos = new Vec2();
-// this.pos.x = args.x||0;
-// this.pos.y = args.y||0;
 // this.gravity = -0.1 - Math.random()/4
 // this.slowGravity = -0.02 - Math.random()/10
 // this.vel = new Vec2(0,this.gravity);
