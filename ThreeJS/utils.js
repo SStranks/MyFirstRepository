@@ -42,6 +42,13 @@ export function generateNormals(mesh, indexed){
   return arrowHelpers
 }
 
+export function colors(){
+  const light = ['#fcf8f2', '#f8f3ec', '#bdb392', '#e5d8ac', '#e1bf8f', '#cbb496', '#eecea6'];
+  const dark = ['#af7d4b', '#917955', '#877454', '#695742', '#604a33'];
+  const colors = light.concat(dark);
+  return colors
+}
+
 export function getTime(){
   const date = new Date();
   let hour = date.getHours();
