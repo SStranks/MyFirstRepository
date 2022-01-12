@@ -4,6 +4,12 @@ import './style.css'
 import Sketch from './Sketch.js';
 
 new Sketch({
+  guiConfig: true,
+  settings: {
+    particles: 5000,
+    particleSize: 0.005
+  }
+
   // dom: document.getElementById("container"),
   // config: false,
   // url: myimage,
