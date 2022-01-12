@@ -6,6 +6,9 @@ import Sketch from './Sketch.js';
 new Sketch({
   guiConfig: true,
   settings: {
+    particleSpreadX: 2,
+    particleSpreadY: 10,
+    particleSpreadZ: 2.5,
     particles: 5000,
     particleSize: 0.005
   }
