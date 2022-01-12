@@ -1,11 +1,13 @@
-import { getTime, cloneObject } from './utils'
-import TextCharMesh from './TextCharMesh';
-import Particle from './Particle'
-
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 import Stats from 'three/examples/jsm/libs/stats.module';
+
+import { getTime, cloneObject, colors } from './utils'
+import TextCharMesh from './TextCharMesh';
+import Particle from './Particle'
+import pVertex from './shader/vertexParticle.glsl'
+import pFragment from './shader/fragmentParticle.glsl'
 
 import * as dat from 'dat.gui';
 import gsap from 'gsap';
@@ -14,7 +16,9 @@ import { VideoTexture } from 'three';
 
 export default class Sketch {
   constructor(settings){
-    this.settings = settings.settings || {}
+    this.settings = settings.settings || {};
+    this.palette = colors();
+    this.palette = this.palette.map((c) => new THREE.Color(c));
     this.guiConfig = settings.guiConfig || false;
     this.particleCount = settings.settings.particles || 1000;
     this.particleSize = settings.settings.particleSize || 0.005;
@@ -59,8 +63,6 @@ export default class Sketch {
     this._controls.update();
     
     // Helpers
-    // const lightHelper = new THREE.DirectionalLightHelper(light);
-    // const gridHelper = new THREE.GridHelper(200, 50);
   }
 
   _AddObjects() {
@@ -88,16 +90,31 @@ export default class Sketch {
       this._scene.remove(this.points)
     }
     this.particles = [];
-    console.log(this.particles)
     this.positions = new Float32Array(this.settings.particles * 3);
+    this.rands = new Float32Array(this.settings.particles);
 
+    const args = { x: this.settings.particleSpreadX, y: this.settings.particleSpreadY, z: this.settings.particleSpreadZ };
     for (let i = 0; i < this.settings.particles; i++){
-      this.particles.push(new Particle())
+      this.particles.push(new Particle(args))
+      this.rands.set([Math.random()], i);
     }
 
     this.particlesGeometry = new THREE.BufferGeometry;
     this.particlesGeometry.setAttribute("position", new THREE.BufferAttribute(this.positions, 3));
-    this.particlesMaterial = new THREE.PointsMaterial({ size: this.particleSize })
+    this.particlesGeometry.setAttribute("rands", new THREE.BufferAttribute(this.rands, 1));
+    // this.particlesMaterial = new THREE.PointsMaterial({ size: this.particleSize })
+
+    this.particlesMaterial = new THREE.ShaderMaterial({
+      // side: THREE.DoubleSide,
+      uniforms: {
+        palette: { value: this.palette },
+        size: { value: this.particleSize }
+      },
+      // blending: THREE.AdditiveBlending,
+      vertexShader: pVertex,
+      fragmentShader: pFragment
+    });
+
     this.points = new THREE.Points(this.particlesGeometry, this.particlesMaterial);
     this._scene.add(this.points);
   }
@@ -105,7 +122,7 @@ export default class Sketch {
   _UpdateParticles() {
     this.particles.forEach((particle, i) => {
       particle.position.y -= 0.05;
-      if (particle.position.y < 0) particle.position.y = 10;
+      if (particle.position.y < 0) particle.position.y = this.settings.particleSpreadY;
       this.positions.set([particle.position.x, particle.position.y, particle.position.z], i * 3)
     });
     this.points.geometry.attributes.position.needsUpdate = true;
@@ -116,6 +133,15 @@ export default class Sketch {
     this._gui = new dat.GUI();
     if (this.guiConfig){
       this._gui.add(this.settings, "particles", 1000, 100000, 1000).onFinishChange(() => {
+        this._PopulateParticles();
+      });
+      this._gui.add(this.settings, "particleSpreadX", 1, 10, 0.5).onFinishChange(() => {
+        this._PopulateParticles();
+      });
+      this._gui.add(this.settings, "particleSpreadY", 5, 10, 0.5).onFinishChange(() => {
+        this._PopulateParticles();
+      });
+      this._gui.add(this.settings, "particleSpreadZ", 1, 2.5, 0.25).onFinishChange(() => {
         this._PopulateParticles();
       });
     }
