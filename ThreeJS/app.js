@@ -10,7 +10,9 @@ new Sketch({
     particleSpreadY: 10,
     particleSpreadZ: 2.5,
     particles: 5000,
-    particleSize: 0.005
+    particleSize: 0.005,
+    velocity: 0.075,
+    gravity: 0.05
   }
 
   // dom: document.getElementById("container"),

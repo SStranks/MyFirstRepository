@@ -93,9 +93,15 @@ export default class Sketch {
     this.positions = new Float32Array(this.settings.particles * 3);
     this.rands = new Float32Array(this.settings.particles);
 
-    const args = { x: this.settings.particleSpreadX, y: this.settings.particleSpreadY, z: this.settings.particleSpreadZ };
+    const args = { 
+      x: this.settings.particleSpreadX, 
+      y: this.settings.particleSpreadY, 
+      z: this.settings.particleSpreadZ,
+      velocity: this.settings.velocity,
+      gravity: this.settings.gravity
+    };
     for (let i = 0; i < this.settings.particles; i++){
-      this.particles.push(new Particle(args))
+      this.particles.push(new Particle(args));
       this.rands.set([Math.random()], i);
     }
 
@@ -121,8 +127,11 @@ export default class Sketch {
 
   _UpdateParticles() {
     this.particles.forEach((particle, i) => {
-      particle.position.y -= 0.05;
-      if (particle.position.y < 0) particle.position.y = this.settings.particleSpreadY;
+      if (particle.position.y < 0) {
+        particle.position.y = this.settings.particleSpreadY;
+        particle.velocity.y = this.settings.velocity;
+      };
+      particle.update();
       this.positions.set([particle.position.x, particle.position.y, particle.position.z], i * 3)
     });
     this.points.geometry.attributes.position.needsUpdate = true;

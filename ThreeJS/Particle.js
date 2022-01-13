@@ -10,10 +10,31 @@ export default class Particle {
       (this.args.y || 10) * Math.random(),
       (this.args.z || 2.5) * Math.random()
     )
+    this.random = Math.random();
+    this.gravity = args.gravity - (Math.random() * 0.05);
+    this.velocity = new THREE.Vector3();
+    this._initialVelocity(args.velocity);
+    this.dvMax = 0.37
+    // this.checkCollision = false;
     // this.size = args.size || 0.005;
     // this.color = args.color || 
-    // this.velocity = args.velocity || 0;
-    // this.checkCollision = false;
+  }
+
+  _initialVelocity() {
+    if (this.random > 0.95) this.velocity.x = 0.05;
+    if (this.random < 0.05) this.velocity.x = -0.05;
+    this.velocity.y = this.args.velocity;
+    if (this.random > 0.95) this.velocity.z = 0.05;
+    if (this.random > 0.05) this.velocity.z = -0.05;
+  }
+
+  update() {
+    this.position.x += this.velocity.x;
+    this.velocity.x /= 1.2;
+    this.position.z += this.velocity.z;
+    this.velocity.z /= 1.2;
+    this.position.y -= this.velocity.y;
+    if (this.velocity.y < this.dvMax) this.velocity.y += this.gravity;
   }
 }
 
