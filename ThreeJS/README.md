@@ -10,3 +10,10 @@
 
 - Completely refactored the base code into a Class based system.
 - Abstracted some processes into a new TextCharMesh Class.
+
+##### 13/01/2022
+
+- Added back in the particle system.
+- Abstracted a particle to a new Class.
+- Added in GUI controls for particle mesh spread and count.
+- Created a custom fragment and vertex shader for the particle system; selects 1 of 12 'sand' colours from palette.
