@@ -129,7 +129,6 @@ export default class Sketch {
   }
 
   _Debug() {
-    console.log(this.settings, "Test")
     this._gui = new dat.GUI();
     if (this.guiConfig){
       this._gui.add(this.settings, "particles", 1000, 100000, 1000).onFinishChange(() => {
