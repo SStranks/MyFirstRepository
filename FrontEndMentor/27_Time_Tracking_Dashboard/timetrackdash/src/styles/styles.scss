@@ -1,0 +1,53 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || App                      */
+/*   3. || FrontEnd Mentor Footer   */
+/*   4. || Media Queries            */
+/* -------------------------------- */
+
+/*   FrontEndMentor Challenge       */
+/*   #Time Tracking Dashboard       */
+/*   version:   1.0                 */
+/*   date:      16/02/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+
+/*   1. || Imports                  */
+@use 'globals';
+@use 'variables';
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&family=Rubik:wght@300;400;500&display=swap');
+
+/*   2. || App                      */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/*   3. || FrontEnd Mentor Footer   */
+.attribution {
+  position: absolute;
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-align: center;
+  color: variables.$desaturated-blue;
+  display: block;
+  margin: 0 auto;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0);
+  width: 100%;
+  & a {
+    color: variables.$pale-blue;
+    &:hover {
+      //  background: var(--Instagram);
+      //  color: hsl(var(--Dark-Blue));
+      //  -webkit-background-clip: text;
+      //  background-clip: text;
+      color: variables.$white;
+      text-decoration: none;
+    }
+  }
+}
