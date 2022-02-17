@@ -4,7 +4,7 @@ import StatsCard from './StatsCard';
 
 function App() {
   const [userData, setUserData] = useState({ stats: [] });
-  const [activePeriod, setActivePeriod] = useState({ activePeriod: 'week' });
+  const [activePeriod, setActivePeriod] = useState('week');
 
   const timePeriods = [
     { title: 'day', txt: 'Daily' },
@@ -14,8 +14,9 @@ function App() {
 
   const statsSelectHandler = (event) => {
     const { id } = event.target;
-    setActivePeriod({ activePeriod: id });
+    setActivePeriod(id);
   };
+  console.log(activePeriod);
 
   const fetchStats = async () => {
     try {
@@ -41,7 +42,7 @@ function App() {
       key={item.title}
       title={item.title}
       icon={item.icon}
-      timeframes={item.timeframes}
+      timeFrames={item.timeframes}
       activePeriod={activePeriod}
     />
   ));

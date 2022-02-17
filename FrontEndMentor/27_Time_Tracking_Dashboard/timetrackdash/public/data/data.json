@@ -1,10 +1,10 @@
 {
   "name": "Jeremy Robson",
-  "img": "assets/image-jeremy.png",
+  "img": "data/images/image-jeremy.png",
   "stats": [
     {
       "title": "Work",
-      "icon": "assets/icon-work.svg",
+      "icon": "data/images/icon-work.svg",
       "timeframes": {
         "daily": {
           "current": 5,
@@ -22,7 +22,7 @@
     },
     {
       "title": "Play",
-      "icon": "assets/icon-play.svg",
+      "icon": "data/images/icon-play.svg",
       "timeframes": {
         "daily": {
           "current": 1,
@@ -40,7 +40,7 @@
     },
     {
       "title": "Study",
-      "icon": "assets/icon-study.svg",
+      "icon": "data/images/icon-study.svg",
       "timeframes": {
         "daily": {
           "current": 0,
@@ -58,7 +58,7 @@
     },
     {
       "title": "Exercise",
-      "icon": "assets/icon-exercise.svg",
+      "icon": "data/images/icon-exercise.svg",
       "timeframes": {
         "daily": {
           "current": 1,
@@ -76,7 +76,7 @@
     },
     {
       "title": "Social",
-      "icon": "assets/icon-social.svg",
+      "icon": "data/images/icon-social.svg",
       "timeframes": {
         "daily": {
           "current": 1,
@@ -94,7 +94,7 @@
     },
     {
       "title": "Self Care",
-      "icon": "assets/icon-self-care.svg",
+      "icon": "data/images/icon-self-care.svg",
       "timeframes": {
         "daily": {
           "current": 0,

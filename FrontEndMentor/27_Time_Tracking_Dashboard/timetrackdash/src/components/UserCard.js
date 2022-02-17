@@ -4,6 +4,7 @@ import StatSelector from './StatSelector';
 
 const UserCard = (props) => {
   const { img, name, activePeriod, timePeriods, click } = props;
+
   const periodSelector = timePeriods.map((item) => (
     <StatSelector
       key={item.title}
@@ -23,7 +24,7 @@ const UserCard = (props) => {
         <h2>Report for</h2>
         <span>{name}</span>
       </div>
-      <StatSelector>{periodSelector}</StatSelector>
+      {periodSelector}
     </div>
   );
 };

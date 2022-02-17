@@ -2,35 +2,43 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const StatsCard = (props) => {
-  const { title, activeTime, timeFrame } = props;
+  const { title, activePeriod, timeFrames, icon, id } = props;
 
   let currentPeriod;
   let previousPeriod;
   switch (true) {
-    case activeTime === 'day':
-      currentPeriod = timeFrame.daily.current;
-      previousPeriod = timeFrame.daily.previous;
+    case activePeriod === 'day':
+      currentPeriod = timeFrames.daily.current;
+      previousPeriod = timeFrames.daily.previous;
       break;
-    case activeTime === 'week':
-      currentPeriod = timeFrame.daily.current;
-      previousPeriod = timeFrame.daily.previous;
+    case activePeriod === 'week':
+      currentPeriod = timeFrames.weekly.current;
+      previousPeriod = timeFrames.weekly.previous;
       break;
-    case activeTime === 'month':
-      currentPeriod = timeFrame.daily.current;
-      previousPeriod = timeFrame.daily.previous;
+    case activePeriod === 'month':
+      currentPeriod = timeFrames.monthly.current;
+      previousPeriod = timeFrames.monthly.previous;
       break;
     default:
   }
 
+  console.log(currentPeriod, previousPeriod, activePeriod);
+
   return (
-    <div className="card">
-      <div />
+    <div className="card stats">
+      <div
+        className="stats__bar"
+        id={id}
+        style={{ backgroundImage: `url(${icon})` }}
+      />
       <div>
-        <h3>{title}</h3>
+        <h3 className="data__title">{title}</h3>
       </div>
       <div>
-        <span>{currentPeriod}hrs</span>
-        <span>Last Week - {previousPeriod}hrs</span>
+        <span className="data__number">{currentPeriod}hrs</span>
+        <span className="data__last-period">
+          Last Week - {previousPeriod}hrs
+        </span>
       </div>
     </div>
   );
@@ -38,14 +46,18 @@ const StatsCard = (props) => {
 
 StatsCard.propTypes = {
   title: PropTypes.string,
-  activeTime: PropTypes.string,
-  timeFrame: PropTypes.string,
+  activePeriod: PropTypes.string,
+  timeFrames: PropTypes.objectOf(PropTypes.object),
+  icon: PropTypes.string,
+  id: PropTypes.string,
 };
 
 StatsCard.defaultProps = {
   title: null,
-  activeTime: null,
-  timeFrame: null,
+  activePeriod: null,
+  timeFrames: null,
+  icon: null,
+  id: null,
 };
 
 export default StatsCard;
