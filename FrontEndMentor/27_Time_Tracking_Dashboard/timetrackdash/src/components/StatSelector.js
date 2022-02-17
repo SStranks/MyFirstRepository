@@ -7,7 +7,7 @@ const StatSelector = (props) => {
   return (
     <span
       id={id}
-      className={active ? 'menu__stats' : 'menu__stats active'}
+      className={active ? 'menu__stats active' : 'menu__stats'}
       onClick={click}
       onKeyDown={click}
       role="button"

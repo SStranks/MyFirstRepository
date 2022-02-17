@@ -16,7 +16,6 @@ function App() {
     const { id } = event.target;
     setActivePeriod(id);
   };
-  console.log(activePeriod);
 
   const fetchStats = async () => {
     try {
@@ -53,6 +52,7 @@ function App() {
         img={userData.img}
         click={statsSelectHandler}
         timePeriods={timePeriods}
+        activePeriod={activePeriod}
       />
       {stats}
     </>

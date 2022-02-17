@@ -4,7 +4,7 @@
   position: relative;
 
   &__bar {
-    border-radius: $border-radius;
+    border-radius: $border-radius $border-radius 0 0;
     height: 60px;
     width: 100%;
     overflow: hidden;
@@ -12,15 +12,42 @@
     background-repeat: no-repeat;
     background-position: 94% 30%;
   }
+
+  &__data {
+    margin-top: -5%;
+    padding: 1.5rem;
+    border-radius: $border-radius;
+    background-color: inherit;
+    &:hover {
+      cursor: pointer;
+      background-color: darken($desaturated-blue, 20%);
+    }
+  }
 }
 
 .data {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  &__title {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
   &__number {
+    display: block;
+    margin-bottom: 0.5rem;
     font-size: 3rem;
     font-weight: 300;
   }
+
   &__last-period {
-    font-size: 1.4rem;
+    color: $pale-blue;
+    font-size: 0.9rem;
     font-weight: 400;
   }
 }

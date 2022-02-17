@@ -17,14 +17,14 @@ const UserCard = (props) => {
 
   return (
     <div className="card intro">
-      <div>
+      <div className="user">
         <div>
           <img className="user__img" src={img} alt="user avatar" />
         </div>
         <h2 className="user__title">Report for</h2>
         <span className="user__name">{name}</span>
       </div>
-      {periodSelector}
+      <div className="menu">{periodSelector}</div>
     </div>
   );
 };

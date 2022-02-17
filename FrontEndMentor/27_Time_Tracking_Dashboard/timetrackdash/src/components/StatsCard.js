@@ -23,8 +23,6 @@ const StatsCard = (props) => {
     default:
   }
 
-  console.log(id);
-
   return (
     <div className="card stats">
       <div
@@ -32,14 +30,17 @@ const StatsCard = (props) => {
         id={id}
         style={{ backgroundImage: `url(${icon})` }}
       />
-      <div>
-        <h3 className="data__title">{title}</h3>
-      </div>
-      <div>
-        <span className="data__number">{currentPeriod}hrs</span>
-        <span className="data__last-period">
-          Last Week - {previousPeriod}hrs
-        </span>
+      <div className="stats__data">
+        <div className="data__header">
+          <h3 className="data__title">{title}</h3>
+          <img src="data/images/icon-ellipsis.svg" alt="stats menu" />
+        </div>
+        <div>
+          <span className="data__number">{currentPeriod}hrs</span>
+          <span className="data__last-period">
+            Last Week - {previousPeriod}hrs
+          </span>
+        </div>
       </div>
     </div>
   );

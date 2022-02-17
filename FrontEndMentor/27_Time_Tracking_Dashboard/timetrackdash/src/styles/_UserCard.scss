@@ -1,23 +1,47 @@
+@use 'variables' as *;
+
 .intro {
   grid-area: 1/1/3/2;
 }
 
-.user__title {
-  font-size: 1.4rem;
-  font-weight: 400;
+.user {
+  padding: 1.75rem;
+  background-color: $blue;
+  border-radius: $border-radius;
+  &__title {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: $pale-blue;
+  }
+
+  &__name {
+    font-size: 2.2rem;
+    font-weight: 300;
+  }
+
+  &__img {
+    height: 85px;
+    width: 85px;
+    border: solid 3px white;
+    border-radius: 50%;
+  }
 }
 
-.user__name {
-  font-size: 3rem;
-  font-weight: 300;
-}
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
 
-.menu__stats {
-  font-size: 1.8rem;
-  font-weight: 400;
-}
-
-.user__img {
-  height: 90px;
-  width: 90px;
+  &__stats {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: $pale-blue;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  .active {
+    color: white;
+  }
 }
