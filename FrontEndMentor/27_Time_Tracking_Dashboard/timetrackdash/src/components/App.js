@@ -3,11 +3,23 @@ import UserCard from './UserCard';
 import StatsCard from './StatsCard';
 
 function App() {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({ stats: [] });
+  const [activePeriod, setActivePeriod] = useState({ activePeriod: 'week' });
+
+  const timePeriods = [
+    { title: 'day', txt: 'Daily' },
+    { title: 'week', txt: 'Weekly' },
+    { title: 'month', txt: 'Monthly' },
+  ];
+
+  const statsSelectHandler = (event) => {
+    const { id } = event.target;
+    setActivePeriod({ activePeriod: id });
+  };
 
   const fetchStats = async () => {
     try {
-      const response = await fetch('./assets/data.json');
+      const response = await fetch('data/data.json');
       const data = await response.json();
       const loadedData = {
         name: data.name,
@@ -25,12 +37,22 @@ function App() {
   }, []);
 
   const stats = userData.stats.map((item) => (
-    <StatsCard key={item.title} title={item.title} icon={item.icon} timeframes={item.timeframes} />
+    <StatsCard
+      key={item.title}
+      title={item.title}
+      icon={item.icon}
+      timeframes={item.timeframes}
+      activePeriod={activePeriod}
+    />
   ));
 
   return (
     <div className="App">
-      <UserCard img={userData.img} />
+      <UserCard
+        img={userData.img}
+        click={statsSelectHandler}
+        timePeriods={timePeriods}
+      />
       {stats}
     </div>
   );
