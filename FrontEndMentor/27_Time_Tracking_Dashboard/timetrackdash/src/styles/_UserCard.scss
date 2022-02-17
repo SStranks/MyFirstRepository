@@ -1,0 +1,23 @@
+.intro {
+  grid-area: 1/1/3/2;
+}
+
+.user__title {
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.user__name {
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.menu__stats {
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.user__img {
+  height: 90px;
+  width: 90px;
+}

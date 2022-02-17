@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import UserCard from './UserCard';
 import StatsCard from './StatsCard';
 
@@ -48,14 +48,14 @@ function App() {
   ));
 
   return (
-    <div className="App">
+    <>
       <UserCard
         img={userData.img}
         click={statsSelectHandler}
         timePeriods={timePeriods}
       />
       {stats}
-    </div>
+    </>
   );
 }
 

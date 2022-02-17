@@ -16,13 +16,13 @@ const UserCard = (props) => {
   ));
 
   return (
-    <div className="card">
+    <div className="card intro">
       <div>
         <div>
-          <img src={img} alt="user avatar" />
+          <img className="user__img" src={img} alt="user avatar" />
         </div>
-        <h2>Report for</h2>
-        <span>{name}</span>
+        <h2 className="user__title">Report for</h2>
+        <span className="user__name">{name}</span>
       </div>
       {periodSelector}
     </div>

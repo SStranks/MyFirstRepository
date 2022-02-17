@@ -1,5 +1,17 @@
+@use 'variables' as *;
+
 .stats {
   position: relative;
+
+  &__bar {
+    border-radius: $border-radius;
+    height: 60px;
+    width: 100%;
+    overflow: hidden;
+    background-size: 80px auto;
+    background-repeat: no-repeat;
+    background-position: 94% 30%;
+  }
 }
 
 .data {
@@ -11,4 +23,28 @@
     font-size: 1.4rem;
     font-weight: 400;
   }
+}
+
+#work {
+  background-color: $work;
+}
+
+#play {
+  background-color: $play;
+}
+
+#study {
+  background-color: $study;
+}
+
+#exercise {
+  background-color: $exercise;
+}
+
+#social {
+  background-color: $social;
+}
+
+#self-care {
+  background-color: $self-care;
 }

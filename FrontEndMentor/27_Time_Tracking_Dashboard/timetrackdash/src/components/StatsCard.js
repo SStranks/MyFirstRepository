@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const StatsCard = (props) => {
-  const { title, activePeriod, timeFrames, icon, id } = props;
+  const { title, activePeriod, timeFrames, icon } = props;
+  const id = `${title.replace(' ', '-').toLowerCase()}`;
 
   let currentPeriod;
   let previousPeriod;
@@ -22,7 +23,7 @@ const StatsCard = (props) => {
     default:
   }
 
-  console.log(currentPeriod, previousPeriod, activePeriod);
+  console.log(id);
 
   return (
     <div className="card stats">
@@ -49,7 +50,6 @@ StatsCard.propTypes = {
   activePeriod: PropTypes.string,
   timeFrames: PropTypes.objectOf(PropTypes.object),
   icon: PropTypes.string,
-  id: PropTypes.string,
 };
 
 StatsCard.defaultProps = {
@@ -57,7 +57,6 @@ StatsCard.defaultProps = {
   activePeriod: null,
   timeFrames: null,
   icon: null,
-  id: null,
 };
 
 export default StatsCard;
