@@ -3,7 +3,6 @@
 /*   1. || Imports                  */
 /*   2. || App                      */
 /*   3. || FrontEnd Mentor Footer   */
-/*   4. || Media Queries            */
 /* -------------------------------- */
 
 /*   FrontEndMentor Challenge       */
@@ -49,6 +48,11 @@ main {
 }
 
 /*   3. || FrontEnd Mentor Footer   */
+footer {
+  position: relative;
+  height: fit-content;
+}
+
 .attribution {
   position: absolute;
   font-size: 0.8rem;
@@ -71,5 +75,8 @@ main {
       color: variables.$white;
       text-decoration: none;
     }
+  }
+  @media (max-width: variables.$mobile-xs) {
+    font-size: 0.7rem;
   }
 }
