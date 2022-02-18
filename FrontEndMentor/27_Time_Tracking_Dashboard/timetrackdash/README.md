@@ -28,8 +28,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [@SStranks87](https://github.com/SStranks/MyFirstRepository/tree/master/FrontEndMentor/27_Time_Tracking_Dashboard/timetrackdash)
+- Live Site URL: [@Netlify](https://620ff8894ecaaa2e646c6f95--nervous-mirzakhani-46e315.netlify.app/)
 
 ## My process
 
