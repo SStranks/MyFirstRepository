@@ -18,7 +18,7 @@ const UserCard = (props) => {
   return (
     <div className="card intro">
       <div className="user">
-        <div>
+        <div className="user__frame">
           <img className="user__img" src={img} alt="user avatar" />
         </div>
         <h2 className="user__title">Report for</h2>

@@ -29,6 +29,14 @@ main {
   row-gap: 30px;
   column-gap: 30px;
   padding: 12% 10%;
+
+  @media (max-width: variables.$desktop-sm) {
+    height: fit-content;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 40px;
+    padding: 10% 5%;
+  }
 }
 
 .card {

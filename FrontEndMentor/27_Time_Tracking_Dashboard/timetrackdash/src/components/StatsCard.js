@@ -41,7 +41,7 @@ const StatsCard = (props) => {
             alt="stats menu"
           />
         </div>
-        <div>
+        <div className="data__values">
           <span className="data__number">{currentPeriod}hrs</span>
           <span className="data__last-period">
             Last Week - {previousPeriod}hrs

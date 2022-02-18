@@ -6,9 +6,9 @@
   &:hover {
     cursor: pointer;
     background-color: darken($desaturated-blue, 20%);
-  }
-  &:hover .work-icon {
-    transform: scale(125%);
+    & .work-icon {
+      transform: scale(125%);
+    }
   }
 
   &__bar {
@@ -21,6 +21,16 @@
     background-repeat: no-repeat;
     background-position: 94% 30%;
     z-index: 1;
+
+    @media (max-width: $desktop-sm) {
+      height: 100px;
+    }
+    @media (max-width: $mobile-md) {
+      height: 80px;
+    }
+    @media (max-width: $mobile-xs) {
+      height: 60px;
+    }
 
     & img {
       position: absolute;
@@ -38,34 +48,41 @@
     background-color: inherit;
     z-index: 1;
   }
+
+  @media (max-width: $desktop-sm) {
+    margin-top: -2%;
+  }
 }
 
 .data {
+  &__values {
+    @media (max-width: $mobile-md) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1.5rem;
   }
-
   &__title {
     font-size: 1.2rem;
     font-weight: 400;
   }
-
   &__ellipsis {
     &:hover {
       filter: brightness(100);
     }
   }
-
   &__number {
     display: block;
     margin-bottom: 0.5rem;
     font-size: 3rem;
     font-weight: 300;
   }
-
   &__last-period {
     color: $pale-blue;
     font-size: 0.9rem;

@@ -14,11 +14,41 @@
   padding: 1.75rem;
   background-color: $blue;
   border-radius: $border-radius;
+
+  @media (max-width: $mobile-md) {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto auto auto;
+    row-gap: 0px;
+    justify-content: none;
+    align-items: center;
+  }
+
+  @media (max-width: $mobile-xs) {
+    padding: 0.75rem;
+  }
+
+  &__frame {
+    @media (max-width: $mobile-md) {
+      grid-row: 1/5;
+      margin-right: 2rem;
+    }
+    @media (max-width: $mobile-md) {
+      margin-right: 1rem;
+    }
+  }
+
   &__title {
     display: block;
     font-size: 0.8rem;
     font-weight: 400;
     color: $pale-blue;
+    @media (max-width: $mobile-md) {
+      grid-row: 2/3;
+      font-size: 1.5rem;
+    }
+    @media (max-width: $mobile-xs) {
+      font-size: 1rem;
+    }
   }
 
   &__name {
@@ -26,6 +56,12 @@
     font-size: 2.2rem;
     font-weight: 300;
     line-height: 1.2;
+    @media (max-width: $mobile-md) {
+      grid-row: 3/4;
+    }
+    @media (max-width: $mobile-xs) {
+      font-size: 1.5rem;
+    }
   }
 
   &__img {
@@ -33,6 +69,9 @@
     width: 85px;
     border: solid 3px white;
     border-radius: 50%;
+    @media (max-width: $mobile-xs) {
+      transform: scale(85%);
+    }
   }
 }
 
@@ -43,6 +82,11 @@
   justify-content: space-between;
   padding: 1.5rem;
 
+  @media (max-width: $desktop-sm) {
+    flex-direction: row;
+    align-items: center;
+  }
+
   &__stats {
     display: block;
     font-size: 1.1rem;
@@ -50,6 +94,9 @@
     color: $pale-blue;
     cursor: pointer;
     transition: 0.5s;
+    &:hover {
+      color: white;
+    }
   }
   .active {
     color: white;
