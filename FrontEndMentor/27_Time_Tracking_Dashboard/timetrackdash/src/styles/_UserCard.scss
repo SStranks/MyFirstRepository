@@ -5,18 +5,27 @@
 }
 
 .user {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto 1fr;
+  row-gap: 10px;
+  justify-content: space-between;
+  height: 70%;
   padding: 1.75rem;
   background-color: $blue;
   border-radius: $border-radius;
   &__title {
+    display: block;
     font-size: 0.8rem;
     font-weight: 400;
     color: $pale-blue;
   }
 
   &__name {
+    display: block;
     font-size: 2.2rem;
     font-weight: 300;
+    line-height: 1.2;
   }
 
   &__img {
@@ -30,6 +39,7 @@
 .menu {
   display: flex;
   flex-direction: column;
+  height: 30%;
   justify-content: space-between;
   padding: 1.5rem;
 

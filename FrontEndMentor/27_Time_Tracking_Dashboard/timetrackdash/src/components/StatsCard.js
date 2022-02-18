@@ -28,12 +28,18 @@ const StatsCard = (props) => {
       <div
         className="stats__bar"
         id={id}
-        style={{ backgroundImage: `url(${icon})` }}
-      />
+        // style={{ backgroundImage: `url(${icon})` }}
+      >
+        <img className="work-icon" src={icon} alt="work type" />
+      </div>
       <div className="stats__data">
         <div className="data__header">
           <h3 className="data__title">{title}</h3>
-          <img src="data/images/icon-ellipsis.svg" alt="stats menu" />
+          <img
+            className="data__ellipsis"
+            src="data/images/icon-ellipsis.svg"
+            alt="stats menu"
+          />
         </div>
         <div>
           <span className="data__number">{currentPeriod}hrs</span>

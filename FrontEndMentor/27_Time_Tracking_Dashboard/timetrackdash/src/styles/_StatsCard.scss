@@ -2,8 +2,17 @@
 
 .stats {
   position: relative;
+  transition: 0.5s;
+  &:hover {
+    cursor: pointer;
+    background-color: darken($desaturated-blue, 20%);
+  }
+  &:hover .work-icon {
+    transform: scale(125%);
+  }
 
   &__bar {
+    position: relative;
     border-radius: $border-radius $border-radius 0 0;
     height: 60px;
     width: 100%;
@@ -11,17 +20,23 @@
     background-size: 80px auto;
     background-repeat: no-repeat;
     background-position: 94% 30%;
+    z-index: 1;
+
+    & img {
+      position: absolute;
+      right: 5%;
+      z-index: 0;
+      transition: 0.5s;
+    }
   }
 
   &__data {
+    position: relative;
     margin-top: -5%;
     padding: 1.5rem;
     border-radius: $border-radius;
     background-color: inherit;
-    &:hover {
-      cursor: pointer;
-      background-color: darken($desaturated-blue, 20%);
-    }
+    z-index: 1;
   }
 }
 
@@ -36,6 +51,12 @@
   &__title {
     font-size: 1.2rem;
     font-weight: 400;
+  }
+
+  &__ellipsis {
+    &:hover {
+      filter: brightness(100);
+    }
   }
 
   &__number {
