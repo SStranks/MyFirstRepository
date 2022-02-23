@@ -1,0 +1,73 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || App                      */
+/*   3. || FrontEnd Mentor Footer   */
+/* -------------------------------- */
+
+/*   FrontEndMentor Challenge       */
+/*   #Advice Generator App          */
+/*   version:   1.0                 */
+/*   date:      23/02/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+
+/*   1. || Imports                  */
+@use 'globals';
+@use 'variables';
+@use 'Card';
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap');
+
+/*   2. || App                      */
+.hidden-h1 {
+  font-size: 0;
+  width: 1px;
+  height: 1px;
+  display: inline-block;
+  overflow: hidden;
+  position: absolute;
+  border: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+// main {
+//   }
+
+// .card {
+// }
+
+/*   3. || FrontEnd Mentor Footer   */
+footer {
+  position: relative;
+  height: fit-content;
+}
+
+.attribution {
+  position: absolute;
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-align: center;
+  color: variables.$desaturated-blue;
+  display: block;
+  margin: 0 auto;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 0);
+  width: 100%;
+  & a {
+    color: variables.$pale-blue;
+    &:hover {
+      //  background: var(--Instagram);
+      //  color: hsl(var(--Dark-Blue));
+      //  -webkit-background-clip: text;
+      //  background-clip: text;
+      color: variables.$white;
+      text-decoration: none;
+    }
+  }
+  @media (max-width: variables.$mobile-xs) {
+    font-size: 0.7rem;
+  }
+}
