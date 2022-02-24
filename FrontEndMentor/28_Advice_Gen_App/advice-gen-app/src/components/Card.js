@@ -7,7 +7,11 @@ const Card = (props) => {
     <div className="card">
       <h2 className="title">{title}</h2>
       <p className="quote">{quote}</p>
-      <img src="assets/pattern-divider-desktop.svg" alt="" />
+      <img
+        className="divider"
+        src="assets/pattern-divider-desktop.svg"
+        alt=""
+      />
       <div className="luminous">
         <img src="assets/icon-dice.svg" alt="dice" />
       </div>
@@ -21,7 +25,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-  title: 'Advice #',
+  title: 'ADVICE #',
   quote: 'Silence is golden.',
 };
 
