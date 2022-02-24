@@ -61,7 +61,7 @@ footer {
   width: 100%;
   & a {
     color: variables.$light-cyan;
-    transition: text-shadow 0.5s ease;
+    transition: all 1s ease;
     &:hover {
       //  background: var(--Instagram);
       //  color: hsl(var(--Dark-Blue));
@@ -70,7 +70,7 @@ footer {
       color: variables.$neon;
       text-shadow: 0 0 5px variables.$neon-light, 0 0 5px variables.$neon-light,
         0 0 5px variables.$neon-light;
-      transition: text-shadow 0.25s ease;
+      transition: all 0.25s ease;
       text-decoration: none;
     }
   }
