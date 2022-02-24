@@ -32,11 +32,13 @@
   clip: rect(1px, 1px, 1px, 1px);
 }
 
-// main {
-//   }
-
-// .card {
-// }
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
 
 /*   3. || FrontEnd Mentor Footer   */
 footer {
