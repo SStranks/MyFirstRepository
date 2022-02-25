@@ -39,8 +39,6 @@ function App() {
     gsap.from('.dice', { rotate: -360, duration: 2, ease: 'power4.out' });
     await gsap.to('.quote', { opacity: 0, duration: 0.5, ease: 'power1.in' });
     await fetchAdvice();
-    gsap.set('.card', { height: 'auto' });
-    gsap.from('.card', { height: `${cardHeight}px`, duration: 1 });
     gsap.to('.quote', {
       opacity: 1,
       duration: 1.5,
@@ -49,6 +47,8 @@ function App() {
         loading.current = false;
       },
     });
+    gsap.set('.card', { height: 'auto' });
+    gsap.from('.card', { height: `${cardHeight}px`, duration: 1 });
   };
 
   return <Card title={advice.id} quote={advice.quote} click={clickHandler} />;
