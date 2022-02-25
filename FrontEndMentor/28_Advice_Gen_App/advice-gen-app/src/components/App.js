@@ -40,7 +40,7 @@ function App() {
     await gsap.to('.quote', { opacity: 0, duration: 0.5, ease: 'power1.in' });
     await fetchAdvice();
     gsap.set('.card', { height: 'auto' });
-    gsap.from('.card', { height: `${cardHeight}px`, duration: 0.5 });
+    gsap.from('.card', { height: `${cardHeight}px`, duration: 1 });
     gsap.to('.quote', {
       opacity: 1,
       duration: 1.5,
