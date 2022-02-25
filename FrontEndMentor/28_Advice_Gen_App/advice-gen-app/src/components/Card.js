@@ -19,21 +19,21 @@ const Card = (props) => {
         role="button"
         tabIndex="0"
       >
-        <img src="assets/icon-dice.svg" alt="dice" />
+        <img className="dice" src="assets/icon-dice.svg" alt="dice" />
       </div>
     </div>
   );
 };
 
 Card.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.number,
   quote: PropTypes.string,
   click: PropTypes.func,
 };
 
 Card.defaultProps = {
   title: 'ADVICE #',
-  quote: 'Silence is golden.',
+  quote: null,
   click: null,
 };
 

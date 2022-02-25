@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 import Card from './Card';
 
 function App() {
-  const [advice, setAdvice] = useState({});
+  const [advice, setAdvice] = useState({ id: 0, quote: '' });
+  const loading = useRef(true);
 
   const fetchAdvice = async () => {
     try {
@@ -20,10 +22,33 @@ function App() {
 
   useEffect(() => {
     fetchAdvice();
+    gsap.from('.quote', {
+      opacity: 0,
+      duration: 1.25,
+      ease: 'power1.in',
+      onComplete: () => {
+        loading.current = false;
+      },
+    });
   }, []);
 
-  const clickHandler = () => {
-    fetchAdvice();
+  const clickHandler = async () => {
+    if (loading.current === true) return;
+    loading.current = true;
+    const cardHeight = document.querySelector('.card').offsetHeight;
+    gsap.from('.dice', { rotate: -360, duration: 2, ease: 'power4.out' });
+    await gsap.to('.quote', { opacity: 0, duration: 0.5, ease: 'power1.in' });
+    await fetchAdvice();
+    gsap.set('.card', { height: 'auto' });
+    gsap.from('.card', { height: `${cardHeight}px`, duration: 0.5 });
+    gsap.to('.quote', {
+      opacity: 1,
+      duration: 1.5,
+      ease: 'power1.in',
+      onComplete: () => {
+        loading.current = false;
+      },
+    });
   };
 
   return <Card title={advice.id} quote={advice.quote} click={clickHandler} />;
