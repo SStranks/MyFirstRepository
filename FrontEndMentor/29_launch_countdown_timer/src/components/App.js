@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Card from './Card';
+import setupGround from './setup';
 import updateGround from './ground';
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
   const previousTimeRef = useRef();
 
   const animate = (time) => {
-    if (previousTimeRef !== undefined) {
+    if (previousTimeRef.current !== undefined) {
       const deltaTime = time - previousTimeRef.current;
       updateGround(deltaTime);
     }
@@ -17,6 +18,7 @@ function App() {
   };
 
   useEffect(() => {
+    setupGround();
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
   }, []);
@@ -58,19 +60,13 @@ function App() {
       <div className="bg-mountains">
         <img
           className="mountains-1"
-          src="/assets/pattern-hills.svg"
+          src="/assets/pattern-hills-seamless.svg"
           alt=""
           data-ground
         />
         <img
           className="mountains-2"
-          src="/assets/pattern-hills.svg"
-          alt=""
-          data-ground
-        />
-        <img
-          className="mountains-3"
-          src="/assets/pattern-hills.svg"
+          src="/assets/pattern-hills-seamless.svg"
           alt=""
           data-ground
         />
