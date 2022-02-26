@@ -11,16 +11,16 @@ body {
   position: relative;
   height: 100%;
   width: 100%;
-  font-size: 28px;
-  font-weight: 800;
-  font-family: 'Manrope', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Red Hat Text', sans-serif;
   line-height: 1.6;
-  background: $dark-grayish-blue;
+  background: linear-gradient($Very-dark-blue, $Extremely-dark-blue);
   // background-image: url('./images/bg-bottom.svg'), url('./images/bg-top.svg');
   // background-repeat: no-repeat;
   // background-position: bottom left, top right;
   // background-size: auto;
-  color: $light-cyan;
+  color: $White;
 }
 
 img {

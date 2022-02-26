@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Card from './Card';
+import updateGround from './ground';
 
 function App() {
+  // const [state, setState] = useState(duration);
+  const requestRef = useRef();
+  const previousTimeRef = useRef();
+
+  const animate = (time) => {
+    if (previousTimeRef !== undefined) {
+      const deltaTime = time - previousTimeRef.current;
+      updateGround(deltaTime);
+    }
+    previousTimeRef.current = time;
+    requestRef.current = requestAnimationFrame(animate);
+  };
+
+  useEffect(() => {
+    requestRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(requestRef.current);
+  }, []);
+
   const duration = [
     { period: 'days', time: '08' },
     { period: 'hours', time: '23' },
