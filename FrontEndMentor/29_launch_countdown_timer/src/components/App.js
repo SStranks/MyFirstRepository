@@ -56,9 +56,24 @@ function App() {
         />
       </div>
       <div className="bg-mountains">
-        <img className="mountains-1" src="/assets/pattern-hills.svg" alt="" />
-        <img className="mountains-2" src="/assets/pattern-hills.svg" alt="" />
-        <img className="mountains-3" src="/assets/pattern-hills.svg" alt="" />
+        <img
+          className="mountains-1"
+          src="/assets/pattern-hills.svg"
+          alt=""
+          data-ground
+        />
+        <img
+          className="mountains-2"
+          src="/assets/pattern-hills.svg"
+          alt=""
+          data-ground
+        />
+        <img
+          className="mountains-3"
+          src="/assets/pattern-hills.svg"
+          alt=""
+          data-ground
+        />
       </div>
       <div className="bg-sky">
         <img className="stars-1" src="/assets/bg-stars.svg" alt="" />
