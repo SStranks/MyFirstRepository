@@ -5,17 +5,17 @@ const Card = (props) => {
   const { period, time } = props;
 
   return (
-    <>
-      <div>
+    <div>
+      <div className="card">
         <div>
           <span>{time}</span>
         </div>
-        <div>
-          <span>{time}</span>
-        </div>
+        {/* <div>
+            <span>{time}</span>
+          </div> */}
       </div>
       <h3>{period}</h3>
-    </>
+    </div>
   );
 };
 

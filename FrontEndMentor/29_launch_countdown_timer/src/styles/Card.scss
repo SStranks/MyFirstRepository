@@ -4,80 +4,27 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: fit-content;
-  width: 500px;
-  background-color: $grayish-blue;
-  border-radius: 15px;
-  padding: 1.75rem;
+  justify-content: center;
+  height: 140px;
+  width: 155px;
+  border-radius: 7px;
   text-align: center;
-  @media (max-width: $desktop-s) {
-    transform: scale(85%);
-  }
-  @media (max-width: $tablet) {
-    transform: scale(75%);
-  }
-  @media (max-width: $mobile-l) {
-    width: 525px;
-    margin-top: -50%;
-  }
-  @media (max-width: $mobile-m) {
-    width: 450px;
-    margin-top: -50%;
-  }
-  @media (max-width: $mobile-s) {
-    width: 390px;
-    margin-top: -50%;
-  }
+  background-color: $Dark-desaturated-blue;
+  box-shadow: 0 10px 0 0 $Extremely-dark-blue;
+  margin: 0 1.25rem;
+  margin-bottom: 2rem;
 }
 
-.title {
-  font-size: 0.5rem;
-  font-weight: 600;
-  letter-spacing: 0.4ch;
-  color: $neon;
-  margin-bottom: 1rem;
-  @media (max-width: $mobile-l) {
-    font-size: 0.4rem;
-  }
+span {
+  font-size: 5.5rem;
+  color: $Soft-red;
 }
 
-.quote {
-  color: $light-cyan;
-  margin-bottom: 1rem;
-  @media (max-width: $mobile-l) {
-    font-size: 1.1rem;
-  }
-  @media (max-width: $mobile-s) {
-    font-size: 1rem;
-  }
-}
-
-.divider {
-  height: auto;
-  width: 100%;
-  margin-bottom: 0.5rem;
-  @media (max-width: $mobile-l) {
-    margin-bottom: 2rem;
-  }
-}
-
-.luminous {
-  position: absolute;
-  bottom: 0;
-  transform: translate(0%, 50%);
-  align-self: center;
-  width: fit-content;
-  border-radius: 50%;
-  background-color: $neon;
-  padding: 0.65rem;
-  transition: box-shadow 0.5s ease-out;
-  &:hover {
-    cursor: pointer;
-    transition: box-shadow 0.25s ease-out;
-    background-color: scale-color($color: $neon, $lightness: 10%);
-    box-shadow: 0 0 20px 15px $neon-light;
-  }
-  @media (max-width: $mobile-l) {
-    transform: scale(150%) translate(0%, 30%);
-  }
+h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5ch;
+  text-transform: uppercase;
+  text-align: center;
+  color: $Grayish-blue;
 }

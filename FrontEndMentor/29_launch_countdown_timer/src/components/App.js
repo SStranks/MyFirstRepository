@@ -38,46 +38,30 @@ function App() {
       <div>
         <div className="counter">{time}</div>
       </div>
-      <div className="social_media">
+      <div className="social-media">
         <img
           className="facebook"
-          src="%PUBLIC_URL%/assets/icon-facebook.svg"
+          src="/assets/icon-facebook.svg"
           alt="facebook icon"
         />
         <img
           className="pinterest"
-          src="%PUBLIC_URL%/assets/icon-pinterest.svg"
+          src="/assets/icon-pinterest.svg"
           alt="pinterest icon"
         />
         <img
           className="instagram"
-          src="%PUBLIC_URL%/assets/icon-instagram.svg"
+          src="/assets/icon-instagram.svg"
           alt="instagram icon"
         />
       </div>
       <div className="bg-mountains">
-        <img
-          className="moutains-1"
-          src="%PUBLIC_URL%/assets/patterns-hills.svg"
-          alt=""
-        />
-        <img
-          className="moutains-2"
-          src="%PUBLIC_URL%/assets/patterns-hills.svg"
-          alt=""
-        />
+        <img className="mountains-1" src="/assets/pattern-hills.svg" alt="" />
+        <img className="mountains-2" src="/assets/pattern-hills.svg" alt="" />
+        <img className="mountains-3" src="/assets/pattern-hills.svg" alt="" />
       </div>
       <div className="bg-sky">
-        <img
-          className="stars-1"
-          src="%PUBLIC_URL%/assets/bg-stars.svg"
-          alt=""
-        />
-        <img
-          className="stars-2"
-          src="%PUBLIC_URL%/assets/bg-stars.svg"
-          alt=""
-        />
+        <img className="stars-1" src="/assets/bg-stars.svg" alt="" />
       </div>
     </>
   );
