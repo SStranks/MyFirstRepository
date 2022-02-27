@@ -7,12 +7,16 @@ const Card = (props) => {
   return (
     <div>
       <div className="card">
-        <div>
-          <span>{time}</span>
-        </div>
-        {/* <div>
+        <div className="card--top">
+          <div>
             <span>{time}</span>
-          </div> */}
+          </div>
+        </div>
+        <div className="card--bottom">
+          <div>
+            <span>{time}</span>
+          </div>
+        </div>
       </div>
       <h3>{period}</h3>
     </div>
