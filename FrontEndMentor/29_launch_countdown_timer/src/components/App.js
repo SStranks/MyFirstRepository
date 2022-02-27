@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import Card from './Card';
-import setupGround from './setup';
+import setupMovement from './setup';
 import updateGround from './ground';
+import updateSky from './sky';
 
 function App() {
   // const [state, setState] = useState(duration);
@@ -12,13 +13,14 @@ function App() {
     if (previousTimeRef.current !== undefined) {
       const deltaTime = time - previousTimeRef.current;
       updateGround(deltaTime);
+      updateSky(deltaTime);
     }
     previousTimeRef.current = time;
     requestRef.current = requestAnimationFrame(animate);
   };
 
   useEffect(() => {
-    setupGround();
+    setupMovement();
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
   }, []);
@@ -65,14 +67,15 @@ function App() {
           data-ground
         />
         <img
-          className="mountains-2"
+          className="mountains-1"
           src="/assets/pattern-hills-seamless.svg"
           alt=""
           data-ground
         />
       </div>
       <div className="bg-sky">
-        <img className="stars-1" src="/assets/bg-stars.svg" alt="" />
+        <img className="stars-1" src="/assets/bg-stars.svg" alt="" data-sky />
+        <img className="stars-1" src="/assets/bg-stars.svg" alt="" data-sky />
       </div>
     </>
   );
