@@ -1,12 +1,20 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Card from './Card';
-import setupMovement from './setup';
+import setupCSS from './setup';
 import updateGround from './ground';
 import updateSky from './sky';
+import updateTime from './time';
 
 function App() {
-  // const [state, setState] = useState(duration);
+  const [countdown, setCountdown] = useState([
+    { period: 'days', time: '08' },
+    { period: 'hours', time: '23' },
+    { period: 'minutes', time: '55' },
+    { period: 'seconds', time: '41' },
+  ]);
+
   const requestRef = useRef();
+  const secondsRef = useRef();
   const previousTimeRef = useRef();
 
   const animate = (time) => {
@@ -14,25 +22,24 @@ function App() {
       const deltaTime = time - previousTimeRef.current;
       updateGround(deltaTime);
       updateSky(deltaTime);
+      const getSeconds = new Date().getSeconds();
+      if (secondsRef.current !== getSeconds) {
+        secondsRef.current = getSeconds;
+        setCountdown((prevState) => updateTime(prevState));
+      }
     }
     previousTimeRef.current = time;
     requestRef.current = requestAnimationFrame(animate);
   };
 
   useEffect(() => {
-    setupMovement();
+    setupCSS();
+    secondsRef.current = new Date().getSeconds();
     requestRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(requestRef.current);
   }, []);
 
-  const duration = [
-    { period: 'days', time: '08' },
-    { period: 'hours', time: '23' },
-    { period: 'minutes', time: '55' },
-    { period: 'seconds', time: '41' },
-  ];
-
-  const time = duration.map((item) => (
+  const time = countdown.map((item) => (
     <Card key={item.period} period={item.period} time={item.time} />
   ));
 
