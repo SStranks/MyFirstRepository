@@ -13,7 +13,7 @@
   box-shadow: 0 10px 0 0 $Extremely-dark-blue;
   margin: 0 1.25rem;
   margin-bottom: 2rem;
-  perspective: 1000px;
+  perspective: 350px;
 }
 
 span {
@@ -131,9 +131,7 @@ h3 {
   background-color: darken($Dark-desaturated-blue, 5%);
   box-shadow: inset 0 -2px 3px -2px $Extremely-dark-blue;
   transform-origin: bottom left;
-  transform: rotateX(0deg);
   transform-style: preserve-3d;
-  transition: transform 0.5s;
   &::before {
     content: '';
     position: absolute;
@@ -179,10 +177,37 @@ h3 {
   }
   & .flap-back {
     background-color: $Dark-desaturated-blue;
+    box-shadow: inset 0 -2px 3px -2px rgba(221, 221, 221, 0.315);
     transform: rotateY(180deg);
     transform-style: preserve-3d;
     & span {
-      transform: rotateY(180deg) rotateX(180deg) translate(1.5%, -48%);
+      transform: rotateY(180deg) rotateX(180deg) translate(1.65%, -49%);
     }
+  }
+}
+
+.rotate-active {
+  animation: rotate1 0.35s ease-in forwards;
+}
+
+.rotate-active-copy {
+  animation: rotate2 0.35s ease-in forwards;
+}
+
+@keyframes rotate1 {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+
+@keyframes rotate2 {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-180deg);
   }
 }

@@ -17,6 +17,8 @@ function App() {
   const secondsRef = useRef();
   const previousTimeRef = useRef();
 
+  const previousCountdown = useRef(countdown);
+
   const animate = (time) => {
     if (previousTimeRef.current !== undefined) {
       const deltaTime = time - previousTimeRef.current;
@@ -25,7 +27,10 @@ function App() {
       const getSeconds = new Date().getSeconds();
       if (secondsRef.current !== getSeconds) {
         secondsRef.current = getSeconds;
-        setCountdown((prevState) => updateTime(prevState));
+        setCountdown((prevState) => {
+          previousCountdown.current = prevState;
+          return updateTime(prevState);
+        });
       }
     }
     previousTimeRef.current = time;
@@ -39,8 +44,13 @@ function App() {
     return () => cancelAnimationFrame(requestRef.current);
   }, []);
 
-  const time = countdown.map((item) => (
-    <Card key={item.period} period={item.period} time={item.time} />
+  const time = countdown.map((item, i) => (
+    <Card
+      key={item.period}
+      period={item.period}
+      time={item.time}
+      prevTime={previousCountdown.current[i].time}
+    />
   ));
 
   return (
