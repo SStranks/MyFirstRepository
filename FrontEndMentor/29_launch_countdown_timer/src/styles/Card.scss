@@ -30,36 +30,43 @@ h3 {
   color: $Grayish-blue;
 }
 
-.card--top {
+.card--top,
+.card--bottom,
+.card--flap {
   position: absolute;
-  top: 0;
   height: 70px;
   width: 100%;
-  border-radius: 15px 15px 0 0;
-  background-color: darken($Dark-desaturated-blue, 5%);
-  box-shadow: inset 0 -2px 3px -2px $Extremely-dark-blue;
-  transform-origin: bottom left;
-  transform: rotateX(0deg);
-  overflow: hidden;
   &::before {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
     width: 8px;
     height: 8px;
-    border-radius: 0 8px 0 0;
     background-color: $Extremely-dark-blue;
   }
   &::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    right: 0;
     width: 8px;
     height: 8px;
-    border-radius: 8px 0 0 0;
     background-color: $Extremely-dark-blue;
+  }
+}
+
+.card--top {
+  top: 0;
+  border-radius: 15px 15px 0 0;
+  background-color: darken($Dark-desaturated-blue, 5%);
+  box-shadow: inset 0 -2px 3px -2px $Extremely-dark-blue;
+  overflow: hidden;
+  &::before {
+    bottom: 0;
+    left: 0;
+    border-radius: 0 8px 0 0;
+  }
+  &::after {
+    bottom: 0;
+    right: 0;
+    border-radius: 8px 0 0 0;
   }
   & div {
     display: flex;
@@ -78,33 +85,20 @@ h3 {
 }
 
 .card--bottom {
-  position: absolute;
   bottom: 0;
-  height: 70px;
-  width: 100%;
   border-radius: 0 0 15px 15px;
   background-color: $Dark-desaturated-blue;
   box-shadow: inset 0 2px 3px -2px rgba(221, 221, 221, 0.315);
   overflow: hidden;
   &::before {
-    content: '';
-    position: absolute;
     top: 0;
     left: 0;
-    width: 8px;
-    height: 8px;
     border-radius: 0 0 8px 0;
-    background-color: $Extremely-dark-blue;
   }
   &::after {
-    content: '';
-    position: absolute;
     top: 0;
     right: 0;
-    width: 8px;
-    height: 8px;
     border-radius: 0 0 0 8px;
-    background-color: $Extremely-dark-blue;
   }
   & div {
     display: flex;
@@ -123,35 +117,22 @@ h3 {
 }
 
 .card--flap {
-  position: absolute;
   top: 0;
-  height: 70px;
-  width: 100%;
   border-radius: 15px 15px 0 0;
   background-color: darken($Dark-desaturated-blue, 5%);
   box-shadow: inset 0 -2px 3px -2px $Extremely-dark-blue;
   transform-origin: bottom left;
   transform-style: preserve-3d;
   &::before {
-    content: '';
-    position: absolute;
     bottom: 0;
     left: 0;
-    width: 8px;
-    height: 8px;
     border-radius: 0 8px 0 0;
-    background-color: $Extremely-dark-blue;
     z-index: 4;
   }
   &::after {
-    content: '';
-    position: absolute;
     bottom: 0;
     right: 0;
-    width: 8px;
-    height: 8px;
     border-radius: 8px 0 0 0;
-    background-color: $Extremely-dark-blue;
   }
   & div {
     position: absolute;
@@ -179,7 +160,6 @@ h3 {
     background-color: $Dark-desaturated-blue;
     box-shadow: inset 0 -2px 3px -2px rgba(221, 221, 221, 0.315);
     transform: rotateY(180deg);
-    transform-style: preserve-3d;
     & span {
       transform: rotateY(180deg) rotateX(180deg) translate(1.65%, -49%);
     }
