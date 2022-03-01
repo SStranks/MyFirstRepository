@@ -15,7 +15,6 @@
 /*   1. || Imports                  */
 @use 'globals';
 @use 'variables';
-// @use 'Card';
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@600;700&display=swap');
 
 /*   2. || App                      */
@@ -49,7 +48,23 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 0.5ch;
   margin-bottom: 8rem;
+  text-align: center;
   z-index: 3;
+  @media (max-width: variables.$tablet) {
+    font-size: 1.25rem;
+  }
+  @media (max-width: variables.$mobile-l) {
+    font-size: 1.25rem;
+    padding: 0 6rem;
+    line-height: 1.5;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: variables.$mobile-m) {
+    padding: 0 3rem;
+  }
+  @media (max-width: variables.$mobile-s) {
+    padding: 0 2rem;
+  }
 }
 
 .counter {
@@ -73,6 +88,11 @@ h2 {
     --left: 0;
     left: calc(var(--left) * 1%);
     z-index: 3;
+    @media (max-width: variables.$tablet) {
+      height: auto;
+      width: 200%;
+      left: calc(var(--left) * 2%);
+    }
   }
 }
 
@@ -85,7 +105,7 @@ h2 {
     position: absolute;
     top: 0;
     height: auto;
-    width: 100%;
+    width: auto;
     --left: 0;
     left: calc(var(--left) * 1%);
     z-index: 1;
@@ -131,13 +151,7 @@ footer {
     color: variables.$White;
     transition: all 1s ease;
     &:hover {
-      //  background: var(--Instagram);
-      //  color: hsl(var(--Dark-Blue));
-      //  -webkit-background-clip: text;
-      //  background-clip: text;
       color: variables.$White;
-      // text-shadow: 0 0 5px variables.$neon-light, 0 0 5px variables.$neon-light,
-      //   0 0 5px variables.$neon-light;
       transition: all 0.25s ease;
       text-decoration: none;
     }

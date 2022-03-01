@@ -1,5 +1,9 @@
 @use 'variables' as *;
 
+.card-container {
+  min-width: auto;
+}
+
 .card {
   position: relative;
   display: flex;
@@ -14,6 +18,26 @@
   margin: 0 1.25rem;
   margin-bottom: 2rem;
   perspective: 350px;
+  @media (max-width: $tablet) {
+    transform: scale(80%);
+    margin: 0 -0.25rem;
+  }
+  @media (max-width: 600px) {
+    transform: scale(60%);
+    margin: 0 -1.25rem;
+  }
+  @media (max-width: $mobile-l) {
+    transform: scale(50%);
+    margin: -1.5rem -2rem;
+  }
+  @media (max-width: $mobile-m) {
+    transform: scale(50%);
+    margin: -1.5rem -2.25rem;
+  }
+  @media (max-width: $mobile-s) {
+    transform: scale(45%);
+    margin: -1.5rem -2.75rem;
+  }
 }
 
 span {
@@ -28,6 +52,15 @@ h3 {
   text-transform: uppercase;
   text-align: center;
   color: $Grayish-blue;
+  @media (max-width: $tablet) {
+    font-size: 0.85rem;
+  }
+  @media (max-width: $mobile-l) {
+    font-size: 0.65rem;
+  }
+  @media (max-width: $mobile-m) {
+    font-size: 0.55rem;
+  }
 }
 
 .card--top,

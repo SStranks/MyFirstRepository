@@ -15,7 +15,7 @@ const Card = (props) => {
   }
 
   return (
-    <div>
+    <div className="card-container">
       <div className="card" data-period={period}>
         <div className="card--top">
           <div>
