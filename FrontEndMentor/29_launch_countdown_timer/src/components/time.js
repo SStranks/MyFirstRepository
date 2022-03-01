@@ -1,4 +1,6 @@
 export default function updateTime(currentCounter) {
+  if (currentCounter.every((el) => el.time === '00')) return currentCounter;
+
   const newCounter = [
     { period: 'days', time: currentCounter[0].time },
     { period: 'hours', time: currentCounter[1].time },
