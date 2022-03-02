@@ -1,0 +1,78 @@
+/* -----|| Contents ||-----         */
+/* ------------------------         */
+/*   1. || Imports                  */
+/*   2. || App                      */
+/*   3. || FrontEnd Mentor Footer   */
+/* -------------------------------- */
+
+/*   FrontEndMentor Challenge       */
+/*   #To Do App                     */
+/*   version:   1.0                 */
+/*   date:      02/03/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+
+/*   1. || Imports                  */
+@use 'globals';
+@use 'variables';
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+/*   2. || App                      */
+#root {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5ch;
+}
+
+/*   3. || FrontEnd Mentor Footer   */
+footer {
+  position: relative;
+  height: fit-content;
+}
+
+.attribution {
+  position: absolute;
+  display: block;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 300;
+  text-align: center;
+  color: variables.$LT__Very-dark-grayish-blue;
+  margin: 0 auto;
+  transform: translate(-50%, -45%);
+  z-index: 3;
+  & a {
+    color: variables.$White;
+    transition: all 1s ease;
+    &:hover {
+      color: variables.$White;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+  }
+  @media (max-width: variables.$mobile-l) {
+    font-size: 0.4rem;
+    padding: 0 3.5rem;
+  }
+  @media (max-width: variables.$mobile-m) {
+    font-size: 0.4rem;
+    padding: 0 3rem;
+  }
+  @media (max-width: variables.$mobile-s) {
+    font-size: 0.35rem;
+    padding: 0 2rem;
+  }
+}

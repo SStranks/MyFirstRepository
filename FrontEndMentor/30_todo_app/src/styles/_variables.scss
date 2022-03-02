@@ -1,0 +1,29 @@
+/*  Colours      */
+/*  Primary      */
+$White: hsl(100, 100%, 100%);
+$Bright-blue: hsl(220, 98%, 61%);
+$Check-background: linear-gradient (hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+/*  Neutral      */
+/*  Light Theme  */
+$LT__Very-light-gray: hsl(0, 0%, 98%);
+$LT__Very-light-grayish-blue: hsl(236, 33%, 92%);
+$LT__Light-grayish-blue: hsl(233, 11%, 84%);
+$LT__Dark-grayish-blue: hsl(236, 9%, 61%);
+$LT__Very-dark-grayish-blue: hsl(235, 19%, 35%);
+/*  Dark Theme   */
+$DT__Very-dark-blue: hsl(235, 21%, 11%);
+$DT__Very-dark-desaturated-blue: hsl(235, 24%, 19%);
+$DT__Light-grayish-blue: hsl(234, 39%, 85%);
+$DT__Light-grayish-blue-hover: hsl(236, 33%, 92%);
+$DT__Dark-grayish-blue: hsl(234, 11%, 52%);
+$DT__Very-dark-grayish-blue: hsl(233, 14%, 35%);
+$DT__Very-dark-grayish-blue: hsl(237, 14%, 26%);
+
+/*  Breakpoints */
+$mobile-s: 320px;
+$mobile-m: 375px;
+$mobile-l: 425px;
+$tablet: 768px;
+$desktop-s: 1024px;
+$desktop-m: 1440px;
+$desktop-l: 2560px;
