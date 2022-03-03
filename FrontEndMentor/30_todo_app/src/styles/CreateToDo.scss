@@ -1,0 +1,11 @@
+@use 'variables' as *;
+
+.create-todo {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background-color: $White;
+  border-radius: 3px;
+  margin-bottom: 1.5rem;
+}

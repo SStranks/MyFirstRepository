@@ -14,6 +14,11 @@ function App() {
 
   return (
     <>
+      <img
+        className="header-background"
+        src="/assets/bg-desktop-light.jpg"
+        alt=""
+      />
       <header>
         <h1>Todo</h1>
         <img src="/assets/icon-sun.svg" alt="light dark theme switch" />

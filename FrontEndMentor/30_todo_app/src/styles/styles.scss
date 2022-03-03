@@ -29,10 +29,42 @@
   overflow: hidden;
 }
 
+.header-background {
+  position: absolute;
+  top: 0;
+  height: auto;
+  width: 100%;
+  z-index: 0;
+}
+
+header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  margin-bottom: 3rem;
+  z-index: 1;
+}
+
+main {
+  position: relative;
+  width: 40%;
+  & span {
+    font-size: 0.85rem;
+    color: variables.$LT__Dark-grayish-blue;
+    margin: 0 auto;
+  }
+}
+
 h1 {
+  display: inline;
   font-size: 2rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.5ch;
+  line-height: 1;
+  letter-spacing: 0.7ch;
+  color: variables.$White;
 }
 
 /*   3. || FrontEnd Mentor Footer   */
