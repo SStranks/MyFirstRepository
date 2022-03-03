@@ -3,7 +3,7 @@ import '../styles/CreateToDo.scss';
 
 const CreateToDo = () => {
   return (
-    <div className="create-todo">
+    <div className="card create-todo">
       <input type="checkbox" />
       <input type="text" placeholder="Create a new todo.." />
     </div>

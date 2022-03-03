@@ -74,9 +74,11 @@ h4 {
 p {
   font-size: 1rem;
   font-family: inherit;
-  font-weight: 700;
+  font-weight: 400;
   color: hsl(var(--Grayish-Blue));
-  line-height: 1.6;
+  line-height: 1.4;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 span {

@@ -7,7 +7,7 @@ const ListToDo = (props) => {
   console.log(items);
 
   const listItems = items.map((listItem) => (
-    <li className="list__item" key={listItem.id}>
+    <li className="card list__item" key={listItem.id}>
       <input type="checkbox" />
       <p>{listItem.task}</p>
       <img src="assets/icon-cross.svg" alt="remove list item" />
