@@ -17,10 +17,14 @@ const ListToDo = (props) => {
   return (
     <>
       <ul>{listItems}</ul>
-      <div className="filter-list">
-        <span>All</span>
-        <span>Active</span>
-        <span>Completed</span>
+      <div className="card filter-list">
+        <span>5 Items Left</span>
+        <div className="filter-options">
+          <span>All</span>
+          <span>Active</span>
+          <span>Completed</span>
+        </div>
+        <span>Clear Completed</span>
       </div>
     </>
   );
