@@ -33,14 +33,10 @@
 .header-background {
   position: absolute;
   top: 0;
-  height: 100%;
+  height: auto;
   width: 100%;
-  background-color: variables.$LT__Very-light-gray;
-  background-image: url('/assets/bg-desktop-light.jpg');
-  background-repeat: no-repeat;
-  background-size: 100%;
+  background-image: url('./assets/bg-desktop-light.jpg');
   z-index: 0;
-  transition: all 1s ease;
 }
 
 header {
@@ -87,14 +83,14 @@ h1 {
 }
 
 .card {
-  background-color: variables.$White;
+  background: variables.$White;
   padding: 0 1.5rem;
-  transition: background-color 1s ease;
   & input[type='checkbox'] {
     cursor: pointer;
     display: grid;
     place-content: center;
     appearance: none;
+    background-color: #fff;
     margin: 0;
     width: 25px;
     height: 25px;
@@ -136,14 +132,6 @@ h1 {
 }
 
 .dark-header {
-  background-color: variables.$DT__Very-dark-blue;
-  background-image: url('/assets/bg-desktop-dark.jpg');
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.dark-card {
-  background-color: variables.$DT__Very-dark-desaturated-blue;
 }
 
 /*   4. || FrontEnd Mentor Footer   */

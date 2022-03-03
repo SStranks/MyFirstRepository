@@ -45,6 +45,10 @@ li {
     margin: 0;
   }
   & .filter-options span {
+    cursor: pointer;
     margin: 0 0.25rem;
+  }
+  & .filter-clear {
+    cursor: pointer;
   }
 }

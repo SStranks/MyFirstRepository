@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CreateToDo from './CreateToDo';
 import ListToDo from './ListToDo';
 
 function App() {
+  const [theme, setTheme] = useState(true);
+
+  const themeHandler = () => {
+    return theme ? setTheme(false) : setTheme(true);
+  };
+
   const initialList = [
     { id: 1, complete: true, task: 'Complete online JavaScript course' },
     { id: 2, complete: false, task: 'Jog around the park 3x' },
@@ -14,18 +20,20 @@ function App() {
 
   return (
     <>
-      <img
-        className="header-background"
-        src="/assets/bg-desktop-light.jpg"
-        alt=""
-      />
+      <div className={`header-background ${!theme ? 'dark-header' : ''}`} />
       <header>
         <h1>Todo</h1>
-        <img src="/assets/icon-sun.svg" alt="light dark theme switch" />
+        <button
+          className={`${!theme ? 'dark-button' : ''}`}
+          type="button"
+          aria-label="theme toggle button"
+          onClick={themeHandler}
+          onKeyPress={themeHandler}
+        />
       </header>
       <main>
-        <CreateToDo />
-        <ListToDo items={initialList} />
+        <CreateToDo theme={theme} />
+        <ListToDo items={initialList} theme={theme} />
         <span className="instruction">Drag and drop to reorder list</span>
       </main>
     </>

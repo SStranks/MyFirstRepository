@@ -2,8 +2,7 @@
 /* ------------------------         */
 /*   1. || Imports                  */
 /*   2. || App                      */
-/*   3. || Light-Dark Themes        */
-/*   4. || FrontEnd Mentor Footer   */
+/*   3. || FrontEnd Mentor Footer   */
 /* -------------------------------- */
 
 /*   FrontEndMentor Challenge       */
@@ -33,14 +32,9 @@
 .header-background {
   position: absolute;
   top: 0;
-  height: 100%;
+  height: auto;
   width: 100%;
-  background-color: variables.$LT__Very-light-gray;
-  background-image: url('/assets/bg-desktop-light.jpg');
-  background-repeat: no-repeat;
-  background-size: 100%;
   z-index: 0;
-  transition: all 1s ease;
 }
 
 header {
@@ -52,13 +46,7 @@ header {
   margin-bottom: 3rem;
   z-index: 1;
   & button {
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    background-color: transparent;
     background-image: url('/assets/icon-moon.svg');
-    background-repeat: no-repeat;
-    background-position: center;
     transition: all 1s;
     &:hover {
       transform: scale(120%);
@@ -87,14 +75,14 @@ h1 {
 }
 
 .card {
-  background-color: variables.$White;
+  background: variables.$White;
   padding: 0 1.5rem;
-  transition: background-color 1s ease;
   & input[type='checkbox'] {
     cursor: pointer;
     display: grid;
     place-content: center;
     appearance: none;
+    background-color: #fff;
     margin: 0;
     width: 25px;
     height: 25px;
@@ -130,23 +118,7 @@ h1 {
   margin-top: 2.5rem;
 }
 
-/*   3. || Light-Dark Themes        */
-.dark-button {
-  background-image: url('/assets/icon-sun.svg');
-}
-
-.dark-header {
-  background-color: variables.$DT__Very-dark-blue;
-  background-image: url('/assets/bg-desktop-dark.jpg');
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.dark-card {
-  background-color: variables.$DT__Very-dark-desaturated-blue;
-}
-
-/*   4. || FrontEnd Mentor Footer   */
+/*   3. || FrontEnd Mentor Footer   */
 footer {
   position: relative;
   height: fit-content;
