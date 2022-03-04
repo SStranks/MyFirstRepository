@@ -20,13 +20,18 @@ li {
   & p {
     cursor: pointer;
   }
-  & img {
+  & .btn-delete {
     height: 25px;
     width: 25px;
     padding: 0.15rem;
     margin-left: auto;
     opacity: 50%;
-    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    background-image: url('/assets/icon-cross.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
   }
   &:first-child {
     border-radius: 5px 5px 0 0;

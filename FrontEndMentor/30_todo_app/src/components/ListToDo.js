@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import '../styles/ListToDo.scss';
 
 const ListToDo = (props) => {
-  const { items, theme } = props;
-  console.log(items);
+  const { items, theme, deleteTask } = props;
+
+  const deleteTaskHandler = (task) => {
+    deleteTask(task);
+  };
 
   const listItems = items.map((listItem) => (
     <li
@@ -13,7 +16,12 @@ const ListToDo = (props) => {
     >
       <input type="checkbox" />
       <p>{listItem.task}</p>
-      <img src="assets/icon-cross.svg" alt="remove list item" />
+      <button
+        className="btn-delete"
+        type="button"
+        aria-label="delete task"
+        onClick={() => deleteTaskHandler(listItem)}
+      />
     </li>
   ));
 
@@ -21,7 +29,7 @@ const ListToDo = (props) => {
     <>
       <ul>{listItems}</ul>
       <div className={`card filter-list ${!theme ? 'dark-card' : ''}`}>
-        <span>5 Items Left</span>
+        <span>{listItems.length} Items Left</span>
         <div className="filter-options">
           <span>All</span>
           <span>Active</span>
@@ -40,9 +48,11 @@ ListToDo.propTypes = {
     PropTypes.shape({ complete: PropTypes.bool, item: PropTypes.string })
   ),
   theme: PropTypes.bool,
+  deleteTask: PropTypes.func,
 };
 
 ListToDo.defaultProps = {
   items: null,
   theme: true,
+  deleteTask: null,
 };
