@@ -57,3 +57,8 @@ li {
     cursor: pointer;
   }
 }
+
+.task-complete {
+  text-decoration: line-through;
+  color: $LT__Light-grayish-blue;
+}
