@@ -54,7 +54,13 @@ li {
     margin: 0 0.25rem;
   }
   & .filter-clear {
-    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: $LT__Dark-grayish-blue;
+    background-color: transparent;
+    text-transform: none;
+    padding: 0;
   }
 }
 

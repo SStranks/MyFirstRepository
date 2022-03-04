@@ -31,6 +31,16 @@ function App() {
     });
   };
 
+  const clearCompleted = () => {
+    let completedTasks = [
+      ...document.querySelectorAll('[data-complete]:not([data-complete=""])'),
+    ];
+    completedTasks = completedTasks.map((el) => Number(el.attributes[1].value));
+    setTaskList((prevState) => {
+      return prevState.filter((task) => !completedTasks.includes(task.id));
+    });
+  };
+
   return (
     <>
       <div className={`header-background ${!theme ? 'dark-header' : ''}`} />
@@ -46,7 +56,12 @@ function App() {
       </header>
       <main>
         <CreateToDo theme={theme} newTaskHandler={newTaskHandler} />
-        <ListToDo items={taskList} theme={theme} deleteTask={deleteTask} />
+        <ListToDo
+          items={taskList}
+          theme={theme}
+          deleteTask={deleteTask}
+          clearTasks={clearCompleted}
+        />
         <span className="instruction">Drag and drop to reorder list</span>
       </main>
     </>

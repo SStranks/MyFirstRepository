@@ -13,12 +13,21 @@ const ListItem = (props) => {
     setTaskComplete(event.target.checked);
   };
 
+  if (taskComplete) {
+    console.log(listItem.id);
+  }
+
   return (
     <li
       className={`card list__item ${!theme ? 'dark-card' : ''}`}
       key={listItem.id}
+      data-complete={taskComplete ? listItem.id : ''}
     >
-      <input type="checkbox" onChange={checkBoxHandler} />
+      <input
+        type="checkbox"
+        onChange={checkBoxHandler}
+        defaultChecked={listItem.complete}
+      />
       <p className={taskComplete ? 'task-complete' : ''}>{listItem.task}</p>
       <button
         className="btn-delete"

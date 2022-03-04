@@ -4,7 +4,7 @@ import ListItem from './ListItem';
 import '../styles/ListToDo.scss';
 
 const ListToDo = (props) => {
-  const { items, theme, deleteTask } = props;
+  const { items, theme, deleteTask, clearTasks } = props;
 
   const listItems = items.map((listItem) => (
     <ListItem
@@ -26,7 +26,14 @@ const ListToDo = (props) => {
           <span>Active</span>
           <span>Completed</span>
         </div>
-        <span className="filter-clear">Clear Completed</span>
+        <button
+          type="button"
+          aria-label="clear completed tasks"
+          className="filter-clear"
+          onClick={clearTasks}
+        >
+          Clear Completed
+        </button>
       </div>
     </>
   );
@@ -44,10 +51,12 @@ ListToDo.propTypes = {
   ),
   theme: PropTypes.bool,
   deleteTask: PropTypes.func,
+  clearTasks: PropTypes.func,
 };
 
 ListToDo.defaultProps = {
   items: null,
   theme: true,
   deleteTask: null,
+  clearTasks: null,
 };
