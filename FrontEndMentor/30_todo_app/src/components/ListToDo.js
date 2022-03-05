@@ -39,7 +39,9 @@ const ListToDo = (props) => {
           <button
             type="button"
             aria-label="show all tasks"
-            className="filter-btn"
+            className={`filter-btn ${
+              filterTasks === 'all' ? 'filter-active' : ''
+            }`}
             onClick={() => filterHandler('all')}
           >
             All
@@ -47,7 +49,9 @@ const ListToDo = (props) => {
           <button
             type="button"
             aria-label="show active tasks"
-            className="filter-btn"
+            className={`filter-btn ${
+              filterTasks === 'active' ? 'filter-active' : ''
+            }`}
             onClick={() => filterHandler('active')}
           >
             Active
@@ -55,7 +59,9 @@ const ListToDo = (props) => {
           <button
             type="button"
             aria-label="show completed tasks"
-            className="filter-btn"
+            className={`filter-btn ${
+              filterTasks === 'completed' ? 'filter-active' : ''
+            }`}
             onClick={() => filterHandler('completed')}
           >
             Completed

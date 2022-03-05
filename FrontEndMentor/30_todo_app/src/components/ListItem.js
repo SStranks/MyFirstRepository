@@ -9,15 +9,20 @@ const ListItem = (props) => {
       className={`card list__item ${!theme ? 'dark-card' : ''}`}
       key={listItem.id}
       data-complete={listItem.complete ? listItem.id : ''}
+      draggable
     >
       <input
         type="checkbox"
         onChange={() => completeTask(listItem)}
         defaultChecked={listItem.complete}
+        id={listItem.id}
       />
-      <p className={listItem.complete ? 'task-complete' : ''}>
+      <label
+        className={listItem.complete ? 'task-complete' : ''}
+        htmlFor={listItem.id}
+      >
         {listItem.task}
-      </p>
+      </label>
       <button
         className="btn-delete"
         type="button"
