@@ -32,15 +32,39 @@ function App() {
   };
 
   const completeTask = (task) => {
-    const completeState = task.complete;
     setTaskList((prevState) => {
       const newState = [...prevState];
       const index = newState.map((el) => el.id).indexOf(task.id);
-      newState[index].complete = !completeState;
-      // newState[index].complete = !newState[index].complete;
+      newState[index] = {
+        ...newState[index],
+        complete: !newState[index].complete,
+      };
       return newState;
     });
   };
+
+  // const completeTask = (task) => {
+  //   setTaskList((prevState) => {
+  //     const newState = [...prevState];
+  //     const index = newState.map((el) => el.id).indexOf(task.id);
+  //     const mutant = { ...newState[index] };
+  //     mutant.complete = !mutant.complete;
+  //     newState[index] = mutant;
+  //     // NOTE:  newState[index].complete = !newState[index].complete;  WHY DOESN'T THIS WORK??
+  //     return newState;
+  //   });
+  // };
+
+  // const completeTask = (task) => {
+  //   const completeState = task.complete;
+  //   setTaskList((prevState) => {
+  //     const newState = [...prevState];
+  //     const index = newState.map((el) => el.id).indexOf(task.id);
+  //     newState[index].complete = !completeState;
+  //     // NOTE:  newState[index].complete = !newState[index].complete;  WHY DOESN'T THIS WORK??
+  //     return newState;
+  //   });
+  // };
 
   const clearCompleted = () => {
     let completedTasks = [
