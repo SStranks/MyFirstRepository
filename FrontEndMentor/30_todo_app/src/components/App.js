@@ -4,8 +4,8 @@ import ListToDo from './ListToDo';
 
 const initialList = [
   { id: 1, complete: true, task: 'Complete online JavaScript course' },
-  { id: 2, complete: false, task: 'Jog around the park 3x' },
-  { id: 3, complete: false, task: '10 minutes meditation' },
+  { id: 2, complete: true, task: 'Jog around the park 3x' },
+  { id: 3, complete: true, task: '10 minutes meditation' },
   { id: 4, complete: false, task: 'Read for 1 hour' },
   { id: 5, complete: false, task: 'Pick up groceries' },
   { id: 6, complete: false, task: 'Complete Todo App on Frontend Mentor' },
@@ -28,6 +28,17 @@ function App() {
   const deleteTask = (task) => {
     setTaskList((prevState) => {
       return prevState.filter((el) => el.id !== task.id);
+    });
+  };
+
+  const completeTask = (task) => {
+    const completeState = task.complete;
+    setTaskList((prevState) => {
+      const newState = [...prevState];
+      const index = newState.map((el) => el.id).indexOf(task.id);
+      newState[index].complete = !completeState;
+      // newState[index].complete = !newState[index].complete;
+      return newState;
     });
   };
 
@@ -60,6 +71,7 @@ function App() {
           items={taskList}
           theme={theme}
           deleteTask={deleteTask}
+          completeTask={completeTask}
           clearTasks={clearCompleted}
         />
         <span className="instruction">Drag and drop to reorder list</span>

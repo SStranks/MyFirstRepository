@@ -1,39 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const ListItem = (props) => {
-  const { deleteTask, theme, listItem } = props;
-  const [taskComplete, setTaskComplete] = useState(listItem.complete);
-
-  const deleteTaskHandler = (task) => {
-    deleteTask(task, theme, listItem);
-  };
-
-  const checkBoxHandler = (event) => {
-    setTaskComplete(event.target.checked);
-  };
-
-  if (taskComplete) {
-    console.log(listItem.id);
-  }
+  const { deleteTask, theme, listItem, completeTask } = props;
 
   return (
     <li
       className={`card list__item ${!theme ? 'dark-card' : ''}`}
       key={listItem.id}
-      data-complete={taskComplete ? listItem.id : ''}
+      data-complete={listItem.complete ? listItem.id : ''}
     >
       <input
         type="checkbox"
-        onChange={checkBoxHandler}
+        onChange={() => completeTask(listItem)}
         defaultChecked={listItem.complete}
       />
-      <p className={taskComplete ? 'task-complete' : ''}>{listItem.task}</p>
+      <p className={listItem.complete ? 'task-complete' : ''}>
+        {listItem.task}
+      </p>
       <button
         className="btn-delete"
         type="button"
         aria-label="delete task"
-        onClick={() => deleteTaskHandler(listItem)}
+        onClick={() => deleteTask(listItem)}
       />
     </li>
   );
@@ -49,10 +38,12 @@ ListItem.propTypes = {
     complete: PropTypes.bool,
     task: PropTypes.string,
   }),
+  completeTask: PropTypes.func,
 };
 
 ListItem.defaultProps = {
   deleteTask: null,
   theme: null,
   listItem: null,
+  completeTask: null,
 };

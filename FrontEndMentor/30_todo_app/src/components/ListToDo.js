@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ListItem from './ListItem';
 import '../styles/ListToDo.scss';
 
 const ListToDo = (props) => {
-  const { items, theme, deleteTask, clearTasks } = props;
+  const { items, theme, deleteTask, clearTasks, completeTask } = props;
 
-  const listItems = items.map((listItem) => (
+  const [filterTasks, setFilterTasks] = useState('all');
+
+  const filterHandler = (filter) => {
+    setFilterTasks(filter);
+  };
+
+  const filterItems = items.filter((listItem) => {
+    if (filterTasks === 'all') return true;
+    if (filterTasks === 'active' && !listItem.complete) return true;
+    if (filterTasks === 'completed' && listItem.complete) return true;
+    return false;
+  });
+
+  const listItems = filterItems.map((listItem) => (
     <ListItem
       className={`card list__item ${!theme ? 'dark-card' : ''}`}
       key={listItem.id}
+      completeTask={completeTask}
       deleteTask={deleteTask}
       theme={theme}
       listItem={listItem}
@@ -22,14 +36,35 @@ const ListToDo = (props) => {
       <div className={`card filter-list ${!theme ? 'dark-card' : ''}`}>
         <span>{listItems.length} Items Left</span>
         <div className="filter-options">
-          <span>All</span>
-          <span>Active</span>
-          <span>Completed</span>
+          <button
+            type="button"
+            aria-label="show all tasks"
+            className="filter-btn"
+            onClick={() => filterHandler('all')}
+          >
+            All
+          </button>
+          <button
+            type="button"
+            aria-label="show active tasks"
+            className="filter-btn"
+            onClick={() => filterHandler('active')}
+          >
+            Active
+          </button>
+          <button
+            type="button"
+            aria-label="show completed tasks"
+            className="filter-btn"
+            onClick={() => filterHandler('completed')}
+          >
+            Completed
+          </button>
         </div>
         <button
           type="button"
           aria-label="clear completed tasks"
-          className="filter-clear"
+          className="filter-btn"
           onClick={clearTasks}
         >
           Clear Completed
@@ -52,6 +87,7 @@ ListToDo.propTypes = {
   theme: PropTypes.bool,
   deleteTask: PropTypes.func,
   clearTasks: PropTypes.func,
+  completeTask: PropTypes.func,
 };
 
 ListToDo.defaultProps = {
@@ -59,4 +95,5 @@ ListToDo.defaultProps = {
   theme: true,
   deleteTask: null,
   clearTasks: null,
+  completeTask: null,
 };
