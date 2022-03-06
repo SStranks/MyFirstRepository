@@ -76,6 +76,8 @@ function App() {
     });
   };
 
+  console.log('APP');
+
   return (
     <>
       <div className={`header-background ${!theme ? 'dark-header' : ''}`} />
