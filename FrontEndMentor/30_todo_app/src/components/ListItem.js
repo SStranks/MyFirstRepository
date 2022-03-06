@@ -2,7 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ListItem = (props) => {
-  const { deleteTask, theme, listItem, completeTask } = props;
+  const {
+    theme,
+    listItem,
+    completeTask,
+    deleteTask,
+    dragTask,
+    dragEnter,
+    itemNum,
+  } = props;
 
   return (
     <li
@@ -10,6 +18,12 @@ const ListItem = (props) => {
       key={listItem.id}
       data-complete={listItem.complete ? listItem.id : ''}
       draggable
+      onDragStart={(e) => {
+        dragTask(e, itemNum);
+      }}
+      onDragEnter={(e) => {
+        dragEnter(e, itemNum);
+      }}
     >
       <input
         type="checkbox"
@@ -44,6 +58,9 @@ ListItem.propTypes = {
     task: PropTypes.string,
   }),
   completeTask: PropTypes.func,
+  dragTask: PropTypes.func,
+  dragEnter: PropTypes.func,
+  itemNum: PropTypes.number,
 };
 
 ListItem.defaultProps = {
@@ -51,4 +68,7 @@ ListItem.defaultProps = {
   theme: null,
   listItem: null,
   completeTask: null,
+  dragTask: null,
+  dragEnter: null,
+  itemNum: null,
 };

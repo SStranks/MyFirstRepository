@@ -46,6 +46,10 @@ li {
   &:first-child {
     border-radius: 5px 5px 0 0;
   }
+  // &:active {
+  //   visibility: hidden;
+  //   border: 2px dashed red;
+  // }
 }
 
 .filter-list {
@@ -87,4 +91,8 @@ li {
 .task-complete {
   text-decoration: line-through;
   color: $LT__Light-grayish-blue;
+}
+
+.task-drag {
+  background-color: red;
 }

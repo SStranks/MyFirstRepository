@@ -1,12 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import ListItem from './ListItem';
 import '../styles/ListToDo.scss';
 
 const ListToDo = (props) => {
-  const { items, theme, deleteTask, clearTasks, completeTask } = props;
+  const { setList, items, theme, deleteTask, clearTasks, completeTask } = props;
 
   const [filterTasks, setFilterTasks] = useState('all');
+  const [dragging, setDragging] = useState(false);
+  const dragItem = useRef();
+  const dragNode = useRef();
+
+  const dragTaskEnter = (e, itemNum) => {
+    if (e.target !== dragNode.current) {
+      setList((prevList) => {
+        const newList = [...prevList];
+        newList.splice(itemNum, 0, newList.splice(dragItem.current, 1)[0]);
+        // console.log(newList);
+        dragItem.current = itemNum;
+        return newList;
+      });
+    }
+  };
+
+  const dragTaskEnd = () => {
+    setDragging(false);
+    dragItem.current = null;
+    dragNode.current.removeEventListener('dragend', dragTaskEnd);
+    dragNode.current = null;
+  };
+
+  const dragTaskStart = (e, itemNum) => {
+    dragNode.current = e.target;
+    dragNode.current.addEventListener('dragend', dragTaskEnd);
+    dragItem.current = itemNum;
+    setTimeout(() => {
+      setDragging(true);
+    }, 0);
+  };
 
   const filterHandler = (filter) => {
     setFilterTasks(filter);
@@ -19,14 +50,17 @@ const ListToDo = (props) => {
     return false;
   });
 
-  const listItems = filterItems.map((listItem) => (
+  const listItems = filterItems.map((listItem, itemNum) => (
     <ListItem
-      className={`card list__item ${!theme ? 'dark-card' : ''}`}
+      // className={`card list__item ${!theme ? 'dark-card' : ''}}`}
       key={listItem.id}
       completeTask={completeTask}
       deleteTask={deleteTask}
       theme={theme}
       listItem={listItem}
+      itemNum={itemNum}
+      dragTask={dragTaskStart}
+      dragEnter={dragTaskEnter}
     />
   ));
 
@@ -83,6 +117,7 @@ const ListToDo = (props) => {
 export default ListToDo;
 
 ListToDo.propTypes = {
+  setList: PropTypes.func,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
@@ -97,6 +132,7 @@ ListToDo.propTypes = {
 };
 
 ListToDo.defaultProps = {
+  setList: null,
   items: null,
   theme: true,
   deleteTask: null,

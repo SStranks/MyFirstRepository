@@ -92,6 +92,7 @@ function App() {
       <main>
         <CreateToDo theme={theme} newTaskHandler={newTaskHandler} />
         <ListToDo
+          setList={setTaskList}
           items={taskList}
           theme={theme}
           deleteTask={deleteTask}
