@@ -12,6 +12,9 @@
   @media (max-width: $tablet) {
     height: 55px;
   }
+  @media (max-width: $mobile-l) {
+    height: 50px;
+  }
 }
 
 input[type='text'] {

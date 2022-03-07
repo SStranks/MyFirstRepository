@@ -68,6 +68,9 @@ li {
     font-weight: 400;
     letter-spacing: normal;
     margin: 0;
+    @media (max-width: $mobile-l) {
+      font-size: 0.65rem;
+    }
   }
   @media (max-width: $tablet) {
     border-radius: 0 0 5px 5px;

@@ -100,6 +100,9 @@ h1 {
   @media (max-width: variables.$tablet) {
     font-size: 1.75rem;
   }
+  @media (max-width: variables.$mobile-l) {
+    font-size: 1.25rem;
+  }
 }
 
 .card {
@@ -150,6 +153,9 @@ h1 {
   margin-top: 2.5rem;
   @media (max-width: variables.$tablet) {
     margin-top: 3.5rem;
+  }
+  @media (max-width: variables.$mobile-l) {
+    font-size: 0.7rem;
   }
 }
 
