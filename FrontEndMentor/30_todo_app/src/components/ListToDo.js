@@ -6,13 +6,6 @@ import '../styles/ListToDo.scss';
 const ListToDo = (props) => {
   const { setList, items, theme, deleteTask, clearTasks, completeTask } = props;
 
-  useEffect(() => {
-    console.log('UL EFFECT');
-    setList(items);
-  }, [setList, items]);
-
-  console.log('UL RENDER');
-
   const [filterTasks, setFilterTasks] = useState('all');
   const [dragging, setDragging] = useState(false);
   const dragItem = useRef();
@@ -20,14 +13,24 @@ const ListToDo = (props) => {
 
   const dragTaskEnter = (e, itemNum) => {
     if (e.target !== dragNode.current) {
-      setList((prevList) => {
-        const newList = [...prevList];
-        newList.splice(itemNum, 0, newList.splice(dragItem.current, 1)[0]);
-        dragItem.current = itemNum;
-        return newList;
-      });
+      const newList = [...items];
+      newList.splice(itemNum, 0, newList.splice(dragItem.current, 1)[0]);
+      dragItem.current = itemNum;
+      setList(newList);
     }
   };
+
+  // const dragTaskEnter = (e, itemNum) => {
+  //   if (e.target !== dragNode.current) {
+  //     setList(() => {  // NOTE: Why doesn't this work??
+  //       const newList = [...items];
+  //       newList.splice(itemNum, 0, newList.splice(dragItem.current, 1)[0]);
+  //       dragItem.current = itemNum;
+  //       // console.log('DRAG', prevList);
+  //       return newList;
+  //     });
+  //   }
+  // };
 
   const dragTaskEnd = () => {
     setDragging(false);
