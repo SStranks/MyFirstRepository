@@ -79,7 +79,7 @@ const ListToDo = (props) => {
       <ul>{listItems}</ul>
       <div className={`card filter-list ${!theme ? 'dark-card' : ''}`}>
         <span>{listItems.length} Items Left</span>
-        <div className="filter-options">
+        <div className={`filter-options ${!theme ? 'dark-card' : ''}`}>
           <button
             type="button"
             aria-label="show all tasks"
