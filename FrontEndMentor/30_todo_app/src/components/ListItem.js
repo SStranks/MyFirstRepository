@@ -10,11 +10,14 @@ const ListItem = (props) => {
     dragTask,
     dragEnter,
     itemNum,
+    dragging,
   } = props;
 
   return (
     <li
-      className={`card list__item ${!theme ? 'dark-card' : ''}`}
+      className={`card list__item ${!theme ? 'dark-card' : ''} ${
+        dragging ? 'task-drag' : ''
+      }`}
       key={listItem.id}
       data-complete={listItem.complete ? listItem.id : ''}
       draggable
@@ -61,6 +64,7 @@ ListItem.propTypes = {
   dragTask: PropTypes.func,
   dragEnter: PropTypes.func,
   itemNum: PropTypes.number,
+  dragging: PropTypes.bool,
 };
 
 ListItem.defaultProps = {
@@ -71,4 +75,5 @@ ListItem.defaultProps = {
   dragTask: null,
   dragEnter: null,
   itemNum: null,
+  dragging: null,
 };

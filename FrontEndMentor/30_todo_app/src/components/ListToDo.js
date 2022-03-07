@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import ListItem from './ListItem';
 import '../styles/ListToDo.scss';
@@ -70,6 +70,7 @@ const ListToDo = (props) => {
       itemNum={itemNum}
       dragTask={dragTaskStart}
       dragEnter={dragTaskEnter}
+      dragging={dragging}
     />
   ));
 

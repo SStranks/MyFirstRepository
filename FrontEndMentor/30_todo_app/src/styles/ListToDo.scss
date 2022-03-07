@@ -16,7 +16,8 @@ li {
   height: 60px;
   color: $LT__Dark-grayish-blue;
   background-color: $White;
-  margin: 1px 0;
+  border-bottom: 1px solid $LT__Light-grayish-blue;
+  cursor: move;
   & label {
     font-size: 1rem;
     font-family: inherit;
@@ -25,6 +26,9 @@ li {
     line-height: 1.4;
     display: inline-block;
     vertical-align: middle;
+    @media (max-width: $tablet) {
+      font-size: 0.75rem;
+    }
   }
   & .btn-delete {
     height: 25px;
@@ -46,13 +50,13 @@ li {
   &:first-child {
     border-radius: 5px 5px 0 0;
   }
-  // &:active {
-  //   visibility: hidden;
-  //   border: 2px dashed red;
-  // }
+  @media (max-width: $desktop-s) {
+    height: 55px;
+  }
 }
 
 .filter-list {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -65,8 +69,25 @@ li {
     letter-spacing: normal;
     margin: 0;
   }
-  & .filter-options button {
+  @media (max-width: $tablet) {
+    border-radius: 0 0 5px 5px;
+  }
+}
+
+.filter-options {
+  & button {
     margin: 0 0.25rem;
+  }
+  @media (max-width: $tablet) {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    bottom: -45px;
+    height: 40px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
   }
 }
 
@@ -91,8 +112,4 @@ li {
 .task-complete {
   text-decoration: line-through;
   color: $LT__Light-grayish-blue;
-}
-
-.task-drag {
-  background-color: red;
 }

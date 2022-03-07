@@ -9,6 +9,9 @@
   box-shadow: 0 10px 30px 10px hsla(0, 0%, 0%, 0.1);
   border-radius: 3px;
   margin-bottom: 1.5rem;
+  @media (max-width: $tablet) {
+    height: 55px;
+  }
 }
 
 input[type='text'] {
@@ -20,5 +23,8 @@ input[type='text'] {
   }
   &:focus {
     outline: none;
+  }
+  @media (max-width: $tablet) {
+    font-size: 0.75rem;
   }
 }
