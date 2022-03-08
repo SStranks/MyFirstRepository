@@ -31,16 +31,24 @@ function App() {
     });
   };
 
-  const completeTask = (task) => {
-    setTaskList((prevState) => {
-      const newState = [...prevState];
-      const index = newState.map((el) => el.id).indexOf(task.id);
-      newState[index] = {
-        ...newState[index],
-        complete: !newState[index].complete,
-      };
-      return newState;
-    });
+  // const completeTask = (task) => {
+  //   setTaskList((prevState) => {
+  //     const newState = [...prevState];
+  //     const index = newState.map((el) => el.id).indexOf(task.id);
+  //     newState[index] = {
+  //       ...newState[index],
+  //       complete: !newState[index].complete,
+  //     };
+  //     return newState;
+  //   });
+  // };
+
+  const completeTask = ({ id, complete }) => {
+    setTaskList((tasks) =>
+      tasks.map((task) =>
+        task.id === id ? { ...task, complete: !complete } : task
+      )
+    );
   };
 
   // const completeTask = (task) => {

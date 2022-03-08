@@ -61,7 +61,6 @@ const ListToDo = (props) => {
 
   const listItems = filterItems.map((listItem, itemNum) => (
     <ListItem
-      // className={`card list__item ${!theme ? 'dark-card' : ''}}`}
       key={listItem.id}
       completeTask={completeTask}
       deleteTask={deleteTask}
