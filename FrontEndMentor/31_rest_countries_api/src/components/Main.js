@@ -30,7 +30,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  countriesList: PropTypes.arrayOf(),
+  countriesList: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 Main.defaultProps = {

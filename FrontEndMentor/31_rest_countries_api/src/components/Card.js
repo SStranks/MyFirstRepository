@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Card = (props) => {
-  const { name, population, region, capital } = props;
+  const { country, population, region, capital } = props;
 
   return (
     <div>
       <div className="flag" />
-      <h2>{name}</h2>
+      <h2>{country}</h2>
       <span>{population}</span>
       <span>{region}</span>
       <span>{capital}</span>
@@ -16,14 +16,14 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  name: PropTypes.string,
-  population: PropTypes.string,
+  country: PropTypes.string,
+  population: PropTypes.number,
   region: PropTypes.string,
   capital: PropTypes.string,
 };
 
 Card.defaultProps = {
-  name: null,
+  country: null,
   population: null,
   region: null,
   capital: null,
