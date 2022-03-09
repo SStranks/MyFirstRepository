@@ -5,12 +5,20 @@ const Card = (props) => {
   const { country, population, region, capital } = props;
 
   return (
-    <div>
-      <div className="flag" />
-      <h2>{country}</h2>
-      <span>{population}</span>
-      <span>{region}</span>
-      <span>{capital}</span>
+    <div className="card-country">
+      <div className="card-flag" />
+      <div className="card-info">
+        <h2>{country}</h2>
+        <p>
+          Population: <span>{population.toLocaleString()}</span>
+        </p>
+        <p>
+          Region: <span>{region}</span>
+        </p>
+        <p>
+          Capital: <span>{capital}</span>
+        </p>
+      </div>
     </div>
   );
 };

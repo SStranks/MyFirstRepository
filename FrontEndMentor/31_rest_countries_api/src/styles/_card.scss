@@ -1,0 +1,25 @@
+@use 'variables';
+
+.card-country {
+  background-color: variables.$White;
+  border-radius: 5px;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 1.5rem;
+  & h2 {
+    margin-bottom: 1rem;
+  }
+  & p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    & span {
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: unset;
+    }
+  }
+}
