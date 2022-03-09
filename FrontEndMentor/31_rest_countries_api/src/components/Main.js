@@ -1,5 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faMagnifyingGlass,
+  faAngleDown,
+} from '@fortawesome/free-solid-svg-icons';
+
 import Card from './Card';
 
 const Main = (props) => {
@@ -16,16 +22,22 @@ const Main = (props) => {
   ));
 
   return (
-    <>
+    <main>
       <div className="options-panel">
-        <input type="text" />
+        <div className="search">
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className="faMagnifyingGlass"
+          />
+          <input type="text" placeholder="Search for a country..." />
+        </div>
         <button type="button" aria-label="filter by region">
           <span>Filter by Region</span>
-          <i className="arrow down" />
+          <FontAwesomeIcon icon={faAngleDown} className="faDownArrow" />
         </button>
       </div>
       <div className="grid">{countriesCards}</div>
-    </>
+    </main>
   );
 };
 

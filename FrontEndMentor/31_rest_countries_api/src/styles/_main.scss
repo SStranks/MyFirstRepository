@@ -1,0 +1,46 @@
+@use 'variables';
+
+.options-panel {
+  display: flex;
+  justify-content: space-between;
+  padding: 3rem 6rem;
+  & .search {
+    display: flex;
+    width: 35%;
+    background-color: variables.$White;
+    border-radius: 2px;
+    box-shadow: 0 0 5px 1px hsla(0, 0%, 0%, 0.1);
+    padding: 1rem 2rem;
+    & .faMagnifyingGlass {
+      width: 20px;
+      height: 20px;
+      opacity: 30%;
+      margin-right: 1.5rem;
+    }
+    & input {
+      border: none;
+      font-weight: 400;
+    }
+  }
+  & button {
+    display: flex;
+    background-color: variables.$White;
+    box-shadow: 0 0 5px 1px hsla(0, 0%, 0%, 0.1);
+    & span {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-right: 3rem;
+    }
+    &:hover .faDownArrow {
+      animation: animationArrow 0.5s ease-in-out infinite alternate;
+      @keyframes animationArrow {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(0, 3px);
+        }
+      }
+    }
+  }
+}

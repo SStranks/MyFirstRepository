@@ -1,0 +1,39 @@
+@use 'variables';
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: variables.$White;
+  box-shadow: 0 -1px 10px 1px hsla(0, 0%, 0%, 0.1);
+  padding: 1.5rem 6rem;
+  & .theme-toggle {
+    display: flex;
+    align-items: center;
+    & span {
+      font-size: 1.25rem;
+      font-weight: 400;
+      transform: translate(0, 1px);
+    }
+    & button {
+      background-color: transparent;
+      padding: 0.75rem;
+      transition: all 1s ease;
+      &:hover {
+        transform: scale(125%);
+      }
+      & svg {
+        width: 20px;
+        height: 20px;
+        & path {
+          stroke: black;
+          stroke-width: 1px;
+          transition: all 1s ease;
+          &:hover {
+            fill: black;
+          }
+        }
+      }
+    }
+  }
+}
