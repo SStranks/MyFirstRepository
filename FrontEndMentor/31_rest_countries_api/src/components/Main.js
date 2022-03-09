@@ -21,6 +21,11 @@ const Main = (props) => {
     />
   ));
 
+  const btnClickHandler = () => {
+    const menu = document.querySelector('.dropdown-content');
+    menu.classList.toggle('active');
+  };
+
   return (
     <main>
       <div className="options-panel">
@@ -31,10 +36,25 @@ const Main = (props) => {
           />
           <input type="text" placeholder="Search for a country..." />
         </div>
-        <button type="button" aria-label="filter by region">
-          <span>Filter by Region</span>
-          <FontAwesomeIcon icon={faAngleDown} className="faDownArrow" />
-        </button>
+        <div className="dropdown">
+          <button
+            type="button"
+            aria-label="filter by region"
+            onClick={btnClickHandler}
+          >
+            <span>Filter by Region</span>
+            <FontAwesomeIcon icon={faAngleDown} className="faDownArrow" />
+          </button>
+          <div className="dropdown-content">
+            <ul>
+              <li>Africa</li>
+              <li>Americas</li>
+              <li>Asia</li>
+              <li>Europe</li>
+              <li>Oceania</li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div className="grid">{countriesCards}</div>
     </main>

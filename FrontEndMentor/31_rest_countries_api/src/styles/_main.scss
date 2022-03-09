@@ -3,48 +3,56 @@
 .options-panel {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 3rem 6rem;
-  & .search {
-    display: flex;
-    width: 35%;
-    background-color: variables.$White;
-    border-radius: 2px;
-    box-shadow: 0 0 5px 1px hsla(0, 0%, 0%, 0.1);
-    padding: 1rem 2rem;
-    & .faMagnifyingGlass {
-      width: 20px;
-      height: 20px;
-      opacity: 30%;
-      margin-right: 1.5rem;
+}
+
+.search {
+  display: flex;
+  height: 50px;
+  width: 35%;
+  background-color: variables.$White;
+  border-radius: 2px;
+  box-shadow: 0 0 5px 1px hsla(0, 0%, 0%, 0.1);
+  padding: 1rem 2rem;
+  & .faMagnifyingGlass {
+    width: 20px;
+    height: 20px;
+    opacity: 30%;
+    margin-right: 1.5rem;
+  }
+  & input {
+    border: none;
+    font-weight: 400;
+    &:focus {
+      outline: none;
     }
-    & input {
-      border: none;
-      font-weight: 400;
-      &:focus {
-        outline: none;
+  }
+  &:hover .faMagnifyingGlass {
+    animation: magnifyingGlass 0.5s ease-in-out infinite alternate;
+    @keyframes magnifyingGlass {
+      0% {
+        transform: scale(100%);
       }
-    }
-    &:hover .faMagnifyingGlass {
-      animation: magnifyingGlass 0.5s ease-in-out infinite alternate;
-      @keyframes magnifyingGlass {
-        0% {
-          transform: scale(100%);
-        }
-        100% {
-          transform: scale(115%);
-        }
+      100% {
+        transform: scale(115%);
       }
     }
   }
+}
+
+.dropdown {
+  position: relative;
+  & span {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-right: 3rem;
+  }
   & button {
+    height: 50px;
     display: flex;
     background-color: variables.$White;
     box-shadow: 0 0 5px 1px hsla(0, 0%, 0%, 0.1);
-    & span {
-      font-size: 1rem;
-      font-weight: 400;
-      margin-right: 3rem;
-    }
     &:hover .faDownArrow {
       animation: animationArrow 0.5s ease-in-out infinite alternate;
       @keyframes animationArrow {
@@ -57,4 +65,26 @@
       }
     }
   }
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  transform: translate(0, 105%);
+  width: 100%;
+  background-color: variables.$White;
+  box-shadow: 0 0 5px 1px hsla(0, 0%, 0%, 0.1);
+  padding: 0.75rem 1.75rem;
+  & li {
+    padding: 0.25rem 0;
+    &:hover {
+      font-weight: 600;
+    }
+  }
+}
+
+.active {
+  display: flex;
+  flex-direction: column;
 }
