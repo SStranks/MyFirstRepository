@@ -28,10 +28,6 @@
   align-items: center;
   margin: 0 auto;
   overflow: hidden;
-  @media (max-width: 375px) and (min-height: 1000px) {
-    // Style for Photoshop Screenshot Only
-    justify-content: flex-start;
-  }
 }
 
 /*   3. || Light-Dark Themes        */
@@ -48,21 +44,22 @@ footer {
   left: 50%;
   bottom: 0;
   width: 100%;
-  font-size: 0.7em;
+  font-size: 0.8em;
   font-weight: 300;
   text-align: center;
-  color: variables.$LT__Very-dark-grayish-blue;
+  color: variables.$DT__Dark-blue;
   margin: 0 auto;
   transform: translate(-50%, -45%);
   z-index: 3;
   & a {
-    color: variables.$Gradient2;
+    color: variables.$DT__Dark-blue;
     // transition: all s ease;
     &:hover {
-      background: linear-gradient(variables.$Gradient1, variables.$Gradient2);
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
+      color: variables.$DT__Dark-blue;
+      // background: variables.$DT__Dark-blue;
+      // color: transparent;
+      // -webkit-background-clip: text;
+      // background-clip: text;
       transition: all 1s ease;
       text-decoration: none;
     }
