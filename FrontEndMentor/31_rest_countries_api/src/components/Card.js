@@ -6,7 +6,12 @@ const Card = (props) => {
 
   return (
     <div className="card-country">
-      <div className="card-flag" />
+      <div className="card-flag">
+        <img
+          src={country === 'Albania' ? 'https://flagcdn.com/al.svg' : ''}
+          alt=""
+        />
+      </div>
       <div className="card-info">
         <h2>{country}</h2>
         <p>

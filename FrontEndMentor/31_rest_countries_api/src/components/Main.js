@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,21 +12,35 @@ const Main = (props) => {
   const { countriesList } = props;
   const [activeRegion, setActiveRegion] = useState('all');
 
-  const countriesCards = countriesList
-    .filter((el) => {
-      if (activeRegion === 'all') return el;
-      return activeRegion === el.region ? el : false;
-    })
-    .map((country) => (
-      <Card
-        key={country.name}
-        flag={country.flag}
-        country={country.name}
-        population={country.population}
-        region={country.region}
-        capital={country.capital}
-      />
-    ));
+  const countriesCards = useMemo(
+    () =>
+      countriesList
+        .filter((el) => {
+          if (activeRegion === 'all') return el;
+          return activeRegion === el.region ? el : false;
+        })
+        .map((country) => (
+          <Card
+            key={country.name}
+            flag={country.flag}
+            country={country.name}
+            population={country.population}
+            region={country.region}
+            capital={country.capital}
+          />
+        )),
+    [countriesList, activeRegion]
+  );
+
+  // TODO: .
+  // 1. Load first 8 countries
+  // 2. Load 4 more when scroll reveals last country loaded so far
+  // * Need state for 'loading' of current batch
+  // * Need ref to store the last country of the currently visible
+  // * Need intersection observer on the last country visible; if visible && loading finished, load next batch
+  // * Function; batch load (default 4 items); promise.all --> 'loading' to false
+  // * If an individual image promise fails after X seconds, load the skeleton flag instead
+  // * Create custom hook for the processing of image loading and constructing the JSX return array.
 
   const btnMenuClickHandler = () => {
     const menu = document.querySelector('.dropdown-content');

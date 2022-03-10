@@ -78,7 +78,8 @@
   transform: translate(0, 105%);
   width: 100%;
   border-radius: 2px;
-  background-color: variables.$White;
+  background-color: var(--color-elements);
+  transition: variables.$Theme-transition;
   box-shadow: 0 0 5px 1px hsla(0, 0%, 0%, 0.1);
   padding: 0.75rem 1.75rem;
   & li {
@@ -88,6 +89,8 @@
     }
     & button {
       all: unset;
+      color: var(--color-text);
+      transition: variables.$Theme-transition;
       cursor: pointer;
       &.filter-active {
         font-weight: 600;
