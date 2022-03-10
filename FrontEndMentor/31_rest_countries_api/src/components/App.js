@@ -11,7 +11,7 @@ function App() {
         const getData = await fetch('https://restcountries.com/v2/all');
         const parseData = await getData.json();
         setCountriesData(parseData);
-        localStorage.setItem('countries', JSON.stringify(countriesData));
+        localStorage.setItem('countries', JSON.stringify(parseData));
       } catch (err) {
         console.log('Error retreiving data: ', err);
       }

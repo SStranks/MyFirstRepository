@@ -48,7 +48,7 @@
     font-weight: 400;
     margin-right: 3rem;
   }
-  & button {
+  & > button {
     height: 50px;
     display: flex;
     background-color: variables.$White;
@@ -80,6 +80,12 @@
     padding: 0.25rem 0;
     &:hover {
       font-weight: 600;
+    }
+    & button {
+      all: unset;
+      &.filter-active {
+        font-weight: 600;
+      }
     }
   }
 }
