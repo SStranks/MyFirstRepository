@@ -3,7 +3,6 @@
 $White: hsl(100, 100%, 100%);
 /*  Neutral      */
 /*  Light Theme  */
-$LT__Very-light-gray: hsl(0, 0%, 98%);
 $LT__Very-dark-blue: hsl(200, 15%, 8%); //Light Mode Text
 $LT__Dark-gray: hsl(0, 0%, 52%); //Light Mode Input
 $LT__Very-light-gray: hsl(0, 0%, 98%); //Light Mode Background
@@ -11,7 +10,7 @@ $LT__Very-light-gray: hsl(0, 0%, 98%); //Light Mode Background
 $DT__Dark-blue: hsl(209, 23%, 22%); //Dark Mode Elements
 $DT__Very-dark-blue: hsl(207, 26%, 17%); //Dark Mode Background
 
-/*  Breakpoints */
+/*  Breakpoints  */
 $mobile-s: 320px;
 $mobile-m: 375px;
 $mobile-l: 425px;
@@ -19,3 +18,18 @@ $tablet: 768px;
 $desktop-s: 1024px;
 $desktop-m: 1440px;
 $desktop-l: 2560px;
+
+/*  Themes       */
+:root {
+  --color-background: #{$LT__Very-light-gray};
+  --color-elements: #{$White};
+  --color-text: #{$LT__Very-dark-blue};
+}
+
+.dark-theme {
+  --color-background: #{$DT__Very-dark-blue};
+  --color-elements: #{$DT__Dark-blue};
+  --color-text: #{$White};
+}
+
+$Theme-transition: background 1s, color 1s, fill 1s;

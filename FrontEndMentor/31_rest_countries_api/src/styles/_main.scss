@@ -11,7 +11,8 @@
   display: flex;
   height: 50px;
   width: 35%;
-  background-color: variables.$White;
+  background-color: var(--color-elements);
+  transition: variables.$Theme-transition;
   border-radius: 2px;
   box-shadow: 0 0 5px 1px hsla(0, 0%, 0%, 0.1);
   padding: 1rem 2rem;
@@ -43,6 +44,8 @@
 
 .dropdown {
   position: relative;
+  border-radius: 2px;
+
   & span {
     font-size: 1rem;
     font-weight: 400;
@@ -51,7 +54,8 @@
   & > button {
     height: 50px;
     display: flex;
-    background-color: variables.$White;
+    background-color: var(--color-elements);
+    transition: variables.$Theme-transition;
     box-shadow: 0 0 5px 1px hsla(0, 0%, 0%, 0.1);
     &:hover .faDownArrow {
       animation: animationArrow 0.5s ease-in-out infinite alternate;
@@ -73,6 +77,7 @@
   bottom: 0;
   transform: translate(0, 105%);
   width: 100%;
+  border-radius: 2px;
   background-color: variables.$White;
   box-shadow: 0 0 5px 1px hsla(0, 0%, 0%, 0.1);
   padding: 0.75rem 1.75rem;
@@ -83,10 +88,19 @@
     }
     & button {
       all: unset;
+      cursor: pointer;
       &.filter-active {
         font-weight: 600;
       }
     }
+  }
+}
+
+.faDownArrow,
+.faMagnifyingGlass {
+  & path {
+    fill: var(--color-text);
+    transition: variables.$Theme-transition;
   }
 }
 

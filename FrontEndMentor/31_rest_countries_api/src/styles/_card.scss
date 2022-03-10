@@ -1,7 +1,8 @@
 @use 'variables';
 
 .card-country {
-  background-color: variables.$White;
+  background-color: var(--color-elements);
+  transition: variables.$Theme-transition;
   border-radius: 5px;
 }
 

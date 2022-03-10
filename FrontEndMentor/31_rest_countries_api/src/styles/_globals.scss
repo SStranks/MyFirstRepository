@@ -15,7 +15,8 @@ body {
   font-weight: 400, 700;
   font-family: 'Nunito Sans', sans-serif;
   line-height: 1.6;
-  background: $LT__Very-light-gray;
+  background: var(--color-background);
+  transition: $Theme-transition;
   color: black;
 }
 
@@ -47,7 +48,8 @@ h1 {
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.1;
-  color: hsl(var(--Grayish-Blue));
+  color: var(--color-text);
+  transition: $Theme-transition;
 }
 
 h2 {
@@ -55,7 +57,8 @@ h2 {
   font-family: inherit;
   font-weight: 700;
   line-height: 1;
-  color: hsl(var(--Very-Dark-Violet));
+  color: var(--color-text);
+  transition: $Theme-transition;
 }
 
 // h3 {
@@ -75,7 +78,8 @@ p {
   font-size: 1rem;
   font-family: inherit;
   font-weight: 400;
-  color: hsl(var(--Grayish-Blue));
+  color: var(--color-text);
+  transition: $Theme-transition;
   line-height: 1.4;
   display: inline-block;
   vertical-align: middle;
@@ -86,6 +90,8 @@ span {
   font-weight: 600;
   letter-spacing: 0.1rem;
   line-height: 1;
+  color: var(--color-text);
+  transition: $Theme-transition;
 }
 
 button {
@@ -105,12 +111,17 @@ input {
   font-size: inherit;
   font-family: inherit;
   font-weight: 700;
-  color: #000;
+  color: var(--color-text);
+  transition: $Theme-transition;
   background-color: transparent;
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+  &::placeholder {
+    color: var(--color-text);
+    transition: $Theme-transition;
   }
 }
 
