@@ -17,6 +17,12 @@ const Main = (props) => {
       countriesList
         .filter((el) => {
           if (activeRegion === 'all') return el;
+          if (
+            (activeRegion === 'Polar' && el.region === 'Polar') ||
+            el.region === 'Antarctic' ||
+            el.region === 'Antarctic Ocean'
+          )
+            return el;
           return activeRegion === el.region ? el : false;
         })
         .map((country) => (
@@ -142,6 +148,18 @@ const Main = (props) => {
                   }}
                 >
                   Oceania
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  aria-label="filter by Polar"
+                  className={activeRegion === 'Polar' ? 'filter-active' : ''}
+                  onClick={() => {
+                    btnFilterClickHandler('Polar');
+                  }}
+                >
+                  Polar
                 </button>
               </li>
             </ul>

@@ -2,15 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Card = (props) => {
-  const { country, population, region, capital } = props;
+  const { country, population, region, capital, flag } = props;
 
   return (
     <div className="card-country">
       <div className="card-flag">
-        <img
-          src={country === 'Albania' ? 'https://flagcdn.com/al.svg' : ''}
-          alt=""
-        />
+        <img src={flag} alt="" />
       </div>
       <div className="card-info">
         <h2>{country}</h2>
@@ -33,6 +30,7 @@ Card.propTypes = {
   population: PropTypes.number,
   region: PropTypes.string,
   capital: PropTypes.string,
+  flag: PropTypes.string,
 };
 
 Card.defaultProps = {
@@ -40,6 +38,7 @@ Card.defaultProps = {
   population: null,
   region: null,
   capital: null,
+  flag: null,
 };
 
 export default Card;
