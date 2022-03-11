@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -6,57 +6,49 @@ import {
   faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
 import useFlagRender from './useFlagRender';
-import Card from './Card';
-
-const testArr = [
-  {
-    name: 'Afghanistan',
-    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_the_Taliban.svg',
-    population: '1',
-    region: 'sss',
-    capital: 'ddd',
-  },
-  {
-    name: 'Albania',
-    flag: 'https://flagcdn.com/al.svg',
-    population: '2',
-    region: 'fff',
-    capital: 'sss',
-  },
-];
 
 const Main = (props) => {
   const { countriesList } = props;
   const [activeRegion, setActiveRegion] = useState('all');
+  const [countryIndex, setCountryIndex] = useState([0, 8]);
+  const observer = useRef();
 
   const countriesCards = useMemo(
     () =>
-      countriesList
-        .filter((el) => {
-          if (activeRegion === 'all') return el;
-          if (
-            (activeRegion === 'Polar' && el.region === 'Polar') ||
-            el.region === 'Antarctic' ||
-            el.region === 'Antarctic Ocean'
-          )
-            return el;
-          return activeRegion === el.region ? el : false;
-        })
-        .map((country) => (
-          <Card
-            key={country.name}
-            flag={country.flag}
-            country={country.name}
-            population={country.population}
-            region={country.region}
-            capital={country.capital}
-          />
-        )),
+      countriesList.filter((el) => {
+        if (activeRegion === 'all') return el;
+        if (
+          // REVIEW: Think I can refactor this.
+          (activeRegion === 'Polar' && el.region === 'Polar') ||
+          el.region === 'Antarctic' ||
+          el.region === 'Antarctic Ocean'
+        )
+          return el;
+        return activeRegion === el.region ? el : false;
+      }),
     [countriesList, activeRegion]
   );
 
-  const { output } = useFlagRender(testArr, 'all');
-  console.log(output);
+  const currentSlice = useMemo(() => {
+    return countriesCards.slice(countryIndex[0], countryIndex[1]);
+  }, [countryIndex, activeRegion]);
+
+  const { output, loading, error, node } = useFlagRender(
+    currentSlice,
+    activeRegion
+  );
+
+  const lastCardRef = useCallback(() => {
+    if (loading) return;
+    if (observer.current) observer.current.disconnect();
+    // TODO:  Need to determine if there are more entries in the filtered collection to load and add check to below:
+    observer.current = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setCountryIndex((prev) => [prev[1], prev[1] + 4]);
+      }
+    });
+    if (node) observer.current.observe(node);
+  }, [loading]);
 
   // TODO: .
   // 1. Load first 8 countries
@@ -65,8 +57,8 @@ const Main = (props) => {
   // * Need ref to store the last country of the currently visible
   // * Need intersection observer on the last country visible; if visible && loading finished, load next batch
   // * Function; batch load (default 4 items); promise.all --> 'loading' to false
-  // * If an individual image promise fails after X seconds, load the skeleton flag instead
-  // * Create custom hook for the processing of image loading and constructing the JSX return array.
+  // ✔  If an individual image promise fails after X seconds, load the skeleton flag instead
+  // ✔  Create custom hook for the processing of image loading and constructing the JSX return array.
 
   const btnMenuClickHandler = () => {
     const menu = document.querySelector('.dropdown-content');
@@ -74,6 +66,7 @@ const Main = (props) => {
   };
 
   const btnFilterClickHandler = (option) => {
+    setCountryIndex([0, 8]);
     setActiveRegion(option);
   };
 
