@@ -5,8 +5,25 @@ import {
   faMagnifyingGlass,
   faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
-
+import useFlagRender from './useFlagRender';
 import Card from './Card';
+
+const testArr = [
+  {
+    name: 'Afghanistan',
+    flag: 'https://upload.wikimedia.org/wikipedia/commons/5/5c/Flag_of_the_Taliban.svg',
+    population: '1',
+    region: 'sss',
+    capital: 'ddd',
+  },
+  {
+    name: 'Albania',
+    flag: 'https://flagcdn.com/al.svg',
+    population: '2',
+    region: 'fff',
+    capital: 'sss',
+  },
+];
 
 const Main = (props) => {
   const { countriesList } = props;
@@ -37,6 +54,9 @@ const Main = (props) => {
         )),
     [countriesList, activeRegion]
   );
+
+  const { output } = useFlagRender(testArr, 'all');
+  console.log(output);
 
   // TODO: .
   // 1. Load first 8 countries
@@ -166,7 +186,7 @@ const Main = (props) => {
           </div>
         </div>
       </div>
-      <div className="grid">{countriesCards}</div>
+      <div className="grid">{output}</div>
     </main>
   );
 };

@@ -2,10 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from './Card';
 
-function useFlagRender(countries) {
+function useFlagRender(countries, region) {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   const [output, setOutput] = useState();
+
+  useEffect(() => {
+    setOutput([]);
+  }, [region]);
 
   useEffect(async () => {
     setLoading(true);
@@ -19,36 +23,50 @@ function useFlagRender(countries) {
         })
       );
       const flagData = await Promise.allSettled(promises);
-      flagData.map((res) => {
-        // TODO:  Manipulate the SVG attribute to include: preserveAspectRatio="none";
-        // This will allow the SVG to fill the parent container successfully.
+
+      const amendSVG = (svgData) => {
+        // Parsing SVG and inserting the 'preserveAspectRatio' attribute
+        const svg = new DOMParser().parseFromString(svgData, 'image/svg+xml');
+        svg.querySelector('svg').setAttribute('preserveAspectRatio', 'none');
+        const newSVG = new XMLSerializer().serializeToString(svg);
+        return newSVG;
+      };
+
+      const newCards = flagData.map((res, i) => {
         if (res.status === 'fulfilled') {
+          const SVG = amendSVG(res.value.data);
           return (
             <Card
-              key={country.name}
-              flag={res}
-              country={country.name}
-              population={country.population}
-              region={country.region}
-              capital={country.capital}
+              key={countries[i].name}
+              flag={`data:image/svg+xml;utf8,${encodeURIComponent(SVG)}`}
+              country={countries[i].name}
+              population={countries[i].population}
+              region={countries[i].region}
+              capital={countries[i].capital}
             />
           );
         }
         return (
           <Card
-            key={country.name}
-            flag={res}
-            country={country.name}
-            population={country.population}
-            region={country.region}
-            capital={country.capital}
+            key={countries[i].name}
+            flag="/assets/Pirate_Flag.png"
+            country={countries[i].name}
+            population={countries[i].population}
+            region={countries[i].region}
+            capital={countries[i].capital}
           />
         );
       });
+      setOutput((prev) => {
+        return [...prev, ...newCards];
+      });
+      setLoading(false);
     } catch (err) {
       console.log(err);
+      setError(true);
     }
-  }, []);
+  }, [countries, region]);
+  return { loading, error, output };
 }
 
 export default useFlagRender;
