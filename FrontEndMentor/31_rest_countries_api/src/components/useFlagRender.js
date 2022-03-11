@@ -20,6 +20,8 @@ function useFlagRender(countries) {
       );
       const flagData = await Promise.allSettled(promises);
       flagData.map((res) => {
+        // TODO:  Manipulate the SVG attribute to include: preserveAspectRatio="none";
+        // This will allow the SVG to fill the parent container successfully.
         if (res.status === 'fulfilled') {
           return (
             <Card
