@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,7 +11,6 @@ const Main = (props) => {
   const { countriesList } = props;
   const [activeRegion, setActiveRegion] = useState('all');
   const [countryIndex, setCountryIndex] = useState([0, 8]);
-  const observer = useRef();
 
   const countriesCards = useMemo(
     () =>
@@ -33,22 +32,7 @@ const Main = (props) => {
     return countriesCards.slice(countryIndex[0], countryIndex[1]);
   }, [countryIndex, activeRegion]);
 
-  const { output, loading, error, node } = useFlagRender(
-    currentSlice,
-    activeRegion
-  );
-
-  const lastCardRef = useCallback(() => {
-    if (loading) return;
-    if (observer.current) observer.current.disconnect();
-    // TODO:  Need to determine if there are more entries in the filtered collection to load and add check to below:
-    observer.current = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setCountryIndex((prev) => [prev[1], prev[1] + 4]);
-      }
-    });
-    if (node) observer.current.observe(node);
-  }, [loading]);
+  const { output } = useFlagRender(currentSlice, activeRegion, setCountryIndex);
 
   // TODO: .
   // 1. Load first 8 countries

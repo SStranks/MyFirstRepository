@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Card = (props) => {
+const Card = React.forwardRef((props, ref) => {
   const { country, population, region, capital, flag } = props;
 
   return (
-    <div className="card-country">
+    <div className="card-country" ref={ref}>
       <div className="card-flag">
         <img src={flag} alt="" />
       </div>
@@ -23,7 +23,7 @@ const Card = (props) => {
       </div>
     </div>
   );
-};
+});
 
 Card.propTypes = {
   country: PropTypes.string,
@@ -41,4 +41,5 @@ Card.defaultProps = {
   flag: null,
 };
 
+Card.displayName = 'Card';
 export default Card;

@@ -1,11 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import axios from 'axios';
 import Card from './Card';
 
-function useFlagRender(countries, region) {
+function useFlagRender(countries, region, setCountryIndex) {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   const [output, setOutput] = useState();
+  const observer = useRef();
+
+  const lastCardRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      // TODO:  Need to determine if there are more entries in the filtered collection to load and add check to below:
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          setCountryIndex((prev) => [prev[1], prev[1] + 4]);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading]
+  );
 
   useEffect(() => {
     setOutput([]);
@@ -35,6 +51,19 @@ function useFlagRender(countries, region) {
       const newCards = flagData.map((res, i) => {
         if (res.status === 'fulfilled') {
           const SVG = amendSVG(res.value.data);
+          if (flagData.length === i + 1) {
+            return (
+              <Card
+                key={countries[i].name}
+                ref={lastCardRef}
+                flag={`data:image/svg+xml;utf8,${encodeURIComponent(SVG)}`}
+                country={countries[i].name}
+                population={countries[i].population}
+                region={countries[i].region}
+                capital={countries[i].capital}
+              />
+            );
+          }
           return (
             <Card
               key={countries[i].name}
