@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from 'react';
 import axios from 'axios';
 import Card from './Card';
 
-function useFlagRender(countries, region, setCountryIndex) {
+function useFlagRender(countries, region, query, setCountryIndex) {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   const [output, setOutput] = useState();
@@ -25,7 +25,7 @@ function useFlagRender(countries, region, setCountryIndex) {
 
   useEffect(() => {
     setOutput([]);
-  }, [region]);
+  }, [region, query]);
 
   useEffect(async () => {
     setLoading(true);

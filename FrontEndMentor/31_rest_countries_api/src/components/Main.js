@@ -10,39 +10,55 @@ import useFlagRender from './useFlagRender';
 const Main = (props) => {
   const { countriesList } = props;
   const [activeRegion, setActiveRegion] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [countryIndex, setCountryIndex] = useState([0, 8]);
 
-  const countriesCards = useMemo(
+  const regionFilter = useMemo(
     () =>
-      countriesList.filter((el) => {
-        if (activeRegion === 'all') return el;
+      countriesList.filter((country) => {
+        if (activeRegion === 'all') return country;
         if (
-          // REVIEW: Think I can refactor this.
-          (activeRegion === 'Polar' && el.region === 'Polar') ||
-          el.region === 'Antarctic' ||
-          el.region === 'Antarctic Ocean'
+          activeRegion === 'Polar' &&
+          (country.region === 'Polar' ||
+            country.region === 'Antarctic' ||
+            country.region === 'Antarctic Ocean')
         )
-          return el;
-        return activeRegion === el.region ? el : false;
+          return country;
+        return activeRegion === country.region ? country : false;
       }),
-    [countriesList, activeRegion]
+    [activeRegion]
   );
 
+  // const searchFilter = useMemo(() => {
+  //   if (searchQuery === '') return regionFilter;
+  //   function regexEscape(str) {
+  //     return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+  //   }
+  //   const input = regexEscape(searchQuery);
+  //   const regex = new RegExp(`^${input}`, 'i');
+  //   console.log(searchQuery, regex);
+  //   return regionFilter.filter((country) => {
+  //     return regex.test(country.name) ? country : false;
+  //   });
+  // }, [searchQuery]);
+
+  // console.log(searchFilter);
+
   const currentSlice = useMemo(() => {
-    return countriesCards.slice(countryIndex[0], countryIndex[1]);
-  }, [countryIndex, activeRegion]);
+    // if () return
+    return regionFilter.slice(countryIndex[0], countryIndex[1]);
+  }, [countryIndex, regionFilter]);
 
-  const { output } = useFlagRender(currentSlice, activeRegion, setCountryIndex);
+  // console.log(currentSlice);
 
-  // TODO: .
-  // 1. Load first 8 countries
-  // 2. Load 4 more when scroll reveals last country loaded so far
-  // * Need state for 'loading' of current batch
-  // * Need ref to store the last country of the currently visible
-  // * Need intersection observer on the last country visible; if visible && loading finished, load next batch
-  // * Function; batch load (default 4 items); promise.all --> 'loading' to false
-  // ✔  If an individual image promise fails after X seconds, load the skeleton flag instead
-  // ✔  Create custom hook for the processing of image loading and constructing the JSX return array.
+  const { output } = useFlagRender(
+    currentSlice,
+    activeRegion,
+    searchQuery,
+    setCountryIndex
+  );
+
+  // console.log(output);
 
   const btnMenuClickHandler = () => {
     const menu = document.querySelector('.dropdown-content');
@@ -54,6 +70,10 @@ const Main = (props) => {
     setActiveRegion(option);
   };
 
+  const searchHandler = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <main>
       <div className="options-panel">
@@ -62,7 +82,11 @@ const Main = (props) => {
             icon={faMagnifyingGlass}
             className="faMagnifyingGlass"
           />
-          <input type="text" placeholder="Search for a country..." />
+          <input
+            type="text"
+            placeholder="Search for a country..."
+            onChange={searchHandler}
+          />
         </div>
         <div className="dropdown">
           <button
