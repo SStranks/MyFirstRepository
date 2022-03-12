@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -34,17 +34,13 @@ const Main = (props) => {
 
   // const searchFilter = (() => {
   //   if (searchQuery === '') return regionFilter;
-  //   function regexEscape(str) {
-  //     return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
-  //   }
-  //   const input = regexEscape(searchQuery);
-  //   const regex = new RegExp(`^${input}`, 'i');
+  //   const regex = new RegExp(`^${searchQuery}`, 'i');
   //   return regionFilter.filter((country) =>
   //     regex.test(country.name) ? country : false
   //   );
   // })();
 
-  console.log(regionFilter);
+  // console.log(regionFilter);
   // console.log(searchFilter);
 
   const currentSlice = useMemo(() => {
@@ -52,7 +48,7 @@ const Main = (props) => {
     return regionFilter.slice(countryIndex[0], countryIndex[1]);
   }, [countryIndex, regionFilter]);
 
-  console.log(currentSlice);
+  // console.log(currentSlice);
 
   const { output } = useFlagRender(
     currentSlice,
@@ -67,12 +63,18 @@ const Main = (props) => {
   };
 
   const btnFilterClickHandler = (option) => {
-    setCountryIndex([0, 8]);
     setActiveRegion(option);
   };
 
   const searchHandler = (e) => {
-    setSearchQuery(e.target.value);
+    // function regexEscape(str) {
+    //   return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+    // }
+    // const input = regexEscape(e.target.value);
+    if (/^[a-zA-Z]+$/.test(e.target.value) === false) {
+      return setSearchQuery((prev) => prev);
+    }
+    return setSearchQuery(e.target.value);
   };
 
   return (
