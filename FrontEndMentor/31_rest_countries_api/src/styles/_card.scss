@@ -4,6 +4,7 @@
   background-color: var(--color-elements);
   transition: variables.$Theme-transition;
   border-radius: 5px;
+  box-shadow: 0 -1px 10px 1px hsla(0, 0%, 0%, 0.1);
 }
 
 .card-flag {
@@ -12,7 +13,6 @@
   & img {
     border-radius: 5px 5px 0 0;
     width: 100%;
-    // height: 100%;
     object-fit: fill;
   }
 }
