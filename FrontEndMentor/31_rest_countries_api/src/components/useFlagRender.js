@@ -15,19 +15,22 @@ function useFlagRender(countries, region, query, setCountryIndex) {
       // TODO:  Need to determine if there are more entries in the filtered collection to load and add check to below:
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
+          // console.log('callback2');
           setCountryIndex((prev) => [prev[1], prev[1] + 4]);
         }
       });
       if (node) observer.current.observe(node);
     },
-    [loading]
+    [loading, query]
   );
 
   useEffect(() => {
+    // console.log('useeffect clear output');
     setOutput([]);
   }, [region, query]);
 
   useEffect(async () => {
+    // console.log('use effect async');
     setLoading(true);
     setError(false);
     try {
@@ -94,7 +97,8 @@ function useFlagRender(countries, region, query, setCountryIndex) {
       console.log(err);
       setError(true);
     }
-  }, [countries, region]);
+  }, [countries, region, query]);
+  // console.log('Async', output);
   return { loading, error, output };
 }
 

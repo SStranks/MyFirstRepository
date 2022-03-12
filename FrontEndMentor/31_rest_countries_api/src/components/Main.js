@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -26,30 +26,33 @@ const Main = (props) => {
           return country;
         return activeRegion === country.region ? country : false;
       }),
-    [activeRegion]
+    [activeRegion, countriesList]
   );
 
-  // const searchFilter = useMemo(() => {
+  // console.log('main', countriesList);
+  // console.log('Africa: ', regionFilter.length);
+
+  // const searchFilter = (() => {
   //   if (searchQuery === '') return regionFilter;
   //   function regexEscape(str) {
   //     return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
   //   }
   //   const input = regexEscape(searchQuery);
   //   const regex = new RegExp(`^${input}`, 'i');
-  //   console.log(searchQuery, regex);
-  //   return regionFilter.filter((country) => {
-  //     return regex.test(country.name) ? country : false;
-  //   });
-  // }, [searchQuery]);
+  //   return regionFilter.filter((country) =>
+  //     regex.test(country.name) ? country : false
+  //   );
+  // })();
 
+  console.log(regionFilter);
   // console.log(searchFilter);
 
   const currentSlice = useMemo(() => {
-    // if () return
+    // console.log('current slice');
     return regionFilter.slice(countryIndex[0], countryIndex[1]);
   }, [countryIndex, regionFilter]);
 
-  // console.log(currentSlice);
+  console.log(currentSlice);
 
   const { output } = useFlagRender(
     currentSlice,
@@ -57,8 +60,6 @@ const Main = (props) => {
     searchQuery,
     setCountryIndex
   );
-
-  // console.log(output);
 
   const btnMenuClickHandler = () => {
     const menu = document.querySelector('.dropdown-content');
@@ -84,6 +85,7 @@ const Main = (props) => {
           />
           <input
             type="text"
+            value={searchQuery}
             placeholder="Search for a country..."
             onChange={searchHandler}
           />
