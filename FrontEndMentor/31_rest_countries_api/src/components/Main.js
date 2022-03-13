@@ -6,6 +6,7 @@ import {
   faAngleDown,
 } from '@fortawesome/free-solid-svg-icons';
 import useFlagRender from './useFlagRender';
+import Grid from './Grid';
 
 const Main = (props) => {
   const { countriesList } = props;
@@ -56,6 +57,10 @@ const Main = (props) => {
     searchQuery,
     setCountryIndex
   );
+
+  const countries = currentSlice.forEach((country, i) => {
+    return { ...country, flag: output[i] };
+  });
 
   const btnMenuClickHandler = () => {
     const menu = document.querySelector('.dropdown-content');
@@ -191,7 +196,8 @@ const Main = (props) => {
           </div>
         </div>
       </div>
-      <div className="grid">{output}</div>
+      {/* <div className="grid">{output}</div> */}
+      <Grid filteredCountries={countries} />
     </main>
   );
 };
