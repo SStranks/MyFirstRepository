@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function useFlagRender(countries, region, query, setCountryIndex) {
+function useFlagRender(countries, region, query) {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   const [output, setOutput] = useState();

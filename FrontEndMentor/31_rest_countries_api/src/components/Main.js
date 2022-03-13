@@ -1,12 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faMagnifyingGlass,
-  faAngleDown,
-} from '@fortawesome/free-solid-svg-icons';
 import useFlagRender from './useFlagRender';
 import Grid from './Grid';
+import Search from './Search';
+import Filter from './Filter';
 
 const Main = (props) => {
   const { countriesList } = props;
@@ -51,153 +48,27 @@ const Main = (props) => {
 
   // console.log(currentSlice);
 
-  const { output } = useFlagRender(
+  const { output, loading } = useFlagRender(
     currentSlice,
     activeRegion,
-    searchQuery,
-    setCountryIndex
+    searchQuery
   );
 
   const countries = currentSlice.forEach((country, i) => {
     return { ...country, flag: output[i] };
   });
 
-  const btnMenuClickHandler = () => {
-    const menu = document.querySelector('.dropdown-content');
-    menu.classList.toggle('active');
-  };
-
-  const btnFilterClickHandler = (option) => {
-    setActiveRegion(option);
-  };
-
-  const searchHandler = (e) => {
-    // function regexEscape(str) {
-    //   return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
-    // }
-    // const input = regexEscape(e.target.value);
-    if (/^[a-zA-Z]+$/.test(e.target.value) === false) {
-      return setSearchQuery((prev) => prev);
-    }
-    return setSearchQuery(e.target.value);
-  };
-
   return (
     <main>
       <div className="options-panel">
-        <div className="search">
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className="faMagnifyingGlass"
-          />
-          <input
-            type="text"
-            value={searchQuery}
-            placeholder="Search for a country..."
-            onChange={searchHandler}
-          />
-        </div>
-        <div className="dropdown">
-          <button
-            type="button"
-            aria-label="filter by region"
-            onClick={btnMenuClickHandler}
-          >
-            <span>Filter by Region</span>
-            <FontAwesomeIcon icon={faAngleDown} className="faDownArrow" />
-          </button>
-          <div className="dropdown-content">
-            <ul>
-              <li>
-                <button
-                  type="button"
-                  aria-label="filter show all"
-                  className={activeRegion === 'all' ? 'filter-active' : ''}
-                  onClick={() => {
-                    btnFilterClickHandler('all');
-                  }}
-                >
-                  All
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  aria-label="filter by Africa"
-                  className={activeRegion === 'Africa' ? 'filter-active' : ''}
-                  onClick={() => {
-                    btnFilterClickHandler('Africa');
-                  }}
-                >
-                  Africa
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  aria-label="filter by Americas"
-                  className={activeRegion === 'Americas' ? 'filter-active' : ''}
-                  onClick={() => {
-                    btnFilterClickHandler('Americas');
-                  }}
-                >
-                  Americas
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  aria-label="filter by Asia"
-                  className={activeRegion === 'Asia' ? 'filter-active' : ''}
-                  onClick={() => {
-                    btnFilterClickHandler('Asia');
-                  }}
-                >
-                  Asia
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  aria-label="filter by Europe"
-                  className={activeRegion === 'Europe' ? 'filter-active' : ''}
-                  onClick={() => {
-                    btnFilterClickHandler('Europe');
-                  }}
-                >
-                  Europe
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  aria-label="filter by Oceania"
-                  className={activeRegion === 'Oceania' ? 'filter-active' : ''}
-                  onClick={() => {
-                    btnFilterClickHandler('Oceania');
-                  }}
-                >
-                  Oceania
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  aria-label="filter by Polar"
-                  className={activeRegion === 'Polar' ? 'filter-active' : ''}
-                  onClick={() => {
-                    btnFilterClickHandler('Polar');
-                  }}
-                >
-                  Polar
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <Filter activeRegion={activeRegion} setActiveRegion={setActiveRegion} />
       </div>
-      {/* <div className="grid">{output}</div> */}
-      <Grid filteredCountries={countries} />
+      <Grid
+        filteredCountries={countries}
+        setCountryIndex={setCountryIndex}
+        loading={loading}
+      />
     </main>
   );
 };

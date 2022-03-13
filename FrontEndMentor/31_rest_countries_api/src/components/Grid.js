@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
 
 const Grid = (props) => {
-  const { filteredCountries } = props;
+  const { filteredCountries, setCountryIndex, loading } = props;
+  const observer = useRef();
 
   const lastCardRef = useCallback(
     (node) => {
@@ -18,7 +19,7 @@ const Grid = (props) => {
       });
       if (node) observer.current.observe(node);
     },
-    [loading, query]
+    [loading]
   );
 
   const countryCards = filteredCountries.map((country, i) => {
@@ -41,9 +42,13 @@ const Grid = (props) => {
 // TODO:  Add in proper proptypes
 Grid.propTypes = {
   filteredCountries: PropTypes.arrayOf(),
+  setCountryIndex: PropTypes.func,
+  loading: PropTypes.bool,
 };
 Grid.defaultProps = {
   filteredCountries: null,
+  setCountryIndex: null,
+  loading: false,
 };
 
 export default Grid;
