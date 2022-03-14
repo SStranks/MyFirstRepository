@@ -4,17 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Search = (props) => {
-  const { searchQuery, setSearchQuery } = props;
+  const { searchQuery, setSearchQuery, setCountryIndex } = props;
 
   const searchHandler = (e) => {
     // function regexEscape(str) {
     //   return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
     // }
     // const input = regexEscape(e.target.value);
-    if (/^[a-zA-Z]+$/.test(e.target.value) === false) {
-      return setSearchQuery((prev) => prev);
+    if (/^[a-zA-Z]*$/.test(e.target.value) === false) {
+      setSearchQuery((prev) => prev);
     }
-    return setSearchQuery(e.target.value);
+    setCountryIndex([0, 8]);
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -33,10 +34,12 @@ const Search = (props) => {
 Search.propTypes = {
   searchQuery: PropTypes.string,
   setSearchQuery: PropTypes.func,
+  setCountryIndex: PropTypes.func,
 };
 Search.defaultProps = {
   searchQuery: null,
   setSearchQuery: null,
+  setCountryIndex: null,
 };
 
 export default Search;

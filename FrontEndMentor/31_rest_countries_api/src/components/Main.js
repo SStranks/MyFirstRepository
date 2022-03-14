@@ -27,17 +27,17 @@ const Main = (props) => {
     [activeRegion, countriesList]
   );
 
-  // const searchFilter = (() => {
-  //   if (searchQuery === '') return regionFilter;
-  //   const regex = new RegExp(`^${searchQuery}`, 'i');
-  //   return regionFilter.filter((country) =>
-  //     regex.test(country.name) ? country : false
-  //   );
-  // })();
+  const searchFilter = (() => {
+    if (searchQuery === '') return regionFilter;
+    const regex = new RegExp(`^${searchQuery}`, 'i');
+    return regionFilter.filter((country) =>
+      regex.test(country.name) ? country : false
+    );
+  })();
 
   const currentSlice = useMemo(() => {
-    return regionFilter.slice(countryIndex[0], countryIndex[1]);
-  }, [countryIndex, regionFilter]);
+    return searchFilter.slice(countryIndex[0], countryIndex[1]);
+  }, [countryIndex, regionFilter, searchQuery]);
 
   const { output, loading } = useFlagRender(
     currentSlice,
@@ -49,7 +49,11 @@ const Main = (props) => {
   return (
     <main>
       <div className="options-panel">
-        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <Search
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          setCountryIndex={setCountryIndex}
+        />
         <Filter
           activeRegion={activeRegion}
           setActiveRegion={setActiveRegion}
