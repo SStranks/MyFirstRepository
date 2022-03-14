@@ -7,7 +7,10 @@ const Card = React.forwardRef((props, ref) => {
   return (
     <div className="card-country" ref={ref}>
       <div className="card-flag">
-        <img src={flag} alt="" />
+        <img
+          src={`data:image/svg+xml;utf8,${encodeURIComponent(flag)}`}
+          alt=""
+        />
       </div>
       <div className="card-info">
         <h2>{country}</h2>

@@ -27,9 +27,6 @@ const Main = (props) => {
     [activeRegion, countriesList]
   );
 
-  // console.log('main', countriesList);
-  // console.log('Africa: ', regionFilter.length);
-
   // const searchFilter = (() => {
   //   if (searchQuery === '') return regionFilter;
   //   const regex = new RegExp(`^${searchQuery}`, 'i');
@@ -38,23 +35,18 @@ const Main = (props) => {
   //   );
   // })();
 
-  // console.log(regionFilter);
-  // console.log(searchFilter);
-
   const currentSlice = useMemo(() => {
-    // console.log('current slice');
     return regionFilter.slice(countryIndex[0], countryIndex[1]);
   }, [countryIndex, regionFilter]);
-
-  // console.log(currentSlice);
 
   const { output, loading } = useFlagRender(
     currentSlice,
     activeRegion,
-    searchQuery
+    searchQuery,
+    countryIndex
   );
 
-  const countries = currentSlice.forEach((country, i) => {
+  const countries = currentSlice.map((country, i) => {
     return { ...country, flag: output[i] };
   });
 
@@ -62,10 +54,15 @@ const Main = (props) => {
     <main>
       <div className="options-panel">
         <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <Filter activeRegion={activeRegion} setActiveRegion={setActiveRegion} />
+        <Filter
+          activeRegion={activeRegion}
+          setActiveRegion={setActiveRegion}
+          setCountryIndex={setCountryIndex}
+        />
       </div>
       <Grid
         filteredCountries={countries}
+        countryIndex={countryIndex}
         setCountryIndex={setCountryIndex}
         loading={loading}
       />

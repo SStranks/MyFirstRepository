@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const Filter = (props) => {
-  const { activeRegion, setActiveRegion } = props;
+  const { activeRegion, setActiveRegion, setCountryIndex } = props;
 
   const btnMenuClickHandler = () => {
     const menu = document.querySelector('.dropdown-content');
@@ -13,6 +13,7 @@ const Filter = (props) => {
 
   const btnFilterClickHandler = (option) => {
     setActiveRegion(option);
+    setCountryIndex([0, 8]);
   };
 
   return (
@@ -120,10 +121,12 @@ const Filter = (props) => {
 Filter.propTypes = {
   activeRegion: PropTypes.string,
   setActiveRegion: PropTypes.func,
+  setCountryIndex: PropTypes.func,
 };
 Filter.defaultProps = {
   activeRegion: null,
   setActiveRegion: null,
+  setCountryIndex: null,
 };
 
 export default Filter;

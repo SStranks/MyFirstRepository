@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 
 const Grid = (props) => {
-  const { filteredCountries, setCountryIndex, loading } = props;
+  const { filteredCountries, countryIndex, setCountryIndex, loading } = props;
   const observer = useRef();
 
   const lastCardRef = useCallback(
     (node) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
-      // TODO:  Need to determine if there are more entries in the filtered collection to load and add check to below:
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          // console.log('callback2');
-          setCountryIndex((prev) => [prev[1], prev[1] + 4]);
+        if (
+          entries[0].isIntersecting &&
+          filteredCountries.length >= countryIndex[1]
+        ) {
+          setCountryIndex((prev) => [prev[0], prev[1] + 4]);
         }
       });
       if (node) observer.current.observe(node);
@@ -41,12 +42,14 @@ const Grid = (props) => {
 
 // TODO:  Add in proper proptypes
 Grid.propTypes = {
-  filteredCountries: PropTypes.arrayOf(),
+  filteredCountries: PropTypes.arrayOf(PropTypes.shape({})),
+  countryIndex: PropTypes.arrayOf(PropTypes.number),
   setCountryIndex: PropTypes.func,
   loading: PropTypes.bool,
 };
 Grid.defaultProps = {
-  filteredCountries: null,
+  filteredCountries: [],
+  countryIndex: null,
   setCountryIndex: null,
   loading: false,
 };

@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function useFlagRender(countries, region, query) {
-  const [loading, setLoading] = useState();
-  const [error, setError] = useState();
-  const [output, setOutput] = useState();
+function useFlagRender(countries, region, query, countryIndex) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [output, setOutput] = useState([]);
 
   useEffect(() => {
     setOutput([]);
   }, [region, query]);
 
   useEffect(async () => {
-    // console.log('use effect async');
     setLoading(true);
     setError(false);
     try {
@@ -46,8 +45,7 @@ function useFlagRender(countries, region, query) {
       console.log(err);
       setError(true);
     }
-  }, [countries, region, query]);
-  // console.log('Async', output);
+  }, [countryIndex, region, query]);
   return { loading, error, output };
 }
 
