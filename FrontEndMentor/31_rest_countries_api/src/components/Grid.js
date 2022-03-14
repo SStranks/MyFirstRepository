@@ -15,12 +15,12 @@ const Grid = (props) => {
           entries[0].isIntersecting &&
           filteredCountries.length >= countryIndex[1]
         ) {
-          setCountryIndex((prev) => [prev[0], prev[1] + 4]);
+          setCountryIndex((prev) => [prev[1], prev[1] + 4]);
         }
       });
       if (node) observer.current.observe(node);
     },
-    [loading]
+    [loading, filteredCountries]
   );
 
   const countryCards = filteredCountries.map((country, i) => {

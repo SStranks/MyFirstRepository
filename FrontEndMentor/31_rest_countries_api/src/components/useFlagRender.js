@@ -37,15 +37,20 @@ function useFlagRender(countries, region, query, countryIndex) {
           : '/assets/Pirate_Flag.png';
       });
 
-      setOutput((prev) => {
-        return [...prev, ...flagOutput];
+      const mergeFlagToSlice = countries.map((country, i) => {
+        return { ...country, flag: flagOutput[i] };
       });
+
+      setOutput((prev) => {
+        return [...prev, ...mergeFlagToSlice];
+      });
+
       setLoading(false);
     } catch (err) {
       console.log(err);
       setError(true);
     }
-  }, [countryIndex, region, query]);
+  }, [countryIndex, region, query, countries]);
   return { loading, error, output };
 }
 

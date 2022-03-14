@@ -46,10 +46,6 @@ const Main = (props) => {
     countryIndex
   );
 
-  const countries = currentSlice.map((country, i) => {
-    return { ...country, flag: output[i] };
-  });
-
   return (
     <main>
       <div className="options-panel">
@@ -61,7 +57,7 @@ const Main = (props) => {
         />
       </div>
       <Grid
-        filteredCountries={countries}
+        filteredCountries={output}
         countryIndex={countryIndex}
         setCountryIndex={setCountryIndex}
         loading={loading}
