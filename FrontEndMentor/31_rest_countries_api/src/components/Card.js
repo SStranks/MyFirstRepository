@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Card = React.forwardRef((props, ref) => {
-  const { country, population, region, capital, flag } = props;
+  const { country, setCountrySelect, setModal } = props;
 
-  const clickHandler = (e) => {
-    console.log(e.currentTarget.getAttribute('data-country'));
+  const clickHandler = () => {
+    setModal(true);
+    setCountrySelect(country);
   };
 
   return (
@@ -13,26 +14,26 @@ const Card = React.forwardRef((props, ref) => {
     <div
       className="card-country"
       ref={ref}
-      data-country={country}
+      data-country={country.name}
       onClick={clickHandler}
       onKeyDown={clickHandler}
     >
       <div className="card-flag">
         <img
-          src={`data:image/svg+xml;utf8,${encodeURIComponent(flag)}`}
+          src={`data:image/svg+xml;utf8,${encodeURIComponent(country.flag)}`}
           alt=""
         />
       </div>
       <div className="card-info">
-        <h2>{country}</h2>
+        <h2>{country.name}</h2>
         <p>
-          Population: <span>{population.toLocaleString()}</span>
+          Population: <span>{country.population.toLocaleString()}</span>
         </p>
         <p>
-          Region: <span>{region}</span>
+          Region: <span>{country.region}</span>
         </p>
         <p>
-          Capital: <span>{capital}</span>
+          Capital: <span>{country.capital}</span>
         </p>
       </div>
     </div>
@@ -40,19 +41,21 @@ const Card = React.forwardRef((props, ref) => {
 });
 
 Card.propTypes = {
-  country: PropTypes.string,
-  population: PropTypes.number,
-  region: PropTypes.string,
-  capital: PropTypes.string,
-  flag: PropTypes.string,
+  country: PropTypes.shape({
+    name: PropTypes.string,
+    flag: PropTypes.string,
+    population: PropTypes.number,
+    region: PropTypes.string,
+    capital: PropTypes.string,
+  }),
+  setCountrySelect: PropTypes.func,
+  setModal: PropTypes.func,
 };
 
 Card.defaultProps = {
   country: null,
-  population: null,
-  region: null,
-  capital: null,
-  flag: null,
+  setCountrySelect: null,
+  setModal: null,
 };
 
 Card.displayName = 'Card';

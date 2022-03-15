@@ -40,7 +40,7 @@ const Main = (props) => {
 
   const currentSlice = useMemo(() => {
     return searchFilter.slice(countryIndex[0], countryIndex[1]);
-  }, [countryIndex, regionFilter, searchQuery]);
+  }, [countryIndex, regionFilter, searchQuery, countrySelect]);
 
   const { output, loading } = useFlagRender(
     currentSlice,
@@ -49,24 +49,35 @@ const Main = (props) => {
     countryIndex
   );
 
+  // console.log(searchFilter, currentSlice, output);
+  let modalOutput;
+  if (modal && output.length === 1) {
+    console.log('HERE')[modalOutput] = output;
+  }
+  console.log(modal, output.length);
+  console.log(modalOutput, output[0]);
+
+  const modalBorderCountryBtn = (borderCountry) => {
+    setActiveRegion('all');
+    setSearchQuery(borderCountry);
+    setCountryIndex([0, 1]);
+    // const getBorderCountryObject = countriesList.find(
+    //   (country) => country.name === borderCountry
+    // );
+    // setCountrySelect(getBorderCountryObject);
+  };
+
   return (
     <>
       {modal && (
         <Modal
-          country={countrySelect}
+          country={modalOutput}
           alphaList={alphaList}
           setModal={setModal}
+          modalCountry={modalBorderCountryBtn}
         />
       )}
-      {/* {modal && <div className="modal" />} */}
       <main>
-        {/* {modal && (
-        <Modal
-          country={countrySelect}
-          alphaList={alphaList}
-          setModal={setModal}
-        />
-      )} */}
         <div className="options-panel">
           <Search
             searchQuery={searchQuery}
@@ -83,7 +94,10 @@ const Main = (props) => {
           filteredCountries={output}
           countryIndex={countryIndex}
           setCountryIndex={setCountryIndex}
+          setCountrySelect={setCountrySelect}
+          setModal={setModal}
           loading={loading}
+          modal={modal}
         />
       </main>
     </>
