@@ -4,8 +4,19 @@ import PropTypes from 'prop-types';
 const Card = React.forwardRef((props, ref) => {
   const { country, population, region, capital, flag } = props;
 
+  const clickHandler = (e) => {
+    console.log(e.currentTarget.getAttribute('data-country'));
+  };
+
   return (
-    <div className="card-country" ref={ref}>
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
+    <div
+      className="card-country"
+      ref={ref}
+      data-country={country}
+      onClick={clickHandler}
+      onKeyDown={clickHandler}
+    >
       <div className="card-flag">
         <img
           src={`data:image/svg+xml;utf8,${encodeURIComponent(flag)}`}

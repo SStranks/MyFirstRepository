@@ -1,15 +1,18 @@
 import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import useFlagRender from './useFlagRender';
+import Modal from './Modal';
 import Grid from './Grid';
 import Search from './Search';
 import Filter from './Filter';
 
 const Main = (props) => {
-  const { countriesList } = props;
+  const { countriesList, alphaList } = props;
   const [activeRegion, setActiveRegion] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [countryIndex, setCountryIndex] = useState([0, 8]);
+  const [modal, setModal] = useState(false);
+  const [countrySelect, setCountrySelect] = useState({});
 
   const regionFilter = useMemo(
     () =>
@@ -47,35 +50,54 @@ const Main = (props) => {
   );
 
   return (
-    <main>
-      <div className="options-panel">
-        <Search
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          setCountryIndex={setCountryIndex}
+    <>
+      {modal && (
+        <Modal
+          country={countrySelect}
+          alphaList={alphaList}
+          setModal={setModal}
         />
-        <Filter
-          activeRegion={activeRegion}
-          setActiveRegion={setActiveRegion}
-          setCountryIndex={setCountryIndex}
+      )}
+      {/* {modal && <div className="modal" />} */}
+      <main>
+        {/* {modal && (
+        <Modal
+          country={countrySelect}
+          alphaList={alphaList}
+          setModal={setModal}
         />
-      </div>
-      <Grid
-        filteredCountries={output}
-        countryIndex={countryIndex}
-        setCountryIndex={setCountryIndex}
-        loading={loading}
-      />
-    </main>
+      )} */}
+        <div className="options-panel">
+          <Search
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            setCountryIndex={setCountryIndex}
+          />
+          <Filter
+            activeRegion={activeRegion}
+            setActiveRegion={setActiveRegion}
+            setCountryIndex={setCountryIndex}
+          />
+        </div>
+        <Grid
+          filteredCountries={output}
+          countryIndex={countryIndex}
+          setCountryIndex={setCountryIndex}
+          loading={loading}
+        />
+      </main>
+    </>
   );
 };
 
 Main.propTypes = {
   countriesList: PropTypes.arrayOf(PropTypes.shape({})),
+  alphaList: PropTypes.shape({}),
 };
 
 Main.defaultProps = {
   countriesList: null,
+  alphaList: null,
 };
 
 export default Main;

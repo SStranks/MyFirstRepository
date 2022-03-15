@@ -1,0 +1,12 @@
+@use 'variables';
+
+.modal {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: red;
+  // background-color: var(--color-background);
+  transition: variables.$Theme-transition;
+  overflow: hidden;
+  z-index: 5;
+}
