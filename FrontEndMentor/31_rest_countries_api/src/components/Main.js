@@ -46,16 +46,17 @@ const Main = (props) => {
     currentSlice,
     activeRegion,
     searchQuery,
-    countryIndex
+    countryIndex,
+    modal
   );
 
   // console.log(searchFilter, currentSlice, output);
-  let modalOutput;
-  if (modal && output.length === 1) {
-    console.log('HERE')[modalOutput] = output;
-  }
-  console.log(modal, output.length);
-  console.log(modalOutput, output[0]);
+  // let modalOutput;
+  // if (modal && output.length === 1) {
+  //   console.log('HERE')[modalOutput] = output;
+  // }
+  // console.log(modal, output.length);
+  // console.log(modalOutput, output[0]);
 
   const modalBorderCountryBtn = (borderCountry) => {
     setActiveRegion('all');
@@ -67,13 +68,18 @@ const Main = (props) => {
     // setCountrySelect(getBorderCountryObject);
   };
 
+  // console.log(currentSlice, output);
+
   return (
     <>
       {modal && (
         <Modal
-          country={modalOutput}
+          country={countrySelect}
           alphaList={alphaList}
           setModal={setModal}
+          setActiveRegion={setActiveRegion}
+          setSearchQuery={setSearchQuery}
+          setCountryIndex={setCountryIndex}
           modalCountry={modalBorderCountryBtn}
         />
       )}

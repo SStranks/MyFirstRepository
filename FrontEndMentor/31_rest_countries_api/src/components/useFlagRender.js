@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function useFlagRender(countries, region, query, countryIndex) {
+function useFlagRender(countries, region, query, countryIndex, modal) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [output, setOutput] = useState([]);
 
   useEffect(() => {
     setOutput([]);
-  }, [region, query]);
+  }, [region, query, modal]);
 
   useEffect(async () => {
     setLoading(true);

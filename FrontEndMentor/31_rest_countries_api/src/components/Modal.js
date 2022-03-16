@@ -4,9 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 const Modal = (props) => {
-  const { country, alphaList, setModal, modalCountry } = props;
+  const {
+    country,
+    alphaList,
+    setModal,
+    setActiveRegion,
+    setSearchQuery,
+    setCountryIndex,
+    modalCountry,
+  } = props;
 
-  const borderCountries = country.borders.map((countryAlpha3Code, i) => {
+  const borderCountries = country.borders?.map((countryAlpha3Code, i) => {
     const borderName = alphaList[countryAlpha3Code];
     return (
       <button
@@ -21,12 +29,19 @@ const Modal = (props) => {
     );
   });
 
+  const backBtnHandler = () => {
+    setActiveRegion('all');
+    setSearchQuery('');
+    setCountryIndex([0, 8]);
+    setModal(false);
+  };
+
   return (
     <div className="modal">
       <button
         type="button"
         aria-label="go back to main"
-        onClick={() => setModal(false)}
+        onClick={backBtnHandler}
       >
         <FontAwesomeIcon icon={faArrowLeftLong} className="faArrowLeft" />
         <span>Back</span>
@@ -60,13 +75,15 @@ const Modal = (props) => {
             <p>
               Currencies:{' '}
               <span>
-                {country.currencies.map((currency) => currency.name).join(', ')}
+                {country.currencies
+                  ?.map((currency) => currency.name)
+                  .join(', ')}
               </span>
             </p>
             <p>
               Languages:{' '}
               <span>
-                {country.languages.map((lang) => lang.name).join(', ')}
+                {country.languages?.map((lang) => lang.name).join(', ')}
               </span>
             </p>
           </div>
@@ -85,6 +102,9 @@ Modal.propTypes = {
   country: PropTypes.objectOf(PropTypes.string),
   alphaList: PropTypes.shape({}),
   setModal: PropTypes.func,
+  setActiveRegion: PropTypes.func,
+  setSearchQuery: PropTypes.func,
+  setCountryIndex: PropTypes.func,
   modalCountry: PropTypes.func,
 };
 
@@ -92,6 +112,9 @@ Modal.defaultProps = {
   country: null,
   alphaList: null,
   setModal: null,
+  setActiveRegion: null,
+  setSearchQuery: null,
+  setCountryIndex: null,
   modalCountry: null,
 };
 
