@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
+import useFlagRender from './useFlagRender';
 
 const Modal = (props) => {
-  const { country, alphaList, setModal, setCountryIndex, modalCountry } = props;
+  const { country, countriesList, alphaList, setModal, setStateFilter } = props;
+  const [countrySelect, setCountrySelect] = useState(country);
 
-  const borderCountries = country.borders?.map((countryAlpha3Code, i) => {
+  const newCountry = countriesList.find((el) => el.name === countrySelect.name);
+  useFlagRender(
+    [newCountry],
+    'all',
+    newCountry.name,
+    undefined,
+    undefined,
+    setCountrySelect
+  );
+
+  const modalBorderCountryBtn = (borderCountry) => {
+    const getBorderCountryObject = countriesList.find(
+      (nation) => nation.name === borderCountry
+    );
+    setCountrySelect(getBorderCountryObject);
+  };
+
+  const borderCountries = countrySelect.borders?.map((countryAlpha3Code, i) => {
     const borderName = alphaList[countryAlpha3Code];
     return (
       <button
         type="button"
         aria-label={`border country ${i + 1}`}
         key={`modal_${borderName}`}
-        onClick={() => modalCountry(borderName)}
+        onClick={() => modalBorderCountryBtn(borderName)}
       >
         <span className="hover-border-btn">{borderName}</span>
         <span>{borderName}</span>
@@ -23,7 +42,7 @@ const Modal = (props) => {
 
   const backBtnHandler = () => {
     setModal(false);
-    setCountryIndex([0, 8]);
+    setStateFilter((prev) => ({ ...prev, countryIndex: [0, 8] }));
   };
 
   return (
@@ -38,34 +57,37 @@ const Modal = (props) => {
       </button>
       <div className="content">
         <img
-          src={`data:image/svg+xml;utf8,${encodeURIComponent(country.flag)}`}
+          src={`data:image/svg+xml;utf8,${encodeURIComponent(
+            countrySelect.flag
+          )}`}
           alt=""
         />
         <div className="country-info">
-          <h2>{country.name}</h2>
+          <h2>{countrySelect.name}</h2>
           <div className="grid-info">
             <p>
-              Native Name: <span>{country.nativeName}</span>
+              Native Name: <span>{countrySelect.nativeName}</span>
             </p>
             <p>
-              Population: <span>{country.population.toLocaleString()}</span>
+              Population:{' '}
+              <span>{countrySelect.population?.toLocaleString()}</span>
             </p>
             <p>
-              Region: <span>{country.region}</span>
+              Region: <span>{countrySelect.region}</span>
             </p>
             <p>
-              Sub Region: <span>{country.subregion}</span>
+              Sub Region: <span>{countrySelect.subregion}</span>
             </p>
             <p>
-              Capital: <span>{country.capital}</span>
+              Capital: <span>{countrySelect.capital}</span>
             </p>
             <p>
-              Top Level Domain: <span>{country.topLevelDomain[0]}</span>
+              {/* Top Level Domain: <span>{countrySelect?.topLevelDomain[0]}</span> */}
             </p>
             <p>
               Currencies:{' '}
               <span>
-                {country.currencies
+                {countrySelect.currencies
                   ?.map((currency) => currency.name)
                   .join(', ')}
               </span>
@@ -73,7 +95,7 @@ const Modal = (props) => {
             <p>
               Languages:{' '}
               <span>
-                {country.languages?.map((lang) => lang.name).join(', ')}
+                {countrySelect.languages?.map((lang) => lang.name).join(', ')}
               </span>
             </p>
           </div>
@@ -89,18 +111,18 @@ const Modal = (props) => {
 
 Modal.propTypes = {
   country: PropTypes.shape(),
+  countriesList: PropTypes.arrayOf(PropTypes.shape()),
   alphaList: PropTypes.shape({}),
   setModal: PropTypes.func,
-  setCountryIndex: PropTypes.func,
-  modalCountry: PropTypes.func,
+  setStateFilter: PropTypes.func,
 };
 
 Modal.defaultProps = {
   country: {},
+  countriesList: null,
   alphaList: null,
   setModal: null,
-  setCountryIndex: null,
-  modalCountry: null,
+  setStateFilter: null,
 };
 
 export default Modal;

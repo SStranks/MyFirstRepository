@@ -8,96 +8,78 @@ import Filter from './Filter';
 
 const Main = (props) => {
   const { countriesList, alphaList } = props;
-  const [activeRegion, setActiveRegion] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [countryIndex, setCountryIndex] = useState([0, 8]);
+  const [stateFilter, setStateFilter] = useState({
+    activeRegion: 'all',
+    searchQuery: '',
+    countryIndex: [0, 8],
+  });
   const [modal, setModal] = useState(false);
   const [countrySelect, setCountrySelect] = useState();
 
   const regionFilter = useMemo(
     () =>
       countriesList.filter((country) => {
-        if (activeRegion === 'all') return country;
+        if (stateFilter.activeRegion === 'all') return country;
         if (
-          activeRegion === 'Polar' &&
+          stateFilter.activeRegion === 'Polar' &&
           (country.region === 'Polar' ||
             country.region === 'Antarctic' ||
             country.region === 'Antarctic Ocean')
         )
           return country;
-        return activeRegion === country.region ? country : false;
+        return stateFilter.activeRegion === country.region ? country : false;
       }),
-    [activeRegion, countriesList]
+    [stateFilter.activeRegion, countriesList]
   );
 
   const searchFilter = (() => {
-    if (searchQuery === '') return regionFilter;
-    const regex = new RegExp(`^${searchQuery}`, 'i');
+    if (stateFilter.searchQuery === '') return regionFilter;
+    const regex = new RegExp(`^${stateFilter.searchQuery}`, 'i');
     return regionFilter.filter((country) =>
       regex.test(country.name) ? country : false
     );
   })();
 
   const currentSlice = useMemo(() => {
-    return searchFilter.slice(countryIndex[0], countryIndex[1]);
-  }, [countryIndex, regionFilter, searchQuery, countrySelect]);
+    return searchFilter.slice(
+      stateFilter.countryIndex[0],
+      stateFilter.countryIndex[1]
+    );
+  }, [
+    stateFilter.countryIndex,
+    regionFilter,
+    stateFilter.searchQuery,
+    countrySelect,
+  ]);
 
   const { output, loading } = useFlagRender(
     currentSlice,
-    activeRegion,
-    searchQuery,
-    countryIndex,
+    stateFilter.activeRegion,
+    stateFilter.searchQuery,
+    stateFilter.countryIndex,
     modal
   );
-
-  // console.log(searchFilter, currentSlice, output);
-  // let modalOutput;
-  // if (modal && output.length === 1) {
-  //   console.log('HERE')[modalOutput] = output;
-  // }
-  // console.log(modal, output.length);
-  // console.log(modalOutput, output[0]);
-
-  const modalBorderCountryBtn = (borderCountry) => {
-    // setActiveRegion('all');
-    // setSearchQuery(borderCountry);
-    // setCountryIndex([0, 1]);
-    const getBorderCountryObject = countriesList.find(
-      (country) => country.name === borderCountry
-    );
-    setCountrySelect(getBorderCountryObject);
-  };
 
   return (
     <>
       {modal && (
         <Modal
           country={countrySelect}
+          countriesList={countriesList}
           alphaList={alphaList}
-          modalCountry={modalBorderCountryBtn}
           setModal={setModal}
-          setActiveRegion={setActiveRegion}
-          setSearchQuery={setSearchQuery}
-          setCountryIndex={setCountryIndex}
+          setStateFilter={setStateFilter}
         />
       )}
       <main>
         <div className="options-panel">
-          <Search
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-            setCountryIndex={setCountryIndex}
-          />
-          <Filter
-            activeRegion={activeRegion}
-            setActiveRegion={setActiveRegion}
-            setCountryIndex={setCountryIndex}
-          />
+          <Search stateFilter={stateFilter} setStateFilter={setStateFilter} />
+          <Filter stateFilter={stateFilter} setStateFilter={setStateFilter} />
         </div>
         <Grid
           filteredCountries={output}
-          countryIndex={countryIndex}
-          setCountryIndex={setCountryIndex}
+          stateFilter={stateFilter}
+          setStateFilter={setStateFilter}
           setCountrySelect={setCountrySelect}
           setModal={setModal}
           loading={loading}

@@ -4,18 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Search = (props) => {
-  const { searchQuery, setSearchQuery, setCountryIndex } = props;
+  const { stateFilter, setStateFilter } = props;
 
   const searchHandler = (e) => {
-    // function regexEscape(str) {
-    //   return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
-    // }
-    // const input = regexEscape(e.target.value);
     if (/^[a-zA-Z]*$/.test(e.target.value) === false) {
-      setSearchQuery((prev) => prev);
+      setStateFilter((prev) => ({ ...prev }));
     }
-    setCountryIndex([0, 8]);
-    setSearchQuery(e.target.value);
+    setStateFilter((prev) => ({
+      ...prev,
+      countryIndex: [0, 8],
+      searchQuery: e.target.value,
+    }));
   };
 
   return (
@@ -23,7 +22,7 @@ const Search = (props) => {
       <FontAwesomeIcon icon={faMagnifyingGlass} className="faMagnifyingGlass" />
       <input
         type="text"
-        value={searchQuery}
+        value={stateFilter.searchQuery}
         placeholder="Search for a country..."
         onChange={searchHandler}
       />
@@ -32,14 +31,12 @@ const Search = (props) => {
 };
 
 Search.propTypes = {
-  searchQuery: PropTypes.string,
-  setSearchQuery: PropTypes.func,
-  setCountryIndex: PropTypes.func,
+  stateFilter: PropTypes.shape(),
+  setStateFilter: PropTypes.func,
 };
 Search.defaultProps = {
-  searchQuery: null,
-  setSearchQuery: null,
-  setCountryIndex: null,
+  stateFilter: null,
+  setStateFilter: null,
 };
 
 export default Search;

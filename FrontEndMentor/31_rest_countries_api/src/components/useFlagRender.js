@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function useFlagRender(countries, region, query, countryIndex, modal) {
+function useFlagRender(
+  countries,
+  region,
+  query,
+  countryIndex,
+  modal,
+  setCountrySelect
+) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [output, setOutput] = useState([]);
@@ -41,16 +48,16 @@ function useFlagRender(countries, region, query, countryIndex, modal) {
         return { ...country, flag: flagOutput[i] };
       });
 
-      setOutput((prev) => {
-        return [...prev, ...mergeFlagToSlice];
-      });
-
+      setOutput(mergeFlagToSlice);
       setLoading(false);
+      if (setCountrySelect) {
+        setCountrySelect(...mergeFlagToSlice);
+      }
     } catch (err) {
       console.log(err);
       setError(true);
     }
-  }, [countryIndex, region, query, countries, modal]);
+  }, [countryIndex, region, query]);
   return { loading, error, output };
 }
 

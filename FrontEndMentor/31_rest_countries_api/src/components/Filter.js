@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const Filter = (props) => {
-  const { activeRegion, setActiveRegion, setCountryIndex } = props;
+  const { stateFilter, setStateFilter } = props;
 
   const btnMenuClickHandler = () => {
     const menu = document.querySelector('.dropdown-content');
@@ -12,8 +12,11 @@ const Filter = (props) => {
   };
 
   const btnFilterClickHandler = (option) => {
-    setActiveRegion(option);
-    setCountryIndex([0, 8]);
+    setStateFilter((prev) => ({
+      ...prev,
+      activeRegion: option,
+      countryIndex: [0, 8],
+    }));
   };
 
   return (
@@ -32,7 +35,9 @@ const Filter = (props) => {
             <button
               type="button"
               aria-label="filter show all"
-              className={activeRegion === 'all' ? 'filter-active' : ''}
+              className={
+                stateFilter.activeRegion === 'all' ? 'filter-active' : ''
+              }
               onClick={() => {
                 btnFilterClickHandler('all');
               }}
@@ -44,7 +49,9 @@ const Filter = (props) => {
             <button
               type="button"
               aria-label="filter by Africa"
-              className={activeRegion === 'Africa' ? 'filter-active' : ''}
+              className={
+                stateFilter.activeRegion === 'Africa' ? 'filter-active' : ''
+              }
               onClick={() => {
                 btnFilterClickHandler('Africa');
               }}
@@ -56,7 +63,9 @@ const Filter = (props) => {
             <button
               type="button"
               aria-label="filter by Americas"
-              className={activeRegion === 'Americas' ? 'filter-active' : ''}
+              className={
+                stateFilter.activeRegion === 'Americas' ? 'filter-active' : ''
+              }
               onClick={() => {
                 btnFilterClickHandler('Americas');
               }}
@@ -68,7 +77,9 @@ const Filter = (props) => {
             <button
               type="button"
               aria-label="filter by Asia"
-              className={activeRegion === 'Asia' ? 'filter-active' : ''}
+              className={
+                stateFilter.activeRegion === 'Asia' ? 'filter-active' : ''
+              }
               onClick={() => {
                 btnFilterClickHandler('Asia');
               }}
@@ -80,7 +91,9 @@ const Filter = (props) => {
             <button
               type="button"
               aria-label="filter by Europe"
-              className={activeRegion === 'Europe' ? 'filter-active' : ''}
+              className={
+                stateFilter.activeRegion === 'Europe' ? 'filter-active' : ''
+              }
               onClick={() => {
                 btnFilterClickHandler('Europe');
               }}
@@ -92,7 +105,9 @@ const Filter = (props) => {
             <button
               type="button"
               aria-label="filter by Oceania"
-              className={activeRegion === 'Oceania' ? 'filter-active' : ''}
+              className={
+                stateFilter.activeRegion === 'Oceania' ? 'filter-active' : ''
+              }
               onClick={() => {
                 btnFilterClickHandler('Oceania');
               }}
@@ -104,7 +119,9 @@ const Filter = (props) => {
             <button
               type="button"
               aria-label="filter by Polar"
-              className={activeRegion === 'Polar' ? 'filter-active' : ''}
+              className={
+                stateFilter.activeRegion === 'Polar' ? 'filter-active' : ''
+              }
               onClick={() => {
                 btnFilterClickHandler('Polar');
               }}
@@ -119,14 +136,12 @@ const Filter = (props) => {
 };
 
 Filter.propTypes = {
-  activeRegion: PropTypes.string,
-  setActiveRegion: PropTypes.func,
-  setCountryIndex: PropTypes.func,
+  stateFilter: PropTypes.shape(),
+  setStateFilter: PropTypes.func,
 };
 Filter.defaultProps = {
-  activeRegion: null,
-  setActiveRegion: null,
-  setCountryIndex: null,
+  stateFilter: null,
+  setStateFilter: null,
 };
 
 export default Filter;
