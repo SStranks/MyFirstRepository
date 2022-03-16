@@ -50,7 +50,7 @@ function useFlagRender(countries, region, query, countryIndex, modal) {
       console.log(err);
       setError(true);
     }
-  }, [countryIndex, region, query, countries]);
+  }, [countryIndex, region, query, countries, modal]);
   return { loading, error, output };
 }
 

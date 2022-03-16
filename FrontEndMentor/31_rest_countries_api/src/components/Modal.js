@@ -4,15 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 const Modal = (props) => {
-  const {
-    country,
-    alphaList,
-    setModal,
-    setActiveRegion,
-    setSearchQuery,
-    setCountryIndex,
-    modalCountry,
-  } = props;
+  const { country, alphaList, setModal, setCountryIndex, modalCountry } = props;
 
   const borderCountries = country.borders?.map((countryAlpha3Code, i) => {
     const borderName = alphaList[countryAlpha3Code];
@@ -20,7 +12,7 @@ const Modal = (props) => {
       <button
         type="button"
         aria-label={`border country ${i + 1}`}
-        key={borderName}
+        key={`modal_${borderName}`}
         onClick={() => modalCountry(borderName)}
       >
         <span className="hover-border-btn">{borderName}</span>
@@ -30,10 +22,8 @@ const Modal = (props) => {
   });
 
   const backBtnHandler = () => {
-    setActiveRegion('all');
-    setSearchQuery('');
-    setCountryIndex([0, 8]);
     setModal(false);
+    setCountryIndex([0, 8]);
   };
 
   return (
@@ -98,22 +88,17 @@ const Modal = (props) => {
 };
 
 Modal.propTypes = {
-  // country: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
-  country: PropTypes.objectOf(PropTypes.string),
+  country: PropTypes.shape(),
   alphaList: PropTypes.shape({}),
   setModal: PropTypes.func,
-  setActiveRegion: PropTypes.func,
-  setSearchQuery: PropTypes.func,
   setCountryIndex: PropTypes.func,
   modalCountry: PropTypes.func,
 };
 
 Modal.defaultProps = {
-  country: null,
+  country: {},
   alphaList: null,
   setModal: null,
-  setActiveRegion: null,
-  setSearchQuery: null,
   setCountryIndex: null,
   modalCountry: null,
 };

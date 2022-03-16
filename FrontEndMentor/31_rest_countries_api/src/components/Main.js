@@ -12,7 +12,7 @@ const Main = (props) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [countryIndex, setCountryIndex] = useState([0, 8]);
   const [modal, setModal] = useState(false);
-  const [countrySelect, setCountrySelect] = useState({});
+  const [countrySelect, setCountrySelect] = useState();
 
   const regionFilter = useMemo(
     () =>
@@ -59,16 +59,14 @@ const Main = (props) => {
   // console.log(modalOutput, output[0]);
 
   const modalBorderCountryBtn = (borderCountry) => {
-    setActiveRegion('all');
-    setSearchQuery(borderCountry);
-    setCountryIndex([0, 1]);
-    // const getBorderCountryObject = countriesList.find(
-    //   (country) => country.name === borderCountry
-    // );
-    // setCountrySelect(getBorderCountryObject);
+    // setActiveRegion('all');
+    // setSearchQuery(borderCountry);
+    // setCountryIndex([0, 1]);
+    const getBorderCountryObject = countriesList.find(
+      (country) => country.name === borderCountry
+    );
+    setCountrySelect(getBorderCountryObject);
   };
-
-  // console.log(currentSlice, output);
 
   return (
     <>
@@ -76,11 +74,11 @@ const Main = (props) => {
         <Modal
           country={countrySelect}
           alphaList={alphaList}
+          modalCountry={modalBorderCountryBtn}
           setModal={setModal}
           setActiveRegion={setActiveRegion}
           setSearchQuery={setSearchQuery}
           setCountryIndex={setCountryIndex}
-          modalCountry={modalBorderCountryBtn}
         />
       )}
       <main>
