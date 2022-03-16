@@ -9,7 +9,7 @@ const Modal = (props) => {
   const [countrySelect, setCountrySelect] = useState(country);
 
   const newCountry = countriesList.find((el) => el.name === countrySelect.name);
-  useFlagRender(
+  const { loading } = useFlagRender(
     [newCountry],
     'all',
     newCountry.name,
@@ -56,12 +56,15 @@ const Modal = (props) => {
         <span>Back</span>
       </button>
       <div className="content">
-        <img
-          src={`data:image/svg+xml;utf8,${encodeURIComponent(
-            countrySelect.flag
-          )}`}
-          alt=""
-        />
+        {loading && <div />}
+        {!loading && (
+          <img
+            src={`data:image/svg+xml;utf8,${encodeURIComponent(
+              countrySelect.flag
+            )}`}
+            alt=""
+          />
+        )}
         <div className="country-info">
           <h2>{countrySelect.name}</h2>
           <div className="grid-info">
@@ -82,7 +85,7 @@ const Modal = (props) => {
               Capital: <span>{countrySelect.capital}</span>
             </p>
             <p>
-              {/* Top Level Domain: <span>{countrySelect?.topLevelDomain[0]}</span> */}
+              Top Level Domain: <span>{countrySelect?.topLevelDomain[0]}</span>
             </p>
             <p>
               Currencies:{' '}

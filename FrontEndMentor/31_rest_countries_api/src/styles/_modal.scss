@@ -30,8 +30,12 @@
 }
 
 .content {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(500px, auto) 1fr;
+  & > div {
+    height: 100%;
+    width: 100%;
+  }
   & img {
     width: 500px;
     height: 333px;
