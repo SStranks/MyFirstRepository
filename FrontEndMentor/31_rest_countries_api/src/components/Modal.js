@@ -34,7 +34,7 @@ const Modal = (props) => {
         key={`modal_${borderName}`}
         onClick={() => modalBorderCountryBtn(borderName)}
       >
-        <span className="hover-border-btn">{borderName}</span>
+        {/* <span className="hover-border-btn">{borderName}</span> */}
         <span>{borderName}</span>
       </button>
     );
