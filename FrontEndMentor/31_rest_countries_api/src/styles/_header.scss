@@ -59,4 +59,14 @@ header {
       }
     }
   }
+  @media (max-width: variables.$mobile-s) {
+    & h1 {
+      font-size: 0.9rem;
+    }
+    & .theme-toggle {
+      span {
+        font-size: 0.9rem;
+      }
+    }
+  }
 }

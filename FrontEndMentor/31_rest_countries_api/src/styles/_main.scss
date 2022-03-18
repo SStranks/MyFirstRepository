@@ -151,6 +151,9 @@
     grid-template-columns: minmax(auto, 1fr);
     column-gap: 0;
     row-gap: 3rem;
-    padding: 1.5rem 10%;
+    padding: 1.5rem 7%;
+  }
+  @media (max-width: variables.$mobile-s) {
+    padding: 1.5rem 5%;
   }
 }
