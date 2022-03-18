@@ -37,4 +37,26 @@ header {
       }
     }
   }
+  @media (max-width: variables.$desktop-m - 1px) {
+    padding: 1.5rem 4rem;
+  }
+  @media (max-width: variables.$mobile-l) {
+    padding: 2rem 1.5rem;
+    & h1 {
+      font-size: 1.2rem;
+    }
+    & .theme-toggle {
+      span {
+        font-size: 1rem;
+        font-weight: 400;
+      }
+      & button {
+        padding: 0.75rem;
+        & svg {
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+  }
 }
