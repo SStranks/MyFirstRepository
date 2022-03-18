@@ -55,7 +55,6 @@ const Grid = (props) => {
   return <div className="grid">{countryCards}</div>;
 };
 
-// TODO:  Add in proper proptypes
 Grid.propTypes = {
   filteredCountries: PropTypes.arrayOf(PropTypes.shape({})),
   stateFilter: PropTypes.shape(),
