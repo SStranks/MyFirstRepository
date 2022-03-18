@@ -1,11 +1,16 @@
 @use 'variables';
 
+// TODO:  Make it so only the countries grid scrolls, not the entire page (for both desktop and movile).
+main {
+  overflow: scroll;
+}
+
 .options-panel {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 3rem 6rem;
-  @media (max-width: variables.$desktop-m - 1px) {
+  @media (max-width: (variables.$desktop-m - 1px)) {
     padding: 3rem 4rem;
   }
   @media (max-width: variables.$mobile-l) {
@@ -137,7 +142,8 @@
   // row-gap: 50px;
   // column-gap: 3%;
   padding: 1.5rem 6rem;
-  @media (max-width: variables.$desktop-m - 1px) {
+  overflow-y: scroll;
+  @media (max-width: (variables.$desktop-m - 1px)) {
     grid-template-columns: repeat(3, minmax(auto, 1fr));
     column-gap: 35px;
     padding: 1.5rem 4rem;

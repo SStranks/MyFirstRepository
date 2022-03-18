@@ -8,7 +8,9 @@ const Header = () => {
 
   return (
     <header>
-      <h1>Where in the world?</h1>
+      <h1>
+        <a href="./">Where in the world?</a>
+      </h1>
       <div className="theme-toggle">
         <button
           type="button"

@@ -22,16 +22,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
 
 /*   2. || App                      */
-// #root {
-//   position: relative;
-//   height: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   align-items: center;
-//   margin: 0 auto;
-//   overflow: hidden;
-// }
+#root {
+  overflow: hidden;
+}
 
 /*   3. || FrontEnd Mentor Footer   */
 footer {

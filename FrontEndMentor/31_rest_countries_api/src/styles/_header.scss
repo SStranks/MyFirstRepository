@@ -37,7 +37,7 @@ header {
       }
     }
   }
-  @media (max-width: variables.$desktop-m - 1px) {
+  @media (max-width: (variables.$desktop-m - 1px)) {
     padding: 1.5rem 4rem;
   }
   @media (max-width: variables.$mobile-l) {
