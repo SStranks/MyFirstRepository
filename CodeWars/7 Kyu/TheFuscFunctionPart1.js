@@ -18,5 +18,19 @@
 
 // Hint: Use recursion.
 
-
 // My Solution
+function fusc(n) {
+  if (n <= 1) return n;
+  if (n % 2 === 0) {
+    return fusc(n / 2);
+  } else {
+    return fusc(Math.floor(n / 2)) + fusc(Math.floor(n / 2) + 1);
+  }
+}
+
+// Other Solutions
+function fusc(n) {
+  if (n < 2) return n;
+  if (n & 1) return fusc(n >> 1) + fusc((n >> 1) + 1);
+  return fusc(n >> 1);
+}
