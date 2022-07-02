@@ -9,3 +9,10 @@
 // The start number will always be smaller than the end number. Both numbers can be also negative!
 
 // My Solution
+function dontGiveMeFive(start, end) {
+  let count = 0;
+  for (let i = start; i <= end; i++) {
+    if (!i.toString().includes('5')) count++;
+  }
+  return count;
+}
