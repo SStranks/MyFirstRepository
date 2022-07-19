@@ -5,15 +5,25 @@
 
 // Example
 // Input: 3735928559
-  
+
 // 3735928559 is 0xdeadbeef in hexadecimal representation and 11011110 10101101 10111110 11101111
 // in binary representation.
-  
-// After sorting the bytes in descending order the resulting unsigned 32 bit integer is 4024352429 
+
+// After sorting the bytes in descending order the resulting unsigned 32 bit integer is 4024352429
 // in decimal representation, which is 0xefdebead in hexadecimal and 11101111 11011110 10111110 10101101
 // in binary.
 
 // Output should be: 4024352429
 
-
 // My Solutions
+function sortBytes(uint32) {
+  return parseInt(
+    uint32
+      .toString(2)
+      .padStart(32, '0')
+      .match(/.{1,8}/g)
+      .sort((a, b) => b - a)
+      .join(''),
+    2
+  );
+}
