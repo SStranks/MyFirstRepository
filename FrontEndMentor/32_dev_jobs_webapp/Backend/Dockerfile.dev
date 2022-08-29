@@ -1,0 +1,13 @@
+FROM node:16.17.0
+
+LABEL version="1.0"
+LABEL description="Dev Image: MERN App"
+
+WORKDIR /src/myApp
+COPY package.json /src/myApp
+RUN npm install && npm cache clean --force
+
+COPY . /src/myApp
+
+EXPOSE 3080
+CMD ["npm", "start"]

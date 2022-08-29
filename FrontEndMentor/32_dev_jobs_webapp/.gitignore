@@ -1,0 +1,13 @@
+# Env files
+.env
+Backend/.env
+
+# Dependencies
+Backend/node_modules
+Frontend/node_modules
+
+# FrontEndMentor
+*.sketch
+*.xd
+*.fig
+.DS_Store
