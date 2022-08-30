@@ -1,0 +1,83 @@
+/* -------------------------------- */
+/*   Typography                     */
+/* -------------------------------- */
+/*   FrontEndMentor Challenge       */
+/*   #Dev-Jobs Web App              */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      30/08/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use 'variables' as *;
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;600;700&display=swap');
+
+/*   Font                           */
+html,
+body {
+  font-family: 'Kumbh Sans', sans-serif;
+  p {
+    color: $Dark_Grey;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: $Very_Dark_Blue;
+  }
+}
+
+/*   Text                           */
+p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 34px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+h4 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+span {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 26px;
+  color: $Violet;
+}
+
+// a {
+//   color: hsl(var(--Dark-Grayish-Violet));
+//   letter-spacing: 0.1rem;
+//   text-decoration: none;
+//   &:visited {
+//     color: hsl(var(--Dark-Grayish-Violet));
+//   }
+//   &:active {
+//     color: hsl(var(--Dark-Grayish-Violet));
+//   }
+//   a:hover {
+//     color: hsl(var(--Very-Dark-Violet));
+//   }
+// }

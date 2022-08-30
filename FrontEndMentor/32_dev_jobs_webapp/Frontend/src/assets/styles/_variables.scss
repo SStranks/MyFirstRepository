@@ -1,0 +1,48 @@
+/* -------------------------------- */
+/*   Variables                      */
+/* -------------------------------- */
+/*   FrontEndMentor Challenge       */
+/*   #Dev-Jobs Web App              */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      30/08/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Colours: Primary               */
+$Violet: hsl(27°, 22%, 51%);
+$Light_Violet: hsl(235°, 82%, 77%);
+$Very_Dark_Blue: hsl(219°, 29%, 14%);
+$Midnight: hsl(220°, 29%, 10%);
+
+/*   Colours: Secondary             */
+$White: hsl(0°, 0%, 100%);
+$Light_Grey: hsl(210°, 22%, 96%);
+$Grey: hsl(212°, 23%, 69%);
+$Dark_Grey: hsl(214°, 17%, 51%);
+
+/*  Breakpoints  */
+$mobile-s: 320px;
+$mobile-m: 375px;
+$mobile-l: 425px;
+$tablet-s: 700px;
+$tablet: 768px;
+$desktop-s: 1024px;
+$desktop-m: 1440px;
+$desktop-l: 2560px;
+
+/*  Themes       */
+:root {
+  --color-background: #{$LT__Very-light-gray};
+  --color-elements: #{$White};
+  --color-text: #{$LT__Very-dark-blue};
+}
+
+.dark-theme {
+  --color-background: #{$DT__Very-dark-blue};
+  --color-elements: #{$DT__Dark-blue};
+  --color-text: #{$White};
+}
+
+$Theme-transition: background 1s, color 1s, fill 1s;

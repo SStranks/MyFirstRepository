@@ -3,3 +3,49 @@
 div {
   color: red;
 }
+
+/*   FrontEnd Mentor: Footer         */
+footer {
+  position: relative;
+  height: fit-content;
+}
+
+.attribution {
+  position: absolute;
+  display: block;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  font-size: 0.8em;
+  font-weight: 400;
+  text-align: center;
+  color: variables.$DT__Dark-blue;
+  margin: 0 auto;
+  transform: translate(-50%, -45%);
+  z-index: 3;
+  & a {
+    color: variables.$DT__Dark-blue;
+    // transition: all s ease;
+    &:hover {
+      color: variables.$DT__Dark-blue;
+      // background: variables.$DT__Dark-blue;
+      // color: transparent;
+      // -webkit-background-clip: text;
+      // background-clip: text;
+      transition: all 1s ease;
+      text-decoration: none;
+    }
+  }
+  @media (max-width: variables.$mobile-l) {
+    font-size: 0.4rem;
+    padding: 0 3.5rem;
+  }
+  @media (max-width: variables.$mobile-m) {
+    font-size: 0.4rem;
+    padding: 0 3rem;
+  }
+  @media (max-width: variables.$mobile-s) {
+    font-size: 0.35rem;
+    padding: 0 2rem;
+  }
+}
