@@ -19,15 +19,15 @@ footer {
   font-size: 0.8em;
   font-weight: 400;
   text-align: center;
-  color: variables.$DT__Dark-blue;
+  color: variables.$Light_Violet;
   margin: 0 auto;
   transform: translate(-50%, -45%);
   z-index: 3;
   & a {
-    color: variables.$DT__Dark-blue;
+    color: variables.$Light_Violet;
     // transition: all s ease;
     &:hover {
-      color: variables.$DT__Dark-blue;
+      color: variables.$Violet;
       // background: variables.$DT__Dark-blue;
       // color: transparent;
       // -webkit-background-clip: text;

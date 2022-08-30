@@ -25,8 +25,8 @@ body {
   position: relative;
   width: 100%;
   background: var(--color-background);
+  // color: var(--color-text);
   transition: $Theme-transition;
-  color: black;
 }
 
 img {
@@ -55,7 +55,7 @@ input {
   font-size: inherit;
   font-family: inherit;
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--color-text-p);
   transition: $Theme-transition;
   background-color: transparent;
   &::-webkit-outer-spin-button,
@@ -64,7 +64,7 @@ input {
     margin: 0;
   }
   &::placeholder {
-    color: var(--color-text);
+    color: var(--color-text-p);
     transition: $Theme-transition;
   }
 }

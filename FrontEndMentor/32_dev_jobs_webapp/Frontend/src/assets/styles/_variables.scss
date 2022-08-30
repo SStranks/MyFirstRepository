@@ -34,15 +34,17 @@ $desktop-l: 2560px;
 
 /*  Themes       */
 :root {
-  --color-background: #{$LT__Very-light-gray};
+  --color-background: #{$Light_Grey};
   --color-elements: #{$White};
-  --color-text: #{$LT__Very-dark-blue};
+  --color-text-p: #{$Dark_Grey};
+  --color-text-h: #{$Very_Dark_Blue};
 }
 
 .dark-theme {
-  --color-background: #{$DT__Very-dark-blue};
-  --color-elements: #{$DT__Dark-blue};
-  --color-text: #{$White};
+  --color-background: #{$Midnight};
+  --color-elements: #{$Very_Dark_Blue};
+  --color-text-p: #{$Dark_Grey};
+  --color-text-h: #{$White};
 }
 
 $Theme-transition: background 1s, color 1s, fill 1s;

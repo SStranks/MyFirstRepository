@@ -19,13 +19,13 @@ html,
 body {
   font-family: 'Kumbh Sans', sans-serif;
   p {
-    color: $Dark_Grey;
+    color: var(--color-text-p);
   }
   h1,
   h2,
   h3,
   h4 {
-    color: $Very_Dark_Blue;
+    color: var(--color-text-h);
   }
 }
 
