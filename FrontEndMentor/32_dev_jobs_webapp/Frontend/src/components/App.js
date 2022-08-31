@@ -6,7 +6,6 @@ import './App.scss';
 function App() {
   return (
     <>
-      <div>React App by Simon Stranks Yesheef!!!!eeee</div>
       <Header />
       <Main />
     </>
