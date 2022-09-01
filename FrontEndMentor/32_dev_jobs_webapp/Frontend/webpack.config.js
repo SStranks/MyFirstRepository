@@ -62,7 +62,6 @@ module.exports = {
         use: [
           'style-loader',
           { loader: 'css-loader', options: { modules: true } },
-          // 'css-loader',
           'sass-loader',
         ],
       },
