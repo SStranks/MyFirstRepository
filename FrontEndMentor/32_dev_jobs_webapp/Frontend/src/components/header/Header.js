@@ -18,7 +18,29 @@ function Header() {
           <img src={IconThemeDark} alt="" />
         </div>
       </div>
-      <div className="search-bar">
+      <div className="search-bar grid">
+        <div className="search-bar__compartment">
+          <img src={IconSearch} alt="" />
+          <input
+            type="text"
+            name="search"
+            placeholder="Filter by title, companies, expertise..."
+          />
+        </div>
+        <div className="search-bar__compartment">
+          <img src={IconFilter} alt="" />
+          <input
+            type="text"
+            name="filter"
+            placeholder="Filter by location..."
+          />
+        </div>
+        <div className="search-bar__compartment">
+          <input type="checkbox" name="full-time" />
+          <Button type="button" />
+        </div>
+      </div>
+      {/* <div className="search-bar">
         <div className="search-field flex-row">
           <img src={IconSearch} alt="" />
           <input
@@ -35,7 +57,7 @@ function Header() {
           <input type="checkbox" name="full-time" />
           <Button type="button" />
         </div>
-      </div>
+      </div> */}
     </header>
   );
 }
