@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes, { func, string } from 'prop-types';
+import './Button.scss';
 
 // function Button() {
 //   return <button type="button">Test</button>;

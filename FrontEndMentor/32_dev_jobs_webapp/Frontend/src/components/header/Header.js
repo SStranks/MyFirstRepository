@@ -1,5 +1,6 @@
 import React from 'react';
-import Button from '../buttons/Button';
+import Button from '../custom/Button';
+import Checkbox from '../custom/Checkbox';
 import './Header.scss';
 import Logo from '../../assets/svg/desktop/logo.svg';
 import IconThemeLight from '../../assets/svg/desktop/icon-sun.svg';
@@ -20,23 +21,33 @@ function Header() {
       </div>
       <div className="search-bar grid">
         <div className="search-bar__compartment">
-          <img src={IconSearch} alt="" />
-          <input
-            type="text"
-            name="search"
-            placeholder="Filter by title, companies, expertise..."
-          />
+          <div className="search-bar__compartment__sub">
+            <img src={IconSearch} alt="" />
+            <input
+              type="text"
+              name="search"
+              placeholder="Filter by title, companies, expertise..."
+            />
+          </div>
         </div>
         <div className="search-bar__compartment">
-          <img src={IconFilter} alt="" />
-          <input
-            type="text"
-            name="filter"
-            placeholder="Filter by location..."
-          />
+          <div className="search-bar__compartment__sub">
+            <img src={IconFilter} alt="" />
+            <input
+              type="text"
+              name="filter"
+              placeholder="Filter by location..."
+            />
+          </div>
         </div>
         <div className="search-bar__compartment">
-          <input type="checkbox" name="full-time" />
+          <div className="search-bar__compartment__sub">
+            <label className="checkbox-container" htmlFor="full=time">
+              <input type="checkbox" id="full-time" name="full-time" />
+              <span className="checkbox" />
+            </label>
+          </div>
+          <Checkbox text="test" id="full-time2" name="full-time2" />
           <Button type="button" />
         </div>
       </div>
