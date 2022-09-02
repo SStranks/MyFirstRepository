@@ -5,12 +5,6 @@ import styles from './_Checkbox.module.scss';
 function Checkbox(props) {
   const { text, id, name } = props;
 
-  // return (
-  //   <label className={styles['checkbox-control']} htmlFor={id}>
-  //     <input type="checkbox" id={id} name={name} />
-  //     {text}
-  //   </label>
-  // );
   return (
     <div className={styles['checkbox-control']}>
       <input type="checkbox" id={id} name={name} />

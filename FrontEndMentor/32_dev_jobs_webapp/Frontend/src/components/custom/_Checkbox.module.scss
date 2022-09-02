@@ -21,7 +21,7 @@
     font-family: inherit;
     width: 24px;
     height: 24px;
-    border-radius: 2px;
+    border-radius: 3px;
     &:hover {
       background: $Fine_Violet;
     }
@@ -29,6 +29,7 @@
       content: '';
       width: 24px;
       height: 24px;
+      border-radius: inherit;
       transition: $Theme-transition;
     }
     &:checked::before {

@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../custom/Button';
 import Checkbox from '../custom/Checkbox';
+import Toggle from '../custom/Toggle';
 import './Header.scss';
 import Logo from '../../assets/svg/desktop/logo.svg';
 import IconThemeLight from '../../assets/svg/desktop/icon-sun.svg';
@@ -15,7 +16,7 @@ function Header() {
         <img src={Logo} alt="devjobs logo" id="logo-devjobs" />
         <div className="theme-switcher flex-row">
           <img src={IconThemeLight} alt="" />
-          <div className="toggle" />
+          <Toggle />
           <img src={IconThemeDark} alt="" />
         </div>
       </div>
