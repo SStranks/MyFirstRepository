@@ -1,29 +1,27 @@
 import React from 'react';
-import PropTypes, { func, string } from 'prop-types';
-import './Button.scss';
-
-// function Button() {
-//   return <button type="button">Test</button>;
-// }
+import PropTypes from 'prop-types';
+import styles from './_Button.module.scss';
 
 function Button(props) {
-  const { onClick, children } = props;
+  const { onClick, text } = props;
 
   return (
-    <button type="button" onClick={onClick}>
-      {children}
-    </button>
+    <div className={styles['button-custom']}>
+      <button type="button" onClick={onClick}>
+        {text}
+      </button>
+    </div>
   );
 }
 
 Button.propTypes = {
-  children: PropTypes.string,
+  text: PropTypes.string,
   onClick: PropTypes.func,
 };
 
 Button.defaultProps = {
-  children: string,
-  onClick: func,
+  text: null,
+  onClick: null,
 };
 
 export default Button;

@@ -41,34 +41,10 @@ function Header() {
           </div>
         </div>
         <div className="search-bar__compartment">
-          <div className="search-bar__compartment__sub">
-            <label className="checkbox-container" htmlFor="full=time">
-              <input type="checkbox" id="full-time" name="full-time" />
-              <span className="checkbox" />
-            </label>
-          </div>
-          <Checkbox text="test" id="full-time2" name="full-time2" />
-          <Button type="button" />
+          <Checkbox text="Full Time Only" id="full-time2" name="full-time2" />
+          <Button type="button" text="Search" />
         </div>
       </div>
-      {/* <div className="search-bar">
-        <div className="search-field flex-row">
-          <img src={IconSearch} alt="" />
-          <input
-            type="text"
-            name="search"
-            placeholder="Filter by title, companies, expertise..."
-          />
-          <img src={IconFilter} alt="" />
-          <input
-            type="text"
-            name="filter"
-            placeholder="Filter by location..."
-          />
-          <input type="checkbox" name="full-time" />
-          <Button type="button" />
-        </div>
-      </div> */}
     </header>
   );
 }
