@@ -10,13 +10,23 @@ import IconSearch from '../../assets/svg/desktop/icon-search.svg';
 import IconFilter from '../../assets/svg/desktop/icon-location.svg';
 
 function Header() {
+  const btnThemeClickHandler = () => {
+    const body = document.querySelector('body');
+    body.classList.toggle('dark-theme');
+  };
+
   return (
     <header>
       <div className="flex-row">
         <img src={Logo} alt="devjobs logo" id="logo-devjobs" />
         <div className="theme-switcher flex-row">
           <img src={IconThemeLight} alt="" />
-          <Toggle />
+          <Toggle
+            onClick={btnThemeClickHandler}
+            id="dark-theme-slider"
+            name=""
+            ariaLabel="dark theme toggle"
+          />
           <img src={IconThemeDark} alt="" />
         </div>
       </div>

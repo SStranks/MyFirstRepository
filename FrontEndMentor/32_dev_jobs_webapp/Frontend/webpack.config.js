@@ -4,13 +4,11 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './index.js',
+  entry: './src/index.js',
   output: {
-    // filename: 'bundle.js',
-    // path: path.resolve('dist'),
-    // publicPath: '/',
     path: path.resolve(__dirname, 'public'),
     filename: 'main.js',
+    // publicPath: '/',
   },
   target: 'web',
   devServer: {
@@ -37,6 +35,7 @@ module.exports = {
      * disable live reload on the browser. "hot" must be set to false for this to work
      */
     liveReload: true,
+    // historyApiFallback: true,
   },
   resolve: {
     /** "extensions"
@@ -51,7 +50,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: ['babel-loader'],
       },
       {
         test: /\.html$/,

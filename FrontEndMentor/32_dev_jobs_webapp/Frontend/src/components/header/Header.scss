@@ -16,37 +16,6 @@ input[type='text'] {
   border: none;
 }
 
-// input[type='checkbox'] {
-//   position: absolute;
-//   opacity: 0;
-//   height: 0;
-//   width: 0;
-// }
-
-// // Custom checkbox
-// .checkbox-container {
-//   display: block;
-//   position: relative;
-//   margin-right: 32px;
-//   .checkbox {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     height: 24px;
-//     width: 24px;
-//     opacity: 10%;
-//     background-color: $Very_Dark_Blue;
-//     &:hover {
-//       opacity: 25%;
-//       background-color: $Violet;
-//     }
-//     & ~ input:checked {
-//       opacity: 100%;
-//       background-color: red;
-//     }
-//   }
-// }
-
 .search-bar {
   // position: absolute;
   display: grid;
@@ -59,8 +28,9 @@ input[type='text'] {
   background-color: var(--color-elements);
   &__compartment {
     display: flex;
+    height: 100%;
     align-items: center;
-    padding: 16px;
+    padding: 15px;
     &:not(:last-child) {
       border-right: 2px solid var(--color-background);
     }
