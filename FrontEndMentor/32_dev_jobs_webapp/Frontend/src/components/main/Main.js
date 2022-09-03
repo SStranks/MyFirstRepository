@@ -11,7 +11,7 @@ function Main() {
     <Card
       key={obj.id}
       company={obj.company}
-      logo={`./src/assets/svg/${obj.logo.slice(9)}`}
+      logo={obj.logo.slice(2)}
       logoBackground={obj.logoBackground}
       position={obj.position}
       postedAt={obj.postedAt}
