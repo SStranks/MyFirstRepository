@@ -1,5 +1,8 @@
 @use '../../assets/styles/variables' as *;
 
 .card {
+  width: 350px;
+  height: 228px;
   background-color: $White;
+  border-radius: 6px;
 }

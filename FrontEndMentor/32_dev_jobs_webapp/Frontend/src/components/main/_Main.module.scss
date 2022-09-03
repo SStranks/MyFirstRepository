@@ -1,7 +1,13 @@
 @use '../../assets/styles/variables' as *;
 
 .main {
+  margin-top: 120px;
+  padding: $padding-desktop;
+}
+
+.grid {
   display: grid;
-  grid-template-columns: repeat(1fr, 3);
-  grid-template-rows: auto;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 65px 30px;
 }

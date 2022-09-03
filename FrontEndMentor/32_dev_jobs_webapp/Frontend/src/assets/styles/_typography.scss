@@ -25,9 +25,11 @@ p {
 }
 h1,
 h2,
-h3,
-h4 {
+h3 {
   color: var(--color-text-h);
+}
+h4 {
+  color: $Violet;
 }
 
 /*   Text                           */
