@@ -29,6 +29,9 @@
     bottom: 0;
     background-color: $White;
     border-radius: 35px;
+    &:hover::before {
+      background-color: $Light_Violet;
+    }
     &::before {
       position: absolute;
       content: '';
