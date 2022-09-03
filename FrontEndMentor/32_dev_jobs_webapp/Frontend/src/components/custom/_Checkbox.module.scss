@@ -17,23 +17,26 @@
     display: grid;
     place-content: center;
     margin: 0;
-    background: $Light_Grey;
     font-family: inherit;
+    background-color: $Light_Grey;
     width: 24px;
     height: 24px;
     border-radius: 3px;
     &:hover {
-      background: $Fine_Violet;
+      background-color: $Fine_Violet;
     }
     &::before {
       content: '';
       width: 24px;
       height: 24px;
       border-radius: inherit;
-      transition: $Theme-transition;
+      transition: background-color 1s;
     }
     &:checked::before {
-      background: $Violet;
+      background: url(../../assets/svg/desktop/icon-check.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: $Violet;
     }
   }
 }
