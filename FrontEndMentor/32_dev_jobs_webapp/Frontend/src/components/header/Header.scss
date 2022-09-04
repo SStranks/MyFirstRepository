@@ -9,11 +9,19 @@ header {
   background-image: url('../../assets/svg/desktop/bg-pattern-header.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-}
-
-input[type='text'] {
-  width: 100%;
-  border: none;
+  input[type='text'] {
+    width: 100%;
+    border: none;
+    // color: red;
+    color: var(--color-input-text);
+    &::placeholder {
+      // color: green;
+      color: var(--color-placeholder);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 .search-bar {
@@ -26,6 +34,7 @@ input[type='text'] {
   height: 80px;
   border-radius: 5px;
   background-color: var(--color-elements);
+  transition: $Theme-transition;
   &__compartment {
     display: flex;
     height: 100%;
@@ -33,6 +42,11 @@ input[type='text'] {
     padding: 15px;
     &:not(:last-child) {
       border-right: 2px solid var(--color-background);
+      transition: border-right 1s;
+    }
+    & label {
+      color: var(--color-text-h);
+      transition: $Theme-transition;
     }
     &__sub {
       display: flex;

@@ -4,7 +4,8 @@
   width: 350px;
   height: 228px;
   padding-left: 32px;
-  background-color: $White;
+  background-color: var(--color-elements);
+  transition: $Theme-transition;
   border-radius: 6px;
   & div:first-child {
     display: flex;

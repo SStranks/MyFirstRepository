@@ -27,6 +27,7 @@ h1,
 h2,
 h3 {
   color: var(--color-text-h);
+  transition: $Theme-transition;
 }
 h4 {
   color: $Violet;

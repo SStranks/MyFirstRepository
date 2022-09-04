@@ -16,7 +16,7 @@ $padding-desktop: 0 165px;
 /*   Colours: Primary               */
 $Violet: hsl(235deg, 69%, 61%);
 $Light_Violet: hsl(235deg, 82%, 77%);
-$Fine_Violet: hsla(253deg, 69%, 61%, 0.1);
+$Fine_Violet: hsl(253deg, 74%, 91%);
 $Very_Dark_Blue: hsl(219deg, 29%, 14%);
 $Midnight: hsl(220deg, 29%, 10%);
 
@@ -42,6 +42,8 @@ $desktop-l: 2560px;
   --color-elements: #{$White};
   --color-text-p: #{$Dark_Grey};
   --color-text-h: #{$Very_Dark_Blue};
+  --color-placeholder: hsl(216deg, 5%, 57%);
+  --color-input-text: #{$Dark_Grey};
 }
 
 .dark-theme {
@@ -49,6 +51,8 @@ $desktop-l: 2560px;
   --color-elements: #{$Very_Dark_Blue};
   --color-text-p: #{$Dark_Grey};
   --color-text-h: #{$White};
+  --color-placeholder: hsl(216deg, 5%, 57%);
+  --color-input-text: #{$White};
 }
 
 $Theme-transition: background 1s, color 1s, fill 1s;
