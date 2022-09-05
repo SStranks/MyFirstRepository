@@ -1,0 +1,46 @@
+@use '../../assets/styles/variables' as *;
+
+.search-bar {
+  display: grid;
+  grid-template-columns: 40% 25% 35%;
+  // bottom: 0;
+  // transform: translateY(50%);
+  height: 80px;
+  // padding: $padding-desktop;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  background-color: var(--color-elements);
+  transition: $Theme-transition;
+  & input[type='text'] {
+    width: 100%;
+    border: none;
+    color: var(--color-input-text);
+    &::placeholder {
+      color: var(--color-placeholder);
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  &__compartment {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 15px;
+    &:not(:last-child) {
+      border-right: 2px solid var(--color-background);
+      transition: border-right 1s;
+    }
+    & label {
+      color: var(--color-text-h);
+      transition: $Theme-transition;
+    }
+    &__sub {
+      display: flex;
+      justify-content: flex-start;
+      & img {
+        margin-right: 16px;
+      }
+    }
+  }
+}
