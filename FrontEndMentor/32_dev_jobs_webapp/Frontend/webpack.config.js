@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'main.js',
-    // publicPath: '/',
+    publicPath: '/',
   },
   target: 'web',
   devServer: {
@@ -20,6 +20,7 @@ module.exports = {
     //   },
     // },
     static: ['./public'],
+    historyApiFallback: true,
     /** "open"
      * opens the browser after server is successfully started
      */
