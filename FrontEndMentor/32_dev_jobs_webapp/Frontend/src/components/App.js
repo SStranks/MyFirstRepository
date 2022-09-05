@@ -1,14 +1,15 @@
 import React from 'react';
-import Main from './main/Main';
-import Header from './header/Header';
+import { Route, Routes } from 'react-router-dom';
+import Home from '../pages/Home';
+import Job from '../pages/Job';
 import './App.scss';
 
 function App() {
   return (
-    <>
-      <Header />
-      <Main />
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/job" element={<Job />} />
+    </Routes>
   );
 }
 
