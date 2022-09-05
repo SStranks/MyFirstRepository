@@ -1,0 +1,12 @@
+@use '../../assets/styles/variables' as *;
+
+header {
+  position: relative;
+  height: 160px;
+  width: 100%;
+  padding: $padding-desktop;
+  padding-top: 45px;
+  background-image: url('../../assets/svg/desktop/bg-pattern-header.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
