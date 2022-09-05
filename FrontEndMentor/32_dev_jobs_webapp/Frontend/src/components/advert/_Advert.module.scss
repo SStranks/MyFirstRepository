@@ -1,0 +1,69 @@
+@use '../../assets/styles/variables' as *;
+
+.layout {
+  position: relative;
+  width: 730px;
+  margin: -40px auto 0 auto;
+  z-index: 1;
+  & > * {
+    background-color: var(--color-elements);
+    transition: $Theme-transition;
+  }
+}
+
+.banner {
+  display: flex;
+  flex-direction: row;
+  height: 140px;
+  border-radius: 7px;
+  & > div:first-child {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 140px;
+    padding: 30px;
+    border-radius: 7px 0 0 7px;
+    & img {
+      width: 100%;
+      height: fit-content;
+    }
+  }
+  & > div:last-child {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+    padding: 0 40px;
+    align-items: center;
+  }
+  & button {
+    grid-column: 2;
+  }
+}
+
+.main {
+  margin-top: 32px;
+  padding: 48px;
+  border-radius: 7px;
+  & > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & span {
+      margin: 0 10px;
+      font-size: 32px;
+      color: $Dark_Grey;
+    }
+    & h1 {
+      margin: 6px 0;
+    }
+  }
+  & > div:last-child {
+    & p:first-child {
+      margin: 40px 0;
+    }
+  }
+}
