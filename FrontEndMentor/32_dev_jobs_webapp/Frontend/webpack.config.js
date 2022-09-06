@@ -85,6 +85,7 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       template: './public/index.html',
+      favicon: './public/assets/favicon-32x32.png',
     }),
     new ESLintPlugin(),
   ],
