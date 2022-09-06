@@ -2,13 +2,12 @@
 
 .checkbox-control {
   display: grid;
-  grid-template-columns: 1em auto;
-  // gap: 0.5em;
-  margin: 0 20px;
+  grid-template-columns: auto auto;
   & label {
+    grid-column: 3;
     font-size: 16px;
     font-weight: 700;
-    margin-left: 26px;
+    padding-left: 16px;
     padding-top: 2px;
   }
   & input[type='checkbox'] {

@@ -64,6 +64,15 @@ function Advert(props) {
           <ol>{roleList}</ol>
         </div>
       </div>
+      <div className={styles.footer}>
+        <div>
+          <div>
+            <h3>{position}</h3>
+            <p>{company}</p>
+          </div>
+          <Button text="Apply Now" />
+        </div>
+      </div>
     </div>
   );
 }

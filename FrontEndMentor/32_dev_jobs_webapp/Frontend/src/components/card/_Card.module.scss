@@ -1,12 +1,16 @@
 @use '../../assets/styles/variables' as *;
 
 .card {
-  width: 350px;
+  min-width: 350px;
   height: 228px;
   padding-left: 32px;
   background-color: var(--color-elements);
-  transition: $Theme-transition;
   border-radius: 6px;
+  transition: $Theme-transition, transform 500ms ease-in-out, box-shadow 500ms;
+  &:hover {
+    transform: scale(102%);
+    box-shadow: 0 0 15px 5px hsla(0deg, 0%, 0%, 0.05);
+  }
   & div:first-child {
     display: flex;
     justify-content: center;
@@ -30,6 +34,10 @@
       margin: 0 10px;
       font-size: 32px;
       color: $Dark_Grey;
+    }
+    & h3:hover {
+      color: $Dark_Grey;
+      cursor: pointer;
     }
     & h4 {
       grid-row: 5;
