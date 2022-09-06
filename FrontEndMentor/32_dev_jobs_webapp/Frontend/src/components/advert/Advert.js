@@ -18,16 +18,19 @@ function Advert(props) {
     role,
   } = props;
 
-  const requirementList = requirements.items.map((el) => (
-    <li key={el.id}>{el}</li>
+  const requirementList = requirements.items.map((el, i) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <li key={i}>{el}</li>
   ));
-  const roleList = role.items.map((el) => <li key={el.id}>{el}</li>);
+
+  // eslint-disable-next-line react/no-array-index-key
+  const roleList = role.items.map((el, i) => <li key={i}>{el}</li>);
   console.log(logo.slice(2));
 
   return (
     <div className={styles.layout}>
       <div className={styles.banner}>
-        <div style={{ 'background-color': logoBackground }}>
+        <div style={{ backgroundColor: logoBackground }}>
           <img src={logo.slice(2)} alt="company logo" />
         </div>
         <div>
