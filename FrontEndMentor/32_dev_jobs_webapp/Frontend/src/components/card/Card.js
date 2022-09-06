@@ -15,7 +15,7 @@ function Card(props) {
 
   return (
     <div className={styles.card}>
-      <div style={{ 'background-color': logoBackground }}>
+      <div style={{ backgroundColor: logoBackground }}>
         <img src={logo} alt="company logo" />
       </div>
       <div>
