@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Search from '../search/Search';
 import Button from '../custom/Button';
 import Card from '../card/Card';
 import styles from './_Main.module.scss';
 
-// Temporary Data
-import jsonData from '../../data.json';
-
 function Main() {
-  const jobCards = jsonData.map((obj) => (
+  const [jobs, setJobs] = useState([]);
+
+  useEffect(() => {
+    const apiGetAll = async () => {
+      try {
+        const response = await axios({
+          method: 'GET',
+          url: 'http://localhost:4000/api/jobs',
+          timeout: 2000,
+        });
+        setJobs(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    apiGetAll();
+  }, []);
+
+  const jobCards = jobs.map((obj) => (
     <Card
       key={obj.id}
       company={obj.company}

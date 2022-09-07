@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const Job = require('../models/jobModel');
+const jsonData = require('../dev-data/data.json');
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
@@ -10,8 +12,6 @@ const connectDB = async () => {
     .connect(MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      // useCreateIndex: true,
-      // useFindAndModify: false,
     })
     .then(() => {
       console.log(`DB '${DB_NAME}' connection successful! `);
@@ -22,11 +22,7 @@ const connectDB = async () => {
           .collection('jobs')
           .countDocuments({});
         if (!collections.includes('jobs') || count === 0) {
-          // console.log(
-          //   `DB contains 'jobs': ${collections.includes(
-          //     'jobs'
-          //   )} DocCount: ${count}`
-          // );
+          await Job.create(jsonData);
         }
       };
 
@@ -36,8 +32,6 @@ const connectDB = async () => {
       console.log(`ERROR: Cannot connect to database '${DB_NAME}!`, err);
       process.exit();
     });
-  // const schema = new mongoose.Schema({ name: 'string', size: 'string' });
-  // const Tank = mongoose.model('Tank', schema);
 };
 
 module.exports = connectDB;
