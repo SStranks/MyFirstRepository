@@ -1,13 +1,27 @@
 const express = require('express');
-const viewRouter = require('./routes/viewRoutes');
-const jobRouter = require('./routes/jobRoutes');
+// const path = require('path');
+const jobRouter = require('./routes/jobsRoutes');
 
 const app = express();
 app.use(express.json());
 
+// app.use(express.static(path.join(__dirname, './public')));
+
 // Routes
-app.use('/', viewRouter);
-app.use('/job', jobRouter);
-app.all('*', (res) => res.redirect('/'));
+app.use('/api', jobRouter);
+// app.all('*', (res) => res.redirect('/'));
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, './public/index.html'));
+// });
+
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const status = err.status || 'error';
+
+  res.status(statusCode).json({
+    status,
+    message: err.message,
+  });
+});
 
 module.exports = app;
