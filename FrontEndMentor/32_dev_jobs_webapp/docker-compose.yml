@@ -12,8 +12,6 @@ services:
     ports: 
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     volumes:
-      # Prevent mapping over node_modules - build from package.json 
-      - /src/myApp/node_modules
       # Map dev source files (read-only) from local to image
       - ./Backend:/src/myApp:ro
     #env_file:
