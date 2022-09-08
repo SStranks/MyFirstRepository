@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import styles from './_Button.module.scss';
 
 function ButtonSubmit(props) {
-  const { onClick, text, value } = props;
+  const { text, value } = props;
 
   return (
     <div className={styles['button-custom']}>
-      <button type="submit" onClick={onClick} value={value}>
+      <button type="submit" value={value}>
         {text}
       </button>
     </div>
@@ -16,13 +16,11 @@ function ButtonSubmit(props) {
 
 ButtonSubmit.propTypes = {
   text: PropTypes.string,
-  onClick: PropTypes.func,
   value: PropTypes.string,
 };
 
 ButtonSubmit.defaultProps = {
   text: PropTypes.string,
-  onClick: null,
   value: PropTypes.string,
 };
 

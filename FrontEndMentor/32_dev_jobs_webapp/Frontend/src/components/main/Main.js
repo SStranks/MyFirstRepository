@@ -45,7 +45,7 @@ function Main() {
 
   return (
     <div className={styles.main}>
-      <Search />
+      <Search setJobs={setJobs} />
       <div className={styles.grid}>{jobCards}</div>
       <div className={styles.button}>
         <Button text="Load More" />
