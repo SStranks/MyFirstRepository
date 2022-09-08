@@ -3,7 +3,8 @@
 .layout {
   position: relative;
   width: 730px;
-  margin: -40px auto 176px auto;
+  margin: -40px auto 0 auto;
+  padding-bottom: 176px;
   z-index: 1;
   & > * {
     background-color: var(--color-elements);
