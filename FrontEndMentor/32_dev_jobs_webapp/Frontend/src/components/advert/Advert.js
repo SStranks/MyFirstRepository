@@ -1,14 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
+// import PropTypes from 'prop-types';
 import styles from './_Advert.module.scss';
 import Button from '../custom/Button';
 
-function Advert(props) {
+function Advert() {
+  const dataLocation = useLocation();
   const {
-    company,
-    website,
     logo,
     logoBackground,
+    company,
+    website,
     postedAt,
     contract,
     position,
@@ -16,7 +18,7 @@ function Advert(props) {
     description,
     requirements,
     role,
-  } = props;
+  } = dataLocation.state;
 
   const requirementList = requirements.items.map((el, i) => (
     // eslint-disable-next-line react/no-array-index-key
@@ -25,13 +27,12 @@ function Advert(props) {
 
   // eslint-disable-next-line react/no-array-index-key
   const roleList = role.items.map((el, i) => <li key={i}>{el}</li>);
-  console.log(logo.slice(2));
 
   return (
     <div className={styles.layout}>
       <div className={styles.banner}>
         <div style={{ backgroundColor: logoBackground }}>
-          <img src={logo.slice(2)} alt="company logo" />
+          <img src={logo} alt="company logo" />
         </div>
         <div>
           <div>
@@ -77,44 +78,44 @@ function Advert(props) {
   );
 }
 
-Advert.propTypes = {
-  logo: PropTypes.string,
-  logoBackground: PropTypes.string,
-  company: PropTypes.string,
-  website: PropTypes.string,
-  postedAt: PropTypes.string,
-  contract: PropTypes.string,
-  position: PropTypes.string,
-  location: PropTypes.string,
-  description: PropTypes.string,
-  requirements: PropTypes.shape({
-    content: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.string),
-  }),
-  role: PropTypes.shape({
-    content: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.string),
-  }),
-};
+// Advert.propTypes = {
+//   logo: PropTypes.string,
+//   logoBackground: PropTypes.string,
+//   company: PropTypes.string,
+//   website: PropTypes.string,
+//   postedAt: PropTypes.string,
+//   contract: PropTypes.string,
+//   position: PropTypes.string,
+//   location: PropTypes.string,
+//   description: PropTypes.string,
+//   requirements: PropTypes.shape({
+//     content: PropTypes.string,
+//     items: PropTypes.arrayOf(PropTypes.string),
+//   }),
+//   role: PropTypes.shape({
+//     content: PropTypes.string,
+//     items: PropTypes.arrayOf(PropTypes.string),
+//   }),
+// };
 
-Advert.defaultProps = {
-  logo: PropTypes.string,
-  logoBackground: PropTypes.string,
-  company: PropTypes.string,
-  website: PropTypes.string,
-  postedAt: PropTypes.string,
-  contract: PropTypes.string,
-  position: PropTypes.string,
-  location: PropTypes.string,
-  description: PropTypes.string,
-  requirements: PropTypes.shape({
-    content: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.string),
-  }),
-  role: PropTypes.shape({
-    content: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.string),
-  }),
-};
+// Advert.defaultProps = {
+//   logo: PropTypes.string,
+//   logoBackground: PropTypes.string,
+//   company: PropTypes.string,
+//   website: PropTypes.string,
+//   postedAt: PropTypes.string,
+//   contract: PropTypes.string,
+//   position: PropTypes.string,
+//   location: PropTypes.string,
+//   description: PropTypes.string,
+//   requirements: PropTypes.shape({
+//     content: PropTypes.string,
+//     items: PropTypes.arrayOf(PropTypes.string),
+//   }),
+//   role: PropTypes.shape({
+//     content: PropTypes.string,
+//     items: PropTypes.arrayOf(PropTypes.string),
+//   }),
+// };
 
 export default Advert;

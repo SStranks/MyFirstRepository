@@ -27,13 +27,18 @@ function Main() {
   const jobCards = jobs.map((obj) => (
     <Card
       key={obj.id}
+      id={obj.id}
       company={obj.company}
+      website={obj.website}
       logo={obj.logo.slice(2)}
       logoBackground={obj.logoBackground}
       position={obj.position}
       postedAt={obj.postedAt}
       contract={obj.contract}
       location={obj.location}
+      description={obj.description}
+      requirements={obj.requirements}
+      role={obj.role}
     />
   ));
 

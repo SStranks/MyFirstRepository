@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './_Card.module.scss';
 
@@ -24,7 +25,9 @@ function Card(props) {
           <span>.</span>
           {contract}
         </p>
-        <h3>{position}</h3>
+        <Link to="/job" state={props}>
+          <h3>{position}</h3>
+        </Link>
         <p>{company}</p>
         <h4>{location}</h4>
       </div>
