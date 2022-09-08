@@ -8,6 +8,7 @@ import styles from './_Main.module.scss';
 function Main() {
   const [jobs, setJobs] = useState([]);
 
+  // Load all jobs on initial render
   useEffect(() => {
     const apiGetAll = async () => {
       try {

@@ -1,13 +1,18 @@
 import React from 'react';
 import styles from './_Search.module.scss';
-import Button from '../custom/Button';
+import ButtonSubmit from '../custom/ButtonSubmit';
 import Checkbox from '../custom/Checkbox';
 import IconSearch from '../../assets/svg/desktop/icon-search.svg';
 import IconFilter from '../../assets/svg/desktop/icon-location.svg';
 
 function Search() {
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log('FORM SUBMITTED');
+  };
+
   return (
-    <div className={styles['search-bar']}>
+    <form className={styles['search-bar']} onSubmit={submitHandler}>
       <div className={styles['search-bar__compartment']}>
         <div className={styles['search-bar__compartment__sub']}>
           <img src={IconSearch} alt="" />
@@ -30,9 +35,9 @@ function Search() {
       </div>
       <div className={styles['search-bar__compartment']}>
         <Checkbox text="Full Time Only" id="full-time2" name="full-time2" />
-        <Button type="button" text="Search" />
+        <ButtonSubmit value="Submit" text="Search" />
       </div>
-    </div>
+    </form>
   );
 }
 

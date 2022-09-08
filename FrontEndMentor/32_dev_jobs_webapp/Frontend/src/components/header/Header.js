@@ -1,4 +1,5 @@
 import React from 'react';
+// import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './_Header.module.scss';
 import Toggle from '../custom/Toggle';
@@ -7,10 +8,20 @@ import IconThemeLight from '../../assets/svg/desktop/icon-sun.svg';
 import IconThemeDark from '../../assets/svg/desktop/icon-moon.svg';
 
 function Header() {
+  // const themeBtnRef = useRef(null);
   const btnThemeClickHandler = () => {
     const body = document.querySelector('body');
     body.classList.toggle('dark-theme');
   };
+
+  // const query = window.matchMedia('(prefers-color-scheme: dark)');
+  // const body = document.querySelector('body');
+  // // console.log(query, query.matches, body.classList);
+  // if (!query.matches || body.classList.includes(!'dark-theme')) {
+  //   const btn = document.querySelector('#dark-theme-slider');
+  //   console.log(btn, 'activated');
+  //   btn.click();
+  // }
 
   return (
     <header>
@@ -22,6 +33,7 @@ function Header() {
           <img src={IconThemeLight} alt="" />
           <Toggle
             onClick={btnThemeClickHandler}
+            // ref={themeBtnRef}
             id="dark-theme-slider"
             name=""
             ariaLabel="dark theme toggle"
