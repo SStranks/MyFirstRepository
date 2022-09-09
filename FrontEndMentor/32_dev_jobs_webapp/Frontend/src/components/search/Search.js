@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './_Search.module.scss';
@@ -10,43 +10,49 @@ import IconFilter from '../../assets/svg/desktop/icon-location.svg';
 function Search(props) {
   const { setJobs } = props;
 
+  const [searchFields, setSearchFields] = useState({
+    search: '',
+    filter: '',
+    time: false,
+  });
+
+  const onChangeHandler = (e) => {
+    // Only allow alphanumeric
+    const check = /^[a-z0-9]*$/i.test(e.target.value);
+    if (check) {
+      setSearchFields((prev) => ({
+        ...prev,
+        [`${e.target.name}`]: e.target.value,
+      }));
+    }
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    const searchForm = document.forms['form-search'];
-    const searchField = searchForm.search.value;
-    const filterField = searchForm.filter.value;
-    const timeField = searchForm['full-time'].checked;
-
     try {
       const response = await axios({
         method: 'POST',
         url: 'http://localhost:4000/api/jobs/search',
-        data: {
-          searchField,
-          filterField,
-          timeField,
-        },
+        data: { searchFields },
         timeout: 2000,
       });
       setJobs(response.data);
     } catch (err) {
       console.log(err);
     }
-    console.log('FORM SUBMITTED');
+    console.log('FORM SUBMITTED', searchFields);
   };
 
   return (
-    <form
-      className={styles['search-bar']}
-      name="form-search"
-      onSubmit={submitHandler}
-    >
+    <form className={styles['search-bar']} onSubmit={submitHandler}>
       <div className={styles['search-bar__compartment']}>
         <div className={styles['search-bar__compartment__sub']}>
           <img src={IconSearch} alt="" />
           <input
             type="text"
             name="search"
+            value={searchFields.search}
+            onChange={(e) => onChangeHandler(e)}
             placeholder="Filter by title, companies, expertise..."
           />
         </div>
@@ -57,6 +63,8 @@ function Search(props) {
           <input
             type="text"
             name="filter"
+            value={searchFields.filter}
+            onChange={(e) => onChangeHandler(e)}
             placeholder="Filter by location..."
           />
         </div>
@@ -65,8 +73,11 @@ function Search(props) {
         <Checkbox
           text="Full Time Only"
           id="full-time"
-          name="full-time"
-          value="true"
+          name="time"
+          checked={searchFields.time}
+          onChange={() =>
+            setSearchFields((prev) => ({ ...prev, time: !prev.time }))
+          }
         />
         <ButtonSubmit value="Submit" text="Search" />
       </div>
