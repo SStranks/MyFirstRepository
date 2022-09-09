@@ -23,7 +23,7 @@ Checkbox.propTypes = {
   text: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
-  checked: PropTypes.string,
+  checked: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
@@ -31,7 +31,7 @@ Checkbox.defaultProps = {
   text: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
-  checked: PropTypes.string,
+  checked: PropTypes.bool,
   onChange: PropTypes.func,
 };
 
