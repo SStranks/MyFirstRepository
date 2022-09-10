@@ -15,9 +15,9 @@ function Search(props) {
     filter: '',
     time: false,
   });
+  const [isSearching, setIsSearching] = useState(false);
 
   const onChangeHandler = (e) => {
-    // Only allow alphanumeric
     const check = /^[a-z0-9]*$/i.test(e.target.value);
     if (check) {
       setSearchFields((prev) => ({
@@ -29,19 +29,19 @@ function Search(props) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setIsSearching(true);
     try {
       const response = await axios({
         method: 'POST',
         url: 'http://localhost:4000/api/jobs',
         data: searchFields,
-        timeout: 2000,
+        timeout: 8000,
       });
-      console.log(response.data);
+      setIsSearching(false);
       setJobs(response.data);
     } catch (err) {
       console.log(err);
     }
-    console.log('FORM SUBMITTED', searchFields);
   };
 
   return (
@@ -80,7 +80,11 @@ function Search(props) {
             setSearchFields((prev) => ({ ...prev, time: !prev.time }))
           }
         />
-        <ButtonSubmit value="Submit" text="Search" />
+        <ButtonSubmit
+          value="Submit"
+          text={isSearching ? 'Searching' : 'Search'}
+          disabled={isSearching}
+        />
       </div>
     </form>
   );
