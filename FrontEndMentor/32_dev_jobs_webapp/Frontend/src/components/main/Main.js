@@ -7,6 +7,9 @@ import styles from './_Main.module.scss';
 
 function Main() {
   const [jobs, setJobs] = useState([]);
+  const [gridCount, setGridCount] = useState({ count: 3, loadedAll: false });
+
+  console.log(gridCount, jobs.length);
 
   // Load all jobs on initial render
   useEffect(() => {
@@ -25,30 +28,49 @@ function Main() {
     apiGetAll();
   }, []);
 
-  const jobCards = jobs.map((obj) => (
-    <Card
-      key={obj.id}
-      id={obj.id}
-      company={obj.company}
-      website={obj.website}
-      logo={obj.logo.slice(2)}
-      logoBackground={obj.logoBackground}
-      position={obj.position}
-      postedAt={obj.postedAt}
-      contract={obj.contract}
-      location={obj.location}
-      description={obj.description}
-      requirements={obj.requirements}
-      role={obj.role}
-    />
-  ));
+  const btnClickHandler = () => {
+    if (gridCount.count + 3 >= jobs.length) {
+      return setGridCount((prev) => ({
+        count: prev.count + 3,
+        loadedAll: true,
+      }));
+    }
+    return setGridCount((prev) => ({
+      count: prev.count + 3,
+      loadedAll: false,
+    }));
+  };
+
+  const jobCards = jobs
+    .slice(0, gridCount.count)
+    .map((obj) => (
+      <Card
+        key={obj.id}
+        id={obj.id}
+        company={obj.company}
+        website={obj.website}
+        logo={obj.logo.slice(2)}
+        logoBackground={obj.logoBackground}
+        position={obj.position}
+        postedAt={obj.postedAt}
+        contract={obj.contract}
+        location={obj.location}
+        description={obj.description}
+        requirements={obj.requirements}
+        role={obj.role}
+      />
+    ));
 
   return (
     <div className={styles.main}>
-      <Search setJobs={setJobs} />
+      <Search setJobs={setJobs} setGridCount={setGridCount} />
       <div className={styles.grid}>{jobCards}</div>
       <div className={styles.button}>
-        <Button text="Load More" />
+        <Button
+          onClick={btnClickHandler}
+          text={gridCount.loadedAll ? 'Loaded' : 'Load More'}
+          disabled={gridCount.loadedAll}
+        />
       </div>
     </div>
   );

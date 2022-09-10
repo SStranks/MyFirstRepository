@@ -8,7 +8,7 @@ import IconSearch from '../../assets/svg/desktop/icon-search.svg';
 import IconFilter from '../../assets/svg/desktop/icon-location.svg';
 
 function Search(props) {
-  const { setJobs } = props;
+  const { setJobs, setGridCount } = props;
 
   const [searchFields, setSearchFields] = useState({
     search: '',
@@ -18,7 +18,7 @@ function Search(props) {
   const [isSearching, setIsSearching] = useState(false);
 
   const onChangeHandler = (e) => {
-    const check = /^[a-z0-9]*$/i.test(e.target.value);
+    const check = /^[a-z0-9\s]*$/i.test(e.target.value);
     if (check) {
       setSearchFields((prev) => ({
         ...prev,
@@ -38,6 +38,7 @@ function Search(props) {
         timeout: 8000,
       });
       setIsSearching(false);
+      setGridCount({ count: 3, loadedAll: false });
       setJobs(response.data);
     } catch (err) {
       console.log(err);
@@ -92,10 +93,12 @@ function Search(props) {
 
 Search.propTypes = {
   setJobs: PropTypes.func,
+  setGridCount: PropTypes.func,
 };
 
 Search.defaultProps = {
   setJobs: PropTypes.func,
+  setGridCount: PropTypes.func,
 };
 
 export default Search;
