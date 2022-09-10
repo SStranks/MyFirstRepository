@@ -32,10 +32,11 @@ function Search(props) {
     try {
       const response = await axios({
         method: 'POST',
-        url: 'http://localhost:4000/api/jobs/search',
-        data: { searchFields },
+        url: 'http://localhost:4000/api/jobs',
+        data: searchFields,
         timeout: 2000,
       });
+      console.log(response.data);
       setJobs(response.data);
     } catch (err) {
       console.log(err);

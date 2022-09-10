@@ -6,6 +6,19 @@ exports.getAllJobs = catchAsync(async (req, res, next) => {
   res.json(jobs);
 });
 
-// exports.getJob = null;
+exports.searchJobs = catchAsync(async (req, res, next) => {
+  const { search, filter, time } = req.body;
+  const searchRegExp = new RegExp(`${search}`, `i`);
+  const filterRegExp = new RegExp(`${filter}`, `i`);
+  const timeRegExp = time ? /full/i : /time/i;
 
-// exports.searchJobs = null;
+  const jobs = await Job.find({
+    $and: [
+      { position: searchRegExp },
+      { location: filterRegExp },
+      { contract: timeRegExp },
+    ],
+  });
+
+  res.json(jobs);
+});
