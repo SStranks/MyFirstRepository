@@ -9,8 +9,6 @@ function Main() {
   const [jobs, setJobs] = useState([]);
   const [gridCount, setGridCount] = useState({ count: 3, loadedAll: false });
 
-  console.log(gridCount, jobs.length);
-
   // Load all jobs on initial render
   useEffect(() => {
     const apiGetAll = async () => {

@@ -1,6 +1,7 @@
 @use '../../assets/styles/variables' as *;
 
 .card {
+  pointer-events: none;
   min-width: 350px;
   height: 228px;
   padding-left: 32px;
@@ -43,4 +44,20 @@
       grid-row: 5;
     }
   }
+}
+
+// Animation: CSS Transition Group
+.appear,
+.enter {
+  opacity: 0%;
+}
+
+.appearActive,
+.enterActive {
+  opacity: 100%;
+  transition: opacity 1000ms ease-in-out;
+}
+
+.enterDone {
+  pointer-events: all;
 }
