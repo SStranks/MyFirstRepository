@@ -67,7 +67,8 @@
 }
 
 .exitActive {
-  transition: opacity 5000ms ease-in;
+  opacity: 0%;
+  transition: opacity 1000ms ease-in;
 }
 
 .exitDone {

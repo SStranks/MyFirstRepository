@@ -1,3 +1,4 @@
+// import React from 'react';
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
@@ -32,7 +33,7 @@ function Card(props) {
       <div
         className={`${styles.card} ${styles.noHover}`}
         ref={nodeRef}
-        key={id}
+        key={`${id}${timeStamp}`}
       >
         <div style={{ backgroundColor: logoBackground }}>
           <img src={logo} alt="company logo" />

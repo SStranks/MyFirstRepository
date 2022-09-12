@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { TransitionGroup } from 'react-transition-group';
 import axios from 'axios';
 import Search from '../search/Search';
 import Button from '../custom/Button';
@@ -40,7 +39,7 @@ function Main() {
     }));
   };
 
-  console.log(jobs.timeStamp);
+  console.log(jobs);
 
   const jobCards = jobs
     .slice(0, gridCount.count)
@@ -62,6 +61,8 @@ function Main() {
         timeStamp={jobs.timeStamp}
       />
     ));
+
+  console.log(jobCards);
 
   return (
     <div className={styles.main}>
