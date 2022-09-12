@@ -39,8 +39,6 @@ function Main() {
     }));
   };
 
-  console.log(jobs);
-
   const jobCards = jobs
     .slice(0, gridCount.count)
     .map((obj) => (
@@ -61,8 +59,6 @@ function Main() {
         timeStamp={jobs.timeStamp}
       />
     ));
-
-  console.log(jobCards);
 
   return (
     <div className={styles.main}>

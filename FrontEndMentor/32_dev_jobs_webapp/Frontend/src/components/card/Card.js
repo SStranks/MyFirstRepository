@@ -1,4 +1,3 @@
-// import React from 'react';
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
@@ -23,6 +22,7 @@ function Card(props) {
   return (
     <CSSTransition
       key={`${id}${timeStamp}`}
+      mountOnEnter
       in
       appear
       classNames={styles}
@@ -30,11 +30,7 @@ function Card(props) {
       nodeRef={nodeRef}
       unmountOnExit
     >
-      <div
-        className={`${styles.card} ${styles.noHover}`}
-        ref={nodeRef}
-        key={`${id}${timeStamp}`}
-      >
+      <div className={`${styles.card} ${styles.noHover}`} ref={nodeRef}>
         <div style={{ backgroundColor: logoBackground }}>
           <img src={logo} alt="company logo" />
         </div>
