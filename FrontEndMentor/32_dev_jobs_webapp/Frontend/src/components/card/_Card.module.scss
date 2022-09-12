@@ -61,3 +61,15 @@
 .enterDone {
   pointer-events: all;
 }
+
+.exit {
+  opacity: 100%;
+}
+
+.exitActive {
+  transition: opacity 5000ms ease-in;
+}
+
+.exitDone {
+  opacity: 0%;
+}

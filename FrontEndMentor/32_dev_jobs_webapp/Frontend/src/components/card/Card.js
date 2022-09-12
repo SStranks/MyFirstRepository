@@ -1,4 +1,3 @@
-// import React from 'react';
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
@@ -7,6 +6,7 @@ import styles from './_Card.module.scss';
 
 function Card(props) {
   const {
+    id,
     logo,
     logoBackground,
     postedAt,
@@ -16,16 +16,23 @@ function Card(props) {
     location,
   } = props;
 
-  // const [disabledHover, setDisabledHover] = useState(true);
-  const nodeRef = useRef(null);
-  // const hoverHandler = () => {
-  //   console.log(nodeRef);
-  //   nodeRef.current.classList.add(styles.hoverEnable);
-  // };
+  const nodeRef = useRef();
 
   return (
-    <CSSTransition in appear classNames={styles} timeout={1000}>
-      <div className={`${styles.card} ${styles.noHover}`} ref={nodeRef}>
+    <CSSTransition
+      key={id}
+      in
+      appear
+      classNames={styles}
+      timeout={1000}
+      nodeRef={nodeRef}
+      unmountOnExit
+    >
+      <div
+        className={`${styles.card} ${styles.noHover}`}
+        ref={nodeRef}
+        key={id}
+      >
         <div style={{ backgroundColor: logoBackground }}>
           <img src={logo} alt="company logo" />
         </div>
@@ -47,6 +54,7 @@ function Card(props) {
 }
 
 Card.propTypes = {
+  id: PropTypes.number,
   logo: PropTypes.string,
   logoBackground: PropTypes.string,
   postedAt: PropTypes.string,
@@ -57,6 +65,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
+  id: PropTypes.number,
   logo: PropTypes.string,
   logoBackground: PropTypes.string,
   postedAt: PropTypes.string,

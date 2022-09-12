@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// import { TransitionGroup } from 'react-transition-group';
 import axios from 'axios';
 import Search from '../search/Search';
 import Button from '../custom/Button';
@@ -62,7 +63,9 @@ function Main() {
   return (
     <div className={styles.main}>
       <Search setJobs={setJobs} setGridCount={setGridCount} />
+
       <div className={styles.grid}>{jobCards}</div>
+
       <div className={styles.button}>
         <Button
           onClick={btnClickHandler}

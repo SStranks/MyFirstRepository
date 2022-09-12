@@ -30,6 +30,7 @@ function Search(props) {
   const submitHandler = async (e) => {
     e.preventDefault();
     setIsSearching(true);
+    setJobs([]);
     try {
       const response = await axios({
         method: 'POST',
