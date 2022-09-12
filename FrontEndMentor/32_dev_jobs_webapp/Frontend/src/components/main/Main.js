@@ -40,6 +40,8 @@ function Main() {
     }));
   };
 
+  console.log(jobs.timeStamp);
+
   const jobCards = jobs
     .slice(0, gridCount.count)
     .map((obj) => (
@@ -57,6 +59,7 @@ function Main() {
         description={obj.description}
         requirements={obj.requirements}
         role={obj.role}
+        timeStamp={jobs.timeStamp}
       />
     ));
 

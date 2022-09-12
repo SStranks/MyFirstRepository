@@ -30,7 +30,6 @@ function Search(props) {
   const submitHandler = async (e) => {
     e.preventDefault();
     setIsSearching(true);
-    setJobs([]);
     try {
       const response = await axios({
         method: 'POST',
@@ -38,6 +37,8 @@ function Search(props) {
         data: searchFields,
         timeout: 8000,
       });
+      // Add timestamp to differentiate IDs for results already rendered and found again by search
+      response.data.timeStamp = Math.round(new Date().getTime() / 1000);
       setIsSearching(false);
       setGridCount({ count: 3, loadedAll: false });
       setJobs(response.data);

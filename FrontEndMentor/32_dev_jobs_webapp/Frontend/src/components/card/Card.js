@@ -14,13 +14,14 @@ function Card(props) {
     position,
     company,
     location,
+    timeStamp,
   } = props;
 
   const nodeRef = useRef();
 
   return (
     <CSSTransition
-      key={id}
+      key={`${id}${timeStamp}`}
       in
       appear
       classNames={styles}
@@ -62,6 +63,7 @@ Card.propTypes = {
   position: PropTypes.string,
   company: PropTypes.string,
   location: PropTypes.string,
+  timeStamp: PropTypes.number,
 };
 
 Card.defaultProps = {
@@ -73,6 +75,7 @@ Card.defaultProps = {
   position: PropTypes.string,
   company: PropTypes.string,
   location: PropTypes.string,
+  timeStamp: null,
 };
 
 export default Card;
