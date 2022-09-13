@@ -26,7 +26,7 @@ $Light_Grey: hsl(210deg, 22%, 96%);
 $Grey: hsl(212deg, 23%, 69%);
 $Dark_Grey: hsl(214deg, 17%, 51%);
 
-/*  Breakpoints  */
+/*   Breakpoints                    */
 $mobile-s: 320px;
 $mobile-m: 375px;
 $mobile-l: 425px;
@@ -36,23 +36,5 @@ $desktop-s: 1024px;
 $desktop-m: 1440px;
 $desktop-l: 2560px;
 
-/*  Themes       */
-:root {
-  --color-background: #{$Light_Grey};
-  --color-elements: #{$White};
-  --color-text-p: #{$Dark_Grey};
-  --color-text-h: #{$Very_Dark_Blue};
-  --color-placeholder: hsl(216deg, 5%, 57%);
-  --color-input-text: #{$Dark_Grey};
-}
-
-.dark-theme {
-  --color-background: #{$Midnight};
-  --color-elements: #{$Very_Dark_Blue};
-  --color-text-p: #{$Dark_Grey};
-  --color-text-h: #{$White};
-  --color-placeholder: hsl(216deg, 5%, 57%);
-  --color-input-text: #{$White};
-}
-
+/*   Transitions                    */
 $Theme-transition: background 1s, color 1s, fill 1s;
