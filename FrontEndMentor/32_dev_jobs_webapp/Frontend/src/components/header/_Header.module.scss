@@ -1,12 +1,38 @@
 @use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
 
 header {
   position: relative;
+  display: flex;
+  justify-content: center;
   height: 160px;
   width: 100%;
-  padding: $padding-desktop;
   padding-top: 45px;
   background-image: url('../../assets/svg/desktop/bg-pattern-header.svg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
+
+  @include tablet-regular {
+    background-image: url('../../assets/svg/tablet/bg-pattern-header.svg');
+  }
+
+  & > div {
+    width: 100%;
+    transition: $padding-transition;
+    @include desktop-medium {
+      padding: 0 10% 56px 10%;
+    }
+
+    @include desktop-small {
+      padding: 0 5% 56px 5%;
+    }
+
+    @include tablet-regular {
+      padding: 0 5% 56px 5%;
+    }
+
+    @include tablet-small {
+      padding: 0 5% 56px 5%;
+    }
+  }
 }

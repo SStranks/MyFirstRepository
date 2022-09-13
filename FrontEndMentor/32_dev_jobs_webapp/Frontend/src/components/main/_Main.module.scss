@@ -1,18 +1,52 @@
 @use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
 
 .main {
   position: relative;
   margin-top: -40px;
-  padding: $padding-desktop;
+  // padding: $padding-desktop;
   z-index: 1;
+
+  transition: $padding-transition;
+  @include desktop-medium {
+    padding: 0 10% 56px 10%;
+  }
+
+  @include desktop-small {
+    padding: 0 5% 56px 5%;
+  }
+
+  @include tablet-regular {
+    padding: 0 5% 56px 5%;
+  }
+
+  @include tablet-small {
+    padding: 0 5% 56px 5%;
+  }
 }
 
 .grid {
   display: grid;
   grid-template-rows: repeat(auto, 1fr);
-  grid-template-columns: repeat(3, 1fr);
-  gap: 65px 30px;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   width: 100%;
+
+  transition: $grid-gap-transition;
+  @include desktop-medium {
+    gap: 65px 30px;
+  }
+
+  @include desktop-small {
+    gap: 65px 20px;
+  }
+
+  @include tablet-regular {
+    gap: 45px 20px;
+  }
+
+  @include tablet-small {
+    gap: 45px 20px;
+  }
 }
 
 .button {
