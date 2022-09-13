@@ -23,7 +23,53 @@
 // desktop-m:  1440px;
 // desktop-l:  2560px;
 
-/*   Media Queries                   */
+/*   Media Queries: Multiple        */
+@mixin media($args...) {
+  @each $arg in $args {
+    @if $arg == 'mobile-small' {
+      @include mobile-small {
+        @content;
+      }
+    }
+    @if $arg == 'mobile-medium' {
+      @include mobile-medium {
+        @content;
+      }
+    }
+    @if $arg == 'mobile-large' {
+      @include mobile-large {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-small' {
+      @include tablet-small {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-regular' {
+      @include tablet-regular {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-small' {
+      @include desktop-small {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-medium' {
+      @include desktop-medium {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-large' {
+      @include desktop-large {
+        @content;
+      }
+    }
+  }
+}
+
+/*   Media Queries: Specific        */
 @mixin mobile-small {
   @media (min-width: #{$mobile-s}) and (max-width: #{$mobile-m - 1px}) {
     @content;
@@ -41,26 +87,31 @@
     @content;
   }
 }
+
 @mixin tablet-small {
   @media (min-width: #{$tablet-s}) and (max-width: #{$tablet - 1px}) {
     @content;
   }
 }
+
 @mixin tablet-regular {
   @media (min-width: #{$tablet}) and (max-width: #{$desktop-s - 1px}) {
     @content;
   }
 }
+
 @mixin desktop-small {
   @media (min-width: #{$desktop-s}) and (max-width: #{$desktop-m - 1px}) {
     @content;
   }
 }
+
 @mixin desktop-medium {
   @media (min-width: #{$desktop-m}) and (max-width: #{$desktop-l - 1px}) {
     @content;
   }
 }
+
 @mixin desktop-large {
   @media (min-width: #{$desktop-l}) {
     @content;
