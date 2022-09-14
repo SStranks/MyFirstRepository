@@ -22,3 +22,32 @@
   background-color: $White;
   border-radius: 5px;
 }
+
+// Animation: CSS Transition Group
+.appear,
+.enter {
+  opacity: 0%;
+}
+
+.appearActive,
+.enterActive {
+  opacity: 100%;
+  transition: opacity 550ms ease-in;
+}
+
+.enterDone {
+  pointer-events: all;
+}
+
+.exit {
+  opacity: 100%;
+}
+
+.exitActive {
+  opacity: 0%;
+  transition: opacity 450ms ease-out;
+}
+
+.exitDone {
+  opacity: 0%;
+}
