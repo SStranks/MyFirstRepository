@@ -1,4 +1,5 @@
 @use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
 
 .search-bar {
   display: grid;
@@ -8,35 +9,56 @@
   border-radius: 5px;
   background-color: var(--color-elements);
   transition: $Theme-transition;
+
+  @include media(tablet-regular, tablet-small) {
+    grid-template-columns: minmax(auto, 35%) minmax(auto, 30%) minmax(
+        270px,
+        35%
+      );
+  }
+
   &__compartment {
     display: flex;
     justify-content: space-between;
     height: 100%;
     align-items: center;
     padding: 16px;
+
     & input[type='text'] {
       width: 100%;
       border: none;
       color: var(--color-input-text);
+
       &::placeholder {
         color: var(--color-placeholder);
       }
+
       &:focus {
         outline: none;
       }
     }
+
     &:not(:last-child) {
       border-right: 2px solid var(--color-background);
       transition: border-right 1s;
     }
+
     & label {
       color: var(--color-text-h);
       transition: $Theme-transition;
+
+      @include media(tablet-regular, tablet-small) {
+        width: 90px;
+        height: 20px;
+        overflow: hidden;
+      }
     }
+
     &__sub {
       display: flex;
       flex: 1;
       justify-content: flex-start;
+
       & img {
         margin-right: 16px;
       }

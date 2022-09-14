@@ -12,26 +12,25 @@ header {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 
-  @include tablet-regular {
+  transition: $padding-transition;
+  @include media(tablet-regular, tablet-small) {
+    padding-top: 10px;
     background-image: url('../../assets/svg/tablet/bg-pattern-header.svg');
+  }
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    background-image: url('../../assets/svg/mobile/bg-pattern-header.svg');
   }
 
   & > div {
     width: 100%;
-    transition: $padding-transition;
+
+    // transition: $padding-transition;
     @include desktop-medium {
       padding: 0 10% 56px 10%;
     }
 
-    @include desktop-small {
-      padding: 0 5% 56px 5%;
-    }
-
-    @include tablet-regular {
-      padding: 0 5% 56px 5%;
-    }
-
-    @include tablet-small {
+    @include media(desktop-small, tablet-regular, tablet-small) {
       padding: 0 5% 56px 5%;
     }
   }
