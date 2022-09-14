@@ -18,7 +18,10 @@
   }
 
   @include media(mobile-large, mobile-medium, mobile-small) {
-    grid-template-columns: minmax(auto, 35%) auto auto;
+    grid-template-columns: auto minmax(auto, min-content) minmax(
+        auto,
+        min-content
+      );
   }
 
   &__compartment {
@@ -29,6 +32,7 @@
     padding: 16px;
 
     & input[type='text'] {
+      flex-grow: 1;
       width: 100%;
       border: none;
       color: var(--color-input-text);
@@ -104,4 +108,23 @@
   @include media(mobile-large, mobile-medium, mobile-small) {
     display: none;
   }
+}
+
+#img-filter-desktop {
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    display: none;
+  }
+}
+
+#img-filter-mobile {
+  @include media(
+    tablet-regular,
+    tablet-small,
+    desktop-large,
+    desktop-medium,
+    desktop-small
+  ) {
+    display: none;
+  }
+  margin-right: 0;
 }

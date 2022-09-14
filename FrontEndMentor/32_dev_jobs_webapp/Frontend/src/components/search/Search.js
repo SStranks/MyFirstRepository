@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './_Search.module.scss';
+import Modal from '../modal/modal';
 import ButtonSubmit from '../custom/ButtonSubmit';
 import Checkbox from '../custom/Checkbox';
 import IconSearch from '../../assets/svg/desktop/icon-search.svg';
 import IconFilter from '../../assets/svg/desktop/icon-location.svg';
+import IconFilterMobile from '../../assets/svg/mobile/icon-filter.svg';
 
 function Search(props) {
   const { setJobs, setGridCount } = props;
@@ -16,6 +18,7 @@ function Search(props) {
     time: false,
   });
   const [isSearching, setIsSearching] = useState(false);
+  const [modalActive, setModalActive] = useState(false);
 
   const onChangeHandler = (e) => {
     const check = /^[a-z0-9\s]*$/i.test(e.target.value);
@@ -47,50 +50,72 @@ function Search(props) {
     }
   };
 
+  const modalHandler = () => {
+    const body = document.querySelector('body');
+    body.classList.add('modal-open');
+    setModalActive(true);
+  };
+
   return (
-    <form className={styles['search-bar']} onSubmit={submitHandler}>
-      <div className={styles['search-bar__compartment']}>
-        <div className={styles['search-bar__compartment__sub']}>
-          <img src={IconSearch} alt="" id={styles['input-img-search']} />
-          <input
-            type="text"
-            name="search"
-            value={searchFields.search}
-            onChange={(e) => onChangeHandler(e)}
-            placeholder="Filter by title, companies, expertise..."
+    <>
+      {modalActive && (
+        <Modal
+          onChangeHandler={onChangeHandler}
+          searchFields={searchFields}
+          setModalActive={setModalActive}
+        />
+      )}
+      <form className={styles['search-bar']} onSubmit={submitHandler}>
+        <div className={styles['search-bar__compartment']}>
+          <div className={styles['search-bar__compartment__sub']}>
+            <img src={IconSearch} alt="" id={styles['input-img-search']} />
+            <input
+              type="text"
+              name="search"
+              value={searchFields.search}
+              onChange={(e) => onChangeHandler(e)}
+              placeholder="Filter by title, companies, expertise..."
+            />
+          </div>
+        </div>
+        <div className={styles['search-bar__compartment']}>
+          <div className={styles['search-bar__compartment__sub']}>
+            <img src={IconFilter} id={styles['img-filter-desktop']} alt="" />
+            <img
+              src={IconFilterMobile}
+              id={styles['img-filter-mobile']}
+              alt=""
+              onClick={modalHandler}
+              aria-hidden
+            />
+            <input
+              type="text"
+              name="filter"
+              id={styles['input-text-filter']}
+              value={searchFields.filter}
+              onChange={(e) => onChangeHandler(e)}
+              placeholder="Filter by location..."
+            />
+          </div>
+        </div>
+        <div className={styles['search-bar__compartment']}>
+          <Checkbox
+            text="Full Time Only"
+            id="full-time"
+            name="time"
+            checked={searchFields.time}
+            onChange={() =>
+              setSearchFields((prev) => ({ ...prev, time: !prev.time }))
+            }
+          />
+          <ButtonSubmit
+            value="Submit"
+            text={isSearching ? 'Searching' : 'Search'}
+            disabled={isSearching}
           />
         </div>
-      </div>
-      <div className={styles['search-bar__compartment']}>
-        <div className={styles['search-bar__compartment__sub']}>
-          <img src={IconFilter} alt="" />
-          <input
-            type="text"
-            name="filter"
-            id={styles['input-text-filter']}
-            value={searchFields.filter}
-            onChange={(e) => onChangeHandler(e)}
-            placeholder="Filter by location..."
-          />
-        </div>
-      </div>
-      <div className={styles['search-bar__compartment']}>
-        <Checkbox
-          text="Full Time Only"
-          id="full-time"
-          name="time"
-          checked={searchFields.time}
-          onChange={() =>
-            setSearchFields((prev) => ({ ...prev, time: !prev.time }))
-          }
-        />
-        <ButtonSubmit
-          value="Submit"
-          text={isSearching ? 'Searching' : 'Search'}
-          disabled={isSearching}
-        />
-      </div>
-    </form>
+      </form>
+    </>
   );
 }
 
