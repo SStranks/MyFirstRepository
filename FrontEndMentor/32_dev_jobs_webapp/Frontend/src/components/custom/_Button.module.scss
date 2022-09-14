@@ -36,10 +36,10 @@ button {
       display: none;
     }
   }
+}
 
+.btn-submit {
   @include media(mobile-large, mobile-medium, mobile-small) {
-    span {
-      display: none;
-    }
+    display: none;
   }
 }

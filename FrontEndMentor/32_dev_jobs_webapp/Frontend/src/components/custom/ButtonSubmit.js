@@ -8,7 +8,7 @@ function ButtonSubmit(props) {
 
   return (
     <button type="submit" className={styles} value={value} disabled={disabled}>
-      <span>{text}</span>
+      <span className={styles['btn-submit']}>{text}</span>
       <img src={IconSearch} alt="" />
     </button>
   );

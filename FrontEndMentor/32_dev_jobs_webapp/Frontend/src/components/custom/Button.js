@@ -12,7 +12,7 @@ function Button(props) {
       onClick={onClick}
       disabled={disabled}
     >
-      {text}
+      <span>{text}</span>
     </button>
   );
 }
