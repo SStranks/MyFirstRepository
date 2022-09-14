@@ -71,6 +71,13 @@ span {
   color: $Very_Dark_Blue;
 }
 
+a,
+a:visited,
+a:active,
+a:hover {
+  text-decoration: 0;
+}
+
 // a {
 //   color: hsl(var(--Dark-Grayish-Violet));
 //   letter-spacing: 0.1rem;
