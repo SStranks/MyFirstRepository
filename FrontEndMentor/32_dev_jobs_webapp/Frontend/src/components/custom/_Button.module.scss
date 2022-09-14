@@ -1,26 +1,45 @@
 @use '../../assets/styles/variables' as *;
 @use '../../assets/styles/mixins' as *;
 
-.button-custom {
-  & button {
-    width: 150px;
-    height: 50px;
-    border-radius: 5px;
-    padding: 1rem 0;
+button {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  padding: 1rem 0;
+  background-color: $Violet;
+
+  & span {
     color: $White;
-    background-color: $Violet;
+  }
 
-    &:hover {
-      background-color: #939bf4;
+  & img {
+    filter: brightness(100);
+  }
+
+  &:hover {
+    background-color: #939bf4;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $Grey;
+  }
+
+  @include media(
+    desktop-large,
+    desktop-medium,
+    desktop-small,
+    tablet-regular,
+    tablet-small
+  ) {
+    img {
+      display: none;
     }
+  }
 
-    &:disabled {
-      cursor: not-allowed;
-      background-color: $Grey;
-    }
-
-    @include media(tablet-regular, tablet-small) {
-      width: 100px;
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    span {
+      display: none;
     }
   }
 }

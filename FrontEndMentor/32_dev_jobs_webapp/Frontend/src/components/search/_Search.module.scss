@@ -17,6 +17,10 @@
       );
   }
 
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    grid-template-columns: minmax(auto, 35%) auto auto;
+  }
+
   &__compartment {
     display: flex;
     justify-content: space-between;
@@ -41,6 +45,10 @@
     &:not(:last-child) {
       border-right: 2px solid var(--color-background);
       transition: border-right 1s;
+
+      @include media(mobile-large, mobile-medium, mobile-small) {
+        border-right: none;
+      }
     }
 
     & label {
@@ -51,6 +59,20 @@
         width: 90px;
         height: 20px;
         overflow: hidden;
+      }
+
+      @include media(mobile-large, mobile-medium, mobile-small) {
+        display: none;
+      }
+    }
+
+    & button {
+      @include media(tablet-regular, tablet-small) {
+        width: 100px;
+      }
+
+      @include media(mobile-large, mobile-medium, mobile-small) {
+        width: 48px;
       }
     }
 

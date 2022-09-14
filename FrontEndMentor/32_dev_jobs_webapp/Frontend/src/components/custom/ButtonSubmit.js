@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './_Button.module.scss';
+import IconSearch from '../../assets/svg/desktop/icon-search.svg';
 
 function ButtonSubmit(props) {
   const { text, value, disabled } = props;
 
   return (
-    <div className={styles['button-custom']}>
-      <button type="submit" value={value} disabled={disabled}>
-        {text}
-      </button>
-    </div>
+    <button type="submit" className={styles} value={value} disabled={disabled}>
+      <span>{text}</span>
+      <img src={IconSearch} alt="" />
+    </button>
   );
 }
 

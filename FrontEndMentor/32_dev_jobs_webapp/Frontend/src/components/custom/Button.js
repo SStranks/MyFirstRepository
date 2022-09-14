@@ -6,11 +6,14 @@ function Button(props) {
   const { onClick, text, disabled } = props;
 
   return (
-    <div className={styles['button-custom']}>
-      <button type="button" onClick={onClick} disabled={disabled}>
-        {text}
-      </button>
-    </div>
+    <button
+      type="button"
+      className={styles}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {text}
+    </button>
   );
 }
 

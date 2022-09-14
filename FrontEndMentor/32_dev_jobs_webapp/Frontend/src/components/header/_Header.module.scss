@@ -19,6 +19,7 @@ header {
   }
 
   @include media(mobile-large, mobile-medium, mobile-small) {
+    padding-top: 10px;
     background-image: url('../../assets/svg/mobile/bg-pattern-header.svg');
   }
 
@@ -31,6 +32,10 @@ header {
     }
 
     @include media(desktop-small, tablet-regular, tablet-small) {
+      padding: 0 5% 56px 5%;
+    }
+
+    @include media(mobile-large, mobile-medium, mobile-small) {
       padding: 0 5% 56px 5%;
     }
   }

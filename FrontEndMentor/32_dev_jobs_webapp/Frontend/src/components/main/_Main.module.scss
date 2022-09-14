@@ -14,6 +14,10 @@
   @include media(desktop-small, tablet-regular, tablet-small) {
     padding: 0 5% 56px 5%;
   }
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    padding: 0 5% 56px 5%;
+  }
 }
 
 .grid {
@@ -33,6 +37,10 @@
 
   @include media(tablet-regular, tablet-small) {
     gap: 45px 20px;
+  }
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    gap: 45px;
   }
 }
 

@@ -6,7 +6,7 @@ function Checkbox(props) {
   const { text, id, name, checked, onChange } = props;
 
   return (
-    <div className={styles['checkbox-control']}>
+    <div className={styles['checkbox-control']} id="checkbox">
       <input
         type="checkbox"
         id={id}
