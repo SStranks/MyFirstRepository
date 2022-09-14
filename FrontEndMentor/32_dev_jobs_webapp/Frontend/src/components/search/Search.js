@@ -58,13 +58,12 @@ function Search(props) {
 
   return (
     <>
-      {modalActive && (
-        <Modal
-          onChangeHandler={onChangeHandler}
-          searchFields={searchFields}
-          setModalActive={setModalActive}
-        />
-      )}
+      <Modal
+        onChangeHandler={onChangeHandler}
+        searchFields={searchFields}
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+      />
       <form className={styles['search-bar']} onSubmit={submitHandler}>
         <div className={styles['search-bar__compartment']}>
           <div className={styles['search-bar__compartment__sub']}>
