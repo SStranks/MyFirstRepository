@@ -51,7 +51,7 @@ function Search(props) {
     <form className={styles['search-bar']} onSubmit={submitHandler}>
       <div className={styles['search-bar__compartment']}>
         <div className={styles['search-bar__compartment__sub']}>
-          <img src={IconSearch} alt="" />
+          <img src={IconSearch} alt="" id={styles['input-img-search']} />
           <input
             type="text"
             name="search"
@@ -67,6 +67,7 @@ function Search(props) {
           <input
             type="text"
             name="filter"
+            id={styles['input-text-filter']}
             value={searchFields.filter}
             onChange={(e) => onChangeHandler(e)}
             placeholder="Filter by location..."

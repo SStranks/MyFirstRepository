@@ -84,6 +84,24 @@
       & img {
         margin-right: 16px;
       }
+
+      @include media(mobile-large, mobile-medium, mobile-small) {
+        #input {
+          display: none;
+        }
+      }
     }
+  }
+}
+
+#input-text-filter {
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    display: none;
+  }
+}
+
+#input-img-search {
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    display: none;
   }
 }
