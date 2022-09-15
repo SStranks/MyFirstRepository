@@ -32,6 +32,8 @@ function Search(props) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    const body = document.querySelector('body');
+    body.classList.remove('modal-open');
     setModalActive(false);
     setIsSearching(true);
     try {
