@@ -17,10 +17,44 @@
 
 .card {
   width: 100%;
-  height: 220px;
-  padding: 16px;
+  height: fit-content;
   background-color: $White;
   border-radius: 5px;
+}
+
+.compartment {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 32px;
+  & input[type='text'] {
+    flex-grow: 1;
+    width: 100%;
+    margin-left: 16px;
+    border: none;
+    color: var(--color-input-text);
+
+    &::placeholder {
+      color: var(--color-placeholder);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+  & button {
+    width: 100%;
+    margin-top: 32px;
+  }
+  &:not(:first-child) {
+    flex-direction: column;
+    align-content: space-around;
+    border-top: 2px solid var(--color-background);
+  }
+}
+
+#checkbox-control-mob {
+  display: flex;
 }
 
 // Animation: CSS Transition Group

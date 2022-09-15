@@ -129,3 +129,9 @@
   margin-right: 0;
   cursor: pointer;
 }
+
+#checkbox-control {
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    display: none;
+  }
+}

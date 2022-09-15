@@ -25,6 +25,26 @@ button {
     background-color: $Grey;
   }
 
+  // @include media(
+  //   desktop-large,
+  //   desktop-medium,
+  //   desktop-small,
+  //   tablet-regular,
+  //   tablet-small
+  // ) {
+  //   img {
+  //     display: none;
+  //   }
+  // }
+}
+
+.btn-text {
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    display: none;
+  }
+}
+
+.btn-icon {
   @include media(
     desktop-large,
     desktop-medium,
@@ -32,14 +52,10 @@ button {
     tablet-regular,
     tablet-small
   ) {
-    img {
-      display: none;
-    }
+    display: none;
   }
 }
 
-.btn-submit {
-  @include media(mobile-large, mobile-medium, mobile-small) {
-    display: none;
-  }
+.btn-icon-none {
+  display: none;
 }

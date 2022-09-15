@@ -61,8 +61,10 @@ function Search(props) {
       <Modal
         onChangeHandler={onChangeHandler}
         searchFields={searchFields}
+        setSearchFields={setSearchFields}
         modalActive={modalActive}
         setModalActive={setModalActive}
+        isSearching={isSearching}
       />
       <form className={styles['search-bar']} onSubmit={submitHandler}>
         <div className={styles['search-bar__compartment']}>
@@ -100,7 +102,7 @@ function Search(props) {
         <div className={styles['search-bar__compartment']}>
           <Checkbox
             text="Full Time Only"
-            id="full-time"
+            id={styles['checkbox-control']}
             name="time"
             checked={searchFields.time}
             onChange={() =>
@@ -111,6 +113,7 @@ function Search(props) {
             value="Submit"
             text={isSearching ? 'Searching' : 'Search'}
             disabled={isSearching}
+            modal={false}
           />
         </div>
       </form>

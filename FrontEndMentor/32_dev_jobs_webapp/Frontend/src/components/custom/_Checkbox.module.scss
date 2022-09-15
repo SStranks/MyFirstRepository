@@ -38,8 +38,4 @@
       background-color: $Violet;
     }
   }
-
-  @include media(mobile-large, mobile-medium, mobile-small) {
-    display: none;
-  }
 }
