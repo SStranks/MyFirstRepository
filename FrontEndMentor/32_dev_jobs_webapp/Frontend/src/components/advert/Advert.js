@@ -29,49 +29,51 @@ function Advert() {
   const roleList = role.items.map((el, i) => <li key={i}>{el}</li>);
 
   return (
-    <div className={styles.layout}>
-      <div className={styles.banner}>
-        <div style={{ backgroundColor: logoBackground }}>
-          <img src={logo} alt="company logo" />
-        </div>
-        <div>
-          <div>
-            <h2>{company}</h2>
-            <p>{website}</p>
+    <div className={styles.container}>
+      <div className={styles.layout}>
+        <div className={styles.banner}>
+          <div style={{ backgroundColor: logoBackground }}>
+            <img src={logo} alt="company logo" />
           </div>
-          <Button text="Company Site" />
-        </div>
-      </div>
-      <div className={styles.main}>
-        <div>
           <div>
-            <p>
-              {postedAt}
-              <span>.</span>
-              {contract}
-            </p>
-            <h1>{position}</h1>
-            <h4>{location}</h4>
+            <div>
+              <h2>{company}</h2>
+              <p>{website}</p>
+            </div>
+            <Button text="Company Site" />
           </div>
-          <Button text="Apply Now" />
         </div>
-        <div>
-          <p>{description}</p>
-          <h3>Requirements</h3>
-          <p>{requirements.content}</p>
-          <ul>{requirementList}</ul>
-          <h3>What You Will Do</h3>
-          <p>{role.content}</p>
-          <ol>{roleList}</ol>
-        </div>
-      </div>
-      <div className={styles.footer}>
-        <div>
+        <div className={styles.main}>
           <div>
-            <h3>{position}</h3>
-            <p>{company}</p>
+            <div>
+              <p>
+                {postedAt}
+                <span>.</span>
+                {contract}
+              </p>
+              <h1>{position}</h1>
+              <h4>{location}</h4>
+            </div>
+            <Button text="Apply Now" />
           </div>
-          <Button text="Apply Now" />
+          <div>
+            <p>{description}</p>
+            <h3>Requirements</h3>
+            <p>{requirements.content}</p>
+            <ul>{requirementList}</ul>
+            <h3>What You Will Do</h3>
+            <p>{role.content}</p>
+            <ol>{roleList}</ol>
+          </div>
+        </div>
+        <div className={styles.footer}>
+          <div>
+            <div>
+              <h3>{position}</h3>
+              <p>{company}</p>
+            </div>
+            <Button text="Apply Now" />
+          </div>
         </div>
       </div>
     </div>

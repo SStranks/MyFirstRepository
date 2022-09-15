@@ -1,8 +1,15 @@
 @use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
+
+.container {
+  width: 100%;
+  padding: 0 5%;
+}
 
 .layout {
   position: relative;
-  width: 730px;
+  width: 100%;
+  max-width: 730px;
   margin: -40px auto 0 auto;
   padding-bottom: 176px;
   z-index: 1;
@@ -17,6 +24,13 @@
   flex-direction: row;
   height: 140px;
   border-radius: 7px;
+
+  @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+  }
+
   & > div:first-child {
     display: flex;
     flex-direction: row;
@@ -30,6 +44,17 @@
       width: 100%;
       height: fit-content;
     }
+    @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+      width: 50px;
+      height: 50px;
+      padding: 0;
+      border-radius: 15px;
+      transform: translate(0, -50%);
+      & img {
+        height: fit-content;
+        width: fit-content;
+      }
+    }
   }
   & > div:last-child {
     flex: 1;
@@ -39,14 +64,31 @@
     width: auto;
     padding: 0 40px;
     align-items: center;
+
+    @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+      flex-direction: column;
+      align-items: center;
+      & > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
   }
   & button {
     grid-column: 2;
-    font-weight: 700;
+    padding: 0;
     background-color: #eff0fc;
-    color: $Violet;
+    & span {
+      color: $Violet;
+      font-weight: 700;
+    }
     &:hover {
       background-color: #c5c9f4;
+    }
+
+    @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+      margin: 32px 0;
     }
   }
 }
@@ -59,13 +101,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    & span {
+    & p > span {
       margin: 0 10px;
       font-size: 32px;
       color: $Dark_Grey;
     }
     & h1 {
       margin: 6px 0;
+    }
+
+    @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+      flex-direction: column;
+      & button {
+        width: 100%;
+        margin-top: 32px;
+      }
     }
   }
   & > div:last-child {
@@ -97,20 +147,31 @@
 .footer {
   position: fixed;
   display: flex;
+  justify-content: center;
+  align-content: center;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 96px;
-  justify-content: center;
-  align-content: center;
+  padding: 0 10%;
   & > div {
     display: flex;
     justify-content: space-between;
-    align-content: center;
-    width: 730px;
+    align-items: center;
+    width: 100%;
+    max-width: 730px;
     margin: auto 0;
   }
   & h3 {
     margin-bottom: 5px;
+  }
+
+  @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+    & div > div {
+      display: none;
+    }
+    & button {
+      width: 100%;
+    }
   }
 }
