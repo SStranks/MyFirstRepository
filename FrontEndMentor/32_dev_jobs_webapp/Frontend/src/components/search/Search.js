@@ -32,6 +32,7 @@ function Search(props) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setModalActive(false);
     setIsSearching(true);
     try {
       const response = await axios({
@@ -57,7 +58,8 @@ function Search(props) {
   };
 
   return (
-    <>
+    // <>
+    <form className={styles['search-bar']} onSubmit={submitHandler}>
       <Modal
         onChangeHandler={onChangeHandler}
         searchFields={searchFields}
@@ -65,59 +67,59 @@ function Search(props) {
         modalActive={modalActive}
         setModalActive={setModalActive}
         isSearching={isSearching}
+        submitHandler={submitHandler}
       />
-      <form className={styles['search-bar']} onSubmit={submitHandler}>
-        <div className={styles['search-bar__compartment']}>
-          <div className={styles['search-bar__compartment__sub']}>
-            <img src={IconSearch} alt="" id={styles['input-img-search']} />
-            <input
-              type="text"
-              name="search"
-              value={searchFields.search}
-              onChange={(e) => onChangeHandler(e)}
-              placeholder="Filter by title, companies, expertise..."
-            />
-          </div>
-        </div>
-        <div className={styles['search-bar__compartment']}>
-          <div className={styles['search-bar__compartment__sub']}>
-            <img src={IconFilter} id={styles['img-filter-desktop']} alt="" />
-            <img
-              src={IconFilterMobile}
-              id={styles['img-filter-mobile']}
-              alt=""
-              onClick={modalHandler}
-              aria-hidden
-            />
-            <input
-              type="text"
-              name="filter"
-              id={styles['input-text-filter']}
-              value={searchFields.filter}
-              onChange={(e) => onChangeHandler(e)}
-              placeholder="Filter by location..."
-            />
-          </div>
-        </div>
-        <div className={styles['search-bar__compartment']}>
-          <Checkbox
-            text="Full Time Only"
-            id={styles['checkbox-control']}
-            name="time"
-            checked={searchFields.time}
-            onChange={() =>
-              setSearchFields((prev) => ({ ...prev, time: !prev.time }))
-            }
-          />
-          <ButtonSubmit
-            value="Submit"
-            text={isSearching ? 'Searching' : 'Search'}
-            disabled={isSearching}
-            modal={false}
+      <div className={styles['search-bar__compartment']}>
+        <div className={styles['search-bar__compartment__sub']}>
+          <img src={IconSearch} alt="" id={styles['input-img-search']} />
+          <input
+            type="text"
+            name="search"
+            value={searchFields.search}
+            onChange={(e) => onChangeHandler(e)}
+            placeholder="Filter by title, companies, expertise..."
           />
         </div>
-      </form>
-    </>
+      </div>
+      <div className={styles['search-bar__compartment']}>
+        <div className={styles['search-bar__compartment__sub']}>
+          <img src={IconFilter} id={styles['img-filter-desktop']} alt="" />
+          <img
+            src={IconFilterMobile}
+            id={styles['img-filter-mobile']}
+            alt=""
+            onClick={modalHandler}
+            aria-hidden
+          />
+          <input
+            type="text"
+            name="filter"
+            id={styles['input-text-filter']}
+            value={searchFields.filter}
+            onChange={(e) => onChangeHandler(e)}
+            placeholder="Filter by location..."
+          />
+        </div>
+      </div>
+      <div className={styles['search-bar__compartment']}>
+        <Checkbox
+          text="Full Time Only"
+          id={styles['checkbox-control']}
+          name="time"
+          checked={searchFields.time}
+          onChange={() =>
+            setSearchFields((prev) => ({ ...prev, time: !prev.time }))
+          }
+        />
+        <ButtonSubmit
+          value="Submit"
+          text={isSearching ? 'Searching' : 'Search'}
+          disabled={isSearching}
+          modal={false}
+        />
+      </div>
+    </form>
+    // </>
   );
 }
 

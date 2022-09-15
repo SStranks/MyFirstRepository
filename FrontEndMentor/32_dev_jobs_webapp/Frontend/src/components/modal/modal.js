@@ -16,7 +16,8 @@ function Modal(props) {
     isSearching,
   } = props;
 
-  const modalClickHandler = () => {
+  const modalClickHandler = (e) => {
+    if (!e.target.className.includes('modal')) return;
     const body = document.querySelector('body');
     body.classList.remove('modal-open');
     setModalActive(false);
