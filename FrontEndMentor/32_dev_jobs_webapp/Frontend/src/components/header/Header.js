@@ -14,14 +14,14 @@ function Header() {
     body.classList.toggle('dark-theme');
   };
 
-  // const query = window.matchMedia('(prefers-color-scheme: dark)');
-  // const body = document.querySelector('body');
-  // // console.log(query, query.matches, body.classList);
-  // if (!query.matches || body.classList.includes(!'dark-theme')) {
-  //   const btn = document.querySelector('#dark-theme-slider');
-  //   console.log(btn, 'activated');
-  //   btn.click();
-  // }
+  // Toggle the dark theme if user has preferred color scheme set to dark
+  window.onload = () => {
+    const query = window.matchMedia('(prefers-color-scheme: dark)');
+    if (query.matches) {
+      const btn = document.getElementById('dark-theme-slider');
+      btn.click();
+    }
+  };
 
   return (
     <header>
