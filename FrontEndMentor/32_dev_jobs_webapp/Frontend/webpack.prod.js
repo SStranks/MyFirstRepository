@@ -23,6 +23,15 @@ module.exports = merge(common, {
             loader: 'css-loader',
             options: {
               modules: { localIdentName: '[local]-[hash:base64:5]' },
+              importLoaders: 2, // => post-css and sass
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: ['autoprefixer'],
+              },
             },
           },
           'sass-loader',
