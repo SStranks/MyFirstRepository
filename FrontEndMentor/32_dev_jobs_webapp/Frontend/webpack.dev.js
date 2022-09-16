@@ -1,25 +1,19 @@
+const { merge } = require('webpack-merge');
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
+const common = require('./webpack.common');
 
-module.exports = {
+module.exports = merge(common, {
   mode: 'development',
-  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: 'main.js',
+    filename: 'main.[contenthash].js',
     publicPath: '/',
+    // assetModuleFilename: 'images/[name][ext]',
   },
-  target: 'web',
   devtool: 'inline-source-map',
   devServer: {
-    // host: '0.0.0.0',
     port: 3000,
-    // client: {
-    //   webSocketURL: {
-    //     hostname: 'wsl.internal',
-    //   },
-    // },
     static: ['./public'],
     historyApiFallback: true,
     /** "open"
@@ -39,25 +33,8 @@ module.exports = {
     liveReload: true,
     // historyApiFallback: true,
   },
-  resolve: {
-    /** "extensions"
-     * If multiple files share the same name but have different extensions, webpack will
-     * resolve the one with the extension listed first in the array and skip the rest.
-     * This is what enables users to leave off the extension when importing
-     */
-    extensions: ['.js', '.jsx', '.json'],
-  },
   module: {
     rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },
-      {
-        test: /\.html$/,
-        use: 'html-loader',
-      },
       {
         test: /\.module\.scss$/,
         use: [
@@ -76,10 +53,6 @@ module.exports = {
         exclude: /\.module.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      },
     ],
   },
   plugins: [
@@ -87,6 +60,5 @@ module.exports = {
       template: './public/index.html',
       favicon: './public/assets/favicon-32x32.png',
     }),
-    new ESLintPlugin(),
   ],
-};
+});
