@@ -7,6 +7,9 @@ Backend/.env
 Backend/node_modules
 Frontend/node_modules
 
+# Public
+Frontend/public
+
 # FrontEndMentor
 *.sketch
 *.xd
