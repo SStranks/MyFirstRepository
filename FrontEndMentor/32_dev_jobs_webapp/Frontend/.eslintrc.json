@@ -32,7 +32,8 @@
     // "class-methods-use-this": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/function-component-definition": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   },
   "ignorePatterns": ["node_modules", "public/*"]
 }
