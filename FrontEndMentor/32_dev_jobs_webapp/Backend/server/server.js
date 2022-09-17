@@ -1,6 +1,7 @@
 require('dotenv').config();
 const connectDB = require('./config/db');
-const jsonData = require('./dev-data/data.json');
+// Initial Development Data
+// const jsonData = require('./dev-data/data.json');
 
 const app = require('./app');
 
@@ -8,7 +9,8 @@ connectDB();
 
 const PORT = process.env.NODE_DOCKER_PORT || 3000;
 
-app.get('/', (req, res) => res.json(jsonData));
+// Initial Development Data
+// app.get('/', (req, res) => res.json(jsonData));
 
 const server = app.listen(PORT, () => {
   console.log(

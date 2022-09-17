@@ -28,7 +28,9 @@ services:
     ports: 
       - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
     depends_on:
-      - node-api
+      node-api:
+        condition: service_completed_successfully
+
 
 
   # NGINX
