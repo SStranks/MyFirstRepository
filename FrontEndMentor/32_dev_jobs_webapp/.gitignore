@@ -1,7 +1,6 @@
 # Env files
 .env
-.env.prod
-Backend/.env
+.env.*
 
 # Dependencies
 Backend/node_modules
