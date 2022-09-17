@@ -47,7 +47,7 @@ function Main() {
         id={obj.id}
         company={obj.company}
         website={obj.website}
-        logo={obj.logo.slice(2)}
+        logo={obj.logo.slice(15)}
         logoBackground={obj.logoBackground}
         position={obj.position}
         postedAt={obj.postedAt}
