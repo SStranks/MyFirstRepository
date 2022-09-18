@@ -1,0 +1,49 @@
+version: "3.7"
+services:
+
+  # Backend: Node API
+  node-api:
+    container_name: node-api-prod
+    build:
+      dockerfile: ./Dockerfile.prod
+    image: img-node-api-prod
+    ports: 
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    env_file:
+      - ./Backend/.env.prod
+    networks:
+      - MERN_PROD
+  
+
+  # Frontend: React App
+  react-app:
+    container_name: react-app-prod
+    build:
+      dockerfile: ./Dockerfile.prod
+    image: img-react-app-prod
+    ports: 
+      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
+    depends_on:
+      - node-api
+    networks:
+      - MERN_PROD
+
+
+
+  # NGINX
+  nginx:
+    restart: unless-stopped
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.prod
+    depends_on:
+      - node-api
+      - react-app
+    ports:
+    - 8080:80
+    networks:
+      - MERN_PROD
+  
+
+networks:
+   MERN_PROD:
