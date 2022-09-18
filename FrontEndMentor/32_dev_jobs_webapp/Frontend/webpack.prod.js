@@ -50,8 +50,8 @@ module.exports = merge(common, {
   plugins: [
     new MiniCssExtractPlugin(),
     new HTMLWebpackPlugin({
-      template: './src/index.html',
-      favicon: './src/assets/favicon-32x32.png',
+      template: './src/index-template.html',
+      favicon: './src/favicon-32x32.png',
       minify: {
         removeAttributeQuotes: true,
         collapseWhitespace: true,
