@@ -5,12 +5,13 @@ LABEL version="1.0"
 LABEL description="Prod Image: MERN App: React"
 
 WORKDIR /src/frontend
-COPY package*.json /src/frontend/
+COPY package.json /src/frontend/
 RUN npm install && npm cache clean --force
 
 COPY . /src/frontend
 
-CMD ["npm", "run", "build"]
+# CMD ["npm", "run", "build"]
+RUN npm run build
 
 
 
