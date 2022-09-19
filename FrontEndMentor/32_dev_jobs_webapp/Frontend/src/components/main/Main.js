@@ -15,7 +15,7 @@ function Main() {
       try {
         const response = await axios({
           method: 'GET',
-          url: 'http://localhost:4000/api/jobs',
+          url: `http://${process.env.API_HOST}/api/jobs`,
           timeout: 2000,
         });
         setJobs(response.data);
@@ -47,7 +47,7 @@ function Main() {
         id={obj.id}
         company={obj.company}
         website={obj.website}
-        logo={obj.logo.slice(15)}
+        logo={obj.logo}
         logoBackground={obj.logoBackground}
         position={obj.position}
         postedAt={obj.postedAt}

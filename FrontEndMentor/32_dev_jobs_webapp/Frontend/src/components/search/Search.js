@@ -39,7 +39,7 @@ function Search(props) {
     try {
       const response = await axios({
         method: 'POST',
-        url: 'http://localhost:4000/api/jobs',
+        url: `http://${process.env.API_HOST}/api/jobs`,
         data: searchFields,
         timeout: 8000,
       });
