@@ -1,6 +1,7 @@
 const { merge } = require('webpack-merge');
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
@@ -57,8 +58,9 @@ module.exports = merge(common, {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: './public/index.html',
-      favicon: './src/assets/img/favicon-32x32.png',
+      template: './src/index-template.html',
+      favicon: './src/favicon-32x32.png',
     }),
+    new Dotenv({ path: './.env.dev' }),
   ],
 });

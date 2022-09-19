@@ -27,6 +27,8 @@ services:
       - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
     volumes:
       - ./Frontend:/src/myApp:ro
+    env_file:
+      - ./Frontend/.env.dev
     depends_on:
       - node-api
 

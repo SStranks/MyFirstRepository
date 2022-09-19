@@ -3,6 +3,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const common = require('./webpack.common');
 
 module.exports = merge(common, {
@@ -58,5 +59,6 @@ module.exports = merge(common, {
         removeComments: true,
       },
     }),
+    new Dotenv({ path: './.env.prod' }),
   ],
 });
