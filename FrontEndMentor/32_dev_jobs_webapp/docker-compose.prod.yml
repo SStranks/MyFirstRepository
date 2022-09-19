@@ -15,7 +15,8 @@ services:
       - MERN_PROD
   
 
-  # Frontend: React App
+  # Frontend: React 
+  # NGINX Serving: Port 3000
   react-app:
     container_name: react-app-prod
     build:
