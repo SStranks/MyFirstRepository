@@ -1,4 +1,4 @@
-version: "3.7"
+name: "FEM#32-MERN Webapp"
 services:
 
   # Backend: Node API
@@ -31,6 +31,7 @@ services:
 
   # NGINX
   nginx:
+    container_name: nginx-prod
     restart: unless-stopped
     build:
       context: ./nginx
