@@ -1,0 +1,117 @@
+/* -------------------------------- */
+/*   Globals                        */
+/* -------------------------------- */
+/*   FrontEndMentor Challenge       */
+/*   #Project Feedback App          */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      20/09/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use 'variables' as *;
+
+/*   Globals                        */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+  font-size: 100%;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  background: var(--color-background);
+  color: var(--color-text-p);
+  transition: $Theme-transition;
+}
+
+img {
+  display: block;
+  height: 100%;
+}
+
+ul,
+ol {
+  padding-left: 1em;
+  & li {
+    padding-left: 1.5em;
+  }
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: 0.1ch;
+  padding: 0.75rem 1.75rem;
+  cursor: pointer;
+}
+
+input {
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  color: var(--color-text-p);
+  transition: $Theme-transition;
+  background-color: transparent;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &::placeholder {
+    color: var(--color-text-p);
+    transition: $Theme-transition;
+  }
+}
+
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.show {
+  display: inherit !important;
+}
+
+.modal-open {
+  overflow: hidden;
+}
+
+.transition * {
+  transition: none !important;
+}
