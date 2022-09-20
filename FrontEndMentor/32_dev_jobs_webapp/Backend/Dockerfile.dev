@@ -9,5 +9,5 @@ RUN npm install && npm cache clean --force
 
 COPY . /src/myApp
 
-EXPOSE 3080
+EXPOSE 4000
 CMD ["npm", "start"]
