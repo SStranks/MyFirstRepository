@@ -1,16 +1,22 @@
-# Frontend Mentor - Devjobs web app
+# Frontend Mentor - Devjobs web app solution
 
-![Design preview for the Devjobs web app coding challenge](./preview.jpg)
+This is a solution to the [Devjobs web app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/devjobs-web-app-HuvC_LP4l). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for purchasing this premium Frontend Mentor coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects. These premium challenges are perfect portfolio pieces, so please feel free to use what you create in your portfolio to show others.
+## Overview
 
-**To do this challenge, you need a solid understanding of HTML, CSS, and JavaScript.**
-
-## The challenge
+### The challenge
 
 Your challenge is to build out this jobs board using a local `data.json` to retrieve the data. Your goal is to try to get your project looking as close to the design as possible.
 
@@ -18,7 +24,7 @@ You can use any tools you like to help you complete the challenge. So if you've 
 
 We provide the data in a local `data.json` file, so use that to populate the content on the first load. If you want to take it up a notch, feel free to build this as a full-stack application!
 
-Your users should be able to:
+Users should be able to:
 
 - View the optimal layout for each page depending on their device's screen size
 - See hover states for all interactive elements throughout the site
@@ -26,68 +32,66 @@ Your users should be able to:
 - Be able to click a job from the index page so that they can read more information and apply for the job
 - **Bonus**: Have the correct color scheme chosen for them based on their computer preferences. _Hint_: Research `prefers-color-scheme` in CSS.
 
-Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
+### Screenshot
 
-## Where to find everything
+![](./screenshot.jpg)
 
-Your task is to build out the project to the design file provided. We provide both Sketch and Figma versions of the design, so you can choose which tool you prefer to use. You can download the design file on the platform. **Please be sure not to share them with anyone else.** The design download comes with a `README.md` file as well to help you get set up.
+### Links
 
-All the required assets for this project are in the `/assets` folder. The assets are already exported for the correct screen size and optimized. Some images are reusable at multiple screen sizes. So if you don't see an image in a specific folder, it will typically be in another folder for that page.
+- Solution URL: [@SStranks87](https://github.com/SStranks/MyFirstRepository/tree/master/FrontEndMentor/32_dev_jobs_webapp)
+- Live Site URL: [@Netlify]()
 
-The design system in the design file will give you more information about the various colors, fonts, and styles used in this project.
+## My process
 
-## Building your project
+### Built with
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+- Semantic HTML5 markup
+- CSS: modules, custom properties, grid, flexbox
+- SASS
+- ESLint, Prettier
+- Webpack 5
+- Nginx
+- Docker
+- [React](https://reactjs.org/) - JS library
+- [NodeJS](https://nodejs.org/en/) - NodeJS
+- [DockerHub](https://hub.docker.com/) - Docker Images
 
-1. Separate the `starter-code` from the rest of this project and rename it to something meaningful for you. Initialize the codebase as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/). **⚠️ IMPORTANT ⚠️: There are already a couple of `.gitignore` files in this project. Please do not remove them or change the content of the files. If you create a brand new project, please use the `.gitignore` files provided in your new codebase. This is to avoid the accidental upload of the design files to GitHub. With these premium challenges, please be sure not to share the design files in your GitHub repo. Thanks!**
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+### What I learned
 
-## Deploying your project
+In this project I really pushed myself by learning several new technologies and processes, which proved a great challenge, and now I have a great template I can use for the MERN stack on future projects too! I successfully dockerized the entire project, for both development and production pathways, and this was also implemented inside my Windows WSL2 Ubuntu 'sandbox' environment as a 'rootless' docker environment (itself a challenge to setup!).
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
+To better emulate a real-world deployed full-stack app I configured a simple Nginx arrangement - my first use of the technology - to route incoming requests to either the frontend server (another Nginx instance) to serve the index.html or route to the backend API server for requests. The backend server was connected to a MongoDB database - the production pathway links to a real MongoDB hosted on Mongo Atlas.
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+Rather than rely on Create-React-App to setup the frontend environment I opted to learn Webpack 5 and set it up manually. This was very beneficial, I learned an awful lot, and I will continue to use and build upon this approach in the next project.
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+The majority of the time I spent on this project went into setting up the development environment, searching for answers and scouring documentation. The process of manually setting it created many hiccups, which forced me to really dive deep. The actual time spent on React and NodeJS was smaller, and most of that in dealing with the media queries towards the end of development.
 
-## Create a custom `README.md`
+In the next project I hope to apply more time and finessse to the frontend and backend code, such as: full accessibility, BEM, proper care over units (REM, Ch), and expanding the functionality and depth of the backend logic.
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+### Useful resources
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+- [ESLint in Webpack 5 - Setup Tutorial](https://www.robinwieruch.de/webpack-eslint/)
+- [Set up a Node.js App with ESLint and Prettier](https://blog.bitsrc.io/how-to-set-up-node-js-application-with-eslint-and-prettier-b1b7994db69f)
+- [MERN stack w/ Nginx – Docker Compose](https://www.bezkoder.com/docker-mern/)
+- [Dockerizing a MERN Stack](https://medium.com/mozilla-club-bbsr/dockerizing-a-mern-stack-web-application-ebf78babf136)
+- [Run MERN Stack on Docker Compose](https://medium.com/bb-tutorials-and-thoughts/how-to-run-mern-stack-on-docker-compose-fad2050b9e)
+- [Sass Folder Structure For React](https://dev.to/gedalyakrycer/ohsnap-sass-folder-structure-for-react-483e)
+- [React without using CRA](https://blog.devgenius.io/how-to-create-a-react-app-without-using-create-react-app-c004a62b52fc)
+- [Setting up CSS and Sass with Webpack](https://dev.to/deepanjangh/setting-up-css-and-sass-with-webpack-3cg)
+- [React without CRA](https://dev.to/underscorecode/creating-your-react-project-from-scratch-without-create-react-app-the-complete-guide-4kbc)
+- [Docker Destop WSL2 Backend](https://docs.docker.com/desktop/windows/wsl/)
+- [Node-Sass will not compile/transpile @use "module"](https://stackoverflow.com/questions/59953385/node-sass-will-not-compile-transpile-use-module)
+- [SASS-Loader](https://webpack.js.org/loaders/sass-loader/)
+- [SASS: Breaking Change: Color Units](https://sass-lang.com/documentation/breaking-changes/color-units)
+- [Webpack: Loading Images](https://webpack.js.org/guides/asset-management/#loading-images)
+- [Webpack: Configure SCSS modules](https://www.developerhandbook.com/webpack/how-to-configure-scss-modules-for-webpack/)
+- [Pure CSS Custom Checkbox Style](https://moderncss.dev/pure-css-custom-checkbox-style/)
+- [Fixing cannot GET/URL - React Router](https://ui.dev/react-router-cannot-get-url-refresh)
+- [SASS: Responsive Web Design and Breakpoints](https://sass-guidelin.es/#responsive-web-design-and-breakpoints)
+- [Class Names via CSS Modules](https://stackoverflow.com/questions/69043268/class-names-via-css-modules-are-generated-in-a-strange-way)
+- [How to Pass Props Through React Router's Link Component](https://ui.dev/react-router-pass-props-to-link)
+- [Nginx Issue](https://stackoverflow.com/questions/64112684/nginx-cant-find-upstream-host-in-multi-container-docker-compose-setup-and-also)
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+## Author
 
-## Submitting your solution
-
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
-
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
-
-**⚠️ IMPORTANT ⚠️: With these premium challenges, please be sure not to upload the design files to GitHub when you're submitting to the platform and sharing it around. If you've created a brand new project, the easiest way to do that is to copy across the `.gitignore` provided in this starter project.**
-
-## Sharing your solution
-
-There are multiple places you can share your solution:
-
-1. Share your solution page in the **#finished-projects** channel of the [Slack community](https://www.frontendmentor.io/slack). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
-
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
-
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
-
-## Got feedback for us?
-
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
-
-**Have fun building!** 🚀
+- Frontend Mentor - [@SStranks](https://www.frontendmentor.io/profile/SStranks)
