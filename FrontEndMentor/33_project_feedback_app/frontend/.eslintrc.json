@@ -10,6 +10,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
+    "plugin:jest/recommended",
     "plugin:unicorn/recommended",
     "plugin:prettier/recommended"
   ],
@@ -24,7 +25,7 @@
     //   "presets": ["@babel/preset-react"]
     // }
   },
-  "plugins": ["react", "unicorn", "prettier"],
+  "plugins": ["react", "jest", "unicorn", "prettier"],
   "rules": {
     "prettier/prettier": ["error"],
     "no-unused-vars": "warn",

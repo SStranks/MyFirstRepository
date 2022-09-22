@@ -7,6 +7,7 @@
   "extends": [
     "airbnb-base",
     "eslint:recommended",
+    "plugin:security/recommended",
     "plugin:unicorn/recommended",
     "plugin:prettier/recommended"
   ],
