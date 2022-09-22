@@ -6,8 +6,11 @@
   },
   "extends": [
     "airbnb",
+    "airbnb/hooks",
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:unicorn/recommended",
     "plugin:prettier/recommended"
   ],
   "parserOptions": {
@@ -21,19 +24,21 @@
     //   "presets": ["@babel/preset-react"]
     // }
   },
-  "plugins": ["react", "prettier"],
+  "plugins": ["react", "unicorn", "prettier"],
   "rules": {
     "prettier/prettier": ["error"],
     "no-unused-vars": "warn",
     "no-console": "off",
+    "react/function-component-definition": "off",
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-uses-react": 0,
+    "arrow-body-style": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
     // "func-names": "off",
     // "no-process-exit": "off",
     // "object-shorthand": "off",
     // "class-methods-use-this": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/function-component-definition": "off",
-    "arrow-body-style": "off",
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
   },
   "ignorePatterns": ["node_modules", "public/*"]
 }
