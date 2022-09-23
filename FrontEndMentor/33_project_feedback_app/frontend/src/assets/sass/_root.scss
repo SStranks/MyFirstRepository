@@ -14,20 +14,20 @@
 @use './variables' as *;
 
 /*  Themes                          */
-:root {
-  --color-background: #{$Light_Grey};
-  --color-elements: #{$White};
-  --color-text-p: #{$Dark_Grey};
-  --color-text-h: #{$Very_Dark_Blue};
-  --color-placeholder: hsl(216deg, 5%, 57%);
-  --color-input-text: #{$Dark_Grey};
-}
+// :root {
+//   --color-background: #{$Light_Grey};
+//   --color-elements: #{$White};
+//   --color-text-p: #{$Dark_Grey};
+//   --color-text-h: #{$Very_Dark_Blue};
+//   --color-placeholder: hsl(216deg, 5%, 57%);
+//   --color-input-text: #{$Dark_Grey};
+// }
 
-.dark-theme {
-  --color-background: #{$Midnight};
-  --color-elements: #{$Very_Dark_Blue};
-  --color-text-p: #{$Dark_Grey};
-  --color-text-h: #{$White};
-  --color-placeholder: hsl(216deg, 5%, 57%);
-  --color-input-text: #{$White};
-}
+// .dark-theme {
+//   --color-background: #{$Midnight};
+//   --color-elements: #{$Very_Dark_Blue};
+//   --color-text-p: #{$Dark_Grey};
+//   --color-text-h: #{$White};
+//   --color-placeholder: hsl(216deg, 5%, 57%);
+//   --color-input-text: #{$White};
+// }
