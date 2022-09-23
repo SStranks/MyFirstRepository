@@ -1,4 +1,20 @@
+/* -------------------------------- */
+/*   Functions                      */
+/* -------------------------------- */
+/*   FrontEndMentor Challenge       */
+/*   #Project Feedback App          */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      20/09/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
 @use 'sass:math';
+
+/*   Functions                      */
+/* -------------------------------- */
 
 // Convert pixel value to REM. Returns 0 if input is 0, err if unit included
 @function px2rem($pixel) {
@@ -12,13 +28,13 @@
 }
 
 // Convert pixel value to EM. Returns 0 if input is 0, err if unit included
-@function px2rem($pixel) {
+@function px2em($pixel) {
   @if math.is-unitless($pixel) {
-    $rem-value: math.div($pixel, 16) + em;
-    $zero-safe-rem: if($pixel == 0, 0, $rem-value);
-    @return $zero-safe-rem;
+    $em-value: math.div($pixel, 16) + em;
+    $zero-safe-em: if($pixel == 0, 0, $em-value);
+    @return $zero-safe-em;
   } @else {
-    @error 'Don\'t use units when using the rem() function';
+    @error 'Don\'t use units when using the em() function';
   }
 }
 

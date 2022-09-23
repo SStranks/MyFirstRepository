@@ -10,23 +10,18 @@
 /*   website:   github.com/SStranks */
 /* -------------------------------- */
 
-/*   Global Margin/Padding          */
-$padding-desktop: 0 165px 56px 165px;
-$padding-transition: padding 2500ms ease-out;
-$grid-gap-transition: gap 1500ms ease-out;
-
 /*   Colours: Primary               */
-$Violet: hsl(235deg, 69%, 61%);
-$Light_Violet: hsl(235deg, 82%, 77%);
-$Fine_Violet: hsl(253deg, 74%, 91%);
-$Very_Dark_Blue: hsl(219deg, 29%, 14%);
-$Midnight: hsl(220deg, 29%, 10%);
-
-/*   Colours: Secondary             */
-$White: hsl(0deg, 0%, 100%);
-$Light_Grey: hsl(210deg, 22%, 96%);
-$Grey: hsl(212deg, 23%, 69%);
-$Dark_Grey: hsl(214deg, 17%, 51%);
+$magenta: hsl(282deg, 83%, 52%);
+$sky-blue: hsl(204deg, 94%, 68%);
+$royal-blue: hsl(230deg, 76%, 59%);
+$dark-blue: hsl(230deg, 31%, 31%);
+$navy-blue: hsl(231deg, 33%, 34%);
+$pale-blue: hsl(231deg, 100%, 97%);
+$mute-blue: hsl(224deg, 20%, 49%);
+$pale-grey: hsl(230deg, 60%, 98%);
+$blood-red: hsl(0deg, 67%, 53%);
+$mute-orange: hsl(14deg, 83%, 74%);
+$white: hsl(0deg, 0%, 100%);
 
 /*   Breakpoints                    */
 $mobile-s: 320px;

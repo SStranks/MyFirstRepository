@@ -12,6 +12,78 @@
 
 /*   Imports                        */
 @use './variables' as *;
+@use 'functions' as f;
+
+/*   Text: Body                     */
+@mixin body-1 {
+  font-weight: 400;
+  font-size: f.px2rem(16);
+  line-height: f.px2rem(23);
+}
+
+@mixin body-2 {
+  font-weight: 400;
+  font-size: f.px2rem(15);
+  line-height: f.px2rem(22);
+}
+
+@mixin body-3 {
+  font-weight: 600;
+  font-size: f.px2rem(13);
+  line-height: f.px2rem(19);
+}
+
+/*   Buttons                        */
+@mixin btn-default {
+  font-size: f.px2rem(16);
+  font-weight: 700;
+  letter-spacing: 0.1ch;
+  padding: f.px2em(12) f.px2em(52);
+}
+
+@mixin btn-1 {
+  @include btn-default();
+  background-color: $magenta;
+  &:hover {
+    background-color: hsla(#{$magenta}, 0.5);
+  }
+}
+
+@mixin btn-2 {
+  @include btn-default();
+  background-color: $royal-blue;
+  &:hover {
+    background-color: hsla(#{$royal-blue}, 0.5);
+  }
+}
+
+@mixin btn-3 {
+  @include btn-default();
+  background-color: $navy-blue;
+  &:hover {
+    background-color: hsla(#{$navy-blue}, 0.5);
+  }
+}
+
+@mixin btn-4 {
+  @include btn-default();
+  background-color: $blood-red;
+  &:hover {
+    background-color: hsla(#{$blood-red}, 0.5);
+  }
+}
+
+@mixin btn-back {
+  font-size: f.px2rem(16);
+  font-weight: 700;
+  letter-spacing: 0.1ch;
+  padding: f.px2em(16) f.px2em(52);
+  background-color: $dark-blue;
+  &:hover {
+    background-color: hsla(#{$dark-blue}, 0.5);
+    text-decoration: underline;
+  }
+}
 
 /*   Breakpoints                    */
 // mobile-s:   320px;
@@ -115,5 +187,37 @@
 @mixin desktop-large {
   @media (min-width: #{$desktop-l}) {
     @content;
+  }
+}
+
+/*   Fluid Typogrpahy               */
+// The first two arguments are for screen resolutions from which the font will be responsive.
+// The last two arguments are for the smallest and largest font size.
+// Calculates line-height automatically.
+@mixin fluid-font($min-width, $max-width, $min-font-size, $max-font-size) {
+  $unit1: unit($min-width);
+  $unit2: unit($max-width);
+  $unit3: unit($min-font-size);
+  $unit4: unit($max-font-size);
+  @if $unit1 == $unit2 and $unit1 == $unit3 and $unit1 == $unit4 {
+    & {
+      font-size: $min-font-size;
+      line-height: $min-font-size * 1.618;
+      @media screen and (min-width: $min-width) {
+        font-size: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            ((100vw - #{$min-width}) / #{strip-unit($max-width - $min-width)})
+        );
+        line-height: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            1.618 *
+            ((100vw - #{$min-width}) / #{strip-unit($max-width - $min-width)})
+        );
+      }
+      @media screen and (min-width: $max-width) {
+        font-size: $max-font-size;
+        line-height: $max-font-size * 1.618;
+      }
+    }
   }
 }

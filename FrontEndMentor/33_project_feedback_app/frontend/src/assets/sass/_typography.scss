@@ -12,56 +12,44 @@
 
 /*   Imports                        */
 @use 'variables' as *;
-@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;600;700&display=swap');
+@use 'functions' as f;
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700&display=swap');
 
 /*   Font                           */
 html,
 body {
-  font-family: 'Kumbh Sans', sans-serif;
-}
-
-p {
-  color: var(--color-text-p);
-}
-h1,
-h2,
-h3 {
-  color: var(--color-text-h);
-  transition: $Theme-transition;
-}
-h4 {
-  color: $Violet;
+  // 400 Regular. 600 Semi-bold. 700 Bold.
+  font-family: 'Jost', sans-serif;
 }
 
 /*   Text                           */
-p {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 26px;
-}
-
+// For <p> see mixins for multiple definitions
 h1 {
-  font-size: 28px;
-  font-weight: 600;
-  line-height: 34px;
+  font-weight: 700;
+  font-size: f.px2rem(24);
+  line-height: f.px2rem(35);
+  letter-spacing: f.px2rem(-0.33);
 }
 
 h2 {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 29px;
+  font-weight: 700;
+  font-size: f.px2rem(20);
+  line-height: f.px2rem(29);
+  letter-spacing: f.px2rem(-0.25);
 }
 
 h3 {
-  font-size: 20px;
   font-weight: 700;
-  line-height: 24px;
+  font-size: f.px2rem(18);
+  line-height: f.px2rem(26);
+  letter-spacing: f.px2rem(-0.25);
 }
 
 h4 {
-  font-size: 14px;
   font-weight: 700;
-  line-height: 18px;
+  font-size: f.px2rem(14);
+  line-height: f.px2rem(20);
+  letter-spacing: f.px2rem(-0.2);
 }
 
 span {

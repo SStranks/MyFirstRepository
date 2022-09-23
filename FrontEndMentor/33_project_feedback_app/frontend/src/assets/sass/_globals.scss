@@ -12,6 +12,7 @@
 
 /*   Imports                        */
 @use 'variables' as *;
+@use 'functions' as f;
 
 /*   Globals                        */
 *,
@@ -53,11 +54,8 @@ button {
   justify-content: center;
   align-items: center;
   border: none;
-  font-size: 16px;
   font-family: inherit;
-  font-weight: 700;
-  letter-spacing: 0.1ch;
-  padding: 0.75rem 1.75rem;
+  border-radius: 10px;
   cursor: pointer;
 }
 
