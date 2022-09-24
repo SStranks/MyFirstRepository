@@ -1,10 +1,17 @@
+import { Suggestion, Comments, Form, UtilityBar } from '../components';
+import styles from './_FeedbackDetail.module.scss';
+
 function FeedbackDetail() {
   return (
     <>
-      {/* aside - top navigation */}
-      {/* suggestion */}
-      {/* main: comment board component */}
-      {/* add comment */}
+      <nav>
+        <UtilityBar />
+      </nav>
+      <main>
+        <Suggestion />
+        <Comments />
+        <Form />
+      </main>
     </>
   );
 }

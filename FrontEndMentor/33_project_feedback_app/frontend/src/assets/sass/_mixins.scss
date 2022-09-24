@@ -33,6 +33,13 @@
   line-height: f.px2rem(19);
 }
 
+/*   Card                           */
+@mixin card {
+  background-color: $white;
+  border-radius: 10px;
+  padding: f.px2em(24);
+}
+
 /*   Buttons                        */
 @mixin btn-default {
   font-size: f.px2rem(16);

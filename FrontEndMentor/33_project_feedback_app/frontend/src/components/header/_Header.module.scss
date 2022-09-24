@@ -1,0 +1,23 @@
+@use '../assets/sass/mixins';
+@use '../assets/sass/variables';
+
+.header {
+  @include card;
+  color: $white;
+
+  &__content {
+    @include body-2;
+  }
+
+  @include media(desktop-small, desktop-medium, desktop-large) {
+    background-image: url('../assets/svg/desktop/background-header.png');
+  }
+
+  @include media(tablet-regular, tablet-small) {
+    background-image: url('../assets/svg/tablet/background-header.png');
+  }
+
+  @include media(mobile-small, mobile-medium, mobile-large) {
+    background-image: url('../assets/svg/mobile/background-header.png');
+  }
+}

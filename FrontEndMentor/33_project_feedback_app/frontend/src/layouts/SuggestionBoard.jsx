@@ -1,10 +1,26 @@
+import {
+  UtilityBar,
+  AsideTags,
+  AsideRoadmap,
+  SuggestionsList,
+} from '../components';
+
+// import styles from './_SuggestionBoard.module.scss';
+
 function SuggestionBoard() {
   return (
     <>
-      {/* header */}
-      {/* navigation */}
-      {/* aside - top sorting/add feedback */}
-      {/* main: suggestion board */}
+      <header>
+        <Header />
+      </header>
+      <aside>
+        <AsideTags />
+        <AsideRoadmap />
+      </aside>
+      <main>
+        <UtilityBar />
+        <SuggestionsList />
+      </main>
     </>
   );
 }
