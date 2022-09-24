@@ -1,7 +1,9 @@
+import FeedbackDetail from '../layouts/FeedbackDetail';
+
 function Feedback() {
   return (
     <>
-      <div>null</div>
+      <FeedbackDetail />
     </>
   );
 }

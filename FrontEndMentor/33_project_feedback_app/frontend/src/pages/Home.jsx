@@ -1,7 +1,9 @@
+import SuggestionBoard from '../layouts/SuggestionBoard';
+
 function Home() {
   return (
     <>
-      <div>null</div>
+      <SuggestionBoard />
     </>
   );
 }

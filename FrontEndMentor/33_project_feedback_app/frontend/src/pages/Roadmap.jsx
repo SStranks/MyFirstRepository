@@ -1,7 +1,9 @@
+import RoadMapDetail from '../layouts/RoadmapDetail';
+
 function Roadmap() {
   return (
     <>
-      <div>null</div>
+      <RoadMapDetail />
     </>
   );
 }
