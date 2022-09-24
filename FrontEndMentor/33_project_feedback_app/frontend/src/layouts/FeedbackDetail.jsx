@@ -1,4 +1,4 @@
-import { Suggestion, Comments, Form, UtilityBar } from '../components';
+import { Comments, Form, Suggestion, UtilityBar } from '../components';
 import styles from './_FeedbackDetail.module.scss';
 
 function FeedbackDetail() {

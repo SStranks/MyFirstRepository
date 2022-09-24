@@ -1,11 +1,11 @@
 import {
-  UtilityBar,
-  AsideTags,
   AsideRoadmap,
+  AsideTags,
   SuggestionsList,
+  UtilityBar,
 } from '../components';
 
-// import styles from './_SuggestionBoard.module.scss';
+import styles from './_SuggestionBoard.module.scss';
 
 function SuggestionBoard() {
   return (
