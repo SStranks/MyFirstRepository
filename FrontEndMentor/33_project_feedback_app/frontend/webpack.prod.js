@@ -1,15 +1,19 @@
-const { merge } = require('webpack-merge');
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-const common = require('./webpack.common');
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
+import HTMLWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import path from 'node:path';
+import url from 'node:url';
+import { merge } from 'webpack-merge';
+import common from './webpack.common.js';
 
-module.exports = merge(common, {
+export default merge(common, {
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(
+      path.dirname(url.fileURLToPath(import.meta.url)),
+      'public'
+    ),
     filename: 'main.[contenthash].js',
     // assetModuleFilename: 'images/[name].[hash][ext]',
     clean: true,

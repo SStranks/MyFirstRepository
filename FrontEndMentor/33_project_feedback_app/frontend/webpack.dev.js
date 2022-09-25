@@ -5,12 +5,6 @@ import url from 'node:url';
 import { merge } from 'webpack-merge';
 import common from './webpack.common.js';
 
-// const { merge } = require('webpack-merge');
-// const path = require('path');
-// const HTMLWebpackPlugin = require('html-webpack-plugin');
-// const Dotenv = require('dotenv-webpack');
-// const common = require('./webpack.common');
-
 export default merge(common, {
   mode: 'development',
   output: {

@@ -1,10 +1,6 @@
 import ESLintPlugin from 'eslint-webpack-plugin';
 // import CopyPlugin from 'copy-webpack-plugin';
 
-// CommonJS Imports
-// import 'eslint-webpack-plugin' as ESLintPlugin;
-// const CopyPlugin = require('copy-webpack-plugin');
-
 export default {
   entry: './src/index.js',
   target: 'web',

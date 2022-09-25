@@ -21,9 +21,6 @@
     },
     "ecmaVersion": "latest",
     "sourceType": "module"
-    // "babelOptions": {
-    //   "presets": ["@babel/preset-react"]
-    // }
   },
   "plugins": ["react", "jest", "unicorn", "prettier"],
   "rules": {
