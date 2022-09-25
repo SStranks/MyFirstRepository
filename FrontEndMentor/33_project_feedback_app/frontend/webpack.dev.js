@@ -1,13 +1,23 @@
-const { merge } = require('webpack-merge');
-const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-const common = require('./webpack.common');
+import Dotenv from 'dotenv-webpack';
+import HTMLWebpackPlugin from 'html-webpack-plugin';
+import path from 'node:path';
+import url from 'node:url';
+import { merge } from 'webpack-merge';
+import common from './webpack.common.js';
 
-module.exports = merge(common, {
+// const { merge } = require('webpack-merge');
+// const path = require('path');
+// const HTMLWebpackPlugin = require('html-webpack-plugin');
+// const Dotenv = require('dotenv-webpack');
+// const common = require('./webpack.common');
+
+export default merge(common, {
   mode: 'development',
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(
+      path.dirname(url.fileURLToPath(import.meta.url)),
+      'public'
+    ),
     filename: 'main.[contenthash].js',
     publicPath: '/',
     // assetModuleFilename: 'images/[name][ext]',

@@ -1,8 +1,12 @@
-const ESLintPlugin = require('eslint-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+import ESLintPlugin from 'eslint-webpack-plugin';
+// import CopyPlugin from 'copy-webpack-plugin';
 
-module.exports = {
-  entry: './src/index.jsx',
+// CommonJS Imports
+// import 'eslint-webpack-plugin' as ESLintPlugin;
+// const CopyPlugin = require('copy-webpack-plugin');
+
+export default {
+  entry: './src/index.js',
   target: 'web',
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
@@ -21,6 +25,12 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
+      },
+      {
+        test: /\.m?js/,
+        resolve: {
+          fullySpecified: false,
+        },
       },
     ],
   },
