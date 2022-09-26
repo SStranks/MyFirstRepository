@@ -1,0 +1,31 @@
+@use '../../../assets/sass/variables' as *;
+@use '../../../assets/sass/mixins' as *;
+@use '../../../assets/sass/functions' as f;
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: f.px2em(24);
+
+  &__back {
+    display: flex;
+    align-items: center;
+    color: $mute-blue;
+
+    & img {
+      height: fit-content;
+      margin-right: f.px2em(20);
+    }
+
+    & span {
+      height: min-content;
+    }
+  }
+
+  & button {
+    @include body-3;
+    padding: f.px2em(16) f.px2em(36);
+    background-color: $royal-blue;
+    color: $white;
+  }
+}
