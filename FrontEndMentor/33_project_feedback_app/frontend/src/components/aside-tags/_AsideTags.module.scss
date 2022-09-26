@@ -1,6 +1,11 @@
 @use '../../assets/sass/variables' as *;
 @use '../../assets/sass/mixins' as *;
+@use '../../assets/sass/functions' as f;
 
 .categories {
   @include card;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: f.px2em(14);
+  column-gap: f.px2em(8);
 }

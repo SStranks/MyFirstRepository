@@ -1,14 +1,21 @@
+import IconArrowDown from '../../assets/svg/shared/icon-arrow-down.svg';
+import IconSuggestion from '../../assets/svg/shared/icon-suggestions.svg';
 import styles from './_UtilityBar.module.scss';
 
 function UtilityBar() {
   return (
     <div className={styles.bar}>
       <div className={styles.bar__suggestions}>
-        <img src="" alt="" />
+        <img src={IconSuggestion} alt="" />
         <h3>6 Suggestions</h3>
-        <p>Sort by : Most Upvotes</p>
+        <div className={styles.bar__suggestions__sort}>
+          <p>Sort by : Most Upvotes</p>
+          <img src={IconArrowDown} alt="" />
+        </div>
       </div>
-      <div className={styles.btnPlaceholder}>Add Feedback</div>
+      <button type="button" className={styles.btnPlaceholder}>
+        + Add Feedback
+      </button>
     </div>
   );
 }

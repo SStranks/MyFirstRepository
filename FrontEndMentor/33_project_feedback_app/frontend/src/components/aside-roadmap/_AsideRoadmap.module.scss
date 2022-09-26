@@ -1,5 +1,6 @@
 @use '../../assets/sass/variables' as *;
 @use '../../assets/sass/mixins' as *;
+@use '../../assets/sass/functions' as f;
 
 .roadmap {
   @include card;
@@ -8,10 +9,52 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: $dark-blue;
+    margin-bottom: f.px2em(24);
+
+    & a {
+      @include body-3;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      color: $royal-blue;
+    }
   }
 
   &__item {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
+    &:not(:last-child) {
+      margin-bottom: f.px2em(8);
+    }
+
+    & p {
+      @include body-1;
+      flex-grow: 1;
+    }
+
+    & span {
+      @include body-3;
+      color: $mute-blue;
+    }
+  }
+}
+
+.bullet {
+  width: f.px2rem(8);
+  height: f.px2rem(8);
+  border-radius: 100%;
+  margin-right: f.px2rem(16);
+
+  &--orange {
+    background-color: $mute-orange;
+  }
+
+  &--magenta {
+    background-color: $magenta;
+  }
+
+  &--blue {
+    background-color: $sky-blue;
   }
 }

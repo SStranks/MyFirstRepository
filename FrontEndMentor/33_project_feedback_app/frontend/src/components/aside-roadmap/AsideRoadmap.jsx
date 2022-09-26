@@ -10,16 +10,19 @@ function AsideRoadmap() {
         <Link to="/roadmap">View</Link>
       </div>
       <div className={styles.roadmap__item}>
+        <div className={`${styles.bullet} ${styles['bullet--orange']}`} />
         <p>Planned</p>
-        <p>2</p>
+        <span>2</span>
       </div>
       <div className={styles.roadmap__item}>
+        <div className={`${styles.bullet} ${styles['bullet--magenta']} `} />
         <p>In-Progress</p>
-        <p>3</p>
+        <span>3</span>
       </div>
       <div className={styles.roadmap__item}>
+        <div className={`${styles.bullet} ${styles['bullet--blue']} `} />
         <p>Live</p>
-        <p>1</p>
+        <span>1</span>
       </div>
     </div>
   );

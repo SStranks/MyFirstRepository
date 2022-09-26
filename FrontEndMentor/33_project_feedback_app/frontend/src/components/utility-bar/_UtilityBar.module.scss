@@ -1,11 +1,14 @@
 @use '../../assets/sass/variables' as *;
 @use '../../assets/sass/mixins' as *;
+@use '../../assets/sass/functions' as f;
 
 .bar {
   @include card;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: f.px2em(14) f.px2em(16) f.px2em(14) f.px2em(24);
+  margin-bottom: f.px2em(24);
   background-color: $dark-blue;
 
   &__suggestions {
@@ -13,9 +16,31 @@
     justify-content: space-between;
     align-items: center;
     color: $white;
+
+    & > :not(:last-child) {
+      margin-right: f.px2em(16);
+    }
+
+    & > :last-child {
+      margin-left: f.px2em(16);
+    }
+
+    &__sort {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      column-gap: f.px2em(10);
+
+      & img {
+        filter: brightness(100);
+      }
+    }
   }
 }
 
 .btnPlaceholder {
+  @include body-3;
+  padding: f.px2em(16) f.px2em(36);
   background-color: $magenta;
+  color: $white;
 }

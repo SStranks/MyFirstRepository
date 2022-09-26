@@ -12,9 +12,8 @@
   column-gap: f.px2em(30);
 
   &__sub-grid-1 {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(1fr, auto);
+    display: flex;
+    flex-direction: column;
     row-gap: f.px2em(24);
   }
 
