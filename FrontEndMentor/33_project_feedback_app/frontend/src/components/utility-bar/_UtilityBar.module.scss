@@ -1,0 +1,21 @@
+@use '../../assets/sass/variables' as *;
+@use '../../assets/sass/mixins' as *;
+
+.bar {
+  @include card;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $dark-blue;
+
+  &__suggestions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $white;
+  }
+}
+
+.btnPlaceholder {
+  background-color: $magenta;
+}

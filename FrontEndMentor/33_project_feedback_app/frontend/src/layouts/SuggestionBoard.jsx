@@ -12,17 +12,23 @@ function SuggestionBoard() {
   return (
     <div className={styles.container}>
       <div className={styles.grid}>
-        <header>
-          <Header />
-        </header>
-        <aside>
-          <AsideTags />
-          <AsideRoadmap />
-        </aside>
-        <main>
-          <UtilityBar />
-          <SuggestionsList />
-        </main>
+        <div className={styles['grid__sub-grid-1']}>
+          <header>
+            <Header />
+          </header>
+          <aside>
+            <AsideTags />
+          </aside>
+          <aside>
+            <AsideRoadmap />
+          </aside>
+        </div>
+        <div className={styles['grid__sub-grid-2']}>
+          <main>
+            <UtilityBar />
+            <SuggestionsList />
+          </main>
+        </div>
       </div>
     </div>
   );

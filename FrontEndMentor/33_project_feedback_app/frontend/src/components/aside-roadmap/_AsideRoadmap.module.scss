@@ -1,0 +1,17 @@
+@use '../../assets/sass/variables' as *;
+@use '../../assets/sass/mixins' as *;
+
+.roadmap {
+  @include card;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+  }
+}

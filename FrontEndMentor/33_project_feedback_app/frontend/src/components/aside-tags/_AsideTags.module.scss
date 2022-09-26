@@ -1,0 +1,6 @@
+@use '../../assets/sass/variables' as *;
+@use '../../assets/sass/mixins' as *;
+
+.categories {
+  @include card;
+}
