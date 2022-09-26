@@ -1,5 +1,6 @@
 import IconArrowUp from '../../assets/svg/shared/icon-arrow-up.svg';
 import IconMessage from '../../assets/svg/shared/icon-comments.svg';
+import NoFeedbackImg from '../../assets/svg/shared/illustration-empty.svg';
 import Tag from '../custom/tag/Tag';
 import styles from './_SuggestionsList.module.scss';
 
@@ -30,7 +31,21 @@ function SuggestionsList() {
     </div>
   ));
 
-  return <div className={styles.list}>{list}</div>;
+  return !list ? (
+    <div className={styles.list}>{list}</div>
+  ) : (
+    <div className={styles['no-list']}>
+      <img src={NoFeedbackImg} alt="" />
+      <span>There is no feedback yet.</span>
+      <p>
+        Got a suggestion? Found a bug that needs to be squashed? <br /> We love
+        hearing about new ideas to improve our app
+      </p>
+      <button className={styles.btnPlaceholder} type="button">
+        + Add Feedback
+      </button>
+    </div>
+  );
 }
 
 export default SuggestionsList;

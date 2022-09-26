@@ -62,3 +62,40 @@
 .no-comments {
   opacity: 0.4;
 }
+
+.no-list {
+  @include card;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: f.px2em(110) 0;
+
+  & img {
+    width: 130px;
+    height: auto;
+    margin-bottom: f.px2em(52);
+  }
+
+  & span {
+    font-weight: 700;
+    font-size: f.px2rem(24);
+    line-height: f.px2rem(35);
+    letter-spacing: f.px2rem(-0.33);
+    margin-bottom: f.px2em(16);
+    color: $navy-blue;
+  }
+
+  & p {
+    margin-bottom: f.px2em(48);
+    color: $mute-blue;
+    text-align: center;
+  }
+}
+
+.btnPlaceholder {
+  @include body-3;
+  padding: f.px2em(16) f.px2em(36);
+  background-color: $magenta;
+  color: $white;
+}
