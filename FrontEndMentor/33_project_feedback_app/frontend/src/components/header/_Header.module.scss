@@ -1,8 +1,11 @@
-@use '../assets/sass/mixins';
-@use '../assets/sass/variables';
+@use '../../assets/sass/variables' as *;
+@use '../../assets/sass/mixins' as *;
 
 .header {
   @include card;
+  display: flex;
+  align-items: flex-end;
+  height: 135px;
   color: $white;
 
   &__content {
@@ -10,14 +13,14 @@
   }
 
   @include media(desktop-small, desktop-medium, desktop-large) {
-    background-image: url('../assets/svg/desktop/background-header.png');
+    background-image: url('../../assets/svg/desktop/background-header.png');
   }
 
   @include media(tablet-regular, tablet-small) {
-    background-image: url('../assets/svg/tablet/background-header.png');
+    background-image: url('../../assets/svg/tablet/background-header.png');
   }
 
   @include media(mobile-small, mobile-medium, mobile-large) {
-    background-image: url('../assets/svg/mobile/background-header.png');
+    background-image: url('../../assets/svg/mobile/background-header.png');
   }
 }

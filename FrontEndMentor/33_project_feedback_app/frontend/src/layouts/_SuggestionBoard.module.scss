@@ -1,1 +1,12 @@
+@use '../assets/sass/functions' as f;
 
+.container {
+  display: flex;
+  justify-content: center;
+  padding-top: f.px2em(94);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 255px) minmax(500px, 825px);
+}

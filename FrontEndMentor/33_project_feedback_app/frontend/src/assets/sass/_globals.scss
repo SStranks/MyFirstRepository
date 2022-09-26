@@ -13,6 +13,7 @@
 /*   Imports                        */
 @use 'variables' as *;
 @use 'functions' as f;
+@use 'animations' as a;
 
 /*   Globals                        */
 *,
@@ -33,7 +34,7 @@ body {
   width: 100%;
   background: var(--color-background);
   color: var(--color-text-p);
-  transition: $Theme-transition;
+  transition: a.$Theme-transition;
 }
 
 img {
@@ -65,7 +66,7 @@ input {
   font-family: inherit;
   font-weight: inherit;
   color: var(--color-text-p);
-  transition: $Theme-transition;
+  transition: a.$Theme-transition;
   background-color: transparent;
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
@@ -74,7 +75,7 @@ input {
   }
   &::placeholder {
     color: var(--color-text-p);
-    transition: $Theme-transition;
+    transition: a.$Theme-transition;
   }
 }
 
