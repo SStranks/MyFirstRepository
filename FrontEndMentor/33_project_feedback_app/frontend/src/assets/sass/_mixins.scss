@@ -36,7 +36,7 @@
 /*   Card                           */
 @mixin card {
   background-color: $white;
-  border-radius: 10px;
+  border-radius: $border-radius-1;
   padding: f.px2em(24);
 }
 
