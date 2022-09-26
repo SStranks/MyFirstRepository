@@ -1,11 +1,7 @@
 import FeedbackDetail from '../layouts/FeedbackDetail';
 
 function Feedback() {
-  return (
-    <>
-      <FeedbackDetail />
-    </>
-  );
+  return <FeedbackDetail />;
 }
 
 export default Feedback;

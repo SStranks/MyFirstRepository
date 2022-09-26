@@ -1,0 +1,13 @@
+@use '../assets/sass/functions' as f;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex {
+  width: f.px2rem(730);
+  padding-top: f.px2em(94);
+}

@@ -1,8 +1,12 @@
 export { default as AsideRoadmap } from './aside-roadmap/AsideRoadmap';
 export { default as AsideTags } from './aside-tags/AsideTags';
 export { default as Comments } from './comments/Comments';
-export { default as Form } from './form/Form';
+export { default as FormCommentAdd } from './form/comment-add/Form';
+export { default as FormFeedbackEdit } from './form/feedback-edit/Form';
+export { default as FormFeedbackNew } from './form/feedback-new/Form';
 export { default as Header } from './header/Header';
 export { default as Suggestion } from './suggestion/Suggestion';
 export { default as SuggestionsList } from './suggestions-list/SuggestionsList';
-export { default as UtilityBar } from './utility-bar/UtilityBar';
+export { default as UtilityBarFeedback } from './utility-bar/feedback/UtilityBar';
+export { default as UtilityBarRoadmap } from './utility-bar/roadmap/UtilityBar';
+export { default as UtilityBarSuggestions } from './utility-bar/suggestions/UtilityBar';

@@ -3,7 +3,7 @@ import {
   AsideTags,
   Header,
   SuggestionsList,
-  UtilityBar,
+  UtilityBarSuggestions,
 } from '../components';
 
 import styles from './_SuggestionBoard.module.scss';
@@ -25,7 +25,7 @@ function SuggestionBoard() {
         </div>
         <div className={styles['grid__sub-grid-2']}>
           <main>
-            <UtilityBar />
+            <UtilityBarSuggestions />
             <SuggestionsList />
           </main>
         </div>

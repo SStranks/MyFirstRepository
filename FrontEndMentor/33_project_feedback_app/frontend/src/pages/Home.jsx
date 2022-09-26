@@ -1,11 +1,7 @@
 import SuggestionBoard from '../layouts/SuggestionBoard';
 
 function Home() {
-  return (
-    <>
-      <SuggestionBoard />
-    </>
-  );
+  return <SuggestionBoard />;
 }
 
 export default Home;

@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { Home, Feedback, Roadmap } from '../pages';
+import { Feedback, Home, Roadmap } from '../pages';
 
 function App() {
   return (
