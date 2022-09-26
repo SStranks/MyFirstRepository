@@ -33,7 +33,7 @@
     "react/jsx-uses-react": 0,
     "unicorn/filename-case": [
       "error",
-      { "case": "pascalCase", "ignore": [".js$"] }
+      { "case": "pascalCase", "ignore": ["index.(js|jsx)"] }
     ],
     "unicorn/prevent-abbreviations": "off",
     "arrow-body-style": "off",

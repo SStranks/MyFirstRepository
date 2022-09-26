@@ -2,7 +2,7 @@ import ESLintPlugin from 'eslint-webpack-plugin';
 // import CopyPlugin from 'copy-webpack-plugin';
 
 export default {
-  entry: './src/index.js',
+  entry: './src/index.jsx',
   target: 'web',
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
