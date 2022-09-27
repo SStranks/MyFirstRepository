@@ -1,0 +1,18 @@
+@use '../assets/sass/variables' as *;
+@use '../assets/sass/mixins' as *;
+@use '../assets/sass/functions' as f;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: f.px2em(68);
+  max-width: f.px2em(540);
+  padding-top: f.px2em(94);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  column-gap: f.px2em(15);
+  color: $mute-blue;
+}

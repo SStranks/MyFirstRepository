@@ -1,0 +1,35 @@
+@use '../../../assets/sass/variables' as *;
+@use '../../../assets/sass/mixins' as *;
+@use '../../../assets/sass/functions' as f;
+
+.form {
+  @include card;
+  padding: f.px2em(32);
+
+  &__title {
+    color: $navy-blue;
+    margin-bottom: f.px2em(24);
+  }
+
+  &__textarea {
+    @include body-2;
+    @include textarea;
+    min-height: 80px;
+    margin-bottom: f.px2em(16);
+  }
+
+  &__bar {
+    @include body-2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $mute-blue;
+  }
+
+  & button {
+    @include body-3;
+    padding: f.px2em(16) f.px2em(36);
+    background-color: $magenta;
+    color: $white;
+  }
+}

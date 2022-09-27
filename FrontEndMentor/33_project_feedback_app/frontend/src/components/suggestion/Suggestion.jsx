@@ -7,7 +7,6 @@ import styles from './_Suggestion.module.scss';
 
 function Suggestion(props) {
   const { id, upvotes, title, description, category, active, comments } = props;
-  console.log('**', id, comments);
 
   return (
     <div className={styles.item} key={id}>

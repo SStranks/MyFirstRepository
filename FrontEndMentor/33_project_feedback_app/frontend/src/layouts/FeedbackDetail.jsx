@@ -1,9 +1,4 @@
-import {
-  Comments,
-  FormCommentAdd,
-  Suggestion,
-  UtilityBarFeedback,
-} from '../components';
+import { FormCommentAdd, Suggestion, UtilityBarFeedback } from '../components';
 
 import styles from './_FeedbackDetail.module.scss';
 
@@ -11,6 +6,7 @@ import styles from './_FeedbackDetail.module.scss';
 import JSONData from '../data/data.json';
 
 function FeedbackDetail() {
+  // Temporary Development Data
   const { id, upvotes, title, description, category, comments } =
     JSONData.productRequests[1];
 
@@ -20,7 +16,7 @@ function FeedbackDetail() {
         <nav>
           <UtilityBarFeedback />
         </nav>
-        <main>
+        <main className={styles.flex}>
           <Suggestion
             id={id}
             upvotes={upvotes}
@@ -29,7 +25,7 @@ function FeedbackDetail() {
             category={category}
             comments={comments}
           />
-          <Comments />
+          {/* <CommentsList /> */}
           <FormCommentAdd />
         </main>
       </div>

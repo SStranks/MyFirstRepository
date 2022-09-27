@@ -1,6 +1,7 @@
 export { default as AsideRoadmap } from './aside-roadmap/AsideRoadmap';
 export { default as AsideTags } from './aside-tags/AsideTags';
-export { default as Comments } from './comments/Comments';
+export { default as Comment } from './comment/Comment';
+export { default as CommentsList } from './comments-list/CommentsList';
 export { default as FormCommentAdd } from './form/comment-add/Form';
 export { default as FormFeedbackEdit } from './form/feedback-edit/Form';
 export { default as FormFeedbackNew } from './form/feedback-new/Form';

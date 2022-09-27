@@ -40,6 +40,26 @@
   padding: f.px2em(24);
 }
 
+/*   Text Area                      */
+@mixin textarea {
+  @include body-2;
+  border: none;
+  border-radius: $border-radius-2;
+  resize: vertical;
+  width: 100%;
+  padding: f.px2em(16) f.px2em(24);
+  background-color: $pale-blue;
+  color: $navy-blue;
+
+  &::placeholder {
+    color: $fade-blue;
+  }
+
+  &:focus {
+    outline: 1px solid $royal-blue;
+  }
+}
+
 /*   Buttons                        */
 @mixin btn-default {
   font-size: f.px2rem(16);

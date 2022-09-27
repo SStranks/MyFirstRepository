@@ -1,18 +1,28 @@
 import { UtilityBarRoadmap } from '../components';
 
+// temporary dev
+import Modal from './Modal';
+
 import styles from './_RoadmapDetail.module.scss';
 
 function RoadmapDetail() {
+  // temporary dev
   return (
-    <>
-      <nav>
-        <UtilityBarRoadmap />
-      </nav>
-      <main></main>
-      {/* aside - top navigation */}
-      {/* main: grid: roadmap suggestion components */}
-    </>
+    <div className={styles.container}>
+      <Modal />
+    </div>
   );
+
+  // return (
+  //   <>
+  //     <nav>
+  //       <UtilityBarRoadmap />
+  //     </nav>
+  //     <main></main>
+  //     {/* aside - top navigation */}
+  //     {/* main: grid: roadmap suggestion components */}
+  //   </>
+  // );
 }
 
 export default RoadmapDetail;

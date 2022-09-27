@@ -5,9 +5,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: f.px2em(94);
 }
 
 .flex {
+  display: flex;
+  flex-direction: column;
+  row-gap: f.px2em(24);
   width: f.px2rem(730);
-  padding-top: f.px2em(94);
 }
