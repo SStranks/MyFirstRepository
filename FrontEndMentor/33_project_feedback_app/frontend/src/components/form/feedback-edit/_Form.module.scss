@@ -1,0 +1,79 @@
+@use '../../../assets/sass/variables' as *;
+@use '../../../assets/sass/mixins' as *;
+@use '../../../assets/sass/functions' as f;
+
+.form {
+  @include card;
+  padding: 0 f.px2em(42) f.px2em(42) f.px2em(42);
+
+  &__title {
+    margin-bottom: f.px2em(50);
+    font-size: f.px2rem(24);
+    font-weight: 700;
+    color: $navy-blue;
+  }
+
+  &__icon {
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+  }
+
+  &__feedback,
+  &__category,
+  &__status,
+  &__detail {
+    margin-bottom: f.px2em(24);
+
+    h4 {
+      color: $navy-blue;
+    }
+
+    p {
+      @include body-4;
+      color: $mute-blue;
+      margin-bottom: f.px2em(16);
+    }
+  }
+
+  &__feedback,
+  &__category,
+  &__status {
+    input {
+      @include textarea;
+      height: 48px;
+    }
+  }
+
+  &__detail {
+    textarea {
+      @include textarea;
+      height: 96px;
+    }
+  }
+
+  &__bar {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 16px;
+
+    & button {
+      @include body-3;
+      padding: f.px2em(16) f.px2em(36);
+      color: $white;
+    }
+  }
+
+  &__btnDelete {
+    background-color: $blood-red;
+    margin-right: auto;
+  }
+
+  &__btnCancel {
+    background-color: $navy-blue;
+  }
+
+  &__btnAdd {
+    background-color: $magenta;
+  }
+}

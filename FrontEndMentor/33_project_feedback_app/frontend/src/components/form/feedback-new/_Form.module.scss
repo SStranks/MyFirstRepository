@@ -7,31 +7,16 @@
   padding: 0 f.px2em(42) f.px2em(42) f.px2em(42);
 
   &__title {
-    margin-bottom: f.px2em(32);
+    margin-bottom: f.px2em(27);
     font-size: f.px2rem(24);
     font-weight: 700;
     color: $navy-blue;
   }
 
   &__icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     transform: translateY(-50%);
     width: 56px;
     height: 56px;
-    border-radius: 50%;
-    background: radial-gradient(
-      128.88% 128.88% at 103.9% -10.39%,
-      #e84d70 0%,
-      #a337f6 53.09%,
-      #28a7ed 100%
-    );
-
-    & img {
-      margin: auto;
-      height: 32px;
-    }
   }
 
   &__feedback,
@@ -44,7 +29,7 @@
     }
 
     p {
-      @include body-2;
+      @include body-4;
       color: $mute-blue;
       margin-bottom: f.px2em(16);
     }

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import IconArrowBack from '../assets/svg/shared/icon-arrow-left.svg';
-import { FormFeedbackNew } from '../components';
+import { FormFeedbackEdit, FormFeedbackNew } from '../components';
 import styles from './_Modal.module.scss';
 
 function Modal() {
@@ -12,7 +12,9 @@ function Modal() {
           <p>Go Back</p>
         </Link>
       </nav>
-      <FormFeedbackNew />
+      {/* Temporary Development:  */}
+      {/* <FormFeedbackNew /> */}
+      <FormFeedbackEdit />
     </div>
   );
 }

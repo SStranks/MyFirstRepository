@@ -26,7 +26,7 @@
     color: $mute-blue;
   }
 
-  & button {
+  &__btnPost {
     @include body-3;
     padding: f.px2em(16) f.px2em(36);
     background-color: $magenta;

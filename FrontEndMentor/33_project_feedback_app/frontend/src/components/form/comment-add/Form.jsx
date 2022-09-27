@@ -16,7 +16,9 @@ function Form() {
       />
       <div className={styles.form__bar}>
         <p>{charsRemain} Characters left</p>
-        <button type="submit">Post Comment</button>
+        <button className={styles.form__btnPost} type="submit">
+          Post Comment
+        </button>
       </div>
     </form>
   );

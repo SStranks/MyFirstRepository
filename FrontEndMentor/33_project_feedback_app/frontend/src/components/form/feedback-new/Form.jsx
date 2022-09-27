@@ -1,12 +1,10 @@
-import IconPlus from '../../../assets/svg/shared/icon-plus.svg';
+import IconNewFeedback from '../../../assets/svg/shared/icon-new-feedback.svg';
 import styles from './_Form.module.scss';
 
 function Form() {
   return (
     <div className={styles.form}>
-      <div className={styles.form__icon}>
-        <img src={IconPlus} alt="" />
-      </div>
+      <img className={styles.form__icon} src={IconNewFeedback} alt="" />
       <p className={styles.form__title}>Create New Feedback</p>
       <div className={styles.form__feedback}>
         <h4>Feedback Title</h4>
