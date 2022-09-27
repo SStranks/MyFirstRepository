@@ -1,4 +1,4 @@
-import { Comment } from '../../components';
+import { Comment } from '..';
 
 // Development Data
 import JSONData from '../../data/data.json';
