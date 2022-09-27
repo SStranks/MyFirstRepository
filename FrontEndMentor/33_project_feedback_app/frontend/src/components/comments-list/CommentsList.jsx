@@ -1,4 +1,4 @@
-import { Comment } from '..';
+import Comment from '../comment/Comment.jsx';
 
 // Development Data
 import JSONData from '../../data/data.json';
