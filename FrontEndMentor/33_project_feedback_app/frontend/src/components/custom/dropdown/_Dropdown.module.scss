@@ -1,0 +1,38 @@
+@use '../../../assets/sass/variables' as *;
+@use '../../../assets/sass/mixins' as *;
+@use '../../../assets/sass/functions' as f;
+
+.dropdown {
+  position: absolute;
+  transform: translateY(80%);
+  width: 255px;
+  border-radius: $border-radius-1;
+  background-color: $white;
+  color: $mute-blue;
+  box-shadow: $box-shadow-1;
+
+  &__ul {
+    list-style-type: none;
+
+    & li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: f.px2em(12) f.px2em(24);
+
+      & img {
+        width: fit-content;
+        height: fit-content;
+      }
+
+      &:hover {
+        cursor: pointer;
+        color: $magenta;
+      }
+
+      &:not(:last-child) {
+        border-bottom: $border-bottom-li;
+      }
+    }
+  }
+}
