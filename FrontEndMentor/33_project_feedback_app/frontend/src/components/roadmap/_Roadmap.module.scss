@@ -1,0 +1,70 @@
+@use '../../assets/sass/variables' as *;
+@use '../../assets/sass/mixins' as *;
+@use '../../assets/sass/functions' as f;
+
+.outerCard {
+  border-radius: $border-radius-2;
+  background-color: $mute-orange;
+}
+
+.innerCard {
+  margin-top: 5px;
+  padding: f.px2em(32);
+  border-radius: 0 0 $border-radius-2 $border-radius-2;
+  background-color: $white;
+  color: $mute-blue;
+
+  &__category {
+    display: flex;
+    align-items: center;
+    column-gap: f.px2em(15);
+    margin-bottom: f.px2em(8);
+  }
+
+  &__bullet {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: $mute-orange;
+  }
+
+  &__title {
+    margin-bottom: f.px2em(4);
+    color: $navy-blue;
+  }
+
+  &__content {
+    margin-bottom: f.px2em(16);
+  }
+
+  &__UI {
+    display: flex;
+    justify-content: space-between;
+    margin-top: f.px2em(16);
+  }
+
+  &__vote {
+    @include body-3;
+    display: flex;
+    align-items: center;
+    column-gap: f.px2em(10);
+    padding: f.px2em(10) f.px2em(14);
+    border-radius: $border-radius-1;
+    background-color: $pale-blue;
+    color: $navy-blue;
+
+    & img {
+      height: fit-content;
+    }
+  }
+
+  &__comment {
+    display: flex;
+    align-items: center;
+    column-gap: f.px2em(12);
+
+    & img {
+      height: fit-content;
+    }
+  }
+}

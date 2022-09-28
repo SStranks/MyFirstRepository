@@ -1,5 +1,15 @@
+@use '../assets/sass/functions' as f;
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: f.px2em(78);
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  row-gap: f.px2em(48);
+  width: 1110px;
 }
