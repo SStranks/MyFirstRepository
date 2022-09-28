@@ -23,6 +23,7 @@ $pale-grey: hsl(230deg, 60%, 98%);
 $blood-red: hsl(0deg, 67%, 53%);
 $mute-orange: hsl(14deg, 83%, 74%);
 $white: hsl(0deg, 0%, 100%);
+$black: hsl(0deg, 0%, 0%);
 
 /*   Colours: Secondary             */
 /*   Placeholder Text               */
@@ -41,3 +42,7 @@ $desktop-l: 2560px;
 /*   Borders                        */
 $border-radius-1: 10px;
 $border-radius-2: 5px;
+$border-bottom-li: 1px solid hsla(0deg, 0%, 59%, 0.15);
+
+/*   Shadows                        */
+$box-shadow-1: 0px 0px 25px 10px hsla(224deg, 20%, 49%, 0.3);

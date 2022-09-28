@@ -24,16 +24,17 @@
     & > :last-child {
       margin-left: f.px2em(16);
     }
+  }
 
-    &__sort {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      column-gap: f.px2em(10);
+  &__sort {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: f.px2em(10);
 
-      & img {
-        filter: brightness(100);
-      }
+    & > img {
+      filter: brightness(100);
     }
   }
 }
