@@ -15,6 +15,7 @@
   margin-right: f.px2em(40);
   background-color: $pale-blue;
   border-radius: $border-radius-1;
+  transition: background-color 300ms;
 
   &:hover {
     background-color: $pale-royal-blue;

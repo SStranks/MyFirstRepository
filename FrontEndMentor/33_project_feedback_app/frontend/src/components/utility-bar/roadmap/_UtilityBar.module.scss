@@ -19,9 +19,29 @@
 
   &__link {
     @include body-5;
+    position: relative;
     display: flex;
     align-items: center;
     column-gap: f.px2em(15);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 74%;
+      height: 0.1em;
+      background-color: $white;
+      opacity: 1;
+      transform: scale(0);
+      transform-origin: center;
+      transition: opacity 300ms, transform 600ms;
+    }
+
+    &:hover::after,
+    &:focus::after {
+      transform: scale(1);
+    }
 
     & img {
       filter: brightness(100);
