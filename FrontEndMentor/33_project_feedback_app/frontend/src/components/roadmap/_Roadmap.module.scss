@@ -43,21 +43,6 @@
     margin-top: f.px2em(16);
   }
 
-  &__vote {
-    @include body-3;
-    display: flex;
-    align-items: center;
-    column-gap: f.px2em(10);
-    padding: f.px2em(10) f.px2em(14);
-    border-radius: $border-radius-1;
-    background-color: $pale-blue;
-    color: $navy-blue;
-
-    & img {
-      height: fit-content;
-    }
-  }
-
   &__comment {
     display: flex;
     align-items: center;

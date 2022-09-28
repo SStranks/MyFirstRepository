@@ -1,9 +1,12 @@
-import IconArrowUp from '../../assets/svg/shared/icon-arrow-up.svg';
 import IconMessage from '../../assets/svg/shared/icon-comments.svg';
 import Tag from '../custom/tag/Tag';
+import Upvote from '../custom/upvote/Upvote';
 import styles from './_Roadmap.module.scss';
 
 function Roadmap() {
+  // Temporary Dev
+  const upvotes = 123;
+
   return (
     <div className={styles.outerCard}>
       {/* Colour top strip */}
@@ -18,10 +21,7 @@ function Roadmap() {
         </p>
         <Tag title="Feature" active={false} />
         <div className={styles.innerCard__UI}>
-          <div className={styles.innerCard__vote}>
-            <img src={IconArrowUp} alt="" />
-            <span>{123}</span>
-          </div>
+          <Upvote flexRow upvotes={upvotes} />
           <div className={styles.innerCard__comment}>
             <img src={IconMessage} alt="" />
             <span>{1}</span>

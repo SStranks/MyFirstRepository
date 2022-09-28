@@ -1,0 +1,67 @@
+@use '../../../assets/sass/variables' as *;
+@use '../../../assets/sass/mixins' as *;
+@use '../../../assets/sass/functions' as f;
+
+.upvote {
+  @include body-3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: fit-content;
+  width: 40px;
+  padding: f.px2em(8) f.px2em(12);
+  padding-top: f.px2em(14);
+  margin-right: f.px2em(40);
+  background-color: $pale-blue;
+  border-radius: $border-radius-1;
+
+  &:hover {
+    background-color: $pale-royal-blue;
+  }
+
+  & img {
+    height: fit-content;
+    margin-bottom: f.px2em(8);
+  }
+}
+
+.voted {
+  pointer-events: none;
+  background-color: $royal-blue;
+  color: $white;
+
+  & img {
+    filter: brightness(100);
+  }
+}
+
+.flex-row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: f.px2em(10);
+  width: fit-content;
+  padding: f.px2em(10) f.px2em(14);
+
+  & img {
+    margin-bottom: 0;
+  }
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.__vote {
+  @include body-3;
+  display: flex;
+
+  border-radius: $border-radius-1;
+  background-color: $pale-blue;
+  color: $navy-blue;
+
+  & img {
+    height: fit-content;
+  }
+}
