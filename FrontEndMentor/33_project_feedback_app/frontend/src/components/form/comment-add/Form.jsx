@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import styles from './_Form.module.scss';
 
 function Form() {
@@ -16,9 +17,7 @@ function Form() {
       />
       <div className={styles.form__bar}>
         <p>{charsRemain} Characters left</p>
-        <button className={styles.form__btnPost} type="submit">
-          Post Comment
-        </button>
+        <ButtonSubmit text="Post Comment" classList={['w-144', 'bg-magenta']} />
       </div>
     </form>
   );

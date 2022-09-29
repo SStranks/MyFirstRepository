@@ -23,11 +23,19 @@
   }
 }
 
-.bg-blue {
+.bg-royal-blue {
   background-color: $royal-blue;
 
   &:hover {
     background-color: $dim-royal-blue;
+  }
+}
+
+.bg-navy-blue {
+  background-color: $navy-blue;
+
+  &:hover {
+    background-color: $dim-navy-blue;
   }
 }
 

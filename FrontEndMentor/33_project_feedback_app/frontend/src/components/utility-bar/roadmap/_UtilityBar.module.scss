@@ -47,12 +47,4 @@
       filter: brightness(100);
     }
   }
-
-  &__btnAdd {
-    @include body-3;
-    height: fit-content;
-    padding: f.px2em(12) f.px2em(25);
-    background-color: $magenta;
-    color: $white;
-  }
 }

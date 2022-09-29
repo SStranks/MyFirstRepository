@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import IconArrowLeft from '../../../assets/svg/shared/icon-arrow-left.svg';
+import Button from '../../custom/button/Button';
 import styles from './_UtilityBar.module.scss';
 
 function UtilityBar() {
@@ -14,9 +15,11 @@ function UtilityBar() {
         </Link>
         <h3>Roadmap</h3>
       </div>
-      <button className={styles.bar__btnAdd} type="button">
-        + Add Feedback
-      </button>
+      <Button
+        text="+ Add Feedback"
+        disabled={false}
+        classList={['w-144', 'bg-magenta']}
+      />
     </div>
   );
 }

@@ -47,9 +47,6 @@ function UtilityBar() {
         disabled={false}
         classList={['w-158', 'bg-magenta']}
       />
-      {/* <button type="button" className={styles.btnPlaceholder}>
-        + Add Feedback
-      </button> */}
     </div>
   );
 }

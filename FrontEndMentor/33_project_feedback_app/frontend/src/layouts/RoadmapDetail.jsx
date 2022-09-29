@@ -1,7 +1,7 @@
 import { RoadmapList, UtilityBarRoadmap } from '../components';
 
 // temporary dev
-// import Modal from './Modal';
+import Modal from './Modal';
 
 import styles from './_RoadmapDetail.module.scss';
 

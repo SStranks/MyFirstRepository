@@ -1,4 +1,6 @@
 import IconEditFeedback from '../../../assets/svg/shared/icon-edit-feedback.svg';
+import Button from '../../custom/button/Button';
+import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import styles from './_Form.module.scss';
 
 function Form() {
@@ -32,15 +34,21 @@ function Form() {
         <textarea name="" id="" cols="30" rows="10" />
       </div>
       <div className={styles.form__bar}>
-        <button className={styles.form__btnDelete} type="button">
-          Delete
-        </button>
-        <button className={styles.form__btnCancel} type="button">
-          Cancel
-        </button>
-        <button className={styles.form__btnAdd} type="submit">
-          Add Feedback
-        </button>
+        <ButtonSubmit
+          text="Delete"
+          disabled={false}
+          classList={['w-94', 'bg-red']}
+        />
+        <Button
+          text="Cancel"
+          disabled={false}
+          classList={['w-94', 'bg-navy-blue']}
+        />
+        <ButtonSubmit
+          text="Add Feedback"
+          disabled={false}
+          classList={['w-144', 'bg-magenta']}
+        />
       </div>
     </div>
   );

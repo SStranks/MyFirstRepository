@@ -4,16 +4,15 @@ import styles from './_Button.module.scss';
 function ButtonSubmit(props) {
   const { text, value, disabled, classList } = props;
 
-  const classes = classList.map((el) => `styles['${el}']`).join(' ');
-  console.log(classList, classes);
-
   return (
     <button
       type="submit"
-      className={`${styles.btn} ${classes}`}
+      className={`${styles.btn} ${styles[classList[0]]} ${
+        styles[classList[1]]
+      }`}
       value={value}
       disabled={disabled}>
-      <span>{text}</span>
+      <p>{text}</p>
     </button>
   );
 }

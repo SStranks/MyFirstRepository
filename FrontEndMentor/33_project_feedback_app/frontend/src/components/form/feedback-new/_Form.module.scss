@@ -54,16 +54,5 @@
     display: flex;
     justify-content: flex-end;
     column-gap: 16px;
-
-    & button {
-      @include body-3;
-      padding: f.px2em(16) f.px2em(36);
-      background-color: $magenta;
-      color: $white;
-
-      &:first-child {
-        background-color: $dark-blue;
-      }
-    }
   }
 }

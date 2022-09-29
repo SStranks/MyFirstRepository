@@ -1,4 +1,6 @@
 import IconNewFeedback from '../../../assets/svg/shared/icon-new-feedback.svg';
+import Button from '../../custom/button/Button';
+import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import styles from './_Form.module.scss';
 
 function Form() {
@@ -24,8 +26,16 @@ function Form() {
         <textarea name="" id="" cols="30" rows="10" />
       </div>
       <div className={styles.form__bar}>
-        <button type="button">Cancel</button>
-        <button type="submit">Add Feedback</button>
+        <Button
+          text="Cancel"
+          disabled={false}
+          classList={['w-94', 'bg-navy-blue']}
+        />
+        <ButtonSubmit
+          text="Add Feedback"
+          disabled={false}
+          classList={['w-144', 'bg-magenta']}
+        />
       </div>
     </div>
   );
