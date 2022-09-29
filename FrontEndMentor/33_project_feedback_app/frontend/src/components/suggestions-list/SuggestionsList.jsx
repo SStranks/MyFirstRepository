@@ -1,4 +1,5 @@
 import NoFeedbackImg from '../../assets/svg/shared/illustration-empty.svg';
+import Button from '../custom/button/Button';
 import Suggestion from '../suggestion/Suggestion';
 import styles from './_SuggestionsList.module.scss';
 
@@ -29,9 +30,11 @@ function SuggestionsList() {
         Got a suggestion? Found a bug that needs to be squashed? <br /> We love
         hearing about new ideas to improve our app
       </p>
-      <button className={styles.btnPlaceholder} type="button">
-        + Add Feedback
-      </button>
+      <Button
+        text="+ Add Feedback"
+        disabled={false}
+        classList={['w-158', 'bg-magenta']}
+      />
     </div>
   );
 }

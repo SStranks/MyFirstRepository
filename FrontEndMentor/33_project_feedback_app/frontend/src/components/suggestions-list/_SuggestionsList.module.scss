@@ -16,13 +16,13 @@
   align-items: center;
   padding: f.px2em(110) 0;
 
-  & img {
+  & > img {
     width: 130px;
     height: auto;
     margin-bottom: f.px2em(52);
   }
 
-  & span {
+  & > span {
     font-weight: 700;
     font-size: f.px2rem(24);
     line-height: f.px2rem(35);
@@ -31,7 +31,7 @@
     color: $navy-blue;
   }
 
-  & p {
+  & > p {
     margin-bottom: f.px2em(48);
     color: $mute-blue;
     text-align: center;

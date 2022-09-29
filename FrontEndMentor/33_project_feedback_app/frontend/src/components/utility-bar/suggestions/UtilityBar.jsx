@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import IconArrowDown from '../../../assets/svg/shared/icon-arrow-down.svg';
 import IconSuggestion from '../../../assets/svg/shared/icon-suggestions.svg';
+import Button from '../../custom/button/Button';
 import Dropdown from '../../custom/dropdown/Dropdown';
 import styles from './_UtilityBar.module.scss';
 
@@ -40,9 +41,15 @@ function UtilityBar() {
           <Dropdown listItems={dropdownList} active={active} />
         </div>
       </div>
-      <button type="button" className={styles.btnPlaceholder}>
+      <Button
+        text="+ Add Feedback"
+        onClick={undefined}
+        disabled={false}
+        classList={['w-158', 'bg-magenta']}
+      />
+      {/* <button type="button" className={styles.btnPlaceholder}>
         + Add Feedback
-      </button>
+      </button> */}
     </div>
   );
 }
