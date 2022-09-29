@@ -1,0 +1,52 @@
+@use '../../../assets/sass/variables' as *;
+@use '../../../assets/sass/mixins' as *;
+@use '../../../assets/sass/functions' as f;
+
+.btn {
+  @include body-3;
+  height: 44px;
+  border-radius: $border-radius-1;
+  padding: f.px2em(12) f.px2em(24);
+  color: $white;
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: $grey;
+  }
+}
+
+.bg-magenta {
+  background-color: $magenta;
+
+  &:hover {
+    background-color: $dim-magenta;
+  }
+}
+
+.bg-blue {
+  background-color: $royal-blue;
+
+  &:hover {
+    background-color: $dim-royal-blue;
+  }
+}
+
+.bg-red {
+  background-color: $blood-red;
+
+  &:hover {
+    background-color: $dim-blood-red;
+  }
+}
+
+.w-158 {
+  width: 158px;
+}
+
+.w-144 {
+  width: 144px;
+}
+
+.w-94 {
+  width: 94px;
+}
