@@ -72,6 +72,28 @@
   }
 }
 
+/*   Errors                         */
+@mixin input-error {
+  $element: &;
+  &--error {
+    #{$element} {
+      outline: 1px solid $blood-red;
+
+      &:focus {
+        outline: 1px solid $blood-red;
+      }
+    }
+
+    &::after {
+      content: "Can't be empty";
+      @include body-4;
+      left: 0;
+      bottom: 0;
+      color: $blood-red;
+    }
+  }
+}
+
 /*   Buttons                        */
 @mixin btn-default {
   font-size: f.px2rem(16);
