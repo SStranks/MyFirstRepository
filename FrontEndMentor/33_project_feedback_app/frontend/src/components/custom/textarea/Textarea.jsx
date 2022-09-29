@@ -7,14 +7,14 @@ function Textarea(props) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (formError) setError(true);
-    innerRef.current.focus();
+    if (formError.textarea && innerRef.current.value.length === 0)
+      setError(true);
   }, [formError, innerRef]);
 
   const textInputHandler = (e) => {
     if (error && e.target.value.length > 0) {
       setError(false);
-      setFormError(false);
+      setFormError((prev) => ({ ...prev, textarea: false }));
     }
   };
 
@@ -40,7 +40,7 @@ Textarea.propTypes = {
   id: PropTypes.string,
   cols: PropTypes.number,
   rows: PropTypes.number,
-  formError: PropTypes.bool,
+  formError: PropTypes.shape(),
   setFormError: PropTypes.func,
   innerRef: PropTypes.shape(),
 };

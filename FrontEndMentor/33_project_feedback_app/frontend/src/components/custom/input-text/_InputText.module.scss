@@ -1,0 +1,22 @@
+@use '../../../assets/sass/variables' as *;
+@use '../../../assets/sass/mixins' as *;
+@use '../../../assets/sass/functions' as f;
+
+.input {
+  @include body-2;
+  @include input-error;
+  border: none;
+  border-radius: $border-radius-2;
+  width: 100%;
+  padding: f.px2em(16) f.px2em(24);
+  background-color: $pale-blue;
+  color: $navy-blue;
+
+  &::placeholder {
+    color: $fade-blue;
+  }
+
+  &:focus {
+    outline: 1px solid $royal-blue;
+  }
+}

@@ -2,18 +2,37 @@ import { useRef, useState } from 'react';
 import IconNewFeedback from '../../../assets/svg/shared/icon-new-feedback.svg';
 import Button from '../../custom/button/Button';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
+import InputText from '../../custom/input-text/InputText';
 import Textarea from '../../custom/textarea/Textarea';
 import styles from './_Form.module.scss';
 
 function Form() {
-  const [formError, setFormError] = useState(false);
-  const textarea = useRef();
+  const [formError, setFormError] = useState({
+    inputtext1: false,
+    inputtext2: false,
+    textarea: false,
+  });
+  const textArea = useRef();
+  const inputText1 = useRef();
+
+  console.log('A:', formError);
 
   const submitBtnClickHandler = (e) => {
     e.preventDefault();
-    if (textarea.current.value.length === 0) {
-      setFormError(true);
+
+    // TODO: Insert middle form input and update setform error object below
+    const input1 = inputText1.current.value.length;
+    // const input2 = inputText2.current.value.length;
+    const input3 = textArea.current.value.length;
+
+    if (!input1 || !input3) {
+      return setFormError({
+        inputtext1: !input1,
+        inputtext2: false,
+        textarea: !input3,
+      });
     }
+    console.log('EH3?');
   };
 
   return (
@@ -23,7 +42,13 @@ function Form() {
       <div className={styles.form__feedback}>
         <h4>Feedback Title</h4>
         <p>Add a short, descriptive headline</p>
-        <input type="text" />
+        <InputText
+          id="feedback-title"
+          name="feedback-title"
+          formError={formError}
+          setFormError={setFormError}
+          innerRef={inputText1}
+        />
       </div>
       <div className={styles.form__category}>
         <h4>Category</h4>
@@ -42,7 +67,7 @@ function Form() {
           rows={10}
           formError={formError}
           setFormError={setFormError}
-          innerRef={textarea}
+          innerRef={textArea}
         />
       </div>
       <div className={styles.form__bar}>

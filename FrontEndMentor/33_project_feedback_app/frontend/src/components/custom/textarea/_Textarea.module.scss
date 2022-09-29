@@ -4,19 +4,7 @@
 
 .textarea {
   @include textarea;
+  @include input-error;
   position: relative;
   height: 96px;
-
-  &--error {
-    &::after {
-      content: "Can't be empty";
-      @include body-4;
-      left: 0;
-      bottom: 0;
-      color: $blood-red;
-    }
-    &:focus {
-      outline: 1px solid $blood-red;
-    }
-  }
 }
