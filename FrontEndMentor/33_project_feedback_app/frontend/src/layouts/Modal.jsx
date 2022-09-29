@@ -13,8 +13,8 @@ function Modal() {
         </Link>
       </nav>
       {/* Temporary Development:  */}
-      {/* <FormFeedbackNew /> */}
-      <FormFeedbackEdit />
+      <FormFeedbackNew />
+      {/* <FormFeedbackEdit /> */}
     </div>
   );
 }

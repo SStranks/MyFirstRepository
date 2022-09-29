@@ -26,7 +26,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   text: PropTypes.string,
-  value: PropTypes.string,
+  value: undefined,
   disabled: PropTypes.bool,
   classList: PropTypes.arrayOf(PropTypes.string),
 };

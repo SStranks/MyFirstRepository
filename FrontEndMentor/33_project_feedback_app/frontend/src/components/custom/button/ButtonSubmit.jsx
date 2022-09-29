@@ -26,7 +26,7 @@ ButtonSubmit.propTypes = {
 
 ButtonSubmit.defaultProps = {
   text: PropTypes.string,
-  value: PropTypes.string,
+  value: undefined,
   disabled: PropTypes.bool,
   classList: PropTypes.arrayOf(PropTypes.string),
 };

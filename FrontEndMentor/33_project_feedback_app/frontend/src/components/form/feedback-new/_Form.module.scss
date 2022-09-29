@@ -43,13 +43,6 @@
     }
   }
 
-  &__detail {
-    textarea {
-      @include textarea;
-      height: 96px;
-    }
-  }
-
   &__bar {
     display: flex;
     justify-content: flex-end;
