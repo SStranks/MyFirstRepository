@@ -1,0 +1,51 @@
+@use '../../../../assets/sass/variables' as *;
+@use '../../../../assets/sass/mixins' as *;
+@use '../../../../assets/sass/functions' as f;
+
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  background-color: $pale-blue;
+  border-radius: $border-radius-2;
+
+  &:focus,
+  &:active {
+    outline: 1px solid $royal-blue;
+  }
+
+  &__current {
+    padding: f.px2em(16) f.px2em(24);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: f.px2em(8);
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: $navy-blue;
+  }
+
+  &__sortBy {
+    @include body-4;
+  }
+
+  &__sortedBy {
+    @include body-5;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: f.px2em(24);
+    height: fit-content;
+    transition: 0.4s;
+
+    &--active {
+      transform: translateY(-50%) rotateX(180deg);
+    }
+  }
+}
