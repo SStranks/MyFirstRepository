@@ -1,21 +1,20 @@
 import PropTypes from 'prop-types';
-import IconCheck from '../../../assets/svg/shared/icon-check.svg';
+import IconArrowDown from '../../../assets/svg/shared/icon-arrow-down.svg';
+import DropdownList from './DropdownList';
 import styles from './_Dropdown.module.scss';
 
 function Dropdown(props) {
   const { listItems, active } = props;
 
-  const renderListItems = listItems.map((item, i) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <li key={i}>
-      <p>{item}</p>
-      <img src={IconCheck} alt="" />
-    </li>
-  ));
+  const current = 'Most Upvotes';
 
   return (
-    <div className={`${styles.dropdown} ${active ? styles.hidden : ''}`}>
-      <ul className={styles.dropdown__ul}>{renderListItems}</ul>
+    <div className={styles.dropdown}>
+      <DropdownList listItems={listItems} name="sort-by" />
+      <div className={styles.dropdown__current}>
+        <button type="button">Sort by : {current}</button>
+        <img src={IconArrowDown} alt="" />
+      </div>
     </div>
   );
 }

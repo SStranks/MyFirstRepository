@@ -3,39 +3,24 @@
 @use '../../../assets/sass/functions' as f;
 
 .dropdown {
-  position: absolute;
-  transform: translateY(170px);
+  display: flex;
+  flex-direction: column-reverse;
   width: 255px;
-  height: 240px;
-  border-radius: $border-radius-1;
-  background-color: $white;
-  color: $mute-blue;
-  box-shadow: $box-shadow-1;
-  opacity: 1;
-  transition: all 0.4s;
+  height: fit-content;
 
-  &__ul {
-    list-style-type: none;
+  &__current {
+    display: flex;
+    align-items: center;
+    column-gap: f.px2em(8);
 
-    & li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: f.px2em(12) f.px2em(24);
+    & > button {
+      @include body-3;
+      background-color: transparent;
+      color: $dim-grey;
+    }
 
-      & img {
-        width: fit-content;
-        height: fit-content;
-      }
-
-      &:hover {
-        cursor: pointer;
-        color: $magenta;
-      }
-
-      &:not(:last-child) {
-        border-bottom: $border-bottom-li;
-      }
+    & > img {
+      filter: brightness(100);
     }
   }
 }
@@ -43,5 +28,4 @@
 .hidden {
   opacity: 0;
   height: 0;
-  // display: none;
 }
