@@ -2,38 +2,38 @@ import { useRef, useState } from 'react';
 import IconNewFeedback from '../../../assets/svg/shared/icon-new-feedback.svg';
 import Button from '../../custom/button/Button';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
+import Dropdown from '../../custom/dropdown/design2/Dropdown';
 import InputText from '../../custom/input-text/InputText';
 import Textarea from '../../custom/textarea/Textarea';
 import styles from './_Form.module.scss';
 
 function Form() {
   const [formError, setFormError] = useState({
-    inputtext1: false,
-    inputtext2: false,
+    inputtext: false,
     textarea: false,
   });
-  const textArea = useRef();
-  const inputText1 = useRef();
 
-  console.log('A:', formError);
+  const textArea = useRef();
+  const inputText = useRef();
 
   const submitBtnClickHandler = (e) => {
     e.preventDefault();
 
-    // TODO: Insert middle form input and update setform error object below
-    const input1 = inputText1.current.value.length;
-    // const input2 = inputText2.current.value.length;
-    const input3 = textArea.current.value.length;
+    const input1 = inputText.current.value.length;
+    const input2 = textArea.current.value.length;
 
-    if (!input1 || !input3) {
+    if (!input1 || !input2) {
       return setFormError({
-        inputtext1: !input1,
-        inputtext2: false,
-        textarea: !input3,
+        inputtext: !input1,
+        textarea: !input2,
       });
     }
-    console.log('EH3?');
+
+    // TODO: Axios POST
+    return '';
   };
+
+  const categories = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
 
   return (
     <form className={styles.form} onSubmit={submitBtnClickHandler}>
@@ -47,13 +47,13 @@ function Form() {
           name="feedback-title"
           formError={formError}
           setFormError={setFormError}
-          innerRef={inputText1}
+          innerRef={inputText}
         />
       </div>
       <div className={styles.form__category}>
         <h4>Category</h4>
         <p>Choose a category for your feedback</p>
-        <input type="text" />
+        <Dropdown listItems={categories} />
       </div>
       <div className={styles.form__detail}>
         <h4>Feedback Detail</h4>

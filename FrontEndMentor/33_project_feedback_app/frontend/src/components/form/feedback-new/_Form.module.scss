@@ -24,11 +24,11 @@
   &__detail {
     margin-bottom: f.px2em(24);
 
-    h4 {
+    & > h4 {
       color: $navy-blue;
     }
 
-    p {
+    & > p {
       @include body-4;
       color: $mute-blue;
       margin-bottom: f.px2em(16);

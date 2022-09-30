@@ -7,14 +7,14 @@ function InputText(props) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (formError.inputtext1 && innerRef.current.value.length === 0)
+    if (formError.inputtext && innerRef.current.value.length === 0)
       setError(true);
   }, [formError, innerRef]);
 
   const textInputHandler = (e) => {
     if (error && e.target.value.length > 0) {
       setError(false);
-      setFormError((prev) => ({ ...prev, inputtext1: false }));
+      setFormError((prev) => ({ ...prev, inputtext: false }));
     }
   };
 
