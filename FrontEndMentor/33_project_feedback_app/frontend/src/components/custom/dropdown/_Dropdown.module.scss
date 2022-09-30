@@ -4,28 +4,34 @@
 
 .dropdown {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   width: 255px;
   height: fit-content;
 
   &__current {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     column-gap: f.px2em(8);
+    width: fit-content;
+    background-color: transparent;
+    color: $dim-grey;
+  }
 
-    & > button {
-      @include body-3;
-      background-color: transparent;
-      color: $dim-grey;
-    }
+  &__sortBy {
+    @include body-4;
+  }
 
-    & > img {
-      filter: brightness(100);
+  &__sortedBy {
+    @include body-5;
+  }
+
+  &__arrow {
+    filter: brightness(100);
+    transition: 0.4s;
+
+    &--active {
+      transform: rotateX(180deg);
     }
   }
-}
-
-.hidden {
-  opacity: 0;
-  height: 0;
 }

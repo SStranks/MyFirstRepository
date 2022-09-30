@@ -1,10 +1,11 @@
+@use 'sass:color';
 @use '../../../assets/sass/variables' as *;
 @use '../../../assets/sass/mixins' as *;
 @use '../../../assets/sass/functions' as f;
 
 .list {
   position: absolute;
-  transform: translateY(120%);
+  transform: translateY(30%);
   width: 255px;
   list-style-type: none;
   background-color: $white;
@@ -34,8 +35,7 @@
     justify-content: space-between;
     align-items: center;
 
-    &:hover {
-      cursor: pointer;
+    &:hover .list__label {
       color: $magenta;
     }
 
@@ -49,4 +49,8 @@
     width: fit-content;
     height: fit-content;
   }
+}
+
+.hidden {
+  opacity: 0;
 }
