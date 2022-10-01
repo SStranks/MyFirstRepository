@@ -34,6 +34,7 @@
 
   &__btnreply {
     @include body-3;
+    background: transparent;
     color: $royal-blue;
 
     &:hover {
@@ -60,8 +61,8 @@
     column-gap: f.px2em(16);
     margin-top: f.px2em(24);
 
-    & > :first-child {
-      flex-shrink: 100;
+    & > :last-child {
+      flex: none;
     }
   }
 }

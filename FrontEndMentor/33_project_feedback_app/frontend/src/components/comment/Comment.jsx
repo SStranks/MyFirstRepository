@@ -1,12 +1,30 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import ProfileIcon from '../../assets/img/image-elijah.jpg';
 import ButtonSubmit from '../custom/button/ButtonSubmit';
 import Textarea from '../custom/textarea/Textarea';
 import styles from './_Comment.module.scss';
 
 function Comment(props) {
-  const { name, username, comment, reply, replyingTo } = props;
+  const { name, username, content, replies, replyingTo } = props;
+  const [formActive, setFormActive] = useState(false);
+
+  const btnReplyClickHandler = () => {
+    setFormActive(true);
+  };
+
+  const commentReplies = replies
+    ? replies.map((el, i) => (
+        <Comment
+          // eslint-disable-next-line react/no-array-index-key
+          key={i}
+          replyingTo={el.replyingTo}
+          content={el.content}
+          name={el.user.name}
+          username={el.user.username}
+        />
+      ))
+    : '';
 
   return (
     <div className={styles.comment}>
@@ -16,22 +34,30 @@ function Comment(props) {
           <h3 className={styles.comment__name}>{name}</h3>
           <p className={styles.comment__username}>@{username}</p>
         </div>
-        <Link className={styles.comment__btnreply} to="/">
+        <button
+          className={styles.comment__btnreply}
+          onClick={btnReplyClickHandler}
+          type="button">
           Reply
-        </Link>
+        </button>
       </div>
       <p className={styles.comment__content}>
-        {reply ? (
+        {replyingTo ? (
           <span className={styles.comment__replyto}>@{replyingTo}</span>
         ) : (
           ''
         )}
-        {comment}
+        {content}
       </p>
-      <form className={styles.comment__form} action="submit">
-        <Textarea className={styles.comment__textarea} />
-        <ButtonSubmit classList={['w-117', 'bg-magenta']} text="Post Reply" />
-      </form>
+      {replies ? commentReplies : ''}
+      {formActive ? (
+        <form className={styles.comment__form} action="submit" id="reply">
+          <Textarea className={styles.comment__textarea} />
+          <ButtonSubmit classList={['w-117', 'bg-magenta']} text="Post Reply" />
+        </form>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
@@ -39,18 +65,18 @@ function Comment(props) {
 Comment.propTypes = {
   name: PropTypes.string,
   username: PropTypes.string,
-  comment: PropTypes.string,
-  reply: PropTypes.bool,
+  content: PropTypes.string,
   replyingTo: PropTypes.string,
+  replies: PropTypes.arrayOf(),
 };
 
 Comment.defaultProps = {
   name: 'Elijah DEFAULT',
   username: 'hexagon.DEFAULT',
-  comment:
+  content:
     'DEFAULT COMMENT Second this! I do a lot of late night coding and reading. Adding a dark theme can be great for preventing eye strain and the headaches that result. It’s also quite a trend with modern apps and  apparently saves battery life.',
-  reply: PropTypes.bool,
-  replyingTo: 'Hummingbird1DEFAULT',
+  replyingTo: undefined,
+  replies: undefined,
 };
 
 export default Comment;

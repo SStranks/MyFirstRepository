@@ -12,9 +12,16 @@ function Comments() {
   // const comment = JSONComment.content;
   // const { image, name, username } = JSONComment.user;
 
-  const commentsList = JSONComment.map((comment, i, arr) => (
+  const commentsList = JSONComment.map((el, i, arr) => (
     <>
-      <Comment key={comment.id} props={comment} />
+      <Comment
+        key={el.id}
+        name={el.user.name}
+        username={el.user.username}
+        content={el.content}
+        replyingTo={el.replyingTo}
+        replies={el.replies}
+      />
       {i !== arr.length - 1 ? <div className={styles.list__break} /> : ''}
     </>
   ));
