@@ -1,4 +1,9 @@
-import { FormCommentAdd, Suggestion, UtilityBarFeedback } from '../components';
+import {
+  CommentsList,
+  FormCommentAdd,
+  Suggestion,
+  UtilityBarFeedback,
+} from '../components';
 
 import styles from './_FeedbackDetail.module.scss';
 
@@ -25,7 +30,7 @@ function FeedbackDetail() {
             category={category}
             comments={comments}
           />
-          {/* <CommentsList /> */}
+          <CommentsList />
           <FormCommentAdd />
         </main>
       </div>

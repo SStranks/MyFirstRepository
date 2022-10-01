@@ -1,0 +1,19 @@
+@use '../../assets/sass/variables' as *;
+@use '../../assets/sass/mixins' as *;
+@use '../../assets/sass/functions' as f;
+
+.list {
+  @include card;
+
+  & > h3 {
+    margin-bottom: f.px2em(28);
+    color: $navy-blue;
+  }
+
+  &__break {
+    width: 100%;
+    height: 1px;
+    margin-bottom: f.px2em(33);
+    background-color: $line-break;
+  }
+}

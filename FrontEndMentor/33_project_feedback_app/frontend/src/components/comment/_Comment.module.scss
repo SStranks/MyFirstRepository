@@ -1,0 +1,67 @@
+@use '../../assets/sass/variables' as *;
+@use '../../assets/sass/mixins' as *;
+@use '../../assets/sass/functions' as f;
+
+.comment {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: f.px2em(32);
+  padding-bottom: f.px2em(32);
+
+  &__img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  &__flex {
+    grid-column: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: f.px2em(17);
+  }
+
+  &__name {
+    @include body-5;
+    color: $navy-blue;
+  }
+
+  &__username {
+    @include body-4;
+    color: $mute-blue;
+  }
+
+  &__btnreply {
+    @include body-3;
+    color: $royal-blue;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+
+  &__content {
+    @include body-2;
+    grid-column: 2;
+    color: $mute-blue;
+  }
+
+  &__replyto {
+    @include body-5;
+    color: $magenta;
+    margin-right: f.px2em(15);
+  }
+
+  &__form {
+    grid-column: 2;
+    display: flex;
+    column-gap: f.px2em(16);
+    margin-top: f.px2em(24);
+
+    & > :first-child {
+      flex-shrink: 100;
+    }
+  }
+}

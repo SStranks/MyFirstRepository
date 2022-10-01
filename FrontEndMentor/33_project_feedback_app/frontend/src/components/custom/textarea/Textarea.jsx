@@ -19,7 +19,10 @@ function Textarea(props) {
   };
 
   return (
-    <div className={`${error ? styles['textarea--error'] : ''}`}>
+    <div
+      className={`${styles.container} ${
+        error ? styles['textarea--error'] : ''
+      }`}>
       <textarea
         className={`${styles.textarea} ${
           error ? styles['textarea--error'] : ''
