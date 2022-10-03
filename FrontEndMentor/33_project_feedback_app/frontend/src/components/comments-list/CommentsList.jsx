@@ -19,6 +19,7 @@ function Comments() {
         name={el.user.name}
         username={el.user.username}
         content={el.content}
+        parent
         replyingTo={el.replyingTo}
         replies={el.replies}
       />

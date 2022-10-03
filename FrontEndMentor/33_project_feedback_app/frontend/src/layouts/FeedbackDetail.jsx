@@ -28,6 +28,7 @@ function FeedbackDetail() {
             title={title}
             description={description}
             category={category}
+            active={false}
             comments={comments}
           />
           <CommentsList />

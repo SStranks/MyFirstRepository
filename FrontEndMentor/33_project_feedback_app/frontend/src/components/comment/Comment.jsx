@@ -6,7 +6,7 @@ import Textarea from '../custom/textarea/Textarea';
 import styles from './_Comment.module.scss';
 
 function Comment(props) {
-  const { name, username, content, replies, replyingTo } = props;
+  const { name, username, content, parent, replies, replyingTo } = props;
   const [formActive, setFormActive] = useState(false);
 
   const btnReplyClickHandler = () => {
@@ -15,14 +15,16 @@ function Comment(props) {
 
   const commentReplies = replies
     ? replies.map((el, i) => (
-        <Comment
-          // eslint-disable-next-line react/no-array-index-key
-          key={i}
-          replyingTo={el.replyingTo}
-          content={el.content}
-          name={el.user.name}
-          username={el.user.username}
-        />
+        // eslint-disable-next-line react/no-array-index-key
+        <div className={styles['comment__replies-container']} key={i}>
+          <Comment
+            replyingTo={el.replyingTo}
+            content={el.content}
+            name={el.user.name}
+            username={el.user.username}
+            parent={false}
+          />
+        </div>
       ))
     : '';
 
@@ -41,6 +43,11 @@ function Comment(props) {
           Reply
         </button>
       </div>
+      {parent && replies ? (
+        <div className={styles['comment__vertical-line']} />
+      ) : (
+        ''
+      )}
       <p className={styles.comment__content}>
         {replyingTo ? (
           <span className={styles.comment__replyto}>@{replyingTo}</span>
@@ -49,7 +56,6 @@ function Comment(props) {
         )}
         {content}
       </p>
-      {replies ? commentReplies : ''}
       {formActive ? (
         <form className={styles.comment__form} action="submit" id="reply">
           <Textarea className={styles.comment__textarea} />
@@ -58,6 +64,7 @@ function Comment(props) {
       ) : (
         ''
       )}
+      {replies ? commentReplies : ''}
     </div>
   );
 }
@@ -66,8 +73,9 @@ Comment.propTypes = {
   name: PropTypes.string,
   username: PropTypes.string,
   content: PropTypes.string,
+  parent: PropTypes.bool,
   replyingTo: PropTypes.string,
-  replies: PropTypes.arrayOf(),
+  replies: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 Comment.defaultProps = {
@@ -75,6 +83,7 @@ Comment.defaultProps = {
   username: 'hexagon.DEFAULT',
   content:
     'DEFAULT COMMENT Second this! I do a lot of late night coding and reading. Adding a dark theme can be great for preventing eye strain and the headaches that result. It’s also quite a trend with modern apps and  apparently saves battery life.',
+  parent: undefined,
   replyingTo: undefined,
   replies: undefined,
 };
