@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styles from './_Button.module.scss';
 
 function Button(props) {
-  const { text, value, disabled, classList } = props;
+  const { text, value, onClick, disabled, classList } = props;
 
   return (
     <button
@@ -10,6 +10,7 @@ function Button(props) {
       className={`${styles.btn} ${styles[classList[0]]} ${
         styles[classList[1]]
       }`}
+      onClick={onClick}
       value={value}
       disabled={disabled}>
       <p>{text}</p>
@@ -22,6 +23,7 @@ Button.propTypes = {
   value: PropTypes.string,
   disabled: PropTypes.bool,
   classList: PropTypes.arrayOf(PropTypes.string),
+  onClick: PropTypes.func,
 };
 
 Button.defaultProps = {
@@ -29,6 +31,7 @@ Button.defaultProps = {
   value: undefined,
   disabled: PropTypes.bool,
   classList: PropTypes.arrayOf(PropTypes.string),
+  onClick: undefined,
 };
 
 export default Button;

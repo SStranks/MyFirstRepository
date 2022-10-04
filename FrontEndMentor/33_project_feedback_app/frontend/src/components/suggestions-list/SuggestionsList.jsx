@@ -1,5 +1,8 @@
+import { useState } from 'react';
+import { FormFeedbackNew } from '..';
 import NoFeedbackImg from '../../assets/svg/shared/illustration-empty.svg';
 import Button from '../custom/button/Button';
+import Modal from '../modal/Modal';
 import Suggestion from '../suggestion/Suggestion';
 import styles from './_SuggestionsList.module.scss';
 
@@ -7,6 +10,8 @@ import styles from './_SuggestionsList.module.scss';
 import JSONData from '../../data/data.json';
 
 function SuggestionsList() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const list = JSONData.productRequests.map((el) => (
     <Suggestion
       key={el.id}
@@ -20,7 +25,7 @@ function SuggestionsList() {
     />
   ));
 
-  return list ? (
+  return !list ? (
     <div className={styles.list}>{list}</div>
   ) : (
     <div className={styles['no-list']}>
@@ -34,7 +39,14 @@ function SuggestionsList() {
         text="+ Add Feedback"
         disabled={false}
         classList={['w-158', 'bg-magenta']}
+        onClick={() => setModalOpen(true)}
       />
+      <Modal handleClose={() => setModalOpen(false)} modalOpen={modalOpen}>
+        <FormFeedbackNew
+          cancelBtnOnClick={() => setModalOpen(false)}
+          modalOpen={modalOpen}
+        />
+      </Modal>
     </div>
   );
 }

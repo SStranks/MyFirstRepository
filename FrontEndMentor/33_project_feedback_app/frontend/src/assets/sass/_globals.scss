@@ -131,6 +131,8 @@ label {
 }
 
 .modal-open {
+  // Prevent horizontal reflow from scrollbar
+  padding-right: 15px;
   overflow: hidden;
 }
 
