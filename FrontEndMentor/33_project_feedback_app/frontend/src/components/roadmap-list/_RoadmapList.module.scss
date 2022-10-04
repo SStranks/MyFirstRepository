@@ -4,7 +4,6 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
   width: 100%;
   column-gap: f.px2em(30);
   row-gap: f.px2em(32);
@@ -23,6 +22,7 @@
     grid-column: 1 / span 3;
     display: grid;
     grid-template-columns: inherit;
+    grid-auto-flow: column;
     column-gap: inherit;
     row-gap: f.px2em(24);
   }

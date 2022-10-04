@@ -5,6 +5,24 @@
 .outerCard {
   border-radius: $border-radius-2;
   background-color: $mute-orange;
+
+  &--planned {
+    grid-column: 1;
+    grid-row: auto;
+    background-color: $mute-orange;
+  }
+
+  &--in-progress {
+    grid-column: 2;
+    grid-row: auto;
+    background-color: $magenta;
+  }
+
+  &--live {
+    grid-column: 3;
+    grid-row: auto;
+    background-color: $sky-blue;
+  }
 }
 
 .innerCard {
@@ -14,7 +32,7 @@
   background-color: $white;
   color: $mute-blue;
 
-  &__category {
+  &__status {
     display: flex;
     align-items: center;
     column-gap: f.px2em(15);
@@ -25,7 +43,18 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: $mute-orange;
+
+    &--planned {
+      background-color: $mute-orange;
+    }
+
+    &--in-progress {
+      background-color: $magenta;
+    }
+
+    &--live {
+      background-color: $sky-blue;
+    }
   }
 
   &__title {
