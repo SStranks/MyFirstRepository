@@ -1,0 +1,29 @@
+@use '../../assets/sass/variables' as *;
+@use '../../assets/sass/mixins' as *;
+@use '../../assets/sass/functions' as f;
+
+.container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background);
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  row-gap: f.px2em(68);
+  max-width: f.px2em(540);
+  padding-top: f.px2em(92);
+  padding-bottom: f.px2em(129);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  column-gap: f.px2em(15);
+  color: $mute-blue;
+}
