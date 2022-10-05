@@ -17,24 +17,38 @@
     align-items: center;
     color: $white;
 
-    & > :not(:last-child) {
-      margin-right: f.px2em(16);
-    }
-
     & > :last-child {
       margin-left: f.px2em(16);
     }
   }
 
-  &__sort {
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    column-gap: f.px2em(10);
+  &__icon {
+    margin-right: f.px2em(16);
 
-    & > img {
-      filter: brightness(100);
+    @include media(mobile-large, mobile-medium, mobile-small) {
+      display: none;
     }
   }
+
+  &__number {
+    @include media(mobile-large, mobile-medium, mobile-small) {
+      display: none;
+    }
+  }
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    border-radius: 0;
+  }
+
+  // &__sort {
+  //   cursor: pointer;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   align-items: center;
+  //   column-gap: f.px2em(10);
+
+  //   & > img {
+  //     filter: brightness(100);
+  //   }
+  // }
 }

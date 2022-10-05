@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { FormFeedbackNew } from '../..';
 import IconSuggestion from '../../../assets/svg/shared/icon-suggestions.svg';
 import Button from '../../custom/button/Button';
 import Dropdown from '../../custom/dropdown/design1/Dropdown';
+import FormFeedbackNew from '../../form/feedback-new/Form';
 import Modal from '../../modal/Modal';
 import styles from './_UtilityBar.module.scss';
 
@@ -22,8 +22,8 @@ function UtilityBar() {
   return (
     <div className={styles.bar}>
       <div className={styles.bar__suggestions}>
-        <img src={IconSuggestion} alt="" />
-        <h3>{numSuggestions} Suggestions</h3>
+        <img className={styles.bar__icon} src={IconSuggestion} alt="" />
+        <h3 className={styles.bar__number}>{numSuggestions} Suggestions</h3>
         <Dropdown listItems={dropdownList} />
       </div>
       <Button

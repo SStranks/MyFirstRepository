@@ -6,6 +6,10 @@
   display: flex;
   flex-direction: column;
   row-gap: f.px2em(20);
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    padding: 0 f.px2em(24);
+  }
 }
 
 .no-list {

@@ -1,3 +1,4 @@
+@use '../assets/sass/mixins' as *;
 @use '../assets/sass/functions' as f;
 
 .container {
@@ -5,6 +6,13 @@
   justify-content: center;
   padding-top: f.px2em(94);
   padding-bottom: f.px2em(128);
+  padding: f.px2em(94) f.px2em(40) f.px2em(128) f.px2em(40);
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    width: 100%;
+    padding: 0;
+    padding-bottom: f.px2em(55);
+  }
 }
 
 .grid {
@@ -16,6 +24,18 @@
     display: flex;
     flex-direction: column;
     row-gap: f.px2em(24);
+
+    @include media(tablet-regular, tablet-small) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: f.px2em(10);
+    }
+
+    @include media(mobile-large, mobile-medium, mobile-small) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: f.px2em(10);
+    }
   }
 
   &__sub-grid-2 {
@@ -23,5 +43,15 @@
     grid-template-columns: 1fr;
     grid-template-rows: repeat(1fr, auto);
     row-gap: f.px2em(24);
+  }
+
+  @include media(tablet-regular, tablet-small) {
+    grid-template-columns: 1fr;
+    row-gap: f.px2em(40);
+  }
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    grid-template-columns: 1fr;
+    row-gap: f.px2em(40);
   }
 }

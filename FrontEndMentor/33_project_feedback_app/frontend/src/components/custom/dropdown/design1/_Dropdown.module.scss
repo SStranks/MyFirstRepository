@@ -5,7 +5,7 @@
 .dropdown {
   display: flex;
   flex-direction: column;
-  width: 255px;
+  max-width: 255px;
   height: fit-content;
 
   &__current {

@@ -18,4 +18,8 @@
     background-color: $royal-blue;
     color: $white;
   }
+
+  @include media(tablet-regular) {
+    height: 30px;
+  }
 }

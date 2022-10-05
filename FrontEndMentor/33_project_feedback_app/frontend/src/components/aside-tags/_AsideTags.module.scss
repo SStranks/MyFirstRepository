@@ -2,8 +2,12 @@
 @use '../../assets/sass/mixins' as *;
 @use '../../assets/sass/functions' as f;
 
-.categories {
+.container {
   @include card;
+  height: 100%;
+}
+
+.categories {
   display: flex;
   flex-wrap: wrap;
   row-gap: f.px2em(14);

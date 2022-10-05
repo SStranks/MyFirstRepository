@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { FormFeedbackNew } from '..';
 import NoFeedbackImg from '../../assets/svg/shared/illustration-empty.svg';
 import Button from '../custom/button/Button';
+import FormFeedbackNew from '../form/feedback-new/Form';
 import Modal from '../modal/Modal';
 import Suggestion from '../suggestion/Suggestion';
 import styles from './_SuggestionsList.module.scss';
@@ -25,7 +25,7 @@ function SuggestionsList() {
     />
   ));
 
-  return !list ? (
+  return list ? (
     <div className={styles.list}>{list}</div>
   ) : (
     <div className={styles['no-list']}>
