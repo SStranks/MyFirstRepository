@@ -45,6 +45,18 @@
   line-height: f.px2rem(19);
 }
 
+@mixin body-6 {
+  font-weight: 700;
+  font-size: f.px2rem(13);
+  line-height: f.px2rem(19);
+}
+
+@mixin body-7 {
+  font-weight: 400;
+  font-size: f.px2rem(13);
+  line-height: f.px2rem(19);
+}
+
 /*   Card                           */
 @mixin card {
   background-color: $white;
@@ -174,6 +186,11 @@
         @content;
       }
     }
+    @if $arg == 'mobile-all' {
+      @include mobile-all {
+        @content;
+      }
+    }
     @if $arg == 'tablet-small' {
       @include tablet-small {
         @content;
@@ -181,6 +198,11 @@
     }
     @if $arg == 'tablet-regular' {
       @include tablet-regular {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-all' {
+      @include tablet-all {
         @content;
       }
     }
@@ -221,6 +243,12 @@
   }
 }
 
+@mixin mobile-all {
+  @media (min-width: #{$mobile-s}) and (max-width: #{$mobile-l - 1px}) {
+    @content;
+  }
+}
+
 @mixin tablet-small {
   @media (min-width: #{$tablet-s}) and (max-width: #{$tablet - 1px}) {
     @content;
@@ -229,6 +257,12 @@
 
 @mixin tablet-regular {
   @media (min-width: #{$tablet}) and (max-width: #{$desktop-s - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-all {
+  @media (min-width: #{$tablet-s}) and (max-width: #{$tablet - 1px}) {
     @content;
   }
 }

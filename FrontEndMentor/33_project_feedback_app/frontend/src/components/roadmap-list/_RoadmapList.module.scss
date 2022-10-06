@@ -1,3 +1,4 @@
+@use '../../assets/sass/mixins' as *;
 @use '../../assets/sass/variables' as *;
 @use '../../assets/sass/functions' as f;
 
@@ -8,13 +9,44 @@
   column-gap: f.px2em(30);
   row-gap: f.px2em(32);
 
+  @include media(
+    tablet-regular,
+    tablet-small,
+    mobile-large,
+    mobile-medium,
+    mobile-small
+  ) {
+    column-gap: f.px2em(10);
+    row-gap: f.px2em(24);
+  }
+
   &__title {
     h3 {
       color: $navy-blue;
+
+      @include media(
+        tablet-regular,
+        tablet-small,
+        mobile-large,
+        mobile-medium,
+        mobile-small
+      ) {
+        @include body-5;
+      }
     }
 
     p {
       color: $mute-blue;
+
+      @include media(
+        tablet-regular,
+        tablet-small,
+        mobile-large,
+        mobile-medium,
+        mobile-small
+      ) {
+        @include body-4;
+      }
     }
   }
 
@@ -25,5 +57,15 @@
     grid-auto-flow: column;
     column-gap: inherit;
     row-gap: f.px2em(24);
+
+    @include media(
+      tablet-regular,
+      tablet-small,
+      mobile-large,
+      mobile-medium,
+      mobile-small
+    ) {
+      row-gap: f.px2em(16);
+    }
   }
 }

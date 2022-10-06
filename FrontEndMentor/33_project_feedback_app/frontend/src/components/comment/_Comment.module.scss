@@ -7,10 +7,10 @@
   grid-template-columns: 40px 1fr;
   column-gap: f.px2em(32);
 
-  // @include media(mobile-large, mobile-medium, mobile-small) {
-  //   grid-template-columns: 1fr;
-  //   column-gap: 0;
-  // }
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    // grid-template-columns: 1fr;
+    column-gap: 0;
+  }
 
   &__img {
     width: 40px;
@@ -24,6 +24,10 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: f.px2em(17);
+
+    @include media(mobile-large, mobile-medium, mobile-small) {
+      margin-left: f.px2em(16);
+    }
   }
 
   &__name {
@@ -51,15 +55,13 @@
     grid-column: 1;
     justify-self: center;
     grid-row: 2;
-    // grid-row-end: 5;
     height: calc(100% + 20px);
     width: 1px;
     background-color: $line-break;
 
     @include media(mobile-large, mobile-medium, mobile-small) {
-      // grid-row-start: 3;
-      // grid-row-end: ;
-      // height: 100%;
+      grid-row: 3;
+      justify-self: unset;
     }
   }
 

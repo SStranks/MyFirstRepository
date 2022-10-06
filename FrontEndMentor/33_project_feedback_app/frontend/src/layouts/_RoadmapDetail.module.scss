@@ -1,3 +1,4 @@
+@use '../assets/sass/mixins' as *;
 @use '../assets/sass/functions' as f;
 
 .container {
@@ -6,11 +7,16 @@
   align-items: center;
   padding-top: f.px2em(78);
   padding-bottom: f.px2em(178);
+  padding: f.px2em(78) f.px2em(20) f.px2em(178);
+
+  @include media(tablet-regular, tablet-small, desktop-small) {
+    padding: f.px2em(56) f.px2em(30) f.px2em(95);
+  }
 }
 
 .flex {
   display: flex;
   flex-direction: column;
   row-gap: f.px2em(48);
-  width: 1110px;
+  max-width: 1110px;
 }

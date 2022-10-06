@@ -20,7 +20,10 @@ function Roadmap(props) {
         </div>
         <h3 className={styles.innerCard__title}>{title}</h3>
         <p className={styles.innerCard__content}>{description}</p>
-        <Tag title={category} active={false} />
+        <Tag
+          title={`${category[0].toUpperCase()}${category.slice(1)}`}
+          active={false}
+        />
         <div className={styles.innerCard__UI}>
           <Upvote flexRow upvotes={upvotes} />
           <div className={styles.innerCard__comment}>

@@ -6,6 +6,10 @@
   @include card;
   padding: f.px2em(32);
 
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    padding: f.px2em(24);
+  }
+
   &__title {
     color: $navy-blue;
     margin-bottom: f.px2em(24);
@@ -31,5 +35,9 @@
     padding: f.px2em(16) f.px2em(36);
     background-color: $magenta;
     color: $white;
+
+    @include media(mobile-large, mobile-medium, mobile-small) {
+      padding: f.px2em(10) f.px2em(16);
+    }
   }
 }
