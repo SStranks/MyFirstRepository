@@ -12,6 +12,10 @@
   @include media(tablet-regular, tablet-small, desktop-small) {
     padding: f.px2em(56) f.px2em(30) f.px2em(95);
   }
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    padding: 0 0 f.px2em(95);
+  }
 }
 
 .flex {
@@ -19,4 +23,8 @@
   flex-direction: column;
   row-gap: f.px2em(48);
   max-width: 1110px;
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    width: 100%;
+  }
 }

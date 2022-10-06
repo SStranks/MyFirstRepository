@@ -39,16 +39,7 @@ function RoadmapList() {
         <h3>{`Live (${numLive})`}</h3>
         <p>Released features</p>
       </div>
-      <div className={styles.grid__subgrid}>
-        {/* Temporary Dev */}
-        {roadmapItems}
-        {/* <Roadmap category="Planned" />
-        <Roadmap category="Progress" />
-        <Roadmap category="Live" />
-        <Roadmap category="Planned" />
-        <Roadmap category="Progress" />
-        <Roadmap category="Live" /> */}
-      </div>
+      <div className={styles.grid__subgrid}>{roadmapItems}</div>
     </div>
   );
 }

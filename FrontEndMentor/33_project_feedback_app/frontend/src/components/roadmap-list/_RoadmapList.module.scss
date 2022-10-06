@@ -9,15 +9,16 @@
   column-gap: f.px2em(30);
   row-gap: f.px2em(32);
 
-  @include media(
-    tablet-regular,
-    tablet-small,
-    mobile-large,
-    mobile-medium,
-    mobile-small
-  ) {
+  @include media(tablet-regular, tablet-small) {
     column-gap: f.px2em(10);
     row-gap: f.px2em(24);
+  }
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    display: flex;
+    flex-direction: column;
+    padding: 0 f.px2em(24);
+    padding-top: f.px2em(48);
   }
 
   &__title {
@@ -58,13 +59,13 @@
     column-gap: inherit;
     row-gap: f.px2em(24);
 
-    @include media(
-      tablet-regular,
-      tablet-small,
-      mobile-large,
-      mobile-medium,
-      mobile-small
-    ) {
+    @include media(tablet-regular, tablet-small) {
+      row-gap: f.px2em(16);
+    }
+
+    @include media(mobile-large, mobile-medium, mobile-small) {
+      display: flex;
+      flex-direction: column;
       row-gap: f.px2em(16);
     }
   }
