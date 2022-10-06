@@ -5,7 +5,7 @@ import styles from './_Upvote.module.scss';
 
 function Upvote(props) {
   const [voted, setVoted] = useState(false);
-  const { flexRow, upvotes } = props;
+  const { upvotes } = props;
 
   const clickHandler = () => {
     if (!voted) setVoted(true);
@@ -15,9 +15,7 @@ function Upvote(props) {
     <button
       type="button"
       onClick={clickHandler}
-      className={`${styles.upvote} ${
-        flexRow ? styles['flex-row'] : styles['flex-col']
-      } ${voted ? styles.voted : ''}`}>
+      className={`${styles.upvote} ${voted ? styles.voted : ''}`}>
       <img src={IconArrowUp} alt="" />
       <span>{upvotes}</span>
     </button>
@@ -25,12 +23,10 @@ function Upvote(props) {
 }
 
 Upvote.propTypes = {
-  flexRow: PropTypes.bool,
   upvotes: PropTypes.number,
 };
 
 Upvote.defaultProps = {
-  flexRow: PropTypes.bool,
   upvotes: 27,
 };
 

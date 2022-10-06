@@ -44,7 +44,11 @@ function Comment(props) {
         </button>
       </div>
       {parent && replies ? (
-        <div className={styles['comment__vertical-line']} />
+        // Vertical line grid-row-end: Our CSS Grid is implicit, therefore we can't specify a span value in the CSS as the number is dynamic.
+        <div
+          className={styles['comment__vertical-line']}
+          style={{ 'grid-row-end': `${replies.length + 2}` }}
+        />
       ) : (
         ''
       )}

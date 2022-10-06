@@ -5,8 +5,14 @@
 .item {
   @include card;
   cursor: pointer;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: max-content auto max-content;
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, max-content);
+    row-gap: f.px2em(16);
+  }
 
   &:hover {
     & .item__suggestion {
@@ -23,21 +29,32 @@
   &__suggestion {
     & h3 {
       color: $navy-blue;
+      margin-bottom: f.px2em(10);
     }
 
     & p {
       color: $mute-blue;
       margin-bottom: f.px2em(12);
     }
+
+    @include media(mobile-large, mobile-medium, mobile-small) {
+      grid-column: span 2;
+      grid-row: 1;
+    }
   }
 
   &__comment {
     display: flex;
     align-items: center;
+    margin-left: f.px2em(16);
 
     & img {
       height: fit-content;
       margin-right: f.px2em(8);
+    }
+
+    @include media(mobile-large, mobile-medium, mobile-small) {
+      justify-self: end;
     }
   }
 }
