@@ -76,6 +76,24 @@
                 "name": "Ryan Welles",
                 "username": "voyager.344"
               }
+            },
+            {
+              "content": "Good point! Using any kind of style extension is great and can be highly customizable, like the ability to change contrast and brightness. I'd prefer not to use one of such extensions, however, for security and privacy reasons.",
+              "replyingTo": "annev1990",
+              "user": {
+                "image": "./assets/user-images/image-ryan.jpg",
+                "name": "Ryan Welles",
+                "username": "voyager.344"
+              }
+            },
+            {
+              "content": "Good point! Using any kind of style extension is great and can be highly customizable, like the ability to change contrast and brightness. I'd prefer not to use one of such extensions, however, for security and privacy reasons.",
+              "replyingTo": "annev1990",
+              "user": {
+                "image": "./assets/user-images/image-ryan.jpg",
+                "name": "Ryan Welles",
+                "username": "voyager.344"
+              }
             }
           ]
         }
@@ -108,7 +126,7 @@
       "status": "suggestion",
       "description": "Images and screencasts can enhance comments on solutions.",
       "comments": [
-        { 
+        {
           "id": 6,
           "content": "Right now, there is no ability to add images while giving feedback which isn't ideal because I have to use another app to show what I mean",
           "user": {
