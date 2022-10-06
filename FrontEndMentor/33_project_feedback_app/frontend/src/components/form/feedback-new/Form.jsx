@@ -73,17 +73,21 @@ function Form(props) {
         />
       </div>
       <div className={styles.form__bar}>
-        <Button
-          text="Cancel"
-          disabled={false}
-          classList={['w-94', 'bg-navy-blue']}
-          onClick={cancelBtnOnClick}
-        />
-        <ButtonSubmit
-          text="Add Feedback"
-          disabled={false}
-          classList={['w-144', 'bg-magenta']}
-        />
+        <div className={styles.form__bar__btnCancel}>
+          <Button
+            text="Cancel"
+            disabled={false}
+            classList={['bg-navy-blue']}
+            onClick={cancelBtnOnClick}
+          />
+        </div>
+        <div className={styles.form__bar__btnSubmit}>
+          <ButtonSubmit
+            text="Add Feedback"
+            disabled={false}
+            classList={['bg-magenta']}
+          />
+        </div>
       </div>
     </form>
   );

@@ -47,5 +47,31 @@
     display: flex;
     justify-content: flex-end;
     column-gap: 16px;
+
+    @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+      flex-direction: column;
+      row-gap: f.px2em(16);
+      width: 100%;
+    }
+
+    &__btnCancel {
+      width: 94px;
+      height: 44px;
+
+      @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+        order: 2;
+        width: 100%;
+      }
+    }
+
+    &__btnSubmit {
+      width: 144px;
+      height: 44px;
+
+      @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+        order: 1;
+        width: 100%;
+      }
+    }
   }
 }

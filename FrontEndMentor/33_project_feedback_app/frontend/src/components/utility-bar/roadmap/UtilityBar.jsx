@@ -15,11 +15,13 @@ function UtilityBar() {
         </Link>
         <h3>Roadmap</h3>
       </div>
-      <Button
-        text="+ Add Feedback"
-        disabled={false}
-        classList={['w-144', 'bg-magenta']}
-      />
+      <div className={styles.bar__btn}>
+        <Button
+          text="+ Add Feedback"
+          disabled={false}
+          classList={['bg-magenta']}
+        />
+      </div>
     </div>
   );
 }

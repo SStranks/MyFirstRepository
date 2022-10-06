@@ -4,7 +4,8 @@
 
 .btn {
   @include body-3;
-  height: 44px;
+  width: 100%;
+  height: 100%;
   border-radius: $border-radius-1;
   padding: f.px2em(12) f.px2em(24);
   color: $white;
@@ -45,20 +46,4 @@
   &:hover {
     background-color: $dim-blood-red;
   }
-}
-
-.w-158 {
-  width: 158px;
-}
-
-.w-144 {
-  width: 144px;
-}
-
-.w-117 {
-  width: 117px;
-}
-
-.w-94 {
-  width: 94px;
 }

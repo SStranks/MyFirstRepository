@@ -17,11 +17,13 @@ function Form() {
       />
       <div className={styles.form__bar}>
         <p>{charsRemain} Characters left</p>
-        <ButtonSubmit
-          text="Post Comment"
-          disabled={false}
-          classList={['w-144', 'bg-magenta']}
-        />
+        <div className={styles.form__btnPost}>
+          <ButtonSubmit
+            text="Post Comment"
+            disabled={false}
+            classList={['bg-magenta']}
+          />
+        </div>
       </div>
     </form>
   );

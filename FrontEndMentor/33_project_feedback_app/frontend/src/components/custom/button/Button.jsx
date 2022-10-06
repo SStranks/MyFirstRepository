@@ -7,9 +7,7 @@ function Button(props) {
   return (
     <button
       type="button"
-      className={`${styles.btn} ${styles[classList[0]]} ${
-        styles[classList[1]]
-      }`}
+      className={`${styles.btn} ${styles[classList[0]]}`}
       onClick={onClick}
       value={value}
       disabled={disabled}>

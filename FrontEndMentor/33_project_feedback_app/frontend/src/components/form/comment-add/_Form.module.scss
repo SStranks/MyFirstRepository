@@ -31,13 +31,7 @@
   }
 
   &__btnPost {
-    @include body-3;
-    padding: f.px2em(16) f.px2em(36);
-    background-color: $magenta;
-    color: $white;
-
-    @include media(mobile-large, mobile-medium, mobile-small) {
-      padding: f.px2em(10) f.px2em(16);
-    }
+    width: 144px;
+    height: 44px;
   }
 }

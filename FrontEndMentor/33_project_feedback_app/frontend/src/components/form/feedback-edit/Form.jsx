@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 import IconEditFeedback from '../../../assets/svg/shared/icon-edit-feedback.svg';
 import Button from '../../custom/button/Button';
@@ -7,7 +8,9 @@ import InputText from '../../custom/input-text/InputText';
 import Textarea from '../../custom/textarea/Textarea';
 import styles from './_Form.module.scss';
 
-function Form() {
+function Form(props) {
+  const { cancelBtnOnClick } = props;
+
   // Temporary Dev; Top Title 'Editing'
   const feedback = 'Add a dark theme option';
 
@@ -80,24 +83,35 @@ function Form() {
         />
       </div>
       <div className={styles.form__bar}>
-        <ButtonSubmit
-          text="Delete"
-          disabled={false}
-          classList={['w-94', 'bg-red']}
-        />
-        <Button
-          text="Cancel"
-          disabled={false}
-          classList={['w-94', 'bg-navy-blue']}
-        />
-        <ButtonSubmit
-          text="Add Feedback"
-          disabled={false}
-          classList={['w-144', 'bg-magenta']}
-        />
+        <div className={styles.form__bar__btnDelete}>
+          <ButtonSubmit text="Delete" disabled={false} classList={['bg-red']} />
+        </div>
+        <div className={styles.form__bar__btnCancel}>
+          <Button
+            text="Cancel"
+            disabled={false}
+            classList={['bg-navy-blue']}
+            onClick={cancelBtnOnClick}
+          />
+        </div>
+        <div className={styles.form__bar__btnSubmit}>
+          <ButtonSubmit
+            text="Add Feedback"
+            disabled={false}
+            classList={['bg-magenta']}
+          />
+        </div>
       </div>
     </form>
   );
 }
+
+Form.propTypes = {
+  cancelBtnOnClick: PropTypes.func,
+};
+
+Form.defaultProps = {
+  cancelBtnOnClick: undefined,
+};
 
 export default Form;

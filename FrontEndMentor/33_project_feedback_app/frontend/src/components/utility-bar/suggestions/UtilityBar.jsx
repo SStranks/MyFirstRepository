@@ -26,17 +26,16 @@ function UtilityBar() {
         <h3 className={styles.bar__number}>{numSuggestions} Suggestions</h3>
         <Dropdown listItems={dropdownList} />
       </div>
-      <Button
-        text="+ Add Feedback"
-        onClick={() => setModalOpen(true)}
-        disabled={false}
-        classList={['w-158', 'bg-magenta']}
-      />
-      <Modal handleClose={() => setModalOpen(false)} modalOpen={modalOpen}>
-        <FormFeedbackNew
-          cancelBtnOnClick={() => setModalOpen(false)}
-          modalOpen={modalOpen}
+      <div className={styles.bar__btn}>
+        <Button
+          text="+ Add Feedback"
+          onClick={() => setModalOpen(true)}
+          disabled={false}
+          classList={['bg-magenta']}
         />
+      </div>
+      <Modal handleClose={() => setModalOpen(false)} modalOpen={modalOpen}>
+        <FormFeedbackNew cancelBtnOnClick={() => setModalOpen(false)} />
       </Modal>
     </div>
   );

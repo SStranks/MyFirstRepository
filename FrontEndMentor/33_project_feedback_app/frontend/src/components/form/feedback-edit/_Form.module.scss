@@ -6,8 +6,12 @@
   @include card;
   padding: 0 f.px2em(42) f.px2em(42) f.px2em(42);
 
+  @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+    padding: 0 f.px2em(24) f.px2em(42) f.px2em(24);
+  }
+
   &__title {
-    margin-bottom: f.px2em(50);
+    margin-bottom: f.px2em(27);
     font-size: f.px2rem(24);
     font-weight: 700;
     color: $navy-blue;
@@ -57,8 +61,41 @@
     justify-content: flex-end;
     column-gap: 16px;
 
-    & > button:first-of-type {
+    @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+      flex-direction: column;
+      row-gap: f.px2em(16);
+      width: 100%;
+    }
+
+    &__btnDelete {
+      width: 94px;
+      height: 44px;
       margin-right: auto;
+
+      @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+        order: 3;
+        width: 100%;
+      }
+    }
+
+    &__btnCancel {
+      order: 2;
+      width: 94px;
+      height: 44px;
+
+      @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+        width: 100%;
+      }
+    }
+
+    &__btnSubmit {
+      order: 1;
+      width: 144px;
+      height: 44px;
+
+      @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
+        width: 100%;
+      }
     }
   }
 }
