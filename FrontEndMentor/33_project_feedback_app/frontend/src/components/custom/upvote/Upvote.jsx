@@ -4,8 +4,8 @@ import IconArrowUp from '../../../assets/svg/shared/icon-arrow-up.svg';
 import styles from './_Upvote.module.scss';
 
 function Upvote(props) {
-  const [voted, setVoted] = useState(false);
   const { upvotes } = props;
+  const [voted, setVoted] = useState(false);
 
   const clickHandler = () => {
     if (!voted) setVoted(true);

@@ -10,7 +10,7 @@ function Suggestion(props) {
 
   return (
     <div className={styles.item} key={id}>
-      <Upvote flexRow={false} upvotes={upvotes} />
+      <Upvote upvotes={upvotes} />
       <div className={styles.item__suggestion}>
         <h3>{title}</h3>
         <p>{description}</p>

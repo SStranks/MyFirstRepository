@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import Roadmap from '../roadmap/Roadmap';
 import styles from './_RoadmapList.module.scss';
 
@@ -6,28 +6,14 @@ import styles from './_RoadmapList.module.scss';
 import JSONData from '../../data/data.json';
 
 function RoadmapList() {
-  const [btnMobileFilter, setBtnMobileFilter] = useState({
+  const [mobileFilter, setmobileFilter] = useState({
     planned: true,
     'in-progress': false,
     live: false,
   });
 
-  const btnMobileFilterClickHandler = (e) => {
-    setBtnMobileFilter({
-      planned: false,
-      'in-progress': false,
-      live: false,
-      [e.target.value]: true,
-    });
-    // const btnActive = document.body.querySelector(
-    //   `button[name = "${e.target.value}"]`
-    // );
-    // btnActive.classList.add(styles.active);
-    // console.log(btnActive);
-  };
-
   const radioInputHandler = (e) => {
-    setBtnMobileFilter({
+    setmobileFilter({
       planned: false,
       'in-progress': false,
       live: false,
@@ -107,17 +93,33 @@ function RoadmapList() {
         </div>
         <div
           className={`${styles['grid__mobile-nav__activebar']} ${
-            btnMobileFilter.planned
+            mobileFilter.planned
               ? styles.col1
-              : btnMobileFilter['in-progress']
+              : mobileFilter['in-progress']
               ? styles.col2
               : styles.col3
           }`}
         />
       </form>
       <div className={styles['grid__mobile-nav__title']}>
-        <h3>{`Planned (${numPlanned})`}</h3>
-        <p>Ideas prioritized for research</p>
+        {mobileFilter.planned && (
+          <>
+            <h3>{`Planned (${numPlanned})`}</h3>
+            <p>Ideas prioritized for research</p>
+          </>
+        )}
+        {mobileFilter['in-progress'] && (
+          <>
+            <h3>{`In-Progress (${numProgress})`}</h3>
+            <p>Currently being developed</p>
+          </>
+        )}
+        {mobileFilter.live && (
+          <>
+            <h3>{`Live (${numLive})`}</h3>
+            <p>Released features</p>
+          </>
+        )}
       </div>
       <div className={styles.grid__title}>
         <h3>{`Planned (${numPlanned})`}</h3>

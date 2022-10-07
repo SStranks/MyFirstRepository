@@ -5,6 +5,10 @@
 .container {
   @include card;
   height: 100%;
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    height: fit-content;
+  }
 }
 
 .categories {

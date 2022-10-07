@@ -16,10 +16,10 @@ function SuggestionBoard() {
           <header>
             <Header />
           </header>
-          <aside>
+          <aside className={styles.grid__aside}>
             <AsideTags />
           </aside>
-          <aside>
+          <aside className={styles.grid__aside}>
             <AsideRoadmap />
           </aside>
         </div>

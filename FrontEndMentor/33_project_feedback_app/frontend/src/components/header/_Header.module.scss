@@ -1,8 +1,10 @@
 @use '../../assets/sass/variables' as *;
 @use '../../assets/sass/mixins' as *;
+@use '../../assets/sass/functions' as f;
 
 .header {
   @include card;
+  position: relative;
   display: flex;
   align-items: flex-end;
   height: 135px;
@@ -10,6 +12,24 @@
 
   &__content {
     @include body-2;
+  }
+
+  &__icon {
+    height: fit-content;
+  }
+
+  &__btn {
+    background-color: transparent;
+
+    @include media(
+      tablet-regular,
+      tablet-small,
+      desktop-large,
+      desktop-medium,
+      desktop-small
+    ) {
+      display: none;
+    }
   }
 
   @include media(desktop-small, desktop-medium, desktop-large) {
@@ -24,11 +44,38 @@
   }
 
   @include media(mobile-large, mobile-medium, mobile-small) {
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
     background-image: url('../../assets/svg/mobile/background-header.png');
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100%;
-    height: 100%;
     border-radius: 0;
+  }
+}
+
+.mobile-modal {
+  display: none;
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translateY(100%);
+    width: 100%;
+    height: 100vh;
+    background-color: $mobile-modal-bg;
+  }
+  &__side {
+    display: flex;
+    flex-direction: column;
+    row-gap: f.px2em(24);
+    height: 100vh;
+    width: 270px;
+    padding: f.px2em(24);
+    background-color: var(--color-background);
   }
 }
