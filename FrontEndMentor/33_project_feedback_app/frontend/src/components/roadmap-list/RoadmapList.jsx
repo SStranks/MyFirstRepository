@@ -26,6 +26,15 @@ function RoadmapList() {
     // console.log(btnActive);
   };
 
+  const radioInputHandler = (e) => {
+    setBtnMobileFilter({
+      planned: false,
+      'in-progress': false,
+      live: false,
+      [e.target.value]: true,
+    });
+  };
+
   // Temprary Dev
   const num1 = 2;
   const num2 = 3;
@@ -51,31 +60,51 @@ function RoadmapList() {
 
   return (
     <div className={styles.grid}>
-      <div className={styles['grid__mobile-nav']}>
-        <button
-          className={styles['grid__mobile-nav__btn1']}
-          type="button"
-          onClick={btnMobileFilterClickHandler}
-          value="planned"
-          name="planned">
-          Planned ({num1})
-        </button>
-        <button
-          className={styles['grid__mobile-nav__btn2']}
-          type="button"
-          onClick={btnMobileFilterClickHandler}
-          value="in-progress"
-          name="in-progress">
-          In-Progress ({num2})
-        </button>
-        <button
-          className={styles['grid__mobile-nav__btn3']}
-          type="button"
-          onClick={btnMobileFilterClickHandler}
-          value="live"
-          name="live">
-          Live ({num3})
-        </button>
+      <form className={styles['grid__mobile-nav']}>
+        <div>
+          <input
+            className={styles['grid__mobile-nav__radio']}
+            type="radio"
+            name="mobile-filter"
+            value="planned"
+            id="planned"
+            onChange={radioInputHandler}
+            defaultChecked
+          />
+          <label
+            className={styles['grid__mobile-nav__label']}
+            htmlFor="planned">
+            Planned ({num1})
+          </label>
+        </div>
+        <div>
+          <input
+            className={styles['grid__mobile-nav__radio']}
+            type="radio"
+            name="mobile-filter"
+            value="in-progress"
+            id="in-progress"
+            onChange={radioInputHandler}
+          />
+          <label
+            className={styles['grid__mobile-nav__label']}
+            htmlFor="in-progress">
+            In-Progress ({num2})
+          </label>
+        </div>
+        <div>
+          <input
+            className={styles['grid__mobile-nav__radio']}
+            type="radio"
+            name="mobile-filter"
+            id="live"
+            value="live"
+            onChange={radioInputHandler}
+          />
+          <label className={styles['grid__mobile-nav__label']} htmlFor="live">
+            Live ({num3})
+          </label>
+        </div>
         <div
           className={`${styles['grid__mobile-nav__activebar']} ${
             btnMobileFilter.planned
@@ -85,7 +114,7 @@ function RoadmapList() {
               : styles.col3
           }`}
         />
-      </div>
+      </form>
       <div className={styles['grid__mobile-nav__title']}>
         <h3>{`Planned (${numPlanned})`}</h3>
         <p>Ideas prioritized for research</p>

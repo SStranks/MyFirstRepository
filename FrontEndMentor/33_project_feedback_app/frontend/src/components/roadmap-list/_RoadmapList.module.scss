@@ -21,6 +21,7 @@
   }
 
   &__mobile-nav {
+    $self: &;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 56px auto;
@@ -37,37 +38,20 @@
       display: none;
     }
 
-    &__btn1 {
-      @include body-6;
-      background-color: transparent;
-      color: $dim-navy-blue;
-      border-radius: 0;
-
-      & .--active {
-        color: $navy-blue;
-        border-bottom: 5px solid $mute-orange;
-        border-radius: 0;
-      }
+    &__label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      color: $fade-blue;
     }
 
-    &__btn2 {
-      @include body-6;
-      background-color: transparent;
-      color: $dim-navy-blue;
-      border-radius: 0;
+    &__radio {
+      display: none;
 
-      // border-bottom: 0px solid $magenta;
-      // color: $navy-blue;
-    }
-
-    &__btn3 {
-      @include body-6;
-      background-color: transparent;
-      color: $dim-navy-blue;
-
-      & .--active {
+      &:checked ~ #{$self}__label {
         color: $navy-blue;
-        border-bottom: 5px solid $sky-blue;
       }
     }
 
@@ -76,6 +60,7 @@
     }
 
     &__title {
+      // Only visible on mobile widths; Single title vs all three on larger devices
       padding: 0 f.px2em(24);
       h3 {
         @include body-8;
