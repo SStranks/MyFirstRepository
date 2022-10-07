@@ -26,5 +26,6 @@
 
   @include media(mobile-large, mobile-medium, mobile-small) {
     width: 100%;
+    row-gap: 0;
   }
 }

@@ -57,6 +57,12 @@
   line-height: f.px2rem(19);
 }
 
+@mixin body-8 {
+  font-weight: 700;
+  font-size: f.px2rem(18);
+  line-height: f.px2rem(19);
+}
+
 /*   Card                           */
 @mixin card {
   background-color: $white;

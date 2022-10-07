@@ -17,11 +17,93 @@
   @include media(mobile-large, mobile-medium, mobile-small) {
     display: flex;
     flex-direction: column;
-    padding: 0 f.px2em(24);
-    padding-top: f.px2em(48);
+    padding: 0;
+  }
+
+  &__mobile-nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 56px auto;
+    width: 100%;
+    border-bottom: 1px solid $fade-blue;
+
+    @include media(
+      desktop-large,
+      desktop-medium,
+      desktop-small,
+      tablet-regular,
+      tablet-small
+    ) {
+      display: none;
+    }
+
+    &__btn1 {
+      @include body-6;
+      background-color: transparent;
+      color: $dim-navy-blue;
+      border-radius: 0;
+
+      & .--active {
+        color: $navy-blue;
+        border-bottom: 5px solid $mute-orange;
+        border-radius: 0;
+      }
+    }
+
+    &__btn2 {
+      @include body-6;
+      background-color: transparent;
+      color: $dim-navy-blue;
+      border-radius: 0;
+
+      // border-bottom: 0px solid $magenta;
+      // color: $navy-blue;
+    }
+
+    &__btn3 {
+      @include body-6;
+      background-color: transparent;
+      color: $dim-navy-blue;
+
+      & .--active {
+        color: $navy-blue;
+        border-bottom: 5px solid $sky-blue;
+      }
+    }
+
+    &__activebar {
+      height: 5px;
+    }
+
+    &__title {
+      padding: 0 f.px2em(24);
+      h3 {
+        @include body-8;
+        color: $navy-blue;
+        margin-bottom: f.px2em(5);
+      }
+      p {
+        @include body-7;
+        color: $mute-blue;
+      }
+
+      @include media(
+        tablet-regular,
+        tablet-small,
+        desktop-large,
+        desktop-medium,
+        desktop-small
+      ) {
+        display: none;
+      }
+    }
   }
 
   &__title {
+    @include media(mobile-large, mobile-medium, mobile-small) {
+      display: none;
+    }
+
     h3 {
       color: $navy-blue;
 
@@ -67,6 +149,22 @@
       display: flex;
       flex-direction: column;
       row-gap: f.px2em(16);
+      padding: 0 f.px2em(24);
     }
   }
+}
+
+.col1 {
+  grid-column: 1;
+  background-color: $mute-orange;
+}
+
+.col2 {
+  grid-column: 2;
+  background-color: $magenta;
+}
+
+.col3 {
+  grid-column: 3;
+  background-color: $sky-blue;
 }
