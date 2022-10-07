@@ -19,6 +19,10 @@
 
     & > :last-child {
       margin-left: f.px2em(16);
+
+      @include media(mobile-large, mobile-medium, mobile-small) {
+        margin-left: 0;
+      }
     }
   }
 
@@ -43,5 +47,14 @@
   &__btn {
     width: 157px;
     height: 44px;
+
+    @include media(mobile-medium, mobile-small) {
+      width: 134px;
+      height: 40px;
+
+      & > button {
+        padding: 0;
+      }
+    }
   }
 }

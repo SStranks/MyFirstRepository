@@ -10,6 +10,10 @@ function Header() {
   const [modalActive, setModalActive] = useState(false);
 
   const btnModalHandler = () => {
+    // Toggle Overflow on body
+    if (modalActive) document.body.classList.remove('modal-open');
+    if (!modalActive) document.body.classList.add('modal-open');
+
     setModalActive((prev) => !prev);
   };
 
