@@ -1,0 +1,45 @@
+name: "FEM#33-MERN-Webapp-PROD"
+services:
+
+  # Backend: Node API
+  node-api:
+    container_name: node-api-prod
+    build:
+      dockerfile: ./Dockerfile.prod
+    image: img-node-api-prod
+    env_file:
+      - ./backend/.env.prod
+    networks:
+      - MERN_PROD
+
+  # Frontend: React 
+  # NGINX Serving: Port 3000
+  react-app:
+    container_name: react-app-prod
+    build:
+      dockerfile: ./Dockerfile.prod
+    image: img-react-app-prod
+    env_file:
+      - ./frontend/.env.prod
+    depends_on:
+      - node-api
+    networks:
+      - MERN_PROD
+
+  # NGINX
+  nginx:
+    container_name: nginx-prod
+    restart: unless-stopped
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.prod
+    depends_on:
+      - node-api
+      - react-app
+    ports:
+      - 8080:80
+    networks:
+      - MERN_PROD
+
+networks:
+  MERN_PROD:
