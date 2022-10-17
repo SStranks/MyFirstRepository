@@ -1,0 +1,54 @@
+/* -------------------------------- */
+/*   Functions                      */
+/* -------------------------------- */
+/*   FrontEndMentor Challenge       */
+/*   #Invoice App                   */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      17/10/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use 'sass:math';
+
+/*   Functions                      */
+/* -------------------------------- */
+
+// Convert pixel value to REM. Returns 0 if input is 0, err if unit included
+@function px2rem($pixel) {
+  @if math.is-unitless($pixel) {
+    $rem-value: math.div($pixel, 16) + rem;
+    $zero-safe-rem: if($pixel == 0, 0, $rem-value);
+    @return $zero-safe-rem;
+  } @else {
+    @error 'Don\'t use units when using the rem() function';
+  }
+}
+
+// Convert pixel value to EM. Returns 0 if input is 0, err if unit included
+@function px2em($pixel) {
+  @if math.is-unitless($pixel) {
+    $em-value: math.div($pixel, 16) + em;
+    $zero-safe-em: if($pixel == 0, 0, $em-value);
+    @return $zero-safe-em;
+  } @else {
+    @error 'Don\'t use units when using the em() function';
+  }
+}
+
+// Z-Index Manager. Order determined by $z-indexes.
+// Organise $z-indexes and call function with relevant element name.
+@function z($name, $z-indexes-list: $z-indexes) {
+  @if index($z-indexes-list, $name) {
+    @return (length($z-indexes-list) - index($z-indexes-list, $name)) + 1;
+  } @else {
+    @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes-list}';
+
+    @return null;
+  }
+}
+
+// Z-Index List. Descending order of Z height.
+$z-indexes: ('modal', 'dropdown');

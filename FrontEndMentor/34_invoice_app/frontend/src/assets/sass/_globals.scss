@@ -1,0 +1,142 @@
+/* -------------------------------- */
+/*   Globals                        */
+/* -------------------------------- */
+/*   FrontEndMentor Challenge       */
+/*   #Invoice App                   */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      17/10/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use 'variables' as *;
+@use 'functions' as f;
+@use 'animations' as a;
+
+/*   Globals                        */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+  font-size: 100%;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  background: var(--color-background);
+  color: var(--color-text-p);
+  transition: a.$Theme-transition;
+}
+
+img {
+  display: block;
+  height: 100%;
+}
+
+// ul,
+// ol {
+//   padding-left: 1em;
+//   & li {
+//     padding-left: 1.5em;
+//   }
+// }
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-family: inherit;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+input {
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  color: var(--color-text-p);
+  transition: a.$Theme-transition;
+  background-color: transparent;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+  &::placeholder {
+    color: var(--color-text-p);
+    transition: a.$Theme-transition;
+  }
+}
+
+// *::-webkit-scrollbar {
+//   background: red;
+//   width: 10px;
+// }
+
+// *::-webkit-scrollbar-track {
+//   background: orange;
+//   width: 10px;
+// }
+
+// *::-webkit-scrollbar-thumb {
+//   background-color: blue;
+//   border-radius: 20px;
+//   border: 3px solid orange;
+// }
+
+textarea {
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: left;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.show {
+  display: inherit !important;
+}
+
+.modal-open {
+  // Prevent horizontal reflow from scrollbar
+  padding-right: 15px;
+  overflow: hidden;
+}
+
+.transition * {
+  transition: none !important;
+}

@@ -1,0 +1,290 @@
+/* -------------------------------- */
+/*   Mixins                         */
+/* -------------------------------- */
+/*   FrontEndMentor Challenge       */
+/*   #Invoice App                   */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      17/10/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use './variables' as *;
+@use 'functions' as f;
+
+/*   Text: Body                     */
+@mixin body-1 {
+  font-weight: 500;
+  font-size: f.px2rem(12);
+  line-height: f.px2rem(15);
+  letter-spacing: f.px2rem(-0.25);
+}
+
+@mixin body-2 {
+  font-weight: 400;
+  font-size: f.px2rem(11);
+  line-height: f.px2rem(18);
+  letter-spacing: f.px2rem(-0.23);
+}
+
+/*   Card                           */
+@mixin card {
+  background-color: $white;
+  border-radius: $border-radius-1;
+  padding: f.px2em(24);
+}
+
+/*   Text Area                      */
+@mixin textarea {
+  @include body-2;
+  border: none;
+  border-radius: $border-radius-2;
+  resize: vertical;
+  width: 100%;
+  padding: f.px2em(16) f.px2em(24);
+  background-color: $pale-blue;
+  color: $navy-blue;
+
+  &::placeholder {
+    color: $fade-blue;
+  }
+
+  &:focus {
+    outline: 1px solid $royal-blue;
+  }
+}
+
+/*   Errors                         */
+@mixin input-error {
+  $element: &;
+  &--error {
+    #{$element} {
+      outline: 1px solid $blood-red;
+
+      &:focus {
+        outline: 1px solid $blood-red;
+      }
+    }
+
+    &::after {
+      content: "Can't be empty";
+      @include body-4;
+      left: 0;
+      bottom: 0;
+      color: $blood-red;
+    }
+  }
+}
+
+/*   Buttons                        */
+@mixin btn-default {
+  font-size: f.px2rem(16);
+  font-weight: 700;
+  letter-spacing: 0.1ch;
+  padding: f.px2em(12) f.px2em(52);
+}
+
+@mixin btn-1 {
+  @include btn-default();
+  background-color: $magenta;
+  &:hover {
+    background-color: hsla(#{$magenta}, 0.5);
+  }
+}
+
+@mixin btn-2 {
+  @include btn-default();
+  background-color: $royal-blue;
+  &:hover {
+    background-color: hsla(#{$royal-blue}, 0.5);
+  }
+}
+
+@mixin btn-3 {
+  @include btn-default();
+  background-color: $navy-blue;
+  &:hover {
+    background-color: hsla(#{$navy-blue}, 0.5);
+  }
+}
+
+@mixin btn-4 {
+  @include btn-default();
+  background-color: $blood-red;
+  &:hover {
+    background-color: hsla(#{$blood-red}, 0.5);
+  }
+}
+
+@mixin btn-back {
+  font-size: f.px2rem(16);
+  font-weight: 700;
+  letter-spacing: 0.1ch;
+  padding: f.px2em(16) f.px2em(52);
+  background-color: $dark-blue;
+  &:hover {
+    background-color: hsla(#{$dark-blue}, 0.5);
+    text-decoration: underline;
+  }
+}
+
+/*   Breakpoints                    */
+// mobile-s:   320px;
+// mobile-m:   375px;
+// mobile-l:   425px;
+// tablet-s:   700px;
+// tablet-r:   768px;
+// desktop-s:  1024px;
+// desktop-m:  1440px;
+// desktop-l:  2560px;
+
+/*   Media Queries: Multiple        */
+@mixin media($args...) {
+  @each $arg in $args {
+    @if $arg == 'mobile-small' {
+      @include mobile-small {
+        @content;
+      }
+    }
+    @if $arg == 'mobile-medium' {
+      @include mobile-medium {
+        @content;
+      }
+    }
+    @if $arg == 'mobile-large' {
+      @include mobile-large {
+        @content;
+      }
+    }
+    @if $arg == 'mobile-all' {
+      @include mobile-all {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-small' {
+      @include tablet-small {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-regular' {
+      @include tablet-regular {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-all' {
+      @include tablet-all {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-small' {
+      @include desktop-small {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-medium' {
+      @include desktop-medium {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-large' {
+      @include desktop-large {
+        @content;
+      }
+    }
+  }
+}
+
+/*   Media Queries: Specific        */
+@mixin mobile-small {
+  @media (min-width: #{$mobile-s}) and (max-width: #{$mobile-m - 1px}) {
+    @content;
+  }
+}
+
+@mixin mobile-medium {
+  @media (min-width: #{$mobile-m}) and (max-width: #{$mobile-l - 1px}) {
+    @content;
+  }
+}
+
+@mixin mobile-large {
+  @media (min-width: #{$mobile-l}) and (max-width: #{$tablet-s - 1px}) {
+    @content;
+  }
+}
+
+@mixin mobile-all {
+  @media (min-width: #{$mobile-s}) and (max-width: #{$mobile-l - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-small {
+  @media (min-width: #{$tablet-s}) and (max-width: #{$tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-regular {
+  @media (min-width: #{$tablet}) and (max-width: #{$desktop-s - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-all {
+  @media (min-width: #{$tablet-s}) and (max-width: #{$tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-small {
+  @media (min-width: #{$desktop-s}) and (max-width: #{$desktop-m - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-medium {
+  @media (min-width: #{$desktop-m}) and (max-width: #{$desktop-l - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-large {
+  @media (min-width: #{$desktop-l}) {
+    @content;
+  }
+}
+
+/*   Fluid Typogrpahy               */
+// The first two arguments are for screen resolutions from which the font will be responsive.
+// The last two arguments are for the smallest and largest font size.
+// Calculates line-height automatically.
+@mixin fluid-font($min-width, $max-width, $min-font-size, $max-font-size) {
+  $unit1: unit($min-width);
+  $unit2: unit($max-width);
+  $unit3: unit($min-font-size);
+  $unit4: unit($max-font-size);
+  @if $unit1 == $unit2 and $unit1 == $unit3 and $unit1 == $unit4 {
+    & {
+      font-size: $min-font-size;
+      line-height: $min-font-size * 1.618;
+      @media screen and (min-width: $min-width) {
+        font-size: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            ((100vw - #{$min-width}) / #{strip-unit($max-width - $min-width)})
+        );
+        line-height: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            1.618 *
+            ((100vw - #{$min-width}) / #{strip-unit($max-width - $min-width)})
+        );
+      }
+      @media screen and (min-width: $max-width) {
+        font-size: $max-font-size;
+        line-height: $max-font-size * 1.618;
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+/* -------------------------------- */
+/*   Variables                      */
+/* -------------------------------- */
+/*   FrontEndMentor Challenge       */
+/*   #Invoice App                   */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      17/10/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Colours: Primary               */
+$color-1a: hsl(252deg, 94%, 67%);
+$color-1b: hsl(252deg, 100%, 73%);
+$color-1c: hsl(233deg, 31%, 17%);
+$color-1d: hsl(233deg, 30%, 21%);
+$color-2a: hsl(231deg, 75%, 93%);
+$color-2b: hsl(231deg, 20%, 61%);
+$color-2c: hsl(231deg, 36%, 63%);
+$color-2d: hsl(231deg, 28%, 7%);
+$color-3a: hsl(0deg, 80%, 63%);
+$color-3b: hsl(0deg, 100%, 80%);
+$color-3c: hsl(240deg, 27%, 98%);
+$color-3d: hsl(233deg, 30%, 11%);
+$color-4a: hsl(231deg, 20%, 27%);
+
+$white: hsl(0deg, 0%, 100%);
+$black: hsl(0deg, 0%, 0%);
+$grey: hsl(212deg, 23%, 69%);
+
+/*   Colours: Secondary             */
+/*   Placeholder Text               */
+// $fade-blue: hsl(231deg, 20%, 63%);
+/*   Faded Buttons                  */
+// $dim-magenta: hsl(282deg, 90%, 66%);
+/*   Utility Bar Dropdown           */
+// $dim-grey: hsla(230deg, 86%, 97%, 0.75);
+/*   Line Break                     */
+// $line-break: hsla(231deg, 20%, 63%, 0.25);
+/*   Mobile Modal Background        */
+// $mobile-modal-bg: hsla(0deg, 0%, 0%, 0.5);
+
+/*   Breakpoints                    */
+$mobile-s: 320px;
+$mobile-m: 375px;
+$mobile-l: 425px;
+$tablet-s: 700px;
+$tablet: 768px;
+$desktop-s: 1024px;
+$desktop-m: 1440px;
+$desktop-l: 2560px;
+
+/*   Borders                        */
+$border-radius-1: 10px;
+$border-radius-2: 5px;
+$border-bottom-li: 1px solid hsla(0deg, 0%, 59%, 0.15);
+
+/*   Shadows                        */
+$box-shadow-1: 0px 0px 25px 10px hsla(224deg, 20%, 49%, 0.3);
+$box-shadow-2: 0px 4px 14px 0px hsla(0deg, 0%, 0%, 0.2);

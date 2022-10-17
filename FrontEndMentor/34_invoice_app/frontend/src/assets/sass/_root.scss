@@ -1,0 +1,45 @@
+/* -------------------------------- */
+/*   Root                           */
+/* -------------------------------- */
+/*   FrontEndMentor Challenge       */
+/*   #Invoice App                   */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      17/10/2022          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use './variables' as *;
+
+/*  Themes                          */
+:root {
+  --color-background: #{$color-3c};
+  --color-text-p: #{$color-2d};
+  --color-text-h: #{$color-2d};
+  --color-elements: #{$white};
+  --color-sidebar: #{$color-4a};
+  --color-sidebar-panel: #{$white};
+  --color-sidebar-elements: #{$white};
+  --color-form-label: #{$color-2c};
+  --color-form-input: #{$white};
+  --color-form-dropdown: #{$white};
+  // --color-placeholder: hsl(216deg, 5%, 57%);
+  // --color-input-text: #{$Dark_Grey};
+}
+
+.dark-theme {
+  --color-background: #{$color-3d};
+  --color-text-p: #{$white};
+  --color-text-h: #{$white};
+  --color-elements: #{$color-1c};
+  --color-sidebar: #{$color-1c};
+  --color-sidebar-panel: #{$color-3d};
+  --color-sidebar-elements: #{$color-1c};
+  --color-form-label: #{$color-2a};
+  --color-form-input: #{$color-1c};
+  --color-form-dropdown: #{$color-1d};
+  //   --color-placeholder: hsl(216deg, 5%, 57%);
+  //   --color-input-text: #{$White};
+}
