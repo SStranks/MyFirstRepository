@@ -7,6 +7,12 @@ declare module '*.module.scss' {
   const classes: { [key: string]: string };
   export default classes;
 }
+
+// declare module '*.module.scss' {
+//   const styles: { [className: string]: string };
+//   export default styles;
+// }
+
 declare module '*.module.sass' {
   const classes: { [key: string]: string };
   export default classes;

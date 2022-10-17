@@ -12,7 +12,17 @@ export default {
       {
         test: /\.(ts|tsx|js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'ts-loader'],
+        use: [
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              compilerOptions: {
+                noEmit: false,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.html$/,

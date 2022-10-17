@@ -16,7 +16,8 @@
     "plugin:unicorn/recommended",
     "plugin:prettier/recommended"
   ],
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
+  // "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "ecmaFeatures": {
@@ -53,7 +54,7 @@
       "error",
       {
         "case": "pascalCase",
-        "ignore": ["index.(js|jsx)", "webpack.*", "*.d.ts"]
+        "ignore": ["index.(js|jsx|ts|tsx)", "webpack.*"]
       }
     ],
     "unicorn/prevent-abbreviations": "off",
