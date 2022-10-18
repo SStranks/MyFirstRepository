@@ -32,6 +32,7 @@ html {
 body {
   position: relative;
   width: 100%;
+  height: 100vh;
   background: var(--color-background);
   color: var(--color-text-p);
   transition: a.$Theme-transition;

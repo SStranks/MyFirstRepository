@@ -5,12 +5,14 @@ import styles from './SideBar.module.scss';
 
 function SideBar(): JSX.Element {
   return (
-    <div className={styles.container}>
-      <div className="">
+    <div className={styles.sidebar}>
+      <div className={styles.sidebar__logo}>
         <img src={SiteLogo} alt="" />
       </div>
-      <ThemeSwitcher />
-      <div>
+      <div className={styles.sidebar__themeswitch}>
+        <ThemeSwitcher />
+      </div>
+      <div className={styles.sidebar__user}>
         <User />
       </div>
     </div>

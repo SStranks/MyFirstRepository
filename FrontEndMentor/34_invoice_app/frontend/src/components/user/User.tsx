@@ -1,7 +1,10 @@
+import ProfileImg from '../../assets/img/image-avatar.jpg';
+import styles from './User.module.scss';
+
 function User(): JSX.Element {
   return (
-    <div className="">
-      <div className="">@</div>
+    <div className={styles.container}>
+      <img src={ProfileImg} alt="" />
     </div>
   );
 }
