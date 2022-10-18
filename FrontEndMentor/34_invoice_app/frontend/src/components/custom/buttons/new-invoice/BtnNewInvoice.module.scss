@@ -1,0 +1,37 @@
+@use '../../../../assets/sass/variables' as *;
+@use '../../../../assets/sass/mixins' as *;
+@use '../../../../assets/sass/functions' as f;
+
+.button {
+  @include btn-default;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 150px;
+  padding: 8px;
+  background-color: $color-1a;
+
+  &:hover {
+    background-color: $color-1b;
+  }
+
+  & > p {
+    flex-grow: 1;
+    padding-top: 4px;
+  }
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: $white;
+
+    & > img {
+      width: 10px;
+      height: auto;
+    }
+  }
+}

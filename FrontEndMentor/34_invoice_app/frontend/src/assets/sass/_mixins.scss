@@ -16,10 +16,11 @@
 
 /*   Text: Body                     */
 @mixin body-1 {
-  font-weight: 500;
-  font-size: f.px2rem(12);
+  font-weight: 400;
+  font-size: f.px2rem(16);
   line-height: f.px2rem(15);
   letter-spacing: f.px2rem(-0.25);
+  color: $color-2b;
 }
 
 @mixin body-2 {
@@ -80,55 +81,58 @@
 
 /*   Buttons                        */
 @mixin btn-default {
-  font-size: f.px2rem(16);
-  font-weight: 700;
-  letter-spacing: 0.1ch;
-  padding: f.px2em(12) f.px2em(52);
+  font-size: f.px2rem(15);
+  font-weight: 500;
+  line-height: f.px2rem(15);
+  letter-spacing: -0.25px;
+  color: $white;
+  height: 48px;
+  border-radius: 24px;
 }
 
-@mixin btn-1 {
-  @include btn-default();
-  background-color: $magenta;
-  &:hover {
-    background-color: hsla(#{$magenta}, 0.5);
-  }
-}
+// @mixin btn-1 {
+//   @include btn-default();
+//   background-color: $magenta;
+//   &:hover {
+//     background-color: hsla(#{$magenta}, 0.5);
+//   }
+// }
 
-@mixin btn-2 {
-  @include btn-default();
-  background-color: $royal-blue;
-  &:hover {
-    background-color: hsla(#{$royal-blue}, 0.5);
-  }
-}
+// @mixin btn-2 {
+//   @include btn-default();
+//   background-color: $royal-blue;
+//   &:hover {
+//     background-color: hsla(#{$royal-blue}, 0.5);
+//   }
+// }
 
-@mixin btn-3 {
-  @include btn-default();
-  background-color: $navy-blue;
-  &:hover {
-    background-color: hsla(#{$navy-blue}, 0.5);
-  }
-}
+// @mixin btn-3 {
+//   @include btn-default();
+//   background-color: $navy-blue;
+//   &:hover {
+//     background-color: hsla(#{$navy-blue}, 0.5);
+//   }
+// }
 
-@mixin btn-4 {
-  @include btn-default();
-  background-color: $blood-red;
-  &:hover {
-    background-color: hsla(#{$blood-red}, 0.5);
-  }
-}
+// @mixin btn-4 {
+//   @include btn-default();
+//   background-color: $blood-red;
+//   &:hover {
+//     background-color: hsla(#{$blood-red}, 0.5);
+//   }
+// }
 
-@mixin btn-back {
-  font-size: f.px2rem(16);
-  font-weight: 700;
-  letter-spacing: 0.1ch;
-  padding: f.px2em(16) f.px2em(52);
-  background-color: $dark-blue;
-  &:hover {
-    background-color: hsla(#{$dark-blue}, 0.5);
-    text-decoration: underline;
-  }
-}
+// @mixin btn-back {
+//   font-size: f.px2rem(16);
+//   font-weight: 700;
+//   letter-spacing: 0.1ch;
+//   padding: f.px2em(16) f.px2em(52);
+//   background-color: $dark-blue;
+//   &:hover {
+//     background-color: hsla(#{$dark-blue}, 0.5);
+//     text-decoration: underline;
+//   }
+// }
 
 /*   Breakpoints                    */
 // mobile-s:   320px;

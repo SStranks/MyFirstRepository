@@ -6,17 +6,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 730px;
 
-  &__titleblock {
-    & > p {
-      @include body-1;
-      margin-top: f.px2em(6);
-    }
-  }
-
-  &__controls {
-    display: flex;
-    column-gap: f.px2em(40.5);
+  & > img {
+    height: fit-content;
+    margin-left: f.px2em(16);
   }
 }
