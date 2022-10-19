@@ -1,0 +1,76 @@
+@use '#Sass/variables' as *;
+@use '#Sass/mixins' as *;
+@use '#Sass/functions' as f;
+
+.container {
+  display: grid;
+  grid-template-columns: auto repeat(3, auto) 104px auto;
+  column-gap: 20px;
+  grid-template-rows: 1fr;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: f.px2em(16) f.px2em(24) f.px2em(16) f.px2em(32);
+  background-color: var(--color-elements);
+  box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.1);
+  border-radius: 8px;
+
+  &__code {
+    font-weight: 700;
+    font-size: f.px2rem(15);
+    line-height: f.px2rem(15);
+    letter-spacing: f.px2rem(-0.25);
+    color: $color-2c;
+
+    &--black {
+      display: inline-block;
+      color: $black;
+    }
+  }
+
+  &__date {
+    color: $color-2c;
+  }
+
+  &__name {
+    color: $color-2c;
+  }
+
+  &__amount {
+    font-weight: 700;
+    font-size: f.px2rem(20);
+    line-height: f.px2rem(15);
+    letter-spacing: f.px2rem(-0.25);
+  }
+
+  &__status {
+    position: relative;
+    display: flex;
+    column-gap: f.px2em(8);
+    align-items: center;
+    font-weight: 700;
+    font-size: f.px2rem(16);
+    line-height: f.px2rem(16);
+    letter-spacing: f.px2rem(-0.25);
+    padding: f.px2em(13) f.px2em(30);
+    background-color: $color-4b;
+    border-radius: 6px;
+    color: $color-4c;
+
+    & > p {
+      padding-top: 3px;
+    }
+
+    &__bullet {
+      min-width: 8px;
+      min-height: 8px;
+      background-color: $color-4c;
+      border-radius: 100%;
+    }
+  }
+
+  &__arrowright {
+    width: 4px;
+    height: fit-content;
+  }
+}
