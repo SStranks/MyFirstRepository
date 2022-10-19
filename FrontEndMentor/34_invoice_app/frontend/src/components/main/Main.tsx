@@ -5,8 +5,10 @@ import styles from './Main.module.scss';
 function Main(): JSX.Element {
   return (
     <div className={styles.container}>
-      <UtilityBar />
-      <InvoiceList />
+      <div className={styles.container__subContainer}>
+        <UtilityBar />
+        <InvoiceList />
+      </div>
     </div>
   );
 }
