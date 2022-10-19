@@ -1,4 +1,7 @@
 import ESLintPlugin from 'eslint-webpack-plugin';
+import path from 'node:path';
+import url from 'node:url';
+
 // import CopyPlugin from 'copy-webpack-plugin';
 
 export default {
@@ -6,6 +9,60 @@ export default {
   target: 'web',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    alias: {
+      '#Img': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/assets/img'
+      ),
+      '#Sass': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/assets/sass'
+      ),
+      '#Svg': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/assets/svg'
+      ),
+      '#Components': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/components'
+      ),
+      '#Context': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/context'
+      ),
+      '#Data': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/data'
+      ),
+      '#Features': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/features'
+      ),
+      '#Hooks': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/hooks'
+      ),
+      '#Layouts': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/layouts'
+      ),
+      '#Lib': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/lib'
+      ),
+      '#Pages': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/pages'
+      ),
+      '#Services': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/services'
+      ),
+      '#Utils': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/utils'
+      ),
+    },
   },
   module: {
     rules: [

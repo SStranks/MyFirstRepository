@@ -17,19 +17,19 @@
     "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
-  // "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "ecmaFeatures": {
       "jsx": true
     },
-    "sourceType": "module",
-    "requireConfigFile": false
+    "sourceType": "module"
+    // "requireConfigFile": false
   },
   "plugins": [
     "@typescript-eslint",
     "react",
     "jsx-a11y",
+    "import",
     "jest",
     "unicorn",
     "prettier"
@@ -54,7 +54,7 @@
       "error",
       {
         "case": "pascalCase",
-        "ignore": ["index.(js|jsx|ts|tsx)", "webpack.*", "*.test.ts"]
+        "ignore": ["index.(js|jsx|ts|tsx)", "webpack.*", ".test.ts", ".d.ts"]
       }
     ],
     "unicorn/prevent-abbreviations": "off",
@@ -67,8 +67,13 @@
     // "class-methods-use-this": "off",
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "import/resolver": {
-      "typescript": {}
+      "typescript": {
+        "project": "./frontend/tsconfig.json"
+      }
     }
   },
   "ignorePatterns": ["node_modules", "public/*"]
