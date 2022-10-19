@@ -1,4 +1,4 @@
-import IconPlus from '../../../../assets/svg/icon-plus.svg';
+import IconPlus from '#Svg/icon-plus.svg';
 import styles from './BtnNewInvoice.module.scss';
 
 type BtnProps = {

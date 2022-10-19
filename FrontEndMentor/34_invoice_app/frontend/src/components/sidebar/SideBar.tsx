@@ -1,6 +1,6 @@
-import SiteLogo from '../../assets/svg/logo.svg';
-import ThemeSwitcher from '../theme-switch/ThemeSwitch';
-import User from '../user/User';
+import ThemeSwitcher from '#Components/theme-switch/ThemeSwitch';
+import User from '#Components/user/User';
+import SiteLogo from '#Svg/logo.svg';
 import styles from './SideBar.module.scss';
 
 function SideBar(): JSX.Element {

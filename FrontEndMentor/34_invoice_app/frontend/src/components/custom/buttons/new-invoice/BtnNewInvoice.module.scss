@@ -1,6 +1,6 @@
-@use '../../../../assets/sass/variables' as *;
-@use '../../../../assets/sass/mixins' as *;
-@use '../../../../assets/sass/functions' as f;
+@use '#Sass/variables' as *;
+@use '#Sass/mixins' as *;
+@use '#Sass/functions' as f;
 
 .button {
   @include btn-default;

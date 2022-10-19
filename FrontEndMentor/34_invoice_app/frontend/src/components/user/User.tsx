@@ -1,4 +1,4 @@
-import ProfileImg from '../../assets/img/image-avatar.jpg';
+import ProfileImg from '#Img/image-avatar.jpg';
 import styles from './User.module.scss';
 
 function User(): JSX.Element {

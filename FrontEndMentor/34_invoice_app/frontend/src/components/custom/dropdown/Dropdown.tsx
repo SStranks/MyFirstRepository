@@ -1,4 +1,4 @@
-import ArrowDown from '../../../assets/svg/icon-arrow-down.svg';
+import ArrowDown from '#Svg/icon-arrow-down.svg';
 import styles from './Dropdown.module.scss';
 
 function Dropdown(): JSX.Element {
