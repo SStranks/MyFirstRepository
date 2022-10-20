@@ -1,0 +1,54 @@
+@use '#Sass/variables' as *;
+@use '#Sass/mixins' as *;
+@use '#Sass/functions' as f;
+
+.container {
+  &__back {
+    display: flex;
+    column-gap: f.px2em(26);
+    align-items: center;
+    font-weight: 700;
+    margin-bottom: f.px2em(32);
+  }
+
+  &__statusBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: f.px2em(20) f.px2em(32);
+    margin-bottom: f.px2em(24);
+    background-color: $white;
+    border-radius: $border-radius-1;
+    box-shadow: $box-shadow-1;
+
+    &__status {
+      display: flex;
+      align-items: center;
+      column-gap: f.px2em(16);
+    }
+
+    &__buttons {
+      display: flex;
+      column-gap: f.px2em(8);
+    }
+  }
+
+  &__invoice {
+    padding: f.px2em(48);
+    background-color: $white;
+    border-radius: $border-radius-1;
+    box-shadow: $box-shadow-1;
+  }
+}
+
+.tmpbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  padding: f.px2em(17) f.px2em(24);
+  background-color: $color-1a;
+  color: $white;
+  border-radius: 24px;
+  font-weight: 500;
+}
