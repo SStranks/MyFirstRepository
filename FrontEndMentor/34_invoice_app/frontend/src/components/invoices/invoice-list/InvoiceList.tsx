@@ -1,24 +1,24 @@
-// import Invoice from '#Components/invoices/invoice/Invoice';
+import Invoice from '#Components/invoices/invoice/Invoice';
 import IllustrationEmpty from '#Svg/illustration-empty.svg';
 // TEMP DEV:  // Data
-// import JSONData from '#Data/data.json';
+import JSONData from '#Data/data.json';
 
 import styles from './InvoiceList.module.scss';
 
 function InvoiceList(): JSX.Element {
   // TEMP DEV:  // Data
-  // const invoices = JSONData.map((el) => (
-  //   <Invoice
-  //     key={el.id}
-  //     invoiceId={el.id}
-  //     paymentDue={el.paymentDue}
-  //     clientName={el.clientName}
-  //     total={el.total}
-  //     status={el.status}
-  //   />
-  // ));
+  const invoices = JSONData.map((el) => (
+    <Invoice
+      key={el.id}
+      invoiceId={el.id}
+      paymentDue={el.paymentDue}
+      clientName={el.clientName}
+      total={el.total}
+      status={el.status}
+    />
+  ));
 
-  const invoices = undefined;
+  // const invoices = undefined;
 
   const noInvoices = (
     <>

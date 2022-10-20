@@ -58,10 +58,8 @@ $desktop-m: 1440px;
 $desktop-l: 2560px;
 
 /*   Borders                        */
-$border-radius-1: 10px;
-$border-radius-2: 5px;
-$border-bottom-li: 1px solid hsla(0deg, 0%, 59%, 0.15);
+$border-radius-1: 8px;
+$border-radius-2: 6px;
 
 /*   Shadows                        */
-$box-shadow-1: 0px 0px 25px 10px hsla(224deg, 20%, 49%, 0.3);
-$box-shadow-2: 0px 4px 14px 0px hsla(0deg, 0%, 0%, 0.2);
+$box-shadow-1: 0px 10px 10px -10px rgba(72, 84, 159, 0.1);
