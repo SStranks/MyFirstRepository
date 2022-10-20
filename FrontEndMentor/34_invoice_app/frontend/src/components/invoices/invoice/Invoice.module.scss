@@ -4,11 +4,14 @@
 
 .container {
   display: grid;
-  grid-template-columns: auto repeat(3, auto) 104px auto;
+  grid-template-columns: minmax(65px, max-content) minmax(115px, max-content) repeat(
+      2,
+      auto
+    ) 104px minmax(min-content, max-content);
   column-gap: 20px;
   grid-template-rows: 1fr;
   align-items: center;
-  height: 100%;
+  height: fit-content;
   width: 100%;
   padding: f.px2em(16) f.px2em(24) f.px2em(16) f.px2em(32);
   background-color: var(--color-elements);
@@ -41,6 +44,8 @@
     font-size: f.px2rem(20);
     line-height: f.px2rem(15);
     letter-spacing: f.px2rem(-0.25);
+    text-align: right;
+    margin-right: f.px2em(20);
   }
 
   &__status {
@@ -48,18 +53,15 @@
     display: flex;
     column-gap: f.px2em(8);
     align-items: center;
+    justify-content: center;
     font-weight: 700;
     font-size: f.px2rem(16);
-    line-height: f.px2rem(16);
+    line-height: 1;
     letter-spacing: f.px2rem(-0.25);
-    padding: f.px2em(13) f.px2em(30);
+    padding: f.px2em(13) 0;
     background-color: $color-4b;
     border-radius: 6px;
     color: $color-4c;
-
-    & > p {
-      padding-top: 3px;
-    }
 
     &__bullet {
       min-width: 8px;

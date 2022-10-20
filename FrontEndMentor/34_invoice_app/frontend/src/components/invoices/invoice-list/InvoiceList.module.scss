@@ -3,5 +3,8 @@
 @use '#Sass/functions' as f;
 
 .container {
+  display: grid;
+  grid-template-rows: auto;
+  row-gap: f.px2em(16);
   width: 100%;
 }
