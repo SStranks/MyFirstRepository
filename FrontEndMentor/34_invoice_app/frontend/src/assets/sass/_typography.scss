@@ -13,7 +13,49 @@
 /*   Imports                        */
 @use 'variables' as *;
 @use 'functions' as f;
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;700&display=swap');
+
+@font-face {
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/leaguespartan/v6/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2)
+    format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+  ascent-override: 100%;
+  // descent-override: 20%;
+}
+
+@font-face {
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/leaguespartan/v6/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2)
+    format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+  ascent-override: 100%;
+  // descent-override: 20%;
+}
+
+@font-face {
+  font-family: 'League Spartan';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/leaguespartan/v6/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2)
+    format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+  ascent-override: 85%;
+  descent-override: 20%;
+}
 
 /*   Font                           */
 html,
@@ -27,7 +69,8 @@ body {
 h1 {
   font-weight: 700;
   font-size: f.px2rem(38);
-  line-height: f.px2rem(36);
+  line-height: 1;
+  // line-height: f.px2rem(36);
   letter-spacing: f.px2rem(-1);
 }
 
