@@ -3,8 +3,31 @@
 @use '#Sass/functions' as f;
 
 .container {
-  display: grid;
-  grid-template-rows: auto;
-  row-gap: f.px2em(16);
   width: 100%;
+
+  &__invoices {
+    display: grid;
+    grid-template-rows: auto;
+    row-gap: f.px2em(16);
+  }
+
+  &__noInvoices {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: min-content;
+    margin-inline: auto;
+    margin-top: f.px2em(76);
+
+    & > img {
+      margin-bottom: f.px2em(64);
+    }
+
+    & > p {
+      margin-top: f.px2em(24);
+      color: $color-2b;
+      text-align: center;
+    }
+  }
 }
