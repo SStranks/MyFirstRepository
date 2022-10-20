@@ -1,0 +1,50 @@
+@use '#Sass/variables' as *;
+@use '#Sass/mixins' as *;
+@use '#Sass/functions' as f;
+
+.container {
+  position: relative;
+  display: flex;
+  column-gap: f.px2em(8);
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: f.px2rem(16);
+  line-height: 1;
+  letter-spacing: f.px2rem(-0.25);
+  padding: f.px2em(13) 0;
+  border-radius: 6px;
+
+  &__bullet {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 100%;
+  }
+
+  &--paid {
+    background-color: $color-4b;
+    color: $color-4c;
+
+    & .container__bullet {
+      background-color: $color-4c;
+    }
+  }
+
+  &--pending {
+    background-color: $color-4d;
+    color: $color-4e;
+
+    & .container__bullet {
+      background-color: $color-4e;
+    }
+  }
+
+  &--draft {
+    background-color: $color-4f;
+    color: $color-4g;
+
+    & .container__bullet {
+      background-color: $color-4g;
+    }
+  }
+}
