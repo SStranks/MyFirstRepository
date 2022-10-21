@@ -58,6 +58,8 @@
       grid-template-columns: repeat(3, auto);
 
       &__date {
+        // TODO: Remove this temp
+        display: flex;
       }
 
       &__due {
