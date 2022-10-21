@@ -34,10 +34,100 @@
   }
 
   &__invoice {
+    display: grid;
+    grid-template-rows: repeat(4, auto);
     padding: f.px2em(48);
     background-color: $white;
     border-radius: $border-radius-1;
     box-shadow: $box-shadow-1;
+
+    &__identity {
+      grid-row: 1;
+      display: flex;
+      justify-content: space-between;
+      &__code {
+        display: flex;
+        flex-direction: column;
+        row-gap: f.px2em(8);
+      }
+    }
+
+    &__details {
+      grid-row: 2 / 3;
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+
+      &__date {
+      }
+
+      &__due {
+        grid-column: 1;
+        grid-row: 2;
+      }
+
+      &__recipient {
+        grid-column: 2;
+        grid-row: 1 / 2;
+      }
+
+      &__email {
+        grid-column: 3;
+      }
+    }
+
+    &__payment {
+      border-radius: $border-radius-1 $border-radius-1 0 0;
+
+      &__grid {
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        grid-template-rows: auto;
+        row-gap: f.px2em(32);
+        padding: f.px2em(32);
+        margin-top: f.px2em(45);
+        background-color: $color-4h;
+        border-radius: $border-radius-1 $border-radius-1 0 0;
+        color: $color-2c;
+        font-weight: 500;
+
+        &__name {
+          text-align: left;
+        }
+
+        &__qty {
+          text-align: center;
+        }
+
+        &__price {
+          text-align: right;
+        }
+
+        &__total {
+          text-align: right;
+        }
+      }
+
+      &__total {
+        grid-column: 1 / span 4;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: f.px2em(24) f.px2em(32);
+        background-color: $color-4g;
+        color: $white;
+        border-radius: 0 0 $border-radius-1 $border-radius-1;
+
+        &__due {
+          font-size: f.px2em(14);
+          font-weight: 400;
+        }
+
+        &__total {
+          font-size: f.px2em(32);
+          font-weight: 500;
+        }
+      }
+    }
   }
 }
 

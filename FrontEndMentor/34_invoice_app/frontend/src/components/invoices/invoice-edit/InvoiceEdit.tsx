@@ -25,8 +25,8 @@ function InvoiceEdit(): JSX.Element {
         </div>
       </div>
       <div className={styles.container__invoice}>
-        <div className="flex">
-          <div className="">
+        <div className={styles.container__invoice__identity}>
+          <div className={styles.container__invoice__identity__code}>
             <p>#XM9141</p>
             <p>Graphic Design</p>
           </div>
@@ -42,16 +42,16 @@ function InvoiceEdit(): JSX.Element {
             </p>
           </div>
         </div>
-        <div className="grid">
-          <div className="">
+        <div className={styles.container__invoice__details}>
+          <div className={styles.container__invoice__details__date}>
             <p>Invoice Date</p>
             <p>21 Aug 2021</p>
           </div>
-          <div className="">
+          <div className={styles.container__invoice__details__due}>
             <p>Payment Due</p>
             <p>20 Sep 2021</p>
           </div>
-          <div className="">
+          <div className={styles.container__invoice__details__recipient}>
             <p>Bill To</p>
             <p>Alex Grim</p>
             <p>
@@ -64,23 +64,43 @@ function InvoiceEdit(): JSX.Element {
               United Kingdom
             </p>
           </div>
-          <div className="">
+          <div className={styles.container__invoice__details__email}>
             <p>Sent to</p>
             <p>alexgrim@mail.com</p>
           </div>
         </div>
-        <div className="grid">
-          <p>Item Name</p>
-          <p>QTY.</p>
-          <p>Price</p>
-          <p>Total</p>
-          <p>Banner Design</p>
-          <p>1</p>
-          <p>£ 156.00</p>
-          <p>£ 156.00</p>
-          <div className="">
-            <p>Amount Due</p>
-            <p>£ 556.00</p>
+        <div className={styles.container__invoice__payment}>
+          <div className={styles.container__invoice__payment__grid}>
+            <p className={styles.container__invoice__payment__grid__name}>
+              Item Name
+            </p>
+            <p className={styles.container__invoice__payment__grid__qty}>
+              QTY.
+            </p>
+            <p className={styles.container__invoice__payment__grid__price}>
+              Price
+            </p>
+            <p className={styles.container__invoice__payment__grid__total}>
+              Total
+            </p>
+            <p className={styles.container__invoice__payment__grid__name}>
+              Banner Design
+            </p>
+            <p className={styles.container__invoice__payment__grid__qty}>1</p>
+            <p className={styles.container__invoice__payment__grid__total}>
+              £ 156.00
+            </p>
+            <p className={styles.container__invoice__payment__grid__price}>
+              £ 156.00
+            </p>
+          </div>
+          <div className={styles.container__invoice__payment__total}>
+            <p className={styles.container__invoice__payment__total__due}>
+              Amount Due
+            </p>
+            <p className={styles.container__invoice__payment__total__total}>
+              £ 556.00
+            </p>
           </div>
         </div>
       </div>
