@@ -1,0 +1,21 @@
+@use '#Sass/variables' as *;
+@use '#Sass/mixins' as *;
+@use '#Sass/functions' as f;
+
+.container {
+  @include body-3;
+  padding: f.px2em(48);
+  color: $color-2b;
+  background-color: var(--color-elements);
+  border-radius: $border-radius-1;
+
+  &__title {
+    @include body-4;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
