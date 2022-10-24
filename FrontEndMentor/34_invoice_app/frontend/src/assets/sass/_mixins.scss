@@ -30,6 +30,11 @@
   letter-spacing: f.px2rem(-0.23);
 }
 
+@mixin text-modifier-black {
+  font-weight: 700;
+  color: $color-2d;
+}
+
 /*   Card                           */
 @mixin card {
   background-color: $white;

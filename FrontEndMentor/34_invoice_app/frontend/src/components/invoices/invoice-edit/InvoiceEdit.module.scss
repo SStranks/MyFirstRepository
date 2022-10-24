@@ -38,6 +38,7 @@
     grid-template-rows: repeat(4, auto);
     padding: f.px2em(48);
     background-color: $white;
+    color: $color-2c;
     border-radius: $border-radius-1;
     box-shadow: $box-shadow-1;
 
@@ -45,10 +46,15 @@
       grid-row: 1;
       display: flex;
       justify-content: space-between;
+      margin-bottom: f.px2em(20);
+
       &__code {
         display: flex;
         flex-direction: column;
-        row-gap: f.px2em(8);
+
+        &--black {
+          @include text-modifier-black;
+        }
       }
     }
 
@@ -58,22 +64,41 @@
       grid-template-columns: repeat(3, auto);
 
       &__date {
-        // TODO: Remove this temp
-        display: flex;
+        &--black {
+          @include text-modifier-black;
+          margin-top: f.px2em(12);
+        }
       }
 
       &__due {
         grid-column: 1;
         grid-row: 2;
+        align-self: end;
+
+        &--black {
+          @include text-modifier-black;
+          margin-top: f.px2em(12);
+        }
       }
 
       &__recipient {
         grid-column: 2;
-        grid-row: 1 / 2;
+        grid-row: 1 / span 2;
+
+        &--black {
+          @include text-modifier-black;
+          margin-top: f.px2em(12);
+          margin-bottom: f.px2em(8);
+        }
       }
 
       &__email {
         grid-column: 3;
+
+        &--black {
+          @include text-modifier-black;
+          margin-top: f.px2em(12);
+        }
       }
     }
 
@@ -93,7 +118,13 @@
         font-weight: 500;
 
         &__name {
+          $parent: &;
           text-align: left;
+
+          &--black {
+            @extend #{$parent};
+            @include text-modifier-black;
+          }
         }
 
         &__qty {
@@ -105,7 +136,13 @@
         }
 
         &__total {
+          $parent: &;
           text-align: right;
+
+          &--black {
+            @extend #{$parent};
+            @include text-modifier-black;
+          }
         }
       }
 

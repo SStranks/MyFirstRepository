@@ -27,7 +27,13 @@ function InvoiceEdit(): JSX.Element {
       <div className={styles.container__invoice}>
         <div className={styles.container__invoice__identity}>
           <div className={styles.container__invoice__identity__code}>
-            <p>#XM9141</p>
+            <p>
+              #
+              <span
+                className={styles['container__invoice__identity__code--black']}>
+                XM9141
+              </span>
+            </p>
             <p>Graphic Design</p>
           </div>
           <div className="">
@@ -45,28 +51,34 @@ function InvoiceEdit(): JSX.Element {
         <div className={styles.container__invoice__details}>
           <div className={styles.container__invoice__details__date}>
             <p>Invoice Date</p>
-            <p>21 Aug 2021</p>
+            <p className={styles['container__invoice__details__date--black']}>
+              21 Aug 2021
+            </p>
           </div>
           <div className={styles.container__invoice__details__due}>
             <p>Payment Due</p>
-            <p>20 Sep 2021</p>
+            <p className={styles['container__invoice__details__due--black']}>
+              20 Sep 2021
+            </p>
           </div>
           <div className={styles.container__invoice__details__recipient}>
             <p>Bill To</p>
-            <p>Alex Grim</p>
-            <p>
-              84 Church Way
-              <br />
-              Bradford
-              <br />
-              BD1 9FB
-              <br />
-              United Kingdom
+            <p
+              className={
+                styles['container__invoice__details__recipient--black']
+              }>
+              Alex Grim
             </p>
+            <p>84 Church Way.</p>
+            <p>Bradford</p>
+            <p>BD1 9FB</p>
+            <p>United Kingdom</p>
           </div>
           <div className={styles.container__invoice__details__email}>
             <p>Sent to</p>
-            <p>alexgrim@mail.com</p>
+            <p className={styles['container__invoice__details__email--black']}>
+              alexgrim@mail.com
+            </p>
           </div>
         </div>
         <div className={styles.container__invoice__payment}>
@@ -83,14 +95,20 @@ function InvoiceEdit(): JSX.Element {
             <p className={styles.container__invoice__payment__grid__total}>
               Total
             </p>
-            <p className={styles.container__invoice__payment__grid__name}>
+            <p
+              className={
+                styles['container__invoice__payment__grid__name--black']
+              }>
               Banner Design
             </p>
             <p className={styles.container__invoice__payment__grid__qty}>1</p>
-            <p className={styles.container__invoice__payment__grid__total}>
+            <p className={styles.container__invoice__payment__grid__price}>
               £ 156.00
             </p>
-            <p className={styles.container__invoice__payment__grid__price}>
+            <p
+              className={
+                styles['container__invoice__payment__grid__total--black']
+              }>
               £ 156.00
             </p>
           </div>
