@@ -37,6 +37,13 @@
   letter-spacing: f.px2rem(-0.25);
 }
 
+@mixin body-4 {
+  font-weight: 700;
+  font-size: f.px2rem(24);
+  line-height: 1;
+  letter-spacing: f.px2rem(-0.25);
+}
+
 @mixin text-modifier-black {
   font-weight: 700;
   color: $color-2d;

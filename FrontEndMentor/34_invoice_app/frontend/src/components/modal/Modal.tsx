@@ -7,16 +7,15 @@ type ModalProps = {
   onClose: () => void;
 };
 
-function Modal(props: ModalProps): JSX.Element | undefined {
+function Modal(props: ModalProps): JSX.Element | null {
   const { open, children, onClose } = props;
-  if (!open) return undefined;
+  // eslint-disable-next-line unicorn/no-null
+  if (!open) return null;
 
   const domNode = document.querySelector('#modal') as HTMLElement;
 
   return ReactDOM.createPortal(
-    <div className={styles.container} onClick={onClose}>
-      {children}
-    </div>,
+    <div className={styles.container}>{children}</div>,
     domNode
   );
 }

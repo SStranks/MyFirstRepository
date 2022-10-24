@@ -39,6 +39,8 @@ $black: hsl(0deg, 0%, 0%);
 $grey: hsl(212deg, 23%, 69%);
 
 /*   Colours: Secondary             */
+/*   Modal Background        */
+$modal-bg: hsla(0deg, 0%, 0%, 0.5);
 /*   Placeholder Text               */
 // $fade-blue: hsl(231deg, 20%, 63%);
 /*   Faded Buttons                  */
@@ -47,8 +49,6 @@ $grey: hsl(212deg, 23%, 69%);
 // $dim-grey: hsla(230deg, 86%, 97%, 0.75);
 /*   Line Break                     */
 // $line-break: hsla(231deg, 20%, 63%, 0.25);
-/*   Mobile Modal Background        */
-// $mobile-modal-bg: hsla(0deg, 0%, 0%, 0.5);
 
 /*   Breakpoints                    */
 $mobile-s: 320px;
