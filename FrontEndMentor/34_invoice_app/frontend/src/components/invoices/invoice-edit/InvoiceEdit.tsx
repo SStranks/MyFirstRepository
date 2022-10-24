@@ -1,6 +1,10 @@
+import Button from '#Components/custom/buttons/generic/Button';
 import Status from '#Components/custom/buttons/status/Status';
 import IconArrowLeft from '#Svg/icon-arrow-left.svg';
 import styles from './InvoiceEdit.module.scss';
+
+// TEMP DEV: .
+const btnFunc = () => console.log('Temp Btn Click');
 
 function InvoiceEdit(): JSX.Element {
   // TEMP DEV: .
@@ -19,9 +23,27 @@ function InvoiceEdit(): JSX.Element {
         </div>
         <div className={styles.container__statusBar__buttons}>
           {/* // TODO:  Convert into button components */}
-          <div className={styles.tmpbtn}>Edit</div>
-          <div className={styles.tmpbtn}>Delete</div>
-          <div className={styles.tmpbtn}>Mark as Paid</div>
+          <Button
+            text="Edit"
+            color="grey"
+            onClick={btnFunc}
+            value="Edit"
+            disabled={false}
+          />
+          <Button
+            text="Delete"
+            color="red"
+            onClick={btnFunc}
+            value="Delete"
+            disabled={false}
+          />
+          <Button
+            text="Mark as Paid"
+            color="purple"
+            onClick={btnFunc}
+            value="Paid"
+            disabled={false}
+          />
         </div>
       </div>
       <div className={styles.container__invoice}>
