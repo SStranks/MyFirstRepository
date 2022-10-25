@@ -3,12 +3,14 @@
 @use '#Sass/functions' as f;
 
 .sidebar {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 103px;
   height: 100%;
   background-color: $color-4a;
   border-radius: 0 20px 20px 0;
+  z-index: f.z('sidebar');
 
   &__logo {
     position: relative;
@@ -34,7 +36,7 @@
     & > img {
       width: 40px;
       height: auto;
-      z-index: 2;
+      z-index: f.z('sidebar-logo');
     }
   }
 

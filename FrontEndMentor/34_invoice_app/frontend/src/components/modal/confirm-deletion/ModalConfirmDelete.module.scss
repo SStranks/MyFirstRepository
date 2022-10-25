@@ -3,23 +3,37 @@
 @use '#Sass/functions' as f;
 
 .container {
-  @include body-3;
-  padding: f.px2em(48);
-  color: $color-2b;
-  background-color: var(--color-elements);
-  border-radius: $border-radius-1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $modal-bg;
+  backdrop-filter: blur(1px);
+  z-index: f.z('modal-confirmDelete');
 
-  &__title {
-    @include body-4;
-    @include text-modifier-black;
-    margin-bottom: f.px2em(12);
-  }
+  &__card {
+    @include body-3;
+    padding: f.px2em(48);
+    color: $color-2b;
+    background-color: var(--color-elements);
+    border-radius: $border-radius-1;
 
-  &__buttons {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    column-gap: f.px2em(8);
-    margin-top: f.px2em(16);
+    &__title {
+      @include body-4;
+      @include text-modifier-black;
+      margin-bottom: f.px2em(12);
+    }
+
+    &__buttons {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      column-gap: f.px2em(8);
+      margin-top: f.px2em(16);
+    }
   }
 }

@@ -19,11 +19,6 @@ function ButtonDeleteModal(props: ButtonProps): JSX.Element {
     setIsOpen(true);
   };
 
-  // const modalToggle = () => {
-  //   if (isOpen) setIsOpen(false);
-
-  // }
-
   // Temporary Dev
   const invoiceCodeTmp = 'XM9141';
 

@@ -1,4 +1,5 @@
 import ButtonDeleteModal from '#Components/custom/buttons/delete-modal/ButtonDeleteModal';
+import ButtonEditModal from '#Components/custom/buttons/edit-modal/ButtonEditModal';
 import Button from '#Components/custom/buttons/generic/Button';
 import Status from '#Components/custom/buttons/status/Status';
 import IconArrowLeft from '#Svg/icon-arrow-left.svg';
@@ -23,10 +24,9 @@ function InvoiceEdit(): JSX.Element {
           <Status status={status} />
         </div>
         <div className={styles.container__statusBar__buttons}>
-          <Button
+          <ButtonEditModal
             text="Edit"
             color="grey"
-            onClick={btnFunc}
             value="Edit"
             disabled={false}
           />

@@ -51,4 +51,10 @@
 }
 
 // Z-Index List. Descending order of Z height.
-$z-indexes: ('modal', 'dropdown');
+$z-indexes: (
+  'modal-confirmDelete',
+  'sidebar',
+  'sidebar-logo',
+  'modal-sidebar',
+  'main'
+);
