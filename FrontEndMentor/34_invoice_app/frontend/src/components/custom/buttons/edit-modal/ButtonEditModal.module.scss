@@ -1,0 +1,41 @@
+@use '#Sass/variables' as *;
+@use '#Sass/mixins' as *;
+@use '#Sass/functions' as f;
+
+.container {
+  @include btn-default;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+  padding: f.px2em(17) f.px2em(24);
+  border-radius: $border-radius-3;
+
+  &--grey {
+    @extend .container;
+    color: $color-2c;
+    background-color: $color-4h;
+
+    &:hover {
+      background-color: $color-2a;
+    }
+  }
+
+  &--red {
+    @extend .container;
+    background-color: $color-3a;
+
+    &:hover {
+      background-color: $color-5a;
+    }
+  }
+
+  &--purple {
+    @extend .container;
+    background-color: $color-1a;
+
+    &:hover {
+      background-color: $color-5b;
+    }
+  }
+}
