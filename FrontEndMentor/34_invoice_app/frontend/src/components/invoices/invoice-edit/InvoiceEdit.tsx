@@ -1,3 +1,4 @@
+import ButtonDeleteModal from '#Components/custom/buttons/delete-modal/ButtonDeleteModal';
 import Button from '#Components/custom/buttons/generic/Button';
 import Status from '#Components/custom/buttons/status/Status';
 import IconArrowLeft from '#Svg/icon-arrow-left.svg';
@@ -22,7 +23,6 @@ function InvoiceEdit(): JSX.Element {
           <Status status={status} />
         </div>
         <div className={styles.container__statusBar__buttons}>
-          {/* // TODO:  Convert into button components */}
           <Button
             text="Edit"
             color="grey"
@@ -30,10 +30,9 @@ function InvoiceEdit(): JSX.Element {
             value="Edit"
             disabled={false}
           />
-          <Button
+          <ButtonDeleteModal
             text="Delete"
             color="red"
-            onClick={btnFunc}
             value="Delete"
             disabled={false}
           />
