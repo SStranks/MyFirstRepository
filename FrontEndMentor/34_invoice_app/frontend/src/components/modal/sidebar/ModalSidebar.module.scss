@@ -22,6 +22,53 @@
   height: 100vh;
   width: 720px;
   padding: f.px2em(56) f.px2em(56) f.px2em(56) f.px2em(160);
+  color: $color-2c;
   background-color: $white;
   border-radius: $border-radius-4;
+  overflow-y: scroll;
+
+  input[type='text'] {
+    width: 100%;
+    padding: f.px2em(17) f.px2em(20);
+    margin-top: f.px2em(10);
+    margin-bottom: f.px2em(24);
+    border: 1px solid $color-2a;
+    border-radius: $border-radius-5;
+    font-weight: 700;
+  }
+
+  &__from {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    column-gap: f.px2em(24);
+    margin-bottom: f.px2em(42);
+
+    & > p {
+      margin-bottom: f.px2em(24);
+      font-weight: 700;
+      color: $color-1a;
+    }
+
+    &__street {
+      grid-column: 1 / span 3;
+    }
+  }
+
+  &__to {
+    margin-bottom: f.px2em(42);
+
+    & > p {
+      margin-bottom: f.px2em(24);
+      font-weight: 700;
+      color: $color-1a;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    column-gap: f.px2em(8);
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
