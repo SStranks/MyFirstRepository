@@ -11,11 +11,15 @@
 
   &__title {
     @include body-4;
+    @include text-modifier-black;
+    margin-bottom: f.px2em(12);
   }
 
   &__buttons {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    column-gap: f.px2em(8);
+    margin-top: f.px2em(16);
   }
 }

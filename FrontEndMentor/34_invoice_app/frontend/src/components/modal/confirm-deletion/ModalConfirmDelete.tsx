@@ -1,11 +1,19 @@
+import Button from '#Components/custom/buttons/generic/Button';
+// import { useEffect } from 'react';
 import styles from './ModalConfirmDelete.module.scss';
 
 type ButtonProps = {
   invoiceCode: string;
+  modalStateHandler: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-function ButtonModalConfirmDelete(props: ButtonProps): JSX.Element {
-  const { invoiceCode } = props;
+// NOTE: Temporary Dev
+const btnFunc = () => console.log('Test button');
+
+function ModalConfirmDelete(props: ButtonProps): JSX.Element {
+  const { invoiceCode, modalStateHandler } = props;
+
+  // useEffect(() => {}, []);
 
   return (
     <div className={styles.container}>
@@ -15,11 +23,23 @@ function ButtonModalConfirmDelete(props: ButtonProps): JSX.Element {
         cannot be undone.
       </p>
       <div className={styles.container__buttons}>
-        {/* Button 1 */}
-        {/* Button 2 */}
+        <Button
+          text="Cancel"
+          color="grey"
+          onClick={() => modalStateHandler(false)}
+          value="cancel"
+          disabled={false}
+        />
+        <Button
+          text="Delete"
+          color="red"
+          onClick={btnFunc}
+          value="delete"
+          disabled={false}
+        />
       </div>
     </div>
   );
 }
 
-export default ButtonModalConfirmDelete;
+export default ModalConfirmDelete;
