@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   color: $white;
   padding: f.px2em(17) f.px2em(24);
   border-radius: $border-radius-3;
@@ -36,6 +37,15 @@
 
     &:hover {
       background-color: $color-5b;
+    }
+  }
+
+  &--dark-blue {
+    @extend .container;
+    background-color: $color-4g;
+
+    &:hover {
+      background-color: $color-2d;
     }
   }
 }

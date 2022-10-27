@@ -19,6 +19,7 @@ function ButtonEditModal(props: ButtonProps): JSX.Element {
   };
 
   // NOTE:  Temporary Dev
+  const title = 'Edit';
   const invoiceCode = 'XM9141';
 
   return (
@@ -34,7 +35,7 @@ function ButtonEditModal(props: ButtonProps): JSX.Element {
       <Modal
         isOpen={isOpen}
         setIsOpen={setIsOpen}
-        modalContent={<ModalSidebar title={`Edit #${invoiceCode}`} />}
+        modalContent={<ModalSidebar title={title} code={invoiceCode} />}
       />
     </>
   );
