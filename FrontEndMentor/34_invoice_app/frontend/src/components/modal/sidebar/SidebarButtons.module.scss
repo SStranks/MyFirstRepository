@@ -3,10 +3,10 @@
 @use '#Sass/functions' as f;
 
 .container {
-  position: fixed;
-  left: 0;
+  position: sticky;
   bottom: 0;
   display: flex;
+  // display: none;
   justify-content: flex-end;
   align-content: center;
   width: 720px;
@@ -15,6 +15,20 @@
   border-radius: $border-radius-4;
   // To set the ::before z-index/Z-value
   transform-style: preserve-3d;
+  // transform: translateX(-150px);
+
+  // position: fixed;
+  // left: 0;
+  // bottom: 0;
+  // display: flex;
+  // justify-content: flex-end;
+  // align-content: center;
+  // width: 720px;
+  // padding: f.px2em(30) f.px2em(56) f.px2em(30) f.px2em(160);
+  // background-color: $white;
+  // border-radius: $border-radius-4;
+  // // To set the ::before z-index/Z-value
+  // transform-style: preserve-3d;
 
   &::before {
     content: '';

@@ -21,13 +21,28 @@ $margin-btm: f.px2em(42);
   &__subcontainer {
     position: absolute;
     left: 0;
-    height: 100vh;
+    // display: flex;
+    // flex-direction: column;
+    height: 100%;
     width: 720px;
     background-color: $white;
     border-radius: $border-radius-4;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+      // position: absolute;
+      @include body-4;
+      font-size: f.px2rem(30);
+      margin-top: 36px;
+      margin-left: 160px;
+      margin-bottom: 48px;
+      color: $color-2d;
+
+      & > span {
+        color: $color-2b;
+      }
+    }
   }
 }
 
@@ -36,155 +51,169 @@ $margin-btm: f.px2em(42);
   height: 100%;
   max-width: 100%;
   margin-right: 32px;
-  padding: f.px2em(56) f.px2em(16) f.px2em(70) f.px2em(160);
+  padding: f.px2em(0) f.px2em(16) f.px2em(0) f.px2em(0);
   color: $color-2c;
   background-color: $white;
-  overflow-y: scroll;
+  // overflow-y: scroll;
+  // overflow-x: visible;
 
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
+  &__form {
+    position: relative;
+    height: 100%;
+    // max-height: 100%;
+    margin-left: f.px2em(160);
+    padding-bottom: 200px;
+    // overflow-x: visible;
+    overflow-y: scroll;
 
-  &::-webkit-scrollbar-thumb {
-    border-radius: 9px;
-    background-color: $color-2a;
-
-    &:hover {
-      background-color: $color-2b;
-    }
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  input[type='text'] {
-    width: 100%;
-    padding: f.px2em(15) f.px2em(20);
-    border: 1px solid $color-2a;
-    border-radius: $border-radius-5;
-    font-weight: 700;
-  }
-
-  &__title {
-    @include body-4;
-    font-size: f.px2rem(30);
-    margin-bottom: f.px2em(38);
-    color: $color-2d;
-
-    & > span {
-      color: $color-2b;
-    }
-  }
-
-  &__from {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    column-gap: f.px2em(24);
-    margin-bottom: $margin-btm;
-
-    & input[type='text'] {
-      margin-top: f.px2em(10);
-      margin-bottom: f.px2em(24);
+    &::-webkit-scrollbar {
+      width: 8px;
     }
 
-    & > p {
-      margin-bottom: f.px2em(24);
-      font-weight: 700;
-      color: $color-1a;
+    &::-webkit-scrollbar-thumb {
+      border-radius: 9px;
+      background-color: $color-2a;
+
+      &:hover {
+        background-color: $color-2b;
+      }
     }
 
-    &__street {
-      grid-column: 1 / span 3;
-    }
-  }
-
-  &__to {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
-    column-gap: f.px2em(24);
-    margin-bottom: $margin-btm;
-
-    & input[type='text'] {
-      margin-top: f.px2em(10);
-      margin-bottom: f.px2em(24);
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
     }
 
-    &__name,
-    &__email,
-    &__address {
-      grid-column: 1 / span 3;
-    }
-
-    & > p {
-      margin-bottom: f.px2em(24);
-      font-weight: 700;
-      color: $color-1a;
-    }
-  }
-
-  &__details {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
-    column-gap: f.px2em(24);
-    margin-bottom: $margin-btm;
-
-    & input[type='text'] {
-      margin-top: f.px2em(10);
-      margin-bottom: f.px2em(24);
-    }
-
-    &__description {
-      grid-column: 1 / span 2;
-    }
-  }
-
-  &__itemlist {
-    margin-bottom: $margin-btm;
-
-    &__title {
-      @include body-4;
-      margin-bottom: f.px2em(16);
-    }
-
-    &__grid {
+    &__from {
       display: grid;
-      grid-template-columns: 215px 46px 100px 60px auto;
+      grid-template-columns: repeat(3, 1fr);
       grid-template-rows: auto;
-      row-gap: f.px2em(18);
-      column-gap: f.px2em(16);
-      align-items: center;
+      column-gap: f.px2em(24);
+      margin-bottom: $margin-btm;
 
-      & > img {
-        height: auto;
+      & input[type='text'] {
+        margin-top: f.px2em(10);
+        margin-bottom: f.px2em(24);
       }
 
-      &__btnAddItem {
-        width: 100%;
-        grid-column: 1 / span 5;
+      & > p {
+        margin-bottom: f.px2em(24);
+        font-weight: 700;
+        color: $color-1a;
       }
 
-      &--col1 {
-        grid-column: 1;
+      &__street {
+        grid-column: 1 / span 3;
+      }
+    }
+
+    &__to {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      column-gap: f.px2em(24);
+      margin-bottom: $margin-btm;
+
+      & input[type='text'] {
+        margin-top: f.px2em(10);
+        margin-bottom: f.px2em(24);
       }
 
-      &--col2 {
-        grid-column: 2;
+      &__name,
+      &__email,
+      &__address {
+        grid-column: 1 / span 3;
       }
 
-      &--col3 {
-        grid-column: 3;
+      & > p {
+        margin-bottom: f.px2em(24);
+        font-weight: 700;
+        color: $color-1a;
+      }
+    }
+
+    &__details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      column-gap: f.px2em(24);
+      margin-bottom: $margin-btm;
+
+      & input[type='text'] {
+        margin-top: f.px2em(10);
+        margin-bottom: f.px2em(24);
       }
 
-      &--col4 {
-        grid-column: 4;
+      &__description {
+        grid-column: 1 / span 2;
+      }
+    }
+
+    &__itemlist {
+      margin-bottom: $margin-btm;
+
+      &__title {
+        @include body-4;
+        margin-bottom: f.px2em(16);
       }
 
-      &--col5 {
-        grid-column: 5;
+      &__grid {
+        display: grid;
+        grid-template-columns: 215px 46px 100px 60px auto;
+        grid-template-rows: auto;
+        row-gap: f.px2em(18);
+        column-gap: f.px2em(16);
+        align-items: center;
+
+        & > img {
+          height: auto;
+        }
+
+        &__btnAddItem {
+          width: 100%;
+          grid-column: 1 / span 5;
+        }
+
+        &--col1 {
+          grid-column: 1;
+        }
+
+        &--col2 {
+          grid-column: 2;
+        }
+
+        &--col3 {
+          grid-column: 3;
+        }
+
+        &--col4 {
+          grid-column: 4;
+        }
+
+        &--col5 {
+          grid-column: 5;
+        }
+      }
+    }
+
+    // position: relative;
+    // height: 100%;
+    // max-width: 100%;
+    // margin-right: 32px;
+    // padding: f.px2em(0) f.px2em(16) f.px2em(180) f.px2em(160);
+    // color: $color-2c;
+    // background-color: $white;
+    // overflow-y: scroll;
+
+    input[type='text'] {
+      width: 100%;
+      padding: f.px2em(15) f.px2em(20);
+      border: 1px solid $color-2a;
+      border-radius: $border-radius-5;
+      font-weight: 700;
+
+      &:focus {
+        outline: none;
+        border: 1px solid $color-1a;
       }
     }
   }
