@@ -1,2 +1,10 @@
 .container {
+  padding: 10px;
+  background: transparent;
+  transform: scale(100%);
+  transition: transform 1s;
+
+  &:hover {
+    transform: scale(135%);
+  }
 }
