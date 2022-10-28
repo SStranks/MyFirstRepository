@@ -2,11 +2,10 @@
 @use '#Sass/mixins' as *;
 @use '#Sass/functions' as f;
 
-.container {
+.container-btns {
   position: sticky;
   bottom: 0;
   display: flex;
-  // display: none;
   justify-content: flex-end;
   align-content: center;
   width: 720px;
@@ -15,7 +14,6 @@
   border-radius: $border-radius-4;
   // To set the ::before z-index/Z-value
   transform-style: preserve-3d;
-  // transform: translateX(-150px);
 
   // position: fixed;
   // left: 0;
@@ -43,5 +41,13 @@
       rgba(0, 0, 0, 0.0001) 0%,
       rgba(0, 0, 0, 0.1) 100%
     );
+    transition: opacity 1s;
+  }
+}
+
+// Class added when scroll reaches end of form
+.active {
+  &::before {
+    opacity: 0;
   }
 }

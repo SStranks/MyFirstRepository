@@ -1,7 +1,9 @@
 import Button from '#Components/custom/buttons/generic/Button';
 import IconDelete from '#Svg/icon-delete.svg';
+import { useEffect, useRef } from 'react';
 import styles from './ModalSidebar.module.scss';
 import SidebarButtons from './SidebarButtons';
+import styles2 from './SidebarButtons.module.scss';
 
 type SidebarProps = {
   title: string;
@@ -10,6 +12,21 @@ type SidebarProps = {
 
 function ModalSidebar(props: SidebarProps): JSX.Element {
   const { title, code } = props;
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    const form = document.querySelector('form');
+    console.log('TEST', form, formRef);
+    form?.addEventListener('scroll', (event) => {
+      const element = event.target as HTMLElement;
+      const blur = document.querySelector('div[class^="container-btns"]');
+      if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+        blur?.classList.add(styles2.active);
+      } else {
+        blur?.classList.remove(styles2.active);
+      }
+    });
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -21,7 +38,7 @@ function ModalSidebar(props: SidebarProps): JSX.Element {
           </p>
         </div>
         <div className={styles.sidebar}>
-          <form className={styles.sidebar__form} action="">
+          <form className={styles.sidebar__form} action="" ref={formRef}>
             <div className={styles.sidebar__form__from}>
               <p>Bill From</p>
               <div className={styles.sidebar__form__from__street}>
@@ -41,7 +58,7 @@ function ModalSidebar(props: SidebarProps): JSX.Element {
                 <input type="text" />
               </div>
             </div>
-            <div className={styles.form__to}>
+            <div className={styles.sidebar__form__to}>
               <p>Bill To</p>
               <div className={styles.sidebar__form__to__name}>
                 <p>Client&#39;s Name</p>
