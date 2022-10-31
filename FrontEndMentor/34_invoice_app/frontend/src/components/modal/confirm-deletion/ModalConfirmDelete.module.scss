@@ -1,6 +1,7 @@
 @use '#Sass/variables' as *;
 @use '#Sass/mixins' as *;
 @use '#Sass/functions' as f;
+@use '#Sass/animations' as a;
 
 .container {
   position: fixed;
@@ -22,6 +23,7 @@
     color: $color-2b;
     background-color: var(--color-elements);
     border-radius: $border-radius-1;
+    transition: a.$Theme-transition;
 
     &__title {
       @include body-4;

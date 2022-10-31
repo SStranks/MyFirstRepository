@@ -1,6 +1,7 @@
 @use '#Sass/variables' as *;
 @use '#Sass/mixins' as *;
 @use '#Sass/functions' as f;
+@use '#Sass/animations' as a;
 
 .container-btns {
   position: sticky;
@@ -10,10 +11,11 @@
   align-content: center;
   width: 720px;
   padding: f.px2em(30) f.px2em(56) f.px2em(30) f.px2em(160);
-  background-color: $white;
+  background-color: var(--color-sidebar-panel);
   border-radius: $border-radius-4;
   // To set the ::before z-index/Z-value
   transform-style: preserve-3d;
+  transition: a.$Theme-transition;
 
   // position: fixed;
   // left: 0;
@@ -30,6 +32,7 @@
 
   &::before {
     content: '';
+    pointer-events: none;
     position: absolute;
     top: 0;
     right: 0;

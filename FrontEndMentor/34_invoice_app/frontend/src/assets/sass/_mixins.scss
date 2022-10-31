@@ -11,8 +11,9 @@
 /* -------------------------------- */
 
 /*   Imports                        */
-@use './variables' as *;
+@use 'variables' as *;
 @use 'functions' as f;
+@use 'animations' as a;
 
 /*   Text: Body                     */
 @mixin body-1 {
@@ -46,7 +47,8 @@
 
 @mixin text-modifier-black {
   font-weight: 700;
-  color: $color-2d;
+  color: var(--color-text-p);
+  transition: a.$Theme-transition;
 }
 
 /*   Card                           */

@@ -1,6 +1,7 @@
 @use '#Sass/variables' as *;
 @use '#Sass/mixins' as *;
 @use '#Sass/functions' as f;
+@use '#Sass/animations' as a;
 
 .container {
   @include btn-default;
@@ -15,7 +16,8 @@
   &--grey {
     @extend .container;
     color: $color-2c;
-    background-color: $color-4h;
+    background-color: var(--color-form-input-button);
+    transition: a.$Theme-transition;
 
     &:hover {
       background-color: $color-2a;

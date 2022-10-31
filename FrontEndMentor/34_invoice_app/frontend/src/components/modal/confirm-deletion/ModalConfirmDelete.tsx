@@ -21,20 +21,24 @@ function ModalConfirmDelete(props: ButtonProps): JSX.Element {
           cannot be undone.
         </p>
         <div className={styles.container__card__buttons}>
-          <Button
-            text="Cancel"
-            color="grey"
-            onClick={() => modalStateHandler(false)}
-            value="cancel"
-            disabled={false}
-          />
-          <Button
-            text="Delete"
-            color="red"
-            onClick={btnFunc}
-            value="delete"
-            disabled={false}
-          />
+          <div>
+            <Button
+              text="Cancel"
+              color="grey"
+              onClick={() => modalStateHandler(false)}
+              value="cancel"
+              disabled={false}
+            />
+          </div>
+          <div>
+            <Button
+              text="Delete"
+              color="red"
+              onClick={btnFunc}
+              value="delete"
+              disabled={false}
+            />
+          </div>
         </div>
       </div>
     </div>
