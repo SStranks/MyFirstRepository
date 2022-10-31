@@ -1,5 +1,5 @@
 import ArrowDown from '#Svg/icon-arrow-down.svg';
-import styles from './Dropdown.module.scss';
+import styles from './DropdownFilterStatus.module.scss';
 
 function Dropdown(): JSX.Element {
   return (
