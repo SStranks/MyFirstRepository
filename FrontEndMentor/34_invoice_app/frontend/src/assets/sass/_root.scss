@@ -17,6 +17,7 @@
 :root {
   --color-background: #{$color-3c};
   --color-text-p: #{$color-2d};
+  --color-text-p2: #{$color-2c};
   --color-text-h: #{$color-2d};
   --color-elements: #{$white};
   --color-sidebar: #{$color-4a};
@@ -25,6 +26,10 @@
   --color-form-label: #{$color-2c};
   --color-form-input: #{$white};
   --color-form-dropdown: #{$white};
+  --color-button-status-paid: #{$color-4b};
+  --color-button-status-pending: #{$color-4d};
+  --color-button-status-draft: #{$color-4f};
+  --color-button-status-draft-text: #{$color-4a};
   // --color-placeholder: hsl(216deg, 5%, 57%);
   // --color-input-text: #{$Dark_Grey};
 }
@@ -32,6 +37,7 @@
 .dark-theme {
   --color-background: #{$color-3d};
   --color-text-p: #{$white};
+  --color-text-p2: #{$color-2a};
   --color-text-h: #{$white};
   --color-elements: #{$color-1c};
   --color-sidebar: #{$color-1c};
@@ -40,6 +46,10 @@
   --color-form-label: #{$color-2a};
   --color-form-input: #{$color-1c};
   --color-form-dropdown: #{$color-1d};
+  --color-button-status-paid: #{$color-5c};
+  --color-button-status-pending: #{$color-5d};
+  --color-button-status-draft: #{$color-5e};
+  --color-button-status-draft-text: #{$color-2a};
   //   --color-placeholder: hsl(216deg, 5%, 57%);
   //   --color-input-text: #{$White};
 }

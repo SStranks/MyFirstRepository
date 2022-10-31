@@ -1,6 +1,7 @@
 @use '#Sass/variables' as *;
 @use '#Sass/mixins' as *;
 @use '#Sass/functions' as f;
+@use '#Sass/animations' as a;
 
 .container {
   display: grid;
@@ -17,7 +18,7 @@
   box-shadow: $box-shadow-1;
   border-radius: $border-radius-1;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s, a.$Theme-transition;
 
   &:hover {
     transform: scale(101.5%);
@@ -33,16 +34,19 @@
 
     &--black {
       display: inline-block;
-      color: $black;
+      color: var(--color-text-p);
+      transition: a.$Theme-transition;
     }
   }
 
   &__date {
-    color: $color-2c;
+    color: var(--color-text-p2);
+    transition: a.$Theme-transition;
   }
 
   &__name {
-    color: $color-2c;
+    color: var(--color-text-p2);
+    transition: a.$Theme-transition;
   }
 
   &__amount {
@@ -52,6 +56,8 @@
     letter-spacing: f.px2rem(-0.25);
     text-align: right;
     margin-right: f.px2em(20);
+    color: var(--color-text-p);
+    transition: a.$Theme-transition;
   }
 
   &__status {

@@ -1,6 +1,7 @@
 @use '#Sass/variables' as *;
 @use '#Sass/mixins' as *;
 @use '#Sass/functions' as f;
+@use '#Sass/animations' as a;
 
 .container {
   position: relative;
@@ -23,8 +24,9 @@
   }
 
   &--paid {
-    background-color: $color-4b;
+    background-color: var(--color-button-status-paid);
     color: $color-4c;
+    transition: a.$Theme-transition;
 
     & .container__bullet {
       background-color: $color-4c;
@@ -32,8 +34,9 @@
   }
 
   &--pending {
-    background-color: $color-4d;
+    background-color: var(--color-button-status-pending);
     color: $color-4e;
+    transition: a.$Theme-transition;
 
     & .container__bullet {
       background-color: $color-4e;
@@ -41,11 +44,13 @@
   }
 
   &--draft {
-    background-color: $color-4f;
-    color: $color-4g;
+    background-color: var(--color-button-status-draft);
+    color: var(--color-button-status-draft-text);
+    transition: a.$Theme-transition;
 
     & .container__bullet {
-      background-color: $color-4g;
+      background-color: var(--color-button-status-draft-text);
+      transition: a.$Theme-transition;
     }
   }
 }
