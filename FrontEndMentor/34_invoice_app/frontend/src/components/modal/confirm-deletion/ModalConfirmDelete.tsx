@@ -1,5 +1,4 @@
 import Button from '#Components/custom/buttons/generic/Button';
-// import { useEffect } from 'react';
 import styles from './ModalConfirmDelete.module.scss';
 
 type ButtonProps = {
@@ -12,8 +11,6 @@ const btnFunc = () => console.log('Test button');
 
 function ModalConfirmDelete(props: ButtonProps): JSX.Element {
   const { invoiceCode, modalStateHandler } = props;
-
-  // useEffect(() => {}, []);
 
   return (
     <div className={styles.container}>

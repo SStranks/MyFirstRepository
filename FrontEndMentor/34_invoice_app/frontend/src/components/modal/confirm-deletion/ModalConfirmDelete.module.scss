@@ -11,12 +11,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $modal-bg;
-  backdrop-filter: blur(1px);
-  z-index: f.z('modal-confirmDelete');
+  // To allow click-through to Modal component background
+  pointer-events: none;
 
   &__card {
     @include body-3;
+    // To allow click events for the ModalConfirmDelete card/buttons
+    pointer-events: all;
     padding: f.px2em(48);
     color: $color-2b;
     background-color: var(--color-elements);

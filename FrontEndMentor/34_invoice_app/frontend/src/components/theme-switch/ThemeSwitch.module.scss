@@ -1,4 +1,7 @@
+@use '#Sass/functions' as f;
+
 .container {
+  position: relative;
   padding: 10px;
   background: transparent;
   transform: scale(100%);
