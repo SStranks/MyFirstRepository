@@ -3,14 +3,27 @@
 @use '#Sass/functions' as f;
 
 .sidebar {
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
-  width: 103px;
+  width: $sidebar-dim-desktop;
   height: 100%;
   background-color: $color-4a;
   border-radius: 0 20px 20px 0;
   z-index: f.z('sidebar');
+
+  @include media(tablet-all, mobile-all) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: $sidebar-dim-tablet;
+    border-radius: 0;
+  }
+
+  @include media(mobile-all) {
+    height: $sidebar-dim-mobile;
+  }
 
   &__logo {
     position: relative;
@@ -22,6 +35,16 @@
     background-color: $color-1a;
     border-radius: 0 20px 20px 0;
     overflow: hidden;
+
+    @include media(tablet-all) {
+      width: 80px;
+      height: $sidebar-dim-tablet;
+    }
+
+    @include media(mobile-all) {
+      width: 72px;
+      height: $sidebar-dim-mobile;
+    }
 
     &::before {
       content: '';
@@ -37,6 +60,14 @@
       width: 40px;
       height: auto;
       z-index: f.z('sidebar-logo');
+
+      @include media(tablet-all) {
+        width: 30px;
+      }
+
+      @include media(mobile-all) {
+        width: 28px;
+      }
     }
   }
 
@@ -45,6 +76,10 @@
     justify-content: center;
     margin-top: auto;
     margin-bottom: f.px2em(32);
+
+    @include media(tablet-all, mobile-all) {
+      margin: 0 f.px2em(24) 0 auto;
+    }
   }
 
   &__user {
@@ -53,5 +88,16 @@
     align-items: center;
     height: 88px;
     border-top: 1px solid $color-2b;
+
+    & > img {
+      display: none;
+    }
+
+    @include media(tablet-all, mobile-all) {
+      height: 100%;
+      padding: f.px2em(24);
+      border-top: none;
+      border-left: 1px solid $color-2b;
+    }
   }
 }

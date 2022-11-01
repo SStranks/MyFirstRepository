@@ -1,6 +1,13 @@
+@use '#Sass/mixins' as *;
+
 .container {
   width: 40px;
   height: 40px;
+
+  @include media(tablet-all, mobile-all) {
+    width: 32px;
+    height: 32px;
+  }
 
   & > img {
     border-radius: 50%;

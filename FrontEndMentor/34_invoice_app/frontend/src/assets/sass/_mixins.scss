@@ -193,8 +193,8 @@
         @content;
       }
     }
-    @if $arg == 'tablet-regular' {
-      @include tablet-regular {
+    @if $arg == 'tablet-medium' {
+      @include tablet-medium {
         @content;
       }
     }
@@ -223,61 +223,61 @@
 
 /*   Media Queries: Specific        */
 @mixin mobile-small {
-  @media (min-width: #{$mobile-s}) and (max-width: #{$mobile-m - 1px}) {
+  @media only screen and (max-width: #{$mobile-s - 1px}) {
     @content;
   }
 }
 
 @mixin mobile-medium {
-  @media (min-width: #{$mobile-m}) and (max-width: #{$mobile-l - 1px}) {
+  @media only screen and (min-width: #{$mobile-s}) and (max-width: #{$mobile-m - 1px}) {
     @content;
   }
 }
 
 @mixin mobile-large {
-  @media (min-width: #{$mobile-l}) and (max-width: #{$tablet-s - 1px}) {
+  @media only screen and (min-width: #{$mobile-m}) and (max-width: #{$mobile-l - 1px}) {
     @content;
   }
 }
 
 @mixin mobile-all {
-  @media (min-width: #{$mobile-s}) and (max-width: #{$mobile-l - 1px}) {
+  @media only screen and (max-width: #{$mobile-l - 1px}) {
     @content;
   }
 }
 
 @mixin tablet-small {
-  @media (min-width: #{$tablet-s}) and (max-width: #{$tablet - 1px}) {
+  @media only screen and (min-width: #{$mobile-l}) and (max-width: #{$tablet-s - 1px}) {
     @content;
   }
 }
 
-@mixin tablet-regular {
-  @media (min-width: #{$tablet}) and (max-width: #{$desktop-s - 1px}) {
+@mixin tablet-medium {
+  @media only screen and (min-width: #{$tablet-s}) and (max-width: #{$desktop-s - 1px}) {
     @content;
   }
 }
 
 @mixin tablet-all {
-  @media (min-width: #{$tablet-s}) and (max-width: #{$tablet - 1px}) {
+  @media only screen and (min-width: #{$mobile-l}) and (max-width: #{$desktop-s - 1px}) {
     @content;
   }
 }
 
 @mixin desktop-small {
-  @media (min-width: #{$desktop-s}) and (max-width: #{$desktop-m - 1px}) {
+  @media only screen and (min-width: #{$desktop-s}) and (max-width: #{$desktop-m - 1px}) {
     @content;
   }
 }
 
 @mixin desktop-medium {
-  @media (min-width: #{$desktop-m}) and (max-width: #{$desktop-l - 1px}) {
+  @media only screen and (min-width: #{$desktop-m}) and (max-width: #{$desktop-l - 1px}) {
     @content;
   }
 }
 
 @mixin desktop-large {
-  @media (min-width: #{$desktop-l}) {
+  @media only screen and (min-width: #{$desktop-l}) {
     @content;
   }
 }

@@ -36,6 +36,23 @@ body {
   background: var(--color-background);
   color: var(--color-text-p);
   transition: a.$Theme-transition;
+
+  & *::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  & *::-webkit-scrollbar-thumb {
+    border-radius: 9px;
+    background-color: $color-2a;
+
+    &:hover {
+      background-color: $color-2b;
+    }
+  }
+
+  & *::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 }
 
 img {
@@ -80,22 +97,6 @@ input {
     transition: a.$Theme-transition;
   }
 }
-
-// *::-webkit-scrollbar {
-//   background: red;
-//   width: 10px;
-// }
-
-// *::-webkit-scrollbar-track {
-//   background: orange;
-//   width: 10px;
-// }
-
-// *::-webkit-scrollbar-thumb {
-//   background-color: blue;
-//   border-radius: 20px;
-//   border: 3px solid orange;
-// }
 
 textarea {
   cursor: pointer;

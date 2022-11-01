@@ -4,11 +4,35 @@
 
 .container {
   width: 100%;
+  height: 100%;
+  margin-bottom: f.px2em(24);
+  padding: f.px2em(5) f.px2em(24) 0 f.px2em(7);
+  overflow-y: scroll;
+
+  @include media(tablet-all) {
+    margin-bottom: f.px2em(24);
+  }
 
   &__invoices {
+    position: relative;
     display: grid;
     grid-template-rows: auto;
     row-gap: f.px2em(16);
+
+    &::after {
+      content: '';
+      position: sticky;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(
+        0deg,
+        var(--color-background) 40%,
+        rgba(255, 255, 255, 0) 100%
+      );
+    }
   }
 
   &__noInvoices {

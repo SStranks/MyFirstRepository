@@ -1,5 +1,5 @@
 import BtnNewInvoice from '#Components/custom/buttons/new-invoice/BtnNewInvoice';
-import Dropdown from '#Components/custom/dropdown/Dropdown';
+import Dropdown from '#Components/custom/dropdown/filter-status/DropdownFilterStatus';
 import styles from './UtilityBar.module.scss';
 
 const btnNewInvoiceClickHandler = () => {
