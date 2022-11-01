@@ -21,7 +21,9 @@ function Invoice(props: CompProps): JSX.Element {
       <p className={styles.container__date}>Due {paymentDue}</p>
       <p className={styles.container__name}>{clientName}</p>
       <p className={styles.container__amount}>£ {total.toFixed(2)}</p>
-      <Status status={status} />
+      <div className={styles.container__status}>
+        <Status status={status} />
+      </div>
       <div className={styles.container__arrowright}>
         <img src={ArrowRight} alt="" />
       </div>

@@ -6,9 +6,11 @@
 .container {
   display: grid;
   grid-template-columns:
-    minmax(65px, max-content) minmax(115px, max-content) repeat(2, auto)
+    minmax(65px, max-content) minmax(115px, max-content) repeat(
+      2,
+      minmax(min-content, auto)
+    )
     104px minmax(min-content, max-content);
-  column-gap: 20px;
   grid-template-rows: 1fr;
   align-items: center;
   height: fit-content;
@@ -25,12 +27,18 @@
     outline: 1px solid $color-1a;
   }
 
+  @include media(tablet-small, mobile-all) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
   &__code {
     font-weight: 700;
     font-size: f.px2rem(15);
     line-height: f.px2rem(15);
     letter-spacing: f.px2rem(-0.25);
     color: $color-2c;
+    margin-right: 20px;
 
     &--black {
       display: inline-block;
@@ -42,11 +50,24 @@
   &__date {
     color: var(--color-text-p2);
     transition: a.$Theme-transition;
+    margin-right: 20px;
+
+    @include media(tablet-small, mobile-all) {
+      grid-column: 1;
+      grid-row: 2;
+      align-self: end;
+    }
   }
 
   &__name {
     color: var(--color-text-p2);
     transition: a.$Theme-transition;
+    margin-right: 20px;
+
+    @include media(tablet-small, mobile-all) {
+      // align-self: end;
+      justify-self: end;
+    }
   }
 
   &__amount {
@@ -58,33 +79,30 @@
     margin-right: f.px2em(20);
     color: var(--color-text-p);
     transition: a.$Theme-transition;
+
+    @include media(tablet-small, mobile-all) {
+      grid-column: 1;
+      grid-row: 3;
+      justify-self: start;
+    }
   }
 
   &__status {
-    position: relative;
-    display: flex;
-    column-gap: f.px2em(8);
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: f.px2rem(16);
-    line-height: 1;
-    letter-spacing: f.px2rem(-0.25);
-    padding: f.px2em(13) 0;
-    background-color: $color-4b;
-    border-radius: $border-radius-2;
-    color: $color-4c;
-
-    &__bullet {
-      min-width: 8px;
-      min-height: 8px;
-      background-color: $color-4c;
-      border-radius: 100%;
+    @include media(tablet-small, mobile-all) {
+      grid-row: 2 / 4;
+      align-self: center;
+      justify-self: end;
+      margin: 20px 0 20px 0;
     }
   }
 
   &__arrowright {
     width: 4px;
     height: fit-content;
+    margin-left: 20px;
+
+    @include media(tablet-small, mobile-all) {
+      display: none;
+    }
   }
 }

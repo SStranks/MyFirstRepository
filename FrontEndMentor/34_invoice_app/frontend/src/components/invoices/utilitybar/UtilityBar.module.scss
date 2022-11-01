@@ -6,7 +6,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 730px;
+  max-width: 730px;
+  padding-left: f.px2em(7);
 
   &__titleblock {
     & > p {
