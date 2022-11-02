@@ -26,5 +26,15 @@
     width: 740px;
     // padding: 0 f.px2em(28);
     margin: f.px2em(72) f.px2em(20) 0 f.px2em(20);
+
+    @include media(tablet-small, mobile-all) {
+      margin-top: f.px2em(56);
+      row-gap: f.px2em(32);
+    }
+
+    @include media(mobile-all) {
+      margin-top: f.px2em(32);
+      row-gap: f.px2em(32);
+    }
   }
 }

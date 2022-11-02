@@ -1,5 +1,5 @@
 import BtnNewInvoice from '#Components/custom/buttons/new-invoice/BtnNewInvoice';
-import Dropdown from '#Components/custom/dropdown/filter-status/DropdownFilterStatus';
+import DropdownFilterStatus from '#Components/custom/dropdown/filter-status/DropdownFilterStatus';
 import styles from './UtilityBar.module.scss';
 
 const btnNewInvoiceClickHandler = () => {
@@ -14,10 +14,14 @@ function UtilityBar(): JSX.Element {
     <div className={styles.container}>
       <div className={styles.container__titleblock}>
         <h1>Invoices</h1>
-        <p>There are {number} total invoices</p>
+        <p>
+          <span>There are </span>
+          {number}
+          <span> total </span>invoices
+        </p>
       </div>
       <div className={styles.container__controls}>
-        <Dropdown />
+        <DropdownFilterStatus />
         <BtnNewInvoice
           onClick={btnNewInvoiceClickHandler}
           value={undefined}

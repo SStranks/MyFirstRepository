@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 150px;
+  max-width: 150px;
   padding: 8px;
   background-color: $color-1a;
 
@@ -17,7 +17,13 @@
 
   & > p {
     flex-grow: 1;
-    // padding-top: 4px;
+    margin: 0 f.px2em(14);
+
+    & > span {
+      @include media(tablet-small, mobile-all) {
+        display: none;
+      }
+    }
   }
 
   &__icon {
@@ -34,4 +40,8 @@
       height: auto;
     }
   }
+}
+
+.hidden {
+  display: none;
 }

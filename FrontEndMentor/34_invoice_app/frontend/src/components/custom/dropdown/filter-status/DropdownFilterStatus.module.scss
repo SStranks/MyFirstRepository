@@ -7,6 +7,10 @@
   justify-content: space-between;
   align-items: center;
 
+  & > h3 > span {
+    display: none;
+  }
+
   & > img {
     height: fit-content;
     margin-left: f.px2em(16);

@@ -20,7 +20,9 @@ function BtnNewInvoice(props: BtnProps): JSX.Element {
       <div className={styles.button__icon}>
         <img src={IconPlus} alt="" />
       </div>
-      <p>New Invoice</p>
+      <p>
+        New <span>Invoice</span>
+      </p>
     </button>
   );
 }

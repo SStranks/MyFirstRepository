@@ -32,13 +32,17 @@
     grid-template-rows: repeat(3, 1fr);
   }
 
+  @include media(mobile-small) {
+    padding: f.px2em(8) f.px2em(12) f.px2em(8) f.px2em(16);
+  }
+
   &__code {
     font-weight: 700;
     font-size: f.px2rem(15);
     line-height: f.px2rem(15);
     letter-spacing: f.px2rem(-0.25);
     color: $color-2c;
-    margin-right: 20px;
+    margin-right: f.px2em(20);
 
     &--black {
       display: inline-block;
@@ -50,7 +54,7 @@
   &__date {
     color: var(--color-text-p2);
     transition: a.$Theme-transition;
-    margin-right: 20px;
+    margin-right: f.px2em(20);
 
     @include media(tablet-small, mobile-all) {
       grid-column: 1;
@@ -62,11 +66,11 @@
   &__name {
     color: var(--color-text-p2);
     transition: a.$Theme-transition;
-    margin-right: 20px;
+    margin-right: f.px2em(20);
 
     @include media(tablet-small, mobile-all) {
-      // align-self: end;
       justify-self: end;
+      margin: 0;
     }
   }
 
@@ -92,14 +96,14 @@
       grid-row: 2 / 4;
       align-self: center;
       justify-self: end;
-      margin: 20px 0 20px 0;
+      margin: f.px2em(25) 0 f.px2em(15) 0;
     }
   }
 
   &__arrowright {
     width: 4px;
     height: fit-content;
-    margin-left: 20px;
+    margin-left: f.px2em(20);
 
     @include media(tablet-small, mobile-all) {
       display: none;

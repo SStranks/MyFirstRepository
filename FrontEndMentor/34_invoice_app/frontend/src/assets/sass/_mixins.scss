@@ -173,11 +173,6 @@
         @content;
       }
     }
-    @if $arg == 'mobile-medium' {
-      @include mobile-medium {
-        @content;
-      }
-    }
     @if $arg == 'mobile-large' {
       @include mobile-large {
         @content;
@@ -223,12 +218,6 @@
 
 /*   Media Queries: Specific        */
 @mixin mobile-small {
-  @media only screen and (max-width: #{$mobile-s - 1px}) {
-    @content;
-  }
-}
-
-@mixin mobile-medium {
   @media only screen and (min-width: #{$mobile-s}) and (max-width: #{$mobile-m - 1px}) {
     @content;
   }
