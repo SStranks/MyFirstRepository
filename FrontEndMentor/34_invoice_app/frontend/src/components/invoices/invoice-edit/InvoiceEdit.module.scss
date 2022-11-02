@@ -4,6 +4,18 @@
 @use '#Sass/animations' as a;
 
 .container {
+  @include media(tablet-medium) {
+    margin-top: f.px2em(-24);
+  }
+
+  @include media(tablet-small) {
+    margin: f.px2em(-24) f.px2em(10) 0 f.px2em(10);
+  }
+
+  @include media(mobile-all) {
+    padding-bottom: f.px2em(105);
+  }
+
   &__back {
     display: flex;
     column-gap: f.px2em(26);
@@ -23,21 +35,39 @@
     box-shadow: $box-shadow-1;
     transition: a.$Theme-transition;
 
+    @include media(mobile-all) {
+      padding: f.px2em(20) f.px2em(24);
+    }
+
     &__status {
       display: flex;
       align-items: center;
       column-gap: f.px2em(16);
+
+      @include media(tablet-small, mobile-all) {
+        justify-content: space-between;
+        width: 100%;
+      }
     }
 
     &__buttons {
       display: flex;
       column-gap: f.px2em(8);
+
+      @include media(tablet-small, mobile-all) {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: f.px2em(20) f.px2em(24);
+        background-color: var(--color-elements);
+      }
     }
   }
 
   &__invoice {
     display: grid;
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: repeat(3, auto);
     padding: f.px2em(48);
     background-color: var(--color-elements);
     color: $color-2c;
@@ -45,11 +75,24 @@
     box-shadow: $box-shadow-1;
     transition: a.$Theme-transition;
 
+    @include media(tablet-small) {
+      padding: f.px2em(32);
+    }
+
+    @include media(mobile-all) {
+      padding: f.px2em(24);
+    }
+
     &__identity {
       grid-row: 1;
       display: flex;
       justify-content: space-between;
       margin-bottom: f.px2em(20);
+
+      @include media(mobile-all) {
+        flex-direction: column;
+        row-gap: f.px2em(30);
+      }
 
       &__code {
         display: flex;
@@ -65,6 +108,10 @@
       grid-row: 2 / 3;
       display: grid;
       grid-template-columns: repeat(3, auto);
+
+      @include media(mobile-all) {
+        grid-template-columns: repeat(2, auto);
+      }
 
       &__date {
         &--black {
@@ -98,6 +145,11 @@
       &__email {
         grid-column: 3;
 
+        @include media(mobile-all) {
+          grid-column: 1;
+          margin-top: f.px2em(32);
+        }
+
         &--black {
           @include text-modifier-black;
           margin-top: f.px2em(12);
@@ -120,6 +172,16 @@
         border-radius: $border-radius-1 $border-radius-1 0 0;
         color: var(--color-text-p2);
         transition: a.$Theme-transition;
+
+        @include media(mobile-all) {
+          grid-template-columns: repeat(2, auto);
+        }
+
+        &__title {
+          @include media(mobile-all) {
+            display: none;
+          }
+        }
 
         &__name {
           $parent: &;
@@ -173,16 +235,4 @@
       }
     }
   }
-}
-
-.tmpbtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 48px;
-  padding: f.px2em(17) f.px2em(24);
-  background-color: $color-1a;
-  color: $white;
-  border-radius: 24px;
-  font-weight: 500;
 }

@@ -16,7 +16,7 @@ function Invoice(props: CompProps): JSX.Element {
   return (
     <div className={styles.container}>
       <p className={styles.container__code}>
-        #<p className={styles['container__code--black']}>{invoiceId}</p>
+        #<span className={styles['container__code--black']}>{invoiceId}</span>
       </p>
       <p className={styles.container__date}>Due {paymentDue}</p>
       <p className={styles.container__name}>{clientName}</p>

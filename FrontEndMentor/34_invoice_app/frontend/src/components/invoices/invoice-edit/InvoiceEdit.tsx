@@ -104,16 +104,20 @@ function InvoiceEdit(): JSX.Element {
         </div>
         <div className={styles.container__invoice__payment}>
           <div className={styles.container__invoice__payment__grid}>
-            <p className={styles.container__invoice__payment__grid__name}>
+            <p
+              className={`${styles.container__invoice__payment__grid__name} ${styles.container__invoice__payment__grid__title}`}>
               Item Name
             </p>
-            <p className={styles.container__invoice__payment__grid__qty}>
+            <p
+              className={`${styles.container__invoice__payment__grid__qty} ${styles.container__invoice__payment__grid__title}`}>
               QTY.
             </p>
-            <p className={styles.container__invoice__payment__grid__price}>
+            <p
+              className={`${styles.container__invoice__payment__grid__price} ${styles.container__invoice__payment__grid__title}`}>
               Price
             </p>
-            <p className={styles.container__invoice__payment__grid__total}>
+            <p
+              className={`${styles.container__invoice__payment__grid__total} ${styles.container__invoice__payment__grid__title}`}>
               Total
             </p>
             <p

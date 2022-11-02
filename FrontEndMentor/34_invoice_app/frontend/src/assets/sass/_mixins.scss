@@ -193,6 +193,16 @@
         @content;
       }
     }
+    @if $arg == 'tablet-large' {
+      @include tablet-large {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-extra-large' {
+      @include tablet-extra-large {
+        @content;
+      }
+    }
     @if $arg == 'tablet-all' {
       @include tablet-all {
         @content;
@@ -242,7 +252,19 @@
 }
 
 @mixin tablet-medium {
-  @media only screen and (min-width: #{$tablet-s}) and (max-width: #{$desktop-s - 1px}) {
+  @media only screen and (min-width: #{$tablet-s}) and (max-width: #{$tablet-m - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-large {
+  @media only screen and (min-width: #{$tablet-m}) and (max-width: #{$tablet-l - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-extra-large {
+  @media only screen and (min-width: #{$tablet-l}) and (max-width: #{$desktop-s - 1px}) {
     @content;
   }
 }
