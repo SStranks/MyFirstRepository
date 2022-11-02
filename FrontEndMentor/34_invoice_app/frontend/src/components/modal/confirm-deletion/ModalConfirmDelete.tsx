@@ -16,7 +16,7 @@ function ModalConfirmDelete(props: ButtonProps): JSX.Element {
     <div className={styles.container}>
       <div className={styles.container__card}>
         <p className={styles.container__card__title}>Confirm Deletion</p>
-        <p>
+        <p className={styles.container__card__message}>
           Are you sure you want to delete invoice {invoiceCode}? This action
           cannot be undone.
         </p>

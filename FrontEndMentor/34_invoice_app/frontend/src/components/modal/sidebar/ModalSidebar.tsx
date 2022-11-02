@@ -52,7 +52,7 @@ function ModalSidebar(props: SidebarProps): JSX.Element {
               <p>Post Code</p>
               <input type="text" />
             </div>
-            <div className="">
+            <div className={styles.sidebar__form__from__street}>
               <p>Country</p>
               <input type="text" />
             </div>
@@ -79,7 +79,7 @@ function ModalSidebar(props: SidebarProps): JSX.Element {
               <p>Post Code</p>
               <input type="text" />
             </div>
-            <div className="">
+            <div className={styles.sidebar__form__to__country}>
               <p>Country</p>
               <input type="text" />
             </div>

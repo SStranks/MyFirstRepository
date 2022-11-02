@@ -12,11 +12,23 @@ $margin-btm: f.px2em(42);
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 720px;
+  max-width: 720px;
+  width: 85%;
+  margin-right: 100px;
   background-color: var(--color-sidebar-panel);
-  border-radius: $border-radius-4;
+  border-radius: 0 $border-radius-4 $border-radius-4 0;
   z-index: f.z('modal-sidebar');
   transition: a.$Theme-transition;
+
+  @include media(tablet-all, mobile-all) {
+    height: calc(100% - f.px2em(80));
+    margin-top: f.px2em(80);
+  }
+
+  @include media(tablet-medium, tablet-small, mobile-all) {
+    width: 100%;
+    border-radius: 0;
+  }
 
   &__title {
     @include body-4;
@@ -26,6 +38,14 @@ $margin-btm: f.px2em(42);
     margin-bottom: 48px;
     color: var(--color-text-h);
     transition: a.$Theme-transition;
+
+    @include media(tablet-all, mobile-all) {
+      margin-left: 56px;
+    }
+
+    @include media(tablet-medium, tablet-small, mobile-all) {
+      margin-left: 24px;
+    }
 
     & > span {
       color: $color-2b;
@@ -37,20 +57,36 @@ $margin-btm: f.px2em(42);
   position: relative;
   height: 100%;
   max-width: 100%;
-  margin-right: 32px;
   padding: f.px2em(0) f.px2em(0) f.px2em(0) f.px2em(0);
   color: $color-2c;
   background-color: var(--color-sidebar-panel);
   transition: a.$Theme-transition;
 
+  @include media(tablet-medium, tablet-small, mobile-all) {
+    margin-right: 0;
+  }
+
   &__form {
     position: relative;
     height: 100%;
-    // max-height: 100%;
     margin-left: f.px2em(160);
+    margin-right: 12px;
     padding-bottom: f.px2em(200);
     padding-right: f.px2em(16);
     overflow-y: scroll;
+
+    @include media(tablet-all, mobile-all) {
+      margin-left: f.px2em(56);
+    }
+
+    @include media(tablet-medium, tablet-small, mobile-all) {
+      margin-left: f.px2em(24);
+      margin-right: 0;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
 
     &::-webkit-scrollbar {
       width: 8px;
@@ -76,6 +112,10 @@ $margin-btm: f.px2em(42);
       column-gap: f.px2em(24);
       margin-bottom: $margin-btm;
 
+      @include media(tablet-medium, tablet-small, mobile-all) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       & input[type='text'] {
         margin-top: f.px2em(10);
         margin-bottom: f.px2em(24);
@@ -89,6 +129,16 @@ $margin-btm: f.px2em(42);
 
       &__street {
         grid-column: 1 / span 3;
+
+        @include media(tablet-medium, tablet-small, mobile-all) {
+          grid-column: 1 / span 2;
+        }
+      }
+
+      &__country {
+        @include media(tablet-medium, tablet-small, mobile-all) {
+          grid-column: 1 / 2;
+        }
       }
     }
 
@@ -99,6 +149,10 @@ $margin-btm: f.px2em(42);
       column-gap: f.px2em(24);
       margin-bottom: $margin-btm;
 
+      @include media(tablet-medium, tablet-small, mobile-all) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       & input[type='text'] {
         margin-top: f.px2em(10);
         margin-bottom: f.px2em(24);
@@ -108,6 +162,16 @@ $margin-btm: f.px2em(42);
       &__email,
       &__address {
         grid-column: 1 / span 3;
+
+        @include media(tablet-medium, tablet-small, mobile-all) {
+          grid-column: 1 / span 2;
+        }
+      }
+
+      &__country {
+        @include media(tablet-medium, tablet-small, mobile-all) {
+          grid-column: 1 / span 2;
+        }
       }
 
       & > p {
