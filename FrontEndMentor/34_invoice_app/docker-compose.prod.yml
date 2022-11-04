@@ -1,4 +1,4 @@
-name: "FEM#33-MERN-Webapp-PROD"
+name: "FEM#34-MERN-InvoiceApp-PROD"
 services:
 
   # Backend: Node API
