@@ -1,4 +1,4 @@
-import DefaultLayout from '../layouts/DefaultLayout';
+import DefaultLayout from '#Layouts/DefaultLayout';
 
 function Home(): JSX.Element {
   return <DefaultLayout />;
