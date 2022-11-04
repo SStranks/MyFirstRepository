@@ -1,0 +1,37 @@
+/* -------------------------------- */
+/*   Colors                         */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use 'variables' as *;
+
+/* -------------------------------- */
+/*   Primary Colors                 */
+/* -------------------------------- */
+
+$Violet: hsl(235deg, 69%, 61%);
+$Light_Violet: hsl(235deg, 82%, 77%);
+$Fine_Violet: hsl(253deg, 74%, 91%);
+$Very_Dark_Blue: hsl(219deg, 29%, 14%);
+$Midnight: hsl(220deg, 29%, 10%);
+
+/* -------------------------------- */
+/*   Secondary Colors               */
+/* -------------------------------- */
+
+$White: hsl(0deg, 0%, 100%);
+$Light_Grey: hsl(210deg, 22%, 96%);
+$Grey: hsl(212deg, 23%, 69%);
+$Dark_Grey: hsl(214deg, 17%, 51%);
+
+/* -------------------------------- */
+/*   Tertiary Colors                */
+/* -------------------------------- */

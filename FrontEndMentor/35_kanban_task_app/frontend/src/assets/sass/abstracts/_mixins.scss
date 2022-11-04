@@ -1,0 +1,127 @@
+/* -------------------------------- */
+/*   Mixins                         */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use './variables' as *;
+
+/*   Text: Body                     */
+// @mixin body-1 {
+//   font-weight: 400;
+//   font-size: f.px2rem(16);
+//   line-height: f.px2rem(15);
+//   letter-spacing: f.px2rem(-0.25);
+//   color: $color-2b;
+// }
+
+// @mixin text-modifier-black {
+//   font-weight: 700;
+//   color: var(--color-text-p);
+//   transition: a.$Theme-transition;
+// }
+
+/*   Card                           */
+// @mixin card {
+//   background-color: $white;
+//   border-radius: $border-radius-1;
+//   padding: f.px2em(24);
+// }
+
+/*   Text Area                      */
+// @mixin textarea {
+//   @include body-2;
+//   border: none;
+//   border-radius: $border-radius-2;
+//   resize: vertical;
+//   width: 100%;
+//   padding: f.px2em(16) f.px2em(24);
+//   background-color: $pale-blue;
+//   color: $navy-blue;
+
+//   &::placeholder {
+//     color: $fade-blue;
+//   }
+
+//   &:focus {
+//     outline: 1px solid $royal-blue;
+//   }
+// }
+
+/*   Errors                         */
+// @mixin input-error {
+//   $element: &;
+//   &--error {
+//     #{$element} {
+//       outline: 1px solid $blood-red;
+
+//       &:focus {
+//         outline: 1px solid $blood-red;
+//       }
+//     }
+
+//     &::after {
+//       content: "Can't be empty";
+//       @include body-4;
+//       left: 0;
+//       bottom: 0;
+//       color: $blood-red;
+//     }
+//   }
+// }
+
+/* -------------------------------- */
+/*   Buttons                        */
+/* -------------------------------- */
+
+@mixin btn-default {
+  font-size: f.px2rem(15);
+  font-weight: 500;
+  line-height: f.px2rem(15);
+  letter-spacing: -0.25px;
+  color: $white;
+  height: 48px;
+  border-radius: 24px;
+}
+
+/* -------------------------------- */
+/*   Fluid Typogrpahy               */
+/* -------------------------------- */
+
+// The first two arguments are for screen resolutions from which the font will be responsive.
+// The last two arguments are for the smallest and largest font size.
+// Calculates line-height automatically.
+@mixin fluid-font($min-width, $max-width, $min-font-size, $max-font-size) {
+  $unit1: unit($min-width);
+  $unit2: unit($max-width);
+  $unit3: unit($min-font-size);
+  $unit4: unit($max-font-size);
+  @if $unit1 == $unit2 and $unit1 == $unit3 and $unit1 == $unit4 {
+    & {
+      font-size: $min-font-size;
+      line-height: $min-font-size * 1.618;
+      @media screen and (min-width: $min-width) {
+        font-size: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            ((100vw - #{$min-width}) / #{strip-unit($max-width - $min-width)})
+        );
+        line-height: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            1.618 *
+            ((100vw - #{$min-width}) / #{strip-unit($max-width - $min-width)})
+        );
+      }
+      @media screen and (min-width: $max-width) {
+        font-size: $max-font-size;
+        line-height: $max-font-size * 1.618;
+      }
+    }
+  }
+}

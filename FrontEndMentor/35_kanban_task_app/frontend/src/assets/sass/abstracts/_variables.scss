@@ -1,0 +1,45 @@
+/* -------------------------------- */
+/*   Variables                      */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+
+/* -------------------------------- */
+/*   Margin & Padding               */
+/* -------------------------------- */
+
+$padding-desktop: 0 165px 56px 165px;
+$padding-transition: padding 2500ms ease-out;
+$grid-gap-transition: gap 1500ms ease-out;
+
+/* -------------------------------- */
+/*   Borders                        */
+/* -------------------------------- */
+
+$border-radius-1: 8px;
+$border-radius-2: 6px;
+$border-radius-3: 24px;
+$border-radius-4: 20px;
+$border-radius-5: 4px;
+
+/* -------------------------------- */
+/*   Shadows                        */
+/* -------------------------------- */
+
+$box-shadow-1: 0px 10px 10px -10px rgba(72, 84, 159, 0.1);
+
+/* -------------------------------- */
+/*   Web Element                    */
+/* -------------------------------- */
+
+$sidebar-dim-desktop: 103px;
+$sidebar-dim-tablet: 80px;
+$sidebar-dim-mobile: 72px;

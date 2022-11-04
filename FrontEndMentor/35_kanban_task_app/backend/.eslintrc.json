@@ -1,0 +1,31 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:security/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "requireConfigFile": false,
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["unicorn", "prettier"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
+    "no-console": "off",
+    "arrow-body-style": "off"
+    // "func-names": "off",
+    // "no-process-exit": "off",
+    // "object-shorthand": "off",
+    // "class-methods-use-this": "off",
+  },
+  "ignorePatterns": ["node_modules"]
+}
