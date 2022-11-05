@@ -11,9 +11,11 @@
 /* -------------------------------- */
 
 /*   Imports                        */
-@use '../abstracts/variables' as *;
-@use '../abstracts/functions' as *;
+@use '../abstracts/functions' as f;
+@use '../abstracts/colors' as *;
 @use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+@use '../base/themes' as t;
 
 /* -------------------------------- */
 /*   Default                        */
@@ -67,12 +69,12 @@ $border-radius-btn-2: 20px;
   @include body-l;
   font-weight: 700;
   padding: f.px2em(15) 0;
-  background-color: hsla($col-1l, 0.1);
+  background-color: var(--thm-btn-secondary);
   color: $col-1a;
   border-radius: $border-radius-btn-2;
 
   &:hover {
-    background-color: hsla($col-1m, 0.25);
+    background-color: var(--thm-btn-secondary-hover);
   }
 }
 

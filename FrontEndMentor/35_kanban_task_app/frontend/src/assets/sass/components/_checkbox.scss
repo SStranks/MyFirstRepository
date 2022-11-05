@@ -1,0 +1,61 @@
+/* -------------------------------- */
+/*   Checkbox                       */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use '../abstracts/functions' as f;
+@use '../abstracts/colors' as *;
+@use '../abstracts/mixins' as *;
+@use '../abstracts/variables' as *;
+@use '../base/themes' as t;
+
+/* -------------------------------- */
+/*   Default                        */
+/* -------------------------------- */
+
+$border-radius-chkbx-1: 4px;
+$border-radius-chkbx-2: 2px;
+
+// Mixin to be included in span tag, inside label; hide default checkbox.
+@mixin checkbox-subtask-checkbox {
+  width: f.px2em(16);
+  height: f.px2em(16);
+  background-color: var(--thm-chkbox-default-chkbox-bg);
+  box-shadow: 0 0 0 1px $col-1g;
+  border-radius: $border-radius-chkbx-1;
+
+  &:hover {
+    background-color: var(--thm-chkbox-default-chkbox-bg);
+  }
+
+  &:checked {
+    background-color: $col-1a;
+  }
+}
+
+// Mixin to be applied to container (label tag)
+@mixin checkbox-subtask-label {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  padding: f.px2em(12) 0 f.px2em(12) f.px2em(44);
+  color: $Black;
+  background-color: var(--thm-chkbox-default-label-bg);
+  border-radius: $border-radius-chkbx-1;
+
+  &:hover {
+    background-color: var(--thm-chkbox-default-label-hover-bg);
+  }
+
+  &:checked {
+    background-color: var(--thm-chkbox-default-label-bg);
+  }
+}

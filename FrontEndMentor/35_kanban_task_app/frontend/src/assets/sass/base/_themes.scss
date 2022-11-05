@@ -20,14 +20,19 @@
 /* -------------------------------- */
 
 $light-theme: (
+  bg-main: #{$col-1i},
+  bg-sidebar: #{$White},
+  bg-header: #{$White},
   btn-secondary: #{$col-1l},
   btn-secondary-hover: #{$col-1m},
-  // background: #{$Light_Grey},
-  // elements: #{$White},
+  chkbox-default-chkbox-bg: #{$White},
+  chkbox-default-label-bg: #{$col-1i},
+  chkbox-default-label-hover-bg: #{$col-1m},
+
   // text-p: #{$Dark_Grey},
   // text-h: #{$Very_Dark_Blue},
   // placeholder: hsl(216deg, 5%, 57%),
-  // input-text: #{$Dark_Grey},,,
+  // input-text: #{$Dark_Grey},,,,,,,,,,
 );
 
 /* -------------------------------- */
@@ -35,14 +40,19 @@ $light-theme: (
 /* -------------------------------- */
 
 $dark-theme: (
+  bg-main: #{$col-1d},
+  bg-sidebar: #{$col-1e},
+  bg-header: #{$col-1e},
   btn-secondary: #{$White},
   btn-secondary-hover: #{$White},
-  // background: #{$Midnight},
-  // elements: #{$Very_Dark_Blue},
+  chkbox-default-chkbox-bg: #{$col-1e},
+  chkbox-default-label-bg: #{$col-1d},
+  chkbox-default-label-hover-bg: #{$col-1n},
+
   // text-p: #{$Dark_Grey},
   // text-h: #{$White},
   // placeholder: hsl(216deg, 5%, 57%),
-  // input-text: #{$White},,,
+  // input-text: #{$White},,,,,,,,,,
 );
 
 // Class applied to body tag to overwrite default variables
