@@ -1,0 +1,95 @@
+/* -------------------------------- */
+/*   Buttons                        */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use '../abstracts/variables' as *;
+@use '../abstracts/functions' as *;
+@use '../abstracts/mixins' as *;
+
+/* -------------------------------- */
+/*   Default                        */
+/* -------------------------------- */
+
+$border-radius-btn-1: 24px;
+$border-radius-btn-2: 20px;
+
+@mixin btn-default {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // Width to be determined by encapsulating DIV
+  width: 100%;
+  font-weight: 700;
+}
+
+/* -------------------------------- */
+/*   Light Theme                    */
+/* -------------------------------- */
+
+@mixin btn-primary-l {
+  @include btn-default;
+  @include header-m;
+  padding: f.px2em(15) 0;
+  background-color: $col-1a;
+  color: $White;
+  border-radius: $border-radius-btn-1;
+
+  &:hover {
+    background-color: $col-1b;
+  }
+}
+
+@mixin btn-primary-s {
+  @include btn-default;
+  @include body-l;
+  font-weight: 700;
+  padding: f.px2em(15) 0;
+  background-color: $col-1a;
+  color: $White;
+  border-radius: $border-radius-btn-2;
+
+  &:hover {
+    background-color: $col-1b;
+  }
+}
+
+@mixin btn-secondary {
+  @include btn-default;
+  @include body-l;
+  font-weight: 700;
+  padding: f.px2em(15) 0;
+  background-color: hsla($col-1l, 0.1);
+  color: $col-1a;
+  border-radius: $border-radius-btn-2;
+
+  &:hover {
+    background-color: hsla($col-1m, 0.25);
+  }
+}
+
+@mixin btn-destructive {
+  @include btn-default;
+  @include body-l;
+  font-weight: 700;
+  padding: f.px2em(15) 0;
+  background-color: $col-1j;
+  color: $col-1j;
+  border-radius: $border-radius-btn-2;
+
+  &:hover {
+    background-color: $col-1k;
+  }
+}
+
+/* -------------------------------- */
+/*   Dark Theme                     */
+/* -------------------------------- */
