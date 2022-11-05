@@ -11,16 +11,51 @@
 /* -------------------------------- */
 
 /*   Imports                        */
-@use './variables' as *;
+@use 'variables' as *;
 
+/* -------------------------------- */
+/*   Text: Header                   */
+/* -------------------------------- */
+@mixin header-xl {
+  font-weight: 700;
+  font-size: f.px2rem(24);
+  line-height: f.px2rem(30);
+}
+
+@mixin header-l {
+  font-weight: 700;
+  font-size: f.px2rem(18);
+  line-height: f.px2rem(23);
+}
+
+@mixin header-m {
+  font-weight: 700;
+  font-size: f.px2rem(15);
+  line-height: f.px2rem(19);
+}
+
+@mixin header-s {
+  font-weight: 700;
+  font-size: f.px2rem(12);
+  line-height: f.px2rem(15);
+  letter-spacing: f.px2rem(2.4);
+}
+
+/* -------------------------------- */
 /*   Text: Body                     */
-// @mixin body-1 {
-//   font-weight: 400;
-//   font-size: f.px2rem(16);
-//   line-height: f.px2rem(15);
-//   letter-spacing: f.px2rem(-0.25);
-//   color: $color-2b;
-// }
+/* -------------------------------- */
+
+@mixin body-l {
+  font-weight: 500;
+  font-size: f.px2rem(13);
+  line-height: f.px2rem(23);
+}
+
+@mixin body-m {
+  font-weight: 500;
+  font-size: f.px2rem(12);
+  line-height: f.px2rem(15);
+}
 
 // @mixin text-modifier-black {
 //   font-weight: 700;
@@ -76,20 +111,6 @@
 //     }
 //   }
 // }
-
-/* -------------------------------- */
-/*   Buttons                        */
-/* -------------------------------- */
-
-@mixin btn-default {
-  font-size: f.px2rem(15);
-  font-weight: 500;
-  line-height: f.px2rem(15);
-  letter-spacing: -0.25px;
-  color: $white;
-  height: 48px;
-  border-radius: 24px;
-}
 
 /* -------------------------------- */
 /*   Fluid Typogrpahy               */
