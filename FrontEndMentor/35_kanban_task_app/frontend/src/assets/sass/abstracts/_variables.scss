@@ -24,7 +24,16 @@ $grid-gap-transition: gap 1500ms ease-out;
 /*   Borders                        */
 /* -------------------------------- */
 
-$border-radius: 24px;
+// Common radius across multiple elements
+$border-radius-1: 4px;
+
+$border-radius-btn-1: 24px;
+$border-radius-btn-2: 20px;
+$border-radius-chkbx-1: $border-radius-1;
+$border-radius-chkbx-2: 2px;
+$border-radius-input-text: $border-radius-1;
+$border-radius-dropdown: $border-radius-1;
+$border-radius-dropdown-list: 8px;
 
 /* -------------------------------- */
 /*   Shadows                        */

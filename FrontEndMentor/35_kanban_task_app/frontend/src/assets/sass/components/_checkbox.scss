@@ -21,9 +21,6 @@
 /*   Default                        */
 /* -------------------------------- */
 
-$border-radius-chkbx-1: 4px;
-$border-radius-chkbx-2: 2px;
-
 // Mixin to be included in span tag, inside label; hide default checkbox.
 @mixin checkbox-subtask-checkbox {
   width: f.px2em(16);

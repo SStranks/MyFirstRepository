@@ -59,16 +59,15 @@ input {
   font-size: inherit;
   font-family: inherit;
   font-weight: inherit;
-  color: var(--color-text-p);
   transition: $Theme-transition;
-  background-color: transparent;
+
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
+
   &::placeholder {
-    color: var(--color-text-p);
     transition: $Theme-transition;
   }
 }
