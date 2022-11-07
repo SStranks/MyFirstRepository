@@ -1,3 +1,27 @@
+@use '#Sass/abstracts/variables' as v;
+@use '#Sass/abstracts/functions' as f;
+
 .sidebar {
-  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  height: 100%;
+  color: #000;
+  border-right: 1px solid var(--thm-border-divider);
+
+  &__controls {
+    background-color: lightblue;
+    margin: 0 f.px2em(24) f.px2em(48) f.px2em(24);
+  }
+
+  &__theme {
+    background-color: red;
+  }
+
+  &__hide {
+    display: flex;
+    align-items: center;
+    column-gap: f.px2em(15);
+  }
 }

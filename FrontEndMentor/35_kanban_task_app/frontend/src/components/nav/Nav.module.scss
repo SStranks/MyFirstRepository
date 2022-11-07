@@ -1,3 +1,30 @@
+@use '#Sass/abstracts/variables' as v;
+@use '#Sass/abstracts/functions' as f;
+
 .navbar {
-  color: #fff;
+  display: flex;
+  width: 100%;
+  height: v.$navbar-dim-height;
+  background-color: var(--thm-bg-sidebar);
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: v.$sidebar-dim-width;
+    border-right: 1px solid var(--thm-border-divider);
+
+    &__img {
+      height: auto;
+    }
+  }
+
+  &__head {
+    display: flex;
+    flex: 1 0 0;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 f.px2em(24);
+  }
 }

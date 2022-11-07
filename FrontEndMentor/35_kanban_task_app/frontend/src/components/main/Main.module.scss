@@ -1,3 +1,32 @@
+@use '#Sass/abstracts/variables' as v;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as m;
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/components/buttons' as *;
+
 .main {
-  color: #fff;
+  display: flex;
+  flex: 1 0 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(1);
+  background-color: var(--thm-bg-main);
+  border-top: 1px solid var(--thm-border-divider);
+
+  &__empty {
+    @include m.header-l;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: f.px2em(32);
+    color: c.$col-1g;
+
+    & > button {
+      @include btn-primary-l;
+      width: fit-content;
+      padding-left: f.px2em(18);
+      padding-right: f.px2em(18);
+    }
+  }
 }
