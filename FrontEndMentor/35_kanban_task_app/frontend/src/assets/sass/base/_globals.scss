@@ -29,10 +29,6 @@ body {
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: var(--color-background);
-  color: var(--color-text-p);
-  line-height: 1.5;
-  transition: a.$Theme-transition;
 }
 
 img {

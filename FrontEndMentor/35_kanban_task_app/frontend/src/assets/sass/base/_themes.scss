@@ -23,6 +23,7 @@ $light-theme: (
   bg-main: #{$col-1i},
   bg-sidebar: #{$White},
   bg-header: #{$White},
+  border-divider: #{$col-1h},
   btn-secondary: #{$col-1l},
   btn-secondary-hover: #{$col-1m},
   chkbox-default-chkbox-bg: #{$White},
@@ -38,7 +39,7 @@ $light-theme: (
   // text-p: #{$Dark_Grey},
   // text-h: #{$Very_Dark_Blue},
   // placeholder: hsl(216deg, 5%, 57%),
-  // input-text: #{$Dark_Grey},,,,,,,,,,,,,
+  // input-text: #{$Dark_Grey},,,,,,,,,,,,,,
 );
 
 /* -------------------------------- */
@@ -49,6 +50,7 @@ $dark-theme: (
   bg-main: #{$col-1d},
   bg-sidebar: #{$col-1e},
   bg-header: #{$col-1e},
+  border-divider: #{$col-1f},
   btn-secondary: #{$White},
   btn-secondary-hover: #{$White},
   chkbox-default-chkbox-bg: #{$col-1e},
@@ -64,7 +66,7 @@ $dark-theme: (
   // text-p: #{$Dark_Grey},
   // text-h: #{$White},
   // placeholder: hsl(216deg, 5%, 57%),
-  // input-text: #{$White},,,,,,,,,,,,,
+  // input-text: #{$White},,,,,,,,,,,,,,
 );
 
 // Class applied to body tag to overwrite default variables
