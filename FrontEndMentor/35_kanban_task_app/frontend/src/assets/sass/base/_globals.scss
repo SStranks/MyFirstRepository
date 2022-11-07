@@ -12,7 +12,6 @@
 
 /*   Imports                        */
 @use '../abstracts/variables' as *;
-@use '../abstracts/animations' as a;
 
 /* -------------------------------- */
 /*   Globals                        */
@@ -56,7 +55,6 @@ input {
   font-size: inherit;
   font-family: inherit;
   font-weight: inherit;
-  transition: a.$Theme-transition;
 
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button {
@@ -65,9 +63,8 @@ input {
     margin: 0;
   }
 
-  &::placeholder {
-    transition: a.$Theme-transition;
-  }
+  // &::placeholder {
+  // }
 }
 
 label {

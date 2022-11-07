@@ -1,7 +1,8 @@
-@use '#Sass/abstracts/variables' as v;
+@use '#Sass/abstracts/animations' as a;
+@use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as m;
-@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as *;
 
 .main {
@@ -13,6 +14,7 @@
   height: calc(1);
   background-color: var(--thm-bg-main);
   border-top: 1px solid var(--thm-border-divider);
+  transition: a.$Theme-transition-bg, a.$Theme-transition-border;
 
   &__empty {
     @include m.header-l;

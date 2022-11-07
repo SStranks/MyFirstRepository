@@ -1,11 +1,14 @@
+@use '#Sass/abstracts/animations' as a;
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/components/buttons' as *;
 
 .navbar {
   display: flex;
   width: 100%;
   height: v.$navbar-dim-height;
   background-color: var(--thm-bg-sidebar);
+  transition: a.$Theme-transition-bg;
 
   &__logo {
     display: flex;
@@ -13,6 +16,7 @@
     justify-content: center;
     width: v.$sidebar-dim-width;
     border-right: 1px solid var(--thm-border-divider);
+    transition: a.$Theme-transition-border;
 
     &__img {
       height: auto;
@@ -26,5 +30,20 @@
     justify-content: space-between;
     width: 100%;
     padding: 0 f.px2em(24);
+    color: var(--thm-nav-h1);
+    transition: a.$Theme-transition-color;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    column-gap: f.px2em(24);
+
+    & > button {
+      @include btn-primary-l;
+      width: fit-content;
+      padding-left: f.px2em(18);
+      padding-right: f.px2em(18);
+    }
   }
 }

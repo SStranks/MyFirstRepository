@@ -1,4 +1,4 @@
-import styles from './Main.module.scss';
+import styles from './_Main.module.scss';
 
 function Main(): JSX.Element {
   return (

@@ -11,6 +11,7 @@
 /* -------------------------------- */
 
 /*   Imports                        */
+@use '../abstracts/animations' as a;
 @use '../abstracts/functions' as f;
 @use '../abstracts/colors' as *;
 @use '../abstracts/mixins' as *;
@@ -41,9 +42,16 @@
   background-color: $col-1a;
   color: $White;
   border-radius: $border-radius-btn-1;
+  transition: a.$Theme-transition-bg, a.$Theme-transition-color;
 
   &:hover {
     background-color: $col-1b;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--thm-btn-primary-disabled-bg);
+    color: var(--thm-btn-primary-disabled-text);
   }
 }
 

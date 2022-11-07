@@ -17,7 +17,30 @@
 /*   Theme Transitions              */
 /* -------------------------------- */
 
-$Theme-transition: background 1s, color 1s, fill 1s;
+$Theme-transition-bg: background 1s;
+$Theme-transition-color: color 1s;
+$Theme-transition-fill: fill 1s;
+$Theme-transition-border: border 1s;
+
+/* -------------------------------- */
+/*   Keyframes                      */
+/* -------------------------------- */
+
+@keyframes sidebar-hide {
+  100% {
+    width: 0px;
+    // transform: translateX(-100%);
+  }
+}
+
+@keyframes sidebar-opacity {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}
 
 /* -------------------------------- */
 /*   Hover Effects                  */

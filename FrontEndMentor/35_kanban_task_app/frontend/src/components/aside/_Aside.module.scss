@@ -1,0 +1,93 @@
+@use '#Sass/abstracts/animations' as a;
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as m;
+@use '#Sass/abstracts/variables' as v;
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  height: 100%;
+  background-color: var(--thm-bg-sidebar);
+  color: c.$col-1g;
+  border-right: 1px solid var(--thm-border-divider);
+  transition: a.$Theme-transition-bg, a.$Theme-transition-border;
+
+  &__boards {
+    & > h2 {
+      @include m.header-s;
+      margin-left: f.px2em(32);
+      margin-bottom: f.px2em(20);
+    }
+
+    & > ul {
+      list-style: none;
+      padding-left: unset;
+
+      & > li {
+        @include m.header-m;
+        display: flex;
+        column-gap: f.px2em(16);
+        width: 92%;
+        padding: f.px2em(15) 0 f.px2em(15) f.px2em(32);
+      }
+
+      & > li.active {
+        background-color: c.$col-1a;
+        color: c.$White;
+        border-radius: 0 v.$border-radius-sidebar-li v.$border-radius-sidebar-li
+          0;
+
+        & > img {
+          filter: brightness(100);
+        }
+      }
+
+      & > li.new-board {
+        color: c.$col-1a;
+        & > img {
+          filter: invert(39%) sepia(32%) saturate(1047%) hue-rotate(203deg)
+            brightness(97%) contrast(94%);
+        }
+      }
+    }
+  }
+
+  &__controls {
+    margin: 0 f.px2em(24) f.px2em(48) f.px2em(24);
+  }
+
+  &__theme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: f.px2em(15) 0;
+    margin-bottom: f.px2em(22);
+    background-color: var(--thm-bg-sidebar-theme);
+    border-radius: v.$border-radius-sidebar-theme;
+    transition: a.$Theme-transition-bg;
+  }
+
+  &__hide {
+    @include m.header-m;
+    display: flex;
+    align-items: center;
+    column-gap: f.px2em(15);
+    color: inherit;
+    background-color: transparent;
+
+    & > p {
+      margin-top: 1px;
+    }
+  }
+}
+
+.animation {
+  animation: sidebar-hide 1.4s forwards;
+
+  &__hide {
+    animation: sidebar-opacity 0.2s forwards;
+  }
+}

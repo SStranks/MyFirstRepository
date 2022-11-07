@@ -24,8 +24,8 @@ $navbar-dim-height: 96px;
 /* -------------------------------- */
 
 $padding-desktop: 0 165px 56px 165px;
-$padding-transition: padding 2500ms ease-out;
-$grid-gap-transition: gap 1500ms ease-out;
+// $padding-transition: padding 2500ms ease-out;
+// $grid-gap-transition: gap 1500ms ease-out;
 
 /* -------------------------------- */
 /*   Borders                        */
@@ -41,6 +41,8 @@ $border-radius-chkbx-2: 2px;
 $border-radius-input-text: $border-radius-1;
 $border-radius-dropdown: $border-radius-1;
 $border-radius-dropdown-list: 8px;
+$border-radius-sidebar-li: 100px;
+$border-radius-sidebar-theme: 6px;
 
 /* -------------------------------- */
 /*   Shadows                        */

@@ -1,6 +1,6 @@
 import IconEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import LogoDark from '#Svg/logo-dark.svg';
-import styles from './Nav.module.scss';
+import styles from './_Nav.module.scss';
 
 function Nav(): JSX.Element {
   return (
@@ -10,8 +10,11 @@ function Nav(): JSX.Element {
       </div>
       <div className={styles.navbar__head}>
         <h1>Platform Launch</h1>
-        <div className="">
-          {/* BTN: + Add New Task */}
+        <div className={styles.navbar__controls}>
+          <button type="button" disabled>
+            {' '}
+            + Add New Task
+          </button>
           <img src={IconEllipsis} alt="" />
         </div>
       </div>
