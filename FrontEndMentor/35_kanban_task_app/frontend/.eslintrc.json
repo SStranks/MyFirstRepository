@@ -72,7 +72,9 @@
     },
     "import/resolver": {
       "typescript": {
-        "project": "./frontend/tsconfig.json"
+        "alwaysTryTypes": true,
+        // NOTE:  ESLint works from <root>; the workspace/folder open. See vscode.code-workspace.
+        "project": "./"
       }
     }
   },
