@@ -1,3 +1,4 @@
+import IconAddTaskMobile from '#Svg/icon-add-task-mobile.svg';
 import IconEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import LogoDark from '#Svg/logo-dark.svg';
 import styles from './_Nav.module.scss';
@@ -9,11 +10,11 @@ function Nav(): JSX.Element {
         <img src={LogoDark} className={styles.navbar__logo__img} alt="" />
       </div>
       <div className={styles.navbar__head}>
-        <h1>Platform Launch</h1>
+        <h1 className={styles.navbar__title}>Platform Launch</h1>
         <div className={styles.navbar__controls}>
           <button type="button" disabled>
-            {' '}
-            + Add New Task
+            <img src={IconAddTaskMobile} alt="" />
+            <span>+ Add New Task</span>
           </button>
           <img src={IconEllipsis} alt="" />
         </div>

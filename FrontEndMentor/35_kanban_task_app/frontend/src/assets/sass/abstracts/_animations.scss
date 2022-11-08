@@ -12,6 +12,7 @@
 
 /*   Imports                        */
 @use 'variables' as *;
+@use 'media-queries' as mq;
 
 /* -------------------------------- */
 /*   Theme Transitions              */
@@ -26,20 +27,39 @@ $Theme-transition-border: border 1s;
 /*   Keyframes                      */
 /* -------------------------------- */
 
-@keyframes sidebar-hide {
+@keyframes sidebar-hide-300 {
   0% {
-    width: 300px;
+    width: $sidebar-dim-width-l;
   }
   100% {
     width: 0px;
   }
 }
-@keyframes sidebar-hide-reverse {
+
+@keyframes sidebar-hide-reverse-300 {
   0% {
     width: 0px;
   }
   100% {
-    width: 300px;
+    width: $sidebar-dim-width-l;
+  }
+}
+
+@keyframes sidebar-hide-260 {
+  0% {
+    width: $sidebar-dim-width-m;
+  }
+  100% {
+    width: 0px;
+  }
+}
+
+@keyframes sidebar-hide-reverse-260 {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: $sidebar-dim-width-m;
   }
 }
 
@@ -54,6 +74,16 @@ $Theme-transition-border: border 1s;
 }
 
 @keyframes sidebar-opacity-reverse {
+  0% {
+    visibility: hidden;
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes sidebar-theme-reverse {
   0% {
     visibility: hidden;
     opacity: 0%;

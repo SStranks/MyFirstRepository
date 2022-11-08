@@ -2,6 +2,7 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as m;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/variables' as v;
 
 .sidebar {
@@ -15,11 +16,18 @@
   border-right: 1px solid var(--thm-border-divider);
   transition: a.$Theme-transition-bg, a.$Theme-transition-border;
 
+  @include mq.media(tablet-large, tablet-medium, tablet-small) {
+    width: 260px;
+  }
+
+  @include mq.media(mobile-all) {
+    display: none;
+  }
+
   &__boards {
     & > h2 {
       @include m.header-s;
-      margin-left: f.px2em(32);
-      margin-bottom: f.px2em(20);
+      margin: f.px2em(15) 0 f.px2em(32) f.px2em(20);
       white-space: nowrap;
     }
 
@@ -61,6 +69,10 @@
 
   &__controls {
     margin: 0 f.px2em(24) f.px2em(48) f.px2em(24);
+
+    @include mq.media(tablet-large, tablet-medium, tablet-small) {
+      margin: 0 f.px2em(12) f.px2em(48) f.px2em(12);
+    }
   }
 
   &__theme {
@@ -68,7 +80,6 @@
     align-items: center;
     justify-content: center;
     padding: f.px2em(15) 0;
-    margin-bottom: f.px2em(22);
     background-color: var(--thm-bg-sidebar-theme);
     border-radius: v.$border-radius-sidebar-theme;
     transition: a.$Theme-transition-bg;
@@ -79,8 +90,13 @@
     display: flex;
     align-items: center;
     column-gap: f.px2em(15);
+    margin-top: f.px2em(22);
     color: inherit;
     background-color: transparent;
+
+    @include mq.media(tablet-large, tablet-medium, tablet-small) {
+      margin: f.px2em(30) 0 0 f.px2em(11);
+    }
 
     & > p {
       margin-top: 1px;
@@ -108,8 +124,13 @@
 }
 
 // NOTE:  Need to refactor when list items are mapped/dynamic as JSX.
+// NOTE:  Need to make delays and timings dynamic depending on number of items in list.
 .animation-hide {
-  animation: sidebar-hide 2s 700ms forwards;
+  animation: sidebar-hide-300 2s 700ms forwards;
+
+  @include mq.media(tablet-large, tablet-medium, tablet-small) {
+    animation: sidebar-hide-260 2s 700ms forwards;
+  }
 
   & .sidebar__theme {
     animation: sidebar-opacity 0.25s ease-in-out normal forwards;
@@ -149,12 +170,16 @@
 }
 
 .animation-show {
-  animation: sidebar-hide-reverse 2s forwards;
+  animation: sidebar-hide-reverse-300 2s forwards;
+
+  @include mq.media(tablet-large, tablet-medium, tablet-small) {
+    animation: sidebar-hide-reverse-260 2s forwards;
+  }
 
   & .sidebar__boards > h2,
   .sidebar__theme,
   .sidebar__hide {
-    animation: sidebar-opacity-reverse 0.25s ease-in-out 1.75s normal backwards;
+    animation: sidebar-opacity-reverse 0.75s ease-in-out 1.75s normal backwards;
   }
 
   & .sidebar__boards li:nth-child(1) {

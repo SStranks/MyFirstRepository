@@ -22,6 +22,8 @@
     flex-direction: column;
     align-items: center;
     row-gap: f.px2em(32);
+    margin: 0 f.px2em(55);
+    text-align: center;
     color: c.$col-1g;
 
     & > button {

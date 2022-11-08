@@ -1,6 +1,8 @@
 @use '#Sass/abstracts/animations' as a;
-@use '#Sass/abstracts/variables' as v;
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/mixins' as m;
+@use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as *;
 
 .navbar {
@@ -10,16 +12,40 @@
   background-color: var(--thm-bg-sidebar);
   transition: a.$Theme-transition-bg;
 
+  @include mq.media(tablet-large, tablet-medium) {
+    // See DefaultLayout; subcontainer calculation requires variable
+    height: calc(v.$navbar-dim-height - 16px);
+  }
+
+  @include mq.media(tablet-small, mobile-all) {
+    // See DefaultLayout; subcontainer calculation requires variable
+    height: calc(v.$navbar-dim-height - 32px);
+  }
+
   &__logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: v.$sidebar-dim-width;
+    width: v.$sidebar-dim-width-l;
     border-right: 1px solid var(--thm-border-divider);
     transition: a.$Theme-transition-border;
 
+    @include mq.media(tablet-large, tablet-medium) {
+      width: v.$sidebar-dim-width-m;
+    }
+
+    @include mq.media(tablet-small, mobile-all) {
+      width: fit-content;
+      border-right: none;
+    }
+
     &__img {
       height: auto;
+
+      @include mq.media(tablet-small, mobile-all) {
+        content: url(/src/assets/svg/logo-mobile.svg);
+        margin: 0 f.px2em(16);
+      }
     }
   }
 
@@ -32,6 +58,18 @@
     padding: 0 f.px2em(24);
     color: var(--thm-nav-h1);
     transition: a.$Theme-transition-color;
+
+    @include mq.media(mobile-all) {
+      padding-left: 0;
+    }
+  }
+
+  &__title {
+    @include m.header-xl;
+    @include mq.media(tablet-large, tablet-medium, tablet-small, mobile-all) {
+      @include m.header-l;
+      padding-right: f.px2em(10);
+    }
   }
 
   &__controls {
@@ -44,6 +82,22 @@
       width: fit-content;
       padding-left: f.px2em(18);
       padding-right: f.px2em(18);
+
+      & > img {
+        display: none;
+      }
+
+      @include mq.media(tablet-medium, tablet-small, mobile-all) {
+        padding: f.px2em(10) f.px2em(18);
+        & > span {
+          display: none;
+        }
+
+        & > img {
+          display: block;
+          margin: 0 f.px2em(4);
+        }
+      }
     }
   }
 }
