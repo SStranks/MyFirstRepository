@@ -27,9 +27,19 @@ $Theme-transition-border: border 1s;
 /* -------------------------------- */
 
 @keyframes sidebar-hide {
+  0% {
+    width: 300px;
+  }
   100% {
     width: 0px;
-    // transform: translateX(-100%);
+  }
+}
+@keyframes sidebar-hide-reverse {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 300px;
   }
 }
 
@@ -40,6 +50,16 @@ $Theme-transition-border: border 1s;
   100% {
     visibility: hidden;
     opacity: 0%;
+  }
+}
+
+@keyframes sidebar-opacity-reverse {
+  0% {
+    visibility: hidden;
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
   }
 }
 
@@ -55,6 +75,21 @@ $Theme-transition-border: border 1s;
     visibility: hidden;
     opacity: 0%;
     transform: translateX(-100%);
+  }
+}
+
+@keyframes sidebar-li-reverse {
+  0% {
+    visibility: hidden;
+    opacity: 0%;
+    transform: translateX(-100%);
+  }
+  25% {
+    opacity: 25%;
+  }
+  100% {
+    opacity: 100%;
+    overflow-x: hidden;
   }
 }
 

@@ -86,16 +86,38 @@
       margin-top: 1px;
     }
   }
+
+  &__show {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 48px;
+    margin-bottom: f.px2em(32);
+    background-color: c.$col-1a;
+    border-radius: 0 v.$border-radius-sidebar-li v.$border-radius-sidebar-li 0;
+    // Default position is off-screen
+    transform: translateX(-100%);
+
+    & > img {
+      height: auto;
+    }
+  }
 }
 
 // NOTE:  Need to refactor when list items are mapped/dynamic as JSX.
-.animation {
+.animation-hide {
   animation: sidebar-hide 2s 700ms forwards;
 
+  & .sidebar__theme {
+    animation: sidebar-opacity 0.25s ease-in-out normal forwards;
+  }
+
   & .sidebar__boards > h2,
-  .sidebar__hide,
-  .sidebar__theme {
-    animation: sidebar-opacity 0.25s forwards ease-in-out;
+  .sidebar__hide {
+    animation: sidebar-opacity 0.25s ease-in-out forwards;
   }
 
   & .sidebar__boards li:nth-child(1) {
@@ -118,5 +140,48 @@
   .sidebar__boards > ul > li,
   .sidebar__boards > ul > li > p {
     animation: sidebar-li 1.75s calc(var(--delay) * 150ms + 75ms) forwards ease;
+  }
+
+  & .sidebar__show {
+    transform: translateX(0%);
+    transition: transform 1.5s ease 1s;
+  }
+}
+
+.animation-show {
+  animation: sidebar-hide-reverse 2s forwards;
+
+  & .sidebar__boards > h2,
+  .sidebar__theme,
+  .sidebar__hide {
+    animation: sidebar-opacity-reverse 0.25s ease-in-out 1.75s normal backwards;
+  }
+
+  & .sidebar__boards li:nth-child(1) {
+    --delay: 1;
+  }
+
+  & .sidebar__boards li:nth-child(2) {
+    --delay: 2;
+  }
+
+  & .sidebar__boards li:nth-child(3) {
+    --delay: 3;
+  }
+
+  & .sidebar__boards li:nth-child(4) {
+    --delay: 4;
+  }
+
+  & .sidebar__boards > ul,
+  .sidebar__boards > ul > li,
+  .sidebar__boards > ul > li > p {
+    animation: sidebar-li-reverse 1.75s ease calc(var(--delay) * 150ms + 75ms)
+      normal backwards;
+  }
+
+  & .sidebar__show {
+    transform: translateX(-100%);
+    transition: transform 1.5s ease;
   }
 }
