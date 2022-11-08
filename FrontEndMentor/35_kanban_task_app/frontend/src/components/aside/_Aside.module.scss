@@ -20,6 +20,7 @@
       @include m.header-s;
       margin-left: f.px2em(32);
       margin-bottom: f.px2em(20);
+      white-space: nowrap;
     }
 
     & > ul {
@@ -30,8 +31,10 @@
         @include m.header-m;
         display: flex;
         column-gap: f.px2em(16);
-        width: 92%;
+        width: 90%;
         padding: f.px2em(15) 0 f.px2em(15) f.px2em(32);
+        overflow-x: hidden;
+        white-space: nowrap;
       }
 
       & > li.active {
@@ -47,6 +50,7 @@
 
       & > li.new-board {
         color: c.$col-1a;
+
         & > img {
           filter: invert(39%) sepia(32%) saturate(1047%) hue-rotate(203deg)
             brightness(97%) contrast(94%);
@@ -84,10 +88,35 @@
   }
 }
 
+// NOTE:  Need to refactor when list items are mapped/dynamic as JSX.
 .animation {
-  animation: sidebar-hide 1.4s forwards;
+  animation: sidebar-hide 2s 700ms forwards;
 
-  &__hide {
-    animation: sidebar-opacity 0.2s forwards;
+  & .sidebar__boards > h2,
+  .sidebar__hide,
+  .sidebar__theme {
+    animation: sidebar-opacity 0.25s forwards ease-in-out;
+  }
+
+  & .sidebar__boards li:nth-child(1) {
+    --delay: 4;
+  }
+
+  & .sidebar__boards li:nth-child(2) {
+    --delay: 3;
+  }
+
+  & .sidebar__boards li:nth-child(3) {
+    --delay: 2;
+  }
+
+  & .sidebar__boards li:nth-child(4) {
+    --delay: 1;
+  }
+
+  & .sidebar__boards > ul,
+  .sidebar__boards > ul > li,
+  .sidebar__boards > ul > li > p {
+    animation: sidebar-li 1.75s calc(var(--delay) * 150ms + 75ms) forwards ease;
   }
 }

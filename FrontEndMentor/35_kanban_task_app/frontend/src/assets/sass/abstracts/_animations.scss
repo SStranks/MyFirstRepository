@@ -38,7 +38,23 @@ $Theme-transition-border: border 1s;
     opacity: 100%;
   }
   100% {
+    visibility: hidden;
     opacity: 0%;
+  }
+}
+
+@keyframes sidebar-li {
+  0% {
+    opacity: 100%;
+    overflow-x: hidden;
+  }
+  25% {
+    opacity: 25%;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0%;
+    transform: translateX(-100%);
   }
 }
 
