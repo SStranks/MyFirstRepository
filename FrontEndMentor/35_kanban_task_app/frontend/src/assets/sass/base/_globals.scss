@@ -88,6 +88,10 @@ label {
   display: none !important;
 }
 
+.invisible {
+  visibility: hidden !important;
+}
+
 .show {
   display: inherit !important;
 }

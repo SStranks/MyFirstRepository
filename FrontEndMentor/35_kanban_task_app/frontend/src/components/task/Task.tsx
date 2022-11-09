@@ -1,10 +1,20 @@
 import styles from './_Task.module.scss';
 
-function Task(): JSX.Element {
+type ElemProps = {
+  title: string;
+  numOfSubTasks: number;
+  subTasksNumComplete: number;
+};
+
+function Task(props: ElemProps): JSX.Element {
+  const { title, numOfSubTasks, subTasksNumComplete } = props;
+
   return (
     <div className={styles.card}>
-      <p className={styles.card__task}>Build UI for onboarding flow</p>
-      <p className={styles.card__subtask}>0 of 3 substasks</p>
+      <p className={styles.card__task}>{title}</p>
+      <p className={styles.card__subtask}>
+        {subTasksNumComplete} of {numOfSubTasks} sub-tasks
+      </p>
     </div>
   );
 }

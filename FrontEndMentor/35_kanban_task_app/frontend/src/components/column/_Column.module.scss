@@ -35,8 +35,9 @@
   align-items: center;
   justify-content: center;
   min-width: 280px;
-  height: calc(100% - f.px2em(24));
-  margin-top: f.px2em(24);
+  height: 100%;
+  // height: calc(100% - f.px2em(24));
+  // margin-top: f.px2em(24);
   background-color: var(--thm-column-bg);
   border-radius: v.$border-radius-column-empty;
   color: c.$col-1g;
