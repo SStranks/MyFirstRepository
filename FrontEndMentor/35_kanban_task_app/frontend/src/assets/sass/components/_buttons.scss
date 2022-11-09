@@ -13,9 +13,9 @@
 /*   Imports                        */
 @use '../abstracts/animations' as a;
 @use '../abstracts/functions' as f;
-@use '../abstracts/colors' as *;
-@use '../abstracts/mixins' as *;
-@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as c;
+@use '../abstracts/mixins' as mx;
+@use '../abstracts/variables' as v;
 @use '../base/themes' as t;
 
 /* -------------------------------- */
@@ -37,15 +37,15 @@
 
 @mixin btn-primary-l {
   @include btn-default;
-  @include header-m;
+  @include mx.header-m;
   padding: f.px2em(15) 0;
-  background-color: $col-1a;
-  color: $White;
-  border-radius: $border-radius-btn-1;
+  background-color: c.$col-1a;
+  color: c.$White;
+  border-radius: v.$border-radius-btn-1;
   transition: a.$Theme-transition-bg, a.$Theme-transition-color;
 
   &:hover {
-    background-color: $col-1b;
+    background-color: c.$col-1b;
   }
 
   &:disabled {
@@ -57,26 +57,26 @@
 
 @mixin btn-primary-s {
   @include btn-default;
-  @include body-l;
+  @include mx.body-l;
   font-weight: 700;
   padding: f.px2em(15) 0;
-  background-color: $col-1a;
-  color: $White;
-  border-radius: $border-radius-btn-2;
+  background-color: c.$col-1a;
+  color: c.$White;
+  border-radius: v.$border-radius-btn-2;
 
   &:hover {
-    background-color: $col-1b;
+    background-color: c.$col-1b;
   }
 }
 
 @mixin btn-secondary {
   @include btn-default;
-  @include body-l;
+  @include mx.body-l;
   font-weight: 700;
   padding: f.px2em(15) 0;
   background-color: var(--thm-btn-secondary);
-  color: $col-1a;
-  border-radius: $border-radius-btn-2;
+  color: c.$col-1a;
+  border-radius: v.$border-radius-btn-2;
 
   &:hover {
     background-color: var(--thm-btn-secondary-hover);
@@ -85,15 +85,15 @@
 
 @mixin btn-destructive {
   @include btn-default;
-  @include body-l;
+  @include mx.body-l;
   font-weight: 700;
   padding: f.px2em(15) 0;
-  background-color: $col-1j;
-  color: $col-1j;
-  border-radius: $border-radius-btn-2;
+  background-color: c.$col-1j;
+  color: c.$col-1j;
+  border-radius: v.$border-radius-btn-2;
 
   &:hover {
-    background-color: $col-1k;
+    background-color: c.$col-1k;
   }
 }
 

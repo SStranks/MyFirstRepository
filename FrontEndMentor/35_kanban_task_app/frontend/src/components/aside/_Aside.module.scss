@@ -1,7 +1,7 @@
 @use '#Sass/abstracts/animations' as a;
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
-@use '#Sass/abstracts/mixins' as m;
+@use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/variables' as v;
 
@@ -26,7 +26,7 @@
 
   &__boards {
     & > h2 {
-      @include m.header-s;
+      @include mx.header-s;
       margin: f.px2em(15) 0 f.px2em(32) f.px2em(20);
       white-space: nowrap;
     }
@@ -36,7 +36,7 @@
       padding-left: unset;
 
       & > li {
-        @include m.header-m;
+        @include mx.header-m;
         display: flex;
         column-gap: f.px2em(16);
         width: 90%;
@@ -86,7 +86,7 @@
   }
 
   &__hide {
-    @include m.header-m;
+    @include mx.header-m;
     display: flex;
     align-items: center;
     column-gap: f.px2em(15);

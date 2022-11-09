@@ -1,7 +1,7 @@
 @use '#Sass/abstracts/animations' as a;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/media-queries' as mq;
-@use '#Sass/abstracts/mixins' as m;
+@use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as *;
 
@@ -65,9 +65,9 @@
   }
 
   &__title {
-    @include m.header-xl;
+    @include mx.header-xl;
     @include mq.media(tablet-large, tablet-medium, tablet-small, mobile-all) {
-      @include m.header-l;
+      @include mx.header-l;
       padding-right: f.px2em(10);
     }
   }

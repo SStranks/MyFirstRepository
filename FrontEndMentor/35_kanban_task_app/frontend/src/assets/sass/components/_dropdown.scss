@@ -12,9 +12,9 @@
 
 /*   Imports                        */
 @use '../abstracts/functions' as f;
-@use '../abstracts/colors' as *;
-@use '../abstracts/mixins' as *;
-@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as c;
+@use '../abstracts/mixins' as mx;
+@use '../abstracts/variables' as v;
 @use '../base/themes' as t;
 
 /* -------------------------------- */
@@ -22,22 +22,22 @@
 /* -------------------------------- */
 
 @mixin dropdown-default {
-  @include body-l;
+  @include mx.body-l;
   padding: f.px2em(8) 0 f.px2em(8) f.px2em(16);
   color: var(--thm-dropdown-default-text);
   background-color: var(--thm-dropdown-default-bg);
-  border-radius: $border-radius-dropdown;
-  border: 1px solid $col-2c;
+  border-radius: v.$border-radius-dropdown;
+  border: 1px solid c.$col-2c;
 
   &:active {
-    border: 1px solid $col-1a;
+    border: 1px solid c.$col-1a;
   }
 }
 
 @mixin dropdown-default-list {
-  @include body-l;
+  @include mx.body-l;
   padding: f.px2em(16);
   background-color: var(--thm-dropdown-default-list-bg);
-  color: $col-1g;
-  border-radius: $border-radius-dropdown-list;
+  color: c.$col-1g;
+  border-radius: v.$border-radius-dropdown-list;
 }

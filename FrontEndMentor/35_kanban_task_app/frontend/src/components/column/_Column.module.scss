@@ -1,0 +1,44 @@
+@use '#Sass/abstracts/animations' as a;
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+
+.column {
+  display: flex;
+  flex-direction: column;
+  row-gap: f.px2em(20);
+  min-width: 280px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  column-gap: f.px2em(12);
+
+  &__bullet {
+    width: 15px;
+    height: 15px;
+    background-color: c.$col-1o;
+    border-radius: 100%;
+  }
+
+  &__title {
+    @include mx.header-s;
+    color: c.$col-1g;
+  }
+}
+
+.column-empty {
+  @include mx.header-xl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 280px;
+  height: calc(100% - f.px2em(24));
+  margin-top: f.px2em(24);
+  background-color: var(--thm-column-bg);
+  border-radius: v.$border-radius-column-empty;
+  color: c.$col-1g;
+  transition: a.$Theme-transition-bg;
+}

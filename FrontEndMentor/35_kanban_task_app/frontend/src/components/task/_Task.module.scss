@@ -1,0 +1,27 @@
+@use '#Sass/abstracts/animations' as a;
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+
+.card {
+  width: 100%;
+  padding: f.px2em(23) f.px2em(16);
+  background-color: var(--thm-task-card);
+  box-shadow: v.$box-shadow-1;
+  border-radius: v.$border-radius-task;
+  transition: a.$Theme-transition-bg;
+
+  &__task {
+    @include mx.header-m;
+    margin-bottom: f.px2em(8);
+    color: var(--thm-task-title);
+    transition: a.$Theme-transition-color;
+  }
+
+  &__subtask {
+    @include mx.body-m;
+    color: c.$col-1g;
+    transition: a.$Theme-transition-color;
+  }
+}

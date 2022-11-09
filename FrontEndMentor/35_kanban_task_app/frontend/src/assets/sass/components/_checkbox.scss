@@ -12,9 +12,9 @@
 
 /*   Imports                        */
 @use '../abstracts/functions' as f;
-@use '../abstracts/colors' as *;
-@use '../abstracts/mixins' as *;
-@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as c;
+@use '../abstracts/mixins' as mx;
+@use '../abstracts/variables' as v;
 @use '../base/themes' as t;
 
 /* -------------------------------- */
@@ -26,15 +26,15 @@
   width: f.px2em(16);
   height: f.px2em(16);
   background-color: var(--thm-chkbox-default-chkbox-bg);
-  box-shadow: 0 0 0 1px $col-1g;
-  border-radius: $border-radius-chkbx-1;
+  box-shadow: 0 0 0 1px c.$col-1g;
+  border-radius: v.$border-radius-chkbx-1;
 
   &:hover {
     background-color: var(--thm-chkbox-default-chkbox-bg);
   }
 
   &:checked {
-    background-color: $col-1a;
+    background-color: c.$col-1a;
   }
 }
 
@@ -44,9 +44,9 @@
   display: block;
   position: relative;
   padding: f.px2em(12) 0 f.px2em(12) f.px2em(44);
-  color: $Black;
+  color: c.$Black;
   background-color: var(--thm-chkbox-default-label-bg);
-  border-radius: $border-radius-chkbx-1;
+  border-radius: v.$border-radius-chkbx-1;
 
   &:hover {
     background-color: var(--thm-chkbox-default-label-hover-bg);

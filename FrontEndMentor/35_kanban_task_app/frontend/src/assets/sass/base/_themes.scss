@@ -39,10 +39,13 @@ $light-theme: (
   input-text-default-active-text: #{$Black},
   input-text-default-active-placeholder: #{$col-2a},
   nav-h1: #{$col-1c},
+  task-card: #{$White},
+  task-title: #{$Black},
+  column-bg: #{$col-1p},
   // text-p: #{$Dark_Grey},
   // text-h: #{$Very_Dark_Blue},
   // placeholder: hsl(216deg, 5%, 57%),
-  // input-text: #{$Dark_Grey},,,,,,,,,,,,,,,,,,,,
+  // input-text: #{$Dark_Grey},,,,,,,,,,,,,,,,,,,,,,,
 );
 
 /* -------------------------------- */
@@ -69,10 +72,13 @@ $dark-theme: (
   input-text-default-active-text: #{$White},
   input-text-default-active-placeholder: #{$col-2b},
   nav-h1: #{$White},
+  task-card: #{$col-1e},
+  task-title: #{$White},
+  column-bg: #{$col-1e},
   // text-p: #{$Dark_Grey},
   // text-h: #{$White},
   // placeholder: hsl(216deg, 5%, 57%),
-  // input-text: #{$White},,,,,,,,,,,,,,,,,,,,
+  // input-text: #{$White},,,,,,,,,,,,,,,,,,,,,,,
 );
 
 // Class applied to body tag to overwrite default variables

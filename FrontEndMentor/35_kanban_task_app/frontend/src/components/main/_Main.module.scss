@@ -1,7 +1,7 @@
 @use '#Sass/abstracts/animations' as a;
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
-@use '#Sass/abstracts/mixins' as m;
+@use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as *;
 
@@ -15,9 +15,10 @@
   background-color: var(--thm-bg-main);
   border-top: 1px solid var(--thm-border-divider);
   transition: a.$Theme-transition-bg, a.$Theme-transition-border;
+  overflow: hidden;
 
   &__empty {
-    @include m.header-l;
+    @include mx.header-l;
     display: flex;
     flex-direction: column;
     align-items: center;

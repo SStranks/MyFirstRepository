@@ -1,0 +1,12 @@
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+
+.column-grid {
+  display: flex;
+  column-gap: f.px2em(24);
+  width: 100%;
+  height: 100%;
+  padding: f.px2em(24);
+  overflow-x: scroll;
+  overflow-y: hidden;
+}

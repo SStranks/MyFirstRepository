@@ -12,9 +12,9 @@
 
 /*   Imports                        */
 @use '../abstracts/functions' as f;
-@use '../abstracts/colors' as *;
-@use '../abstracts/mixins' as *;
-@use '../abstracts/variables' as *;
+@use '../abstracts/colors' as c;
+@use '../abstracts/mixins' as mx;
+@use '../abstracts/variables' as v;
 @use '../base/themes' as t;
 
 /* -------------------------------- */
@@ -22,12 +22,12 @@
 /* -------------------------------- */
 
 @mixin input-text-default {
-  @include body-l;
+  @include mx.body-l;
   padding: f.px2em(8) 0 f.px2em(8) f.px2em(16);
   color: var(--thm-input-text-default-active-text);
   background-color: var(--thm-input-text-default-bg);
-  border-radius: $border-radius-input-text;
-  border: 1px solid $col-2c;
+  border-radius: v.$border-radius-input-text;
+  border: 1px solid c.$col-2c;
 
   &::placeholder {
     color: var(--thm-input-text-default-active-placeholder);
@@ -35,7 +35,7 @@
 }
 
 @mixin input-text-default-error {
-  @include body-l;
-  color: $col-1j;
+  @include mx.body-l;
+  color: c.$col-1j;
   border: 1px solid #ea5555;
 }
