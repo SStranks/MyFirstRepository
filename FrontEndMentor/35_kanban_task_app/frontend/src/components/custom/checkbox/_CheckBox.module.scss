@@ -1,0 +1,36 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+
+.custom-checkbox {
+  padding: f.px2em(12);
+  background-color: var(--thm-chkbox-default-label-bg);
+  color: var(--thm-chkbox-default-label-text);
+  border-radius: $border-radius-forms-subtask;
+
+  &:hover {
+    background-color: c.$col-1a;
+  }
+
+  & > input {
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  & > span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 16px;
+    width: 16px;
+    background-color: var(--thm-chkbox-default-chkbox-bg);
+    border: 1px solid c.$col-2c;
+    border-radius: $border-radius-chkbx-2;
+  }
+
+  & > input:checked ~ span {
+    background-color: c.$col-1a;
+  }
+}
