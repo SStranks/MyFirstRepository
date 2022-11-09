@@ -9,6 +9,7 @@
   flex-direction: column;
   row-gap: f.px2em(20);
   min-width: 280px;
+  max-width: 280px;
 }
 
 .status {
@@ -19,8 +20,51 @@
   &__bullet {
     width: 15px;
     height: 15px;
-    background-color: c.$col-1o;
     border-radius: 100%;
+
+    &--1 {
+      background-color: c.$col-3a;
+    }
+
+    &--2 {
+      background-color: c.$col-3b;
+    }
+
+    &--3 {
+      background-color: c.$col-3c;
+    }
+
+    &--4 {
+      background-color: c.$col-3d;
+    }
+
+    &--5 {
+      background-color: c.$col-3e;
+    }
+
+    &--6 {
+      background-color: c.$col-3f;
+    }
+
+    &--7 {
+      background-color: c.$col-3g;
+    }
+
+    &--8 {
+      background-color: c.$col-3h;
+    }
+
+    &--9 {
+      background-color: c.$col-3i;
+    }
+
+    &--10 {
+      background-color: c.$col-3j;
+    }
+
+    &--11 {
+      background-color: c.$col-3k;
+    }
   }
 
   &__title {
@@ -36,8 +80,6 @@
   justify-content: center;
   min-width: 280px;
   height: 100%;
-  // height: calc(100% - f.px2em(24));
-  // margin-top: f.px2em(24);
   background-color: var(--thm-column-bg);
   border-radius: v.$border-radius-column-empty;
   color: c.$col-1g;

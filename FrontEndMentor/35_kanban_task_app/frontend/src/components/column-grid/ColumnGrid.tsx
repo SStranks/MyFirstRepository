@@ -11,6 +11,7 @@ function ColumnGrid(): JSX.Element {
     <Column
       // eslint-disable-next-line react/no-array-index-key
       key={i}
+      columnNum={i + 1}
       columnTitle={el.name}
       numOfTasks={el.tasks.length}
       tasks={el.tasks}
@@ -19,7 +20,7 @@ function ColumnGrid(): JSX.Element {
   ));
 
   const newColumn = (
-    <Column columnTitle="" numOfTasks={0} tasks={[]} emptyCol />
+    <Column columnNum={0} columnTitle="" numOfTasks={0} tasks={[]} emptyCol />
   );
 
   return (

@@ -1,4 +1,5 @@
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
 
 .column-grid {
@@ -9,4 +10,8 @@
   padding: f.px2em(24);
   overflow-x: scroll;
   overflow-y: hidden;
+
+  @include mq.media(mobile-all) {
+    padding: f.px2em(24) f.px2em(16);
+  }
 }

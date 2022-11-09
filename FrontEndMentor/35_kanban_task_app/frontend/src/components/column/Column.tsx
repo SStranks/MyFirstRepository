@@ -8,6 +8,7 @@ type SubtaskObj = {
 };
 
 type ElemProps = {
+  columnNum: number;
   columnTitle: string;
   numOfTasks: number;
   tasks:
@@ -22,7 +23,7 @@ type ElemProps = {
 };
 
 function Column(props: ElemProps): JSX.Element {
-  const { columnTitle, numOfTasks, tasks, emptyCol } = props;
+  const { columnNum, columnTitle, numOfTasks, tasks, emptyCol } = props;
 
   // NOTE:  Temporary Dev: For empty task column. Invoke global class 'invisible'.
   // const emptyCol = false;
@@ -46,7 +47,11 @@ function Column(props: ElemProps): JSX.Element {
   return (
     <div className={styles.column}>
       <div className={`${styles.status} ${emptyCol ? 'invisible' : ''}`}>
-        <div className={styles.status__bullet} />
+        <div
+          className={`${styles.status__bullet} ${
+            styles[`status__bullet--${columnNum}`]
+          }`}
+        />
         <p className={styles.status__title}>
           {columnTitle} ({numOfTasks})
         </p>
