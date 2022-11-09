@@ -1,11 +1,19 @@
 import Column from '#Components/column/Column';
 
-// NOTE:  Temporary Dev: Development Data JSON
+// NOTE:  Temporary Dev: Testing out forms
+import TaskView from '#Components/forms/task-view/TaskView';
+
+// TEMP DEV:  Temporary Dev: Development Data JSON
 import devDataJSON from '#Data/data.json';
 import styles from './_ColumnGrid.module.scss';
 
 function ColumnGrid(): JSX.Element {
-  // NOTE:  Temporary Dev: Development Data JSON
+  // HACK:  Temporary Test Area: Modal Form Components Styling
+  const { title } = devDataJSON.boards[0].columns[1].tasks[5];
+  const { description } = devDataJSON.boards[0].columns[1].tasks[5];
+  const { subtasks } = devDataJSON.boards[0].columns[1].tasks[5];
+
+  // TEMP DEV:  Temporary Dev: Development Data JSON
   const columns = devDataJSON.boards[0].columns.map((el, i) => (
     // NOTE:  Need to configure unique key - intend to implement drag and drop reordering feature here.
     <Column
@@ -24,10 +32,19 @@ function ColumnGrid(): JSX.Element {
   );
 
   return (
-    <div className={styles['column-grid']}>
-      {columns}
-      {newColumn}
-    </div>
+    <>
+      <TaskView
+        title={title}
+        description={description}
+        numTaskComplete={1}
+        numTaskTotal={3}
+        subTasks={subtasks}
+      />
+      <div className={styles['column-grid']}>
+        {columns}
+        {newColumn}
+      </div>
+    </>
   );
 }
 

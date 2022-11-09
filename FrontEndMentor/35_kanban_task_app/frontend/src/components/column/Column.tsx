@@ -2,7 +2,7 @@ import Task from '#Components/task/Task';
 import ColumnEmpty from './ColumnEmpty';
 import styles from './_Column.module.scss';
 
-type SubtaskObj = {
+type SubTaskObj = {
   title: string;
   isCompleted: boolean;
 };
@@ -16,7 +16,7 @@ type ElemProps = {
         title: string;
         description: string;
         status: string;
-        subtasks: SubtaskObj[] | [];
+        subtasks: SubTaskObj[] | [];
       }[]
     | [];
   emptyCol: boolean;
@@ -30,7 +30,7 @@ function Column(props: ElemProps): JSX.Element {
 
   const tasksCards = tasks.map((el, i) => {
     const completedSubTasks = el.subtasks.filter(
-      (obj: SubtaskObj) => obj.isCompleted === true
+      (obj: SubTaskObj) => obj.isCompleted === true
     ).length;
     return (
       <Task

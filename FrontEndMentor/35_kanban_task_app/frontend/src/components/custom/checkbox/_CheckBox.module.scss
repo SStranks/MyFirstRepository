@@ -1,14 +1,25 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
 
 .custom-checkbox {
+  @include mx.body-m;
+  position: relative;
+  display: flex;
+  align-items: center;
+  column-gap: f.px2em(16);
   padding: f.px2em(12);
   background-color: var(--thm-chkbox-default-label-bg);
   color: var(--thm-chkbox-default-label-text);
-  border-radius: $border-radius-forms-subtask;
+  border-radius: v.$border-radius-forms-subtask;
 
   &:hover {
-    background-color: c.$col-1a;
+    background-color: c.$col-2f;
+  }
+
+  &__title {
+    flex: 1;
   }
 
   & > input {
@@ -19,18 +30,27 @@
     width: 0;
   }
 
-  & > span {
-    position: absolute;
-    top: 0;
-    left: 0;
+  &__new-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 16px;
     width: 16px;
     background-color: var(--thm-chkbox-default-chkbox-bg);
     border: 1px solid c.$col-2c;
-    border-radius: $border-radius-chkbx-2;
+    border-radius: v.$border-radius-chkbx-2;
   }
 
-  & > input:checked ~ span {
+  &__icon-check {
+    height: auto;
+  }
+
+  & > input:checked ~ .custom-checkbox__new-checkbox {
     background-color: c.$col-1a;
+  }
+
+  & > input:checked ~ .custom-checkbox__title {
+    text-decoration: line-through;
+    color: c.$col-2d;
   }
 }
