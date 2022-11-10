@@ -79,6 +79,7 @@
   background-color: var(--thm-btn-secondary);
   color: c.$col-1a;
   border-radius: v.$border-radius-btn-2;
+  transition: a.$Theme-transition-bg;
 
   &:hover {
     background-color: var(--thm-btn-secondary-hover);

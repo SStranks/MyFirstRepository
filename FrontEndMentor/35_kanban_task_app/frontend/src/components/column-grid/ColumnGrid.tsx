@@ -6,8 +6,8 @@ import Column from '#Components/column/Column';
 // import TaskEdit from '#Components/forms/task-edit/TaskEdit';
 // import BoardAdd from '#Components/forms/board-add/BoardAdd';
 // import BoardEdit from '#Components/forms/board-edit/BoardEdit';
-// import BoardDelete from '#Components/forms/board-del/BoardDel';
-import TaskDelete from '#Components/forms/task-del/TaskDel';
+import BoardDelete from '#Components/forms/board-del/BoardDel';
+// import TaskDelete from '#Components/forms/task-del/TaskDel';
 
 // TEMP DEV:  Temporary Dev: Development Data JSON
 import devDataJSON from '#Data/data.json';
@@ -40,8 +40,8 @@ function ColumnGrid(): JSX.Element {
   return (
     <>
       {/* // TEMP DEV:  Working on styles */}
-      <TaskDelete />
-      {/* <BoardDelete /> */}
+      {/* <TaskDelete /> */}
+      <BoardDelete />
       {/* <BoardEdit /> */}
       {/* <BoardAdd /> */}
       {/* <TaskAdd /> */}

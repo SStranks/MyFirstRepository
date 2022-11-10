@@ -1,3 +1,4 @@
+@use '#Sass/abstracts/animations' as a;
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/media-queries' as mq;
@@ -25,6 +26,7 @@
   padding: f.px2em(32);
   background-color: var(--thm-form-bg);
   border-radius: v.$border-radius-forms;
+  transition: a.$Theme-transition-bg;
 
   &__header {
     display: flex;
@@ -34,6 +36,7 @@
     & > p {
       @include mx.header-l;
       color: var(--thm-form-header-text);
+      transition: a.$Theme-transition-color;
     }
   }
 

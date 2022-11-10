@@ -1,3 +1,4 @@
+@use '#Sass/abstracts/animations' as a;
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
@@ -25,9 +26,12 @@
   padding: f.px2em(32);
   background-color: var(--thm-form-bg);
   border-radius: v.$border-radius-forms;
+  transition: a.$Theme-transition-bg;
 
   &__title {
     @include mx.header-l;
+    color: var(--thm-form-header-text);
+    transition: a.$Theme-transition-color;
   }
 
   &__group {
@@ -39,15 +43,8 @@
 
     & input[type='text'],
     & textarea {
+      @include mx.input-text;
       width: 100%;
-      padding: f.px2em(8) f.px2em(16);
-      border: 1px solid c.$col-2c;
-      border-radius: v.$border-radius-input-text;
-
-      &::placeholder {
-        @include mx.body-l;
-        color: c.$col-2a;
-      }
     }
 
     & textarea {

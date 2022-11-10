@@ -1,3 +1,4 @@
+@use '#Sass/abstracts/animations' as a;
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
@@ -25,6 +26,7 @@
   padding: f.px2em(32);
   background-color: var(--thm-form-bg);
   border-radius: v.$border-radius-forms;
+  transition: a.$Theme-transition-bg;
 
   &__title {
     @include mx.header-l;
