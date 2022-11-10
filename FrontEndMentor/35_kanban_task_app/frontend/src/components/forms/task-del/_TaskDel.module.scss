@@ -1,0 +1,53 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+@use '#Sass/components/buttons' as *;
+
+// TEMP DEV:  Delete container when finished styling
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsla(0deg, 0%, 0%, 0.7);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: f.px2em(24);
+  width: 480px;
+  padding: f.px2em(32);
+  background-color: var(--thm-form-bg);
+  border-radius: v.$border-radius-forms;
+
+  &__title {
+    @include mx.header-l;
+    color: c.$col-1j;
+  }
+
+  &__description {
+    @include mx.body-l;
+    color: c.$col-1g;
+  }
+
+  &__btn-group {
+    display: flex;
+    column-gap: f.px2em(16);
+  }
+
+  &__btn-delete {
+    @include btn-destructive;
+    width: 100%;
+  }
+
+  &__btn-cancel {
+    @include btn-secondary;
+    width: 100%;
+  }
+}

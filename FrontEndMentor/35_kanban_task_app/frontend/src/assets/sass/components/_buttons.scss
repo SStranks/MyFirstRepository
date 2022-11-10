@@ -88,10 +88,11 @@
 @mixin btn-destructive {
   @include btn-default;
   @include mx.body-l;
+  height: 40px;
   font-weight: 700;
   padding: f.px2em(15) 0;
   background-color: c.$col-1j;
-  color: c.$col-1j;
+  color: c.$White;
   border-radius: v.$border-radius-btn-2;
 
   &:hover {

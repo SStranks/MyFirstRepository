@@ -1,0 +1,74 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+@use '#Sass/components/buttons' as *;
+
+// TEMP DEV:  Delete container when finished styling
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsla(0deg, 0%, 0%, 0.7);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: f.px2em(24);
+  width: 480px;
+  padding: f.px2em(32);
+  background-color: var(--thm-form-bg);
+  border-radius: v.$border-radius-forms;
+
+  &__title {
+    @include mx.header-l;
+  }
+
+  &__group {
+    & > P {
+      @include mx.body-m;
+      color: c.$col-1g;
+      margin-bottom: f.px2em(8);
+    }
+  }
+
+  & input[type='text'] {
+    width: 100%;
+    padding: f.px2em(8) f.px2em(16);
+    border: 1px solid c.$col-2c;
+    border-radius: v.$border-radius-input-text;
+
+    &::placeholder {
+      @include mx.body-l;
+      color: c.$col-2a;
+    }
+  }
+
+  &__sub-tasks {
+    display: flex;
+    flex-direction: column;
+    row-gap: f.px2em(12);
+    margin-bottom: f.px2em(12);
+
+    &__input {
+      display: flex;
+      align-items: center;
+      column-gap: f.px2em(16);
+    }
+  }
+
+  &__btn-new-column {
+    @include btn-secondary;
+    width: 100%;
+  }
+
+  &__btn-create-board {
+    @include btn-primary-s;
+  }
+}

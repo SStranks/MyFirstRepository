@@ -3,7 +3,11 @@ import Column from '#Components/column/Column';
 // NOTE:  Temporary Dev: Testing out forms
 // import TaskView from '#Components/forms/task-view/TaskView';
 // import TaskAdd from '#Components/forms/task-add/TaskAdd';
-import TaskEdit from '#Components/forms/task-edit/TaskEdit';
+// import TaskEdit from '#Components/forms/task-edit/TaskEdit';
+// import BoardAdd from '#Components/forms/board-add/BoardAdd';
+// import BoardEdit from '#Components/forms/board-edit/BoardEdit';
+// import BoardDelete from '#Components/forms/board-del/BoardDel';
+import TaskDelete from '#Components/forms/task-del/TaskDel';
 
 // TEMP DEV:  Temporary Dev: Development Data JSON
 import devDataJSON from '#Data/data.json';
@@ -36,8 +40,12 @@ function ColumnGrid(): JSX.Element {
   return (
     <>
       {/* // TEMP DEV:  Working on styles */}
+      <TaskDelete />
+      {/* <BoardDelete /> */}
+      {/* <BoardEdit /> */}
+      {/* <BoardAdd /> */}
       {/* <TaskAdd /> */}
-      <TaskEdit />
+      {/* <TaskEdit /> */}
       {/* <TaskView
         title={title}
         description={description}
