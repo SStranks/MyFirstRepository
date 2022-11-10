@@ -1,7 +1,9 @@
 import Column from '#Components/column/Column';
 
 // NOTE:  Temporary Dev: Testing out forms
-import TaskView from '#Components/forms/task-view/TaskView';
+// import TaskView from '#Components/forms/task-view/TaskView';
+// import TaskAdd from '#Components/forms/task-add/TaskAdd';
+import TaskEdit from '#Components/forms/task-edit/TaskEdit';
 
 // TEMP DEV:  Temporary Dev: Development Data JSON
 import devDataJSON from '#Data/data.json';
@@ -9,9 +11,9 @@ import styles from './_ColumnGrid.module.scss';
 
 function ColumnGrid(): JSX.Element {
   // HACK:  Temporary Test Area: Modal Form Components Styling
-  const { title } = devDataJSON.boards[0].columns[1].tasks[5];
-  const { description } = devDataJSON.boards[0].columns[1].tasks[5];
-  const { subtasks } = devDataJSON.boards[0].columns[1].tasks[5];
+  // const { title } = devDataJSON.boards[0].columns[1].tasks[5];
+  // const { description } = devDataJSON.boards[0].columns[1].tasks[5];
+  // const { subtasks } = devDataJSON.boards[0].columns[1].tasks[5];
 
   // TEMP DEV:  Temporary Dev: Development Data JSON
   const columns = devDataJSON.boards[0].columns.map((el, i) => (
@@ -33,13 +35,16 @@ function ColumnGrid(): JSX.Element {
 
   return (
     <>
-      <TaskView
+      {/* // TEMP DEV:  Working on styles */}
+      {/* <TaskAdd /> */}
+      <TaskEdit />
+      {/* <TaskView
         title={title}
         description={description}
         numTaskComplete={1}
         numTaskTotal={3}
         subTasks={subtasks}
-      />
+      /> */}
       <div className={styles['column-grid']}>
         {columns}
         {newColumn}

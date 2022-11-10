@@ -58,8 +58,9 @@
 @mixin btn-primary-s {
   @include btn-default;
   @include mx.body-l;
+  height: 40px;
   font-weight: 700;
-  padding: f.px2em(15) 0;
+  padding: f.px2em(8) 0;
   background-color: c.$col-1a;
   color: c.$White;
   border-radius: v.$border-radius-btn-2;
@@ -72,8 +73,9 @@
 @mixin btn-secondary {
   @include btn-default;
   @include mx.body-l;
+  height: 40px;
   font-weight: 700;
-  padding: f.px2em(15) 0;
+  padding: f.px2em(8) 0;
   background-color: var(--thm-btn-secondary);
   color: c.$col-1a;
   border-radius: v.$border-radius-btn-2;
