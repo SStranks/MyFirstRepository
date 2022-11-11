@@ -2,16 +2,23 @@ import IconCross from '#Svg/icon-cross.svg';
 import { useRef, useState } from 'react';
 import styles from './_InputTextSubtask.module.scss';
 
-// const placeholderText = [
-//   'e.g. Make coffee',
-//   'e.g. Drink coffee and smile',
-//   'e.g. Think about coffee some more',
-//   'e.g. Go make another cup of coffee',
-//   'e.g. Schedule time to purchase more coffee',
-//   'e.g. Enjoy coffee and smile more',
-// ];
+const placeholderText = [
+  'e.g. Make coffee',
+  'e.g. Drink coffee and smile',
+  'e.g. Think about coffee some more',
+  'e.g. Go make another cup of coffee',
+  'e.g. Schedule time to purchase more coffee',
+  'e.g. Enjoy coffee and smile more',
+];
 
-function InputTextSubtask(): JSX.Element {
+type ElemProps = {
+  listId: number;
+  // eslint-disable-next-line no-unused-vars
+  deleteFn: (listId: number) => void;
+};
+
+function InputTextSubtask(props: ElemProps): JSX.Element {
+  const { listId, deleteFn } = props;
   const [inputText, setInputText] = useState('');
   const subtaskRef = useRef<HTMLDivElement>(null);
 
@@ -24,8 +31,11 @@ function InputTextSubtask(): JSX.Element {
     setInputText(e.currentTarget.value);
   };
 
+  // This line is for error styles; reapply elsewhere; on formSubmit, validate.
+  // if (!inputText) subtaskRef.current?.classList.add(styles.error);
+
   const deleteClickHandler = () => {
-    if (!inputText) subtaskRef.current?.classList.add(styles.error);
+    deleteFn(listId);
   };
 
   return (
@@ -34,7 +44,7 @@ function InputTextSubtask(): JSX.Element {
         <input
           type="text"
           className={styles['sub-task__input']}
-          placeholder="e.g. Make coffee"
+          placeholder={placeholderText[listId % placeholderText.length]}
           value={inputText}
           onChange={inputChangeHandler}
         />

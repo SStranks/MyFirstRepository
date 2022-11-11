@@ -1,5 +1,7 @@
 import Dropdown from '#Components/custom/dropdown/Dropdown';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
+import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import { useEffect, useState } from 'react';
 import styles from './_TaskAdd.module.scss';
 
 const submitHandler = () => {
@@ -7,6 +9,30 @@ const submitHandler = () => {
 };
 
 function TaskAdd(): JSX.Element {
+  const [subtasks, setSubTasks] = useState<JSX.Element[] | []>([]);
+  const genId = useComponentIdGenerator();
+
+  const deleteFn = (listId: number): void => {
+    setSubTasks((prev) => prev.filter((el) => el.props.listId !== listId));
+  };
+
+  useEffect(() => {
+    const subtaskListItem = () => {
+      const id = genId();
+      return <InputTextSubtask key={id} listId={id} deleteFn={deleteFn} />;
+    };
+    const subtaskInitialArr = [subtaskListItem(), subtaskListItem()];
+    setSubTasks(subtaskInitialArr);
+  }, [genId]);
+
+  const btnNewSubtaskClickHandler = () => {
+    const id = genId();
+    setSubTasks((prev) => [
+      ...prev,
+      <InputTextSubtask key={id} listId={id} deleteFn={deleteFn} />,
+    ]);
+  };
+
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={submitHandler}>
@@ -28,11 +54,11 @@ function TaskAdd(): JSX.Element {
         </div>
         <div className={styles.form__group}>
           <p>Sub-Tasks</p>
-          <div className={styles['form__sub-tasks']}>
-            <InputTextSubtask />
-            <InputTextSubtask />
-          </div>
-          <button type="button" className={styles['form__btn-new-sub-task']}>
+          <div className={styles['form__sub-tasks']}>{subtasks}</div>
+          <button
+            type="button"
+            className={styles['form__btn-new-sub-task']}
+            onClick={btnNewSubtaskClickHandler}>
             + Add New Sub-Task
           </button>
         </div>
