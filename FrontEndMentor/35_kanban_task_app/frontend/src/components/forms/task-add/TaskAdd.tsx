@@ -1,3 +1,4 @@
+import Dropdown from '#Components/custom/dropdown/Dropdown';
 import IconCross from '#Svg/icon-cross.svg';
 import styles from './_TaskAdd.module.scss';
 
@@ -36,7 +37,10 @@ function TaskAdd(): JSX.Element {
         </div>
         <div className={styles.form__group}>
           <p>Status</p>
-          {/* INSERT DROPDOWN COMPONENT HERE */}
+          <Dropdown
+            currentListItem="Todo"
+            listItems={['Todo', 'Doing', 'Done']}
+          />
         </div>
         <button type="submit" className={styles['form__btn-create-task']}>
           Create Task
