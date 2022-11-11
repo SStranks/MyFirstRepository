@@ -54,7 +54,13 @@
       "error",
       {
         "case": "pascalCase",
-        "ignore": ["index.(js|jsx|ts|tsx)", "webpack.*", ".test.ts", ".d.ts"]
+        "ignore": [
+          "index.(js|jsx|ts|tsx)",
+          "use\\w*.tsx",
+          "webpack.*",
+          ".test.ts",
+          ".d.ts"
+        ]
       }
     ],
     "unicorn/prevent-abbreviations": "off",
