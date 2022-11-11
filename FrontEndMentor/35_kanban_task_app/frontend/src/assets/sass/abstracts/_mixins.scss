@@ -65,13 +65,13 @@
 /* -------------------------------- */
 
 @mixin input-text {
+  @include body-l;
   padding: f.px2em(8) f.px2em(16);
   background-color: transparent;
   border: 1px solid c.$col-2c;
   border-radius: v.$border-radius-input-text;
 
   &::placeholder {
-    @include body-l;
     color: var(--thm-input-text-default-active-placeholder);
     transition: a.$Theme-transition-color;
   }
