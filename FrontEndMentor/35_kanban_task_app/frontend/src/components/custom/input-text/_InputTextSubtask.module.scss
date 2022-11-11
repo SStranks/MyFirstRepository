@@ -1,0 +1,43 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+
+.sub-task {
+  display: flex;
+  align-items: center;
+  column-gap: f.px2em(16);
+
+  &__container {
+    position: relative;
+    width: 100%;
+  }
+
+  &__input {
+    @include mx.input-text;
+    position: relative;
+    width: 100%;
+  }
+}
+
+.error {
+  & .sub-task__container::after {
+    @include mx.body-l;
+    content: "Can't be empty";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    color: c.$col-1j;
+  }
+
+  & .sub-task__input {
+    border: 1px solid c.$col-1j;
+  }
+
+  & .icon {
+    filter: invert(51%) sepia(51%) saturate(4416%) hue-rotate(330deg)
+      brightness(99%) contrast(87%);
+  }
+}
