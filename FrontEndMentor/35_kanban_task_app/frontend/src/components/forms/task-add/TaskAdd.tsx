@@ -18,13 +18,13 @@ function TaskAdd(): JSX.Element {
     console.log(inputData);
 
     // Check if any of the inputs are empty; set component global error
-    if (Object.entries(inputData).some((input) => input[1] === '')) {
-      setFormError(true);
-      // eslint-disable-next-line no-return-assign
-      setSubTasks((prev) =>
-        [...prev].map((el) => (el.props?.formError = true))
-      );
-    }
+    // if (Object.entries(inputData).some((input) => input[1] === '')) {
+    //   setFormError(true);
+    //   // eslint-disable-next-line no-return-assign
+    //   setSubTasks((prev) =>
+    //     [...prev].map((el) => (el.props?.formError = true))
+    //   );
+    // }
   };
 
   const deleteFn = (listId: number): void => {
