@@ -18,8 +18,13 @@ function TaskAdd(): JSX.Element {
     console.log(inputData);
 
     // Check if any of the inputs are empty; set component global error
-    if (Object.entries(inputData).some((input) => input[1] === ''))
+    if (Object.entries(inputData).some((input) => input[1] === '')) {
       setFormError(true);
+      // eslint-disable-next-line no-return-assign
+      setSubTasks((prev) =>
+        [...prev].map((el) => (el.props?.formError = true))
+      );
+    }
   };
 
   const deleteFn = (listId: number): void => {
@@ -35,11 +40,14 @@ function TaskAdd(): JSX.Element {
           name={`input-subtask-${id}`}
           listId={id}
           deleteFn={deleteFn}
+          formError={formError}
+          setFormError={setFormError}
         />
       );
     };
     const subtaskInitialArr = [subtaskListItem(), subtaskListItem()];
     setSubTasks(subtaskInitialArr);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [genId]);
 
   const btnNewSubtaskClickHandler = () => {
@@ -51,6 +59,8 @@ function TaskAdd(): JSX.Element {
         name={`input-subtask-${id}`}
         listId={id}
         deleteFn={deleteFn}
+        formError={formError}
+        setFormError={setFormError}
       />,
     ]);
   };
@@ -73,6 +83,8 @@ function TaskAdd(): JSX.Element {
           <InputTextArea
             name="input-description"
             placeholder="It's always good to take a break. This 15 minute break will recharge the batteries a little"
+            formError={formError}
+            setFormError={setFormError}
           />
         </div>
         <div className={styles.form__group}>

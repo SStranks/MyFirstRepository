@@ -1,27 +1,34 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './_InputTextArea.module.scss';
 
 type ElemProps = {
   name: string;
   placeholder: string;
-  // formSubmitValidate: () => void;
+  formError: boolean;
+  setFormError: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function TextArea(props: ElemProps): JSX.Element {
-  const { name, placeholder } = props;
-  const [text, setText] = useState({ text: '', error: false });
+  const { name, placeholder, formError, setFormError } = props;
+  const [text, setText] = useState('');
+  const [error, setError] = useState<boolean | undefined>();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (text.error) containerRef.current?.classList.remove('error');
-    setText((prev) => ({ ...prev, text: e.currentTarget?.value }));
+    if (error) {
+      setError(false);
+      setFormError(false);
+    }
+    setText(e.currentTarget?.value);
   };
 
-  // formSubmitValidate(text, setText);
+  useEffect(() => {
+    setError(formError);
+  }, [formError]);
 
   return (
     <div
-      className={`${styles.container} ${text.error ? styles.error : ''}`}
+      className={`${styles.container} ${error && !text ? styles.error : ''}`}
       ref={containerRef}>
       <textarea
         name={name}
@@ -31,7 +38,7 @@ function TextArea(props: ElemProps): JSX.Element {
         className={styles.container__input}
         placeholder={placeholder}
         onChange={onChangeHandler}
-        value={text.text}
+        value={text}
       />
     </div>
   );

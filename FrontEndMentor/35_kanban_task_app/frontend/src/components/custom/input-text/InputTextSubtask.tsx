@@ -1,5 +1,5 @@
 import IconCross from '#Svg/icon-cross.svg';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './_InputTextSubtask.module.scss';
 
 const placeholderText = [
@@ -15,21 +15,29 @@ type ElemProps = {
   name: string;
   listId: number;
   deleteFn: (listId: number) => void;
+  formError: boolean;
+  setFormError: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function InputTextSubtask(props: ElemProps): JSX.Element {
-  const { name, listId, deleteFn } = props;
+  const { name, listId, deleteFn, formError, setFormError } = props;
   const [inputText, setInputText] = useState('');
+  const [error, setError] = useState<boolean | undefined>();
   const subtaskRef = useRef<HTMLDivElement>(null);
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (
-      subtaskRef.current?.classList.contains(styles.error) &&
-      e.currentTarget.value !== ''
-    )
-      subtaskRef.current.classList.remove(styles.error);
-    setInputText(e.currentTarget.value);
+    if (error) {
+      setError(false);
+      setFormError(false);
+    }
+    return setInputText(e.currentTarget?.value);
   };
+
+  useEffect(() => {
+    setError(formError);
+  }, [formError]);
+
+  console.log(error, formError);
 
   // This line is for error styles; reapply elsewhere; on formSubmit, validate.
   // if (!inputText) subtaskRef.current?.classList.add(styles.error);
@@ -40,7 +48,11 @@ function InputTextSubtask(props: ElemProps): JSX.Element {
   };
 
   return (
-    <div className={styles['sub-task']} ref={subtaskRef}>
+    <div
+      className={`${styles['sub-task']} ${
+        error && !inputText ? styles.error : ''
+      }`}
+      ref={subtaskRef}>
       <div className={styles['sub-task__container']}>
         <input
           type="text"

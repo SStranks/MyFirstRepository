@@ -11,14 +11,13 @@ type ElemProps = {
 function InputText(props: ElemProps): JSX.Element {
   const { name, placeholder, formError, setFormError } = props;
   const [text, setText] = useState('');
-  const [error, setError] = useState(formError);
+  const [error, setError] = useState<boolean | undefined>();
   const element = useRef<HTMLDivElement>(null);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (error) {
       setError(false);
       setFormError(false);
-      setText(e.currentTarget?.value);
     }
     return setText(e.currentTarget?.value);
   };
@@ -27,7 +26,7 @@ function InputText(props: ElemProps): JSX.Element {
     setError(formError);
   }, [formError]);
 
-  console.log(error, formError);
+  // console.log(error, formError);
 
   return (
     <div
