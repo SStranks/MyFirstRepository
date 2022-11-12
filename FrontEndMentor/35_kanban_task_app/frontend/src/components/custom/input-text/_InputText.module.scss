@@ -1,0 +1,34 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/mixins' as mx;
+
+.container {
+  position: relative;
+  width: 100%;
+
+  &__input {
+    @include mx.input-text;
+    width: 100%;
+
+    &:focus {
+      outline: 1px solid c.$col-1a;
+    }
+  }
+}
+
+.error {
+  &.container::after {
+    @include mx.body-l;
+    content: "Can't be empty";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    color: c.$col-1j;
+  }
+
+  & .container__input {
+    border: 1px solid c.$col-1j;
+  }
+}
