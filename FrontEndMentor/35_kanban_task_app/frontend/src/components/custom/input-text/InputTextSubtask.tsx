@@ -13,7 +13,6 @@ const placeholderText = [
 
 type ElemProps = {
   listId: number;
-  // eslint-disable-next-line no-unused-vars
   deleteFn: (listId: number) => void;
 };
 
@@ -35,6 +34,7 @@ function InputTextSubtask(props: ElemProps): JSX.Element {
   // if (!inputText) subtaskRef.current?.classList.add(styles.error);
 
   const deleteClickHandler = () => {
+    // Raise to parent: TaskAdd
     deleteFn(listId);
   };
 

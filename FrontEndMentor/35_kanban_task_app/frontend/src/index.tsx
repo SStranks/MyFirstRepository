@@ -1,6 +1,6 @@
 import App from '#Components/App';
 import '#Sass/global-imports.scss';
-// import React from 'react';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -11,9 +11,9 @@ const root = createRoot(container!);
 // const root = createRoot(container as Element);
 
 root.render(
-  // <React.StrictMode>
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
 );
