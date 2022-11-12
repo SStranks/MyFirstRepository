@@ -36,7 +36,7 @@
   ],
   "rules": {
     "prettier/prettier": ["error"],
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off", // Rule handled by "@typescript-eslint/no-unused-vars": "warn"
     "no-console": "off",
     // Typescript Rules --
     "react/prop-types": "off",
