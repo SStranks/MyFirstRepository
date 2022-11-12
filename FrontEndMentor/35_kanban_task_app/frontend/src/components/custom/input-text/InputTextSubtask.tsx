@@ -12,12 +12,13 @@ const placeholderText = [
 ];
 
 type ElemProps = {
+  name: string;
   listId: number;
   deleteFn: (listId: number) => void;
 };
 
 function InputTextSubtask(props: ElemProps): JSX.Element {
-  const { listId, deleteFn } = props;
+  const { name, listId, deleteFn } = props;
   const [inputText, setInputText] = useState('');
   const subtaskRef = useRef<HTMLDivElement>(null);
 
@@ -44,6 +45,7 @@ function InputTextSubtask(props: ElemProps): JSX.Element {
         <input
           type="text"
           className={styles['sub-task__input']}
+          name={name}
           placeholder={placeholderText[listId % placeholderText.length]}
           value={inputText}
           onChange={inputChangeHandler}

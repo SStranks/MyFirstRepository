@@ -3,12 +3,13 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './_Dropdown.module.scss';
 
 type ElemProps = {
+  name: string;
   currentListItem: string;
   listItems: string[];
 };
 
 function Dropdown(props: ElemProps): JSX.Element {
-  const { currentListItem, listItems } = props;
+  const { name, currentListItem, listItems } = props;
   const [currentItem, setCurrentItem] = useState(currentListItem);
   const dropdownContainer = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
@@ -61,6 +62,7 @@ function Dropdown(props: ElemProps): JSX.Element {
   return (
     <div className={styles['dropdown-container']} ref={dropdownContainer}>
       <button
+        name={name}
         type="button"
         className={styles.dropdown}
         onClick={dropdownClickHandler}>

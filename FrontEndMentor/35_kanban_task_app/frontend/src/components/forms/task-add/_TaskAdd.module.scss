@@ -46,6 +46,10 @@
   &__input {
     @include mx.input-text;
     width: 100%;
+
+    &:focus {
+      outline: 1px solid c.$col-1a;
+    }
   }
 
   &__textarea {
@@ -69,4 +73,8 @@
   &__btn-create-task {
     @include btn-primary-s;
   }
+}
+
+.test {
+  background-color: red;
 }

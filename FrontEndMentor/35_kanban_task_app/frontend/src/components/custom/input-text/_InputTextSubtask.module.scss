@@ -16,6 +16,10 @@
     @include mx.input-text;
     position: relative;
     width: 100%;
+
+    &:focus {
+      outline: 1px solid c.$col-1a;
+    }
   }
 }
 

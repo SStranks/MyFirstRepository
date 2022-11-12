@@ -1,16 +1,26 @@
 import Dropdown from '#Components/custom/dropdown/Dropdown';
+import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
+import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import { useEffect, useState } from 'react';
 import styles from './_TaskAdd.module.scss';
 
-const submitHandler = () => {
-  console.log('fired');
-};
-
 function TaskAdd(): JSX.Element {
   const [subtasks, setSubTasks] = useState<JSX.Element[] | []>([]);
+  const [formError, setFormError] = useState(false);
   const genId = useComponentIdGenerator();
+
+  const submitHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const inputData = Object.fromEntries(formData.entries());
+    console.log(inputData);
+
+    // Check if any of the inputs are empty; set component global error
+    if (Object.entries(inputData).some((input) => input[1] === ''))
+      setFormError(true);
+  };
 
   const deleteFn = (listId: number): void => {
     setSubTasks((prev) => prev.filter((el) => el.props.listId !== listId));
@@ -19,7 +29,14 @@ function TaskAdd(): JSX.Element {
   useEffect(() => {
     const subtaskListItem = () => {
       const id = genId();
-      return <InputTextSubtask key={id} listId={id} deleteFn={deleteFn} />;
+      return (
+        <InputTextSubtask
+          key={id}
+          name={`input-subtask-${id}`}
+          listId={id}
+          deleteFn={deleteFn}
+        />
+      );
     };
     const subtaskInitialArr = [subtaskListItem(), subtaskListItem()];
     setSubTasks(subtaskInitialArr);
@@ -29,7 +46,12 @@ function TaskAdd(): JSX.Element {
     const id = genId();
     setSubTasks((prev) => [
       ...prev,
-      <InputTextSubtask key={id} listId={id} deleteFn={deleteFn} />,
+      <InputTextSubtask
+        key={id}
+        name={`input-subtask-${id}`}
+        listId={id}
+        deleteFn={deleteFn}
+      />,
     ]);
   };
 
@@ -39,16 +61,17 @@ function TaskAdd(): JSX.Element {
         <p className={styles.form__title}>Add New Task</p>
         <div className={styles.form__group}>
           <p>Title</p>
-          <input
-            type="text"
+          <InputText
+            name="input-title"
             placeholder="e.g. Take coffee break"
-            className={styles.form__input}
+            formError={formError}
+            setFormError={setFormError}
           />
         </div>
         <div className={styles.form__group}>
           <p>Description</p>
-          <textarea
-            className={`${styles.form__input} ${styles.form__textarea}`}
+          <InputTextArea
+            name="input-description"
             placeholder="It's always good to take a break. This 15 minute break will recharge the batteries a little"
           />
         </div>
@@ -65,6 +88,7 @@ function TaskAdd(): JSX.Element {
         <div className={styles.form__group}>
           <p>Status</p>
           <Dropdown
+            name="input-status"
             currentListItem="Todo"
             listItems={['Todo', 'Doing', 'Done']}
           />
