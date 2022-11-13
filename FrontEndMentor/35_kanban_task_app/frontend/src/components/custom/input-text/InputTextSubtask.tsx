@@ -11,56 +11,70 @@ const placeholderText = [
   'e.g. Enjoy coffee and smile more',
 ];
 
+type stateObj = {
+  title: { value: string; error: boolean };
+  description: { value: string; error: boolean };
+  status: { current: string };
+  subtasks: {
+    value: string;
+    error: boolean;
+    key: number;
+    name: string;
+    listId: number;
+  }[];
+};
+
 type ElemProps = {
   name: string;
+  value: string;
+  error: boolean;
+  setFormData: React.Dispatch<React.SetStateAction<stateObj>>;
   listId: number;
-  deleteFn: (listId: number) => void;
-  formError: boolean;
-  setFormError: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function InputTextSubtask(props: ElemProps): JSX.Element {
-  const { name, listId, deleteFn, formError, setFormError } = props;
-  const [inputText, setInputText] = useState('');
-  const [error, setError] = useState<boolean | undefined>();
+  const { name, value, error, setFormData, listId } = props;
+  const [text, setText] = useState('');
   const subtaskRef = useRef<HTMLDivElement>(null);
 
-  const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (error) {
-      setError(false);
-      setFormError(false);
-    }
-    return setInputText(e.currentTarget?.value);
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    return setText(e.currentTarget?.value);
+  };
+
+  const onBlurHandler = () => {
+    setFormData((prev) => ({ ...prev, subtasks: [...prev.subtasks] }));
   };
 
   useEffect(() => {
-    setError(formError);
-  }, [formError]);
-
-  console.log(error, formError);
+    setText(value);
+  }, [value]);
 
   // This line is for error styles; reapply elsewhere; on formSubmit, validate.
   // if (!inputText) subtaskRef.current?.classList.add(styles.error);
 
   const deleteClickHandler = () => {
-    // Raise to parent: TaskAdd
-    deleteFn(listId);
+    setFormData((prev) => {
+      const subtasks = prev.subtasks.filter((task) => task.listId !== listId);
+      return { ...prev, subtasks: [...subtasks] };
+    });
   };
+
+  // console.log('rendering');
 
   return (
     <div
-      className={`${styles['sub-task']} ${
-        error && !inputText ? styles.error : ''
-      }`}
+      className={`${styles['sub-task']} ${error && !text ? styles.error : ''}`}
       ref={subtaskRef}>
       <div className={styles['sub-task__container']}>
         <input
           type="text"
           className={styles['sub-task__input']}
           name={name}
-          placeholder={placeholderText[listId % placeholderText.length]}
-          value={inputText}
-          onChange={inputChangeHandler}
+          placeholder={placeholderText[0]}
+          // placeholder={placeholderText[listId % placeholderText.length]}
+          value={text}
+          onChange={onChangeHandler}
+          onBlur={onBlurHandler}
         />
       </div>
       <button type="button" onClick={deleteClickHandler}>

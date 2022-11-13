@@ -1,30 +1,46 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './_InputTextArea.module.scss';
 
+type stateObj = {
+  title: { value: string; error: boolean };
+  description: { value: string; error: boolean };
+  status: { current: string };
+  subtasks: {
+    value: string;
+    error: boolean;
+    key: number;
+    name: string;
+    listId: number;
+  }[];
+};
+
 type ElemProps = {
   name: string;
   placeholder: string;
-  formError: boolean;
-  setFormError: React.Dispatch<React.SetStateAction<boolean>>;
+  value: string;
+  error: boolean;
+  setFormData: React.Dispatch<React.SetStateAction<stateObj>>;
 };
 
 function TextArea(props: ElemProps): JSX.Element {
-  const { name, placeholder, formError, setFormError } = props;
+  const { name, placeholder, value, error, setFormData } = props;
   const [text, setText] = useState('');
-  const [error, setError] = useState<boolean | undefined>();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (error) {
-      setError(false);
-      setFormError(false);
-    }
-    setText(e.currentTarget?.value);
+    return setText(e.currentTarget?.value);
+  };
+
+  const onBlurHandler = () => {
+    setFormData((prev) => ({
+      ...prev,
+      description: { ...prev.description, value: text },
+    }));
   };
 
   useEffect(() => {
-    setError(formError);
-  }, [formError]);
+    setText(value);
+  }, [value]);
 
   return (
     <div
@@ -32,13 +48,14 @@ function TextArea(props: ElemProps): JSX.Element {
       ref={containerRef}>
       <textarea
         name={name}
+        className={styles.container__input}
+        placeholder={placeholder}
+        value={text}
+        onBlur={onBlurHandler}
+        onChange={onChangeHandler}
         // id=""
         // cols="30"
         // rows="10"
-        className={styles.container__input}
-        placeholder={placeholder}
-        onChange={onChangeHandler}
-        value={text}
       />
     </div>
   );

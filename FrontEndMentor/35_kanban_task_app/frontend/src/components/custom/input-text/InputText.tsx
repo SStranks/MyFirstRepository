@@ -1,30 +1,46 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './_InputText.module.scss';
 
+type stateObj = {
+  title: { value: string; error: boolean };
+  description: { value: string; error: boolean };
+  status: { current: string };
+  subtasks: {
+    value: string;
+    error: boolean;
+    key: number;
+    name: string;
+    listId: number;
+  }[];
+};
+
 type ElemProps = {
   name: string;
   placeholder: string;
-  formError: boolean;
-  setFormError: React.Dispatch<React.SetStateAction<boolean>>;
+  value: string;
+  error: boolean;
+  setFormData: React.Dispatch<React.SetStateAction<stateObj>>;
 };
 
 function InputText(props: ElemProps): JSX.Element {
-  const { name, placeholder, formError, setFormError } = props;
+  const { name, placeholder, value, error, setFormData } = props;
   const [text, setText] = useState('');
-  const [error, setError] = useState<boolean | undefined>();
   const element = useRef<HTMLDivElement>(null);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (error) {
-      setError(false);
-      setFormError(false);
-    }
     return setText(e.currentTarget?.value);
   };
 
+  const onBlurHandler = () => {
+    setFormData((prev) => ({
+      ...prev,
+      title: { ...prev.title, value: text },
+    }));
+  };
+
   useEffect(() => {
-    setError(formError);
-  }, [formError]);
+    setText(value);
+  }, [value]);
 
   // console.log(error, formError);
 
@@ -34,11 +50,12 @@ function InputText(props: ElemProps): JSX.Element {
       ref={element}>
       <input
         type="text"
+        className={styles.container__input}
         name={name}
         placeholder={placeholder}
-        className={styles.container__input}
         value={text}
         onChange={onChangeHandler}
+        onBlur={onBlurHandler}
       />
     </div>
   );

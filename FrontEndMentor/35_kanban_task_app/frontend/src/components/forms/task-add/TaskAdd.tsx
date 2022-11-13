@@ -3,58 +3,79 @@ import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './_TaskAdd.module.scss';
 
+type newFormDataType = {
+  title?: { value: string; error: boolean };
+  description?: { value: string; error: boolean };
+  subtasks?: {
+    value: string;
+    error: boolean;
+    key: number;
+    name: string;
+    listId: number;
+  }[];
+};
+
 function TaskAdd(): JSX.Element {
-  const [subtasks, setSubTasks] = useState<JSX.Element[] | []>([]);
-  const [formError, setFormError] = useState(false);
   const genId = useComponentIdGenerator();
+  const [formData, setFormData] = useState({
+    title: { value: '', error: false },
+    description: { value: '', error: false },
+    status: { current: 'Todo' },
+    subtasks: [
+      { value: '', error: false, key: -2, name: '', listId: -2 },
+      { value: '', error: false, key: -1, name: '', listId: -1 },
+    ],
+  });
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    const inputData = Object.fromEntries(formData.entries());
-    console.log(inputData);
+    // Check if each formData input is empty. If true, add a new object to newFormData and then merge with the current formData, and abort the form submission.
+    const newFormData = {} as newFormDataType;
+    if (formData.title.value === '')
+      newFormData.title = { value: '', error: true };
+    if (formData.description.value === '')
+      newFormData.description = { value: '', error: true };
+    if (formData.subtasks.some((task) => !task.error)) {
+      // eslint-disable-next-line unicorn/no-array-for-each
+      const newSubtasks = formData.subtasks.map((task) => {
+        if (!task.value) return { ...task, error: true };
+        return task;
+      });
+      newFormData.subtasks = [...newSubtasks];
+    }
+    if (Object.keys(newFormData).length > 0)
+      return setFormData((prev) => ({ ...prev, ...newFormData }));
+    return console.log('FORM SUBMITTED!');
   };
-
-  const deleteFn = (listId: number): void => {
-    setSubTasks((prev) => prev.filter((el) => el.props.listId !== listId));
-  };
-
-  useEffect(() => {
-    const subtaskListItem = () => {
-      const id = genId();
-      return (
-        <InputTextSubtask
-          key={id}
-          name={`input-subtask-${id}`}
-          listId={id}
-          deleteFn={deleteFn}
-          formError={formError}
-          setFormError={setFormError}
-        />
-      );
-    };
-    const subtaskInitialArr = [subtaskListItem(), subtaskListItem()];
-    setSubTasks(subtaskInitialArr);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [genId]);
 
   const btnNewSubtaskClickHandler = () => {
-    const id = genId();
-    setSubTasks((prev) => [
+    const uniqueId = genId();
+    const newSubTask = {
+      value: '',
+      error: false,
+      key: uniqueId,
+      name: `input-subtask-${uniqueId}`,
+      listId: uniqueId,
+    };
+    setFormData((prev) => ({
       ...prev,
-      <InputTextSubtask
-        key={id}
-        name={`input-subtask-${id}`}
-        listId={id}
-        deleteFn={deleteFn}
-        formError={formError}
-        setFormError={setFormError}
-      />,
-    ]);
+      subtasks: [...prev.subtasks, newSubTask],
+    }));
   };
+
+  const subTasks = formData.subtasks.map((task) => (
+    <InputTextSubtask
+      key={task.key}
+      name={task.name}
+      value={task.value}
+      error={task.error}
+      setFormData={setFormData}
+      listId={task.listId}
+    />
+  ));
 
   return (
     <div className={styles.container}>
@@ -65,8 +86,9 @@ function TaskAdd(): JSX.Element {
           <InputText
             name="input-title"
             placeholder="e.g. Take coffee break"
-            formError={formError}
-            setFormError={setFormError}
+            value={formData.title.value}
+            error={formData.title.error}
+            setFormData={setFormData}
           />
         </div>
         <div className={styles.form__group}>
@@ -74,13 +96,14 @@ function TaskAdd(): JSX.Element {
           <InputTextArea
             name="input-description"
             placeholder="It's always good to take a break. This 15 minute break will recharge the batteries a little"
-            formError={formError}
-            setFormError={setFormError}
+            value={formData.description.value}
+            error={formData.description.error}
+            setFormData={setFormData}
           />
         </div>
         <div className={styles.form__group}>
           <p>Sub-Tasks</p>
-          <div className={styles['form__sub-tasks']}>{subtasks}</div>
+          <div className={styles['form__sub-tasks']}>{subTasks}</div>
           <button
             type="button"
             className={styles['form__btn-new-sub-task']}
