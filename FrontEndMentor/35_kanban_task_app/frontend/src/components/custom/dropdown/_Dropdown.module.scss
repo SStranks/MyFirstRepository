@@ -4,22 +4,26 @@
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
 
-.dropdown-container {
-  position: relative;
-}
-
 .dropdown {
-  @include mx.input-text;
-  @include mx.body-l;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  color: var(--thm-dropdown-default-text);
-  transition: a.$Theme-transition-color;
+  position: relative;
 
-  &:focus {
-    border-color: c.$col-1a;
+  .dropdown__input {
+    display: none;
+  }
+
+  .dropdown__button {
+    @include mx.input-text;
+    @include mx.body-l;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    color: var(--thm-dropdown-default-text);
+    transition: a.$Theme-transition-color;
+
+    &:focus {
+      border-color: c.$col-1a;
+    }
   }
 }
 

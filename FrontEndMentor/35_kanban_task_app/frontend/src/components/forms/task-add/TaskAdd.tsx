@@ -25,30 +25,51 @@ function TaskAdd(): JSX.Element {
     description: { value: '', error: false },
     status: { current: 'Todo' },
     subtasks: [
-      { value: '', error: false, key: -2, name: '', listId: -2 },
-      { value: '', error: false, key: -1, name: '', listId: -1 },
+      {
+        value: '',
+        error: false,
+        key: -2,
+        name: 'input-subtask--2',
+        listId: -2,
+      },
+      {
+        value: '',
+        error: false,
+        key: -1,
+        name: 'input-subtask--1',
+        listId: -1,
+      },
     ],
   });
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    // Check if each formData input is empty. If true, add a new object to newFormData and then merge with the current formData, and abort the form submission.
+    // Check if each formData input is empty. If true, add a new object to newFormData for each empty input.
     const newFormData = {} as newFormDataType;
     if (formData.title.value === '')
       newFormData.title = { value: '', error: true };
     if (formData.description.value === '')
       newFormData.description = { value: '', error: true };
-    if (formData.subtasks.some((task) => !task.error)) {
-      // eslint-disable-next-line unicorn/no-array-for-each
+    if (formData.subtasks.some((task) => task.value === '')) {
       const newSubtasks = formData.subtasks.map((task) => {
         if (!task.value) return { ...task, error: true };
         return task;
       });
       newFormData.subtasks = [...newSubtasks];
     }
-    if (Object.keys(newFormData).length > 0)
+    // If there are any empty inputs/objs in newFormData, abort form submission and update form state.
+    if (Object.keys(newFormData).length > 0) {
+      console.log(
+        'form submit click',
+        Object.keys(newFormData),
+        newFormData,
+        formData
+      );
       return setFormData((prev) => ({ ...prev, ...newFormData }));
-    return console.log('FORM SUBMITTED!');
+    }
+    const formInputData = new FormData(e.target as HTMLFormElement);
+    const inputData = Object.fromEntries(formInputData.entries());
+    return console.log('FORM SUBMIT', inputData);
   };
 
   const btnNewSubtaskClickHandler = () => {

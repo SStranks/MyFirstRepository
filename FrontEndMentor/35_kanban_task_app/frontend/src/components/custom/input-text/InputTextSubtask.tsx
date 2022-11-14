@@ -42,7 +42,15 @@ function InputTextSubtask(props: ElemProps): JSX.Element {
   };
 
   const onBlurHandler = () => {
-    setFormData((prev) => ({ ...prev, subtasks: [...prev.subtasks] }));
+    setFormData((prev) => ({
+      ...prev,
+      subtasks: [
+        ...prev.subtasks.map((task) => {
+          if (task.listId === listId) return { ...task, value: text };
+          return task;
+        }),
+      ],
+    }));
   };
 
   useEffect(() => {

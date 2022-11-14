@@ -60,11 +60,18 @@ function Dropdown(props: ElemProps): JSX.Element {
   ));
 
   return (
-    <div className={styles['dropdown-container']} ref={dropdownContainer}>
+    <div className={styles.dropdown} ref={dropdownContainer}>
+      <input
+        type="text"
+        value={currentItem}
+        name="input-dropdown-status"
+        className={styles.dropdown__input}
+        readOnly
+      />
       <button
         name={name}
         type="button"
-        className={styles.dropdown}
+        className={styles.dropdown__button}
         onClick={dropdownClickHandler}>
         {currentItem}
         <img src={IconDown} alt="" />
