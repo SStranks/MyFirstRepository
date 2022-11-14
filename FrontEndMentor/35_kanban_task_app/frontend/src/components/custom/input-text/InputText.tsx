@@ -4,7 +4,7 @@ import styles from './_InputText.module.scss';
 type stateObj = {
   title: { value: string; error: boolean };
   description: { value: string; error: boolean };
-  status: { current: string };
+  status: { current: string; statusArr: string[] };
   subtasks: {
     value: string;
     error: boolean;

@@ -18,12 +18,18 @@ type newFormDataType = {
   }[];
 };
 
-function TaskAdd(): JSX.Element {
+type ElemProps = {
+  statusArr: string[];
+};
+
+function TaskAdd(props: ElemProps): JSX.Element {
+  const { statusArr } = props;
+
   const genId = useComponentIdGenerator();
   const [formData, setFormData] = useState({
     title: { value: '', error: false },
     description: { value: '', error: false },
-    status: { current: 'Todo' },
+    status: { current: 'Todo', statusArr: [...statusArr] },
     subtasks: [
       {
         value: '',
@@ -137,7 +143,7 @@ function TaskAdd(): JSX.Element {
           <Dropdown
             name="input-status"
             currentListItem="Todo"
-            listItems={['Todo', 'Doing', 'Done']}
+            listItems={statusArr}
           />
         </div>
         <button type="submit" className={styles['form__btn-create-task']}>

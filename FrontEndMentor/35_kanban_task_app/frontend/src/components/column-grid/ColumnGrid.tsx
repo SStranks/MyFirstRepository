@@ -45,7 +45,12 @@ function ColumnGrid(): JSX.Element {
       {/* <BoardEdit /> */}
       {/* <BoardAdd /> */}
       {/* <TaskAdd /> */}
-      <TaskEdit />
+      <TaskEdit
+        taskTitle="Add authentication endpoints"
+        taskDescription=""
+        taskSubtasks={['Define user model', 'Add auth endpoints']}
+        taskStatus={{ current: 'Doing', statusArr: ['Todo', 'Doing', 'Done'] }}
+      />
       {/* <TaskView
         title={title}
         description={description}

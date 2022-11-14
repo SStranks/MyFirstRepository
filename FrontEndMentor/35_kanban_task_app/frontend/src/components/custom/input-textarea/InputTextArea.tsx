@@ -4,7 +4,7 @@ import styles from './_InputTextArea.module.scss';
 type stateObj = {
   title: { value: string; error: boolean };
   description: { value: string; error: boolean };
-  status: { current: string };
+  status: { current: string; statusArr: string[] };
   subtasks: {
     value: string;
     error: boolean;
@@ -17,13 +17,13 @@ type stateObj = {
 type ElemProps = {
   name: string;
   placeholder: string;
-  value: string;
+  value: string | undefined;
   error: boolean;
   setFormData: React.Dispatch<React.SetStateAction<stateObj>>;
 };
 
 function TextArea(props: ElemProps): JSX.Element {
-  const { name, placeholder, value, error, setFormData } = props;
+  const { name, placeholder, value = '', error, setFormData } = props;
   const [text, setText] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
 
