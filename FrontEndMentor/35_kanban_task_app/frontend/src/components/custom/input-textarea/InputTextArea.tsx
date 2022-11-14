@@ -1,28 +1,31 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './_InputTextArea.module.scss';
 
-type stateObj = {
-  title: { value: string; error: boolean };
-  description: { value: string; error: boolean };
-  status: { current: string; statusArr: string[] };
-  subtasks: {
-    value: string;
-    error: boolean;
-    key: number;
-    name: string;
-    listId: number;
-  }[];
-};
+// type stateObj = {
+//   title: { value: string; error: boolean };
+//   description: { value: string; error: boolean };
+//   status: { current: string; statusArr: string[] };
+//   subtasks: {
+//     value: string;
+//     error: boolean;
+//     key: number;
+//     name: string;
+//     listId: number;
+//   }[];
+// };
 
-type ElemProps = {
+type ElemProps<S> = {
   name: string;
   placeholder: string;
   value: string | undefined;
   error: boolean;
-  setFormData: React.Dispatch<React.SetStateAction<stateObj>>;
+  setFormData: React.Dispatch<React.SetStateAction<S>>;
+  // setFormData: React.Dispatch<React.SetStateAction<stateObj>>;
 };
 
-function TextArea(props: ElemProps): JSX.Element {
+function TextArea<S extends Record<string, unknown>>(
+  props: ElemProps<S>
+): JSX.Element {
   const { name, placeholder, value = '', error, setFormData } = props;
   const [text, setText] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,7 +37,10 @@ function TextArea(props: ElemProps): JSX.Element {
   const onBlurHandler = () => {
     setFormData((prev) => ({
       ...prev,
-      description: { ...prev.description, value: text },
+      description: {
+        ...(prev.description as Record<string, unknown>),
+        value: text,
+      },
     }));
   };
 
@@ -53,9 +59,6 @@ function TextArea(props: ElemProps): JSX.Element {
         value={text}
         onBlur={onBlurHandler}
         onChange={onChangeHandler}
-        // id=""
-        // cols="30"
-        // rows="10"
       />
     </div>
   );

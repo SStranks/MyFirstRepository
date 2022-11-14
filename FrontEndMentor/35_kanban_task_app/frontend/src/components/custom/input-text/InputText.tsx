@@ -1,28 +1,30 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './_InputText.module.scss';
 
-type stateObj = {
-  title: { value: string; error: boolean };
-  description: { value: string; error: boolean };
-  status: { current: string; statusArr: string[] };
-  subtasks: {
-    value: string;
-    error: boolean;
-    key: number;
-    name: string;
-    listId: number;
-  }[];
-};
+// type stateObj = {
+//   title: { value: string; error: boolean };
+//   description: { value: string; error: boolean };
+//   status: { current: string; statusArr: string[] };
+//   subtasks: {
+//     value: string;
+//     error: boolean;
+//     key: number;
+//     name: string;
+//     listId: number;
+//   }[];
+// };
 
-type ElemProps = {
+type ElemProps<S> = {
   name: string;
   placeholder: string;
   value: string;
   error: boolean;
-  setFormData: React.Dispatch<React.SetStateAction<stateObj>>;
+  setFormData: React.Dispatch<React.SetStateAction<S>>;
 };
 
-function InputText(props: ElemProps): JSX.Element {
+function InputText<S extends Record<string, unknown>>(
+  props: ElemProps<S>
+): JSX.Element {
   const { name, placeholder, value, error, setFormData } = props;
   const [text, setText] = useState('');
   const element = useRef<HTMLDivElement>(null);
@@ -34,7 +36,7 @@ function InputText(props: ElemProps): JSX.Element {
   const onBlurHandler = () => {
     setFormData((prev) => ({
       ...prev,
-      title: { ...prev.title, value: text },
+      title: { ...(prev.title as Record<string, unknown>), value: text },
     }));
   };
 

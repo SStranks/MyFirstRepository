@@ -11,28 +11,30 @@ const placeholderText = [
   'e.g. Enjoy coffee and smile more',
 ];
 
-type stateObj = {
-  title: { value: string; error: boolean };
-  description: { value: string; error: boolean };
-  status: { current: string; statusArr: string[] };
-  subtasks: {
-    value: string;
-    error: boolean;
-    key: number;
-    name: string;
-    listId: number;
-  }[];
-};
+// type stateObj = {
+//   title: { value: string; error: boolean };
+//   description: { value: string; error: boolean };
+//   status: { current: string; statusArr: string[] };
+//   subtasks: {
+//     value: string;
+//     error: boolean;
+//     key: number;
+//     name: string;
+//     listId: number;
+//   }[];
+// };
 
-type ElemProps = {
+type ElemProps<S> = {
   name: string;
   value: string;
   error: boolean;
-  setFormData: React.Dispatch<React.SetStateAction<stateObj>>;
+  setFormData: React.Dispatch<React.SetStateAction<S>>;
   listId: number;
 };
 
-function InputTextSubtask(props: ElemProps): JSX.Element {
+function InputTextSubtask<S extends Record<string, unknown>>(
+  props: ElemProps<S>
+): JSX.Element {
   const { name, value, error, setFormData, listId } = props;
   const [text, setText] = useState('');
   const subtaskRef = useRef<HTMLDivElement>(null);
@@ -45,7 +47,7 @@ function InputTextSubtask(props: ElemProps): JSX.Element {
     setFormData((prev) => ({
       ...prev,
       subtasks: [
-        ...prev.subtasks.map((task) => {
+        ...(prev.subtasks as Record<string, unknown>[]).map((task) => {
           if (task.listId === listId) return { ...task, value: text };
           return task;
         }),
@@ -62,7 +64,9 @@ function InputTextSubtask(props: ElemProps): JSX.Element {
 
   const deleteClickHandler = () => {
     setFormData((prev) => {
-      const subtasks = prev.subtasks.filter((task) => task.listId !== listId);
+      const subtasks = (prev.subtasks as Record<string, unknown>[]).filter(
+        (task) => task.listId !== listId
+      );
       return { ...prev, subtasks: [...subtasks] };
     });
   };
