@@ -18,7 +18,6 @@ type newFormDataType = {
   }[];
 };
 
-// NOTE:  Default props after component declaration
 type ElemProps = {
   taskTitle: string;
   taskDescription?: string;

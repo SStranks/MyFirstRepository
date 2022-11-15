@@ -42,11 +42,6 @@
     }
   }
 
-  & input[type='text'] {
-    @include mx.input-text;
-    width: 100%;
-  }
-
   &__sub-tasks {
     display: flex;
     flex-direction: column;

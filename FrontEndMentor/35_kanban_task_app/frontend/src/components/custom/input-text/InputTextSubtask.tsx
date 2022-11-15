@@ -11,25 +11,12 @@ const placeholderText = [
   'e.g. Enjoy coffee and smile more',
 ];
 
-// type stateObj = {
-//   title: { value: string; error: boolean };
-//   description: { value: string; error: boolean };
-//   status: { current: string; statusArr: string[] };
-//   subtasks: {
-//     value: string;
-//     error: boolean;
-//     key: number;
-//     name: string;
-//     listId: number;
-//   }[];
-// };
-
 type ElemProps<S> = {
   name: string;
   value: string;
   error: boolean;
   setFormData: React.Dispatch<React.SetStateAction<S>>;
-  listId: number;
+  listId?: number;
 };
 
 function InputTextSubtask<S extends Record<string, unknown>>(
@@ -38,6 +25,8 @@ function InputTextSubtask<S extends Record<string, unknown>>(
   const { name, value, error, setFormData, listId } = props;
   const [text, setText] = useState('');
   const subtaskRef = useRef<HTMLDivElement>(null);
+
+  console.log('render');
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     return setText(e.currentTarget?.value);
@@ -59,9 +48,6 @@ function InputTextSubtask<S extends Record<string, unknown>>(
     setText(value);
   }, [value]);
 
-  // This line is for error styles; reapply elsewhere; on formSubmit, validate.
-  // if (!inputText) subtaskRef.current?.classList.add(styles.error);
-
   const deleteClickHandler = () => {
     setFormData((prev) => {
       const subtasks = (prev.subtasks as Record<string, unknown>[]).filter(
@@ -70,8 +56,6 @@ function InputTextSubtask<S extends Record<string, unknown>>(
       return { ...prev, subtasks: [...subtasks] };
     });
   };
-
-  // console.log('rendering');
 
   return (
     <div

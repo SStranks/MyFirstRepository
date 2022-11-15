@@ -40,18 +40,6 @@
       color: c.$col-1g;
       margin-bottom: f.px2em(8);
     }
-
-    & input[type='text'],
-    & textarea {
-      @include mx.input-text;
-      width: 100%;
-    }
-
-    & textarea {
-      min-height: 112px;
-      max-height: 250px;
-      resize: vertical;
-    }
   }
 
   &__sub-tasks {

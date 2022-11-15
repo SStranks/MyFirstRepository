@@ -1,26 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './_InputTextArea.module.scss';
 
-// type stateObj = {
-//   title: { value: string; error: boolean };
-//   description: { value: string; error: boolean };
-//   status: { current: string; statusArr: string[] };
-//   subtasks: {
-//     value: string;
-//     error: boolean;
-//     key: number;
-//     name: string;
-//     listId: number;
-//   }[];
-// };
-
 type ElemProps<S> = {
   name: string;
   placeholder: string;
   value: string | undefined;
   error: boolean;
   setFormData: React.Dispatch<React.SetStateAction<S>>;
-  // setFormData: React.Dispatch<React.SetStateAction<stateObj>>;
 };
 
 function TextArea<S extends Record<string, unknown>>(
