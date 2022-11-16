@@ -3,75 +3,58 @@ import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import {
+  deleteInputFromGroup,
+  deleteInputSingle,
+  genGroupInputs,
+  updateInput,
+  updateInputFromGroup,
+  validateInputs,
+} from '#Utils/formFunctions';
 import { useState } from 'react';
 import styles from './_TaskAdd.module.scss';
 
-type newFormDataType = {
-  title?: { value: string; error: boolean };
-  description?: { value: string; error: boolean };
-  subtasks?: {
-    value: string;
-    error: boolean;
-    key: number;
-    name: string;
-    listId: number;
-  }[];
+type ReturnData = {
+  inputName: string;
+  value: string;
+  groupId?: string;
 };
 
 type ElemProps = {
-  statusArr: string[];
+  taskStatus: { current: string; statusArr: string[] };
 };
 
-function TaskAdd(props: ElemProps): JSX.Element {
-  const { statusArr } = props;
+const INITIAL_SUBTASKS = ['', ''];
 
-  const genId = useComponentIdGenerator();
+// FUNCTION COMPONENT //
+function TaskAdd(props: ElemProps): JSX.Element {
+  const { taskStatus } = props;
   const [formData, setFormData] = useState({
-    title: { value: '', error: false },
-    description: { value: '', error: false },
-    status: { current: 'Todo', statusArr: [...statusArr] },
-    subtasks: [
-      {
-        value: '',
-        error: false,
-        key: -2,
-        name: 'input-subtask--2',
-        listId: -2,
-      },
-      {
-        value: '',
-        error: false,
-        key: -1,
-        name: 'input-subtask--1',
-        listId: -1,
-      },
-    ],
+    'input-title': { value: '', error: false, inputName: 'input-title' },
+    'input-description': {
+      value: '',
+      error: false,
+      inputName: 'input-description',
+    },
+    'input-status': {
+      value: taskStatus.current,
+      error: false,
+      statusArr: [...taskStatus.statusArr],
+      inputName: 'input-status',
+    },
+    'input-group-1': { ...genGroupInputs(INITIAL_SUBTASKS, 'subtask') },
   });
+  const genId = useComponentIdGenerator();
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    // Check if each formData input is empty. If true, add a new object to newFormData for each empty input.
-    const newFormData = {} as newFormDataType;
-    if (formData.title.value === '')
-      newFormData.title = { value: '', error: true };
-    if (formData.description.value === '')
-      newFormData.description = { value: '', error: true };
-    if (formData.subtasks.some((task) => task.value === '')) {
-      const newSubtasks = formData.subtasks.map((task) => {
-        if (!task.value) return { ...task, error: true };
-        return task;
-      });
-      newFormData.subtasks = [...newSubtasks];
-    }
-    // If there are any empty inputs/objs in newFormData, abort form submission and update form state.
+    // Check if each formData input is empty. If true, add a new object to newFormData.
+    const newFormData = validateInputs(formData);
+    // If there are any empty inputs/objs in newFormData, abort form submission and merge the form state with the newFormData objs.
     if (Object.keys(newFormData).length > 0) {
-      console.log(
-        'form submit click',
-        Object.keys(newFormData),
-        newFormData,
-        formData
+      return setFormData(
+        (prev) => ({ ...prev, ...newFormData } as typeof prev)
       );
-      return setFormData((prev) => ({ ...prev, ...newFormData }));
     }
     const formInputData = new FormData(e.target as HTMLFormElement);
     const inputData = Object.fromEntries(formInputData.entries());
@@ -79,30 +62,54 @@ function TaskAdd(props: ElemProps): JSX.Element {
   };
 
   const btnNewSubtaskClickHandler = () => {
-    const uniqueId = genId();
-    const newSubTask = {
+    const uniqueId = `input-subtask-${genId()}`;
+    const newSubtask = {
       value: '',
       error: false,
       key: uniqueId,
-      name: `input-subtask-${uniqueId}`,
-      listId: uniqueId,
+      inputName: uniqueId,
     };
-    setFormData((prev) => ({
-      ...prev,
-      subtasks: [...prev.subtasks, newSubTask],
-    }));
+    setFormData(
+      (prev) =>
+        ({
+          ...prev,
+          'input-group-1': { ...prev['input-group-1'], [uniqueId]: newSubtask },
+        } as typeof prev)
+    );
   };
 
-  const subTasks = formData.subtasks.map((task) => (
-    <InputTextSubtask
-      key={task.key}
-      name={task.name}
-      value={task.value}
-      error={task.error}
-      setFormData={setFormData}
-      listId={task.listId}
-    />
-  ));
+  const returnDataHandler = (data: ReturnData) => {
+    // Update form data; distinguish if return data is part of 'input-group' or a single input
+    if (data.groupId) {
+      setFormData((prev) => updateInputFromGroup(data, prev));
+    } else {
+      setFormData((prev) => updateInput(data, prev));
+    }
+  };
+
+  const deleteInputHandler = (data: ReturnData) => {
+    // Update form data; distinguish if return data is part of an input-group or a single input
+    if (data.groupId) {
+      setFormData((prev) => deleteInputFromGroup(data, prev));
+    } else {
+      setFormData((prev) => deleteInputSingle(data, prev));
+    }
+  };
+
+  const subTasks = Object.keys(formData['input-group-1']).map((key) => {
+    const obj = formData['input-group-1'][key];
+    return (
+      <InputTextSubtask
+        key={obj.key}
+        inputName={obj.inputName}
+        value={obj.value}
+        groupId="input-group-1"
+        error={obj.error}
+        deleteInput={deleteInputHandler}
+        returnData={returnDataHandler}
+      />
+    );
+  });
 
   return (
     <div className={styles.container}>
@@ -111,21 +118,23 @@ function TaskAdd(props: ElemProps): JSX.Element {
         <div className={styles.form__group}>
           <p>Title</p>
           <InputText
-            name="input-title"
             placeholder="e.g. Take coffee break"
-            value={formData.title.value}
-            error={formData.title.error}
-            setFormData={setFormData}
+            inputName={formData['input-title'].inputName}
+            value={formData['input-title'].value}
+            groupId={undefined}
+            error={formData['input-title'].error}
+            returnData={returnDataHandler}
           />
         </div>
         <div className={styles.form__group}>
           <p>Description</p>
           <InputTextArea
-            name="input-description"
             placeholder="It's always good to take a break. This 15 minute break will recharge the batteries a little"
-            value={formData.description.value}
-            error={formData.description.error}
-            setFormData={setFormData}
+            inputName={formData['input-description'].inputName}
+            value={formData['input-description'].value}
+            groupId={undefined}
+            error={formData['input-description'].error}
+            returnData={returnDataHandler}
           />
         </div>
         <div className={styles.form__group}>
@@ -141,9 +150,9 @@ function TaskAdd(props: ElemProps): JSX.Element {
         <div className={styles.form__group}>
           <p>Status</p>
           <Dropdown
-            name="input-status"
-            currentListItem="Todo"
-            listItems={statusArr}
+            name={formData['input-status'].inputName}
+            currentListItem={formData['input-status'].value}
+            listItems={formData['input-status'].statusArr}
           />
         </div>
         <button type="submit" className={styles['form__btn-create-task']}>

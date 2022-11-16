@@ -1,18 +1,30 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './_InputTextArea.module.scss';
 
-type ElemProps<S> = {
-  name: string;
-  placeholder: string;
-  value: string | undefined;
-  error: boolean;
-  setFormData: React.Dispatch<React.SetStateAction<S>>;
+type ReturnData = {
+  inputName: string;
+  value: string;
+  groupId?: string;
 };
 
-function TextArea<S extends Record<string, unknown>>(
-  props: ElemProps<S>
-): JSX.Element {
-  const { name, placeholder, value = '', error, setFormData } = props;
+type ElemProps = {
+  placeholder: string;
+  inputName: string;
+  value: string;
+  groupId: string | undefined;
+  error: boolean;
+  returnData: (arg: ReturnData) => void;
+};
+
+function TextArea(props: ElemProps): JSX.Element {
+  const {
+    placeholder,
+    inputName,
+    value = '',
+    groupId,
+    error,
+    returnData,
+  } = props;
   const [text, setText] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -21,13 +33,7 @@ function TextArea<S extends Record<string, unknown>>(
   };
 
   const onBlurHandler = () => {
-    setFormData((prev) => ({
-      ...prev,
-      description: {
-        ...(prev.description as Record<string, unknown>),
-        value: text,
-      },
-    }));
+    returnData({ inputName, value: text, groupId });
   };
 
   useEffect(() => {
@@ -39,7 +45,7 @@ function TextArea<S extends Record<string, unknown>>(
       className={`${styles.container} ${error && !text ? styles.error : ''}`}
       ref={containerRef}>
       <textarea
-        name={name}
+        name={inputName}
         className={styles.container__input}
         placeholder={placeholder}
         value={text}

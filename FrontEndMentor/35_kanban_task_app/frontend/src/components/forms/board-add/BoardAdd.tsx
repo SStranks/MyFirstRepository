@@ -1,64 +1,43 @@
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import {
+  addInputToGroup,
+  deleteInputFromGroup,
+  deleteInputSingle,
+  genGroupInputs,
+  updateInput,
+  updateInputFromGroup,
+  validateInputs,
+} from '#Utils/formFunctions';
 import { useState } from 'react';
 import styles from './_BoardAdd.module.scss';
 
-type newFormDataType = {
-  title?: { value: string; error: boolean };
-  subtasks?: {
-    value: string;
-    error: boolean;
-    key: number;
-    name: string;
-    listId: number;
-  }[];
+type ReturnData = {
+  inputName: string;
+  value: string;
+  groupId?: string;
 };
 
+const INITIAL_COLUMNS = ['Todo', 'Doing', 'Done'];
+
+// FUNCTION COMPONENT //
 function BoardAdd(): JSX.Element {
   const genId = useComponentIdGenerator();
   const [formData, setFormData] = useState({
-    title: { value: '', error: false },
-    subtasks: [
-      {
-        value: 'Todo',
-        error: false,
-        key: -2,
-        name: 'input-subtask--2',
-        listId: -2,
-      },
-      {
-        value: 'Doing',
-        error: false,
-        key: -1,
-        name: 'input-subtask--1',
-        listId: -1,
-      },
-    ],
+    'input-title': { value: '', error: false, inputName: 'input-title' },
+    'input-group-1': { ...genGroupInputs(INITIAL_COLUMNS, 'column') },
   });
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    // Check if each formData input is empty. If true, add a new object to newFormData for each empty input.
-    const newFormData = {} as newFormDataType;
-    if (formData.title.value === '')
-      newFormData.title = { value: '', error: true };
-    if (formData.subtasks.some((subtask) => subtask.value === '')) {
-      const newSubtasks = formData.subtasks.map((column) => {
-        if (!column.value) return { ...column, error: true };
-        return column;
-      });
-      newFormData.subtasks = [...newSubtasks];
-    }
-    // If there are any empty inputs/objs in newFormData, abort form submission and update form state.
+    // Check if each formData input is empty. If true, add a new object to newFormData.
+    const newFormData = validateInputs(formData);
+    // If there are any empty inputs/objs in newFormData, abort form submission and merge the form state with the newFormData objs.
     if (Object.keys(newFormData).length > 0) {
-      console.log(
-        'form submit click',
-        Object.keys(newFormData),
-        newFormData,
-        formData
+      return setFormData(
+        (prev) => ({ ...prev, ...newFormData } as typeof prev)
       );
-      return setFormData((prev) => ({ ...prev, ...newFormData }));
     }
     const formInputData = new FormData(e.target as HTMLFormElement);
     const inputData = Object.fromEntries(formInputData.entries());
@@ -66,30 +45,42 @@ function BoardAdd(): JSX.Element {
   };
 
   const btnNewColumnClickHandler = () => {
-    const uniqueId = genId();
-    const newColumn = {
-      value: '',
-      error: false,
-      key: uniqueId,
-      name: `input-subtask-${uniqueId}`,
-      listId: uniqueId,
-    };
-    setFormData((prev) => ({
-      ...prev,
-      subtasks: [...prev.subtasks, newColumn],
-    }));
+    const uniqueId = `input-column-${genId()}`;
+    setFormData((prev) => addInputToGroup(uniqueId, 'input-group-1', prev));
   };
 
-  const columns = formData.subtasks.map((subtask) => (
-    <InputTextSubtask
-      key={subtask.key}
-      name={subtask.name}
-      value={subtask.value}
-      error={subtask.error}
-      setFormData={setFormData}
-      listId={subtask.listId}
-    />
-  ));
+  const returnDataHandler = (data: ReturnData) => {
+    // Update form data; distinguish if return data is part of 'input-group' or a single input
+    if (data.groupId) {
+      setFormData((prev) => updateInputFromGroup(data, prev));
+    } else {
+      setFormData((prev) => updateInput(data, prev));
+    }
+  };
+
+  const deleteInputHandler = (data: ReturnData) => {
+    // Update form data; distinguish if return data is part of an input-group or a single input
+    if (data.groupId) {
+      setFormData((prev) => deleteInputFromGroup(data, prev));
+    } else {
+      setFormData((prev) => deleteInputSingle(data, prev));
+    }
+  };
+
+  const columns = Object.keys(formData['input-group-1']).map((key) => {
+    const obj = formData['input-group-1'][key];
+    return (
+      <InputTextSubtask
+        key={obj.key}
+        inputName={obj.inputName}
+        value={obj.value}
+        groupId="input-group-1"
+        error={obj.error}
+        deleteInput={deleteInputHandler}
+        returnData={returnDataHandler}
+      />
+    );
+  });
 
   return (
     <div className={styles.container}>
@@ -98,11 +89,12 @@ function BoardAdd(): JSX.Element {
         <div className={styles.form__group}>
           <p>Name</p>
           <InputText
-            name="input-title"
             placeholder="e.g. Web Design"
-            value={formData.title.value}
-            error={formData.title.error}
-            setFormData={setFormData}
+            inputName={formData['input-title'].inputName}
+            value={formData['input-title'].value}
+            groupId={undefined}
+            error={formData['input-title'].error}
+            returnData={returnDataHandler}
           />
         </div>
         <div className={styles.form__group}>

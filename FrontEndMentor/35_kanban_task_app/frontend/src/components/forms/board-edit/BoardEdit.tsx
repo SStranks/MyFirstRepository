@@ -1,6 +1,14 @@
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import {
+  deleteInputFromGroup,
+  deleteInputSingle,
+  genGroupInputs,
+  updateInput,
+  updateInputFromGroup,
+  validateInputs,
+} from '#Utils/formFunctions';
 import { useState } from 'react';
 import styles from './_BoardEdit.module.scss';
 
@@ -9,91 +17,39 @@ type ElemProps = {
   boardColumns: string[];
 };
 
-type InputProp = {
-  value: string;
-  error: boolean;
-  key?: number;
+type ReturnData = {
   inputName: string;
+  value: string;
+  groupId?: string;
 };
 
-type newFormDataType = {
-  'input-title': { value: string; error: boolean; inputName: string };
-  'input-group-1': Record<string, InputProp>;
-};
-
-const genGroupInputs = (arg: string[]) => {
-  // For setting initial state; Generates object of single input objects
-  // eslint-disable-next-line unicorn/no-array-reduce
-  return arg.reduce((acc, cur, i, arr) => {
-    const key = `input-column-${i - arr.length}`;
-    acc[key] = {
-      value: cur,
-      error: false,
-      key: i - arr.length,
-      inputName: `input-column-${i - arr.length}`,
-    };
-    return acc;
-  }, {} as Record<string, InputProp>);
-};
-
+// FUNCTION COMPONENT //
 function BoardEdit(props: ElemProps): JSX.Element {
   const { boardName, boardColumns } = props;
-
-  const genId = useComponentIdGenerator();
   const [formData, setFormData] = useState({
     'input-title': { value: boardName, error: false, inputName: 'input-title' },
     'input-group-1': {
-      ...genGroupInputs(boardColumns),
+      ...genGroupInputs(boardColumns, 'column'),
     },
   });
+  const genId = useComponentIdGenerator();
 
-  console.log('render', formData);
-
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('form submit click');
-    // Check if each formData input is empty. If true, add a new object to newFormData for each empty input.
-    const newFormData = {} as newFormDataType;
-    if (formData['input-title'].value === '')
-      newFormData['input-title'] = {
-        ...formData['input-title'],
-        value: '',
-        error: true,
-      };
-
-    // if (formData['input-group-1']) {
-    //   console.log('1');
-    //   const inputs = Object.values(formData['input-group-1']);
-    //   console.log('2', inputs);
-    //   if (inputs.some((column) => column.value === '')) {
-    //     console.log('2a', 'TRUE');
-    //     const newInputs = inputs.map((input) => {
-    //       if (!input.value) return { ...input, error: true };
-    //       return input;
-    //     });
-    //     console.log('3', newInputs);
-    //     newFormData['input-group-1'] = Object.assign({}, ...newInputs);
-    //     console.log('4', newFormData);
-    //   }
-    // }
-
-    // If there are any empty inputs/objs in newFormData, abort form submission and update form state.
+    // Check if each formData input is empty. If true, add a new object to newFormData.
+    const newFormData = validateInputs(formData);
+    // If there are any empty inputs/objs in newFormData, abort form submission and merge the form state with the newFormData objs.
     if (Object.keys(newFormData).length > 0) {
-      console.log(
-        'form submit click',
-        Object.keys(newFormData),
-        newFormData,
-        formData
+      return setFormData(
+        (prev) => ({ ...prev, ...newFormData } as typeof prev)
       );
-      return setFormData((prev) => ({ ...prev, ...newFormData }));
     }
+    // All form inputs have been validated. Submit form data.
     const formInputData = new FormData(e.target as HTMLFormElement);
     const inputData = Object.fromEntries(formInputData.entries());
     return console.log('FORM SUBMIT', inputData);
   };
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const btnNewColumnClickHandler = () => {
     const uniqueId = `input-column-${genId()}`;
     const newColumn = {
@@ -111,53 +67,26 @@ function BoardEdit(props: ElemProps): JSX.Element {
     );
   };
 
-  type ReturnData = {
-    inputName: string;
-    value: string;
-    groupId?: string | undefined;
-  };
-
   const returnDataHandler = (data: ReturnData) => {
     // Update form data; distinguish if return data is part of 'input-group' or a single input
     if (data.groupId) {
-      setFormData((prev) => {
-        let { [data.groupId as keyof typeof prev]: inputGroup } = prev;
-        let { [data.inputName as keyof typeof inputGroup]: input } = inputGroup;
-        input = { ...(input as InputProp), value: data.value };
-        inputGroup = { ...inputGroup, [data.inputName]: input };
-        return { ...prev, [data.groupId as string]: inputGroup } as typeof prev;
-      });
+      setFormData((prev) => updateInputFromGroup(data, prev));
     } else {
-      setFormData((prev) => ({
-        ...prev,
-        [data.inputName]: {
-          ...prev[data.inputName as keyof typeof prev],
-          value: data.value,
-        },
-      }));
+      setFormData((prev) => updateInput(data, prev));
     }
   };
 
   const deleteInputHandler = (data: ReturnData) => {
-    // Update form data; distinguish if return data is part of 'input-group' or a single input
-    if (data.groupId !== undefined) {
-      setFormData((prev) => {
-        const { [data.groupId as keyof typeof prev]: inputGroup, ...rest } =
-          prev;
-        delete inputGroup[data.inputName as keyof typeof inputGroup];
-        return { [data.groupId as string]: inputGroup, ...rest } as typeof prev;
-      });
+    // Update form data; distinguish if return data is part of an input-group or a single input
+    if (data.groupId) {
+      setFormData((prev) => deleteInputFromGroup(data, prev));
     } else {
-      setFormData((prev) => {
-        const prevCopy = prev;
-        delete prevCopy[data.inputName as keyof typeof prevCopy];
-        return prevCopy;
-      });
+      setFormData((prev) => deleteInputSingle(data, prev));
     }
   };
 
   const columns = Object.keys(formData['input-group-1']).map((key) => {
-    const obj = formData['input-group-1'][key] as InputProp;
+    const obj = formData['input-group-1'][key];
     return (
       <InputTextSubtask
         key={obj.key}

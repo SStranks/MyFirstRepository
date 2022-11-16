@@ -2,10 +2,10 @@ import Column from '#Components/column/Column';
 
 // NOTE:  Temporary Dev: Testing out forms
 // import TaskView from '#Components/forms/task-view/TaskView';
-// import TaskAdd from '#Components/forms/task-add/TaskAdd';
+import TaskAdd from '#Components/forms/task-add/TaskAdd';
 // import TaskEdit from '#Components/forms/task-edit/TaskEdit';
 // import BoardAdd from '#Components/forms/board-add/BoardAdd';
-import BoardEdit from '#Components/forms/board-edit/BoardEdit';
+// import BoardEdit from '#Components/forms/board-edit/BoardEdit';
 // import BoardDelete from '#Components/forms/board-del/BoardDel';
 // import TaskDelete from '#Components/forms/task-del/TaskDel';
 
@@ -42,12 +42,14 @@ function ColumnGrid(): JSX.Element {
       {/* // TEMP DEV:  Working on styles */}
       {/* <TaskDelete /> */}
       {/* <BoardDelete /> */}
-      <BoardEdit
+      {/* <BoardEdit
         boardName="Platform Launch"
         boardColumns={['Todo', 'Doing', 'Done']}
-      />
+      /> */}
       {/* <BoardAdd /> */}
-      {/* <TaskAdd /> */}
+      <TaskAdd
+        taskStatus={{ current: 'Doing', statusArr: ['Todo', 'Doing', 'Done'] }}
+      />
       {/* <TaskEdit
         taskTitle="Add authentication endpoints"
         taskDescription=""
