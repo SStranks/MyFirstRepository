@@ -1,18 +1,23 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './_InputText.module.scss';
 
-type ElemProps<S> = {
-  name: string;
-  placeholder: string;
+type ReturnData = {
+  inputName: string;
   value: string;
-  error: boolean;
-  setFormData: React.Dispatch<React.SetStateAction<S>>;
+  groupId?: string;
 };
 
-function InputText<S extends Record<string, unknown>>(
-  props: ElemProps<S>
-): JSX.Element {
-  const { name, placeholder, value, error, setFormData } = props;
+type ElemProps = {
+  placeholder: string;
+  inputName: string;
+  value: string;
+  groupId: string | undefined;
+  error: boolean;
+  returnData: (arg: ReturnData) => void;
+};
+
+function InputText(props: ElemProps): JSX.Element {
+  const { placeholder, inputName, value, groupId, error, returnData } = props;
   const [text, setText] = useState('');
   const element = useRef<HTMLDivElement>(null);
 
@@ -21,10 +26,7 @@ function InputText<S extends Record<string, unknown>>(
   };
 
   const onBlurHandler = () => {
-    setFormData((prev) => ({
-      ...prev,
-      title: { ...(prev.title as Record<string, unknown>), value: text },
-    }));
+    returnData({ inputName, value: text, groupId });
   };
 
   useEffect(() => {
@@ -38,7 +40,7 @@ function InputText<S extends Record<string, unknown>>(
       <input
         type="text"
         className={styles.container__input}
-        name={name}
+        name={inputName}
         placeholder={placeholder}
         value={text}
         onChange={onChangeHandler}

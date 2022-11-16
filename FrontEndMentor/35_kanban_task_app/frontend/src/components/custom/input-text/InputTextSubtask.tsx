@@ -11,37 +11,32 @@ const placeholderText = [
   'e.g. Enjoy coffee and smile more',
 ];
 
-type ElemProps<S> = {
-  name: string;
+type ReturnData = {
+  inputName: string;
   value: string;
-  error: boolean;
-  setFormData: React.Dispatch<React.SetStateAction<S>>;
-  listId?: number;
+  groupId?: string;
 };
 
-function InputTextSubtask<S extends Record<string, unknown>>(
-  props: ElemProps<S>
-): JSX.Element {
-  const { name, value, error, setFormData, listId } = props;
+type ElemProps = {
+  inputName: string;
+  value: string;
+  groupId: string;
+  error: boolean;
+  deleteInput: (arg: ReturnData) => void;
+  returnData: (arg: ReturnData) => void;
+};
+
+function InputTextSubtask(props: ElemProps): JSX.Element {
+  const { inputName, value, groupId, error, deleteInput, returnData } = props;
   const [text, setText] = useState('');
   const subtaskRef = useRef<HTMLDivElement>(null);
-
-  console.log('render');
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     return setText(e.currentTarget?.value);
   };
 
   const onBlurHandler = () => {
-    setFormData((prev) => ({
-      ...prev,
-      subtasks: [
-        ...(prev.subtasks as Record<string, unknown>[]).map((task) => {
-          if (task.listId === listId) return { ...task, value: text };
-          return task;
-        }),
-      ],
-    }));
+    returnData({ inputName, value: text, groupId });
   };
 
   useEffect(() => {
@@ -49,12 +44,7 @@ function InputTextSubtask<S extends Record<string, unknown>>(
   }, [value]);
 
   const deleteClickHandler = () => {
-    setFormData((prev) => {
-      const subtasks = (prev.subtasks as Record<string, unknown>[]).filter(
-        (task) => task.listId !== listId
-      );
-      return { ...prev, subtasks: [...subtasks] };
-    });
+    deleteInput({ inputName, value: text, groupId });
   };
 
   return (
@@ -65,7 +55,7 @@ function InputTextSubtask<S extends Record<string, unknown>>(
         <input
           type="text"
           className={styles['sub-task__input']}
-          name={name}
+          name={inputName}
           placeholder={placeholderText[0]}
           // placeholder={placeholderText[listId % placeholderText.length]}
           value={text}
