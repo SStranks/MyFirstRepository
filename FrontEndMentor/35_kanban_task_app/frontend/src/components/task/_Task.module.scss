@@ -5,12 +5,18 @@
 @use '#Sass/abstracts/variables' as v;
 
 .card {
+  cursor: pointer;
   width: 100%;
   padding: f.px2em(23) f.px2em(16);
   background-color: var(--thm-task-card);
   box-shadow: v.$box-shadow-1;
   border-radius: v.$border-radius-task;
   transition: a.$Theme-transition-bg;
+
+  &:hover {
+    // TODO:  Make the hover colour dynamic according to which column the task resides.
+    outline: 1px solid c.$col-1a;
+  }
 
   &__task {
     @include mx.header-m;
