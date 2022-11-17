@@ -13,6 +13,8 @@ type ElemProps = {
   numOfTasks: number;
   tasks:
     | {
+        // NOTE:  id field: undefined should be removed; temporary, for JSON DEV (ids exist only for first task in each col)
+        taskID?: string | undefined;
         title: string;
         description: string;
         status: string;
@@ -37,6 +39,7 @@ function Column(props: ElemProps): JSX.Element {
         // NOTE:  Need to configure unique key - intend to implement drag and drop reordering feature here.
         // eslint-disable-next-line react/no-array-index-key
         key={i}
+        id={el.taskID}
         title={el.title}
         numOfSubTasks={el.subtasks.length}
         subTasksNumComplete={completedSubTasks}

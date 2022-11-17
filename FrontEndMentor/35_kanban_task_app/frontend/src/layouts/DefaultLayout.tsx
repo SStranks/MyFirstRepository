@@ -4,13 +4,18 @@ import Nav from '#Components/nav/Nav';
 
 import styles from './_DefaultLayout.module.scss';
 
-function DefaultLayout(): JSX.Element {
+type ElemProps = {
+  [key: string]: Record<string, unknown>;
+};
+
+function DefaultLayout(props: ElemProps): JSX.Element {
+  const { data } = props;
   return (
     <div className={styles.container}>
       <Nav />
       <div className={styles.container__subcontainer}>
-        <Aside />
-        <Main />
+        <Aside boards={data.boards} />
+        <Main boardData={data.boardData} />
       </div>
     </div>
   );

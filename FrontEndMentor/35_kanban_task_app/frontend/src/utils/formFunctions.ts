@@ -26,8 +26,9 @@ export function isInput(input: unknown): input is InputProp {
   return (input as Record<string, InputProp>).inputName !== undefined;
 }
 
+// For setting initial state; Generates object of single input objects, to be spread into receiving input.
+// Unique keys are negative numbers - useComponentIdGenerator starts at 0.
 export function genGroupInputs(arg: string[], name: string) {
-  // For setting initial state; Generates object of single input objects
   return arg.reduce((acc, cur, i, arr) => {
     const key = `input-${name}-${i - arr.length}`;
     acc[key] = {
@@ -40,6 +41,8 @@ export function genGroupInputs(arg: string[], name: string) {
   }, {} as NestedInputProp);
 }
 
+// Adds single input to an existing group of inputs.
+// Generate unique Id local/in the component and pass in. Previous state is amended and returned;
 export function addInputToGroup<T>(
   uniqueId: string,
   group: string,

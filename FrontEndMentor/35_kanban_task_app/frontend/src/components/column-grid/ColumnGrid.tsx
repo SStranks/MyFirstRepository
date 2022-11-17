@@ -2,7 +2,7 @@ import Column from '#Components/column/Column';
 
 // NOTE:  Temporary Dev: Testing out forms
 // import TaskView from '#Components/forms/task-view/TaskView';
-import TaskAdd from '#Components/forms/task-add/TaskAdd';
+// import TaskAdd from '#Components/forms/task-add/TaskAdd';
 // import TaskEdit from '#Components/forms/task-edit/TaskEdit';
 // import BoardAdd from '#Components/forms/board-add/BoardAdd';
 // import BoardEdit from '#Components/forms/board-edit/BoardEdit';
@@ -37,6 +37,15 @@ function ColumnGrid(): JSX.Element {
     <Column columnNum={0} columnTitle="" numOfTasks={0} tasks={[]} emptyCol />
   );
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
+  const onClickHandler = (e: React.MouseEvent) => {
+    const element = (e.target as Element).closest('[data-id]');
+    if (element !== null) {
+      // TODO:  Found card/task; access appropriate data (local storage?) and render in modal (task view)
+      console.log(element);
+    }
+  };
+
   return (
     <>
       {/* // TEMP DEV:  Working on styles */}
@@ -47,9 +56,9 @@ function ColumnGrid(): JSX.Element {
         boardColumns={['Todo', 'Doing', 'Done']}
       /> */}
       {/* <BoardAdd /> */}
-      <TaskAdd
+      {/* <TaskAdd
         taskStatus={{ current: 'Doing', statusArr: ['Todo', 'Doing', 'Done'] }}
-      />
+      /> */}
       {/* <TaskEdit
         taskTitle="Add authentication endpoints"
         taskDescription=""
@@ -63,7 +72,7 @@ function ColumnGrid(): JSX.Element {
         numTaskTotal={3}
         subTasks={subtasks}
       /> */}
-      <div className={styles['column-grid']}>
+      <div className={styles['column-grid']} onClickCapture={onClickHandler}>
         {columns}
         {newColumn}
       </div>

@@ -19,24 +19,34 @@ const sidebarShow = () => {
   // sidebarElement.classList.remove(styles['animation-hide']);
 };
 
-function Aside(): JSX.Element {
+type ElemProps = {
+  boards: unknown;
+};
+
+type Board = {
+  name: string;
+  id: string;
+};
+
+type Boards = Board[];
+
+function Aside(props: ElemProps): JSX.Element {
+  const { boards } = props;
+
+  // TODO:  Active class needs to be changed from index to localStorage value for whether a board was active last.
+  const boardListItems = (boards as Boards).map(({ name, id }, i) => (
+    <li key={id} className={!i ? styles.active : ''}>
+      <img src={IconBoard} alt="" />
+      <p>{name}</p>
+    </li>
+  ));
+
   return (
     <aside className={styles.sidebar} id="sidebar">
       <div className={styles.sidebar__boards}>
         <h2>ALL BOARDS (3)</h2>
         <ul>
-          <li className={styles.active}>
-            <img src={IconBoard} alt="" />
-            <p>Platform Launch</p>
-          </li>
-          <li>
-            <img src={IconBoard} alt="" />
-            <p>Marketing Plan</p>
-          </li>
-          <li>
-            <img src={IconBoard} alt="" />
-            <p>Roadmap</p>
-          </li>
+          {boardListItems}
           <li className={styles['new-board']}>
             <img src={IconBoard} alt="" />
             <p>+ Create New Board</p>

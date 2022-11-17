@@ -2,6 +2,7 @@ import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import {
+  addInputToGroup,
   deleteInputFromGroup,
   deleteInputSingle,
   genGroupInputs,
@@ -52,19 +53,7 @@ function BoardEdit(props: ElemProps): JSX.Element {
 
   const btnNewColumnClickHandler = () => {
     const uniqueId = `input-column-${genId()}`;
-    const newColumn = {
-      value: '',
-      error: false,
-      key: uniqueId,
-      inputName: uniqueId,
-    };
-    setFormData(
-      (prev) =>
-        ({
-          ...prev,
-          'input-group-1': { ...prev['input-group-1'], [uniqueId]: newColumn },
-        } as typeof prev)
-    );
+    setFormData((prev) => addInputToGroup(uniqueId, 'input-group-1', prev));
   };
 
   const returnDataHandler = (data: ReturnData) => {

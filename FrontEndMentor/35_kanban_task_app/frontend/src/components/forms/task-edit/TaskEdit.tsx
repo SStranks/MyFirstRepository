@@ -4,6 +4,7 @@ import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import {
+  addInputToGroup,
   deleteInputFromGroup,
   deleteInputSingle,
   genGroupInputs,
@@ -65,19 +66,7 @@ function TaskEdit(props: ElemProps): JSX.Element {
 
   const btnNewSubtaskClickHandler = () => {
     const uniqueId = `input-subtask-${genId()}`;
-    const newSubtask = {
-      value: '',
-      error: false,
-      key: uniqueId,
-      inputName: uniqueId,
-    };
-    setFormData(
-      (prev) =>
-        ({
-          ...prev,
-          'input-group-1': { ...prev['input-group-1'], [uniqueId]: newSubtask },
-        } as typeof prev)
-    );
+    setFormData((prev) => addInputToGroup(uniqueId, 'input-group-1', prev));
   };
 
   const returnDataHandler = (data: ReturnData) => {
