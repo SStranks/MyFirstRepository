@@ -7,20 +7,22 @@ type SubTaskObj = {
   isCompleted: boolean;
 };
 
+type Task =
+  | {
+      // NOTE:  id field: undefined should be removed; temporary, for JSON DEV (ids exist only for first task in each col)
+      taskID?: string | undefined;
+      title: string;
+      description: string;
+      status: string;
+      subtasks: SubTaskObj[] | [];
+    }[]
+  | [];
+
 type ElemProps = {
   columnNum: number;
   columnTitle: string;
   numOfTasks: number;
-  tasks:
-    | {
-        // NOTE:  id field: undefined should be removed; temporary, for JSON DEV (ids exist only for first task in each col)
-        taskID?: string | undefined;
-        title: string;
-        description: string;
-        status: string;
-        subtasks: SubTaskObj[] | [];
-      }[]
-    | [];
+  tasks: Task;
   emptyCol: boolean;
 };
 

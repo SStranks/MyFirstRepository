@@ -19,10 +19,6 @@ const sidebarShow = () => {
   // sidebarElement.classList.remove(styles['animation-hide']);
 };
 
-type ElemProps = {
-  boards: unknown;
-};
-
 type Board = {
   name: string;
   id: string;
@@ -30,22 +26,37 @@ type Board = {
 
 type Boards = Board[];
 
+type ElemProps = {
+  boards: Boards;
+  setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
+};
+
 function Aside(props: ElemProps): JSX.Element {
-  const { boards } = props;
+  const { boards, setActiveBoardId } = props;
 
   // TODO:  Active class needs to be changed from index to localStorage value for whether a board was active last.
+  const numOfBoards = boards.length;
   const boardListItems = (boards as Boards).map(({ name, id }, i) => (
-    <li key={id} className={!i ? styles.active : ''}>
+    <li key={id} className={!i ? styles.active : ''} data-board-id={id}>
       <img src={IconBoard} alt="" />
       <p>{name}</p>
     </li>
   ));
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
+  const onListClickHandler = (e: React.MouseEvent) => {
+    const element = (e.target as Element).closest('[data-board-id]');
+    const { boardId } = (element as HTMLElement).dataset;
+    if (typeof boardId === 'string') {
+      setActiveBoardId(boardId);
+    }
+  };
+
   return (
     <aside className={styles.sidebar} id="sidebar">
       <div className={styles.sidebar__boards}>
-        <h2>ALL BOARDS (3)</h2>
-        <ul>
+        <h2>ALL BOARDS ({numOfBoards})</h2>
+        <ul onClickCapture={onListClickHandler}>
           {boardListItems}
           <li className={styles['new-board']}>
             <img src={IconBoard} alt="" />

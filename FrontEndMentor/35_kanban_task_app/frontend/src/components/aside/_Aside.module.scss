@@ -36,6 +36,7 @@
       padding-left: unset;
 
       & > li {
+        cursor: pointer;
         @include mx.header-m;
         display: flex;
         column-gap: f.px2em(16);
@@ -43,6 +44,10 @@
         padding: f.px2em(15) 0 f.px2em(15) f.px2em(32);
         overflow-x: hidden;
         white-space: nowrap;
+
+        &:hover {
+          color: c.$col-1a;
+        }
       }
 
       & > li.active {

@@ -9,18 +9,43 @@ import Column from '#Components/column/Column';
 // import BoardDelete from '#Components/forms/board-del/BoardDel';
 // import TaskDelete from '#Components/forms/task-del/TaskDel';
 
-// TEMP DEV:  Temporary Dev: Development Data JSON
-import devDataJSON from '#Data/data.json';
 import styles from './_ColumnGrid.module.scss';
 
-function ColumnGrid(): JSX.Element {
+type SubTaskObj = {
+  title: string;
+  isCompleted: boolean;
+};
+
+type Task =
+  | {
+      // NOTE:  id field: undefined should be removed; temporary, for JSON DEV (ids exist only for first task in each col)
+      taskID?: string | undefined;
+      title: string;
+      description: string;
+      status: string;
+      subtasks: SubTaskObj[] | [];
+    }[]
+  | [];
+
+type BoardData = {
+  name: string;
+  boardID: string;
+  columns: { name: string; tasks: Task }[];
+};
+
+type ElemProps = {
+  boardData: BoardData;
+};
+
+function ColumnGrid(props: ElemProps): JSX.Element {
+  const { boardData } = props;
   // HACK:  Temporary Test Area: Modal Form Components Styling
   // const { title } = devDataJSON.boards[0].columns[1].tasks[5];
   // const { description } = devDataJSON.boards[0].columns[1].tasks[5];
   // const { subtasks } = devDataJSON.boards[0].columns[1].tasks[5];
 
   // TEMP DEV:  Temporary Dev: Development Data JSON
-  const columns = devDataJSON.boards[0].columns.map((el, i) => (
+  const columns = boardData.columns.map((el, i) => (
     // NOTE:  Need to configure unique key - intend to implement drag and drop reordering feature here.
     <Column
       // eslint-disable-next-line react/no-array-index-key
