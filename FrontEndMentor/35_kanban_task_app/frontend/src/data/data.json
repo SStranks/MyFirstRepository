@@ -2,11 +2,13 @@
   "boards": [
     {
       "name": "Platform Launch",
+      "boardID": "pl-1",
       "columns": [
         {
           "name": "Todo",
           "tasks": [
             {
+              "taskID": "1",
               "title": "Build UI for onboarding flow",
               "description": "",
               "status": "Todo",
@@ -72,6 +74,7 @@
           "name": "Doing",
           "tasks": [
             {
+              "taskID": "1",
               "title": "Design settings and search pages",
               "description": "",
               "status": "Doing",
@@ -183,6 +186,7 @@
           "name": "Done",
           "tasks": [
             {
+              "taskID": "1",
               "title": "Conduct 5 wireframe tests",
               "description": "Ensure the layout continues to make sense and we have strong buy-in from potential users.",
               "status": "Done",
@@ -285,11 +289,13 @@
     },
     {
       "name": "Marketing Plan",
+      "boardID": "mp-1",
       "columns": [
         {
           "name": "Todo",
           "tasks": [
             {
+              "taskID": "1",
               "title": "Plan Product Hunt launch",
               "description": "",
               "status": "Todo",
@@ -376,11 +382,13 @@
     },
     {
       "name": "Roadmap",
+      "boardID": "rm-1",
       "columns": [
         {
           "name": "Now",
           "tasks": [
             {
+              "taskID": "1",
               "title": "Launch version one",
               "description": "",
               "status": "",
@@ -425,6 +433,11 @@
           "tasks": []
         }
       ]
+    },
+    {
+      "name": "My New Empty Board",
+      "boardID": "mnb-1",
+      "columns": []
     }
   ]
 }
