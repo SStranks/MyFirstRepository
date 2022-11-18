@@ -8,7 +8,6 @@ type ElemProps = {
 
 function Main(props: ElemProps): JSX.Element {
   const { boardData } = props;
-  console.log('THIS IS BOARD DATA', boardData);
 
   const boardEmpty = (boardData as Board).columns.length === 0;
 
