@@ -58,6 +58,10 @@ export default {
         path.dirname(url.fileURLToPath(import.meta.url)),
         'src/services'
       ),
+      '#Types': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/types'
+      ),
       '#Utils': path.resolve(
         path.dirname(url.fileURLToPath(import.meta.url)),
         'src/utils'
