@@ -1,5 +1,7 @@
 import Column from '#Components/column/Column';
+// import Modal from '#Components/modal/Modal';
 import { Board } from '#Types/types';
+// import { useState } from 'react';
 
 // NOTE:  Temporary Dev: Testing out forms
 // import TaskView from '#Components/forms/task-view/TaskView';
@@ -16,14 +18,18 @@ type ElemProps = {
   boardData: Board;
 };
 
+const newColumn = (
+  <Column columnNum={0} columnTitle="" numOfTasks={0} tasks={[]} emptyCol />
+);
+
 function ColumnGrid(props: ElemProps): JSX.Element {
   const { boardData } = props;
+  // const [modalIsOpen, setModalIsOpen] = useState(false);
   // HACK:  Temporary Test Area: Modal Form Components Styling
   // const { title } = devDataJSON.boards[0].columns[1].tasks[5];
   // const { description } = devDataJSON.boards[0].columns[1].tasks[5];
   // const { subtasks } = devDataJSON.boards[0].columns[1].tasks[5];
 
-  // TEMP DEV:  Temporary Dev: Development Data JSON
   const columns = boardData.columns.map((el, i) => (
     // NOTE:  Need to configure unique key - intend to implement drag and drop reordering feature here.
     <Column
@@ -37,15 +43,12 @@ function ColumnGrid(props: ElemProps): JSX.Element {
     />
   ));
 
-  const newColumn = (
-    <Column columnNum={0} columnTitle="" numOfTasks={0} tasks={[]} emptyCol />
-  );
-
   // eslint-disable-next-line unicorn/consistent-function-scoping
   const onClickHandler = (e: React.MouseEvent) => {
     const element = (e.target as Element).closest('[data-id]');
     if (element !== null) {
       // TODO:  Found card/task; access appropriate data (local storage?) and render in modal (task view)
+      // NOTE:  Board data is already received in this component, search for taskId there?
       console.log(element);
     }
   };
@@ -75,6 +78,11 @@ function ColumnGrid(props: ElemProps): JSX.Element {
         numTaskComplete={1}
         numTaskTotal={3}
         subTasks={subtasks}
+      /> */}
+      {/* <Modal
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+        modalContent={}
       /> */}
       <div className={styles['column-grid']} onClickCapture={onClickHandler}>
         {columns}
