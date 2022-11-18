@@ -1,6 +1,9 @@
 import CheckBox from '#Components/custom/checkbox/CheckBox';
+import Dropdown from '#Components/custom/dropdown/Dropdown';
+import { AppStateContext } from '#Context/AppContext';
 import IconVerticalEllipsis from '#Svg/icon-vertical-ellipsis.svg';
-import { useState } from 'react';
+import { StateContextType } from '#Types/types';
+import { useContext, useEffect, useState } from 'react';
 import styles from './_TaskView.module.scss';
 
 type SubTaskObj = {
@@ -8,46 +11,78 @@ type SubTaskObj = {
   isCompleted: boolean;
 };
 
+type SelectTaskType = { boardId: string; columnId: string; taskId: string };
+
 type ElemProps = {
-  title: string;
-  description: string;
-  numTaskComplete: number;
-  numTaskTotal: number;
-  subTasks: SubTaskObj[];
+  selectTask: SelectTaskType;
+};
+
+const extractData = (state: StateContextType, selectTask: SelectTaskType) => {
+  const board = state.boards.find((el) => el.boardID === selectTask.boardId);
+  const columnList = board?.columns.map((el) => el.name);
+  const column = board?.columns.find(
+    (el) => el.columnID === selectTask.columnId
+  );
+  const task = column?.tasks.find((el) => el.taskID === selectTask.taskId);
+  if (!task || !columnList) throw new Error('No task was found in data!');
+  return { task, columnList };
+};
+
+const computeTasksComplete = (subtasks: SubTaskObj[]): number => {
+  return subtasks.filter((task: SubTaskObj) => task.isCompleted).length;
 };
 
 function TaskView(props: ElemProps): JSX.Element {
-  const { title, description, numTaskComplete, numTaskTotal, subTasks } = props;
-  const [tasksComplete, setTasksComplete] = useState(numTaskComplete);
+  const { selectTask } = props;
+  const state = useContext(AppStateContext);
+  const { task, columnList } = extractData(state, selectTask);
+  const [tasksComplete, setTasksComplete] = useState(
+    computeTasksComplete(task.subtasks)
+  );
+  // console.log('SELECTTASK', selectTask);
+  // console.log('state', state);
 
-  const subTasksElems = subTasks.map((task, i) => (
+  const subtasksElems = task.subtasks.map((t, i) => (
     // <div key={i} className={styles['sub-task']}>
     <CheckBox
       // eslint-disable-next-line react/no-array-index-key
       key={i}
-      title={task.title}
-      checked={task.isCompleted}
+      title={t.title}
+      checked={t.isCompleted}
       setTasksComplete={setTasksComplete}
     />
   ));
+
+  console.log('RENDER');
+
+  useEffect(() => {
+    console.log('MOUNT', props);
+    return () => {
+      console.log('UNMOUNT');
+    };
+  });
 
   return (
     <div className={styles.container}>
       <div className={styles['task-view']}>
         <div className={styles['task-view__header']}>
-          <p>{title}</p>
+          <p>{task.title}</p>
           <img src={IconVerticalEllipsis} alt="" />
         </div>
-        <p className={styles['task-view__description']}>{description}</p>
+        <p className={styles['task-view__description']}>{task.description}</p>
         <div>
           <p className={styles['task-view__sub-tasks-title']}>
-            Subtasks ({tasksComplete} of {numTaskTotal})
+            Subtasks ({tasksComplete} of {task.subtasks.length})
           </p>
-          <div className={styles['task-view__sub-tasks']}>{subTasksElems}</div>
+          <div className={styles['task-view__sub-tasks']}>{subtasksElems}</div>
         </div>
         <div className={styles['task-view__status']}>
           <p>Current Status</p>
-          {/* INSERT DROPDOWN COMPONENT  */}
+          <Dropdown
+            name="input-status"
+            currentListItem={task.status}
+            listItems={columnList}
+          />
         </div>
       </div>
     </div>

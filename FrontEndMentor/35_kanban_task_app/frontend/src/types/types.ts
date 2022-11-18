@@ -6,18 +6,24 @@ export type SubTaskObjType = {
 
 export type TaskType =
   | {
-      taskID?: string | undefined;
+      taskID: string;
       title: string;
       description: string;
       status: string;
-      subtasks: SubTaskObjType[] | [];
+      subtasks: SubTaskObjType[];
     }[]
   | [];
+
+export type ColumnType = { columnID: string; name: string; tasks: TaskType };
 
 export type Board = {
   name: string;
   boardID: string;
-  columns: { name: string; tasks: TaskType }[];
+  columns: ColumnType[];
 };
 
 export type BoardInfo = { name: string; id: string }[];
+
+export type StateContextType = {
+  boards: Board[];
+};

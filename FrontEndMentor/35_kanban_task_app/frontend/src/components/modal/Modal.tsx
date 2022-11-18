@@ -5,13 +5,13 @@ import styles from './_Modal.module.scss';
 const domNode = document.querySelector('#modal') as HTMLElement;
 
 type ModalProps = {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isModalOpen: boolean;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   modalContent: JSX.Element;
 };
 
 function Modal(props: ModalProps): JSX.Element | null {
-  const { isOpen, setIsOpen, modalContent } = props;
+  const { isModalOpen, setIsModalOpen, modalContent } = props;
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,13 +19,13 @@ function Modal(props: ModalProps): JSX.Element | null {
     // On click of modal background; close modal.
     const clickHandler = (e: MouseEvent) => {
       console.log(e.target, current);
-      return e.target === current && setIsOpen(false);
+      return e.target === current && setIsModalOpen(false);
     };
     // On press of ESC key; close modal.
     const keyHandler = (e: KeyboardEvent) =>
-      (e.key === 'Escape' || e.key === 'Esc') && setIsOpen(false);
+      (e.key === 'Escape' || e.key === 'Esc') && setIsModalOpen(false);
 
-    if (isOpen) {
+    if (isModalOpen) {
       current?.addEventListener('click', clickHandler);
       document?.addEventListener('keyup', keyHandler);
       // Disable TAB cycling on App
@@ -37,10 +37,10 @@ function Modal(props: ModalProps): JSX.Element | null {
       current?.removeEventListener('keyup', keyHandler);
       // document.querySelector('#root')?.removeAttribute('inert');
     };
-  }, [isOpen, setIsOpen]);
+  }, [isModalOpen, setIsModalOpen]);
 
   // eslint-disable-next-line unicorn/no-null
-  if (!isOpen) return null;
+  if (!isModalOpen) return null;
 
   return ReactDOM.createPortal(
     <div className={styles.modal}>{modalContent}</div>,

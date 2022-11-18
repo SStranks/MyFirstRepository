@@ -15,9 +15,10 @@ function Dropdown(props: ElemProps): JSX.Element {
   const listRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const keyPressHandler = (e: KeyboardEvent) =>
-      (e.key === 'Escape' || e.key === 'Esc') &&
-      listRef.current?.classList.add('hidden');
+    // DEBUG:  Modal has same keypress (Esc); it will fire modal one too if same key - is there a way to focus perhaps?
+    // const keyPressHandler = (e: KeyboardEvent) =>
+    //   (e.key === 'Escape' || e.key === 'Esc') &&
+    //   listRef.current?.classList.add('hidden');
 
     const clickHandler = (e: MouseEvent) => {
       if (
@@ -29,10 +30,10 @@ function Dropdown(props: ElemProps): JSX.Element {
     };
 
     document?.addEventListener('click', clickHandler);
-    document?.addEventListener('keydown', keyPressHandler);
+    // document?.addEventListener('keyup', keyPressHandler);
     return () => {
       document?.addEventListener('click', clickHandler);
-      document.removeEventListener('keydown', keyPressHandler);
+      // document.removeEventListener('keyup', keyPressHandler);
     };
   }, []);
 
@@ -64,12 +65,11 @@ function Dropdown(props: ElemProps): JSX.Element {
       <input
         type="text"
         value={currentItem}
-        name="input-dropdown-status"
+        name={name}
         className={styles.dropdown__input}
         readOnly
       />
       <button
-        name={name}
         type="button"
         className={styles.dropdown__button}
         onClick={dropdownClickHandler}>

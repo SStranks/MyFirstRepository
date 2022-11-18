@@ -12,7 +12,7 @@ function CheckBox(props: ElemProps): JSX.Element {
   const { title, checked, setTasksComplete } = props;
   const [isChecked, setIsChecked] = useState(checked);
 
-  const clickHandler = (e: React.MouseEvent<HTMLInputElement>) => {
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(!isChecked);
     setTasksComplete((prev) => {
       return (e.target as HTMLInputElement).checked ? prev + 1 : prev - 1;
@@ -25,7 +25,7 @@ function CheckBox(props: ElemProps): JSX.Element {
         type="checkbox"
         id={title}
         checked={isChecked}
-        onClick={clickHandler}
+        onChange={changeHandler}
       />
       <div className={styles['custom-checkbox__new-checkbox']}>
         <img

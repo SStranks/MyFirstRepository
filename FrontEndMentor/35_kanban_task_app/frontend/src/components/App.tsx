@@ -1,9 +1,27 @@
+import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
 import Home from '#Pages/Home';
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 // TEMP DEV:  Temporary Dev: Development Data JSON
 import devDataJSON from '#Data/data.json';
-import { Board } from '#Types/types';
+import { Board, StateContextType } from '#Types/types';
+
+const INITIALSTATE = { ...devDataJSON };
+
+type ActionType = { type: string; payload: unknown };
+
+const ACTIONS = { X: 'x' };
+
+const reducer = <S,>(state: S, action: ActionType): S => {
+  switch (action.type) {
+    case ACTIONS.X: {
+      return state;
+    }
+    default: {
+      return state;
+    }
+  }
+};
 
 function App(): JSX.Element {
   // If localStorage: last active board? Get Id of board.
@@ -11,6 +29,7 @@ function App(): JSX.Element {
   // Set sessionStorage: Store board names and board data.
   // Render board names and board data.
 
+  const [state, dispatch] = useReducer(reducer, INITIALSTATE);
   const [boardData, setBoardData] = useState({ ...devDataJSON });
   const [activeBoardId, setActiveBoardId] = useState('pl-1');
 
@@ -31,21 +50,23 @@ function App(): JSX.Element {
 
   const data = { boards, activeBoard };
 
-  console.log('THIS IS DATA', data);
-
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Home
-            data={data}
-            activeBoardId={activeBoardId}
-            setActiveBoardId={setActiveBoardId}
+    <AppDispatchContext.Provider value={dispatch}>
+      <AppStateContext.Provider value={state as StateContextType}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                boardData={data}
+                activeBoardId={activeBoardId}
+                setActiveBoardId={setActiveBoardId}
+              />
+            }
           />
-        }
-      />
-    </Routes>
+        </Routes>
+      </AppStateContext.Provider>
+    </AppDispatchContext.Provider>
   );
 }
 

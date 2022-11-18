@@ -1,5 +1,8 @@
 import Column from '#Components/column/Column';
+import TaskView from '#Components/forms/task-view/TaskView';
+import Modal from '#Components/modal/Modal';
 import { Board } from '#Types/types';
+import { useState } from 'react';
 
 // NOTE:  Temporary Dev: Testing out forms
 // import TaskView from '#Components/forms/task-view/TaskView';
@@ -16,19 +19,37 @@ type ElemProps = {
   boardData: Board;
 };
 
+const newColumn = (
+  <Column
+    boardId=""
+    columnId=""
+    columnNum={0}
+    columnTitle=""
+    numOfTasks={0}
+    tasks={[]}
+    emptyCol
+  />
+);
+
 function ColumnGrid(props: ElemProps): JSX.Element {
   const { boardData } = props;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectTask, setSelectTask] = useState({
+    boardId: '',
+    columnId: '',
+    taskId: '',
+  });
   // HACK:  Temporary Test Area: Modal Form Components Styling
   // const { title } = devDataJSON.boards[0].columns[1].tasks[5];
   // const { description } = devDataJSON.boards[0].columns[1].tasks[5];
   // const { subtasks } = devDataJSON.boards[0].columns[1].tasks[5];
 
-  // TEMP DEV:  Temporary Dev: Development Data JSON
   const columns = boardData.columns.map((el, i) => (
-    // NOTE:  Need to configure unique key - intend to implement drag and drop reordering feature here.
     <Column
       // eslint-disable-next-line react/no-array-index-key
-      key={i}
+      key={el.columnID}
+      boardId={boardData.boardID}
+      columnId={el.columnID}
       columnNum={i + 1}
       columnTitle={el.name}
       numOfTasks={el.tasks.length}
@@ -37,21 +58,26 @@ function ColumnGrid(props: ElemProps): JSX.Element {
     />
   ));
 
-  const newColumn = (
-    <Column columnNum={0} columnTitle="" numOfTasks={0} tasks={[]} emptyCol />
-  );
-
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const onClickHandler = (e: React.MouseEvent) => {
-    const element = (e.target as Element).closest('[data-id]');
+    const element = (e.target as HTMLElement).closest('[data-task-id]');
     if (element !== null) {
-      // TODO:  Found card/task; access appropriate data (local storage?) and render in modal (task view)
-      console.log(element);
+      const { columnId, taskId } = (element as HTMLElement).dataset;
+      if (taskId && columnId && boardData.boardID) {
+        setSelectTask({ taskId, columnId, boardId: boardData.boardID });
+      }
+      setIsModalOpen(true);
     }
   };
 
   return (
     <>
+      {isModalOpen && (
+        <Modal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          modalContent={<TaskView selectTask={selectTask} />}
+        />
+      )}
       {/* // TEMP DEV:  Working on styles */}
       {/* <TaskDelete /> */}
       {/* <BoardDelete /> */}
