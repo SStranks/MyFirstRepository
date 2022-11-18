@@ -1,4 +1,5 @@
 import Column from '#Components/column/Column';
+import { Board } from '#Types/types';
 
 // NOTE:  Temporary Dev: Testing out forms
 // import TaskView from '#Components/forms/task-view/TaskView';
@@ -11,30 +12,8 @@ import Column from '#Components/column/Column';
 
 import styles from './_ColumnGrid.module.scss';
 
-type SubTaskObj = {
-  title: string;
-  isCompleted: boolean;
-};
-
-type Task =
-  | {
-      // NOTE:  id field: undefined should be removed; temporary, for JSON DEV (ids exist only for first task in each col)
-      taskID?: string | undefined;
-      title: string;
-      description: string;
-      status: string;
-      subtasks: SubTaskObj[] | [];
-    }[]
-  | [];
-
-type BoardData = {
-  name: string;
-  boardID: string;
-  columns: { name: string; tasks: Task }[];
-};
-
 type ElemProps = {
-  boardData: BoardData;
+  boardData: Board;
 };
 
 function ColumnGrid(props: ElemProps): JSX.Element {

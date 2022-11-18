@@ -1,35 +1,21 @@
 import DefaultLayout from '#Layouts/DefaultLayout';
-
-type SubTaskObj = {
-  title: string;
-  isCompleted: boolean;
-};
-
-type Task =
-  | {
-      taskID?: string | undefined;
-      title: string;
-      description: string;
-      status: string;
-      subtasks: SubTaskObj[] | [];
-    }[]
-  | [];
-
-type Boards = { name: string; id: string }[];
-type activeBoard = {
-  name: string;
-  boardID: string;
-  columns: { name: string; tasks: Task }[];
-};
+import { Board, BoardInfo } from '#Types/types';
 
 type ElemProps = {
-  data: { boards: Boards; activeBoard: activeBoard };
+  data: { boards: BoardInfo; activeBoard: Board };
+  activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 function Home(props: ElemProps): JSX.Element {
-  const { data, setActiveBoardId } = props;
-  return <DefaultLayout data={data} setActiveBoardId={setActiveBoardId} />;
+  const { data, setActiveBoardId, activeBoardId } = props;
+  return (
+    <DefaultLayout
+      data={data}
+      activeBoardId={activeBoardId}
+      setActiveBoardId={setActiveBoardId}
+    />
+  );
 }
 
 export default Home;

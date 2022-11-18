@@ -1,30 +1,10 @@
 import Home from '#Pages/Home';
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-
 // TEMP DEV:  Temporary Dev: Development Data JSON
 import devDataJSON from '#Data/data.json';
-import { useState } from 'react';
+import { Board } from '#Types/types';
 
-type SubTaskObj = {
-  title: string;
-  isCompleted: boolean;
-};
-
-type Task =
-  | {
-      taskID?: string | undefined;
-      title: string;
-      description: string;
-      status: string;
-      subtasks: SubTaskObj[] | [];
-    }[]
-  | [];
-
-type activeBoardType = {
-  name: string;
-  boardID: string;
-  columns: { name: string; tasks: Task }[];
-};
 function App(): JSX.Element {
   // If localStorage: last active board? Get Id of board.
   // Make call to retrieve data - if last active board, then get that data. Otherwise, get board names and first board data.
@@ -47,7 +27,7 @@ function App(): JSX.Element {
 
   const activeBoard = boardData.boards.find(
     (item) => item.boardID === activeBoardId
-  ) as activeBoardType;
+  ) as Board;
 
   const data = { boards, activeBoard };
 
@@ -57,7 +37,13 @@ function App(): JSX.Element {
     <Routes>
       <Route
         path="/"
-        element={<Home data={data} setActiveBoardId={setActiveBoardId} />}
+        element={
+          <Home
+            data={data}
+            activeBoardId={activeBoardId}
+            setActiveBoardId={setActiveBoardId}
+          />
+        }
       />
     </Routes>
   );

@@ -1,28 +1,13 @@
 import Task from '#Components/task/Task';
+import { SubTaskObjType, TaskType } from '#Types/types';
 import ColumnEmpty from './ColumnEmpty';
 import styles from './_Column.module.scss';
-
-type SubTaskObj = {
-  title: string;
-  isCompleted: boolean;
-};
-
-type Task =
-  | {
-      // NOTE:  id field: undefined should be removed; temporary, for JSON DEV (ids exist only for first task in each col)
-      taskID?: string | undefined;
-      title: string;
-      description: string;
-      status: string;
-      subtasks: SubTaskObj[] | [];
-    }[]
-  | [];
 
 type ElemProps = {
   columnNum: number;
   columnTitle: string;
   numOfTasks: number;
-  tasks: Task;
+  tasks: TaskType;
   emptyCol: boolean;
 };
 
@@ -34,7 +19,7 @@ function Column(props: ElemProps): JSX.Element {
 
   const tasksCards = tasks.map((el, i) => {
     const completedSubTasks = el.subtasks.filter(
-      (obj: SubTaskObj) => obj.isCompleted === true
+      (obj: SubTaskObjType) => obj.isCompleted === true
     ).length;
     return (
       <Task

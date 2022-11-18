@@ -4,7 +4,7 @@ import IconDarkTheme from '#Svg/icon-dark-theme.svg';
 import IconHideSidebar from '#Svg/icon-hide-sidebar.svg';
 import IconLightTheme from '#Svg/icon-light-theme.svg';
 import IconShowSidebar from '#Svg/icon-show-sidebar.svg';
-// import IconShowSidebar from '#Svg/icon-show-sidebar.svg';
+import { BoardInfo } from '#Types/types';
 import styles from './_Aside.module.scss';
 
 const sidebarHide = () => {
@@ -19,25 +19,21 @@ const sidebarShow = () => {
   // sidebarElement.classList.remove(styles['animation-hide']);
 };
 
-type Board = {
-  name: string;
-  id: string;
-};
-
-type Boards = Board[];
-
 type ElemProps = {
-  boards: Boards;
+  boards: BoardInfo;
+  activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 function Aside(props: ElemProps): JSX.Element {
-  const { boards, setActiveBoardId } = props;
+  const { boards, activeBoardId, setActiveBoardId } = props;
 
-  // TODO:  Active class needs to be changed from index to localStorage value for whether a board was active last.
   const numOfBoards = boards.length;
-  const boardListItems = (boards as Boards).map(({ name, id }, i) => (
-    <li key={id} className={!i ? styles.active : ''} data-board-id={id}>
+  const boardListItems = (boards as BoardInfo).map(({ name, id }) => (
+    <li
+      key={id}
+      className={id === activeBoardId ? styles.active : ''}
+      data-board-id={id}>
       <img src={IconBoard} alt="" />
       <p>{name}</p>
     </li>
