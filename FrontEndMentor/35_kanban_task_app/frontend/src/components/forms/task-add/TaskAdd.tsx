@@ -139,6 +139,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
         <div className={styles.form__group}>
           <p>Status</p>
           <Dropdown
+            name="input-status"
             currentListItem={formData['input-status'].value}
             listItems={formData['input-status'].statusArr}
           />

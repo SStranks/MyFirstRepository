@@ -1,4 +1,8 @@
-import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
+import {
+  ActionType,
+  AppDispatchContext,
+  AppStateContext,
+} from '#Context/AppContext';
 import Home from '#Pages/Home';
 import { useReducer, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -8,13 +12,14 @@ import { Board, StateContextType } from '#Types/types';
 
 const INITIALSTATE = { ...devDataJSON };
 
-type ActionType = { type: string; payload: unknown };
+// type ActionType = { type: string; payload: Record<string, string> };
 
-const ACTIONS = { X: 'x' };
+const ACTIONS = { UPDATETASK: 'update-task' };
 
 const reducer = <S,>(state: S, action: ActionType): S => {
   switch (action.type) {
-    case ACTIONS.X: {
+    case ACTIONS.UPDATETASK: {
+      console.log(action.payload);
       return state;
     }
     default: {
