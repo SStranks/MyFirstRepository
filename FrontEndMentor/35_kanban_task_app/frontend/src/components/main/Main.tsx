@@ -9,6 +9,8 @@ type ElemProps = {
 function Main(props: ElemProps): JSX.Element {
   const { boardData } = props;
 
+  console.log('MAIN RENDER');
+
   const boardEmpty = (boardData as Board).columns.length === 0;
 
   const emptyBoard = (

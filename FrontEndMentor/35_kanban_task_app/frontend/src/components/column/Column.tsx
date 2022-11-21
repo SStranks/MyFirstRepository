@@ -27,6 +27,8 @@ function Column(props: ElemProps): JSX.Element {
   // NOTE:  Temporary Dev: For empty task column. Invoke global class 'invisible'.
   // const emptyCol = false;
 
+  console.log('COLUMN RENDER');
+
   const tasksCards = tasks.map((el) => {
     const completedSubTasks = el.subtasks.filter(
       (obj: SubTaskObjType) => obj.isCompleted === true

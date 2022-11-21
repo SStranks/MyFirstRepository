@@ -35,6 +35,7 @@ export type ReturnDataType = {
 };
 
 export type InputPropType = {
+  title?: string;
   inputName: string;
   value: string;
   error: boolean;

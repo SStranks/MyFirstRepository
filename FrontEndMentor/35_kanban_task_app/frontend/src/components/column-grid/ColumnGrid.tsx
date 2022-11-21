@@ -44,6 +44,8 @@ function ColumnGrid(props: ElemProps): JSX.Element {
   // const { description } = devDataJSON.boards[0].columns[1].tasks[5];
   // const { subtasks } = devDataJSON.boards[0].columns[1].tasks[5];
 
+  console.log('COLUMN GRID RENDER');
+
   const columns = boardData.columns.map((el, i) => (
     <Column
       // eslint-disable-next-line react/no-array-index-key

@@ -144,6 +144,7 @@ function TaskEdit(props: ElemProps): JSX.Element {
             name={formData['input-status'].inputName}
             currentListItem={formData['input-status'].value}
             listItems={formData['input-status'].statusArr}
+            returnData={returnDataHandler}
           />
         </div>
         <button type="submit" className={styles['form__btn-save-form']}>

@@ -142,6 +142,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
             name="input-status"
             currentListItem={formData['input-status'].value}
             listItems={formData['input-status'].statusArr}
+            returnData={returnDataHandler}
           />
         </div>
         <button type="submit" className={styles['form__btn-create-task']}>

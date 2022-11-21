@@ -4,7 +4,7 @@ import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
 import IconVerticalEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import { ReturnDataType, StateContextType } from '#Types/types';
 import { updateInput, updateInputFromGroup } from '#Utils/formFunctions';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import styles from './_TaskView.module.scss';
 
 type SelectTaskType = { boardId: string; columnId: string; taskId: string };
@@ -65,6 +65,8 @@ function TaskView(props: ElemProps): JSX.Element {
     },
   });
 
+  console.log(formData['input-status'].value);
+
   // Ensures that useEffect cleanup doesn't submit data back to App state if returnDataHandler is changing this components state.
   const isFormUpdating = useRef(false);
 
@@ -79,7 +81,7 @@ function TaskView(props: ElemProps): JSX.Element {
     };
   });
 
-  const returnDataHandler = (data: ReturnDataType) => {
+  const returnDataHandler = useCallback((data: ReturnDataType) => {
     // Update form data; distinguish if return data is part of 'input-group' or a single input
     if (data.groupId) {
       isFormUpdating.current = true;
@@ -88,7 +90,7 @@ function TaskView(props: ElemProps): JSX.Element {
       isFormUpdating.current = true;
       setFormData((prev) => updateInput(data, prev));
     }
-  };
+  }, []);
 
   const tasksComplete = Object.values(formData['input-group-subtasks']).filter(
     (t) => t.value
@@ -125,8 +127,9 @@ function TaskView(props: ElemProps): JSX.Element {
           <p>Current Status</p>
           <Dropdown
             name="input-status"
-            currentListItem={task.status}
+            currentListItem={formData['input-status'].value}
             listItems={columnList}
+            returnData={returnDataHandler}
           />
         </div>
       </div>
