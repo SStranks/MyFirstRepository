@@ -1,8 +1,29 @@
 import mongoose from 'mongoose';
 
+type TSubtask = {
+  title: string;
+  isCompleted: boolean;
+};
+
+type TTask = {
+  title: string;
+  description: string;
+  status: string;
+  subtasks: TSubtask[];
+};
+
+type TColumn = {
+  name: string;
+  tasks: TTask[];
+};
+
+type TBoard = {
+  name: string;
+  columns: TColumn[];
+};
+
 const subtaskSchema = new mongoose.Schema({
-  subtaskId: { type: 'String', require: true, unique: true },
-  name: {
+  title: {
     type: 'String',
     maxLength: 30,
     required: true,
@@ -13,8 +34,7 @@ const subtaskSchema = new mongoose.Schema({
 });
 
 const taskSchema = new mongoose.Schema({
-  taskId: { type: 'String', required: true, unique: true },
-  name: {
+  title: {
     type: 'String',
     maxLength: 30,
     required: true,
@@ -27,7 +47,6 @@ const taskSchema = new mongoose.Schema({
 });
 
 const columnSchema = new mongoose.Schema({
-  columnId: { type: 'String', required: true, unique: true },
   name: {
     type: 'String',
     maxLength: 30,
@@ -38,8 +57,7 @@ const columnSchema = new mongoose.Schema({
   tasks: [taskSchema],
 });
 
-const boardSchema = new mongoose.Schema({
-  boardId: { type: 'String', required: true, unique: true },
+const boardSchema = new mongoose.Schema<TBoard>({
   name: {
     type: 'String',
     maxLength: 30,
@@ -50,6 +68,6 @@ const boardSchema = new mongoose.Schema({
   columns: [columnSchema],
 });
 
-const Board = mongoose.model('Board', boardSchema);
+const Board = mongoose.model<TBoard>('Board', boardSchema);
 
-export default Board;
+export { Board, TBoard };

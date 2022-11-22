@@ -1,9 +1,15 @@
-import Board from '#Models/boardModel';
+import { getAll } from '#Config/dbHandlers';
+import { Board } from '#Models/boardModel';
 import catchAsync from '#Utils/catchAsync';
 
-const getAllBoards = catchAsync(async (req, res, next) => {
-  const boards = await Board.find({});
-  res.json(boards);
-});
+const getAllBoards = getAll(Board);
 
-export { getAllBoards };
+const createBoard = catchAsync(async (req, res, next) => {});
+
+const updateBoard = catchAsync(async (req, res, next) => {});
+
+const getBoard = catchAsync(async (req, res, next) => {});
+
+const deleteBoard = catchAsync(async (req, res, next) => {});
+
+export { getAllBoards, createBoard, updateBoard, getBoard, deleteBoard };
