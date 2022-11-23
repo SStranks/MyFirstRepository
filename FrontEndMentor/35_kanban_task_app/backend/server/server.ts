@@ -1,15 +1,18 @@
-// Unhandled Exception Errors
+import { replaceTscAliasPaths } from 'tsc-alias';
+replaceTscAliasPaths({ configFile: '../tsconfig.json' });
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+// Unhandled Exception Errors: Needs to be before any runtime code.
 process.on('uncaughtException', (err: any) => {
-  console.log('Encaught Exception. Shutting down server');
+  console.log('Uncaught Exception. Shutting down server');
   console.log(err.name, err.message);
   process.exit(1);
 });
 
-import dotenv from 'dotenv';
-import app from './app';
-dotenv.config();
-
 import connectDB from '#Config/db';
+import app from './app';
 connectDB();
 
 const PORT = process.env.NODE_DOCKER_PORT || 3000;
