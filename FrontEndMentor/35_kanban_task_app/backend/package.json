@@ -25,7 +25,8 @@
     "start": "nodemon .",
     "prod": "node .",
     "test": "jest --coverage --verbose",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "db-import": "ts-node ./server/config/dbImportData.ts --import"
   },
   "imports": {
     "#Config/*": "./server/config/*",
