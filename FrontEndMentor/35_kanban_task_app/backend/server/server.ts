@@ -1,5 +1,6 @@
-import { replaceTscAliasPaths } from 'tsc-alias';
-replaceTscAliasPaths({ configFile: '../tsconfig.json' });
+// NOTE:  Uncomment during production build - substitutes all alias names for actual paths.
+// import { replaceTscAliasPaths } from 'tsc-alias';
+// replaceTscAliasPaths({ configFile: '../tsconfig.json' });
 
 import dotenv from 'dotenv';
 dotenv.config();

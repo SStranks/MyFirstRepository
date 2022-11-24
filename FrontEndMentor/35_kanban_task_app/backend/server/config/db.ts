@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { ConnectOptions } from 'mongoose';
 
 const { DB_PROTOCOL, DB_USER, DB_PASSWORD, DB_HOST, DB_DATABASE, DB_ARGS } =
   process.env;
@@ -22,4 +22,5 @@ const connectDB = async () => {
       process.exit();
     });
 };
+
 export default connectDB;

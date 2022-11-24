@@ -73,7 +73,8 @@ const globalErrorHandler: ErrorRequestHandler = (
     // MongoDB Duplicate Fields Error.
     if (error.code === 11000) error = handleDuplicateFieldsDB(error);
     // MongoDB Validation Error
-    if (error.name === 'CastError') error = handleValidationErrorDB(error);
+    if (error.name === 'ValidationError')
+      error = handleValidationErrorDB(error);
 
     sendErrorProd(error, res);
   }

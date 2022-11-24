@@ -25,9 +25,8 @@ type TBoard = {
 const subtaskSchema = new mongoose.Schema({
   title: {
     type: 'String',
-    maxLength: 30,
+    maxLength: 100,
     required: true,
-    unique: true,
     trim: true,
   },
   isCompleted: { type: 'Boolean', required: true },
@@ -36,14 +35,13 @@ const subtaskSchema = new mongoose.Schema({
 const taskSchema = new mongoose.Schema({
   title: {
     type: 'String',
-    maxLength: 30,
+    maxLength: 100,
     required: true,
-    unique: true,
     trim: true,
   },
   description: { type: 'String', maxLength: 280, trim: true },
   status: { type: 'String', required: true },
-  subtasks: [subtaskSchema],
+  subtasks: [{ type: subtaskSchema, required: false }],
 });
 
 const columnSchema = new mongoose.Schema({
@@ -51,10 +49,9 @@ const columnSchema = new mongoose.Schema({
     type: 'String',
     maxLength: 30,
     required: true,
-    unique: true,
     trim: true,
   },
-  tasks: [taskSchema],
+  tasks: [{ type: taskSchema, required: false }],
 });
 
 const boardSchema = new mongoose.Schema<TBoard>({
@@ -62,10 +59,9 @@ const boardSchema = new mongoose.Schema<TBoard>({
     type: 'String',
     maxLength: 30,
     required: true,
-    unique: true,
     trim: true,
   },
-  columns: [columnSchema],
+  columns: [{ type: columnSchema, required: false }],
 });
 
 const Board = mongoose.model<TBoard>('Board', boardSchema);

@@ -3,6 +3,9 @@ import { Board } from '#Models/boardModel';
 import dotenv from 'dotenv';
 import * as fs from 'fs';
 import mongoose from 'mongoose';
+import * as path from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config({ path: '../../.env.dev' });
 
@@ -10,7 +13,13 @@ dotenv.config({ path: '../../.env.dev' });
 connectDB();
 
 // JSON Data
-const boards = JSON.parse(fs.readFileSync(`${__dirname}/data.json`, 'utf-8'));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+let boards = JSON.parse(
+  fs.readFileSync(path.join(__dirname, '..', 'dev-data', 'data.json'), 'utf-8')
+);
+// Format data; from object containing array 'boards' of board objects
+boards = boards.boards;
 
 // Import JSON Data
 const importData = async () => {
@@ -19,6 +28,7 @@ const importData = async () => {
     console.log('SUCCESS: Data transferred to DB');
   } catch (err) {
     console.log('ERROR: Could not transfer data to DB');
+    console.log(err);
   }
   process.exit();
 };
