@@ -1,4 +1,5 @@
 @use '#Sass/abstracts/animations' as a;
+@use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
@@ -73,11 +74,12 @@
   }
 
   &__controls {
+    position: relative;
     display: flex;
     align-items: center;
     column-gap: f.px2em(24);
 
-    & > button {
+    &__addTask {
       @include btn-primary-l;
       width: fit-content;
       padding-left: f.px2em(18);
@@ -96,6 +98,33 @@
         & > img {
           display: block;
           margin: 0 f.px2em(4);
+        }
+      }
+    }
+
+    &__boardOptions {
+      padding: f.px2em(10);
+    }
+
+    &__dropdownMenu {
+      @include mx.body-l;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      row-gap: f.px2em(16);
+      transform: translateY(125%);
+      padding: f.px2em(20);
+      background-color: var(--thm-dropdown-default-list-bg);
+      border-radius: v.$border-radius-dropdown-list;
+      transition: a.$Theme-transition-bg;
+
+      & > p {
+        cursor: pointer;
+        width: 160px;
+        &:hover {
+          color: c.$col-1j;
         }
       }
     }

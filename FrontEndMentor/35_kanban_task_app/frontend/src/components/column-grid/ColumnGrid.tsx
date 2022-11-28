@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import Column from '#Components/column/Column';
 import TaskView from '#Components/forms/task-view/TaskView';
 import Modal from '#Components/modal/Modal';
@@ -49,9 +50,9 @@ function ColumnGrid(props: ElemProps): JSX.Element {
   const columns = boardData.columns.map((el, i) => (
     <Column
       // eslint-disable-next-line react/no-array-index-key
-      key={el.columnID}
-      boardId={boardData.boardID}
-      columnId={el.columnID}
+      key={el._id}
+      boardId={boardData._id}
+      columnId={el._id}
       columnNum={i + 1}
       columnTitle={el.name}
       numOfTasks={el.tasks.length}
@@ -64,8 +65,8 @@ function ColumnGrid(props: ElemProps): JSX.Element {
     const element = (e.target as HTMLElement).closest('[data-task-id]');
     if (element !== null) {
       const { columnId, taskId } = (element as HTMLElement).dataset;
-      if (taskId && columnId && boardData.boardID) {
-        setSelectTask({ taskId, columnId, boardId: boardData.boardID });
+      if (taskId && columnId && boardData._id) {
+        setSelectTask({ taskId, columnId, boardId: boardData._id });
       }
       setIsModalOpen(true);
     }
@@ -82,11 +83,6 @@ function ColumnGrid(props: ElemProps): JSX.Element {
       )}
       {/* // TEMP DEV:  Working on styles */}
       {/* <TaskDelete /> */}
-      {/* <BoardDelete /> */}
-      {/* <BoardEdit
-        boardName="Platform Launch"
-        boardColumns={['Todo', 'Doing', 'Done']}
-      /> */}
       {/* <BoardAdd /> */}
       {/* <TaskAdd
         taskStatus={{ current: 'Doing', statusArr: ['Todo', 'Doing', 'Done'] }}

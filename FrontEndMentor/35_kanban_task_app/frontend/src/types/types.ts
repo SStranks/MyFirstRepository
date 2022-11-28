@@ -6,7 +6,7 @@ export type SubTaskObjType = {
 
 export type TaskType =
   | {
-      taskID: string;
+      _id: string;
       title: string;
       description: string;
       status: string;
@@ -14,11 +14,12 @@ export type TaskType =
     }[]
   | [];
 
-export type ColumnType = { columnID: string; name: string; tasks: TaskType };
+export type ColumnType = { _id: string; name: string; tasks: TaskType };
 
 export type Board = {
+  _id: string;
   name: string;
-  boardID: string;
+  // boardID: string;
   columns: ColumnType[];
 };
 

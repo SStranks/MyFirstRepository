@@ -15,7 +15,7 @@ type PayloadData = {
 };
 
 export type PayLoadType = {
-  id: { boardId: string; columnId: string; taskId: string };
+  id: { boardId: string; columnId?: string; taskId?: string };
   data: PayloadData;
 };
 

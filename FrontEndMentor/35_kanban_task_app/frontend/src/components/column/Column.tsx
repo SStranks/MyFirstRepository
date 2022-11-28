@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import Task from '#Components/task/Task';
 import { SubTaskObjType, TaskType } from '#Types/types';
 import ColumnEmpty from './ColumnEmpty';
@@ -27,7 +28,7 @@ function Column(props: ElemProps): JSX.Element {
   // NOTE:  Temporary Dev: For empty task column. Invoke global class 'invisible'.
   // const emptyCol = false;
 
-  console.log('COLUMN RENDER');
+  // console.log('COLUMN RENDER');
 
   const tasksCards = tasks.map((el) => {
     const completedSubTasks = el.subtasks.filter(
@@ -35,10 +36,10 @@ function Column(props: ElemProps): JSX.Element {
     ).length;
     return (
       <Task
-        key={el.taskID}
+        key={el._id}
         boardId={boardId}
         columnId={columnId}
-        taskId={el.taskID}
+        taskId={el._id}
         title={el.title}
         numOfSubTasks={el.subtasks.length}
         subTasksNumComplete={completedSubTasks}

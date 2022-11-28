@@ -14,12 +14,10 @@ type ElemProps = {
 };
 
 const extractData = (state: StateContextType, selectTask: SelectTaskType) => {
-  const board = state.boards.find((el) => el.boardID === selectTask.boardId);
+  const board = state.boards.find((el) => el._id === selectTask.boardId);
   const columnList = board?.columns.map((el) => el.name);
-  const column = board?.columns.find(
-    (el) => el.columnID === selectTask.columnId
-  );
-  const task = column?.tasks.find((el) => el.taskID === selectTask.taskId);
+  const column = board?.columns.find((el) => el._id === selectTask.columnId);
+  const task = column?.tasks.find((el) => el._id === selectTask.taskId);
   if (!task || !columnList) throw new Error('Incongruence in data!');
   return { task, columnList };
 };
@@ -73,11 +71,11 @@ function TaskView(props: ElemProps): JSX.Element {
   useEffect(() => {
     isFormUpdating.current = false;
     return () => {
-      if (!isFormUpdating.current)
-        dispatch({
-          type: 'update-task',
-          payload: { id: selectTask, data: formData },
-        });
+      if (!isFormUpdating.current) console.log('test');
+      dispatch({
+        type: 'update-task',
+        payload: { id: selectTask, data: formData },
+      });
     };
   });
 

@@ -1,68 +1,20 @@
-import {
-  ActionType,
-  AppDispatchContext,
-  AppStateContext,
-  GroupDataType,
-  IndividualDataType,
-  PayLoadType,
-} from '#Context/AppContext';
+/* eslint-disable no-underscore-dangle */
+import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
+import useAppReducer from '#Hooks/useAppReducer';
 import Home from '#Pages/Home';
-import { useReducer, useState } from 'react';
+import { Board, StateContextType } from '#Types/types';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// TEMP DEV:  Temporary Dev: Development Data JSON
-import devDataJSON from '#Data/data.json';
-import { Board, StateContextType, SubTaskObjType } from '#Types/types';
 
-const INITIALSTATE = { ...devDataJSON };
+// TEMP DEV:  // Backend API
+const API_URL = 'http://localhost:4000';
 
-const ACTIONS = {
-  ADDTASK: 'add-task',
-  UPDATETASK: 'update-task',
-  EDITTASK: 'edit-task',
-  DELETETASK: 'delete-task',
-  ADDBOARD: 'add-board',
-  EDITBOARD: 'edit-board',
-  DELETEBOARD: 'delete-board',
-};
+const INITIAL_STATE = { boards: [{ name: '', _id: '0', columns: [] }] };
 
-const updateTask = (
-  state: StateContextType,
-  payload: PayLoadType
-): StateContextType => {
-  const { boardId, columnId, taskId } = payload.id;
-  const board = state.boards.findIndex((b) => b.boardID === boardId);
-  const column = state.boards[board].columns.findIndex(
-    (c) => c.columnID === columnId
-  );
-  const task = state.boards[board].columns[column].tasks.findIndex(
-    (t) => t.taskID === taskId
-  );
-  const prevTask = state.boards[board].columns[column].tasks[task];
-  prevTask.status = (payload.data['input-status'] as IndividualDataType)
-    .value as string;
-  const newSubtasks = Object.values(
-    payload.data['input-group-subtasks'] as GroupDataType
-  ).map((t) => ({
-    title: t.title,
-    isCompleted: t.value as boolean,
-  }));
-  prevTask.subtasks = newSubtasks as SubTaskObjType[];
-  return { ...state };
-};
-
-const reducer = (
-  state: StateContextType,
-  action: ActionType
-): StateContextType => {
-  switch (action.type) {
-    case ACTIONS.UPDATETASK: {
-      return updateTask(state, action.payload);
-    }
-    default: {
-      return state;
-    }
-  }
-};
+// TODO:  Need to do 'alt' attributes and accessibility.
+// TODO:  Need to make a general useFetch/Axios hook.
+// TODO:  Need to make an error handling class for backend interaction failures.
+// TODO:  Need to make a loading spinner or animate the logo when awaiting.
 
 function App(): JSX.Element {
   // If localStorage: last active board? Get Id of board.
@@ -70,20 +22,43 @@ function App(): JSX.Element {
   // Set sessionStorage: Store board names and board data.
   // Render board names and board data.
 
-  const [state, dispatch] = useReducer(reducer, INITIALSTATE);
-  const [activeBoardId, setActiveBoardId] = useState('pl-1');
+  const [state, dispatch] = useAppReducer(INITIAL_STATE);
+  const [activeBoardId, setActiveBoardId] = useState('0');
 
   console.log('APP STATE', state);
 
+  useEffect(() => {
+    // Fetch data from backend
+    (async function fetchData() {
+      try {
+        const response = await fetch(`${API_URL}/api/v1/boards`, {
+          method: 'GET',
+        });
+        const JSONdata = await response.json();
+        // console.log(JSONdata);
+        dispatch({ type: 'set-initial', payload: JSONdata });
+        setActiveBoardId('637f762e208cc8713f0b4be0');
+
+        if (!response.ok) {
+          const msg = `An error occured: ${response.status}`;
+          throw new Error(msg);
+        }
+      } catch (error) {
+        console.log('REACT: Fetch Error:', error);
+      }
+    })();
+  }, [dispatch]);
+
   const boards = state.boards.map((board) => ({
     name: board.name,
-    id: board.boardID,
+    id: board._id,
   }));
 
   const activeBoard = state.boards.find(
-    (item) => item.boardID === activeBoardId
+    (item) => item._id === activeBoardId
   ) as Board;
 
+  // console.log('APP', boards, activeBoard);
   const data = { boards, activeBoard };
 
   return (

@@ -1,0 +1,96 @@
+/* eslint-disable no-underscore-dangle */
+import {
+  ActionType,
+  GroupDataType,
+  IndividualDataType,
+  PayLoadType,
+} from '#Context/AppContext';
+import { Board, StateContextType, SubTaskObjType } from '#Types/types';
+import { useCallback, useReducer } from 'react';
+
+// NOTE:  Need to refactor this; currently working with devData and not DB payload type.
+const updateTask = (
+  state: StateContextType,
+  payload: PayLoadType
+): StateContextType => {
+  const { boardId, columnId, taskId } = payload.id;
+  const board = state.boards.findIndex((b) => b._id === boardId);
+  const column = state.boards[board].columns.findIndex(
+    (c) => c._id === columnId
+  );
+  const task = state.boards[board].columns[column].tasks.findIndex(
+    (t) => t._id === taskId
+  );
+  const prevTask = state.boards[board].columns[column].tasks[task];
+  prevTask.status = (payload.data['input-status'] as IndividualDataType)
+    .value as string;
+  const newSubtasks = Object.values(
+    payload.data['input-group-subtasks'] as GroupDataType
+  ).map((t) => ({
+    title: t.title,
+    isCompleted: t.value as boolean,
+  }));
+  prevTask.subtasks = newSubtasks as SubTaskObjType[];
+  return { ...state };
+};
+
+const addBoard = (state: StateContextType, payload: PayLoadType) => {
+  const newBoard = payload as unknown;
+  const prevBoards = state.boards;
+  prevBoards.push(newBoard as Board);
+  const newState = { boards: prevBoards };
+  return newState;
+};
+
+const deleteBoard = (state: StateContextType, payload: PayLoadType) => {
+  const filterBoards = state.boards.filter((b) => b._id !== payload.id.boardId);
+  const newState = { boards: filterBoards };
+  return newState;
+};
+
+const setInitialState = (payload: PayLoadType): StateContextType => {
+  return payload.data as StateContextType;
+};
+const ACTIONS = {
+  SETINITIALSTATE: 'set-initial',
+  ADDTASK: 'add-task',
+  UPDATETASK: 'update-task',
+  EDITTASK: 'edit-task',
+  DELETETASK: 'delete-task',
+  ADDBOARD: 'add-board',
+  EDITBOARD: 'edit-board',
+  DELETEBOARD: 'delete-board',
+};
+
+const reducer = (
+  state: StateContextType,
+  action: ActionType
+): StateContextType => {
+  switch (action.type) {
+    case ACTIONS.SETINITIALSTATE: {
+      return setInitialState(action.payload);
+    }
+    case ACTIONS.UPDATETASK: {
+      return updateTask(state, action.payload);
+    }
+    case ACTIONS.ADDBOARD: {
+      return addBoard(state, action.payload);
+    }
+    case ACTIONS.DELETEBOARD: {
+      return deleteBoard(state, action.payload);
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
+function useAppReducer(
+  initialState: StateContextType
+): [StateContextType, React.Dispatch<ActionType>] {
+  const [state, unstableDispatch] = useReducer(reducer, initialState);
+  const dispatch = useCallback(unstableDispatch, [unstableDispatch]);
+  return [state, dispatch];
+}
+
+export default useAppReducer;
