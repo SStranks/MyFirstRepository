@@ -62,6 +62,7 @@ function BoardAdd(): JSX.Element {
 
       // Update app state with new board
       const content = await response.json();
+      // NOTE:  Need to add in modal close here.
       return dispatch({ type: 'add-board', payload: content.data.boards });
     } catch (error) {
       // TODO:  Need to make an error modal or something to show failure.

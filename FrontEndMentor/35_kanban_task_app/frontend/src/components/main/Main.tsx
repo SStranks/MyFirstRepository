@@ -3,15 +3,15 @@ import { Board } from '#Types/types';
 import styles from './_Main.module.scss';
 
 type ElemProps = {
-  boardData: Board;
+  activeBoard: Board;
 };
 
 function Main(props: ElemProps): JSX.Element {
-  const { boardData } = props;
+  const { activeBoard } = props;
 
-  console.log('MAIN RENDER', boardData);
+  console.log('MAIN RENDER', activeBoard);
 
-  const boardEmpty = (boardData as Board).columns.length === 0;
+  const boardEmpty = (activeBoard as Board).columns.length === 0;
 
   const emptyBoard = (
     <div className={styles.main__empty}>
@@ -22,7 +22,7 @@ function Main(props: ElemProps): JSX.Element {
 
   return (
     <main className={styles.main}>
-      {boardEmpty ? emptyBoard : <ColumnGrid boardData={boardData} />}
+      {boardEmpty ? emptyBoard : <ColumnGrid boardData={activeBoard} />}
     </main>
   );
 }

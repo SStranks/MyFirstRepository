@@ -3,6 +3,21 @@ import catchAsync from '#Utils/catchAsync';
 import { NextFunction, Request, Response } from 'express';
 import { Model } from 'mongoose';
 
+const getOne = <T>(Model: Model<T>) =>
+  catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const doc = await Model.findById(req.params.boardId);
+
+    if (!doc) return next(new AppError('No documents found in DB!', 404));
+
+    res.status(200).json({
+      status: 'success',
+      results: 1,
+      data: {
+        model: doc,
+      },
+    });
+  });
+
 const getAll = <T>(Model: Model<T>) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const docs = await Model.find({});
@@ -13,7 +28,7 @@ const getAll = <T>(Model: Model<T>) =>
       status: 'success',
       results: docs.length,
       data: {
-        boards: docs,
+        model: docs,
       },
     });
   });
@@ -28,13 +43,13 @@ const createOne = <T>(Model: Model<T>) =>
       status: 'success',
       results: 1,
       data: {
-        boards: doc,
+        model: doc,
       },
     });
   });
 
 const deleteOne = <T>(Model: Model<T>) =>
-  catchAsync(async (req, res, next) => {
+  catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const doc = await Model.findByIdAndDelete(req.params.id);
 
     if (!doc)
@@ -46,4 +61,19 @@ const deleteOne = <T>(Model: Model<T>) =>
     });
   });
 
-export { getAll, createOne, deleteOne };
+// const updateOne = <T>(Model: Model<T>) =>
+//   catchAsync(async(req: Request, res: Response, next: NextFunction) => {
+
+//     if (!doc) {
+//       return next(new AppError('No document found with that ID', 404));
+//     }
+
+//     res.status(200).json({
+//       status: 'success',
+//       data: {
+//         data: doc
+//       }
+//     });
+//   });
+
+export { getOne, getAll, createOne, deleteOne };

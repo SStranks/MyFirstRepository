@@ -1,24 +1,32 @@
 import BoardDelete from '#Components/forms/board-del/BoardDel';
-// import BoardEdit from '#Components/forms/board-edit/BoardEdit';
+import BoardEdit from '#Components/forms/board-edit/BoardEdit';
+import TaskAdd from '#Components/forms/task-add/TaskAdd';
 import Modal from '#Components/modal/Modal';
 import IconAddTaskMobile from '#Svg/icon-add-task-mobile.svg';
 import IconEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import LogoDark from '#Svg/logo-dark.svg';
+import { Board } from '#Types/types';
 import { useState } from 'react';
 import styles from './_Nav.module.scss';
 
 type ElemProps = {
-  activeBoardId: string;
+  activeBoard: Board;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 function Nav(props: ElemProps): JSX.Element {
-  const { activeBoardId, setActiveBoardId } = props;
+  const { activeBoard, setActiveBoardId } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [boardOptions, setBoardOptions] = useState(false);
+  const [modalForm, setModalForm] = useState('edit');
 
   const boardMenuClickHandler = () => {
     setBoardOptions((prev) => !prev);
+  };
+
+  const addTaskBtnClickHandler = () => {
+    setIsModalOpen(true);
+    setModalForm('add-task');
   };
 
   const boardOptionsClickHandler = (e: React.MouseEvent) => {
@@ -27,14 +35,35 @@ function Nav(props: ElemProps): JSX.Element {
     if (element.innerHTML === 'Edit Board') {
       setIsModalOpen(true);
       setBoardOptions(false);
+      setModalForm('edit-board');
     }
     if (element.innerHTML === 'Delete Board') {
       setIsModalOpen(true);
       setBoardOptions(false);
+      setModalForm('delete-board');
     }
   };
 
-  // <BoardEdit />
+  const modalContent =
+    modalForm === 'edit-board' ? (
+      <BoardEdit
+        setIsModalOpen={setIsModalOpen}
+        activeBoardId={activeBoard._id}
+      />
+    ) : modalForm === 'delete-board' ? (
+      <BoardDelete
+        setIsModalOpen={setIsModalOpen}
+        activeBoardId={activeBoard._id}
+        setActiveBoardId={setActiveBoardId}
+      />
+    ) : (
+      <TaskAdd
+        taskStatus={{
+          current: activeBoard.columns[0]?.name,
+          statusArr: activeBoard.columns.map((c) => c.name),
+        }}
+      />
+    );
 
   return (
     <>
@@ -42,13 +71,7 @@ function Nav(props: ElemProps): JSX.Element {
         <Modal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
-          modalContent={
-            <BoardDelete
-              setIsModalOpen={setIsModalOpen}
-              activeBoardId={activeBoardId}
-              setActiveBoardId={setActiveBoardId}
-            />
-          }
+          modalContent={modalContent}
         />
       )}
       <nav className={styles.navbar}>
@@ -61,7 +84,8 @@ function Nav(props: ElemProps): JSX.Element {
             <button
               type="button"
               className={styles.navbar__controls__addTask}
-              disabled>
+              onClick={addTaskBtnClickHandler}
+              disabled={activeBoard.columns.length === 0}>
               <img src={IconAddTaskMobile} alt="" />
               <span>+ Add New Task</span>
             </button>

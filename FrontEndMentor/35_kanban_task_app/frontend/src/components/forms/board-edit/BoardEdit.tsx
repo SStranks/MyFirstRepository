@@ -1,6 +1,8 @@
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
+import { AppStateContext } from '#Context/AppContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import { Board, StateContextType } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
@@ -10,12 +12,12 @@ import {
   updateInputFromGroup,
   validateInputs,
 } from '#Utils/formFunctions';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './_BoardEdit.module.scss';
 
 type ElemProps = {
-  boardName: string;
-  boardColumns: string[];
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  activeBoardId: string;
 };
 
 type ReturnData = {
@@ -24,9 +26,17 @@ type ReturnData = {
   groupId?: string;
 };
 
+const getBoardData = (state: StateContextType, boardId: string) => {
+  const activeBoard = state.boards.find((b) => b._id === boardId) as Board;
+  const columns = activeBoard.columns.map((c) => c.name);
+  return { boardName: activeBoard.name, boardColumns: columns };
+};
+
 // FUNCTION COMPONENT //
 function BoardEdit(props: ElemProps): JSX.Element {
-  const { boardName, boardColumns } = props;
+  const { setIsModalOpen, activeBoardId } = props;
+  const state = useContext(AppStateContext);
+  const { boardName, boardColumns } = getBoardData(state, activeBoardId);
   const [formData, setFormData] = useState({
     'input-title': { value: boardName, error: false, inputName: 'input-title' },
     'input-group-1': {
@@ -47,8 +57,17 @@ function BoardEdit(props: ElemProps): JSX.Element {
     }
     // All form inputs have been validated. Submit form data.
     const formInputData = new FormData(e.target as HTMLFormElement);
-    const inputData = Object.fromEntries(formInputData.entries());
-    return console.log('FORM SUBMIT', inputData);
+    const { 'input-title': name, ...rest } = Object.fromEntries(
+      formInputData.entries()
+    );
+    // Format data according to schema
+    // const newBoard = {
+    //   name,
+    //   columns: Object.values(rest).map((c) => ({ name: c })),
+    // };
+    // Send data to backend API
+    // NOTE:  Need to think about column names in relation to IDs: 1) We need the IDs because if the user renames a column, how will we know which column to amend in the DB? 2) We need a warning that if they remove a column here then all task data will be erased!
+    return console.log(setIsModalOpen, name, rest);
   };
 
   const btnNewColumnClickHandler = () => {

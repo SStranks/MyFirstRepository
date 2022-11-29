@@ -42,6 +42,11 @@ const addBoard = (state: StateContextType, payload: PayLoadType) => {
   return newState;
 };
 
+const editBoard = (state: StateContextType, payload: PayLoadType) => {
+  console.log(payload);
+  return state;
+};
+
 const deleteBoard = (state: StateContextType, payload: PayLoadType) => {
   const filterBoards = state.boards.filter((b) => b._id !== payload.id.boardId);
   const newState = { boards: filterBoards };
@@ -75,6 +80,9 @@ const reducer = (
     }
     case ACTIONS.ADDBOARD: {
       return addBoard(state, action.payload);
+    }
+    case ACTIONS.EDITBOARD: {
+      return editBoard(state, action.payload);
     }
     case ACTIONS.DELETEBOARD: {
       return deleteBoard(state, action.payload);

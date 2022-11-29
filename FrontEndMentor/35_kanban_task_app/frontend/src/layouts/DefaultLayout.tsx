@@ -14,14 +14,17 @@ function DefaultLayout(props: ElemProps): JSX.Element {
   const { boardData, activeBoardId, setActiveBoardId } = props;
   return (
     <div className={styles.container}>
-      <Nav activeBoardId={activeBoardId} setActiveBoardId={setActiveBoardId} />
+      <Nav
+        activeBoard={boardData.activeBoard}
+        setActiveBoardId={setActiveBoardId}
+      />
       <div className={styles.container__subcontainer}>
         <Aside
           boards={boardData.boards}
           activeBoardId={activeBoardId}
           setActiveBoardId={setActiveBoardId}
         />
-        <Main boardData={boardData.activeBoard} />
+        <Main activeBoard={boardData.activeBoard} />
       </div>
     </div>
   );

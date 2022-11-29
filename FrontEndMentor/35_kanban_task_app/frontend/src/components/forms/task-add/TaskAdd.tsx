@@ -58,8 +58,27 @@ function TaskAdd(props: ElemProps): JSX.Element {
       );
     }
     const formInputData = new FormData(e.target as HTMLFormElement);
-    const inputData = Object.fromEntries(formInputData.entries());
-    return console.log('FORM SUBMIT', inputData);
+    // Format data according to schema
+    const {
+      'input-title': name,
+      'input-description': description,
+      'input-status': status,
+      ...rest
+    } = Object.fromEntries(formInputData.entries());
+    const newTask = {
+      name,
+      description,
+      status,
+      subtasks: Object.values(rest).map((c) => ({ name: c })),
+    };
+    // Send data to backend API
+    try {
+      
+
+      return 
+    } catch (error) {
+      return console.log(error);
+    }
   };
 
   const btnNewSubtaskClickHandler = () => {
