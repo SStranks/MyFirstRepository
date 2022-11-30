@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 
 const getOne = <T>(Model: Model<T>) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    // TODO:  This isn't generic - need to account for different IDs
     const doc = await Model.findById(req.params.boardId);
 
     if (!doc) return next(new AppError('No documents found in DB!', 404));

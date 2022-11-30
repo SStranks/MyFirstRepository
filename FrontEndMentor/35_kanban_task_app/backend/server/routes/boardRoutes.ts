@@ -26,12 +26,17 @@ const boardRouter = express.Router();
 boardRouter.route('/').get(getAllBoards).post(createBoard);
 
 boardRouter
-  .route('/:boardId/:columnId?/:taskId?')
+  .route('/:boardId')
   .get(getBoard)
+  .post(createColumn)
   .patch(updateBoard)
   .delete(deleteBoard);
 
-// boardRouter.route('/:boardId/:columnId').get(getColumn).patch(updateColumn).delete(deleteColumn);
+boardRouter
+  .route('/:boardId/:columnId')
+  .get(getColumn)
+  .patch(updateColumn)
+  .delete(deleteColumn);
 
 // boardRouter.route('/:boardId/:columnId/:taskId').get(getTask).patch(updateTask).delete(deleteTask);
 
