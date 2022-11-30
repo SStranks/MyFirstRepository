@@ -1,6 +1,4 @@
-import { createOne, deleteOne, getAll, getOne } from '#Config/dbHandlers';
 import { Board } from '#Models/boardModel';
-// import { Column } from '#Models/columnModel';
 import AppError from '#Utils/appError';
 import catchAsync from '#Utils/catchAsync';
 import { NextFunction, Request, Response } from 'express';
