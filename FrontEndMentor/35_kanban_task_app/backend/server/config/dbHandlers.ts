@@ -65,7 +65,7 @@ const deleteOne = <T>(Model: Model<T>) =>
 const updateOne = <T>(Model: Model<T>) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     // TODO:  This isn't generic - need to account for different IDs
-    const doc = await Model.findByIdAndUpdate(req.params.id, req.body, {
+    const doc = await Model.findByIdAndUpdate(req.params.boardId, req.body, {
       new: true,
       runValidators: true,
     });

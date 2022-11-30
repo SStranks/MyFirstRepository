@@ -1,6 +1,12 @@
-import { createOne, deleteOne, getAll, getOne } from '#Config/dbHandlers';
+import {
+  createOne,
+  deleteOne,
+  getAll,
+  getOne,
+  updateOne,
+} from '#Config/dbHandlers';
 import { Board } from '#Models/boardModel';
-import catchAsync from '#Utils/catchAsync';
+// import catchAsync from '#Utils/catchAsync';
 
 const getBoard = getOne(Board);
 
@@ -8,7 +14,7 @@ const getAllBoards = getAll(Board);
 
 const createBoard = createOne(Board);
 
-const updateBoard = catchAsync(async (req, res, next) => {});
+const updateBoard = updateOne(Board);
 
 const deleteBoard = deleteOne(Board);
 
