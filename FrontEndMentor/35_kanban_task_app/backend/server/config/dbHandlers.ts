@@ -62,19 +62,21 @@ const deleteOne = <T>(Model: Model<T>) =>
     });
   });
 
-// const updateOne = <T>(Model: Model<T>) =>
-//   catchAsync(async(req: Request, res: Response, next: NextFunction) => {
+const updateOne = <T>(Model: Model<T>) =>
+  catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    // TODO:  This isn't generic - need to account for different IDs
+    const doc = await Model.findByIdAndDelete(req.params.id);
 
-//     if (!doc) {
-//       return next(new AppError('No document found with that ID', 404));
-//     }
+    if (!doc) {
+      return next(new AppError('No document found with that ID', 404));
+    }
 
-//     res.status(200).json({
-//       status: 'success',
-//       data: {
-//         data: doc
-//       }
-//     });
-//   });
+    res.status(200).json({
+      status: 'success',
+      data: {
+        data: doc,
+      },
+    });
+  });
 
-export { getOne, getAll, createOne, deleteOne };
+export { getOne, getAll, createOne, deleteOne, updateOne };

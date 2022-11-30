@@ -1,6 +1,6 @@
 import { createOne, deleteOne, getAll, getOne } from '#Config/dbHandlers';
 import { Board } from '#Models/boardModel';
-import { Column } from '#Models/columnModel';
+// import { Column } from '#Models/columnModel';
 import AppError from '#Utils/appError';
 import catchAsync from '#Utils/catchAsync';
 import { NextFunction, Request, Response } from 'express';
@@ -77,7 +77,7 @@ const updateColumn = catchAsync(
       (c) => c._id.toString() === req.params.columnId
     );
 
-    if (!column || column === -1)
+    if (column === -1)
       return next(new AppError('No document found in DB!', 404));
 
     try {
@@ -100,8 +100,6 @@ const deleteColumn = catchAsync(
     const board = await Board.findById(req.params.boardId);
 
     if (!board) return next(new AppError('No document found in DB!', 404));
-
-    console.log(board);
 
     try {
       board.columns.id(req.params.columnId)?.remove();

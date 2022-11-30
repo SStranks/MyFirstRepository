@@ -1,16 +1,23 @@
-import mongoose from 'mongoose';
+import mongoose, { Model, Types } from 'mongoose';
 
-type TSubtask = {
+interface TSubtask {
   title: string;
   isCompleted: boolean;
-};
+}
 
-type TTask = {
+interface TTask {
+  _id: string;
   title: string;
   description: string;
   status: string;
   subtasks: TSubtask[];
+}
+
+type TaskDocumentProps = {
+  subtasks: Types.DocumentArray<TSubtask>;
 };
+
+type TaskModelType = Model<TTask, {}, TaskDocumentProps>;
 
 const subtaskSchema = new mongoose.Schema({
   title: {
@@ -22,7 +29,7 @@ const subtaskSchema = new mongoose.Schema({
   isCompleted: { type: 'Boolean', required: true },
 });
 
-const taskSchema = new mongoose.Schema({
+const taskSchema = new mongoose.Schema<TTask, TaskModelType>({
   title: {
     type: 'String',
     maxLength: 100,
@@ -34,6 +41,7 @@ const taskSchema = new mongoose.Schema({
   subtasks: [{ type: subtaskSchema, required: false }],
 });
 
-const Task = mongoose.model<TTask>('Task', taskSchema);
+// const Task = mongoose.model<TTask>('Task', taskSchema);
 
-export { Task, taskSchema, TTask };
+// export { Task, taskSchema, TTask };
+export { taskSchema, TTask, TaskModelType };

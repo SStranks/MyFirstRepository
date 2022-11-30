@@ -1,4 +1,4 @@
-import { Column, columnSchema, TColumn } from '#Models/columnModel';
+import { columnSchema, TColumn } from '#Models/columnModel';
 import mongoose, { Model, Types } from 'mongoose';
 
 interface TBoard {
@@ -9,6 +9,7 @@ interface TBoard {
 type BoardDocumentProps = {
   columns: Types.DocumentArray<TColumn>;
 };
+
 type BoardModelType = Model<TBoard, {}, BoardDocumentProps>;
 
 const boardSchema = new mongoose.Schema<TBoard, BoardModelType>({

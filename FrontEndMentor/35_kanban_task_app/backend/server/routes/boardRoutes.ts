@@ -35,9 +35,14 @@ boardRouter
 boardRouter
   .route('/:boardId/:columnId')
   .get(getColumn)
+  .post(createTask)
   .patch(updateColumn)
   .delete(deleteColumn);
 
-// boardRouter.route('/:boardId/:columnId/:taskId').get(getTask).patch(updateTask).delete(deleteTask);
+boardRouter
+  .route('/:boardId/:columnId/:taskId')
+  .get(getTask)
+  .patch(updateTask)
+  .delete(deleteTask);
 
 export default boardRouter;

@@ -1,13 +1,19 @@
-import { Task, taskSchema, TTask } from '#Models/taskModel';
-import mongoose, { Document } from 'mongoose';
+import { TaskModelType, taskSchema, TTask } from '#Models/taskModel';
+import mongoose, { Document, Model, Types } from 'mongoose';
 
 interface TColumn {
   _id: string;
   name: string;
-  tasks: TTask[];
+  tasks: Types.DocumentArray<TTask>;
 }
 
-const columnSchema = new mongoose.Schema({
+type ColumnDocumentProps = {
+  tasks: Types.DocumentArray<TTask>;
+};
+
+type ColumnModelType = Model<TColumn, {}, ColumnDocumentProps>;
+
+const columnSchema = new mongoose.Schema<TColumn, ColumnModelType>({
   name: {
     type: 'String',
     maxLength: 30,
@@ -17,9 +23,10 @@ const columnSchema = new mongoose.Schema({
   tasks: [{ type: taskSchema, required: false }],
 });
 
-const Column = mongoose.model<TColumn>('Column', columnSchema);
+// const Column = mongoose.model<TColumn>('Column', columnSchema);
 
-export { Column, columnSchema, TColumn };
+// export { Column, columnSchema, TColumn };
+export { columnSchema, TColumn, ColumnModelType };
 
 // type TColumn = {
 //   _id: string;
