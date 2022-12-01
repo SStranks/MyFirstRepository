@@ -53,9 +53,19 @@ const deleteBoard = (state: StateContextType, payload: PayLoadType) => {
   return newState;
 };
 
-const setInitialState = (payload: PayLoadType): StateContextType => {
-  return payload.data as StateContextType;
+const setInitialState = (payload: PayLoadType) => {
+  const newState = { boards: payload.data.data };
+  return newState as StateContextType;
 };
+
+const addTask = (state: StateContextType, payload: PayLoadType) => {
+  const newState = state;
+  const newBoard = payload.data.data as Board;
+  const board = newState.boards.findIndex((b) => b._id === newBoard._id);
+  newState.boards[board] = newBoard;
+  return { ...newState };
+};
+
 const ACTIONS = {
   SETINITIALSTATE: 'set-initial',
   ADDTASK: 'add-task',
@@ -74,6 +84,9 @@ const reducer = (
   switch (action.type) {
     case ACTIONS.SETINITIALSTATE: {
       return setInitialState(action.payload);
+    }
+    case ACTIONS.ADDTASK: {
+      return addTask(state, action.payload);
     }
     case ACTIONS.UPDATETASK: {
       return updateTask(state, action.payload);

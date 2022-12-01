@@ -1,22 +1,9 @@
 import cors from 'cors';
-import express, {
-  Application,
-  ErrorRequestHandler,
-  NextFunction,
-  Request,
-  RequestHandler,
-  Response,
-} from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
 
 import globalErrorHandler from '#Controllers/errorController';
 import boardRouter from '#Routes/boardRoutes';
 import AppError from '#Utils/appError';
-
-interface Error {
-  statusCode?: number;
-  status?: string | number;
-  message: string;
-}
 
 const app: Application = express();
 app.use(express.json());
@@ -26,7 +13,7 @@ app.use(cors());
 app.use('/api/v1/boards', boardRouter);
 
 // Error Handler
-app.all('*', (req, res, next) => {
+app.all('*', (req: Request, res: Response, next: NextFunction) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 

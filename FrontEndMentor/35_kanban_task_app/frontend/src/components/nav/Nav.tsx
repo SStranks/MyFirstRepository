@@ -44,6 +44,8 @@ function Nav(props: ElemProps): JSX.Element {
     }
   };
 
+  console.log('NAV', activeBoard);
+
   const modalContent =
     modalForm === 'edit-board' ? (
       <BoardEdit
@@ -60,7 +62,7 @@ function Nav(props: ElemProps): JSX.Element {
       <TaskAdd
         taskStatus={{
           current: activeBoard.columns[0]?.name,
-          statusArr: activeBoard.columns.map((c) => c.name),
+          statusArr: activeBoard.columns?.map((c) => c.name),
         }}
       />
     );

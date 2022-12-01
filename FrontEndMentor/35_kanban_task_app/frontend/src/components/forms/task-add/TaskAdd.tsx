@@ -2,6 +2,7 @@ import Dropdown from '#Components/custom/dropdown/Dropdown';
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
+import { AppDispatchContext } from '#Context/AppContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import {
   addInputToGroup,
@@ -12,7 +13,7 @@ import {
   updateInputFromGroup,
   validateInputs,
 } from '#Utils/formFunctions';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './_TaskAdd.module.scss';
 
 type ReturnData = {
@@ -30,6 +31,7 @@ const INITIAL_SUBTASKS = ['', ''];
 // FUNCTION COMPONENT //
 function TaskAdd(props: ElemProps): JSX.Element {
   const { taskStatus } = props;
+  const dispatch = useContext(AppDispatchContext);
   const [formData, setFormData] = useState({
     'input-title': { value: '', error: false, inputName: 'input-title' },
     'input-description': {
@@ -47,7 +49,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
   });
   const genId = useComponentIdGenerator();
 
-  const submitHandler = (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     // Check if each formData input is empty. If true, add a new object to newFormData.
     const newFormData = validateInputs(formData);
@@ -66,16 +68,35 @@ function TaskAdd(props: ElemProps): JSX.Element {
       ...rest
     } = Object.fromEntries(formInputData.entries());
     const newTask = {
-      name,
+      title: name,
       description,
       status,
-      subtasks: Object.values(rest).map((c) => ({ name: c })),
+      subtasks: Object.values(rest).map((c) => ({
+        title: c,
+        isCompleted: false,
+      })),
     };
+
+    console.log(newTask);
     // Send data to backend API
     try {
-      
+      // TODO:  Need to make fetch URL dynamic - currently hardcoded for test board.
+      const response = await fetch(
+        `http://localhost:4000/api/v1/boards/6387378d5534f865a26aa4b3/6387378d5534f865a26aa4b4`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newTask),
+        }
+      );
 
-      return 
+      if (!response.ok) throw new Error('Error: Failed to submit');
+
+      // Update app state with new board
+      const content = await response.json();
+      console.log('CONTENT', content);
+      // NOTE:  Need to add in modal close here.
+      return dispatch({ type: 'add-task', payload: content });
     } catch (error) {
       return console.log(error);
     }

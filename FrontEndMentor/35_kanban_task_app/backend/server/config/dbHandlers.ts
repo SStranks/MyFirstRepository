@@ -14,7 +14,7 @@ const getOne = <T>(Model: Model<T>) =>
       status: 'success',
       results: 1,
       data: {
-        model: doc,
+        data: doc,
       },
     });
   });
@@ -25,11 +25,13 @@ const getAll = <T>(Model: Model<T>) =>
 
     if (!docs) return next(new AppError('No documents found in DB!', 404));
 
+    console.log(docs);
+
     res.status(200).json({
       status: 'success',
       results: docs.length,
       data: {
-        model: docs,
+        data: docs,
       },
     });
   });
@@ -44,7 +46,7 @@ const createOne = <T>(Model: Model<T>) =>
       status: 'success',
       results: 1,
       data: {
-        model: doc,
+        data: doc,
       },
     });
   });

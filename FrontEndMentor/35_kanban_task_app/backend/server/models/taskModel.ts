@@ -26,7 +26,7 @@ const subtaskSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  isCompleted: { type: 'Boolean', required: true },
+  isCompleted: { type: 'Boolean', required: true, default: false },
 });
 
 const taskSchema = new mongoose.Schema<TTask, TaskModelType>({

@@ -38,7 +38,8 @@ function App(): JSX.Element {
         const JSONdata = await response.json();
         // console.log(JSONdata);
         dispatch({ type: 'set-initial', payload: JSONdata });
-        setActiveBoardId('637f762e208cc8713f0b4be0');
+        // NOTE:  Hard coded board ID, might change if DB is altered.
+        setActiveBoardId('638736f85134f4063ecf8202');
 
         if (!response.ok) {
           const msg = `An error occured: ${response.status}`;
@@ -50,16 +51,16 @@ function App(): JSX.Element {
     })();
   }, [dispatch]);
 
-  const boards = state.boards.map((board) => ({
+  const boards = state.boards?.map((board) => ({
     name: board.name,
     id: board._id,
   }));
 
-  const activeBoard = state.boards.find(
+  const activeBoard = state.boards?.find(
     (item) => item._id === activeBoardId
   ) as Board;
 
-  // console.log('APP', boards, activeBoard);
+  console.log('APP', boards, activeBoard);
   const data = { boards, activeBoard };
 
   return (
