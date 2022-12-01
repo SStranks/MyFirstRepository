@@ -8,6 +8,19 @@ import {
 import { Board, StateContextType, SubTaskObjType } from '#Types/types';
 import { useCallback, useReducer } from 'react';
 
+const setInitialState = (payload: PayLoadType) => {
+  const newState = { boards: payload.data.data };
+  return newState as StateContextType;
+};
+
+const addTask = (state: StateContextType, payload: PayLoadType) => {
+  const newState = state;
+  const newBoard = payload.data.data as Board;
+  const board = newState.boards.findIndex((b) => b._id === newBoard._id);
+  newState.boards[board] = newBoard;
+  return { ...newState };
+};
+
 // NOTE:  Need to refactor this; currently working with devData and not DB payload type.
 const updateTask = (
   state: StateContextType,
@@ -34,6 +47,25 @@ const updateTask = (
   return { ...state };
 };
 
+const editTask = (state: StateContextType, payload: PayLoadType) => {
+  console.log(payload);
+  return state;
+};
+
+const deleteTask = (state: StateContextType, payload: PayLoadType) => {
+  const newState = state;
+  const { boardId, columnId, taskId } = payload.id;
+  const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
+  const columnIdx = newState.boards[boardIdx].columns.findIndex(
+    (c) => c._id === columnId
+  );
+  const newTasks = newState.boards[boardIdx].columns[columnIdx].tasks.filter(
+    (t) => t._id !== taskId
+  );
+  newState.boards[boardIdx].columns[columnIdx].tasks = newTasks;
+  return { ...newState };
+};
+
 const addBoard = (state: StateContextType, payload: PayLoadType) => {
   const newBoard = payload as unknown;
   const prevBoards = state.boards;
@@ -51,19 +83,6 @@ const deleteBoard = (state: StateContextType, payload: PayLoadType) => {
   const filterBoards = state.boards.filter((b) => b._id !== payload.id.boardId);
   const newState = { boards: filterBoards };
   return newState;
-};
-
-const setInitialState = (payload: PayLoadType) => {
-  const newState = { boards: payload.data.data };
-  return newState as StateContextType;
-};
-
-const addTask = (state: StateContextType, payload: PayLoadType) => {
-  const newState = state;
-  const newBoard = payload.data.data as Board;
-  const board = newState.boards.findIndex((b) => b._id === newBoard._id);
-  newState.boards[board] = newBoard;
-  return { ...newState };
 };
 
 const ACTIONS = {
@@ -90,6 +109,12 @@ const reducer = (
     }
     case ACTIONS.UPDATETASK: {
       return updateTask(state, action.payload);
+    }
+    case ACTIONS.EDITTASK: {
+      return editTask(state, action.payload);
+    }
+    case ACTIONS.DELETETASK: {
+      return deleteTask(state, action.payload);
     }
     case ACTIONS.ADDBOARD: {
       return addBoard(state, action.payload);

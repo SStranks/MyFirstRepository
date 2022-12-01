@@ -22,6 +22,7 @@ function BoardDelete(props: ElemProps): JSX.Element {
         );
 
         if (!response.ok) throw new Error('Board not deleted');
+
         dispatch({
           type: 'delete-board',
           payload: { id: { boardId: activeBoardId }, data: { x: undefined } },

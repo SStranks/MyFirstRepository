@@ -41,6 +41,34 @@
     }
   }
 
+  &__menu {
+    position: relative;
+  }
+
+  &__dropdown {
+    // TODO:  Z-Index against subtask background
+    @include mx.body-l;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: f.px2em(16);
+    transform: translate(50%, 125%);
+    padding: f.px2em(20);
+    background-color: var(--thm-dropdown-default-list-bg);
+    border-radius: v.$border-radius-dropdown-list;
+    transition: a.$Theme-transition-bg;
+
+    & > p {
+      cursor: pointer;
+      width: 160px;
+      &:hover {
+        color: c.$col-1j;
+      }
+    }
+  }
+
   &__description {
     @include mx.body-l;
     color: c.$col-1g;

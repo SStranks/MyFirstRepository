@@ -16,6 +16,9 @@ const INITIAL_STATE = { boards: [{ name: '', _id: '0', columns: [] }] };
 // TODO:  Need to make a general useFetch/Axios hook.
 // TODO:  Need to make an error handling class for backend interaction failures.
 // TODO:  Need to make a loading spinner or animate the logo when awaiting.
+// TODO:  Need to check button UX experience; hover area large enough for buttons?
+// TODO:  Need to amend the dropdown menu outline, needs to stand out more against the white forms.
+// TODO:  Search for '// TODO:  // TEMP DEV:  // NOTE:  etc at project finish and remove.
 
 function App(): JSX.Element {
   // If localStorage: last active board? Get Id of board.

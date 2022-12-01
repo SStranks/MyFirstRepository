@@ -17,6 +17,7 @@ type ElemProps = {
 function Nav(props: ElemProps): JSX.Element {
   const { activeBoard, setActiveBoardId } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // TODO:  Refactor menu state - change it to CSS only, display none toggle. No need for state.
   const [boardOptions, setBoardOptions] = useState(false);
   const [modalForm, setModalForm] = useState('edit');
 

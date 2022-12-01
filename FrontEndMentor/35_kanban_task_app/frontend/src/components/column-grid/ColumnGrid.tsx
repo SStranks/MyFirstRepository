@@ -5,15 +5,6 @@ import Modal from '#Components/modal/Modal';
 import { Board } from '#Types/types';
 import { useState } from 'react';
 
-// NOTE:  Temporary Dev: Testing out forms
-// import TaskView from '#Components/forms/task-view/TaskView';
-// import TaskAdd from '#Components/forms/task-add/TaskAdd';
-// import TaskEdit from '#Components/forms/task-edit/TaskEdit';
-// import BoardAdd from '#Components/forms/board-add/BoardAdd';
-// import BoardEdit from '#Components/forms/board-edit/BoardEdit';
-// import BoardDelete from '#Components/forms/board-del/BoardDel';
-// import TaskDelete from '#Components/forms/task-del/TaskDel';
-
 import styles from './_ColumnGrid.module.scss';
 
 type ElemProps = {
@@ -40,16 +31,11 @@ function ColumnGrid(props: ElemProps): JSX.Element {
     columnId: '',
     taskId: '',
   });
-  // HACK:  Temporary Test Area: Modal Form Components Styling
-  // const { title } = devDataJSON.boards[0].columns[1].tasks[5];
-  // const { description } = devDataJSON.boards[0].columns[1].tasks[5];
-  // const { subtasks } = devDataJSON.boards[0].columns[1].tasks[5];
 
-  console.log('COLUMN GRID RENDER');
+  console.log('COLUMN GRID RENDER', boardData);
 
   const columns = boardData.columns.map((el, i) => (
     <Column
-      // eslint-disable-next-line react/no-array-index-key
       key={el._id}
       boardId={boardData._id}
       columnId={el._id}
@@ -78,28 +64,11 @@ function ColumnGrid(props: ElemProps): JSX.Element {
         <Modal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
-          modalContent={<TaskView selectTask={selectTask} />}
+          modalContent={
+            <TaskView selectTask={selectTask} setIsModalOpen={setIsModalOpen} />
+          }
         />
       )}
-      {/* // TEMP DEV:  Working on styles */}
-      {/* <TaskDelete /> */}
-      {/* <BoardAdd /> */}
-      {/* <TaskAdd
-        taskStatus={{ current: 'Doing', statusArr: ['Todo', 'Doing', 'Done'] }}
-      /> */}
-      {/* <TaskEdit
-        taskTitle="Add authentication endpoints"
-        taskDescription=""
-        taskSubtasks={['Define user model', 'Add auth endpoints']}
-        taskStatus={{ current: 'Doing', statusArr: ['Todo', 'Doing', 'Done'] }}
-      /> */}
-      {/* <TaskView
-        title={title}
-        description={description}
-        numTaskComplete={1}
-        numTaskTotal={3}
-        subTasks={subtasks}
-      /> */}
       <div className={styles['column-grid']} onClickCapture={onClickHandler}>
         {columns}
         {newColumn}
