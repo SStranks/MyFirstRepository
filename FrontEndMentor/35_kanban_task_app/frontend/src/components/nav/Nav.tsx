@@ -49,10 +49,7 @@ function Nav(props: ElemProps): JSX.Element {
 
   const modalContent =
     modalForm === 'edit-board' ? (
-      <BoardEdit
-        setIsModalOpen={setIsModalOpen}
-        activeBoardId={activeBoard._id}
-      />
+      <BoardEdit setIsModalOpen={setIsModalOpen} activeBoard={activeBoard} />
     ) : modalForm === 'delete-board' ? (
       <BoardDelete
         setIsModalOpen={setIsModalOpen}

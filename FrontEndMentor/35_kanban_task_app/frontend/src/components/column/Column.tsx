@@ -10,7 +10,7 @@ type ElemProps = {
   columnNum: number;
   columnTitle: string;
   numOfTasks: number;
-  tasks: TaskType;
+  tasks: TaskType[];
   emptyCol: boolean;
 };
 

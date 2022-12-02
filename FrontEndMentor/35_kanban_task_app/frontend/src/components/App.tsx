@@ -11,6 +11,7 @@ const API_URL = 'http://localhost:4000';
 
 const INITIAL_STATE = { boards: [{ name: '', _id: '0', columns: [] }] };
 
+// TODO:  Need to make all 'localhost:4000' FETCH Urls dynamic, lots are hardcoded atm.
 // TODO:  Need to tidy up/refactor forms; contain a lot of similar logic that could be extracted.
 // TODO:  Need to do 'alt' attributes and accessibility.
 // TODO:  Need to make a general useFetch/Axios hook.

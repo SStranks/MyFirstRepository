@@ -1,12 +1,13 @@
 import CheckBox from '#Components/custom/checkbox/CheckBox';
 import Dropdown from '#Components/custom/dropdown/Dropdown';
+import TaskEdit from '#Components/forms/task-edit/TaskEdit';
 // import Modal from '#Components/modal/Modal';
 import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
 import IconVerticalEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import { ReturnDataType, StateContextType } from '#Types/types';
 import { updateInput, updateInputFromGroup } from '#Utils/formFunctions';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
-import TaskDelete from '../task-del/TaskDel';
+// import TaskDelete from '../task-del/TaskDel';
 import styles from './_TaskView.module.scss';
 
 type SelectTaskType = { boardId: string; columnId: string; taskId: string };
@@ -137,11 +138,19 @@ function TaskView(props: ElemProps): JSX.Element {
     )
   );
 
+  // TODO:  Need to figure out task delete/task edit modals thing - this is currently hardcoded.
   return (
     <>
       {menuOpen && (
-        <TaskDelete id={selectTask} setIsModalOpen={setIsModalOpen} />
+        <TaskEdit
+          task={task}
+          columnList={columnList}
+          setIsModalOpen={setIsModalOpen}
+        />
       )}
+      {/* {menuOpen && (
+        <TaskDelete id={selectTask} setIsModalOpen={setIsModalOpen} />
+      )} */}
       <form className={styles.container} id="form-1">
         <div className={styles['task-view']}>
           <div className={styles['task-view__header']}>

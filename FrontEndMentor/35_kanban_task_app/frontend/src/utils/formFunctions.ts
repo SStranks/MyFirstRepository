@@ -18,7 +18,7 @@ export function genGroupInputs(arg: string[], name: string) {
     acc[key] = {
       value: cur,
       error: false,
-      key: i - arr.length,
+      key: `${i - arr.length}`,
       inputName: `input-${name}-${i - arr.length}`,
     };
     return acc;

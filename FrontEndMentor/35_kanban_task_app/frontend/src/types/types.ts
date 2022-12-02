@@ -4,22 +4,23 @@ export type SubTaskObjType = {
   isCompleted: boolean;
 };
 
-export type TaskType =
-  | {
-      _id: string;
-      title: string;
-      description: string;
-      status: string;
-      subtasks: SubTaskObjType[];
-    }[]
-  | [];
+export type TaskType = {
+  _id: string;
+  title: string;
+  description: string;
+  status: string;
+  subtasks: SubTaskObjType[];
+};
 
-export type ColumnType = { _id: string; name: string; tasks: TaskType };
+export type ColumnType = {
+  _id: string;
+  name: string;
+  tasks: TaskType[];
+};
 
 export type Board = {
   _id: string;
   name: string;
-  // boardID: string;
   columns: ColumnType[];
 };
 
@@ -40,7 +41,7 @@ export type InputPropType = {
   inputName: string;
   value: string;
   error: boolean;
-  key?: number;
+  key?: string;
   statusArr?: string[];
 };
 

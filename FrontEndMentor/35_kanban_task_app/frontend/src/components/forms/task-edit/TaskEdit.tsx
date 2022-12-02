@@ -2,7 +2,9 @@ import Dropdown from '#Components/custom/dropdown/Dropdown';
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
+import { AppDispatchContext } from '#Context/AppContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import { TaskType } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
@@ -12,7 +14,7 @@ import {
   updateInputFromGroup,
   validateInputs,
 } from '#Utils/formFunctions';
-import { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './_TaskEdit.module.scss';
 
 type ReturnData = {
@@ -22,33 +24,42 @@ type ReturnData = {
 };
 
 type ElemProps = {
-  taskTitle: string;
-  taskDescription?: string;
-  taskSubtasks: string[];
-  taskStatus: { current: string; statusArr: string[] };
+  task: TaskType;
+  columnList: string[];
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 // FUNCTION COMPONENT //
 function TaskEdit(props: ElemProps): JSX.Element {
-  const { taskTitle, taskDescription = '', taskSubtasks, taskStatus } = props;
+  const { task, columnList, setIsModalOpen } = props;
+  const dispatch = useContext(AppDispatchContext);
   const [formData, setFormData] = useState({
-    'input-title': { value: taskTitle, error: false, inputName: 'input-title' },
+    'input-title': {
+      value: task.title,
+      error: false,
+      inputName: 'input-title',
+    },
     'input-description': {
-      value: taskDescription,
+      value: task.description,
       error: false,
       inputName: 'input-description',
     },
     'input-status': {
-      value: taskStatus.current,
+      value: task.status,
       error: false,
-      statusArr: [...taskStatus.statusArr],
+      statusArr: columnList,
       inputName: 'input-status',
     },
-    'input-group-1': { ...genGroupInputs(taskSubtasks, 'subtask') },
+    'input-group-1': {
+      ...genGroupInputs(
+        task.subtasks.map((t) => t.title),
+        'subtask'
+      ),
+    },
   });
   const genId = useComponentIdGenerator();
 
-  const submitHandler = (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     // Check if each formData input is empty. If true, add a new object to newFormData.
     const newFormData = validateInputs(formData);
@@ -61,7 +72,37 @@ function TaskEdit(props: ElemProps): JSX.Element {
     // All form inputs have been validated. Submit form data.
     const formInputData = new FormData(e.target as HTMLFormElement);
     const inputData = Object.fromEntries(formInputData.entries());
-    return console.log('FORM SUBMIT', inputData);
+
+    console.log(inputData);
+
+    const newTask = 'bob';
+    const taskId = 'test';
+
+    try {
+      const response = await fetch(
+        `http://localhost:4000/api/v1/boards/6387378d5534f865a26aa4b3/6389dc14152baa2d6371b0d6/${taskId}`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: newTask,
+        }
+      );
+
+      if (!response.ok) throw new Error('Error: Failed to submit');
+
+      const content = await response.json();
+      dispatch({
+        type: 'task-edit',
+        payload: { id: { boardId: 'THIS IS A TEST' }, data: content.data.data },
+      });
+      // TODO:  Set modal closed - need to figure out duel modals first before implementing.
+      return console.log(setIsModalOpen);
+    } catch (error) {
+      // TODO:  Need to make an error modal or something to show failure.
+      return console.log(error);
+    }
+
+    // return console.log('FORM SUBMIT', inputData);
   };
 
   const btnNewSubtaskClickHandler = () => {

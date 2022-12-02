@@ -1,13 +1,12 @@
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
-import { AppStateContext } from '#Context/AppContext';
+import { AppDispatchContext } from '#Context/AppContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
-import { Board, StateContextType } from '#Types/types';
+import { Board, NestedInputPropType } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
   deleteInputSingle,
-  genGroupInputs,
   updateInput,
   updateInputFromGroup,
   validateInputs,
@@ -15,37 +14,47 @@ import {
 import { useContext, useState } from 'react';
 import styles from './_BoardEdit.module.scss';
 
-type ElemProps = {
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  activeBoardId: string;
-};
-
 type ReturnData = {
   inputName: string;
   value: string;
   groupId?: string;
 };
 
-const getBoardData = (state: StateContextType, boardId: string) => {
-  const activeBoard = state.boards.find((b) => b._id === boardId) as Board;
-  const columns = activeBoard.columns.map((c) => c.name);
-  return { boardName: activeBoard.name, boardColumns: columns };
+type ElemProps = {
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  activeBoard: Board;
+};
+
+const genGroupInputs = (activeBoard: Board) => {
+  return activeBoard.columns.reduce((acc, cur) => {
+    const key = `input-column-${cur._id}`;
+    acc[key] = {
+      value: cur.name,
+      error: false,
+      key,
+      inputName: `input-column-${cur._id}`,
+    };
+    return acc;
+  }, {} as NestedInputPropType);
 };
 
 // FUNCTION COMPONENT //
 function BoardEdit(props: ElemProps): JSX.Element {
-  const { setIsModalOpen, activeBoardId } = props;
-  const state = useContext(AppStateContext);
-  const { boardName, boardColumns } = getBoardData(state, activeBoardId);
+  const { setIsModalOpen, activeBoard } = props;
+  const dispatch = useContext(AppDispatchContext);
   const [formData, setFormData] = useState({
-    'input-title': { value: boardName, error: false, inputName: 'input-title' },
+    'input-title': {
+      value: activeBoard.name,
+      error: false,
+      inputName: 'input-title',
+    },
     'input-group-1': {
-      ...genGroupInputs(boardColumns, 'column'),
+      ...genGroupInputs(activeBoard),
     },
   });
   const genId = useComponentIdGenerator();
 
-  const submitHandler = (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     // Check if each formData input is empty. If true, add a new object to newFormData.
     const newFormData = validateInputs(formData);
@@ -57,17 +66,55 @@ function BoardEdit(props: ElemProps): JSX.Element {
     }
     // All form inputs have been validated. Submit form data.
     const formInputData = new FormData(e.target as HTMLFormElement);
+    console.log('BOARD EDIT', formInputData);
     const { 'input-title': name, ...rest } = Object.fromEntries(
       formInputData.entries()
     );
+    // Copy in old column data if applicable
+    const newColumns = Object.entries(rest).map(([key, value]) => {
+      const columnId = key.split('-')[2];
+      const columnIdx = activeBoard.columns.findIndex(
+        (c) => c._id === columnId
+      );
+
+      return columnIdx !== -1
+        ? { ...activeBoard.columns[columnIdx], name: value }
+        : { name: value };
+    });
+
     // Format data according to schema
-    // const newBoard = {
-    //   name,
-    //   columns: Object.values(rest).map((c) => ({ name: c })),
-    // };
+    const newBoard = {
+      name,
+      columns: newColumns,
+    };
+
     // Send data to backend API
     // NOTE:  Need to think about column names in relation to IDs: 1) We need the IDs because if the user renames a column, how will we know which column to amend in the DB? 2) We need a warning that if they remove a column here then all task data will be erased!
-    return console.log(setIsModalOpen, name, rest);
+    // NOTE:  Replacing the entire boards-columns data from the frontend, is this the best approach? Can we use .pre hook on the backend to amend column names/delete columns according to ID's passed perhaps?
+    try {
+      // TODO:  Make FETCH URL dynamic - hardcoded to test board.
+      const response = await fetch(
+        'http://localhost:4000/api/v1/boards/6387378d5534f865a26aa4b3',
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newBoard),
+        }
+      );
+
+      if (!response.ok) throw new Error('Error: Failed to submit');
+
+      const content = await response.json();
+
+      dispatch({
+        type: 'edit-board',
+        payload: { id: { boardId: activeBoard._id }, data: content.data.data },
+      });
+      return setIsModalOpen(false);
+    } catch (error) {
+      // TODO:  Need to make an error modal or something to show failure.
+      return console.log(error);
+    }
   };
 
   const btnNewColumnClickHandler = () => {
@@ -84,6 +131,8 @@ function BoardEdit(props: ElemProps): JSX.Element {
     }
   };
 
+  console.log('BOARD EDIT', formData);
+
   const deleteInputHandler = (data: ReturnData) => {
     // Update form data; distinguish if return data is part of an input-group or a single input
     if (data.groupId) {
@@ -97,7 +146,7 @@ function BoardEdit(props: ElemProps): JSX.Element {
     const obj = formData['input-group-1'][key];
     return (
       <InputTextSubtask
-        key={obj.key}
+        key={obj.inputName}
         inputName={obj.inputName}
         value={obj.value}
         groupId="input-group-1"

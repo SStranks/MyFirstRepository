@@ -75,8 +75,12 @@ const addBoard = (state: StateContextType, payload: PayLoadType) => {
 };
 
 const editBoard = (state: StateContextType, payload: PayLoadType) => {
-  console.log(payload);
-  return state;
+  const newState = state;
+  const boardIdx = newState.boards.findIndex(
+    (b) => b._id === payload.id.boardId
+  );
+  newState.boards[boardIdx] = payload.data as Board;
+  return { ...newState };
 };
 
 const deleteBoard = (state: StateContextType, payload: PayLoadType) => {
