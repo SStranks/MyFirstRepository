@@ -4,12 +4,11 @@ import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
 import { AppDispatchContext } from '#Context/AppContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
-import { TaskType } from '#Types/types';
+import { NestedInputPropType, TaskType } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
   deleteInputSingle,
-  genGroupInputs,
   updateInput,
   updateInputFromGroup,
   validateInputs,
@@ -27,6 +26,21 @@ type ElemProps = {
   task: TaskType;
   columnList: string[];
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const genGroupInputs = (task: TaskType) => {
+  console.log('task reducer', task);
+  return task.subtasks.reduce((acc, cur) => {
+    const key = `input-subtask-${cur._id}`;
+    acc[key] = {
+      value: cur.title,
+      error: false,
+      isCompleted: cur.isCompleted,
+      key,
+      inputName: `input-subtask-${cur._id}`,
+    };
+    return acc;
+  }, {} as NestedInputPropType);
 };
 
 // FUNCTION COMPONENT //
@@ -51,13 +65,12 @@ function TaskEdit(props: ElemProps): JSX.Element {
       inputName: 'input-status',
     },
     'input-group-1': {
-      ...genGroupInputs(
-        task.subtasks.map((t) => t.title),
-        'subtask'
-      ),
+      ...genGroupInputs(task),
     },
   });
   const genId = useComponentIdGenerator();
+
+  console.log('TASKEDIT', formData);
 
   const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -71,30 +84,53 @@ function TaskEdit(props: ElemProps): JSX.Element {
     }
     // All form inputs have been validated. Submit form data.
     const formInputData = new FormData(e.target as HTMLFormElement);
-    const inputData = Object.fromEntries(formInputData.entries());
+    const {
+      'input-title': title,
+      'input-description': description,
+      'input-status': status,
+      ...rest
+    } = Object.fromEntries(formInputData.entries());
 
-    console.log(inputData);
+    // Copy in old column data if applicable
+    const newSubtasks = Object.entries(rest).map(([key, value]) => {
+      const subtaskId = key.split('-')[2];
+      const subtaskIdx = task.subtasks.findIndex((st) => st._id === subtaskId);
 
-    const newTask = 'bob';
-    const taskId = 'test';
+      return subtaskIdx !== -1
+        ? { ...task.subtasks[subtaskIdx], title: value }
+        : { title: value };
+    });
+
+    const newTask = {
+      title,
+      description,
+      status,
+      subtasks: newSubtasks,
+    };
+
+    // return console.log('TASK-EDIT SUBMIT', newTask);
+
+    // console.log(setIsModalOpen, dispatch);
 
     try {
       const response = await fetch(
-        `http://localhost:4000/api/v1/boards/6387378d5534f865a26aa4b3/6389dc14152baa2d6371b0d6/${taskId}`,
+        `http://localhost:4000/api/v1/boards/6387378d5534f865a26aa4b3/6389dc14152baa2d6371b0d6/${task._id}`,
         {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
-          body: newTask,
+          body: JSON.stringify(newTask),
         }
       );
 
       if (!response.ok) throw new Error('Error: Failed to submit');
 
       const content = await response.json();
-      dispatch({
-        type: 'task-edit',
-        payload: { id: { boardId: 'THIS IS A TEST' }, data: content.data.data },
-      });
+      return console.log(content);
+
+      // dispatch({
+      //   type: 'task-edit',
+      //   payload: { id: { boardId: 'THIS IS A TEST' }, data: content.data.data },
+      // });
       // TODO:  Set modal closed - need to figure out duel modals first before implementing.
       return console.log(setIsModalOpen);
     } catch (error) {
@@ -102,7 +138,7 @@ function TaskEdit(props: ElemProps): JSX.Element {
       return console.log(error);
     }
 
-    // return console.log('FORM SUBMIT', inputData);
+    return console.log('FORM SUBMIT', dispatch);
   };
 
   const btnNewSubtaskClickHandler = () => {
@@ -128,7 +164,11 @@ function TaskEdit(props: ElemProps): JSX.Element {
     }
   };
 
+  console.log('taskpremap');
+
+  // DEBUG:  Key is the issue.
   const subTasks = Object.keys(formData['input-group-1']).map((key) => {
+    console.log('TASKMAP', key);
     const obj = formData['input-group-1'][key];
     return (
       <InputTextSubtask

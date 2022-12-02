@@ -9,7 +9,7 @@ type ElemProps = {
 function Main(props: ElemProps): JSX.Element {
   const { activeBoard } = props;
 
-  console.log('MAIN RENDER', activeBoard);
+  // console.log('MAIN RENDER', activeBoard);
 
   const boardEmpty = (activeBoard as Board).columns.length === 0;
 

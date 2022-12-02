@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import {
   ActionType,
-  GroupDataType,
   IndividualDataType,
   PayLoadType,
 } from '#Context/AppContext';
@@ -38,8 +37,13 @@ const updateTask = (
   prevTask.status = (payload.data['input-status'] as IndividualDataType)
     .value as string;
   const newSubtasks = Object.values(
-    payload.data['input-group-subtasks'] as GroupDataType
+    payload.data['input-group-subtasks'] as {
+      _id: string;
+      title: string;
+      value: boolean;
+    }[]
   ).map((t) => ({
+    _id: t._id,
     title: t.title,
     isCompleted: t.value as boolean,
   }));

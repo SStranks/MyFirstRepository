@@ -4,7 +4,7 @@ import TaskEdit from '#Components/forms/task-edit/TaskEdit';
 // import Modal from '#Components/modal/Modal';
 import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
 import IconVerticalEllipsis from '#Svg/icon-vertical-ellipsis.svg';
-import { ReturnDataType, StateContextType } from '#Types/types';
+import { ReturnDataType, StateContextType, TaskType } from '#Types/types';
 import { updateInput, updateInputFromGroup } from '#Utils/formFunctions';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 // import TaskDelete from '../task-del/TaskDel';
@@ -28,9 +28,10 @@ const extractData = (state: StateContextType, selectTask: SelectTaskType) => {
 };
 
 type CheckboxType = {
+  _id: string;
   title: string;
   value: boolean;
-  key: number;
+  key: string;
   inputName: string;
   groupId: string;
 };
@@ -40,14 +41,16 @@ type SubtaskType = {
 };
 
 // TODO:  Need to refactor handling of generating inputs/checkboxes, as it is similar but different to group inputs on other forms (different properties; value vs title, isCompleted vs error, etc)
-const genSubtaskInputs = (st: { title: string; isCompleted: boolean }[]) => {
-  return st.reduce((acc, cur, i, arr) => {
-    const key = `input-checkbox-${i - arr.length}`;
+const genSubtaskInputs = (task: TaskType) => {
+  console.log('GEN SUB TASK', task);
+  return task.subtasks.reduce((acc, cur) => {
+    const key = `input-checkbox-${cur._id}`;
     acc[key] = {
+      _id: cur._id,
       title: cur.title,
       value: cur.isCompleted,
-      key: i - arr.length,
-      inputName: `input-checkbox-${i - arr.length}`,
+      key,
+      inputName: `input-checkbox-${cur._id}`,
       groupId: 'input-group-subtasks',
     };
     return acc;
@@ -60,7 +63,7 @@ function TaskView(props: ElemProps): JSX.Element {
   const dispatch = useContext(AppDispatchContext);
   const { task, columnList } = extractData(state, selectTask);
   const [formData, setFormData] = useState({
-    'input-group-subtasks': { ...genSubtaskInputs(task.subtasks) },
+    'input-group-subtasks': { ...genSubtaskInputs(task) },
     'input-status': {
       value: task.status,
       statusArr: columnList,
@@ -70,19 +73,49 @@ function TaskView(props: ElemProps): JSX.Element {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  console.log('TASK VIEW', formData['input-status'].value);
+  console.log('TASK VIEW', formData);
 
   // Ensures that useEffect cleanup doesn't submit data back to App state if returnDataHandler is changing this components state.
   const isFormUpdating = useRef(false);
 
   useEffect(() => {
-    // isFormUpdating.current = false;
+    isFormUpdating.current = false;
     return () => {
       if (!isFormUpdating.current) {
-        dispatch({
-          type: 'update-task',
-          payload: { id: selectTask, data: formData },
-        });
+        console.log('TASKVIEW DISPATCH', selectTask, formData);
+        (async () => {
+          // TODO:  Need to figure out status change/switch column.
+          try {
+            const newTask = {
+              status: formData['input-status'].value,
+              subtasks: Object.values(formData['input-group-subtasks']).map(
+                (t) => ({
+                  title: t.title,
+                  isCompleted: t.value,
+                })
+              ),
+            };
+            console.log(newTask);
+            const response = await fetch(
+              `http://localhost:4000/api/v1/boards/${selectTask.boardId}/${selectTask.columnId}/${selectTask.taskId}`,
+              {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newTask),
+              }
+            );
+
+            if (!response.ok) throw new Error('Failed to submit');
+
+            return dispatch({
+              type: 'update-task',
+              payload: { id: selectTask, data: formData },
+            });
+            // TODO:  Put dispatch and modal close in here.
+          } catch (error) {
+            return console.log(error);
+          }
+        })();
       }
       // NOTE:  Does this still work? Changed to line above when working on task delete.
       // if (!isFormUpdating.current) console.log('test');
@@ -97,6 +130,7 @@ function TaskView(props: ElemProps): JSX.Element {
     // Update form data; distinguish if return data is part of 'input-group' or a single input
     if (data.groupId) {
       isFormUpdating.current = true;
+      console.log('UPDATING', data);
       setFormData((prev) => updateInputFromGroup(data, prev));
     } else {
       isFormUpdating.current = true;
@@ -112,7 +146,8 @@ function TaskView(props: ElemProps): JSX.Element {
     const element = e.target as Element;
     console.log(element);
     if (element.innerHTML === 'Edit Task') {
-      console.log('fired');
+      isFormUpdating.current = true;
+      setMenuOpen(true);
     }
     if (element.innerHTML === 'Delete Task') {
       isFormUpdating.current = true;
@@ -128,7 +163,7 @@ function TaskView(props: ElemProps): JSX.Element {
   const subtasksElems = Object.values(formData['input-group-subtasks']).map(
     (t) => (
       <CheckBox
-        key={t.title}
+        key={t._id}
         title={t.title}
         checked={t.value}
         inputName={t.inputName}

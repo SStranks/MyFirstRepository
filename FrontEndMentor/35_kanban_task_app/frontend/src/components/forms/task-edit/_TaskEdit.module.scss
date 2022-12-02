@@ -16,6 +16,8 @@
   align-items: center;
   justify-content: center;
   background-color: hsla(0deg, 0%, 0%, 0.7);
+  // HACK:  remove when modal system is complete
+  z-index: 100;
 }
 
 .form {

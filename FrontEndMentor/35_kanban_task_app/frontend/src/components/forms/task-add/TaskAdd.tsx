@@ -82,7 +82,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
     try {
       // TODO:  Need to make fetch URL dynamic - currently hardcoded for test board.
       const response = await fetch(
-        `http://localhost:4000/api/v1/boards/6387378d5534f865a26aa4b3/6387378d5534f865a26aa4b4`,
+        `http://localhost:4000/api/v1/boards/6387378d5534f865a26aa4b3/6389dc14152baa2d6371b0d6`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

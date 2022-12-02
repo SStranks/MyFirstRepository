@@ -1,5 +1,6 @@
 /* eslint-disable unicorn/filename-case */
 export type SubTaskObjType = {
+  _id: string;
   title: string;
   isCompleted: boolean;
 };
@@ -32,7 +33,8 @@ export type StateContextType = {
 
 export type ReturnDataType = {
   inputName: string;
-  value: string | boolean;
+  value?: string | boolean;
+  isCompleted?: boolean;
   groupId?: string;
 };
 
@@ -43,6 +45,7 @@ export type InputPropType = {
   error: boolean;
   key?: string;
   statusArr?: string[];
+  isCompleted?: boolean;
 };
 
 export type NestedInputPropType = {

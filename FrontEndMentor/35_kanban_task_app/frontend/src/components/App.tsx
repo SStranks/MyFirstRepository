@@ -11,6 +11,7 @@ const API_URL = 'http://localhost:4000';
 
 const INITIAL_STATE = { boards: [{ name: '', _id: '0', columns: [] }] };
 
+// TODO:  Need to solve if task is moved to another column, change it on the backend too.
 // TODO:  Need to make all 'localhost:4000' FETCH Urls dynamic, lots are hardcoded atm.
 // TODO:  Need to tidy up/refactor forms; contain a lot of similar logic that could be extracted.
 // TODO:  Need to do 'alt' attributes and accessibility.
@@ -19,7 +20,7 @@ const INITIAL_STATE = { boards: [{ name: '', _id: '0', columns: [] }] };
 // TODO:  Need to make a loading spinner or animate the logo when awaiting.
 // TODO:  Need to check button UX experience; hover area large enough for buttons?
 // TODO:  Need to amend the dropdown menu outline, needs to stand out more against the white forms.
-// TODO:  Search for '// TODO:  // TEMP DEV:  // NOTE:  etc at project finish and remove.
+// TODO:  Search for '// TODO:  // TEMP DEV:  // NOTE:  console.log etc at project finish and remove.
 
 function App(): JSX.Element {
   // If localStorage: last active board? Get Id of board.
@@ -30,7 +31,7 @@ function App(): JSX.Element {
   const [state, dispatch] = useAppReducer(INITIAL_STATE);
   const [activeBoardId, setActiveBoardId] = useState('0');
 
-  console.log('APP STATE', state);
+  // console.log('APP STATE', state);
 
   useEffect(() => {
     // Fetch data from backend
@@ -64,7 +65,7 @@ function App(): JSX.Element {
     (item) => item._id === activeBoardId
   ) as Board;
 
-  console.log('APP', boards, activeBoard);
+  // console.log('APP', boards, activeBoard);
   const data = { boards, activeBoard };
 
   return (

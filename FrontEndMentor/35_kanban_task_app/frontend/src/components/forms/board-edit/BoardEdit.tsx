@@ -25,6 +25,7 @@ type ElemProps = {
   activeBoard: Board;
 };
 
+// TODO:  Also in task edit - there's a function in formfunctions this is based from, need to refactor all of it.
 const genGroupInputs = (activeBoard: Board) => {
   return activeBoard.columns.reduce((acc, cur) => {
     const key = `input-column-${cur._id}`;
