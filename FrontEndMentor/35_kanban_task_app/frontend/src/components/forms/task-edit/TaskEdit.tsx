@@ -16,6 +16,12 @@ import {
 import React, { useContext, useState } from 'react';
 import styles from './_TaskEdit.module.scss';
 
+type SelectTaskType = {
+  boardId: string;
+  columnId: string;
+  taskId: string;
+};
+
 type ReturnData = {
   inputName: string;
   value: string;
@@ -24,6 +30,7 @@ type ReturnData = {
 
 type ElemProps = {
   task: TaskType;
+  selectTask: SelectTaskType;
   columnList: string[];
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -45,7 +52,7 @@ const genGroupInputs = (task: TaskType) => {
 
 // FUNCTION COMPONENT //
 function TaskEdit(props: ElemProps): JSX.Element {
-  const { task, columnList, setIsModalOpen } = props;
+  const { task, selectTask, columnList, setIsModalOpen } = props;
   const dispatch = useContext(AppDispatchContext);
   const [formData, setFormData] = useState({
     'input-title': {
@@ -125,12 +132,12 @@ function TaskEdit(props: ElemProps): JSX.Element {
       if (!response.ok) throw new Error('Error: Failed to submit');
 
       const content = await response.json();
-      return console.log(content);
 
-      // dispatch({
-      //   type: 'task-edit',
-      //   payload: { id: { boardId: 'THIS IS A TEST' }, data: content.data.data },
-      // });
+      // setIsModalOpen(false);
+      return dispatch({
+        type: 'edit-task',
+        payload: { id: selectTask, data: content.data.data },
+      });
       // TODO:  Set modal closed - need to figure out duel modals first before implementing.
       return console.log(setIsModalOpen);
     } catch (error) {
@@ -164,11 +171,8 @@ function TaskEdit(props: ElemProps): JSX.Element {
     }
   };
 
-  console.log('taskpremap');
-
   // DEBUG:  Key is the issue.
   const subTasks = Object.keys(formData['input-group-1']).map((key) => {
-    console.log('TASKMAP', key);
     const obj = formData['input-group-1'][key];
     return (
       <InputTextSubtask

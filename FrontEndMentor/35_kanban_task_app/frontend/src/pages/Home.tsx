@@ -8,7 +8,7 @@ type ElemProps = {
 };
 
 function Home(props: ElemProps): JSX.Element {
-  const { boardData, setActiveBoardId, activeBoardId } = props;
+  const { boardData, activeBoardId, setActiveBoardId } = props;
   return (
     <DefaultLayout
       boardData={boardData}

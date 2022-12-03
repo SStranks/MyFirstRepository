@@ -11,6 +11,7 @@
 /* -------------------------------- */
 
 /*   Imports                        */
+@use '#Sass/abstracts/functions' as f;
 
 /* -------------------------------- */
 /*   Web Elements                   */
@@ -26,6 +27,7 @@ $navbar-dim-height: 96px;
 /* -------------------------------- */
 
 $padding-desktop: 0 165px 56px 165px;
+$margin-forms: f.px2em(50) 0;
 // $padding-transition: padding 2500ms ease-out;
 // $grid-gap-transition: gap 1500ms ease-out;
 

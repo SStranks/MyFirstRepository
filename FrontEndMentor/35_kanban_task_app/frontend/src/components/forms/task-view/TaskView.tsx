@@ -10,7 +10,11 @@ import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 // import TaskDelete from '../task-del/TaskDel';
 import styles from './_TaskView.module.scss';
 
-type SelectTaskType = { boardId: string; columnId: string; taskId: string };
+type SelectTaskType = {
+  boardId: string;
+  columnId: string;
+  taskId: string;
+};
 
 type ElemProps = {
   selectTask: SelectTaskType;
@@ -179,6 +183,7 @@ function TaskView(props: ElemProps): JSX.Element {
       {menuOpen && (
         <TaskEdit
           task={task}
+          selectTask={selectTask}
           columnList={columnList}
           setIsModalOpen={setIsModalOpen}
         />

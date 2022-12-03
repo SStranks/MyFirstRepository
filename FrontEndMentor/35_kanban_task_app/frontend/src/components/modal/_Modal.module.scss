@@ -7,7 +7,14 @@
   bottom: 0;
   left: 0;
   right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: c.$col-modal-bg;
   backdrop-filter: blur(1px);
   z-index: f.z('modal-container');
+  // pointer-events: none;
+  overflow-y: scroll;
 }
+
+// NOTE:  To accommodate increasing height of modal content forms (when user adds additional input fields), whilst respecting the flex center of the modal, the modal content has an additional wrapping container using auto margins to center and then form content has its own margin definition.

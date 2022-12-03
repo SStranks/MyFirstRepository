@@ -43,7 +43,7 @@ function Modal(props: ModalProps): JSX.Element | null {
   if (!isModalOpen) return null;
 
   return ReactDOM.createPortal(
-    <div className={styles.modal}>{modalContent}</div>,
+    <div className={styles.container}>{modalContent}</div>,
     domNode
   );
 }

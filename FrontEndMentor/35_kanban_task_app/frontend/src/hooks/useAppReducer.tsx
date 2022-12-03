@@ -52,8 +52,11 @@ const updateTask = (
 };
 
 const editTask = (state: StateContextType, payload: PayLoadType) => {
-  console.log(payload);
-  return state;
+  const newState = state;
+  const { boardId } = payload.id;
+  const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
+  newState.boards[boardIdx] = payload.data as Board;
+  return { ...newState };
 };
 
 const deleteTask = (state: StateContextType, payload: PayLoadType) => {

@@ -45,7 +45,7 @@ function Nav(props: ElemProps): JSX.Element {
     }
   };
 
-  // console.log('NAV', activeBoard);
+  console.log('NAV', activeBoard);
 
   const modalContent =
     modalForm === 'edit-board' ? (

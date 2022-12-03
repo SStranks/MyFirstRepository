@@ -50,6 +50,7 @@ function Aside(props: ElemProps): JSX.Element {
       setIsModalOpen(true);
     } else if (boardId) {
       setActiveBoardId(boardId);
+      window.localStorage.setItem('active-board', boardId);
     }
   };
 
