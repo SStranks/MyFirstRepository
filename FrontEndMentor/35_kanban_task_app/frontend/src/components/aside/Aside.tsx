@@ -68,10 +68,12 @@ function Aside(props: ElemProps): JSX.Element {
           <h2>ALL BOARDS ({numOfBoards})</h2>
           <ul onClickCapture={onListClickHandler}>
             {boardListItems}
-            <li className={styles['new-board']} data-board-id="create-new">
-              <img src={IconBoard} alt="" />
-              <p>+ Create New Board</p>
-            </li>
+            {boards.length > 0 && (
+              <li className={styles['new-board']} data-board-id="create-new">
+                <img src={IconBoard} alt="" />
+                <p>+ Create New Board</p>
+              </li>
+            )}
           </ul>
         </div>
         <div className={styles.sidebar__controls}>

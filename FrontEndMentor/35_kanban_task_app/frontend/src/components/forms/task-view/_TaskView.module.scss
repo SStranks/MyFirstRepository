@@ -10,6 +10,7 @@
 }
 
 .task-view {
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: f.px2em(24);
@@ -50,7 +51,9 @@
     padding: f.px2em(20);
     background-color: var(--thm-dropdown-default-list-bg);
     border-radius: v.$border-radius-dropdown-list;
+    box-shadow: v.$box-shadow-2;
     transition: a.$Theme-transition-bg;
+    z-index: 10;
 
     & > p {
       cursor: pointer;

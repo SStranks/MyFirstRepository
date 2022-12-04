@@ -59,8 +59,8 @@ function Nav(props: ElemProps): JSX.Element {
     ) : (
       <TaskAdd
         taskStatus={{
-          current: activeBoard.columns[0]?.name,
-          statusArr: activeBoard.columns?.map((c) => c.name),
+          current: activeBoard?.columns[0]?.name,
+          statusArr: activeBoard?.columns?.map((c) => c.name),
         }}
       />
     );
@@ -79,13 +79,13 @@ function Nav(props: ElemProps): JSX.Element {
           <img src={LogoDark} className={styles.navbar__logo__img} alt="" />
         </div>
         <div className={styles.navbar__head}>
-          <h1 className={styles.navbar__title}>Platform Launch</h1>
+          <h1 className={styles.navbar__title}>{activeBoard?.name}</h1>
           <div className={styles.navbar__controls}>
             <button
               type="button"
               className={styles.navbar__controls__addTask}
               onClick={addTaskBtnClickHandler}
-              disabled={activeBoard.columns.length === 0}>
+              disabled={activeBoard?.columns.length === 0}>
               <img src={IconAddTaskMobile} alt="" />
               <span>+ Add New Task</span>
             </button>

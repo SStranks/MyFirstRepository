@@ -34,7 +34,7 @@ function ColumnGrid(props: ElemProps): JSX.Element {
 
   console.log('COLUMN GRID RENDER', boardData);
 
-  const columns = boardData.columns.map((el, i) => (
+  const columns = boardData?.columns.map((el, i) => (
     <Column
       key={el._id}
       boardId={boardData._id}
@@ -71,7 +71,7 @@ function ColumnGrid(props: ElemProps): JSX.Element {
       )}
       <div className={styles['column-grid']} onClickCapture={onClickHandler}>
         {columns}
-        {newColumn}
+        {boardData && newColumn}
       </div>
     </>
   );

@@ -11,7 +11,7 @@ function Main(props: ElemProps): JSX.Element {
 
   // console.log('MAIN RENDER', activeBoard);
 
-  const boardEmpty = (activeBoard as Board).columns.length === 0;
+  const boardEmpty = (activeBoard as Board)?.columns.length === 0;
 
   const emptyBoard = (
     <div className={styles.main__empty}>

@@ -103,7 +103,18 @@
     }
 
     &__boardOptions {
-      padding: f.px2em(10);
+      position: relative;
+      &::before {
+        // Click area.
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 40px;
+        transform: translate(-50%, -50%);
+        // background-color: rgba(100, 0, 0, 0.5);
+      }
     }
 
     &__dropdownMenu {
