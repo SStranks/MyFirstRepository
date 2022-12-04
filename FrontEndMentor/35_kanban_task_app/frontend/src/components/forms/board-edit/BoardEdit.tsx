@@ -95,7 +95,7 @@ function BoardEdit(props: ElemProps): JSX.Element {
     try {
       // TODO:  Make FETCH URL dynamic - hardcoded to test board.
       const response = await fetch(
-        'http://localhost:4000/api/v1/boards/6387378d5534f865a26aa4b3',
+        `http://${process.env.API_HOST}/api/v1/boards/${activeBoard._id}`,
         {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },

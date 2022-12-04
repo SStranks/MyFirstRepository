@@ -115,13 +115,11 @@ function TaskEdit(props: ElemProps): JSX.Element {
       subtasks: newSubtasks,
     };
 
-    // return console.log('TASK-EDIT SUBMIT', newTask);
-
-    // console.log(setIsModalOpen, dispatch);
+    const { boardId, columnId, taskId } = selectTask;
 
     try {
       const response = await fetch(
-        `http://localhost:4000/api/v1/boards/6387378d5534f865a26aa4b3/6389dc14152baa2d6371b0d6/${task._id}`,
+        `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
         {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
@@ -138,14 +136,13 @@ function TaskEdit(props: ElemProps): JSX.Element {
         type: 'edit-task',
         payload: { id: selectTask, data: content.data.data },
       });
+      // DEBUG:  Infinite loop on submission, think related to viewtask still being visible and context values updating.
       // TODO:  Set modal closed - need to figure out duel modals first before implementing.
       return console.log(setIsModalOpen);
     } catch (error) {
       // TODO:  Need to make an error modal or something to show failure.
       return console.log(error);
     }
-
-    return console.log('FORM SUBMIT', dispatch);
   };
 
   const btnNewSubtaskClickHandler = () => {

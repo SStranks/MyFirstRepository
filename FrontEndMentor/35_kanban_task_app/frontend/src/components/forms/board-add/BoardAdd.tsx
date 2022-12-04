@@ -52,11 +52,14 @@ function BoardAdd(): JSX.Element {
     };
     // Send data to backend API
     try {
-      const response = await fetch('http://localhost:4000/api/v1/boards', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newBoard),
-      });
+      const response = await fetch(
+        `http://${process.env.API_HOST}/api/v1/boards`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newBoard),
+        }
+      );
 
       if (!response.ok) throw new Error('Error: Failed to submit');
 

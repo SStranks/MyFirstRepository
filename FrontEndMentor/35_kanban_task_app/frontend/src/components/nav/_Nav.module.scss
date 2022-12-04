@@ -113,7 +113,6 @@
         width: 20px;
         height: 40px;
         transform: translate(-50%, -50%);
-        // background-color: rgba(100, 0, 0, 0.5);
       }
     }
 
@@ -129,6 +128,7 @@
       padding: f.px2em(20);
       background-color: var(--thm-dropdown-default-list-bg);
       border-radius: v.$border-radius-dropdown-list;
+      box-shadow: v.$box-shadow-2;
       transition: a.$Theme-transition-bg;
 
       & > p {

@@ -4,6 +4,7 @@ import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
 import { AppDispatchContext } from '#Context/AppContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import { Board } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
@@ -23,14 +24,16 @@ type ReturnData = {
 };
 
 type ElemProps = {
+  activeBoard: Board;
   taskStatus: { current: string; statusArr: string[] };
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const INITIAL_SUBTASKS = ['', ''];
 
 // FUNCTION COMPONENT //
 function TaskAdd(props: ElemProps): JSX.Element {
-  const { taskStatus } = props;
+  const { activeBoard, taskStatus, setIsModalOpen } = props;
   const dispatch = useContext(AppDispatchContext);
   const [formData, setFormData] = useState({
     'input-title': { value: '', error: false, inputName: 'input-title' },
@@ -77,12 +80,13 @@ function TaskAdd(props: ElemProps): JSX.Element {
       })),
     };
 
-    console.log(newTask);
+    const selectedColumn = activeBoard.columns.find((c) => c.name === status);
+    const columnId = selectedColumn?._id;
+
     // Send data to backend API
     try {
-      // TODO:  Need to make fetch URL dynamic - currently hardcoded for test board.
       const response = await fetch(
-        `http://localhost:4000/api/v1/boards/6387378d5534f865a26aa4b3/6389dc14152baa2d6371b0d6`,
+        `http://${process.env.API_HOST}/api/v1/boards/${activeBoard._id}/${columnId}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -94,8 +98,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
 
       // Update app state with new board
       const content = await response.json();
-      console.log('CONTENT', content);
-      // NOTE:  Need to add in modal close here.
+      setIsModalOpen(false);
       return dispatch({ type: 'add-task', payload: content });
     } catch (error) {
       return console.log(error);

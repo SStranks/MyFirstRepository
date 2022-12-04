@@ -11,13 +11,12 @@ function TaskDelete(props: ElemProps): JSX.Element {
   const { id, setIsModalOpen } = props;
   const dispatch = useContext(AppDispatchContext);
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const deleteBtnClickHandler = () => {
     const { boardId, columnId, taskId } = id;
     (async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/api/v1/boards/${boardId}/${columnId}/${taskId}`,
+          `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
           {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },

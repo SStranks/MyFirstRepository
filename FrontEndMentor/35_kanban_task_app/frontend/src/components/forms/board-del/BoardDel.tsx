@@ -17,7 +17,7 @@ function BoardDelete(props: ElemProps): JSX.Element {
     (async () => {
       try {
         const response = await fetch(
-          `http://localhost:4000/api/v1/boards/${activeBoardId}`,
+          `http://${process.env.API_HOST}/api/v1/boards/${activeBoardId}`,
           { method: 'DELETE', headers: { 'Content-Type': 'application/json' } }
         );
 

@@ -6,7 +6,7 @@ import IconAddTaskMobile from '#Svg/icon-add-task-mobile.svg';
 import IconEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import LogoDark from '#Svg/logo-dark.svg';
 import { Board } from '#Types/types';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './_Nav.module.scss';
 
 type ElemProps = {
@@ -17,12 +17,11 @@ type ElemProps = {
 function Nav(props: ElemProps): JSX.Element {
   const { activeBoard, setActiveBoardId } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // TODO:  Refactor menu state - change it to CSS only, display none toggle. No need for state.
-  const [boardOptions, setBoardOptions] = useState(false);
   const [modalForm, setModalForm] = useState('edit');
+  const boardOptionsRef = useRef<HTMLDivElement>(null);
 
   const boardMenuClickHandler = () => {
-    setBoardOptions((prev) => !prev);
+    boardOptionsRef.current?.classList.toggle('hidden');
   };
 
   const addTaskBtnClickHandler = () => {
@@ -35,12 +34,12 @@ function Nav(props: ElemProps): JSX.Element {
     console.log(element, element.classList);
     if (element.innerHTML === 'Edit Board') {
       setIsModalOpen(true);
-      setBoardOptions(false);
+      boardOptionsRef.current?.classList.add('hidden');
       setModalForm('edit-board');
     }
     if (element.innerHTML === 'Delete Board') {
       setIsModalOpen(true);
-      setBoardOptions(false);
+      boardOptionsRef.current?.classList.add('hidden');
       setModalForm('delete-board');
     }
   };
@@ -58,10 +57,12 @@ function Nav(props: ElemProps): JSX.Element {
       />
     ) : (
       <TaskAdd
+        activeBoard={activeBoard}
         taskStatus={{
           current: activeBoard?.columns[0]?.name,
           statusArr: activeBoard?.columns?.map((c) => c.name),
         }}
+        setIsModalOpen={setIsModalOpen}
       />
     );
 
@@ -95,14 +96,13 @@ function Nav(props: ElemProps): JSX.Element {
               className={styles.navbar__controls__boardOptions}>
               <img src={IconEllipsis} alt="" />
             </button>
-            {boardOptions && (
-              <div
-                className={styles.navbar__controls__dropdownMenu}
-                onClickCapture={boardOptionsClickHandler}>
-                <p>Edit Board</p>
-                <p>Delete Board</p>
-              </div>
-            )}
+            <div
+              className={`${styles.navbar__controls__dropdownMenu} hidden`}
+              onClickCapture={boardOptionsClickHandler}
+              ref={boardOptionsRef}>
+              <p>Edit Board</p>
+              <p>Delete Board</p>
+            </div>
           </div>
         </div>
       </nav>

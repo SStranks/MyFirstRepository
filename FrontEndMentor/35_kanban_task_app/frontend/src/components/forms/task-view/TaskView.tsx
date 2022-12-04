@@ -99,9 +99,11 @@ function TaskView(props: ElemProps): JSX.Element {
                 })
               ),
             };
-            console.log(newTask);
+
+            const { boardId, columnId, taskId } = selectTask;
+
             const response = await fetch(
-              `http://localhost:4000/api/v1/boards/${selectTask.boardId}/${selectTask.columnId}/${selectTask.taskId}`,
+              `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
               {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
@@ -196,7 +198,10 @@ function TaskView(props: ElemProps): JSX.Element {
           <div className={styles['task-view__header']}>
             <p>{task.title}</p>
             <div className={styles['task-view__menu']}>
-              <button type="button" onClick={menuBtnClickHandler}>
+              <button
+                type="button"
+                className={styles['task-view__menu__btn']}
+                onClick={menuBtnClickHandler}>
                 <img src={IconVerticalEllipsis} alt="" />
               </button>
               <div
