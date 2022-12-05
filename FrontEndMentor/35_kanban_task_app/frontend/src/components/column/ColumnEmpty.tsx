@@ -1,9 +1,12 @@
+import RootModalDispatchContext from '#Context/RootModalContext';
+import { useContext } from 'react';
 import styles from './_Column.module.scss';
 
 function ColumnEmpty(): JSX.Element {
-  // eslint-disable-next-line unicorn/consistent-function-scoping
+  const rootModalDispatch = useContext(RootModalDispatchContext);
   const newColumnBtnClickHandler = () => {
-    return console.log('clicked');
+    console.log('COLUMN EMPTY', rootModalDispatch);
+    rootModalDispatch({ type: 'show-modal', modalType: 'From column empty' });
   };
 
   return (

@@ -1,10 +1,14 @@
 /* eslint-disable no-underscore-dangle */
 import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
+import RootModalDispatchContext, {
+  DispatchContextType,
+} from '#Context/RootModalContext';
 import useAppReducer from '#Hooks/useAppReducer';
 import Home from '#Pages/Home';
 import { Board, StateContextType } from '#Types/types';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import RootModal from './modal/RootModal';
 
 const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 
@@ -26,6 +30,7 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 
 function App(): JSX.Element {
   const [state, dispatch] = useAppReducer({ boards: [] });
+  const [rootModalDispatch, setRootModalDispatch] = useState({});
   const [activeBoardId, setActiveBoardId] = useState<string>('');
 
   console.log('APP STATE', state, activeBoardId);
@@ -71,23 +76,31 @@ function App(): JSX.Element {
   console.log('APP', boards, activeBoard);
   const data = { boards, activeBoard };
 
+  console.log('APP DISPATCH', rootModalDispatch);
+
   return (
-    <AppDispatchContext.Provider value={dispatch}>
-      <AppStateContext.Provider value={state as StateContextType}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                boardData={data}
-                activeBoardId={activeBoardId}
-                setActiveBoardId={setActiveBoardId}
+    <>
+      <RootModal setRootModalDispatch={setRootModalDispatch} />
+      <RootModalDispatchContext.Provider
+        value={rootModalDispatch as DispatchContextType}>
+        <AppDispatchContext.Provider value={dispatch}>
+          <AppStateContext.Provider value={state as StateContextType}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home
+                    boardData={data}
+                    activeBoardId={activeBoardId}
+                    setActiveBoardId={setActiveBoardId}
+                  />
+                }
               />
-            }
-          />
-        </Routes>
-      </AppStateContext.Provider>
-    </AppDispatchContext.Provider>
+            </Routes>
+          </AppStateContext.Provider>
+        </AppDispatchContext.Provider>
+      </RootModalDispatchContext.Provider>
+    </>
   );
 }
 
