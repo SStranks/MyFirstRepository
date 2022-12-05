@@ -2,7 +2,9 @@ import React from 'react';
 
 export type ActionType = {
   type: string;
-  modalType: string;
+  modalType: string | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  modalProps?: { [key: string]: any };
 };
 
 export type DispatchContextType = React.Dispatch<ActionType>;

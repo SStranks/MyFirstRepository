@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/filename-case */
 import Dropdown from '#Components/custom/dropdown/Dropdown';
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
@@ -5,18 +6,23 @@ import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
 import { AppDispatchContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
-import { Board } from '#Types/types';
+import { NestedInputPropType, TaskType } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
   deleteInputSingle,
-  genGroupInputs,
   updateInput,
   updateInputFromGroup,
   validateInputs,
 } from '#Utils/formFunctions';
-import { useContext, useState } from 'react';
-import styles from './_TaskAdd.module.scss';
+import React, { useContext, useState } from 'react';
+import styles from './_TaskEdit.module.scss';
+
+type SelectTaskType = {
+  boardId: string;
+  columnId: string;
+  taskId: string;
+};
 
 type ReturnData = {
   inputName: string;
@@ -25,33 +31,55 @@ type ReturnData = {
 };
 
 type ElemProps = {
-  activeBoard: Board;
-  taskStatus: { current: string; statusArr: string[] };
+  task: TaskType;
+  selectTask: SelectTaskType;
+  columnList: string[];
 };
 
-const INITIAL_SUBTASKS = ['', ''];
+const genGroupInputs = (task: TaskType) => {
+  console.log('task reducer', task);
+  return task.subtasks.reduce((acc, cur) => {
+    const key = `input-subtask-${cur._id}`;
+    acc[key] = {
+      value: cur.title,
+      error: false,
+      isCompleted: cur.isCompleted,
+      key,
+      inputName: `input-subtask-${cur._id}`,
+    };
+    return acc;
+  }, {} as NestedInputPropType);
+};
 
 // FUNCTION COMPONENT //
-function TaskAdd(props: ElemProps): JSX.Element {
-  const { activeBoard, taskStatus } = props;
+function TaskEdit(props: ElemProps): JSX.Element {
+  const { task, selectTask, columnList } = props;
   const dispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
   const [formData, setFormData] = useState({
-    'input-title': { value: '', error: false, inputName: 'input-title' },
+    'input-title': {
+      value: task.title,
+      error: false,
+      inputName: 'input-title',
+    },
     'input-description': {
-      value: '',
+      value: task.description,
       error: false,
       inputName: 'input-description',
     },
     'input-status': {
-      value: taskStatus.current,
+      value: task.status,
       error: false,
-      statusArr: [...taskStatus.statusArr],
+      statusArr: columnList,
       inputName: 'input-status',
     },
-    'input-group-1': { ...genGroupInputs(INITIAL_SUBTASKS, 'subtask') },
+    'input-group-1': {
+      ...genGroupInputs(task),
+    },
   });
   const genId = useComponentIdGenerator();
+
+  console.log('TASKEDIT', formData);
 
   const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,33 +91,39 @@ function TaskAdd(props: ElemProps): JSX.Element {
         (prev) => ({ ...prev, ...newFormData } as typeof prev)
       );
     }
+    // All form inputs have been validated. Submit form data.
     const formInputData = new FormData(e.target as HTMLFormElement);
-    // Format data according to schema
     const {
-      'input-title': name,
+      'input-title': title,
       'input-description': description,
       'input-status': status,
       ...rest
     } = Object.fromEntries(formInputData.entries());
+
+    // Copy in old column data if applicable
+    const newSubtasks = Object.entries(rest).map(([key, value]) => {
+      const subtaskId = key.split('-')[2];
+      const subtaskIdx = task.subtasks.findIndex((st) => st._id === subtaskId);
+
+      return subtaskIdx !== -1
+        ? { ...task.subtasks[subtaskIdx], title: value }
+        : { title: value };
+    });
+
     const newTask = {
-      title: name,
+      title,
       description,
       status,
-      subtasks: Object.values(rest).map((c) => ({
-        title: c,
-        isCompleted: false,
-      })),
+      subtasks: newSubtasks,
     };
 
-    const selectedColumn = activeBoard.columns.find((c) => c.name === status);
-    const columnId = selectedColumn?._id;
+    const { boardId, columnId, taskId } = selectTask;
 
-    // Send data to backend API
     try {
       const response = await fetch(
-        `http://${process.env.API_HOST}/api/v1/boards/${activeBoard._id}/${columnId}`,
+        `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
         {
-          method: 'POST',
+          method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(newTask),
         }
@@ -97,11 +131,17 @@ function TaskAdd(props: ElemProps): JSX.Element {
 
       if (!response.ok) throw new Error('Error: Failed to submit');
 
-      // Update app state with new board
       const content = await response.json();
-      modalDispatch({ type: 'close-modal', modalType: 'task-add' });
-      return dispatch({ type: 'add-task', payload: content });
+
+      dispatch({
+        type: 'edit-task',
+        payload: { id: selectTask, data: content.data.data },
+      });
+      return modalDispatch({ type: 'modal-close', modalType: undefined });
+      // DEBUG:  Infinite loop on submission, think related to viewtask still being visible and context values updating.
+      // TODO:  Set modal closed - need to figure out duel modals first before implementing.
     } catch (error) {
+      // TODO:  Need to make an error modal or something to show failure.
       return console.log(error);
     }
   };
@@ -129,6 +169,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
     }
   };
 
+  // DEBUG:  Key is the issue.
   const subTasks = Object.keys(formData['input-group-1']).map((key) => {
     const obj = formData['input-group-1'][key];
     return (
@@ -147,7 +188,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={submitHandler}>
-        <p className={styles.form__title}>Add New Task</p>
+        <p className={styles.form__title}>Edit Task</p>
         <div className={styles.form__group}>
           <p>Title</p>
           <InputText
@@ -183,18 +224,18 @@ function TaskAdd(props: ElemProps): JSX.Element {
         <div className={styles.form__group}>
           <p>Status</p>
           <Dropdown
-            name="input-status"
+            name={formData['input-status'].inputName}
             currentListItem={formData['input-status'].value}
             listItems={formData['input-status'].statusArr}
             returnData={returnDataHandler}
           />
         </div>
-        <button type="submit" className={styles['form__btn-create-task']}>
-          Create Task
+        <button type="submit" className={styles['form__btn-save-form']}>
+          Save Changes
         </button>
       </form>
     </div>
   );
 }
 
-export default TaskAdd;
+export default TaskEdit;

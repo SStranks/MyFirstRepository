@@ -1,23 +1,25 @@
-import BoardDelete from '#Components/forms/board-del/BoardDel';
-import BoardEdit from '#Components/forms/board-edit/BoardEdit';
-import TaskAdd from '#Components/forms/task-add/TaskAdd';
-import Modal from '#Components/modal/Modal';
+// import BoardDelete from '#Components/forms/board-del/BoardDel';
+// import BoardEdit from '#Components/forms/board-edit/BoardEdit';
+// import TaskAdd from '#Components/forms/task-add/TaskAdd';
+// import Modal from '#Components/modal/Modal';
+import RootModalDispatchContext from '#Context/RootModalContext';
 import IconAddTaskMobile from '#Svg/icon-add-task-mobile.svg';
 import IconEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import LogoDark from '#Svg/logo-dark.svg';
 import { Board } from '#Types/types';
-import { useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 import styles from './_Nav.module.scss';
 
 type ElemProps = {
   activeBoard: Board;
-  setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
+  // setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 function Nav(props: ElemProps): JSX.Element {
-  const { activeBoard, setActiveBoardId } = props;
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalForm, setModalForm] = useState('edit');
+  const { activeBoard } = props;
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [modalForm, setModalForm] = useState('edit');
+  const modalDispatch = useContext(RootModalDispatchContext);
   const boardOptionsRef = useRef<HTMLDivElement>(null);
 
   const boardMenuClickHandler = () => {
@@ -25,56 +27,65 @@ function Nav(props: ElemProps): JSX.Element {
   };
 
   const addTaskBtnClickHandler = () => {
-    setIsModalOpen(true);
-    setModalForm('add-task');
+    // setIsModalOpen(true);
+    // setModalForm('add-task');
+    const taskStatus = {
+      current: activeBoard?.columns[0]?.name,
+      statusArr: activeBoard?.columns?.map((c) => c.name),
+    };
+    modalDispatch({
+      type: 'open-modal',
+      modalType: 'task-add',
+      modalProps: { activeBoard, taskStatus },
+    });
   };
 
   const boardOptionsClickHandler = (e: React.MouseEvent) => {
     const element = e.target as Element;
     console.log(element, element.classList);
     if (element.innerHTML === 'Edit Board') {
-      setIsModalOpen(true);
+      // setIsModalOpen(true);
       boardOptionsRef.current?.classList.add('hidden');
-      setModalForm('edit-board');
+      // setModalForm('edit-board');
     }
     if (element.innerHTML === 'Delete Board') {
-      setIsModalOpen(true);
+      // setIsModalOpen(true);
       boardOptionsRef.current?.classList.add('hidden');
-      setModalForm('delete-board');
+      // setModalForm('delete-board');
     }
   };
 
   console.log('NAV', activeBoard);
 
-  const modalContent =
-    modalForm === 'edit-board' ? (
-      <BoardEdit setIsModalOpen={setIsModalOpen} activeBoard={activeBoard} />
-    ) : modalForm === 'delete-board' ? (
-      <BoardDelete
-        setIsModalOpen={setIsModalOpen}
-        activeBoardId={activeBoard._id}
-        setActiveBoardId={setActiveBoardId}
-      />
-    ) : (
-      <TaskAdd
-        activeBoard={activeBoard}
-        taskStatus={{
-          current: activeBoard?.columns[0]?.name,
-          statusArr: activeBoard?.columns?.map((c) => c.name),
-        }}
-        setIsModalOpen={setIsModalOpen}
-      />
-    );
+  // const modalContent =
+  //   modalForm === 'edit-board' ? (
+  //     <BoardEdit setIsModalOpen={setIsModalOpen} activeBoard={activeBoard} />
+  //   ) : modalForm === 'delete-board' ? (
+  //     <BoardDelete
+  //       setIsModalOpen={setIsModalOpen}
+  //       activeBoardId={activeBoard._id}
+  //       setActiveBoardId={setActiveBoardId}
+  //     />
+  //   ) : (
+  //     <TaskAdd
+  //       activeBoard={activeBoard}
+  //       taskStatus={{
+  //         current: activeBoard?.columns[0]?.name,
+  //         statusArr: activeBoard?.columns?.map((c) => c.name),
+  //       }}
+  //       setIsModalOpen={setIsModalOpen}
+  //     />
+  //   );
 
   return (
     <>
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <Modal
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           modalContent={modalContent}
         />
-      )}
+      )} */}
       <nav className={styles.navbar}>
         <div className={styles.navbar__logo}>
           <img src={LogoDark} className={styles.navbar__logo__img} alt="" />

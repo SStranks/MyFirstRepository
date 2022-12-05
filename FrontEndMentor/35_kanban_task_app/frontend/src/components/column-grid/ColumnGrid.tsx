@@ -2,8 +2,9 @@
 import Column from '#Components/column/Column';
 import TaskView from '#Components/forms/task-view/TaskView';
 import Modal from '#Components/modal/Modal';
+import RootModalDispatchContext from '#Context/RootModalContext';
 import { Board } from '#Types/types';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import styles from './_ColumnGrid.module.scss';
 
@@ -25,6 +26,7 @@ const newColumn = (
 
 function ColumnGrid(props: ElemProps): JSX.Element {
   const { boardData } = props;
+  const modalDispatch = useContext(RootModalDispatchContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectTask, setSelectTask] = useState({
     boardId: '',
@@ -32,7 +34,7 @@ function ColumnGrid(props: ElemProps): JSX.Element {
     taskId: '',
   });
 
-  console.log('COLUMN GRID RENDER', boardData);
+  console.log('COLUMN GRID RENDER', boardData, setSelectTask);
 
   const columns = boardData?.columns.map((el, i) => (
     <Column
@@ -51,10 +53,18 @@ function ColumnGrid(props: ElemProps): JSX.Element {
     const element = (e.target as HTMLElement).closest('[data-task-id]');
     if (element !== null) {
       const { columnId, taskId } = (element as HTMLElement).dataset;
-      if (taskId && columnId && boardData._id) {
-        setSelectTask({ taskId, columnId, boardId: boardData._id });
-      }
-      setIsModalOpen(true);
+      // if (taskId && columnId && boardData._id) {
+      //   setSelectTask({ taskId, columnId, boardId: boardData._id });
+      // }
+      // DEBUG:  Selecttask is not updated before sending to modaldispatch (due to old code logic);
+      const boardId = boardData._id;
+      modalDispatch({
+        type: 'open-modal',
+        modalType: 'task-view',
+        modalProps: { selectTask: { boardId, columnId, taskId } },
+      });
+      // NOTE:  Trying out new modal dispatch
+      // setIsModalOpen(true);
     }
   };
 

@@ -1,4 +1,5 @@
 import { AppDispatchContext } from '#Context/AppContext';
+import RootModalDispatchContext from '#Context/RootModalContext';
 import { useContext } from 'react';
 import styles from './_TaskDel.module.scss';
 
@@ -10,6 +11,9 @@ type ElemProps = {
 function TaskDelete(props: ElemProps): JSX.Element {
   const { id, setIsModalOpen } = props;
   const dispatch = useContext(AppDispatchContext);
+  const modalDispatch = useContext(RootModalDispatchContext);
+
+  console.log(setIsModalOpen);
 
   const deleteBtnClickHandler = () => {
     const { boardId, columnId, taskId } = id;
@@ -25,7 +29,7 @@ function TaskDelete(props: ElemProps): JSX.Element {
 
         if (!response.ok) throw new Error('Board not deleted');
 
-        setIsModalOpen(false);
+        modalDispatch({ type: 'close-all', modalType: undefined });
         dispatch({
           type: 'delete-task',
           payload: { id, data: { x: undefined } },
@@ -37,7 +41,7 @@ function TaskDelete(props: ElemProps): JSX.Element {
   };
 
   const cancelBtnClickHandler = () => {
-    setIsModalOpen(false);
+    modalDispatch({ type: 'close-modal', modalType: 'task-delete' });
   };
 
   return (

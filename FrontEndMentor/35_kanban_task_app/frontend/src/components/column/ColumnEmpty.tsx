@@ -6,7 +6,7 @@ function ColumnEmpty(): JSX.Element {
   const rootModalDispatch = useContext(RootModalDispatchContext);
   const newColumnBtnClickHandler = () => {
     console.log('COLUMN EMPTY', rootModalDispatch);
-    rootModalDispatch({ type: 'show-modal', modalType: 'From column empty' });
+    rootModalDispatch({ type: 'open-modal', modalType: 'board-delete' });
   };
 
   return (

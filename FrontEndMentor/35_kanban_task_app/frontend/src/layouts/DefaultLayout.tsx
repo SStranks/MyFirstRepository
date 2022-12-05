@@ -16,7 +16,7 @@ function DefaultLayout(props: ElemProps): JSX.Element {
     <div className={styles.container}>
       <Nav
         activeBoard={boardData.activeBoard}
-        setActiveBoardId={setActiveBoardId}
+        // setActiveBoardId={setActiveBoardId}
       />
       <div className={styles.container__subcontainer}>
         <Aside

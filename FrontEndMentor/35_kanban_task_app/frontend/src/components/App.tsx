@@ -79,28 +79,30 @@ function App(): JSX.Element {
   console.log('APP DISPATCH', rootModalDispatch);
 
   return (
-    <>
-      <RootModal setRootModalDispatch={setRootModalDispatch} />
-      <RootModalDispatchContext.Provider
-        value={rootModalDispatch as DispatchContextType}>
-        <AppDispatchContext.Provider value={dispatch}>
-          <AppStateContext.Provider value={state as StateContextType}>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Home
-                    boardData={data}
-                    activeBoardId={activeBoardId}
-                    setActiveBoardId={setActiveBoardId}
-                  />
-                }
-              />
-            </Routes>
-          </AppStateContext.Provider>
-        </AppDispatchContext.Provider>
-      </RootModalDispatchContext.Provider>
-    </>
+    <RootModalDispatchContext.Provider
+      value={rootModalDispatch as DispatchContextType}>
+      <AppDispatchContext.Provider value={dispatch}>
+        <AppStateContext.Provider value={state as StateContextType}>
+          <RootModal
+            setRootModalDispatch={setRootModalDispatch}
+            activeBoardId={activeBoardId}
+            setActiveBoardId={setActiveBoardId}
+          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  boardData={data}
+                  activeBoardId={activeBoardId}
+                  setActiveBoardId={setActiveBoardId}
+                />
+              }
+            />
+          </Routes>
+        </AppStateContext.Provider>
+      </AppDispatchContext.Provider>
+    </RootModalDispatchContext.Provider>
   );
 }
 
