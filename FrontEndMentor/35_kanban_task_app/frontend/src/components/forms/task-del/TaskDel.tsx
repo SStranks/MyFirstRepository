@@ -5,15 +5,12 @@ import styles from './_TaskDel.module.scss';
 
 type ElemProps = {
   id: { boardId: string; columnId: string; taskId: string };
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function TaskDelete(props: ElemProps): JSX.Element {
-  const { id, setIsModalOpen } = props;
+  const { id } = props;
   const dispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
-
-  console.log(setIsModalOpen);
 
   const deleteBtnClickHandler = () => {
     const { boardId, columnId, taskId } = id;

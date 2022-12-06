@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
-// import BoardDelete from '#Components/forms/board-del/BoardDel copy';
+import BoardAdd from '#Components/forms/board-add/BoardAdd';
+import BoardDelete from '#Components/forms/board-del/BoardDel';
+import BoardEdit from '#Components/forms/board-edit/BoardEdit';
 import TaskAdd from '#Components/forms/task-add/TaskAdd';
 import TaskDelete from '#Components/forms/task-del/TaskDel';
-import TaskEdit from '#Components/forms/task-edit/TaskEdit copy';
-import TaskView from '#Components/forms/task-view/TaskView copy';
+import TaskEdit from '#Components/forms/task-edit/TaskEdit';
+import TaskView from '#Components/forms/task-view/TaskView';
 import { ActionType } from '#Context/RootModalContext';
 import { useEffect, useReducer } from 'react';
 import ReactDOM from 'react-dom';
@@ -12,11 +14,13 @@ import styles from './_Modal.module.scss';
 const domNode = document.querySelector('#modal') as HTMLElement;
 
 const MODAL_COMPONENTS = {
-  // 'board-delete': BoardDelete,
   'task-add': TaskAdd,
   'task-view': TaskView,
   'task-edit': TaskEdit,
   'task-delete': TaskDelete,
+  'board-add': BoardAdd,
+  'board-edit': BoardEdit,
+  'board-delete': BoardDelete,
 };
 
 const ACTIONS = {

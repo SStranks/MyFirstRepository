@@ -35,9 +35,9 @@
   }
 
   &__menu {
+    position: relative;
     &__btn {
       position: relative;
-
       &::before {
         // Click area.
         content: '';
@@ -47,12 +47,12 @@
         width: 20px;
         height: 40px;
         transform: translate(-50%, -50%);
+        background-color: rgba(100, 100, 100, 0.2);
       }
     }
   }
 
   &__dropdown {
-    // TODO:  Z-Index against subtask background
     @include mx.body-l;
     position: absolute;
     right: 0;
@@ -66,7 +66,7 @@
     border-radius: v.$border-radius-dropdown-list;
     box-shadow: v.$box-shadow-2;
     transition: a.$Theme-transition-bg;
-    z-index: 10;
+    z-index: f.z('menu-dropdown');
 
     & > p {
       cursor: pointer;

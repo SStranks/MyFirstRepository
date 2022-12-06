@@ -5,8 +5,8 @@ import styles from './_Column.module.scss';
 function ColumnEmpty(): JSX.Element {
   const rootModalDispatch = useContext(RootModalDispatchContext);
   const newColumnBtnClickHandler = () => {
-    console.log('COLUMN EMPTY', rootModalDispatch);
-    rootModalDispatch({ type: 'open-modal', modalType: 'board-delete' });
+    // TODO:  Board-edit needs 'active board' props.
+    rootModalDispatch({ type: 'open-modal', modalType: 'board-edit' });
   };
 
   return (

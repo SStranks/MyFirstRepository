@@ -26,6 +26,10 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 // TODO:  // ✖  Need to make a loading spinner or animate the logo when awaiting.
 // TODO:  // ✖  Need to make a general useFetch/Axios hook.
 // TODO:  // ✖  Need to do 'alt' attributes and accessibility.
+// TODO:  // ✖  Need to tidy up types everywhere.
+// TODO:  // ✖  Need to rename dispatch/modalDispatch across all files. appDispatch/modalDispatch.
+// TODO:  // ✖  Need to see if we can pass props for form components instead of relying on context so much.
+// TODO:  // ✖  Need to clean up old modal file; imports and use.
 // TODO:  // ✖  Search for '// TODO:  // TEMP DEV:  // HACK:  // DEBUG:  // NOTE:  console.log etc at project finish and remove.
 
 function App(): JSX.Element {

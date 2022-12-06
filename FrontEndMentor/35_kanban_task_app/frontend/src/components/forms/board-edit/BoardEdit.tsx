@@ -1,6 +1,7 @@
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import { AppDispatchContext } from '#Context/AppContext';
+import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import { Board, NestedInputPropType } from '#Types/types';
 import {
@@ -21,7 +22,7 @@ type ReturnData = {
 };
 
 type ElemProps = {
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  // setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   activeBoard: Board;
 };
 
@@ -41,8 +42,9 @@ const genGroupInputs = (activeBoard: Board) => {
 
 // FUNCTION COMPONENT //
 function BoardEdit(props: ElemProps): JSX.Element {
-  const { setIsModalOpen, activeBoard } = props;
+  const { activeBoard } = props;
   const dispatch = useContext(AppDispatchContext);
+  const modalDispatch = useContext(RootModalDispatchContext);
   const [formData, setFormData] = useState({
     'input-title': {
       value: activeBoard.name,
@@ -111,7 +113,11 @@ function BoardEdit(props: ElemProps): JSX.Element {
         type: 'edit-board',
         payload: { id: { boardId: activeBoard._id }, data: content.data.data },
       });
-      return setIsModalOpen(false);
+      return modalDispatch({
+        type: 'close-modal',
+        modalType: undefined,
+      });
+      // return setIsModalOpen(false);
     } catch (error) {
       // TODO:  Need to make an error modal or something to show failure.
       return console.log(error);

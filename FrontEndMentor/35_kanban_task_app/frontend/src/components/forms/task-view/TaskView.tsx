@@ -1,13 +1,11 @@
 import CheckBox from '#Components/custom/checkbox/CheckBox';
 import Dropdown from '#Components/custom/dropdown/Dropdown';
-import TaskEdit from '#Components/forms/task-edit/TaskEdit';
-// import Modal from '#Components/modal/Modal';
 import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
+import RootModalDispatchContext from '#Context/RootModalContext';
 import IconVerticalEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import { ReturnDataType, StateContextType, TaskType } from '#Types/types';
 import { updateInput, updateInputFromGroup } from '#Utils/formFunctions';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
-// import TaskDelete from '../task-del/TaskDel';
 import styles from './_TaskView.module.scss';
 
 type SelectTaskType = {
@@ -18,7 +16,6 @@ type SelectTaskType = {
 
 type ElemProps = {
   selectTask: SelectTaskType;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const extractData = (state: StateContextType, selectTask: SelectTaskType) => {
@@ -62,9 +59,10 @@ const genSubtaskInputs = (task: TaskType) => {
 };
 
 function TaskView(props: ElemProps): JSX.Element {
-  const { selectTask, setIsModalOpen } = props;
+  const { selectTask } = props;
   const state = useContext(AppStateContext);
   const dispatch = useContext(AppDispatchContext);
+  const modalDispatch = useContext(RootModalDispatchContext);
   const { task, columnList } = extractData(state, selectTask);
   const [formData, setFormData] = useState({
     'input-group-subtasks': { ...genSubtaskInputs(task) },
@@ -74,16 +72,16 @@ function TaskView(props: ElemProps): JSX.Element {
       inputName: 'input-status',
     },
   });
-  const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  console.log('TASK VIEW', formData);
+  console.log('TASK VIEW', formData, dispatch);
 
   // Ensures that useEffect cleanup doesn't submit data back to App state if returnDataHandler is changing this components state.
   const isFormUpdating = useRef(false);
 
   useEffect(() => {
-    isFormUpdating.current = false;
+    // DEBUG:  Causes infinite loop here; if requried, might have to switch to using state.
+    // isFormUpdating.current = false;
     return () => {
       if (!isFormUpdating.current) {
         console.log('TASKVIEW DISPATCH', selectTask, formData);
@@ -153,11 +151,21 @@ function TaskView(props: ElemProps): JSX.Element {
     console.log(element);
     if (element.innerHTML === 'Edit Task') {
       isFormUpdating.current = true;
-      setMenuOpen(true);
+      menuRef.current?.classList.add('hidden');
+      modalDispatch({
+        type: 'open-modal',
+        modalType: 'task-edit',
+        modalProps: { task, selectTask, columnList },
+      });
     }
     if (element.innerHTML === 'Delete Task') {
       isFormUpdating.current = true;
-      setMenuOpen(true);
+      menuRef.current?.classList.add('hidden');
+      modalDispatch({
+        type: 'open-modal',
+        modalType: 'task-delete',
+        modalProps: { id: selectTask },
+      });
     }
   };
 
@@ -179,61 +187,45 @@ function TaskView(props: ElemProps): JSX.Element {
     )
   );
 
-  // TODO:  Need to figure out task delete/task edit modals thing - this is currently hardcoded.
   return (
-    <>
-      {menuOpen && (
-        <TaskEdit
-          task={task}
-          selectTask={selectTask}
-          columnList={columnList}
-          setIsModalOpen={setIsModalOpen}
-        />
-      )}
-      {/* {menuOpen && (
-        <TaskDelete id={selectTask} setIsModalOpen={setIsModalOpen} />
-      )} */}
-      <form className={styles.container} id="form-1">
-        <div className={styles['task-view']}>
-          <div className={styles['task-view__header']}>
-            <p>{task.title}</p>
-            <div className={styles['task-view__menu']}>
-              <button
-                type="button"
-                className={styles['task-view__menu__btn']}
-                onClick={menuBtnClickHandler}>
-                <img src={IconVerticalEllipsis} alt="" />
-              </button>
-              <div
-                className={`${styles['task-view__dropdown']} hidden`}
-                ref={menuRef}
-                onClickCapture={menuClickCaptureHandler}>
-                <p>Edit Task</p>
-                <p>Delete Task</p>
-              </div>
+    <form className={styles.container} id="form-1">
+      <div className={styles['task-view']}>
+        <div className={styles['task-view__header']}>
+          <p>{task.title}</p>
+          <div className={styles['task-view__menu']}>
+            <button
+              type="button"
+              className={styles['task-view__menu__btn']}
+              onClick={menuBtnClickHandler}>
+              <img src={IconVerticalEllipsis} alt="" />
+            </button>
+            <div
+              className={`${styles['task-view__dropdown']} hidden`}
+              ref={menuRef}
+              onClickCapture={menuClickCaptureHandler}>
+              <p>Edit Task</p>
+              <p>Delete Task</p>
             </div>
-          </div>
-          <p className={styles['task-view__description']}>{task.description}</p>
-          <div>
-            <p className={styles['task-view__sub-tasks-title']}>
-              Subtasks ({tasksComplete} of {task.subtasks.length})
-            </p>
-            <div className={styles['task-view__sub-tasks']}>
-              {subtasksElems}
-            </div>
-          </div>
-          <div className={styles['task-view__status']}>
-            <p>Current Status</p>
-            <Dropdown
-              name="input-status"
-              currentListItem={formData['input-status'].value}
-              listItems={columnList}
-              returnData={returnDataHandler}
-            />
           </div>
         </div>
-      </form>
-    </>
+        <p className={styles['task-view__description']}>{task.description}</p>
+        <div>
+          <p className={styles['task-view__sub-tasks-title']}>
+            Subtasks ({tasksComplete} of {task.subtasks.length})
+          </p>
+          <div className={styles['task-view__sub-tasks']}>{subtasksElems}</div>
+        </div>
+        <div className={styles['task-view__status']}>
+          <p>Current Status</p>
+          <Dropdown
+            name="input-status"
+            currentListItem={formData['input-status'].value}
+            listItems={columnList}
+            returnData={returnDataHandler}
+          />
+        </div>
+      </div>
+    </form>
   );
 }
 

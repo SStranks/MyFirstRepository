@@ -74,6 +74,7 @@ const deleteTask = (state: StateContextType, payload: PayLoadType) => {
 };
 
 const addBoard = (state: StateContextType, payload: PayLoadType) => {
+  console.log('ADDBOARD REDUCER', state, payload);
   const newBoard = payload as unknown;
   const prevBoards = state.boards;
   prevBoards.push(newBoard as Board);

@@ -1,7 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 import Column from '#Components/column/Column';
-import TaskView from '#Components/forms/task-view/TaskView';
-import Modal from '#Components/modal/Modal';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import { Board } from '#Types/types';
 import { useContext, useState } from 'react';
@@ -27,14 +25,13 @@ const newColumn = (
 function ColumnGrid(props: ElemProps): JSX.Element {
   const { boardData } = props;
   const modalDispatch = useContext(RootModalDispatchContext);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectTask, setSelectTask] = useState({
     boardId: '',
     columnId: '',
     taskId: '',
   });
 
-  console.log('COLUMN GRID RENDER', boardData, setSelectTask);
+  console.log('COLUMN GRID RENDER', boardData, setSelectTask, selectTask);
 
   const columns = boardData?.columns.map((el, i) => (
     <Column
@@ -63,27 +60,14 @@ function ColumnGrid(props: ElemProps): JSX.Element {
         modalType: 'task-view',
         modalProps: { selectTask: { boardId, columnId, taskId } },
       });
-      // NOTE:  Trying out new modal dispatch
-      // setIsModalOpen(true);
     }
   };
 
   return (
-    <>
-      {isModalOpen && (
-        <Modal
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          modalContent={
-            <TaskView selectTask={selectTask} setIsModalOpen={setIsModalOpen} />
-          }
-        />
-      )}
-      <div className={styles['column-grid']} onClickCapture={onClickHandler}>
-        {columns}
-        {boardData && newColumn}
-      </div>
-    </>
+    <div className={styles['column-grid']} onClickCapture={onClickHandler}>
+      {columns}
+      {boardData && newColumn}
+    </div>
   );
 }
 

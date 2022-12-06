@@ -3,6 +3,7 @@ import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
 import { AppDispatchContext } from '#Context/AppContext';
+import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import { NestedInputPropType, TaskType } from '#Types/types';
 import {
@@ -32,7 +33,6 @@ type ElemProps = {
   task: TaskType;
   selectTask: SelectTaskType;
   columnList: string[];
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const genGroupInputs = (task: TaskType) => {
@@ -52,8 +52,9 @@ const genGroupInputs = (task: TaskType) => {
 
 // FUNCTION COMPONENT //
 function TaskEdit(props: ElemProps): JSX.Element {
-  const { task, selectTask, columnList, setIsModalOpen } = props;
+  const { task, selectTask, columnList } = props;
   const dispatch = useContext(AppDispatchContext);
+  const modalDispatch = useContext(RootModalDispatchContext);
   const [formData, setFormData] = useState({
     'input-title': {
       value: task.title,
@@ -131,14 +132,11 @@ function TaskEdit(props: ElemProps): JSX.Element {
 
       const content = await response.json();
 
-      // setIsModalOpen(false);
-      return dispatch({
+      dispatch({
         type: 'edit-task',
         payload: { id: selectTask, data: content.data.data },
       });
-      // DEBUG:  Infinite loop on submission, think related to viewtask still being visible and context values updating.
-      // TODO:  Set modal closed - need to figure out duel modals first before implementing.
-      return console.log(setIsModalOpen);
+      return modalDispatch({ type: 'close-all', modalType: undefined });
     } catch (error) {
       // TODO:  Need to make an error modal or something to show failure.
       return console.log(error);

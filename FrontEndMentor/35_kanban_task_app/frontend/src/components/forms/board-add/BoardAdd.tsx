@@ -1,6 +1,7 @@
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import { AppDispatchContext } from '#Context/AppContext';
+import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import {
   addInputToGroup,
@@ -25,6 +26,7 @@ const INITIAL_COLUMNS = ['Todo', 'Doing', 'Done'];
 // FUNCTION COMPONENT //
 function BoardAdd(): JSX.Element {
   const dispatch = useContext(AppDispatchContext);
+  const modalDispatch = useContext(RootModalDispatchContext);
   const genId = useComponentIdGenerator();
   const [formData, setFormData] = useState({
     'input-title': { value: '', error: false, inputName: 'input-title' },
@@ -65,8 +67,11 @@ function BoardAdd(): JSX.Element {
 
       // Update app state with new board
       const content = await response.json();
-      // NOTE:  Need to add in modal close here.
-      return dispatch({ type: 'add-board', payload: content.data.boards });
+      modalDispatch({
+        type: 'close-modal',
+        modalType: 'board-add',
+      });
+      return dispatch({ type: 'add-board', payload: content.data.data });
     } catch (error) {
       // TODO:  Need to make an error modal or something to show failure.
       return console.log(error);

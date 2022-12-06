@@ -53,7 +53,8 @@ const createOne = <T>(Model: Model<T>) =>
 
 const deleteOne = <T>(Model: Model<T>) =>
   catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const doc = await Model.findByIdAndDelete(req.params.id);
+    // TODO:  This isn't generic - need to account for different IDs
+    const doc = await Model.findByIdAndDelete(req.params.boardId);
 
     if (!doc)
       return next(new AppError('No document found with matching ID', 404));

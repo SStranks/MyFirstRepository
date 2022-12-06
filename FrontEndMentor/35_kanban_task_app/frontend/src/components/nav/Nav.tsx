@@ -1,7 +1,3 @@
-// import BoardDelete from '#Components/forms/board-del/BoardDel';
-// import BoardEdit from '#Components/forms/board-edit/BoardEdit';
-// import TaskAdd from '#Components/forms/task-add/TaskAdd';
-// import Modal from '#Components/modal/Modal';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import IconAddTaskMobile from '#Svg/icon-add-task-mobile.svg';
 import IconEllipsis from '#Svg/icon-vertical-ellipsis.svg';
@@ -12,13 +8,11 @@ import styles from './_Nav.module.scss';
 
 type ElemProps = {
   activeBoard: Board;
-  // setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
+  setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 function Nav(props: ElemProps): JSX.Element {
-  const { activeBoard } = props;
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [modalForm, setModalForm] = useState('edit');
+  const { activeBoard, setActiveBoardId } = props;
   const modalDispatch = useContext(RootModalDispatchContext);
   const boardOptionsRef = useRef<HTMLDivElement>(null);
 
@@ -27,8 +21,6 @@ function Nav(props: ElemProps): JSX.Element {
   };
 
   const addTaskBtnClickHandler = () => {
-    // setIsModalOpen(true);
-    // setModalForm('add-task');
     const taskStatus = {
       current: activeBoard?.columns[0]?.name,
       statusArr: activeBoard?.columns?.map((c) => c.name),
@@ -44,80 +36,55 @@ function Nav(props: ElemProps): JSX.Element {
     const element = e.target as Element;
     console.log(element, element.classList);
     if (element.innerHTML === 'Edit Board') {
-      // setIsModalOpen(true);
       boardOptionsRef.current?.classList.add('hidden');
-      // setModalForm('edit-board');
+      modalDispatch({
+        type: 'open-modal',
+        modalType: 'board-edit',
+        modalProps: { activeBoard },
+      });
     }
     if (element.innerHTML === 'Delete Board') {
-      // setIsModalOpen(true);
       boardOptionsRef.current?.classList.add('hidden');
-      // setModalForm('delete-board');
+      modalDispatch({
+        type: 'open-modal',
+        modalType: 'board-delete',
+        modalProps: { activeBoardId: activeBoard._id, setActiveBoardId },
+      });
     }
   };
 
-  console.log('NAV', activeBoard);
-
-  // const modalContent =
-  //   modalForm === 'edit-board' ? (
-  //     <BoardEdit setIsModalOpen={setIsModalOpen} activeBoard={activeBoard} />
-  //   ) : modalForm === 'delete-board' ? (
-  //     <BoardDelete
-  //       setIsModalOpen={setIsModalOpen}
-  //       activeBoardId={activeBoard._id}
-  //       setActiveBoardId={setActiveBoardId}
-  //     />
-  //   ) : (
-  //     <TaskAdd
-  //       activeBoard={activeBoard}
-  //       taskStatus={{
-  //         current: activeBoard?.columns[0]?.name,
-  //         statusArr: activeBoard?.columns?.map((c) => c.name),
-  //       }}
-  //       setIsModalOpen={setIsModalOpen}
-  //     />
-  //   );
-
   return (
-    <>
-      {/* {isModalOpen && (
-        <Modal
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          modalContent={modalContent}
-        />
-      )} */}
-      <nav className={styles.navbar}>
-        <div className={styles.navbar__logo}>
-          <img src={LogoDark} className={styles.navbar__logo__img} alt="" />
-        </div>
-        <div className={styles.navbar__head}>
-          <h1 className={styles.navbar__title}>{activeBoard?.name}</h1>
-          <div className={styles.navbar__controls}>
-            <button
-              type="button"
-              className={styles.navbar__controls__addTask}
-              onClick={addTaskBtnClickHandler}
-              disabled={activeBoard?.columns.length === 0}>
-              <img src={IconAddTaskMobile} alt="" />
-              <span>+ Add New Task</span>
-            </button>
-            <button
-              type="button"
-              onClick={boardMenuClickHandler}
-              className={styles.navbar__controls__boardOptions}>
-              <img src={IconEllipsis} alt="" />
-            </button>
-            <div
-              className={`${styles.navbar__controls__dropdownMenu} hidden`}
-              onClickCapture={boardOptionsClickHandler}
-              ref={boardOptionsRef}>
-              <p>Edit Board</p>
-              <p>Delete Board</p>
-            </div>
+    <nav className={styles.navbar}>
+      <div className={styles.navbar__logo}>
+        <img src={LogoDark} className={styles.navbar__logo__img} alt="" />
+      </div>
+      <div className={styles.navbar__head}>
+        <h1 className={styles.navbar__title}>{activeBoard?.name}</h1>
+        <div className={styles.navbar__controls}>
+          <button
+            type="button"
+            className={styles.navbar__controls__addTask}
+            onClick={addTaskBtnClickHandler}
+            disabled={activeBoard?.columns.length === 0}>
+            <img src={IconAddTaskMobile} alt="" />
+            <span>+ Add New Task</span>
+          </button>
+          <button
+            type="button"
+            onClick={boardMenuClickHandler}
+            className={styles.navbar__controls__boardOptions}>
+            <img src={IconEllipsis} alt="" />
+          </button>
+          <div
+            className={`${styles.navbar__controls__dropdownMenu} hidden`}
+            onClickCapture={boardOptionsClickHandler}
+            ref={boardOptionsRef}>
+            <p>Edit Board</p>
+            <p>Delete Board</p>
           </div>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 }
 

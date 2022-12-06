@@ -1,17 +1,20 @@
 import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
+import RootModalDispatchContext from '#Context/RootModalContext';
 import { useContext } from 'react';
 import styles from './_BoardDel.module.scss';
 
 type ElemProps = {
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 function BoardDelete(props: ElemProps): JSX.Element {
-  const { setIsModalOpen, activeBoardId, setActiveBoardId } = props;
+  const { activeBoardId, setActiveBoardId } = props;
   const dispatch = useContext(AppDispatchContext);
+  const modalDispatch = useContext(RootModalDispatchContext);
   const state = useContext(AppStateContext);
+
+  console.log('BOARD DEL PROPS', activeBoardId, setActiveBoardId);
 
   const deleteBtnClickHandler = () => {
     (async () => {
@@ -28,7 +31,7 @@ function BoardDelete(props: ElemProps): JSX.Element {
           payload: { id: { boardId: activeBoardId }, data: { x: undefined } },
         });
         setActiveBoardId(state.boards[state.boards.length - 2]._id);
-        setIsModalOpen(false);
+        modalDispatch({ type: 'close-modal', modalType: undefined });
       } catch (error) {
         console.log(error);
       }
@@ -36,7 +39,7 @@ function BoardDelete(props: ElemProps): JSX.Element {
   };
 
   const cancelBtnClickHandler = () => {
-    setIsModalOpen(false);
+    modalDispatch({ type: 'close-modal', modalType: undefined });
   };
 
   return (
