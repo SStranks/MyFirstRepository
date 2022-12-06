@@ -27,6 +27,7 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 // TODO:  // ✖  Need to make a general useFetch/Axios hook.
 // TODO:  // ✖  Need to do 'alt' attributes and accessibility.
 // TODO:  // ✖  Need to tidy up types everywhere.
+// TODO:  // ✖  Need to make a 'click area' mixin for elements; take into account content area and scale click area by %.
 // TODO:  // ✖  Need to rename dispatch/modalDispatch across all files. appDispatch/modalDispatch.
 // TODO:  // ✖  Need to see if we can pass props for form components instead of relying on context so much.
 // TODO:  // ✖  Need to clean up old modal file; imports and use.
@@ -80,8 +81,6 @@ function App(): JSX.Element {
   console.log('APP', boards, activeBoard);
   const data = { boards, activeBoard };
 
-  console.log('APP DISPATCH', rootModalDispatch);
-
   return (
     <RootModalDispatchContext.Provider
       value={rootModalDispatch as DispatchContextType}>
@@ -89,8 +88,8 @@ function App(): JSX.Element {
         <AppStateContext.Provider value={state as StateContextType}>
           <RootModal
             setRootModalDispatch={setRootModalDispatch}
-            activeBoardId={activeBoardId}
-            setActiveBoardId={setActiveBoardId}
+            // activeBoardId={activeBoardId}
+            // setActiveBoardId={setActiveBoardId}
           />
           <Routes>
             <Route

@@ -17,4 +17,17 @@
   // pointer-events: none;
 }
 
+.animation-fade-in {
+  animation: fadein 0.5s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 // NOTE:  To accommodate increasing height of modal content forms (when user adds additional input fields), whilst respecting the flex center of the modal, the modal content has an additional wrapping container using auto margins to center and then form content has its own margin definition.

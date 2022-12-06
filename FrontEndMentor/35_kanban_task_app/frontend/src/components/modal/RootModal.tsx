@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 import BoardAdd from '#Components/forms/board-add/BoardAdd';
 import BoardDelete from '#Components/forms/board-del/BoardDel';
@@ -7,7 +8,7 @@ import TaskDelete from '#Components/forms/task-del/TaskDel';
 import TaskEdit from '#Components/forms/task-edit/TaskEdit';
 import TaskView from '#Components/forms/task-view/TaskView';
 import { ActionType } from '#Context/RootModalContext';
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './_Modal.module.scss';
 
@@ -31,28 +32,31 @@ const ACTIONS = {
 
 const initialState = {
   modalType: [],
-  modalProps: {},
+  modalProps: [],
 };
 
 type StateType = {
   modalType: string[];
-  modalProps: { [key: string]: { [key: string]: unknown } };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  modalProps: { [key: string]: any }[];
 };
 
 const openModal = (state: StateType, action: ActionType) => {
   console.log('ROOTMODAL REDUCER: HELLO!', action);
   const newState = { ...state };
   newState.modalType?.push(action.modalType as string);
-  newState.modalProps[action.modalType as string] =
-    action.modalProps as StateType['modalProps'];
-  console.log(newState);
+  if (action.modalProps) {
+    newState.modalProps?.push(action.modalProps);
+  } else {
+    newState.modalProps?.push([]);
+  }
   return newState;
 };
 
-const closeModal = (state: StateType, action: ActionType) => {
+const closeModal = (state: StateType) => {
   const newState = { ...state };
   newState.modalType?.pop();
-  delete newState.modalProps[action.modalType as string];
+  newState.modalProps?.pop();
   return newState;
 };
 
@@ -67,12 +71,12 @@ const reducer = (
       return openModal(state, action);
     }
     case ACTIONS.CLOSEMODAL: {
-      return closeModal(state, action);
+      return closeModal(state);
     }
     case ACTIONS.CLOSEALL: {
       return {
         modalType: [],
-        modalProps: {},
+        modalProps: [],
       };
     }
     default: {
@@ -85,22 +89,49 @@ type ElemProps = {
   setRootModalDispatch: React.Dispatch<
     React.SetStateAction<React.Dispatch<ActionType>>
   >;
-  activeBoardId: string;
-  setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 function RootModal(props: ElemProps): JSX.Element | null {
-  console.log('START', initialState);
-
-  const { setRootModalDispatch, activeBoardId, setActiveBoardId } = props;
+  const { setRootModalDispatch } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  console.log(state, initialState, activeBoardId, setActiveBoardId);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Lift dispatch to App component
     setRootModalDispatch(() => dispatch);
   }, [setRootModalDispatch]);
+
+  useEffect(() => {
+    const { current } = modalRef;
+    // On click of modal background; close modal.
+    const clickHandler = (e: MouseEvent) => {
+      return (
+        e.target === current &&
+        dispatch({
+          type: 'close-modal',
+          modalType: undefined,
+        })
+      );
+    };
+    // On press of ESC key; close modal.
+    const keyHandler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        dispatch({
+          type: 'close-modal',
+          modalType: undefined,
+        });
+      }
+    };
+
+    current?.addEventListener('click', clickHandler);
+    document?.addEventListener('keyup', keyHandler);
+
+    return () => {
+      current?.removeEventListener('click', clickHandler);
+      current?.removeEventListener('keyup', keyHandler);
+      // document.querySelector('#root')?.removeAttribute('inert');
+    };
+  }, []);
 
   // eslint-disable-next-line unicorn/no-null
   if (state.modalType.length <= 0) return null;
@@ -108,15 +139,26 @@ function RootModal(props: ElemProps): JSX.Element | null {
   const activeComponents = state.modalType.map((el, i) => {
     const ModalComponent =
       MODAL_COMPONENTS[el as keyof typeof MODAL_COMPONENTS];
-    const modalProps = state.modalProps[el as keyof typeof MODAL_COMPONENTS];
-    // eslint-disable-next-line react/no-array-index-key, @typescript-eslint/no-explicit-any
-    return <ModalComponent {...(modalProps as any)} key={i} />;
+    const modalProps = state.modalProps[i];
+    // const modalProps = state.modalProps[el as keyof typeof MODAL_COMPONENTS];
+    return (
+      // eslint-disable-next-line react/no-array-index-key, @typescript-eslint/no-explicit-any
+      <div className={styles['animation-fade-in']} key={i}>
+        <ModalComponent
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          {...(modalProps as any)}
+          // key={i}
+        />
+      </div>
+    );
   });
 
   console.log(activeComponents);
 
   return ReactDOM.createPortal(
-    <div className={styles.container}>{activeComponents}</div>,
+    <div className={styles.container} ref={modalRef}>
+      {activeComponents[activeComponents.length - 1]}
+    </div>,
     domNode
   );
 }

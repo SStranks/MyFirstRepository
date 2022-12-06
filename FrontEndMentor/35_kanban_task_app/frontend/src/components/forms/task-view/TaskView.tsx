@@ -19,7 +19,8 @@ type ElemProps = {
 };
 
 const extractData = (state: StateContextType, selectTask: SelectTaskType) => {
-  console.log('TASKVIEW ERR', state, selectTask);
+  console.log('TASKVIEW EXTRACT DATA');
+  // console.log('TASKVIEW ERR', state, selectTask);
   const board = state.boards.find((el) => el._id === selectTask.boardId);
   const columnList = board?.columns.map((el) => el.name);
   const column = board?.columns.find((el) => el._id === selectTask.columnId);
@@ -74,7 +75,8 @@ function TaskView(props: ElemProps): JSX.Element {
   });
   const menuRef = useRef<HTMLDivElement>(null);
 
-  console.log('TASK VIEW', formData, dispatch);
+  console.log('TASK VIEW: MAIN', dispatch);
+  // console.log('TASK VIEW', formData, dispatch);
 
   // Ensures that useEffect cleanup doesn't submit data back to App state if returnDataHandler is changing this components state.
   const isFormUpdating = useRef(false);
@@ -97,9 +99,7 @@ function TaskView(props: ElemProps): JSX.Element {
                 })
               ),
             };
-
             const { boardId, columnId, taskId } = selectTask;
-
             const response = await fetch(
               `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
               {
@@ -108,9 +108,7 @@ function TaskView(props: ElemProps): JSX.Element {
                 body: JSON.stringify(newTask),
               }
             );
-
             if (!response.ok) throw new Error('Failed to submit');
-
             return dispatch({
               type: 'update-task',
               payload: { id: selectTask, data: formData },
@@ -148,7 +146,6 @@ function TaskView(props: ElemProps): JSX.Element {
 
   const menuClickCaptureHandler = (e: React.MouseEvent) => {
     const element = e.target as Element;
-    console.log(element);
     if (element.innerHTML === 'Edit Task') {
       isFormUpdating.current = true;
       menuRef.current?.classList.add('hidden');
