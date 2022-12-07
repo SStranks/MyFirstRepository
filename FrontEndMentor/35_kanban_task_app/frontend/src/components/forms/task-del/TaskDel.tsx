@@ -38,7 +38,7 @@ function TaskDelete(props: ElemProps): JSX.Element {
   };
 
   const cancelBtnClickHandler = () => {
-    modalDispatch({ type: 'close-modal', modalType: 'task-delete' });
+    modalDispatch({ type: 'close-modal' });
   };
 
   return (

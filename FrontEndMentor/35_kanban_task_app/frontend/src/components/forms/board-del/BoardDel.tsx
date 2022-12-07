@@ -14,8 +14,6 @@ function BoardDelete(props: ElemProps): JSX.Element {
   const modalDispatch = useContext(RootModalDispatchContext);
   const state = useContext(AppStateContext);
 
-  console.log('BOARD DEL PROPS', activeBoardId, setActiveBoardId);
-
   const deleteBtnClickHandler = () => {
     (async () => {
       try {
@@ -31,7 +29,7 @@ function BoardDelete(props: ElemProps): JSX.Element {
           payload: { id: { boardId: activeBoardId }, data: { x: undefined } },
         });
         setActiveBoardId(state.boards[state.boards.length - 2]._id);
-        modalDispatch({ type: 'close-modal', modalType: undefined });
+        modalDispatch({ type: 'close-modal' });
       } catch (error) {
         console.log(error);
       }
@@ -39,7 +37,7 @@ function BoardDelete(props: ElemProps): JSX.Element {
   };
 
   const cancelBtnClickHandler = () => {
-    modalDispatch({ type: 'close-modal', modalType: undefined });
+    modalDispatch({ type: 'close-modal' });
   };
 
   return (

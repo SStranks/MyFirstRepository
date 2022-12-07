@@ -36,7 +36,6 @@ type ElemProps = {
 };
 
 const genGroupInputs = (task: TaskType) => {
-  console.log('task reducer', task);
   return task.subtasks.reduce((acc, cur) => {
     const key = `input-subtask-${cur._id}`;
     acc[key] = {
@@ -77,8 +76,6 @@ function TaskEdit(props: ElemProps): JSX.Element {
     },
   });
   const genId = useComponentIdGenerator();
-
-  console.log('TASKEDIT', formData);
 
   const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -21,6 +21,7 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 // TODO:  // ✖  Need to check backend - the response objects for each method, sending back board? task? can we unify all this?
 // TODO:  // ✖  Need to solve if task is moved to another column, change it on the backend too.
 // TODO:  // ✖  Need to add functionality for 'new column' button.
+// TODO:  // ✖  Need to add functionality for drag and drop.
 // TODO:  // ✖  Need to tidy up/refactor forms; contain a lot of similar logic that could be extracted.
 // TODO:  // ✖  Need to make an error handling class for backend interaction failures.
 // TODO:  // ✖  Need to make a loading spinner or animate the logo when awaiting.
@@ -38,7 +39,7 @@ function App(): JSX.Element {
   const [rootModalDispatch, setRootModalDispatch] = useState({});
   const [activeBoardId, setActiveBoardId] = useState<string>('');
 
-  console.log('APP STATE', state, activeBoardId);
+  console.log('APP RENDER');
 
   useEffect(() => {
     // Fetch data from backend
@@ -78,7 +79,6 @@ function App(): JSX.Element {
     (item) => item._id === activeBoardId
   ) as Board;
 
-  console.log('APP', boards, activeBoard);
   const data = { boards, activeBoard };
 
   return (

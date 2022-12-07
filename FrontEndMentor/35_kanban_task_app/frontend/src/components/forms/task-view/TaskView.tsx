@@ -14,13 +14,8 @@ type SelectTaskType = {
   taskId: string;
 };
 
-type ElemProps = {
-  selectTask: SelectTaskType;
-};
-
 const extractData = (state: StateContextType, selectTask: SelectTaskType) => {
   console.log('TASKVIEW EXTRACT DATA');
-  // console.log('TASKVIEW ERR', state, selectTask);
   const board = state.boards.find((el) => el._id === selectTask.boardId);
   const columnList = board?.columns.map((el) => el.name);
   const column = board?.columns.find((el) => el._id === selectTask.columnId);
@@ -59,6 +54,10 @@ const genSubtaskInputs = (task: TaskType) => {
   }, {} as SubtaskType);
 };
 
+type ElemProps = {
+  selectTask: SelectTaskType;
+};
+
 function TaskView(props: ElemProps): JSX.Element {
   const { selectTask } = props;
   const state = useContext(AppStateContext);
@@ -74,9 +73,6 @@ function TaskView(props: ElemProps): JSX.Element {
     },
   });
   const menuRef = useRef<HTMLDivElement>(null);
-
-  console.log('TASK VIEW: MAIN', dispatch);
-  // console.log('TASK VIEW', formData, dispatch);
 
   // Ensures that useEffect cleanup doesn't submit data back to App state if returnDataHandler is changing this components state.
   const isFormUpdating = useRef(false);
@@ -113,18 +109,11 @@ function TaskView(props: ElemProps): JSX.Element {
               type: 'update-task',
               payload: { id: selectTask, data: formData },
             });
-            // TODO:  Put dispatch and modal close in here.
           } catch (error) {
             return console.log(error);
           }
         })();
       }
-      // NOTE:  Does this still work? Changed to line above when working on task delete.
-      // if (!isFormUpdating.current) console.log('test');
-      // dispatch({
-      //   type: 'update-task',
-      //   payload: { id: selectTask, data: formData },
-      // });
     };
   });
 
@@ -132,7 +121,6 @@ function TaskView(props: ElemProps): JSX.Element {
     // Update form data; distinguish if return data is part of 'input-group' or a single input
     if (data.groupId) {
       isFormUpdating.current = true;
-      console.log('UPDATING', data);
       setFormData((prev) => updateInputFromGroup(data, prev));
     } else {
       isFormUpdating.current = true;
@@ -170,7 +158,6 @@ function TaskView(props: ElemProps): JSX.Element {
     (t) => t.value
   ).length;
 
-  // TODO:  Need to make keys unique here in case title is the same!
   const subtasksElems = Object.values(formData['input-group-subtasks']).map(
     (t) => (
       <CheckBox

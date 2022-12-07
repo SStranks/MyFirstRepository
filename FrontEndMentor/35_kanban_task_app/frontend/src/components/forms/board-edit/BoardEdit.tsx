@@ -21,11 +21,6 @@ type ReturnData = {
   groupId?: string;
 };
 
-type ElemProps = {
-  // setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  activeBoard: Board;
-};
-
 // TODO:  Also in task edit - there's a function in formfunctions this is based from, need to refactor all of it.
 const genGroupInputs = (activeBoard: Board) => {
   return activeBoard.columns.reduce((acc, cur) => {
@@ -38,6 +33,10 @@ const genGroupInputs = (activeBoard: Board) => {
     };
     return acc;
   }, {} as NestedInputPropType);
+};
+
+type ElemProps = {
+  activeBoard: Board;
 };
 
 // FUNCTION COMPONENT //
@@ -115,9 +114,7 @@ function BoardEdit(props: ElemProps): JSX.Element {
       });
       return modalDispatch({
         type: 'close-modal',
-        modalType: undefined,
       });
-      // return setIsModalOpen(false);
     } catch (error) {
       // TODO:  Need to make an error modal or something to show failure.
       return console.log(error);
@@ -137,8 +134,6 @@ function BoardEdit(props: ElemProps): JSX.Element {
       setFormData((prev) => updateInput(data, prev));
     }
   };
-
-  console.log('BOARD EDIT', formData);
 
   const deleteInputHandler = (data: ReturnData) => {
     // Update form data; distinguish if return data is part of an input-group or a single input

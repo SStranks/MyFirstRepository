@@ -69,7 +69,6 @@ function BoardAdd(): JSX.Element {
       const content = await response.json();
       modalDispatch({
         type: 'close-modal',
-        modalType: 'board-add',
       });
       return dispatch({ type: 'add-board', payload: content.data.data });
     } catch (error) {

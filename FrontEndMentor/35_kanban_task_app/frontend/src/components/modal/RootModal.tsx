@@ -109,7 +109,6 @@ function RootModal(props: ElemProps): JSX.Element | null {
         e.target === current &&
         dispatch({
           type: 'close-modal',
-          modalType: undefined,
         })
       );
     };
@@ -118,7 +117,6 @@ function RootModal(props: ElemProps): JSX.Element | null {
       if (e.key === 'Escape' || e.key === 'Esc') {
         dispatch({
           type: 'close-modal',
-          modalType: undefined,
         });
       }
     };

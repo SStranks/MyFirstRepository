@@ -34,7 +34,6 @@ function Nav(props: ElemProps): JSX.Element {
 
   const boardOptionsClickHandler = (e: React.MouseEvent) => {
     const element = e.target as Element;
-    console.log(element, element.classList);
     if (element.innerHTML === 'Edit Board') {
       boardOptionsRef.current?.classList.add('hidden');
       modalDispatch({

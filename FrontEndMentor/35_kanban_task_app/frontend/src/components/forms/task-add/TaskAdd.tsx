@@ -18,6 +18,8 @@ import {
 import { useContext, useState } from 'react';
 import styles from './_TaskAdd.module.scss';
 
+const INITIAL_SUBTASKS = ['', ''];
+
 type ReturnData = {
   inputName: string;
   value: string;
@@ -28,8 +30,6 @@ type ElemProps = {
   activeBoard: Board;
   taskStatus: { current: string; statusArr: string[] };
 };
-
-const INITIAL_SUBTASKS = ['', ''];
 
 // FUNCTION COMPONENT //
 function TaskAdd(props: ElemProps): JSX.Element {
@@ -99,7 +99,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
 
       // Update app state with new board
       const content = await response.json();
-      modalDispatch({ type: 'close-modal', modalType: 'task-add' });
+      modalDispatch({ type: 'close-modal' });
       return dispatch({ type: 'add-task', payload: content });
     } catch (error) {
       return console.log(error);
