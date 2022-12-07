@@ -1,5 +1,7 @@
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
+import { AppDispatchContext } from '#Context/AppContext';
+import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import {
   addInputToGroup,
@@ -10,7 +12,7 @@ import {
   updateInputFromGroup,
   validateInputs,
 } from '#Utils/formFunctions';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './_BoardAdd.module.scss';
 
 type ReturnData = {
@@ -23,13 +25,15 @@ const INITIAL_COLUMNS = ['Todo', 'Doing', 'Done'];
 
 // FUNCTION COMPONENT //
 function BoardAdd(): JSX.Element {
+  const dispatch = useContext(AppDispatchContext);
+  const modalDispatch = useContext(RootModalDispatchContext);
   const genId = useComponentIdGenerator();
   const [formData, setFormData] = useState({
     'input-title': { value: '', error: false, inputName: 'input-title' },
     'input-group-1': { ...genGroupInputs(INITIAL_COLUMNS, 'column') },
   });
 
-  const submitHandler = (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     // Check if each formData input is empty. If true, add a new object to newFormData.
     const newFormData = validateInputs(formData);
@@ -40,8 +44,37 @@ function BoardAdd(): JSX.Element {
       );
     }
     const formInputData = new FormData(e.target as HTMLFormElement);
-    const inputData = Object.fromEntries(formInputData.entries());
-    return console.log('FORM SUBMIT', inputData);
+    const { 'input-title': name, ...rest } = Object.fromEntries(
+      formInputData.entries()
+    );
+    // Format data according to schema
+    const newBoard = {
+      name,
+      columns: Object.values(rest).map((c) => ({ name: c })),
+    };
+    // Send data to backend API
+    try {
+      const response = await fetch(
+        `http://${process.env.API_HOST}/api/v1/boards`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newBoard),
+        }
+      );
+
+      if (!response.ok) throw new Error('Error: Failed to submit');
+
+      // Update app state with new board
+      const content = await response.json();
+      modalDispatch({
+        type: 'close-modal',
+      });
+      return dispatch({ type: 'add-board', payload: content.data.data });
+    } catch (error) {
+      // TODO:  Need to make an error modal or something to show failure.
+      return console.log(error);
+    }
   };
 
   const btnNewColumnClickHandler = () => {

@@ -82,6 +82,14 @@
   height: 100%;
   background-color: var(--thm-column-bg);
   border-radius: v.$border-radius-column-empty;
-  color: c.$col-1g;
   transition: a.$Theme-transition-bg;
+
+  &__btn {
+    padding: f.px2em(8);
+    color: c.$col-1g;
+
+    &:hover {
+      color: c.$col-1a;
+    }
+  }
 }

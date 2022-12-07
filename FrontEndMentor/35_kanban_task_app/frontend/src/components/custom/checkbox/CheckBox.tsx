@@ -1,31 +1,33 @@
 import IconCheck from '#Svg/icon-check.svg';
-import { useState } from 'react';
+import { ReturnDataType } from '#Types/types';
 import styles from './_CheckBox.module.scss';
 
 type ElemProps = {
   title: string;
   checked: boolean;
-  setTasksComplete: React.Dispatch<React.SetStateAction<number>>;
+  inputName: string;
+  groupId?: string;
+  returnData: (data: ReturnDataType) => void;
 };
 
 function CheckBox(props: ElemProps): JSX.Element {
-  const { title, checked, setTasksComplete } = props;
-  const [isChecked, setIsChecked] = useState(checked);
+  const { title, checked, inputName, groupId, returnData } = props;
 
-  const clickHandler = (e: React.MouseEvent<HTMLInputElement>) => {
-    setIsChecked(!isChecked);
-    setTasksComplete((prev) => {
-      return (e.target as HTMLInputElement).checked ? prev + 1 : prev - 1;
+  const changeHandler = (e: React.ChangeEvent) => {
+    returnData({
+      inputName,
+      groupId,
+      value: (e.target as HTMLInputElement).checked,
     });
   };
 
   return (
-    <label htmlFor={title} className={styles['custom-checkbox']}>
+    <label htmlFor={inputName} className={styles['custom-checkbox']}>
       <input
         type="checkbox"
-        id={title}
-        checked={isChecked}
-        onClick={clickHandler}
+        id={inputName}
+        checked={checked}
+        onChange={changeHandler}
       />
       <div className={styles['custom-checkbox__new-checkbox']}>
         <img

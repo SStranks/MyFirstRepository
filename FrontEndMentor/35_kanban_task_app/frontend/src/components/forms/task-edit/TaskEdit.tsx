@@ -2,18 +2,26 @@ import Dropdown from '#Components/custom/dropdown/Dropdown';
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
+import { AppDispatchContext } from '#Context/AppContext';
+import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import { NestedInputPropType, TaskType } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
   deleteInputSingle,
-  genGroupInputs,
   updateInput,
   updateInputFromGroup,
   validateInputs,
 } from '#Utils/formFunctions';
-import { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './_TaskEdit.module.scss';
+
+type SelectTaskType = {
+  boardId: string;
+  columnId: string;
+  taskId: string;
+};
 
 type ReturnData = {
   inputName: string;
@@ -22,33 +30,54 @@ type ReturnData = {
 };
 
 type ElemProps = {
-  taskTitle: string;
-  taskDescription?: string;
-  taskSubtasks: string[];
-  taskStatus: { current: string; statusArr: string[] };
+  task: TaskType;
+  selectTask: SelectTaskType;
+  columnList: string[];
+};
+
+const genGroupInputs = (task: TaskType) => {
+  return task.subtasks.reduce((acc, cur) => {
+    const key = `input-subtask-${cur._id}`;
+    acc[key] = {
+      value: cur.title,
+      error: false,
+      isCompleted: cur.isCompleted,
+      key,
+      inputName: `input-subtask-${cur._id}`,
+    };
+    return acc;
+  }, {} as NestedInputPropType);
 };
 
 // FUNCTION COMPONENT //
 function TaskEdit(props: ElemProps): JSX.Element {
-  const { taskTitle, taskDescription = '', taskSubtasks, taskStatus } = props;
+  const { task, selectTask, columnList } = props;
+  const dispatch = useContext(AppDispatchContext);
+  const modalDispatch = useContext(RootModalDispatchContext);
   const [formData, setFormData] = useState({
-    'input-title': { value: taskTitle, error: false, inputName: 'input-title' },
+    'input-title': {
+      value: task.title,
+      error: false,
+      inputName: 'input-title',
+    },
     'input-description': {
-      value: taskDescription,
+      value: task.description,
       error: false,
       inputName: 'input-description',
     },
     'input-status': {
-      value: taskStatus.current,
+      value: task.status,
       error: false,
-      statusArr: [...taskStatus.statusArr],
+      statusArr: columnList,
       inputName: 'input-status',
     },
-    'input-group-1': { ...genGroupInputs(taskSubtasks, 'subtask') },
+    'input-group-1': {
+      ...genGroupInputs(task),
+    },
   });
   const genId = useComponentIdGenerator();
 
-  const submitHandler = (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     // Check if each formData input is empty. If true, add a new object to newFormData.
     const newFormData = validateInputs(formData);
@@ -60,8 +89,55 @@ function TaskEdit(props: ElemProps): JSX.Element {
     }
     // All form inputs have been validated. Submit form data.
     const formInputData = new FormData(e.target as HTMLFormElement);
-    const inputData = Object.fromEntries(formInputData.entries());
-    return console.log('FORM SUBMIT', inputData);
+    const {
+      'input-title': title,
+      'input-description': description,
+      'input-status': status,
+      ...rest
+    } = Object.fromEntries(formInputData.entries());
+
+    // Copy in old column data if applicable
+    const newSubtasks = Object.entries(rest).map(([key, value]) => {
+      const subtaskId = key.split('-')[2];
+      const subtaskIdx = task.subtasks.findIndex((st) => st._id === subtaskId);
+
+      return subtaskIdx !== -1
+        ? { ...task.subtasks[subtaskIdx], title: value }
+        : { title: value };
+    });
+
+    const newTask = {
+      title,
+      description,
+      status,
+      subtasks: newSubtasks,
+    };
+
+    const { boardId, columnId, taskId } = selectTask;
+
+    try {
+      const response = await fetch(
+        `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newTask),
+        }
+      );
+
+      if (!response.ok) throw new Error('Error: Failed to submit');
+
+      const content = await response.json();
+
+      dispatch({
+        type: 'edit-task',
+        payload: { id: selectTask, data: content.data.data },
+      });
+      return modalDispatch({ type: 'close-all', modalType: undefined });
+    } catch (error) {
+      // TODO:  Need to make an error modal or something to show failure.
+      return console.log(error);
+    }
   };
 
   const btnNewSubtaskClickHandler = () => {
@@ -87,6 +163,7 @@ function TaskEdit(props: ElemProps): JSX.Element {
     }
   };
 
+  // DEBUG:  Key is the issue.
   const subTasks = Object.keys(formData['input-group-1']).map((key) => {
     const obj = formData['input-group-1'][key];
     return (
@@ -144,6 +221,7 @@ function TaskEdit(props: ElemProps): JSX.Element {
             name={formData['input-status'].inputName}
             currentListItem={formData['input-status'].value}
             listItems={formData['input-status'].statusArr}
+            returnData={returnDataHandler}
           />
         </div>
         <button type="submit" className={styles['form__btn-save-form']}>

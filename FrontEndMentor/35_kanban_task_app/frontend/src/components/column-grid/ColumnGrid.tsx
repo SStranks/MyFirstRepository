@@ -1,40 +1,41 @@
+/* eslint-disable no-underscore-dangle */
 import Column from '#Components/column/Column';
+import RootModalDispatchContext from '#Context/RootModalContext';
 // import Modal from '#Components/modal/Modal';
 import { Board } from '#Types/types';
 // import { useState } from 'react';
-
-// NOTE:  Temporary Dev: Testing out forms
-// import TaskView from '#Components/forms/task-view/TaskView';
-// import TaskAdd from '#Components/forms/task-add/TaskAdd';
-// import TaskEdit from '#Components/forms/task-edit/TaskEdit';
-// import BoardAdd from '#Components/forms/board-add/BoardAdd';
-// import BoardEdit from '#Components/forms/board-edit/BoardEdit';
-// import BoardDelete from '#Components/forms/board-del/BoardDel';
-// import TaskDelete from '#Components/forms/task-del/TaskDel';
+import { useContext } from 'react';
 
 import styles from './_ColumnGrid.module.scss';
+
+const emptyColumn = (
+  <Column
+    boardId=""
+    columnId=""
+    columnNum={0}
+    columnTitle=""
+    numOfTasks={0}
+    tasks={[]}
+    emptyCol
+  />
+);
 
 type ElemProps = {
   boardData: Board;
 };
 
-const newColumn = (
-  <Column columnNum={0} columnTitle="" numOfTasks={0} tasks={[]} emptyCol />
-);
-
 function ColumnGrid(props: ElemProps): JSX.Element {
   const { boardData } = props;
   // const [modalIsOpen, setModalIsOpen] = useState(false);
-  // HACK:  Temporary Test Area: Modal Form Components Styling
-  // const { title } = devDataJSON.boards[0].columns[1].tasks[5];
-  // const { description } = devDataJSON.boards[0].columns[1].tasks[5];
-  // const { subtasks } = devDataJSON.boards[0].columns[1].tasks[5];
+  const modalDispatch = useContext(RootModalDispatchContext);
 
-  const columns = boardData.columns.map((el, i) => (
-    // NOTE:  Need to configure unique key - intend to implement drag and drop reordering feature here.
+  console.log('COLUMN GRID RENDER');
+
+  const columns = boardData?.columns.map((el, i) => (
     <Column
-      // eslint-disable-next-line react/no-array-index-key
-      key={i}
+      key={el._id}
+      boardId={boardData._id}
+      columnId={el._id}
       columnNum={i + 1}
       columnTitle={el.name}
       numOfTasks={el.tasks.length}
@@ -43,52 +44,23 @@ function ColumnGrid(props: ElemProps): JSX.Element {
     />
   ));
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const onClickHandler = (e: React.MouseEvent) => {
-    const element = (e.target as Element).closest('[data-id]');
+    const element = (e.target as HTMLElement).closest('[data-task-id]');
     if (element !== null) {
-      // TODO:  Found card/task; access appropriate data (local storage?) and render in modal (task view)
-      // NOTE:  Board data is already received in this component, search for taskId there?
-      console.log(element);
+      const { boardId, columnId, taskId } = (element as HTMLElement).dataset;
+      modalDispatch({
+        type: 'open-modal',
+        modalType: 'task-view',
+        modalProps: { selectTask: { boardId, columnId, taskId } },
+      });
     }
   };
 
   return (
-    <>
-      {/* // TEMP DEV:  Working on styles */}
-      {/* <TaskDelete /> */}
-      {/* <BoardDelete /> */}
-      {/* <BoardEdit
-        boardName="Platform Launch"
-        boardColumns={['Todo', 'Doing', 'Done']}
-      /> */}
-      {/* <BoardAdd /> */}
-      {/* <TaskAdd
-        taskStatus={{ current: 'Doing', statusArr: ['Todo', 'Doing', 'Done'] }}
-      /> */}
-      {/* <TaskEdit
-        taskTitle="Add authentication endpoints"
-        taskDescription=""
-        taskSubtasks={['Define user model', 'Add auth endpoints']}
-        taskStatus={{ current: 'Doing', statusArr: ['Todo', 'Doing', 'Done'] }}
-      /> */}
-      {/* <TaskView
-        title={title}
-        description={description}
-        numTaskComplete={1}
-        numTaskTotal={3}
-        subTasks={subtasks}
-      /> */}
-      {/* <Modal
-        modalIsOpen={modalIsOpen}
-        setModalIsOpen={setModalIsOpen}
-        modalContent={}
-      /> */}
-      <div className={styles['column-grid']} onClickCapture={onClickHandler}>
-        {columns}
-        {newColumn}
-      </div>
-    </>
+    <div className={styles['column-grid']} onClickCapture={onClickHandler}>
+      {columns}
+      {boardData && emptyColumn}
+    </div>
   );
 }
 

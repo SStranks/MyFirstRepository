@@ -5,31 +5,25 @@
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
 
-// TEMP DEV:  Delete container when finished styling
 .container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: hsla(0deg, 0%, 0%, 0.7);
+  margin: auto 0;
 }
 
 .task-view {
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: f.px2em(24);
   width: 480px;
   padding: f.px2em(32);
+  margin: v.$margin-forms;
   background-color: var(--thm-form-bg);
   border-radius: v.$border-radius-forms;
   transition: a.$Theme-transition-bg;
 
   &__header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     column-gap: f.px2em(24);
 
@@ -37,6 +31,48 @@
       @include mx.header-l;
       color: var(--thm-form-header-text);
       transition: a.$Theme-transition-color;
+    }
+  }
+
+  &__menu {
+    position: relative;
+    &__btn {
+      position: relative;
+      &::before {
+        // Click area.
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 40px;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  &__dropdown {
+    @include mx.body-l;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: f.px2em(16);
+    transform: translate(50%, 125%);
+    padding: f.px2em(20);
+    background-color: var(--thm-dropdown-default-list-bg);
+    border-radius: v.$border-radius-dropdown-list;
+    box-shadow: v.$box-shadow-2;
+    transition: a.$Theme-transition-bg;
+    z-index: f.z('menu-dropdown');
+
+    & > p {
+      cursor: pointer;
+      width: 160px;
+      &:hover {
+        color: c.$col-1j;
+      }
     }
   }
 
@@ -60,6 +96,7 @@
   &__status {
     & > p {
       @include mx.body-m;
+      margin-bottom: f.px2em(8);
       color: c.$col-1g;
     }
   }

@@ -5,17 +5,8 @@
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as *;
 
-// TEMP DEV:  Delete container when finished styling
 .container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: hsla(0deg, 0%, 0%, 0.7);
+  margin: auto 0;
 }
 
 .form {
@@ -24,6 +15,7 @@
   row-gap: f.px2em(24);
   width: 480px;
   padding: f.px2em(32);
+  margin: v.$margin-forms;
   background-color: var(--thm-form-bg);
   border-radius: v.$border-radius-forms;
   transition: a.$Theme-transition-bg;

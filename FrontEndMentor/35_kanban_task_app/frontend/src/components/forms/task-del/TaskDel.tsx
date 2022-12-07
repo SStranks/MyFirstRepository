@@ -1,6 +1,46 @@
+import { AppDispatchContext } from '#Context/AppContext';
+import RootModalDispatchContext from '#Context/RootModalContext';
+import { useContext } from 'react';
 import styles from './_TaskDel.module.scss';
 
-function TaskDelete(): JSX.Element {
+type ElemProps = {
+  id: { boardId: string; columnId: string; taskId: string };
+};
+
+function TaskDelete(props: ElemProps): JSX.Element {
+  const { id } = props;
+  const dispatch = useContext(AppDispatchContext);
+  const modalDispatch = useContext(RootModalDispatchContext);
+
+  const deleteBtnClickHandler = () => {
+    const { boardId, columnId, taskId } = id;
+    (async () => {
+      try {
+        const response = await fetch(
+          `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
+          {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+          }
+        );
+
+        if (!response.ok) throw new Error('Board not deleted');
+
+        modalDispatch({ type: 'close-all', modalType: undefined });
+        dispatch({
+          type: 'delete-task',
+          payload: { id, data: { x: undefined } },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  };
+
+  const cancelBtnClickHandler = () => {
+    modalDispatch({ type: 'close-modal' });
+  };
+
   return (
     <div className={styles.container}>
       <form className={styles.form}>
@@ -10,10 +50,16 @@ function TaskDelete(): JSX.Element {
           and its subtasks? This action cannot be reversed.
         </p>
         <div className={styles['form__btn-group']}>
-          <button type="submit" className={styles['form__btn-delete']}>
+          <button
+            type="button"
+            className={styles['form__btn-delete']}
+            onClick={deleteBtnClickHandler}>
             Delete
           </button>
-          <button type="submit" className={styles['form__btn-cancel']}>
+          <button
+            type="button"
+            className={styles['form__btn-cancel']}
+            onClick={cancelBtnClickHandler}>
             Cancel
           </button>
         </div>

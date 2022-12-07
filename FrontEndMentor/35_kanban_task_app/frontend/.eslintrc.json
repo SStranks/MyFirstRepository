@@ -38,6 +38,7 @@
     "prettier/prettier": ["error"],
     "no-unused-vars": "off", // Rule handled by "@typescript-eslint/no-unused-vars": "warn"
     "no-console": "off",
+    "no-underscore-dangle": "off",
     // Typescript Rules --
     "react/prop-types": "off",
     "react/require-default-props": "off",

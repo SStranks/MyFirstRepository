@@ -2,7 +2,10 @@ import Dropdown from '#Components/custom/dropdown/Dropdown';
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
+import { AppDispatchContext } from '#Context/AppContext';
+import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import { Board } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
@@ -12,8 +15,10 @@ import {
   updateInputFromGroup,
   validateInputs,
 } from '#Utils/formFunctions';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './_TaskAdd.module.scss';
+
+const INITIAL_SUBTASKS = ['', ''];
 
 type ReturnData = {
   inputName: string;
@@ -22,14 +27,15 @@ type ReturnData = {
 };
 
 type ElemProps = {
+  activeBoard: Board;
   taskStatus: { current: string; statusArr: string[] };
 };
 
-const INITIAL_SUBTASKS = ['', ''];
-
 // FUNCTION COMPONENT //
 function TaskAdd(props: ElemProps): JSX.Element {
-  const { taskStatus } = props;
+  const { activeBoard, taskStatus } = props;
+  const dispatch = useContext(AppDispatchContext);
+  const modalDispatch = useContext(RootModalDispatchContext);
   const [formData, setFormData] = useState({
     'input-title': { value: '', error: false, inputName: 'input-title' },
     'input-description': {
@@ -47,7 +53,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
   });
   const genId = useComponentIdGenerator();
 
-  const submitHandler = (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     // Check if each formData input is empty. If true, add a new object to newFormData.
     const newFormData = validateInputs(formData);
@@ -58,8 +64,46 @@ function TaskAdd(props: ElemProps): JSX.Element {
       );
     }
     const formInputData = new FormData(e.target as HTMLFormElement);
-    const inputData = Object.fromEntries(formInputData.entries());
-    return console.log('FORM SUBMIT', inputData);
+    // Format data according to schema
+    const {
+      'input-title': name,
+      'input-description': description,
+      'input-status': status,
+      ...rest
+    } = Object.fromEntries(formInputData.entries());
+    const newTask = {
+      title: name,
+      description,
+      status,
+      subtasks: Object.values(rest).map((c) => ({
+        title: c,
+        isCompleted: false,
+      })),
+    };
+
+    const selectedColumn = activeBoard.columns.find((c) => c.name === status);
+    const columnId = selectedColumn?._id;
+
+    // Send data to backend API
+    try {
+      const response = await fetch(
+        `http://${process.env.API_HOST}/api/v1/boards/${activeBoard._id}/${columnId}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(newTask),
+        }
+      );
+
+      if (!response.ok) throw new Error('Error: Failed to submit');
+
+      // Update app state with new board
+      const content = await response.json();
+      modalDispatch({ type: 'close-modal' });
+      return dispatch({ type: 'add-task', payload: content });
+    } catch (error) {
+      return console.log(error);
+    }
   };
 
   const btnNewSubtaskClickHandler = () => {
@@ -139,9 +183,10 @@ function TaskAdd(props: ElemProps): JSX.Element {
         <div className={styles.form__group}>
           <p>Status</p>
           <Dropdown
-            name={formData['input-status'].inputName}
+            name="input-status"
             currentListItem={formData['input-status'].value}
             listItems={formData['input-status'].statusArr}
+            returnData={returnDataHandler}
           />
         </div>
         <button type="submit" className={styles['form__btn-create-task']}>
