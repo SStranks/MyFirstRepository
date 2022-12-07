@@ -10,7 +10,7 @@ import TaskView from '#Components/forms/task-view/TaskView';
 import { ActionType } from '#Context/RootModalContext';
 import { useEffect, useReducer, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import styles from './_Modal.module.scss';
+import styles from './_RootModal.module.scss';
 
 const domNode = document.querySelector('#modal') as HTMLElement;
 
@@ -37,8 +37,7 @@ const initialState = {
 
 type StateType = {
   modalType: string[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  modalProps: { [key: string]: any }[];
+  modalProps: Record<string, unknown>[];
 };
 
 const openModal = (state: StateType, action: ActionType) => {
@@ -48,7 +47,7 @@ const openModal = (state: StateType, action: ActionType) => {
   if (action.modalProps) {
     newState.modalProps?.push(action.modalProps);
   } else {
-    newState.modalProps?.push([]);
+    newState.modalProps?.push({});
   }
   return newState;
 };

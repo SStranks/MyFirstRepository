@@ -25,7 +25,7 @@ const INITIAL_COLUMNS = ['Todo', 'Doing', 'Done'];
 
 // FUNCTION COMPONENT //
 function BoardAdd(): JSX.Element {
-  const dispatch = useContext(AppDispatchContext);
+  const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
   const genId = useComponentIdGenerator();
   const [formData, setFormData] = useState({
@@ -70,7 +70,7 @@ function BoardAdd(): JSX.Element {
       modalDispatch({
         type: 'close-modal',
       });
-      return dispatch({ type: 'add-board', payload: content.data.data });
+      return appDispatch({ type: 'add-board', payload: content.data.data });
     } catch (error) {
       // TODO:  Need to make an error modal or something to show failure.
       return console.log(error);

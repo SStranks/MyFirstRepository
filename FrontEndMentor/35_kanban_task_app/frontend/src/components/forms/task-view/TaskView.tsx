@@ -17,7 +17,8 @@ type SelectTaskType = {
 const extractData = (state: StateContextType, selectTask: SelectTaskType) => {
   console.log('TASKVIEW EXTRACT DATA');
   const board = state.boards.find((el) => el._id === selectTask.boardId);
-  const columnList = board?.columns.map((el) => el.name);
+  // NOTE:  el.name, el._id
+  const columnList = board?.columns.map((el) => [el.name, el._id]);
   const column = board?.columns.find((el) => el._id === selectTask.columnId);
   const task = column?.tasks.find((el) => el._id === selectTask.taskId);
   if (!task || !columnList) throw new Error('Incongruence in data!');
@@ -61,8 +62,9 @@ type ElemProps = {
 function TaskView(props: ElemProps): JSX.Element {
   const { selectTask } = props;
   const state = useContext(AppStateContext);
-  const dispatch = useContext(AppDispatchContext);
+  const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
+  // NOTE:  Extract data is running on every re-render, need to amend.
   const { task, columnList } = extractData(state, selectTask);
   const [formData, setFormData] = useState({
     'input-group-subtasks': { ...genSubtaskInputs(task) },
@@ -75,15 +77,17 @@ function TaskView(props: ElemProps): JSX.Element {
   const menuRef = useRef<HTMLDivElement>(null);
 
   // Ensures that useEffect cleanup doesn't submit data back to App state if returnDataHandler is changing this components state.
-  const isFormUpdating = useRef(false);
+  const isFormUpdating = useRef<boolean>(false);
+  const origTaskStatus = task.status;
 
   useEffect(() => {
-    // DEBUG:  Causes infinite loop here; if requried, might have to switch to using state.
-    // isFormUpdating.current = false;
+    isFormUpdating.current = false;
+    console.log('TASKVIEW EFFECT');
     return () => {
+      console.log('TASKVIEW EFFECT CLEANUP');
       if (!isFormUpdating.current) {
         console.log('TASKVIEW DISPATCH', selectTask, formData);
-        (async () => {
+        const updateTask = async () => {
           // TODO:  Need to figure out status change/switch column.
           try {
             const newTask = {
@@ -105,14 +109,54 @@ function TaskView(props: ElemProps): JSX.Element {
               }
             );
             if (!response.ok) throw new Error('Failed to submit');
-            return dispatch({
+            return appDispatch({
               type: 'update-task',
               payload: { id: selectTask, data: formData },
             });
           } catch (error) {
             return console.log(error);
           }
-        })();
+        };
+        const updateColumn = async () => {
+          // TODO:  Need to figure out status change/switch column.
+          try {
+            const newTask = {
+              title: task.title,
+              description: task.description,
+              status: formData['input-status'].value,
+              subtasks: Object.values(formData['input-group-subtasks']).map(
+                (t) => ({
+                  title: t.title,
+                  isCompleted: t.value,
+                })
+              ),
+            };
+            const { boardId, columnId, taskId } = selectTask;
+            // TODO:  Need to figure out a way to get this value
+            const newColumnId = '';
+            const response = await fetch(
+              `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}`,
+              {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ taskId, newColumnId, newTask }),
+              }
+            );
+            if (!response.ok) throw new Error('Failed to submit');
+            // TODO:  Need to move task to new column.
+            return appDispatch({
+              type: 'update-task',
+              payload: { id: selectTask, data: formData },
+            });
+          } catch (error) {
+            return console.log(error);
+          }
+        };
+        if (origTaskStatus === formData['input-status'].value) {
+          updateTask();
+        } else {
+          updateColumn();
+        }
       }
     };
   });
@@ -135,7 +179,6 @@ function TaskView(props: ElemProps): JSX.Element {
   const menuClickCaptureHandler = (e: React.MouseEvent) => {
     const element = e.target as Element;
     if (element.innerHTML === 'Edit Task') {
-      isFormUpdating.current = true;
       menuRef.current?.classList.add('hidden');
       modalDispatch({
         type: 'open-modal',
@@ -144,7 +187,6 @@ function TaskView(props: ElemProps): JSX.Element {
       });
     }
     if (element.innerHTML === 'Delete Task') {
-      isFormUpdating.current = true;
       menuRef.current?.classList.add('hidden');
       modalDispatch({
         type: 'open-modal',

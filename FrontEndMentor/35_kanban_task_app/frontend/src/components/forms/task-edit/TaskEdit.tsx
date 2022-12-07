@@ -52,7 +52,7 @@ const genGroupInputs = (task: TaskType) => {
 // FUNCTION COMPONENT //
 function TaskEdit(props: ElemProps): JSX.Element {
   const { task, selectTask, columnList } = props;
-  const dispatch = useContext(AppDispatchContext);
+  const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
   const [formData, setFormData] = useState({
     'input-title': {
@@ -129,7 +129,7 @@ function TaskEdit(props: ElemProps): JSX.Element {
 
       const content = await response.json();
 
-      dispatch({
+      appDispatch({
         type: 'edit-task',
         payload: { id: selectTask, data: content.data.data },
       });

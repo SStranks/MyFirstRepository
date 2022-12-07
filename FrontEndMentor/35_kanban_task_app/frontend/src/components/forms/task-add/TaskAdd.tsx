@@ -34,7 +34,7 @@ type ElemProps = {
 // FUNCTION COMPONENT //
 function TaskAdd(props: ElemProps): JSX.Element {
   const { activeBoard, taskStatus } = props;
-  const dispatch = useContext(AppDispatchContext);
+  const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
   const [formData, setFormData] = useState({
     'input-title': { value: '', error: false, inputName: 'input-title' },
@@ -100,7 +100,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
       // Update app state with new board
       const content = await response.json();
       modalDispatch({ type: 'close-modal' });
-      return dispatch({ type: 'add-task', payload: content });
+      return appDispatch({ type: 'add-task', payload: content });
     } catch (error) {
       return console.log(error);
     }

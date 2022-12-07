@@ -9,7 +9,7 @@ type ElemProps = {
 
 function TaskDelete(props: ElemProps): JSX.Element {
   const { id } = props;
-  const dispatch = useContext(AppDispatchContext);
+  const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
 
   const deleteBtnClickHandler = () => {
@@ -27,7 +27,7 @@ function TaskDelete(props: ElemProps): JSX.Element {
         if (!response.ok) throw new Error('Board not deleted');
 
         modalDispatch({ type: 'close-all', modalType: undefined });
-        dispatch({
+        appDispatch({
           type: 'delete-task',
           payload: { id, data: { x: undefined } },
         });

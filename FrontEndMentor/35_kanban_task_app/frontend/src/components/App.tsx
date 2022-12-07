@@ -17,6 +17,8 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 // TODO:  // ✔  Need to make all 'localhost:4000' FETCH Urls dynamic, lots are hardcoded atm.
 // TODO:  // ✔  Need to amend the dropdown menu outline, needs to stand out more against the white forms.
 // TODO:  // ✔  Need to check button UX experience; hover area large enough for buttons? - use ::before to create extendable click area.
+// TODO:  // ✔  Need to rename dispatch/modalDispatch across all files. appDispatch/modalDispatch.
+// TODO:  // ✔  Need to clean up old modal file; imports and use.
 // TODO:  // ✖  Need to change routes in backend; the response objects should all be DATA: { DATA: [returndata]}
 // TODO:  // ✖  Need to check backend - the response objects for each method, sending back board? task? can we unify all this?
 // TODO:  // ✖  Need to solve if task is moved to another column, change it on the backend too.
@@ -29,13 +31,12 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 // TODO:  // ✖  Need to do 'alt' attributes and accessibility.
 // TODO:  // ✖  Need to tidy up types everywhere.
 // TODO:  // ✖  Need to make a 'click area' mixin for elements; take into account content area and scale click area by %.
-// TODO:  // ✖  Need to rename dispatch/modalDispatch across all files. appDispatch/modalDispatch.
 // TODO:  // ✖  Need to see if we can pass props for form components instead of relying on context so much.
-// TODO:  // ✖  Need to clean up old modal file; imports and use.
+// TODO:  // ✖  Need to make modal animations smooth; dark blur background needs smoothing.
 // TODO:  // ✖  Search for '// TODO:  // TEMP DEV:  // HACK:  // DEBUG:  // NOTE:  console.log etc at project finish and remove.
 
 function App(): JSX.Element {
-  const [state, dispatch] = useAppReducer({ boards: [] });
+  const [state, appDispatch] = useAppReducer({ boards: [] });
   const [rootModalDispatch, setRootModalDispatch] = useState({});
   const [activeBoardId, setActiveBoardId] = useState<string>('');
 
@@ -59,7 +60,7 @@ function App(): JSX.Element {
         }
 
         // Set App initial state data
-        dispatch({ type: 'set-initial', payload: JSONdata });
+        appDispatch({ type: 'set-initial', payload: JSONdata });
         // Set ActiveBoardId; if no localstorage use the first board in returned collection
         return INITIAL_LOCALSTORAGE !== null
           ? setActiveBoardId(INITIAL_LOCALSTORAGE)
@@ -68,7 +69,7 @@ function App(): JSX.Element {
         return console.log('REACT: Fetch Error:', error);
       }
     })();
-  }, [dispatch]);
+  }, [appDispatch]);
 
   const boards = state.boards?.map((board) => ({
     name: board.name,
@@ -84,7 +85,7 @@ function App(): JSX.Element {
   return (
     <RootModalDispatchContext.Provider
       value={rootModalDispatch as DispatchContextType}>
-      <AppDispatchContext.Provider value={dispatch}>
+      <AppDispatchContext.Provider value={appDispatch}>
         <AppStateContext.Provider value={state as StateContextType}>
           <RootModal
             setRootModalDispatch={setRootModalDispatch}

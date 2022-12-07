@@ -10,7 +10,7 @@ type ElemProps = {
 
 function BoardDelete(props: ElemProps): JSX.Element {
   const { activeBoardId, setActiveBoardId } = props;
-  const dispatch = useContext(AppDispatchContext);
+  const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
   const state = useContext(AppStateContext);
 
@@ -24,7 +24,7 @@ function BoardDelete(props: ElemProps): JSX.Element {
 
         if (!response.ok) throw new Error('Board not deleted');
 
-        dispatch({
+        appDispatch({
           type: 'delete-board',
           payload: { id: { boardId: activeBoardId }, data: { x: undefined } },
         });

@@ -42,7 +42,7 @@ type ElemProps = {
 // FUNCTION COMPONENT //
 function BoardEdit(props: ElemProps): JSX.Element {
   const { activeBoard } = props;
-  const dispatch = useContext(AppDispatchContext);
+  const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
   const [formData, setFormData] = useState({
     'input-title': {
@@ -108,7 +108,7 @@ function BoardEdit(props: ElemProps): JSX.Element {
 
       const content = await response.json();
 
-      dispatch({
+      appDispatch({
         type: 'edit-board',
         payload: { id: { boardId: activeBoard._id }, data: content.data.data },
       });
