@@ -3,6 +3,7 @@
 import BoardAdd from '#Components/forms/board-add/BoardAdd';
 import BoardDelete from '#Components/forms/board-del/BoardDel';
 import BoardEdit from '#Components/forms/board-edit/BoardEdit';
+import Error from '#Components/forms/error/Error';
 import TaskAdd from '#Components/forms/task-add/TaskAdd';
 import TaskDelete from '#Components/forms/task-del/TaskDel';
 import TaskEdit from '#Components/forms/task-edit/TaskEdit';
@@ -15,6 +16,7 @@ import styles from './_RootModal.module.scss';
 const domNode = document.querySelector('#modal') as HTMLElement;
 
 const MODAL_COMPONENTS = {
+  error: Error,
   'task-add': TaskAdd,
   'task-view': TaskView,
   'task-edit': TaskEdit,

@@ -63,7 +63,8 @@ function BoardAdd(): JSX.Element {
         }
       );
 
-      if (!response.ok) throw new Error('Error: Failed to submit');
+      if (!response.ok)
+        throw new Error(`${response.status}: ${response.statusText}`);
 
       // Update app state with new board
       const content = await response.json();
@@ -72,8 +73,12 @@ function BoardAdd(): JSX.Element {
       });
       return appDispatch({ type: 'add-board', payload: content.data.data });
     } catch (error) {
-      // TODO:  Need to make an error modal or something to show failure.
-      return console.log(error);
+      console.error(error);
+      return modalDispatch({
+        type: 'open-modal',
+        modalType: 'error',
+        modalProps: { title: newBoard.name },
+      });
     }
   };
 

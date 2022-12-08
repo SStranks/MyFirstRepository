@@ -46,6 +46,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
     'input-status': {
       value: taskStatus.current,
       error: false,
+      // DEBUG:  This needs fixing
       statusArr: [[...taskStatus.statusArr], ['a']],
       inputName: 'input-status',
     },
@@ -95,14 +96,20 @@ function TaskAdd(props: ElemProps): JSX.Element {
         }
       );
 
-      if (!response.ok) throw new Error('Error: Failed to submit');
+      if (!response.ok)
+        throw new Error(`${response.status}: ${response.statusText}`);
 
       // Update app state with new board
       const content = await response.json();
       modalDispatch({ type: 'close-modal' });
       return appDispatch({ type: 'add-task', payload: content });
     } catch (error) {
-      return console.log(error);
+      console.error(error);
+      return modalDispatch({
+        type: 'open-modal',
+        modalType: 'error',
+        modalProps: { title: activeBoard.name },
+      });
     }
   };
 

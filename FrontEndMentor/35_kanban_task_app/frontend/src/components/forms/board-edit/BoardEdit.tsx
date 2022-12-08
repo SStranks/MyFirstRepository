@@ -104,7 +104,8 @@ function BoardEdit(props: ElemProps): JSX.Element {
         }
       );
 
-      if (!response.ok) throw new Error('Error: Failed to submit');
+      if (!response.ok)
+        throw new Error(`${response.status}: ${response.statusText}`);
 
       const content = await response.json();
 
@@ -116,8 +117,12 @@ function BoardEdit(props: ElemProps): JSX.Element {
         type: 'close-modal',
       });
     } catch (error) {
-      // TODO:  Need to make an error modal or something to show failure.
-      return console.log(error);
+      console.error(error);
+      return modalDispatch({
+        type: 'open-modal',
+        modalType: 'error',
+        modalProps: { title: activeBoard.name },
+      });
     }
   };
 

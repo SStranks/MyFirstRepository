@@ -24,15 +24,21 @@ function TaskDelete(props: ElemProps): JSX.Element {
           }
         );
 
-        if (!response.ok) throw new Error('Board not deleted');
+        if (!response.ok)
+          throw new Error(`${response.status}: ${response.statusText}`);
 
         modalDispatch({ type: 'close-all', modalType: undefined });
-        appDispatch({
+        return appDispatch({
           type: 'delete-task',
           payload: { id, data: { x: undefined } },
         });
       } catch (error) {
-        console.log(error);
+        console.error(error);
+        return modalDispatch({
+          type: 'open-modal',
+          modalType: 'error',
+          modalProps: { title: 'task deletion' },
+        });
       }
     })();
   };

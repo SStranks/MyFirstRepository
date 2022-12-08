@@ -109,17 +109,22 @@ function TaskView(props: ElemProps): JSX.Element {
                 body: JSON.stringify(newTask),
               }
             );
-            if (!response.ok) throw new Error('Failed to submit');
+            if (!response.ok)
+              throw new Error(`${response.status}: ${response.statusText}`);
 
             const content = await response.json();
-            console.log('CONTENT', content);
 
             return appDispatch({
               type: 'update-task',
               payload: { id: { boardId }, data: content.data },
             });
           } catch (error) {
-            return console.log(error);
+            console.error(error);
+            return modalDispatch({
+              type: 'open-modal',
+              modalType: 'error',
+              modalProps: { title: task.title },
+            });
           }
         };
         const updateColumn = async () => {
@@ -145,19 +150,22 @@ function TaskView(props: ElemProps): JSX.Element {
                 body: JSON.stringify({ taskId, newColumnId, newTask }),
               }
             );
-            if (!response.ok) throw new Error('Failed to submit');
-            // TODO:  Need to move task to new column.
+            if (!response.ok)
+              throw new Error(`${response.status}: ${response.statusText}`);
 
             const content = await response.json();
-            console.log(content, formData);
 
-            // NOTE:  If work, amend function above, and on edittask
             return appDispatch({
               type: 'update-task',
               payload: { id: { boardId }, data: content.data },
             });
           } catch (error) {
-            return console.log(error);
+            console.error(error);
+            return modalDispatch({
+              type: 'open-modal',
+              modalType: 'error',
+              modalProps: { title: task.title },
+            });
           }
         };
         if (origTaskColumnId === formData['input-status'].columnId) {

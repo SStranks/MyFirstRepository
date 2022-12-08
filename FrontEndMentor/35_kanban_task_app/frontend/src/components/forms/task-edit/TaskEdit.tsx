@@ -120,7 +120,7 @@ function TaskEdit(props: ElemProps): JSX.Element {
     try {
       const response = await (columnId === newColumnId
         ? fetch(
-            `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
+            `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}xxxx`,
             {
               method: 'PATCH',
               headers: { 'Content-Type': 'application/json' },
@@ -136,7 +136,8 @@ function TaskEdit(props: ElemProps): JSX.Element {
             }
           ));
 
-      if (!response.ok) throw new Error('Error: Failed to submit');
+      if (!response.ok)
+        throw new Error(`${response.status}: ${response.statusText}`);
 
       const content = await response.json();
 
@@ -146,8 +147,12 @@ function TaskEdit(props: ElemProps): JSX.Element {
       });
       return modalDispatch({ type: 'close-all', modalType: undefined });
     } catch (error) {
-      // TODO:  Need to make an error modal or something to show failure.
-      return console.log(error);
+      console.error(error);
+      return modalDispatch({
+        type: 'open-modal',
+        modalType: 'error',
+        modalProps: { title: task.title },
+      });
     }
   };
 

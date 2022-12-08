@@ -22,16 +22,22 @@ function BoardDelete(props: ElemProps): JSX.Element {
           { method: 'DELETE', headers: { 'Content-Type': 'application/json' } }
         );
 
-        if (!response.ok) throw new Error('Board not deleted');
+        if (!response.ok)
+          throw new Error(`${response.status}: ${response.statusText}`);
 
         appDispatch({
           type: 'delete-board',
           payload: { id: { boardId: activeBoardId }, data: { x: undefined } },
         });
         setActiveBoardId(state.boards[state.boards.length - 2]._id);
-        modalDispatch({ type: 'close-modal' });
+        return modalDispatch({ type: 'close-modal' });
       } catch (error) {
-        console.log(error);
+        console.error(error);
+        return modalDispatch({
+          type: 'open-modal',
+          modalType: 'error',
+          modalProps: { title: 'board deletion' },
+        });
       }
     })();
   };

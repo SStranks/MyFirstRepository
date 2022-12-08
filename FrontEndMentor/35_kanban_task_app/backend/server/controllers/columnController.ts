@@ -69,8 +69,6 @@ const createColumn = catchAsync(
 const updateColumn = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const { boardId, columnId } = req.params;
-    console.log(boardId, columnId);
-    console.log(req.body);
 
     let board = await Board.findOne({ 'columns._id': columnId });
 

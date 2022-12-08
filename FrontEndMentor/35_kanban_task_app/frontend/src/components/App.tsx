@@ -19,13 +19,14 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 // TODO:  // ✔  Need to check button UX experience; hover area large enough for buttons? - use ::before to create extendable click area.
 // TODO:  // ✔  Need to rename dispatch/modalDispatch across all files. appDispatch/modalDispatch.
 // TODO:  // ✔  Need to clean up old modal file; imports and use.
+// TODO:  // ✔   Need to solve if task is moved to another column, change it on the backend too.
+// TODO:  // ✔   Need to add functionality for 'new column' button.
+// TODO:  // ✔  Need to make an error handling class for backend interaction failures.
+// TODO:  // ✖  Need to fix task view first modal; submits when opening task edit modal.
+// TODO:  // ✖  Need to add functionality for drag and drop.
 // TODO:  // ✖  Need to change routes in backend; the response objects should all be DATA: { DATA: [returndata]}
 // TODO:  // ✖  Need to check backend - the response objects for each method, sending back board? task? can we unify all this?
-// TODO:  // ✖  Need to solve if task is moved to another column, change it on the backend too.
-// TODO:  // ✖  Need to add functionality for 'new column' button.
-// TODO:  // ✖  Need to add functionality for drag and drop.
 // TODO:  // ✖  Need to tidy up/refactor forms; contain a lot of similar logic that could be extracted.
-// TODO:  // ✖  Need to make an error handling class for backend interaction failures.
 // TODO:  // ✖  Need to make a loading spinner or animate the logo when awaiting.
 // TODO:  // ✖  Need to make a general useFetch/Axios hook.
 // TODO:  // ✖  Need to do 'alt' attributes and accessibility.
@@ -37,7 +38,8 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 
 function App(): JSX.Element {
   const [state, appDispatch] = useAppReducer({ boards: [] });
-  const [rootModalDispatch, setRootModalDispatch] = useState({});
+  const [rootModalDispatch, setRootModalDispatch] =
+    useState<DispatchContextType>({} as DispatchContextType);
   const [activeBoardId, setActiveBoardId] = useState<string>('');
 
   console.log('APP RENDER');
@@ -54,10 +56,8 @@ function App(): JSX.Element {
         );
         const JSONdata = await response.json();
 
-        if (!response.ok) {
-          const msg = `An error occured: ${response.status}`;
-          throw new Error(msg);
-        }
+        if (!response.ok)
+          throw new Error(`${response.status}: ${response.statusText}`);
 
         // Set App initial state data
         appDispatch({ type: 'set-initial', payload: JSONdata });
@@ -66,10 +66,15 @@ function App(): JSX.Element {
           ? setActiveBoardId(INITIAL_LOCALSTORAGE)
           : setActiveBoardId(JSONdata.data.data[0]._id);
       } catch (error) {
-        return console.log('REACT: Fetch Error:', error);
+        console.error(error);
+        return rootModalDispatch({
+          type: 'open-modal',
+          modalType: 'error',
+          modalProps: { title: 'App' },
+        });
       }
     })();
-  }, [appDispatch]);
+  }, [appDispatch, rootModalDispatch]);
 
   const boards = state.boards?.map((board) => ({
     name: board.name,

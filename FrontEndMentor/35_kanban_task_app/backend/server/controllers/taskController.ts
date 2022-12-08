@@ -89,14 +89,17 @@ const updateTask = catchAsync(
     if (!board) return next(new AppError('No document found in DB!', 404));
 
     try {
-      board.columns
+      const task = board.columns
         .id(req.params.columnId)
-        ?.tasks.id(req.params.taskId)
-        ?.set(req.body);
+        ?.tasks.id(req.params.taskId);
+      if (task === null || task === undefined) throw new Error();
+      task.set(req.body);
       await board.save();
     } catch (error) {
       return next(new AppError('Unable to commit document!', 404));
     }
+
+    console.log('BOARD', board);
 
     res.status(200).json({
       status: 'success',
