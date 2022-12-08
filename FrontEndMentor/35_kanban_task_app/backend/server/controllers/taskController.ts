@@ -101,7 +101,7 @@ const updateTask = catchAsync(
     res.status(200).json({
       status: 'success',
       results: 1,
-      data: { data: board },
+      data: { board },
     });
   }
 );

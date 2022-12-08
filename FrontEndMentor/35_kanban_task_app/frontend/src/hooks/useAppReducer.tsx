@@ -1,10 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 import {
   ActionType,
-  IndividualDataType,
+  // IndividualDataType,
   PayLoadType,
 } from '#Context/AppContext';
-import { Board, StateContextType, SubTaskObjType } from '#Types/types';
+import { Board, StateContextType } from '#Types/types';
 import { useCallback, useReducer } from 'react';
 
 const setInitialState = (payload: PayLoadType) => {
@@ -21,36 +21,67 @@ const addTask = (state: StateContextType, payload: PayLoadType) => {
 };
 
 // NOTE:  Need to refactor this; currently working with devData and not DB payload type.
-const updateTask = (
-  state: StateContextType,
-  payload: PayLoadType
-): StateContextType => {
-  const { boardId, columnId, taskId } = payload.id;
-  const board = state.boards.findIndex((b) => b._id === boardId);
-  const column = state.boards[board].columns.findIndex(
-    (c) => c._id === columnId
-  );
-  const task = state.boards[board].columns[column].tasks.findIndex(
-    (t) => t._id === taskId
-  );
-  const prevTask = state.boards[board].columns[column].tasks[task];
-  prevTask.status = (payload.data['input-status'] as IndividualDataType)
-    .value as string;
-  const newSubtasks = Object.values(
-    payload.data['input-group-subtasks'] as {
-      _id: string;
-      title: string;
-      value: boolean;
-    }[]
-  ).map((t) => ({
-    _id: t._id,
-    title: t.title,
-    isCompleted: t.value as boolean,
-  }));
-  prevTask.subtasks = newSubtasks as SubTaskObjType[];
-  return { ...state };
+// const updateTask = (
+//   state: StateContextType,
+//   payload: PayLoadType
+// ): StateContextType => {
+//   // Find and store previous task (prevTask)
+//   console.log(payload);
+//   const { boardId, columnId, taskId } = payload.id;
+//   const board = state.boards.findIndex((b) => b._id === boardId);
+//   const column = state.boards[board].columns.findIndex(
+//     (c) => c._id === columnId
+//   );
+//   const task = state.boards[board].columns[column].tasks.findIndex(
+//     (t) => t._id === taskId
+//   );
+//   const prevTask = state.boards[board].columns[column].tasks[task];
+//   // Update fields
+//   if (payload.data['input-title']) {
+//     prevTask.title = (payload.data['input-title'] as IndividualDataType)
+//       .value as string;
+//   }
+//   if (payload.data['input-description']) {
+//     prevTask.description = (
+//       payload.data['input-description'] as IndividualDataType
+//     ).value as string;
+//   }
+//   prevTask.status = (payload.data['input-status'] as IndividualDataType)
+//     .value as string;
+//   const newSubtasks = Object.values(
+//     payload.data['input-group-subtasks'] as {
+//       _id: string;
+//       title: string;
+//       value: boolean;
+//     }[]
+//   ).map((t) => ({
+//     _id: t._id,
+//     title: t.title,
+//     isCompleted: t.value as boolean,
+//   }));
+//   prevTask.subtasks = newSubtasks as SubTaskObjType[];
+//   // If task is being moved to another column
+//   const newColumnId = (payload.data['input-status'] as IndividualDataType)
+//     .columnId;
+//   if (columnId !== newColumnId) {
+//     const newColumnIdx = state.boards[board].columns.findIndex(
+//       (c) => c._id === newColumnId
+//     );
+//     state.boards[board].columns[newColumnIdx].tasks.push(prevTask);
+//     state.boards[board].columns[column].tasks.splice(task, 1);
+//   }
+//   return { ...state };
+// };
+
+const updateTask = (state: StateContextType, payload: PayLoadType) => {
+  const newState = state;
+  const { boardId } = payload.id;
+  const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
+  newState.boards[boardIdx] = payload.data.board as Board;
+  return { ...newState };
 };
 
+// NOTE:  This is updating entire board state. Refactor.
 const editTask = (state: StateContextType, payload: PayLoadType) => {
   const newState = state;
   const { boardId } = payload.id;

@@ -77,6 +77,7 @@ export function updateInput<T>(data: ReturnDataType, prevState: T): T {
     [data.inputName]: {
       ...prevState[data.inputName as keyof typeof prevState],
       value: data.value,
+      ...(data.columnId && { columnId: data.columnId }),
     },
   };
 }

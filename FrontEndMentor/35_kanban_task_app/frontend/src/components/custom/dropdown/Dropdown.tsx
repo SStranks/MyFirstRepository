@@ -6,12 +6,13 @@ type ReturnData = {
   inputName: string;
   value: string;
   groupId?: string;
+  columnId?: string;
 };
 
 type ElemProps = {
   name: string;
   currentListItem: string;
-  listItems: string[];
+  listItems: string[][];
   returnData: (data: ReturnData) => void;
 };
 
@@ -54,17 +55,19 @@ function Dropdown(props: ElemProps): JSX.Element {
     returnData({
       inputName: 'input-status',
       value: (e.target as HTMLButtonElement).value,
+      columnId: (e.target as HTMLButtonElement).dataset.columnId,
     });
   };
 
-  const listElems = listItems.map((item, i) => (
+  const listElems = listItems.map(([item, id], i) => (
     <button
       // eslint-disable-next-line react/no-array-index-key
       key={i}
       type="button"
       value={item}
       className={styles.list__item}
-      onClick={listItemClickHandler}>
+      onClick={listItemClickHandler}
+      data-column-id={id}>
       {item}
     </button>
   ));

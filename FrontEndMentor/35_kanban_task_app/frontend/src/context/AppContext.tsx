@@ -4,6 +4,7 @@ import React from 'react';
 export type IndividualDataType = {
   title: string;
   value: string | boolean;
+  columnId?: string;
 };
 
 export type GroupDataType = {

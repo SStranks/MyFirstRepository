@@ -32,7 +32,7 @@ type ReturnData = {
 type ElemProps = {
   task: TaskType;
   selectTask: SelectTaskType;
-  columnList: string[];
+  columnList: string[][];
 };
 
 const genGroupInputs = (task: TaskType) => {
@@ -67,6 +67,7 @@ function TaskEdit(props: ElemProps): JSX.Element {
     },
     'input-status': {
       value: task.status,
+      columnId: selectTask.columnId,
       error: false,
       statusArr: columnList,
       inputName: 'input-status',
@@ -114,24 +115,34 @@ function TaskEdit(props: ElemProps): JSX.Element {
     };
 
     const { boardId, columnId, taskId } = selectTask;
+    const newColumnId = formData['input-status'].columnId;
 
     try {
-      const response = await fetch(
-        `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
-        {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newTask),
-        }
-      );
+      const response = await (columnId === newColumnId
+        ? fetch(
+            `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
+            {
+              method: 'PATCH',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(newTask),
+            }
+          )
+        : fetch(
+            `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}`,
+            {
+              method: 'PATCH',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ taskId, newColumnId, newTask }),
+            }
+          ));
 
       if (!response.ok) throw new Error('Error: Failed to submit');
 
       const content = await response.json();
 
       appDispatch({
-        type: 'edit-task',
-        payload: { id: selectTask, data: content.data.data },
+        type: 'update-task',
+        payload: { id: { boardId }, data: content.data },
       });
       return modalDispatch({ type: 'close-all', modalType: undefined });
     } catch (error) {
@@ -220,7 +231,7 @@ function TaskEdit(props: ElemProps): JSX.Element {
           <Dropdown
             name={formData['input-status'].inputName}
             currentListItem={formData['input-status'].value}
-            listItems={formData['input-status'].statusArr}
+            listItems={columnList}
             returnData={returnDataHandler}
           />
         </div>

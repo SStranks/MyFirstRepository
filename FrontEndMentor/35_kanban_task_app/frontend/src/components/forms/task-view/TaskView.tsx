@@ -70,6 +70,7 @@ function TaskView(props: ElemProps): JSX.Element {
     'input-group-subtasks': { ...genSubtaskInputs(task) },
     'input-status': {
       value: task.status,
+      columnId: selectTask.columnId,
       statusArr: columnList,
       inputName: 'input-status',
     },
@@ -78,7 +79,7 @@ function TaskView(props: ElemProps): JSX.Element {
 
   // Ensures that useEffect cleanup doesn't submit data back to App state if returnDataHandler is changing this components state.
   const isFormUpdating = useRef<boolean>(false);
-  const origTaskStatus = task.status;
+  const origTaskColumnId = selectTask.columnId;
 
   useEffect(() => {
     isFormUpdating.current = false;
@@ -109,16 +110,19 @@ function TaskView(props: ElemProps): JSX.Element {
               }
             );
             if (!response.ok) throw new Error('Failed to submit');
+
+            const content = await response.json();
+            console.log('CONTENT', content);
+
             return appDispatch({
               type: 'update-task',
-              payload: { id: selectTask, data: formData },
+              payload: { id: { boardId }, data: content.data },
             });
           } catch (error) {
             return console.log(error);
           }
         };
         const updateColumn = async () => {
-          // TODO:  Need to figure out status change/switch column.
           try {
             const newTask = {
               title: task.title,
@@ -132,8 +136,7 @@ function TaskView(props: ElemProps): JSX.Element {
               ),
             };
             const { boardId, columnId, taskId } = selectTask;
-            // TODO:  Need to figure out a way to get this value
-            const newColumnId = '';
+            const newColumnId = formData['input-status'].columnId;
             const response = await fetch(
               `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}`,
               {
@@ -144,15 +147,20 @@ function TaskView(props: ElemProps): JSX.Element {
             );
             if (!response.ok) throw new Error('Failed to submit');
             // TODO:  Need to move task to new column.
+
+            const content = await response.json();
+            console.log(content, formData);
+
+            // NOTE:  If work, amend function above, and on edittask
             return appDispatch({
               type: 'update-task',
-              payload: { id: selectTask, data: formData },
+              payload: { id: { boardId }, data: content.data },
             });
           } catch (error) {
             return console.log(error);
           }
         };
-        if (origTaskStatus === formData['input-status'].value) {
+        if (origTaskColumnId === formData['input-status'].columnId) {
           updateTask();
         } else {
           updateColumn();

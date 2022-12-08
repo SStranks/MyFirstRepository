@@ -46,7 +46,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
     'input-status': {
       value: taskStatus.current,
       error: false,
-      statusArr: [...taskStatus.statusArr],
+      statusArr: [[...taskStatus.statusArr], ['a']],
       inputName: 'input-status',
     },
     'input-group-1': { ...genGroupInputs(INITIAL_SUBTASKS, 'subtask') },

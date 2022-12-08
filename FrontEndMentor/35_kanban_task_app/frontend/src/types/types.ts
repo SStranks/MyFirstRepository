@@ -36,6 +36,7 @@ export type ReturnDataType = {
   value?: string | boolean;
   isCompleted?: boolean;
   groupId?: string;
+  columnId?: string;
 };
 
 export type InputPropType = {
@@ -44,7 +45,7 @@ export type InputPropType = {
   value: string;
   error: boolean;
   key?: string;
-  statusArr?: string[];
+  statusArr?: string[][];
   isCompleted?: boolean;
 };
 
