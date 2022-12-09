@@ -1,11 +1,6 @@
+import { TReturnData } from '#Types/types';
 import { useEffect, useRef, useState } from 'react';
 import styles from './_InputText.module.scss';
-
-type ReturnData = {
-  inputName: string;
-  value: string;
-  groupId?: string;
-};
 
 type ElemProps = {
   placeholder: string;
@@ -13,7 +8,7 @@ type ElemProps = {
   value: string;
   groupId: string | undefined;
   error: boolean;
-  returnData: (arg: ReturnData) => void;
+  returnData: (arg: TReturnData) => void;
 };
 
 function InputText(props: ElemProps): JSX.Element {

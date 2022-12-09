@@ -1,5 +1,5 @@
 import IconCheck from '#Svg/icon-check.svg';
-import { ReturnDataType } from '#Types/types';
+import { TReturnData } from '#Types/types';
 import styles from './_CheckBox.module.scss';
 
 type ElemProps = {
@@ -7,7 +7,7 @@ type ElemProps = {
   checked: boolean;
   inputName: string;
   groupId?: string;
-  returnData: (data: ReturnDataType) => void;
+  returnData: (data: TReturnData) => void;
 };
 
 function CheckBox(props: ElemProps): JSX.Element {

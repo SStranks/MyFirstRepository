@@ -3,18 +3,17 @@ import Dropdown from '#Components/custom/dropdown/Dropdown';
 import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import IconVerticalEllipsis from '#Svg/icon-vertical-ellipsis.svg';
-import { ReturnDataType, StateContextType, TaskType } from '#Types/types';
+import {
+  TAppStateContext,
+  TReturnData,
+  TSelectTask,
+  TTask,
+} from '#Types/types';
 import { updateInput, updateInputFromGroup } from '#Utils/formFunctions';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import styles from './_TaskView.module.scss';
 
-type SelectTaskType = {
-  boardId: string;
-  columnId: string;
-  taskId: string;
-};
-
-const extractData = (state: StateContextType, selectTask: SelectTaskType) => {
+const extractData = (state: TAppStateContext, selectTask: TSelectTask) => {
   console.log('TASKVIEW EXTRACT DATA');
   const board = state.boards.find((el) => el._id === selectTask.boardId);
   // NOTE:  el.name, el._id
@@ -39,7 +38,7 @@ type SubtaskType = {
 };
 
 // TODO:  Need to refactor handling of generating inputs/checkboxes, as it is similar but different to group inputs on other forms (different properties; value vs title, isCompleted vs error, etc)
-const genSubtaskInputs = (task: TaskType) => {
+const genSubtaskInputs = (task: TTask): SubtaskType => {
   console.log('GEN SUB TASK', task);
   return task.subtasks.reduce((acc, cur) => {
     const key = `input-checkbox-${cur._id}`;
@@ -56,7 +55,7 @@ const genSubtaskInputs = (task: TaskType) => {
 };
 
 type ElemProps = {
-  selectTask: SelectTaskType;
+  selectTask: TSelectTask;
 };
 
 function TaskView(props: ElemProps): JSX.Element {
@@ -177,7 +176,7 @@ function TaskView(props: ElemProps): JSX.Element {
     };
   });
 
-  const returnDataHandler = useCallback((data: ReturnDataType) => {
+  const returnDataHandler = useCallback((data: TReturnData) => {
     // Update form data; distinguish if return data is part of 'input-group' or a single input
     if (data.groupId) {
       isFormUpdating.current = true;
@@ -196,6 +195,7 @@ function TaskView(props: ElemProps): JSX.Element {
     const element = e.target as Element;
     if (element.innerHTML === 'Edit Task') {
       menuRef.current?.classList.add('hidden');
+      isFormUpdating.current = true;
       modalDispatch({
         type: 'open-modal',
         modalType: 'task-edit',
@@ -204,6 +204,7 @@ function TaskView(props: ElemProps): JSX.Element {
     }
     if (element.innerHTML === 'Delete Task') {
       menuRef.current?.classList.add('hidden');
+      isFormUpdating.current = true;
       modalDispatch({
         type: 'open-modal',
         modalType: 'task-delete',

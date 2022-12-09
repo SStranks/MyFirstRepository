@@ -1,19 +1,13 @@
 import IconDown from '#Svg/icon-chevron-down.svg';
+import { TReturnData } from '#Types/types';
 import { useEffect, useRef } from 'react';
 import styles from './_Dropdown.module.scss';
-
-type ReturnData = {
-  inputName: string;
-  value: string;
-  groupId?: string;
-  columnId?: string;
-};
 
 type ElemProps = {
   name: string;
   currentListItem: string;
   listItems: string[][];
-  returnData: (data: ReturnData) => void;
+  returnData: (data: TReturnData) => void;
 };
 
 function Dropdown(props: ElemProps): JSX.Element {

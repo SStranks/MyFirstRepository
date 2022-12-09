@@ -1,11 +1,11 @@
 import Aside from '#Components/aside/Aside';
 import Main from '#Components/main/Main';
 import Nav from '#Components/nav/Nav';
-import { Board, BoardInfo } from '#Types/types';
+import { TBoard, TBoardInfo } from '#Types/types';
 import styles from './_DefaultLayout.module.scss';
 
 type ElemProps = {
-  boardData: { boards: BoardInfo; activeBoard: Board };
+  boardData: { boards: TBoardInfo; activeBoard: TBoard };
   activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };

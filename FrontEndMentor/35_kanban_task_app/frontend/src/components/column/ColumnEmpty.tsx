@@ -1,12 +1,21 @@
 import RootModalDispatchContext from '#Context/RootModalContext';
+import { TBoard } from '#Types/types';
 import { useContext } from 'react';
 import styles from './_Column.module.scss';
 
-function ColumnEmpty(): JSX.Element {
+type ElemProps = {
+  activeBoard: TBoard;
+};
+
+function ColumnEmpty(props: ElemProps): JSX.Element {
+  const { activeBoard } = props;
   const rootModalDispatch = useContext(RootModalDispatchContext);
   const newColumnBtnClickHandler = () => {
-    // TODO:  Board-edit needs 'active board' props.
-    rootModalDispatch({ type: 'open-modal', modalType: 'board-edit' });
+    rootModalDispatch({
+      type: 'open-modal',
+      modalType: 'board-edit',
+      modalProps: { activeBoard },
+    });
   };
 
   return (

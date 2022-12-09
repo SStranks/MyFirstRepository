@@ -3,7 +3,7 @@ import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import { AppDispatchContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
-import { Board, NestedInputPropType } from '#Types/types';
+import { TBoard, TNestedInputProp, TReturnData } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
@@ -15,14 +15,8 @@ import {
 import { useContext, useState } from 'react';
 import styles from './_BoardEdit.module.scss';
 
-type ReturnData = {
-  inputName: string;
-  value: string;
-  groupId?: string;
-};
-
 // TODO:  Also in task edit - there's a function in formfunctions this is based from, need to refactor all of it.
-const genGroupInputs = (activeBoard: Board) => {
+const genGroupInputs = (activeBoard: TBoard) => {
   return activeBoard.columns.reduce((acc, cur) => {
     const key = `input-column-${cur._id}`;
     acc[key] = {
@@ -32,11 +26,11 @@ const genGroupInputs = (activeBoard: Board) => {
       inputName: `input-column-${cur._id}`,
     };
     return acc;
-  }, {} as NestedInputPropType);
+  }, {} as TNestedInputProp);
 };
 
 type ElemProps = {
-  activeBoard: Board;
+  activeBoard: TBoard;
 };
 
 // FUNCTION COMPONENT //
@@ -131,7 +125,7 @@ function BoardEdit(props: ElemProps): JSX.Element {
     setFormData((prev) => addInputToGroup(uniqueId, 'input-group-1', prev));
   };
 
-  const returnDataHandler = (data: ReturnData) => {
+  const returnDataHandler = (data: TReturnData) => {
     // Update form data; distinguish if return data is part of 'input-group' or a single input
     if (data.groupId) {
       setFormData((prev) => updateInputFromGroup(data, prev));
@@ -140,7 +134,7 @@ function BoardEdit(props: ElemProps): JSX.Element {
     }
   };
 
-  const deleteInputHandler = (data: ReturnData) => {
+  const deleteInputHandler = (data: TReturnData) => {
     // Update form data; distinguish if return data is part of an input-group or a single input
     if (data.groupId) {
       setFormData((prev) => deleteInputFromGroup(data, prev));

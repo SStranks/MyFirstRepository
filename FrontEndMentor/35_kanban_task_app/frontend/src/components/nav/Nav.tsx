@@ -2,12 +2,12 @@ import RootModalDispatchContext from '#Context/RootModalContext';
 import IconAddTaskMobile from '#Svg/icon-add-task-mobile.svg';
 import IconEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import LogoDark from '#Svg/logo-dark.svg';
-import { Board } from '#Types/types';
+import { TBoard } from '#Types/types';
 import { useContext, useRef } from 'react';
 import styles from './_Nav.module.scss';
 
 type ElemProps = {
-  activeBoard: Board;
+  activeBoard: TBoard;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 

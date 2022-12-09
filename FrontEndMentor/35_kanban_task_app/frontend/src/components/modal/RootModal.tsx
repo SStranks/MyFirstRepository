@@ -8,8 +8,9 @@ import TaskAdd from '#Components/forms/task-add/TaskAdd';
 import TaskDelete from '#Components/forms/task-del/TaskDel';
 import TaskEdit from '#Components/forms/task-edit/TaskEdit';
 import TaskView from '#Components/forms/task-view/TaskView';
-import { ActionType } from '#Context/RootModalContext';
-import { useEffect, useReducer, useRef } from 'react';
+import { TRootModalContextAction } from '#Context/RootModalContext';
+import { TRootModalState } from '#Types/types';
+import { useEffect, useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './_RootModal.module.scss';
 
@@ -37,12 +38,7 @@ const initialState = {
   modalProps: [],
 };
 
-type StateType = {
-  modalType: string[];
-  modalProps: Record<string, unknown>[];
-};
-
-const openModal = (state: StateType, action: ActionType) => {
+const openModal = (state: TRootModalState, action: TRootModalContextAction) => {
   console.log('ROOTMODAL REDUCER: HELLO!', action);
   const newState = { ...state };
   newState.modalType?.push(action.modalType as string);
@@ -54,7 +50,7 @@ const openModal = (state: StateType, action: ActionType) => {
   return newState;
 };
 
-const closeModal = (state: StateType) => {
+const closeModal = (state: TRootModalState) => {
   const newState = { ...state };
   newState.modalType?.pop();
   newState.modalProps?.pop();
@@ -63,9 +59,9 @@ const closeModal = (state: StateType) => {
 
 const reducer = (
   // eslint-disable-next-line default-param-last
-  state: StateType,
-  action: ActionType
-): StateType => {
+  state: TRootModalState,
+  action: TRootModalContextAction
+): TRootModalState => {
   console.log('SWITCH', state, initialState);
   switch (action.type) {
     case ACTIONS.OPENMODAL: {
@@ -88,14 +84,13 @@ const reducer = (
 
 type ElemProps = {
   setRootModalDispatch: React.Dispatch<
-    React.SetStateAction<React.Dispatch<ActionType>>
+    React.SetStateAction<React.Dispatch<TRootModalContextAction>>
   >;
 };
 
 function RootModal(props: ElemProps): JSX.Element | null {
   const { setRootModalDispatch } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
-  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Lift dispatch to App component
@@ -103,16 +98,7 @@ function RootModal(props: ElemProps): JSX.Element | null {
   }, [setRootModalDispatch]);
 
   useEffect(() => {
-    const { current } = modalRef;
-    // On click of modal background; close modal.
-    const clickHandler = (e: MouseEvent) => {
-      return (
-        e.target === current &&
-        dispatch({
-          type: 'close-modal',
-        })
-      );
-    };
+    // NOTE:  Click handler is through clickCapture - can't attach ref if null check prevents DOM render.
     // On press of ESC key; close modal.
     const keyHandler = (e: KeyboardEvent) => {
       if (e.key === 'Escape' || e.key === 'Esc') {
@@ -122,12 +108,10 @@ function RootModal(props: ElemProps): JSX.Element | null {
       }
     };
 
-    current?.addEventListener('click', clickHandler);
     document?.addEventListener('keyup', keyHandler);
 
     return () => {
-      current?.removeEventListener('click', clickHandler);
-      current?.removeEventListener('keyup', keyHandler);
+      document?.removeEventListener('keyup', keyHandler);
       // document.querySelector('#root')?.removeAttribute('inert');
     };
   }, []);
@@ -152,10 +136,20 @@ function RootModal(props: ElemProps): JSX.Element | null {
     );
   });
 
-  console.log(activeComponents);
+  const modalClickHandler = (e: React.MouseEvent) => {
+    const { target } = e;
+    if ((target as HTMLElement).id === 'root-modal') {
+      dispatch({
+        type: 'close-modal',
+      });
+    }
+  };
 
   return ReactDOM.createPortal(
-    <div className={styles.container} ref={modalRef}>
+    <div
+      className={styles.container}
+      onClickCapture={modalClickHandler}
+      id="root-modal">
       {activeComponents[activeComponents.length - 1]}
     </div>,
     domNode

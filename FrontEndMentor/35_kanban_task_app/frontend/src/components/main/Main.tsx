@@ -1,5 +1,5 @@
 import ColumnGrid from '#Components/column-grid/ColumnGrid';
-import { Board } from '#Types/types';
+import { TBoard } from '#Types/types';
 import styles from './_Main.module.scss';
 
 const emptyBoard = (
@@ -10,16 +10,16 @@ const emptyBoard = (
 );
 
 type ElemProps = {
-  activeBoard: Board;
+  activeBoard: TBoard;
 };
 
 function Main(props: ElemProps): JSX.Element {
   const { activeBoard } = props;
-  const boardEmpty = (activeBoard as Board)?.columns.length === 0;
+  const boardEmpty = (activeBoard as TBoard)?.columns.length === 0;
 
   return (
     <main className={styles.main}>
-      {boardEmpty ? emptyBoard : <ColumnGrid boardData={activeBoard} />}
+      {boardEmpty ? emptyBoard : <ColumnGrid activeBoard={activeBoard} />}
     </main>
   );
 }

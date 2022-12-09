@@ -5,7 +5,7 @@ import IconDarkTheme from '#Svg/icon-dark-theme.svg';
 import IconHideSidebar from '#Svg/icon-hide-sidebar.svg';
 import IconLightTheme from '#Svg/icon-light-theme.svg';
 import IconShowSidebar from '#Svg/icon-show-sidebar.svg';
-import { BoardInfo } from '#Types/types';
+import { TBoardInfo } from '#Types/types';
 import { useContext } from 'react';
 import styles from './_Aside.module.scss';
 
@@ -22,7 +22,7 @@ const sidebarShow = () => {
 };
 
 type ElemProps = {
-  boards: BoardInfo;
+  boards: TBoardInfo;
   activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -32,7 +32,7 @@ function Aside(props: ElemProps): JSX.Element {
   const modalDispatch = useContext(RootModalDispatchContext);
 
   const numOfBoards = boards.length;
-  const boardListItems = (boards as BoardInfo).map(({ name, id }) => (
+  const boardListItems = (boards as TBoardInfo).map(({ name, id }) => (
     <li
       key={id}
       className={id === activeBoardId ? styles.active : ''}

@@ -1,46 +1,43 @@
 /* eslint-disable no-underscore-dangle */
 import Column from '#Components/column/Column';
+import ColumnEmpty from '#Components/column/ColumnEmpty';
 import RootModalDispatchContext from '#Context/RootModalContext';
-// import Modal from '#Components/modal/Modal';
-import { Board } from '#Types/types';
-// import { useState } from 'react';
+import { TBoard } from '#Types/types';
 import { useContext } from 'react';
 
 import styles from './_ColumnGrid.module.scss';
 
-const emptyColumn = (
-  <Column
-    boardId=""
-    columnId=""
-    columnNum={0}
-    columnTitle=""
-    numOfTasks={0}
-    tasks={[]}
-    emptyCol
-  />
-);
+// const emptyColumn = (
+//   <Column
+//     boardId=""
+//     columnId=""
+//     columnNum={0}
+//     columnTitle=""
+//     numOfTasks={0}
+//     tasks={[]}
+//     emptyCol
+//   />
+// );
 
 type ElemProps = {
-  boardData: Board;
+  activeBoard: TBoard;
 };
 
 function ColumnGrid(props: ElemProps): JSX.Element {
-  const { boardData } = props;
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { activeBoard } = props;
   const modalDispatch = useContext(RootModalDispatchContext);
 
   console.log('COLUMN GRID RENDER');
 
-  const columns = boardData?.columns.map((el, i) => (
+  const columns = activeBoard?.columns.map((el, i) => (
     <Column
       key={el._id}
-      boardId={boardData._id}
+      boardId={activeBoard._id}
       columnId={el._id}
       columnNum={i + 1}
       columnTitle={el.name}
       numOfTasks={el.tasks.length}
       tasks={el.tasks}
-      emptyCol={false}
     />
   ));
 
@@ -59,7 +56,7 @@ function ColumnGrid(props: ElemProps): JSX.Element {
   return (
     <div className={styles['column-grid']} onClickCapture={onClickHandler}>
       {columns}
-      {boardData && emptyColumn}
+      {activeBoard && <ColumnEmpty activeBoard={activeBoard} />}
     </div>
   );
 }

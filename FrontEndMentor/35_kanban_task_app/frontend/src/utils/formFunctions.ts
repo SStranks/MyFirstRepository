@@ -1,13 +1,13 @@
 /* eslint-disable unicorn/filename-case */
 import {
-  InputPropType,
-  NestedInputPropType,
-  newFormDataType,
-  ReturnDataType,
+  TInputProp,
+  TNestedInputProp,
+  TNewFormData,
+  TReturnData,
 } from '#Types/types';
 
-export function isInput(input: unknown): input is InputPropType {
-  return (input as Record<string, InputPropType>).inputName !== undefined;
+export function isInput(input: unknown): input is TInputProp {
+  return (input as Record<string, TInputProp>).inputName !== undefined;
 }
 
 // For setting initial state; Generates object of single input objects, to be spread into receiving input.
@@ -22,7 +22,7 @@ export function genGroupInputs(arg: string[], name: string) {
       inputName: `input-${name}-${i - arr.length}`,
     };
     return acc;
-  }, {} as NestedInputPropType);
+  }, {} as TNestedInputProp);
 }
 
 // Adds single input to an existing group of inputs.
@@ -47,20 +47,20 @@ export function addInputToGroup<T>(
   } as typeof prevState;
 }
 
-export function deleteInputFromGroup<T>(data: ReturnDataType, prevState: T): T {
+export function deleteInputFromGroup<T>(data: TReturnData, prevState: T): T {
   const { [data.groupId as keyof typeof prevState]: inputGroup, ...rest } =
     prevState;
   delete inputGroup[data.inputName as keyof typeof inputGroup];
   return { [data.groupId as string]: inputGroup, ...rest } as typeof prevState;
 }
 
-export function deleteInputSingle<T>(data: ReturnDataType, prevState: T): T {
+export function deleteInputSingle<T>(data: TReturnData, prevState: T): T {
   const prevCopy = prevState;
   delete prevCopy[data.inputName as keyof typeof prevCopy];
   return prevCopy as typeof prevState;
 }
 
-export function updateInputFromGroup<T>(data: ReturnDataType, prevState: T): T {
+export function updateInputFromGroup<T>(data: TReturnData, prevState: T): T {
   let { [data.groupId as keyof typeof prevState]: inputGroup } = prevState;
   let { [data.inputName as keyof typeof inputGroup]: input } = inputGroup;
   input = { ...input, value: data.value };
@@ -71,7 +71,7 @@ export function updateInputFromGroup<T>(data: ReturnDataType, prevState: T): T {
   } as typeof prevState;
 }
 
-export function updateInput<T>(data: ReturnDataType, prevState: T): T {
+export function updateInput<T>(data: TReturnData, prevState: T): T {
   return {
     ...prevState,
     [data.inputName]: {
@@ -83,10 +83,10 @@ export function updateInput<T>(data: ReturnDataType, prevState: T): T {
 }
 
 // Check all inputs for value as empty string. Return object containing objects of each input that fails validation, with error set to true.
-export function validateInputs<T extends newFormDataType>(
+export function validateInputs<T extends TNewFormData>(
   formData: T
 ): typeof newFormData {
-  const newFormData = {} as newFormDataType;
+  const newFormData = {} as TNewFormData;
   Object.entries(formData).forEach(([key, prop]) => {
     // Typeguard: If input is single, or group of inputs.
     // InputProp | NestedInputProp.
@@ -95,7 +95,7 @@ export function validateInputs<T extends newFormDataType>(
         newFormData[key] = { ...prop, error: true };
       }
     } else {
-      const groupInput = { ...prop } as Record<string, InputPropType>;
+      const groupInput = { ...prop } as Record<string, TInputProp>;
       let numOfFailed = 0;
       Object.entries(prop).forEach(([grpKey, grpProp]) => {
         if (grpProp.value === '') {

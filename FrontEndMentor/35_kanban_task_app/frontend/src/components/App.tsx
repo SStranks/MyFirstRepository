@@ -1,11 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
 import RootModalDispatchContext, {
-  DispatchContextType,
+  TRootModalDispatchContext,
 } from '#Context/RootModalContext';
 import useAppReducer from '#Hooks/useAppReducer';
 import Home from '#Pages/Home';
-import { Board, StateContextType } from '#Types/types';
+import { TAppStateContext, TBoard } from '#Types/types';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import RootModal from './modal/RootModal';
@@ -22,16 +22,15 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 // TODO:  // ✔   Need to solve if task is moved to another column, change it on the backend too.
 // TODO:  // ✔   Need to add functionality for 'new column' button.
 // TODO:  // ✔  Need to make an error handling class for backend interaction failures.
-// TODO:  // ✖  Need to fix task view first modal; submits when opening task edit modal.
+// TODO:  // ✔  Need to fix task view first modal; submits when opening task edit modal.
+// TODO:  // ✔  Need to make a 'click area' mixin for elements; take into account content area and scale click area by %.
+// TODO:  // ✔   Need to tidy up types everywhere.
 // TODO:  // ✖  Need to add functionality for drag and drop.
 // TODO:  // ✖  Need to change routes in backend; the response objects should all be DATA: { DATA: [returndata]}
 // TODO:  // ✖  Need to check backend - the response objects for each method, sending back board? task? can we unify all this?
 // TODO:  // ✖  Need to tidy up/refactor forms; contain a lot of similar logic that could be extracted.
 // TODO:  // ✖  Need to make a loading spinner or animate the logo when awaiting.
-// TODO:  // ✖  Need to make a general useFetch/Axios hook.
 // TODO:  // ✖  Need to do 'alt' attributes and accessibility.
-// TODO:  // ✖  Need to tidy up types everywhere.
-// TODO:  // ✖  Need to make a 'click area' mixin for elements; take into account content area and scale click area by %.
 // TODO:  // ✖  Need to see if we can pass props for form components instead of relying on context so much.
 // TODO:  // ✖  Need to make modal animations smooth; dark blur background needs smoothing.
 // TODO:  // ✖  Search for '// TODO:  // TEMP DEV:  // HACK:  // DEBUG:  // NOTE:  console.log etc at project finish and remove.
@@ -39,7 +38,7 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 function App(): JSX.Element {
   const [state, appDispatch] = useAppReducer({ boards: [] });
   const [rootModalDispatch, setRootModalDispatch] =
-    useState<DispatchContextType>({} as DispatchContextType);
+    useState<TRootModalDispatchContext>({} as TRootModalDispatchContext);
   const [activeBoardId, setActiveBoardId] = useState<string>('');
 
   console.log('APP RENDER');
@@ -83,15 +82,15 @@ function App(): JSX.Element {
 
   const activeBoard = state.boards?.find(
     (item) => item._id === activeBoardId
-  ) as Board;
+  ) as TBoard;
 
   const data = { boards, activeBoard };
 
   return (
     <RootModalDispatchContext.Provider
-      value={rootModalDispatch as DispatchContextType}>
+      value={rootModalDispatch as TRootModalDispatchContext}>
       <AppDispatchContext.Provider value={appDispatch}>
-        <AppStateContext.Provider value={state as StateContextType}>
+        <AppStateContext.Provider value={state as TAppStateContext}>
           <RootModal
             setRootModalDispatch={setRootModalDispatch}
             // activeBoardId={activeBoardId}

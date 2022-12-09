@@ -104,16 +104,7 @@
 
     &__boardOptions {
       position: relative;
-      &::before {
-        // Click area.
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 20px;
-        height: 40px;
-        transform: translate(-50%, -50%);
-      }
+      @include mx.extend-clickarea(350%, 175%, false);
     }
 
     &__dropdownMenu {

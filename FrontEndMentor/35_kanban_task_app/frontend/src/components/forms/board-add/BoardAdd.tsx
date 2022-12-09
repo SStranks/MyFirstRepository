@@ -3,6 +3,7 @@ import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import { AppDispatchContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import { TReturnData } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
@@ -14,12 +15,6 @@ import {
 } from '#Utils/formFunctions';
 import { useContext, useState } from 'react';
 import styles from './_BoardAdd.module.scss';
-
-type ReturnData = {
-  inputName: string;
-  value: string;
-  groupId?: string;
-};
 
 const INITIAL_COLUMNS = ['Todo', 'Doing', 'Done'];
 
@@ -87,7 +82,7 @@ function BoardAdd(): JSX.Element {
     setFormData((prev) => addInputToGroup(uniqueId, 'input-group-1', prev));
   };
 
-  const returnDataHandler = (data: ReturnData) => {
+  const returnDataHandler = (data: TReturnData) => {
     // Update form data; distinguish if return data is part of 'input-group' or a single input
     if (data.groupId) {
       setFormData((prev) => updateInputFromGroup(data, prev));
@@ -96,7 +91,7 @@ function BoardAdd(): JSX.Element {
     }
   };
 
-  const deleteInputHandler = (data: ReturnData) => {
+  const deleteInputHandler = (data: TReturnData) => {
     // Update form data; distinguish if return data is part of an input-group or a single input
     if (data.groupId) {
       setFormData((prev) => deleteInputFromGroup(data, prev));

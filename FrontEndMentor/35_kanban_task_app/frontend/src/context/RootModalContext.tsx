@@ -1,16 +1,15 @@
 import React from 'react';
 
-export type ActionType = {
+export type TRootModalContextAction = {
   type: string;
   modalType?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  modalProps?: { [key: string]: any };
+  modalProps?: { [key: string]: unknown };
 };
 
-export type DispatchContextType = React.Dispatch<ActionType>;
+export type TRootModalDispatchContext = React.Dispatch<TRootModalContextAction>;
 
-const RootModalDispatchContext = React.createContext<DispatchContextType>(
-  {} as DispatchContextType
+const RootModalDispatchContext = React.createContext<TRootModalDispatchContext>(
+  {} as TRootModalDispatchContext
 );
 
 export default RootModalDispatchContext;

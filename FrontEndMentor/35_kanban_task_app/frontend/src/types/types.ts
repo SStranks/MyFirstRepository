@@ -1,37 +1,50 @@
 /* eslint-disable unicorn/filename-case */
-export type SubTaskObjType = {
+
+// ------------- //
+// Backend Types
+// ------------- //
+export type TSubTaskObj = {
   _id: string;
   title: string;
   isCompleted: boolean;
 };
 
-export type TaskType = {
+export type TTask = {
   _id: string;
   title: string;
   description: string;
   status: string;
-  subtasks: SubTaskObjType[];
+  subtasks: TSubTaskObj[];
 };
 
-export type ColumnType = {
+export type TColumn = {
   _id: string;
   name: string;
-  tasks: TaskType[];
+  tasks: TTask[];
 };
 
-export type Board = {
+export type TBoard = {
   _id: string;
   name: string;
-  columns: ColumnType[];
+  columns: TColumn[];
 };
 
-export type BoardInfo = { name: string; id: string }[];
+// -------------- //
+// Frontend Types
+// -------------- //
+export type TBoardInfo = { name: string; id: string }[];
 
-export type StateContextType = {
-  boards: Board[];
+export type TAppStateContext = {
+  boards: TBoard[];
 };
 
-export type ReturnDataType = {
+export type TSelectTask = {
+  boardId: string;
+  columnId: string;
+  taskId: string;
+};
+
+export type TReturnData = {
   inputName: string;
   value?: string | boolean;
   isCompleted?: boolean;
@@ -39,7 +52,7 @@ export type ReturnDataType = {
   columnId?: string;
 };
 
-export type InputPropType = {
+export type TInputProp = {
   title?: string;
   inputName: string;
   value: string;
@@ -49,10 +62,16 @@ export type InputPropType = {
   isCompleted?: boolean;
 };
 
-export type NestedInputPropType = {
-  [key: string]: InputPropType;
+export type TNestedInputProp = {
+  [key: string]: TInputProp;
 };
 
-export type newFormDataType = {
-  [key: string]: InputPropType | NestedInputPropType;
+export type TNewFormData = {
+  [key: string]: TInputProp | TNestedInputProp;
+};
+
+// Root Modal
+export type TRootModalState = {
+  modalType: string[];
+  modalProps: Record<string, unknown>[];
 };

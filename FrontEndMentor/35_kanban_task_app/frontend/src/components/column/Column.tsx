@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import Task from '#Components/task/Task';
-import { SubTaskObjType, TaskType } from '#Types/types';
-import ColumnEmpty from './ColumnEmpty';
+import { TSubTaskObj, TTask } from '#Types/types';
 import styles from './_Column.module.scss';
 
 type ElemProps = {
@@ -10,24 +9,16 @@ type ElemProps = {
   columnNum: number;
   columnTitle: string;
   numOfTasks: number;
-  tasks: TaskType[];
-  emptyCol: boolean;
+  tasks: TTask[];
 };
 
 function Column(props: ElemProps): JSX.Element {
-  const {
-    boardId,
-    columnId,
-    columnNum,
-    columnTitle,
-    numOfTasks,
-    tasks,
-    emptyCol,
-  } = props;
+  const { boardId, columnId, columnNum, columnTitle, numOfTasks, tasks } =
+    props;
 
   const tasksCards = tasks.map((el) => {
     const completedSubTasks = el.subtasks.filter(
-      (obj: SubTaskObjType) => obj.isCompleted === true
+      (obj: TSubTaskObj) => obj.isCompleted === true
     ).length;
     return (
       <Task
@@ -44,7 +35,7 @@ function Column(props: ElemProps): JSX.Element {
 
   return (
     <div className={styles.column} data-column-id={columnId}>
-      <div className={`${styles.status} ${emptyCol ? 'invisible' : ''}`}>
+      <div className={styles.status}>
         <div
           className={`${styles.status__bullet} ${
             styles[`status__bullet--${columnNum}`]
@@ -54,8 +45,7 @@ function Column(props: ElemProps): JSX.Element {
           {columnTitle} ({numOfTasks})
         </p>
       </div>
-      {!emptyCol && tasksCards}
-      {emptyCol && <ColumnEmpty />}
+      {tasksCards}
     </div>
   );
 }

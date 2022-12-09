@@ -1,4 +1,5 @@
 import IconCross from '#Svg/icon-cross.svg';
+import { TReturnData } from '#Types/types';
 import { useEffect, useRef, useState } from 'react';
 import styles from './_InputTextSubtask.module.scss';
 
@@ -11,19 +12,13 @@ const placeholderText = [
   'e.g. Enjoy coffee and smile more',
 ];
 
-type ReturnData = {
-  inputName: string;
-  value: string;
-  groupId?: string;
-};
-
 type ElemProps = {
   inputName: string;
   value: string;
   groupId: string;
   error: boolean;
-  deleteInput: (arg: ReturnData) => void;
-  returnData: (arg: ReturnData) => void;
+  deleteInput: (arg: TReturnData) => void;
+  returnData: (arg: TReturnData) => void;
 };
 
 function InputTextSubtask(props: ElemProps): JSX.Element {
