@@ -147,7 +147,7 @@ function RootModal(props: ElemProps): JSX.Element | null {
 
   return ReactDOM.createPortal(
     <div
-      className={styles.container}
+      className={`${styles.container} ${styles['animation-fade-in']}`}
       onClickCapture={modalClickHandler}
       id="root-modal">
       {activeComponents[activeComponents.length - 1]}

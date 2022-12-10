@@ -30,11 +30,13 @@ function CheckBox(props: ElemProps): JSX.Element {
         onChange={changeHandler}
       />
       <div className={styles['custom-checkbox__new-checkbox']}>
-        <img
-          src={IconCheck}
-          className={styles['custom-checkbox__icon-check']}
-          alt=""
-        />
+        {checked && (
+          <img
+            src={IconCheck}
+            className={styles['custom-checkbox__icon-check']}
+            alt=""
+          />
+        )}
       </div>
       <p className={styles['custom-checkbox__title']}>{title}</p>
     </label>
