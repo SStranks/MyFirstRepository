@@ -88,7 +88,6 @@ function BoardEdit(props: ElemProps): JSX.Element {
     // NOTE:  Need to think about column names in relation to IDs: 1) We need the IDs because if the user renames a column, how will we know which column to amend in the DB? 2) We need a warning that if they remove a column here then all task data will be erased!
     // NOTE:  Replacing the entire boards-columns data from the frontend, is this the best approach? Can we use .pre hook on the backend to amend column names/delete columns according to ID's passed perhaps?
     try {
-      // TODO:  Make FETCH URL dynamic - hardcoded to test board.
       const response = await fetch(
         `http://${process.env.API_HOST}/api/v1/boards/${activeBoard._id}`,
         {

@@ -29,6 +29,7 @@ function Column(props: ElemProps): JSX.Element {
         title={el.title}
         numOfSubTasks={el.subtasks.length}
         subTasksNumComplete={completedSubTasks}
+        columnNum={columnNum}
       />
     );
   });

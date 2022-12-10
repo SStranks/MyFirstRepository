@@ -79,7 +79,8 @@
   align-items: center;
   justify-content: center;
   min-width: 280px;
-  height: 100%;
+  height: calc(100% - f.px2em(23));
+  margin-top: f.px2em(23);
   background-color: var(--thm-column-bg);
   border-radius: v.$border-radius-column-empty;
   transition: a.$Theme-transition-bg;

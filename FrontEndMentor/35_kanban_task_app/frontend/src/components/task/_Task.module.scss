@@ -14,8 +14,51 @@
   transition: a.$Theme-transition-bg;
 
   &:hover {
-    // TODO:  Make the hover colour dynamic according to which column the task resides.
-    outline: 1px solid c.$col-1a;
+    &.column {
+      &--1 {
+        outline: 1px solid c.$col-3a;
+      }
+
+      &--2 {
+        outline: 1px solid c.$col-3b;
+      }
+
+      &--3 {
+        outline: 1px solid c.$col-3c;
+      }
+
+      &--4 {
+        outline: 1px solid c.$col-3d;
+      }
+
+      &--5 {
+        outline: 1px solid c.$col-3e;
+      }
+
+      &--6 {
+        outline: 1px solid c.$col-3f;
+      }
+
+      &--7 {
+        outline: 1px solid c.$col-3g;
+      }
+
+      &--8 {
+        outline: 1px solid c.$col-3h;
+      }
+
+      &--9 {
+        outline: 1px solid c.$col-3i;
+      }
+
+      &--10 {
+        outline: 1px solid c.$col-3j;
+      }
+
+      &--11 {
+        outline: 1px solid c.$col-3k;
+      }
+    }
   }
 
   &__task {

@@ -7,6 +7,7 @@ type ElemProps = {
   title: string;
   numOfSubTasks: number;
   subTasksNumComplete: number;
+  columnNum: number;
 };
 
 function Task(props: ElemProps): JSX.Element {
@@ -17,11 +18,13 @@ function Task(props: ElemProps): JSX.Element {
     title,
     numOfSubTasks,
     subTasksNumComplete,
+    columnNum,
   } = props;
 
   return (
     <div
-      className={styles.card}
+      className={`${styles.card} ${styles[`column--${columnNum}`]}`}
+      // className={styles.card}
       data-task-id={taskId}
       data-column-id={columnId}
       data-board-id={boardId}>

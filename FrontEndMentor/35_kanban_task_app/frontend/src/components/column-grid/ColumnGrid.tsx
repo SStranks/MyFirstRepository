@@ -7,18 +7,6 @@ import { useContext } from 'react';
 
 import styles from './_ColumnGrid.module.scss';
 
-// const emptyColumn = (
-//   <Column
-//     boardId=""
-//     columnId=""
-//     columnNum={0}
-//     columnTitle=""
-//     numOfTasks={0}
-//     tasks={[]}
-//     emptyCol
-//   />
-// );
-
 type ElemProps = {
   activeBoard: TBoard;
 };

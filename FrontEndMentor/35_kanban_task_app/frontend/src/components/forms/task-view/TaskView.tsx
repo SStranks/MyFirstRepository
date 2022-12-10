@@ -88,7 +88,6 @@ function TaskView(props: ElemProps): JSX.Element {
       if (!isFormUpdating.current) {
         console.log('TASKVIEW DISPATCH', selectTask, formData);
         const updateTask = async () => {
-          // TODO:  Need to figure out status change/switch column.
           try {
             const newTask = {
               status: formData['input-status'].value,
