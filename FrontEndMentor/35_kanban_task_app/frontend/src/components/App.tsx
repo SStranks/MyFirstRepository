@@ -25,6 +25,8 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 // TODO:  // ✔  Need to fix task view first modal; submits when opening task edit modal.
 // TODO:  // ✔  Need to make a 'click area' mixin for elements; take into account content area and scale click area by %.
 // TODO:  // ✔   Need to tidy up types everywhere.
+// TODO:  // ✔  Need to make modal animations smooth; dark blur background needs smoothing.
+// TODO:  // ✖  Need to adjust the menu animation; when many list items the total delay exceeds the slide-out animation.
 // TODO:  // ✖  Need to add functionality for drag and drop.
 // TODO:  // ✖  Need to change routes in backend; the response objects should all be DATA: { DATA: [returndata]}
 // TODO:  // ✖  Need to check backend - the response objects for each method, sending back board? task? can we unify all this?
@@ -32,7 +34,6 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 // TODO:  // ✖  Need to make a loading spinner or animate the logo when awaiting.
 // TODO:  // ✖  Need to do 'alt' attributes and accessibility.
 // TODO:  // ✖  Need to see if we can pass props for form components instead of relying on context so much.
-// TODO:  // ✖  Need to make modal animations smooth; dark blur background needs smoothing.
 // TODO:  // ✖  Search for '// TODO:  // TEMP DEV:  // HACK:  // DEBUG:  // NOTE:  console.log etc at project finish and remove.
 
 function App(): JSX.Element {

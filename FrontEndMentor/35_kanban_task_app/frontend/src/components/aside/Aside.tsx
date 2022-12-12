@@ -9,16 +9,26 @@ import { TBoardInfo } from '#Types/types';
 import { useContext } from 'react';
 import styles from './_Aside.module.scss';
 
+// The animation delay variable in SASS (--delay) is set here, controlling the list items dynamically.
+// Alternative is to hardcode a for-loop for a predetermined list length in SASS.
 const sidebarHide = () => {
   const sidebarElement = document.querySelector('#sidebar') as HTMLElement;
+  const listItems = document.querySelectorAll('li[data-listnum]');
+  listItems.forEach((el, i, arr) => {
+    (el as HTMLElement).style.setProperty('--delay', `${arr.length - i}`);
+  });
+
   sidebarElement.classList.add(styles['animation-hide']);
   sidebarElement.classList.remove(styles['animation-show']);
 };
 
 const sidebarShow = () => {
   const sidebarElement = document.querySelector('#sidebar') as HTMLElement;
+  const listItems = document.querySelectorAll('li[data-listnum]');
+  listItems.forEach((el, i) => {
+    (el as HTMLElement).style.setProperty('--delay', `${i}`);
+  });
   sidebarElement.classList.add(styles['animation-show']);
-  // sidebarElement.classList.remove(styles['animation-hide']);
 };
 
 type ElemProps = {
@@ -32,11 +42,12 @@ function Aside(props: ElemProps): JSX.Element {
   const modalDispatch = useContext(RootModalDispatchContext);
 
   const numOfBoards = boards.length;
-  const boardListItems = (boards as TBoardInfo).map(({ name, id }) => (
+  const boardListItems = (boards as TBoardInfo).map(({ name, id }, i) => (
     <li
       key={id}
       className={id === activeBoardId ? styles.active : ''}
-      data-board-id={id}>
+      data-board-id={id}
+      data-listnum={i + 1}>
       <img src={IconBoard} alt="" />
       <p>{name}</p>
     </li>
@@ -63,7 +74,10 @@ function Aside(props: ElemProps): JSX.Element {
         <ul onClickCapture={onListClickHandler}>
           {boardListItems}
           {boards.length > 0 && (
-            <li className={styles['new-board']} data-board-id="create-new">
+            <li
+              className={styles['new-board']}
+              data-board-id="create-new"
+              data-listnum>
               <img src={IconBoard} alt="" />
               <p>+ Create New Board</p>
             </li>
