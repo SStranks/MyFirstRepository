@@ -112,6 +112,7 @@ function RootModal(props: ElemProps): JSX.Element | null {
 
     return () => {
       document?.removeEventListener('keyup', keyHandler);
+      // TODO:  Accessibility to implement here.
       // document.querySelector('#root')?.removeAttribute('inert');
     };
   }, []);

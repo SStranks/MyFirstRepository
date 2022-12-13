@@ -9,14 +9,18 @@ import { TBoardInfo } from '#Types/types';
 import { useContext } from 'react';
 import styles from './_Aside.module.scss';
 
-// The animation delay variable in SASS (--delay) is set here, controlling the list items dynamically.
-// Alternative is to hardcode a for-loop for a predetermined list length in SASS.
+// NOTE:  The animation delay variables in SASS (--delay-X) are set here; controlling the list items delay dynamically and calculating the delay for the sidebar hide animation to accomodate the list length.
 const sidebarHide = () => {
   const sidebarElement = document.querySelector('#sidebar') as HTMLElement;
   const listItems = document.querySelectorAll('li[data-listnum]');
   listItems.forEach((el, i, arr) => {
-    (el as HTMLElement).style.setProperty('--delay', `${arr.length - i}`);
+    (el as HTMLElement).style.setProperty('--delay-li', `${arr.length - i}`);
   });
+
+  sidebarElement.style.setProperty(
+    '--delay-sidebar',
+    `${listItems.length * 0.15 + 0.075}s`
+  );
 
   sidebarElement.classList.add(styles['animation-hide']);
   sidebarElement.classList.remove(styles['animation-show']);
@@ -26,7 +30,7 @@ const sidebarShow = () => {
   const sidebarElement = document.querySelector('#sidebar') as HTMLElement;
   const listItems = document.querySelectorAll('li[data-listnum]');
   listItems.forEach((el, i) => {
-    (el as HTMLElement).style.setProperty('--delay', `${i}`);
+    (el as HTMLElement).style.setProperty('--delay-li', `${i}`);
   });
   sidebarElement.classList.add(styles['animation-show']);
 };

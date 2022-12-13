@@ -26,7 +26,7 @@ const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
 // TODO:  // ✔  Need to make a 'click area' mixin for elements; take into account content area and scale click area by %.
 // TODO:  // ✔   Need to tidy up types everywhere.
 // TODO:  // ✔  Need to make modal animations smooth; dark blur background needs smoothing.
-// TODO:  // ✖  Need to adjust the menu animation; when many list items the total delay exceeds the slide-out animation.
+// TODO:  // ✔  Need to adjust the menu animation; when many list items the total delay exceeds the slide-out animation.
 // TODO:  // ✖  Need to add functionality for drag and drop.
 // TODO:  // ✖  Need to change routes in backend; the response objects should all be DATA: { DATA: [returndata]}
 // TODO:  // ✖  Need to check backend - the response objects for each method, sending back board? task? can we unify all this?

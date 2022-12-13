@@ -128,13 +128,11 @@
   }
 }
 
-// NOTE:  Need to refactor when list items are mapped/dynamic as JSX.
-// NOTE:  Need to make delays and timings dynamic depending on number of items in list.
 .animation-hide {
-  animation: sidebar-hide-300 2s 700ms forwards;
+  animation: sidebar-hide-300 2s var(--delay-sidebar) forwards;
 
   @include mq.media(tablet-large, tablet-medium, tablet-small) {
-    animation: sidebar-hide-260 2s 700ms forwards;
+    animation: sidebar-hide-260 2s var(--delay-sidebar) forwards;
   }
 
   & .sidebar__theme {
@@ -146,26 +144,12 @@
     animation: sidebar-opacity 0.25s ease-in-out forwards;
   }
 
-  // & .sidebar__boards li:nth-child(1) {
-  //   --delay: 4;
-  // }
-
-  // & .sidebar__boards li:nth-child(2) {
-  //   --delay: 3;
-  // }
-
-  // & .sidebar__boards li:nth-child(3) {
-  //   --delay: 2;
-  // }
-
-  // & .sidebar__boards li:nth-child(4) {
-  //   --delay: 1;
-  // }
-
+  // NOTE:  The --delay variable is set per list-item through the Aside.tsx component; for dynamic list length.
   & .sidebar__boards > ul,
   .sidebar__boards > ul > li,
   .sidebar__boards > ul > li > p {
-    animation: sidebar-li 1.75s calc(var(--delay) * 150ms + 75ms) forwards ease;
+    animation: sidebar-li 1.75s calc(var(--delay-li) * 150ms + 75ms) forwards
+      ease;
   }
 
   & .sidebar__show {
@@ -187,27 +171,12 @@
     animation: sidebar-opacity-reverse 0.75s ease-in-out 1.75s normal backwards;
   }
 
-  // & .sidebar__boards li:nth-child(1) {
-  //   --delay: 1;
-  // }
-
-  // & .sidebar__boards li:nth-child(2) {
-  //   --delay: 2;
-  // }
-
-  // & .sidebar__boards li:nth-child(3) {
-  //   --delay: 3;
-  // }
-
-  // & .sidebar__boards li:nth-child(4) {
-  //   --delay: 4;
-  // }
-
+  // NOTE:  The --delay variable is set per list-item through the Aside.tsx component; for dynamic list length.
   & .sidebar__boards > ul,
   .sidebar__boards > ul > li,
   .sidebar__boards > ul > li > p {
-    animation: sidebar-li-reverse 1.75s ease calc(var(--delay) * 150ms + 75ms)
-      normal backwards;
+    animation: sidebar-li-reverse 1.75s ease
+      calc(var(--delay-li) * 150ms + 75ms) normal backwards;
   }
 
   & .sidebar__show {
