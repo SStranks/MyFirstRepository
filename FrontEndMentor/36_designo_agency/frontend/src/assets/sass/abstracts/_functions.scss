@@ -56,11 +56,4 @@
 }
 
 // Z-Index List. Descending order of Z height; 0, 1, 2..
-$z-indexes: (
-  'menu-dropdown',
-  'modal-container',
-  'site-nav',
-  'site-header',
-  'site-content',
-  'site-footer'
-);
+$z-indexes: ();

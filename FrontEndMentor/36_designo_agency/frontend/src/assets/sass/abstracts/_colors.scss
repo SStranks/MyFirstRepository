@@ -17,57 +17,21 @@
 /*   Primary Colors                 */
 /* -------------------------------- */
 
-$col-1a: hsl(242deg, 48%, 58%);
-$col-1b: hsl(243deg, 100%, 82%);
-$col-1c: hsl(237deg, 100%, 4%);
-$col-1d: hsl(235deg, 16%, 15%);
-$col-1e: hsl(235deg, 12%, 19%);
-$col-1f: hsl(236deg, 11%, 27%);
-$col-1g: hsl(216deg, 15%, 57%);
-$col-1h: hsl(221deg, 69%, 94%);
-$col-1i: hsl(220deg, 69%, 97%);
-$col-1j: hsl(0deg, 78%, 63%);
-$col-1k: hsl(0deg, 100%, 80%);
-$col-1l: hsl(245deg, 52%, 96%);
-$col-1m: hsl(242deg, 48%, 89%);
-$col-1n: hsl(240deg, 23%, 29%);
-$col-1o: hsl(193deg, 75%, 59%);
-$col-1p: hsl(219deg, 63%, 95%);
+$col-1a: hsl(11deg, 73%, 66%); // Peach
+$col-1b: hsl(270deg, 3%, 11%); // Black
+$col-1c: hsl(0deg, 0%, 100%); // White
 
 /* -------------------------------- */
 /*   Secondary Colors               */
 /* -------------------------------- */
 
-$White: hsl(0deg, 0%, 100%);
-$Black: hsl(0deg, 0%, 0%);
-$col-2a: hsla(237deg, 100%, 4%, 0.25);
-$col-2b: hsla(0deg, 0%, 100%, 0.25);
-$col-2c: hsla(216deg, 15%, 57%, 0.25);
-$col-2d: hsla(237deg, 100%, 4%, 0.5);
-$col-2e: hsla(0deg, 0%, 100%, 0.5);
-$col-2f: hsla(242deg, 48%, 58%, 0.25);
-// $Light_Grey: hsl(210deg, 22%, 96%);
-// $Grey: hsl(212deg, 23%, 69%);
-// $Dark_Grey: hsl(214deg, 17%, 51%);
+$col-2a: hsl(11deg, 73%, 66%); // Light Peach
+$col-2b: hsl(264deg, 5%, 20%); // Dark Grey
+$col-2c: hsl(210deg, 17%, 95%); // Light Grey
 
 /* -------------------------------- */
 /*   Tertiary Colors                */
 /* -------------------------------- */
-
-// Column Bullet Palette
-// Palette extended with tools: https://paletton.com/ https://htmlcolors.com/hex-to-hsl
-$col-3a: hsl(193deg, 75%, 59%);
-$col-3b: hsl(249deg, 83%, 70%);
-$col-3c: hsl(154deg, 68%, 64%);
-$col-3d: hsl(24, 100%, 65%);
-$col-3e: hsl(238, 77%, 64%);
-$col-3f: hsl(52, 100%, 65%);
-$col-3g: hsl(162, 78%, 59%);
-$col-3h: hsl(293, 77%, 59%);
-$col-3i: hsl(77, 96%, 64%);
-$col-3j: hsl(349, 96%, 64%);
-$col-3k: hsl(114, 88%, 62%);
-$col-3l: hsl(38, 100%, 65%);
 
 // Modal
 $col-modal-bg: hsla(0deg, 0%, 0%, 0.5);
