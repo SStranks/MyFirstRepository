@@ -1,0 +1,128 @@
+/* -------------------------------- */
+/*   Animations                     */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use 'variables' as *;
+@use 'media-queries' as mq;
+
+/* -------------------------------- */
+/*   Theme Transitions              */
+/* -------------------------------- */
+
+$Theme-transition-bg: background 1s;
+$Theme-transition-color: color 1s;
+$Theme-transition-fill: fill 1s;
+$Theme-transition-border: border 1s;
+
+/* -------------------------------- */
+/*   Keyframes                      */
+/* -------------------------------- */
+
+@keyframes sidebar-hide-300 {
+  0% {
+    width: $sidebar-dim-width-l;
+  }
+  100% {
+    width: 0px;
+  }
+}
+
+@keyframes sidebar-hide-reverse-300 {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: $sidebar-dim-width-l;
+  }
+}
+
+@keyframes sidebar-hide-260 {
+  0% {
+    width: $sidebar-dim-width-m;
+  }
+  100% {
+    width: 0px;
+  }
+}
+
+@keyframes sidebar-hide-reverse-260 {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: $sidebar-dim-width-m;
+  }
+}
+
+@keyframes sidebar-opacity {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0%;
+  }
+}
+
+@keyframes sidebar-opacity-reverse {
+  0% {
+    visibility: hidden;
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes sidebar-theme-reverse {
+  0% {
+    visibility: hidden;
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes sidebar-li {
+  0% {
+    opacity: 100%;
+    overflow-x: hidden;
+  }
+  25% {
+    opacity: 25%;
+  }
+  100% {
+    visibility: hidden;
+    opacity: 0%;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes sidebar-li-reverse {
+  0% {
+    visibility: hidden;
+    opacity: 0%;
+    transform: translateX(-100%);
+  }
+  25% {
+    opacity: 25%;
+  }
+  100% {
+    opacity: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* -------------------------------- */
+/*   Hover Effects                  */
+/* -------------------------------- */

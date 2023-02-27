@@ -1,0 +1,106 @@
+/* -------------------------------- */
+/*   Buttons                        */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use '../abstracts/animations' as a;
+@use '../abstracts/functions' as f;
+@use '../abstracts/colors' as c;
+@use '../abstracts/mixins' as mx;
+@use '../abstracts/variables' as v;
+@use '../base/themes' as t;
+
+/* -------------------------------- */
+/*   Default                        */
+/* -------------------------------- */
+
+@mixin btn-default {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // Width to be determined by encapsulating DIV
+  // width: 100%;
+  font-weight: 700;
+}
+
+/* -------------------------------- */
+/*   Light Theme                    */
+/* -------------------------------- */
+
+@mixin btn-primary-l {
+  @include btn-default;
+  @include mx.header-m;
+  padding: f.px2em(15) 0;
+  background-color: c.$col-1a;
+  color: c.$White;
+  border-radius: v.$border-radius-btn-1;
+  transition: a.$Theme-transition-bg, a.$Theme-transition-color;
+
+  &:hover {
+    background-color: c.$col-1b;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--thm-btn-primary-disabled-bg);
+    color: var(--thm-btn-primary-disabled-text);
+  }
+}
+
+@mixin btn-primary-s {
+  @include btn-default;
+  @include mx.body-l;
+  height: 40px;
+  font-weight: 700;
+  padding: f.px2em(8) 0;
+  background-color: c.$col-1a;
+  color: c.$White;
+  border-radius: v.$border-radius-btn-2;
+
+  &:hover {
+    background-color: c.$col-1b;
+  }
+}
+
+@mixin btn-secondary {
+  @include btn-default;
+  @include mx.body-l;
+  height: 40px;
+  font-weight: 700;
+  padding: f.px2em(8) 0;
+  background-color: var(--thm-btn-secondary);
+  color: c.$col-1a;
+  border-radius: v.$border-radius-btn-2;
+  transition: a.$Theme-transition-bg;
+
+  &:hover {
+    background-color: var(--thm-btn-secondary-hover);
+  }
+}
+
+@mixin btn-destructive {
+  @include btn-default;
+  @include mx.body-l;
+  height: 40px;
+  font-weight: 700;
+  padding: f.px2em(15) 0;
+  background-color: c.$col-1j;
+  color: c.$White;
+  border-radius: v.$border-radius-btn-2;
+
+  &:hover {
+    background-color: c.$col-1k;
+  }
+}
+
+/* -------------------------------- */
+/*   Dark Theme                     */
+/* -------------------------------- */

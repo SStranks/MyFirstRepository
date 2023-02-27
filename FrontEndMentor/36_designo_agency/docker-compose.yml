@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+
+  # Backend: Node API
+  node-api:
+    build:
+      context: ./backend
+
+
+  # Frontend: React App
+  react-app:
+    build:
+      context: ./frontend

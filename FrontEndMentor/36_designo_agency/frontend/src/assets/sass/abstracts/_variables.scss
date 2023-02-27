@@ -1,0 +1,60 @@
+/* -------------------------------- */
+/*   Variables                      */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use '#Sass/abstracts/functions' as f;
+
+/* -------------------------------- */
+/*   Web Elements                   */
+/* -------------------------------- */
+
+$sidebar-dim-width-l: 300px;
+$sidebar-dim-width-m: 260px;
+$sidebar-dim-width-s: 300px;
+$navbar-dim-height: 96px;
+
+/* -------------------------------- */
+/*   Margin & Padding               */
+/* -------------------------------- */
+
+$padding-desktop: 0 165px 56px 165px;
+$margin-forms: f.px2em(50) 0;
+// $padding-transition: padding 2500ms ease-out;
+// $grid-gap-transition: gap 1500ms ease-out;
+
+/* -------------------------------- */
+/*   Borders                        */
+/* -------------------------------- */
+
+// Common radius across multiple elements
+$border-radius-1: 4px;
+
+$border-radius-btn-1: 24px;
+$border-radius-btn-2: 20px;
+$border-radius-chkbx-1: $border-radius-1;
+$border-radius-chkbx-2: 2px;
+$border-radius-input-text: $border-radius-1;
+$border-radius-dropdown: $border-radius-1;
+$border-radius-dropdown-list: 8px;
+$border-radius-sidebar-li: 100px;
+$border-radius-sidebar-theme: 6px;
+$border-radius-task: 8px;
+$border-radius-column-empty: 6px;
+$border-radius-forms: 6px;
+$border-radius-forms-subtask: 4px;
+
+/* -------------------------------- */
+/*   Shadows                        */
+/* -------------------------------- */
+
+$box-shadow-1: 0px 4px 6px rgba(54, 78, 126, 0.1);
+$box-shadow-2: 0px 4px 6px rgba(55, 2, 124, 0.1);

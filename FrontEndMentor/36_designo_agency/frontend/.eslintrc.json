@@ -1,0 +1,92 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:jsx-a11y/recommended",
+    "plugin:jest/recommended",
+    "plugin:unicorn/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+    // "requireConfigFile": false
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "jsx-a11y",
+    "import",
+    "jest",
+    "unicorn",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "no-unused-vars": "off", // Rule handled by "@typescript-eslint/no-unused-vars": "warn"
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    // Typescript Rules --
+    "react/prop-types": "off",
+    "react/require-default-props": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    // Typescript Rules --
+    "react/function-component-definition": "off",
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
+    "react/jsx-uses-react": 0,
+    "unicorn/filename-case": [
+      "error",
+      {
+        "case": "pascalCase",
+        "ignore": [
+          "index.(js|jsx|ts|tsx)",
+          "use\\w*.tsx",
+          "webpack.*",
+          ".test.ts",
+          ".d.ts"
+        ]
+      }
+    ],
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-array-for-each": "off",
+    "unicorn/no-array-reduce": "off",
+    "arrow-body-style": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/extensions": "off"
+    // "func-names": "off",
+    // "no-process-exit": "off",
+    // "object-shorthand": "off",
+    // "class-methods-use-this": "off",
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        // NOTE:  ESLint works from <root>; the workspace/folder open. See vscode.code-workspace.
+        "project": "./"
+      }
+    }
+  },
+  "ignorePatterns": ["node_modules", "public/*"]
+}

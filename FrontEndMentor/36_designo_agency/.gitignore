@@ -1,0 +1,19 @@
+# Env files
+.env
+.env.*
+
+# Dependencies
+backend/node_modules
+frontend/node_modules
+
+# Public
+frontend/public
+
+# FrontEndMentor
+*.sketch
+*.xd
+*.fig
+.DS_Store
+
+# VSCode
+*.code-workspace
