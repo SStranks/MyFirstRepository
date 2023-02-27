@@ -28,79 +28,43 @@
   align-items: center;
   // Width to be determined by encapsulating DIV
   // width: 100%;
-  font-weight: 700;
+  font-size: f.px2rem(15);
+  font-weight: 500;
+  line-height: f.px2rem(22);
+  letter-spacing: f.px2rem(1);
 }
 
 /* -------------------------------- */
-/*   Light Theme                    */
+/*   Button On Dark                 */
 /* -------------------------------- */
 
-@mixin btn-primary-l {
+@mixin btn-primary {
   @include btn-default;
-  @include mx.header-m;
-  padding: f.px2em(15) 0;
-  background-color: c.$col-1a;
-  color: c.$White;
+  padding: f.px2em(18) f.px2em(24);
+  background-color: c.$col-1c;
+  color: c.$col-2b;
   border-radius: v.$border-radius-btn-1;
-  transition: a.$Theme-transition-bg, a.$Theme-transition-color;
+  // transition: a.$Theme-transition-bg, a.$Theme-transition-color;
 
   &:hover {
-    background-color: c.$col-1b;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    background-color: var(--thm-btn-primary-disabled-bg);
-    color: var(--thm-btn-primary-disabled-text);
+    background-color: c.$col-2a;
+    color: c.$col-1c;
   }
 }
 
-@mixin btn-primary-s {
-  @include btn-default;
-  @include mx.body-l;
-  height: 40px;
-  font-weight: 700;
-  padding: f.px2em(8) 0;
-  background-color: c.$col-1a;
-  color: c.$White;
-  border-radius: v.$border-radius-btn-2;
-
-  &:hover {
-    background-color: c.$col-1b;
-  }
-}
+/* -------------------------------- */
+/*  Button On Light                 */
+/* -------------------------------- */
 
 @mixin btn-secondary {
   @include btn-default;
-  @include mx.body-l;
-  height: 40px;
-  font-weight: 700;
-  padding: f.px2em(8) 0;
-  background-color: var(--thm-btn-secondary);
-  color: c.$col-1a;
-  border-radius: v.$border-radius-btn-2;
-  transition: a.$Theme-transition-bg;
+  padding: f.px2em(18) f.px2em(24);
+  background-color: c.$col-1a;
+  color: c.$col-1c;
+  border-radius: v.$border-radius-btn-1;
+  // transition: a.$Theme-transition-bg, a.$Theme-transition-color;
 
   &:hover {
-    background-color: var(--thm-btn-secondary-hover);
+    background-color: c.$col-2a;
   }
 }
-
-@mixin btn-destructive {
-  @include btn-default;
-  @include mx.body-l;
-  height: 40px;
-  font-weight: 700;
-  padding: f.px2em(15) 0;
-  background-color: c.$col-1j;
-  color: c.$White;
-  border-radius: v.$border-radius-btn-2;
-
-  &:hover {
-    background-color: c.$col-1k;
-  }
-}
-
-/* -------------------------------- */
-/*   Dark Theme                     */
-/* -------------------------------- */
