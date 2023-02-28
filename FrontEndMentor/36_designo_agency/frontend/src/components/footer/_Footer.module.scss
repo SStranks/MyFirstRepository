@@ -1,0 +1,70 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+
+.footer {
+  width: 100%;
+  padding: v.$padding-desktop-sub-container;
+  padding-top: f.px2em(144);
+  padding-bottom: f.px2em(72);
+  background-color: c.$col-1b;
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    height: 28px;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    column-gap: f.px2em(42);
+  }
+
+  &__link {
+    @include mx.body-nav-link;
+    color: c.$col-1c;
+    text-transform: uppercase;
+
+    &:hover {
+      @include mx.text-link-underline;
+    }
+  }
+
+  &__hr {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border-color: c.$col-2b;
+    border-style: solid;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+
+    & p {
+      color: c.$col-1c;
+      opacity: 50%;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-end;
+    column-gap: 16px;
+
+    & > img {
+      height: fit-content;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

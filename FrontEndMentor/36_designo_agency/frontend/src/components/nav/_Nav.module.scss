@@ -24,9 +24,7 @@
     color: c.$col-2b;
 
     &:hover {
-      cursor: pointer;
-      text-decoration-line: underline;
-      text-underline-offset: 3px;
+      @include mx.text-link-underline;
     }
   }
 }

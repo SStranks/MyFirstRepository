@@ -57,6 +57,16 @@
 }
 
 /* -------------------------------- */
+/*   Text: Decoration               */
+/* -------------------------------- */
+
+@mixin text-link-underline {
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+}
+
+/* -------------------------------- */
 /*   Extend Click Area              */
 /* -------------------------------- */
 
