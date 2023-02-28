@@ -53,6 +53,17 @@
     }
   }
 
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    max-width: 70%;
+  }
+
+  &__bold-text {
+    font-weight: 700;
+    letter-spacing: 0.75px;
+  }
+
   &__icons {
     display: flex;
     justify-content: space-between;
@@ -64,6 +75,8 @@
 
       &:hover {
         cursor: pointer;
+        filter: brightness(0) saturate(100%) invert(93%) sepia(66%)
+          saturate(940%) hue-rotate(293deg) brightness(89%) contrast(131%);
       }
     }
   }
