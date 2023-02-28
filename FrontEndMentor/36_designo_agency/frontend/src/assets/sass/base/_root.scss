@@ -17,9 +17,9 @@
 /*   Root                           */
 /* -------------------------------- */
 
-:root {
-  // Establish default theme color variables
-  @each $theme-item, $value in thm.$light-theme {
-    --thm-#{$theme-item}: #{$value};
-  }
-}
+// :root {
+//   // Establish default theme color variables
+//   @each $theme-item, $value in thm.$light-theme {
+//     --thm-#{$theme-item}: #{$value};
+//   }
+// }
