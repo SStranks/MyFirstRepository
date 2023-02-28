@@ -2,6 +2,7 @@
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
+@use '#Sass/components/buttons' as btn;
 
 .footer {
   width: 100%;
@@ -9,6 +10,46 @@
   padding-top: f.px2em(144);
   padding-bottom: f.px2em(72);
   background-color: c.$col-1b;
+  margin-top: 500px; // TEMP VALUE WHILST HEADER AND FOOTER ARE ADJACENT ELEMENTS. DELETE LATER.
+
+  &__container {
+    position: relative;
+  }
+
+  &__hero {
+    position: absolute;
+    top: 0;
+    transform: translateY(-125%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    // background-image: ;
+    background-color: c.$col-1a;
+    border-radius: 15px;
+    padding: f.px2em(72) f.px2em(95);
+
+    &__header {
+      @include mx.header-h2;
+      min-width: 350px;
+      max-width: 40%;
+      color: c.$col-1c;
+      line-height: f.px2rem(40);
+      margin-bottom: f.px2em(6);
+    }
+
+    &__body {
+      @include mx.body-r;
+      max-width: 62%;
+      color: c.$col-1c;
+    }
+
+    &__button {
+      @include btn.btn-primary;
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+  }
 
   &__nav {
     display: flex;
@@ -56,7 +97,16 @@
   &__details {
     display: flex;
     justify-content: space-between;
-    max-width: 70%;
+    flex-grow: 1;
+    max-width: 50%;
+
+    & > div {
+      flex-shrink: 0;
+    }
+
+    & > :nth-child(1) {
+      margin-right: f.px2em(24);
+    }
   }
 
   &__bold-text {
