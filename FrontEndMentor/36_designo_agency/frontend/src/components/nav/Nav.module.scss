@@ -1,0 +1,13 @@
+@use '#Sass/abstracts/functions' as f;
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    column-gap: f.px2em(42);
+    text-transform: capitalize;
+  }
+}
