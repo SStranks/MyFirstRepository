@@ -1,2 +1,12 @@
-@use '#Sass/abstracts/variables' as v;
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/variables' as v;
+
+.container {
+  background-color: c.$col-1c;
+
+  &__sub-container {
+    padding: 0 f.px2em(165);
+  }
+}

@@ -1,13 +1,26 @@
+@use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
 
 .nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: f.px2em(64) 0;
+
+  &__logo {
+    height: 28px;
+  }
 
   &__links {
     display: flex;
     justify-content: space-between;
     column-gap: f.px2em(42);
-    text-transform: capitalize;
+  }
+
+  &__link {
+    @include mx.body-nav-link;
+    text-transform: uppercase;
+    color: c.$col-2b;
   }
 }

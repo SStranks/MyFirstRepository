@@ -49,6 +49,13 @@
   line-height: f.px2rem(26);
 }
 
+@mixin body-nav-link {
+  font-weight: 400;
+  font-size: f.px2rem(14);
+  line-height: f.px2rem(26);
+  letter-spacing: f.px2rem(2);
+}
+
 /* -------------------------------- */
 /*   Extend Click Area              */
 /* -------------------------------- */
