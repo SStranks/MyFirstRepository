@@ -7,7 +7,11 @@ type ElemProps = {
 function DefaultLayout(props: ElemProps): JSX.Element {
   const { children } = props;
 
-  return <div className={styles.container}>{children}</div>;
+  return (
+    <div className={styles.container}>
+      <div className={styles['container__sub-container']}>{children}</div>
+    </div>
+  );
 }
 
 export default DefaultLayout;

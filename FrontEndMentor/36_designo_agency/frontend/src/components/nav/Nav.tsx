@@ -4,11 +4,11 @@ import styles from './Nav.module.scss';
 function Nav(): JSX.Element {
   return (
     <div className={styles.nav}>
-      <img src={LogoDark} alt="" />
+      <img src={LogoDark} alt="" className={styles.nav__logo} />
       <div className={styles.nav__links}>
-        <h3>our company</h3>
-        <h3>locations</h3>
-        <h3>contact</h3>
+        <p className={styles.nav__link}>our company</p>
+        <p className={styles.nav__link}>locations</p>
+        <p className={styles.nav__link}>contact</p>
       </div>
     </div>
   );
