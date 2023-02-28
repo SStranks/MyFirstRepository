@@ -1,5 +1,5 @@
 import LogoDark from '#Img/desktop/logo-dark.png';
-import styles from './Nav.module.scss';
+import styles from './_Nav.module.scss';
 
 function Nav(): JSX.Element {
   return (
