@@ -22,5 +22,11 @@
     @include mx.body-nav-link;
     text-transform: uppercase;
     color: c.$col-2b;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration-line: underline;
+      text-underline-offset: 3px;
+    }
   }
 }
