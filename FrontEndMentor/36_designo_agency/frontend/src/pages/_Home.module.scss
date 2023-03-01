@@ -4,6 +4,22 @@
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
+.bgLeafTop {
+  position: absolute;
+  left: 0;
+  height: fit-content;
+  transform: translateY(50%);
+  z-index: 0;
+}
+
+.bgLeafBottom {
+  position: absolute;
+  right: 0;
+  height: fit-content;
+  transform: rotate(180deg) translateY(50%);
+  z-index: 0;
+}
+
 .hero {
   display: flex;
   position: relative;
@@ -47,9 +63,12 @@
 }
 
 .viewgrid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
+  margin-bottom: f.px2em(160);
   height: 640px;
   column-gap: 30px;
   row-gap: 24px;
@@ -57,4 +76,10 @@
   & > :nth-child(1) {
     grid-row: 1 / span 2;
   }
+}
+
+.qualities {
+  display: flex;
+  position: relative;
+  z-index: 1;
 }

@@ -1,12 +1,20 @@
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
 
 .quality {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   &__title {
+    @include mx.header-h3;
     margin: f.px2em(48) 0 f.px2em(32);
     text-transform: uppercase;
+  }
+
+  &__caption {
+    padding: 0 f.px2em(12);
+    text-align: center;
   }
 }
 

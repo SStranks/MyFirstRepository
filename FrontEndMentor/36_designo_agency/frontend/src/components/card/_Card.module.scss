@@ -13,6 +13,7 @@
   border-radius: v.$border-radius-1;
   text-transform: uppercase;
   color: c.$col-1c;
+  row-gap: f.px2em(24);
 
   & > h2 {
     @include mx.header-h2;
