@@ -8,6 +8,7 @@
   display: flex;
   position: relative;
   padding: f.px2em(145) f.px2em(95) 0;
+  margin-bottom: f.px2em(160);
   background-color: c.$col-1a;
   background-image: url(../assets/svg/desktop/bg-pattern-hero-home.svg);
   background-position: center right;
@@ -42,5 +43,18 @@
     top: 0;
     height: fit-content;
     transform: translate(12%, -3%);
+  }
+}
+
+.viewgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  height: 640px;
+  column-gap: 30px;
+  row-gap: 24px;
+
+  & > :nth-child(1) {
+    grid-row: 1 / span 2;
   }
 }
