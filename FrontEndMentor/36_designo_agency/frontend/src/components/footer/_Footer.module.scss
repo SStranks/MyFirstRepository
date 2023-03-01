@@ -24,8 +24,10 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    // background-image: ;
     background-color: c.$col-1a;
+    background-image: url(../../assets/svg/desktop/bg-pattern-call-to-action.svg);
+    background-position: center right;
+    background-repeat: no-repeat;
     border-radius: 15px;
     padding: f.px2em(72) f.px2em(95);
 
