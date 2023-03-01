@@ -1,0 +1,46 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+@use '#Sass/components/buttons' as btn;
+
+.hero {
+  display: flex;
+  position: relative;
+  padding: f.px2em(145) f.px2em(95) 0;
+  background-color: c.$col-1a;
+  background-image: url(../assets/svg/desktop/bg-pattern-hero-home.svg);
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: v.$border-radius-1;
+  color: c.$col-1c;
+  overflow: hidden;
+
+  &__info {
+    max-width: 50%;
+    margin-bottom: f.px2em(120);
+
+    & > h1 {
+      @include mx.header-h1;
+    }
+
+    & > p {
+      margin: f.px2em(35) 0;
+      padding-right: f.px2em(150);
+    }
+
+    & > button {
+      @include btn.btn-primary;
+      text-transform: uppercase;
+    }
+  }
+
+  & > img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: fit-content;
+    transform: translate(12%, -3%);
+  }
+}
