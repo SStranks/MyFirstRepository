@@ -1,0 +1,36 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: v.$border-radius-1;
+  text-transform: uppercase;
+  color: c.$col-1c;
+
+  & > h2 {
+    @include mx.header-h2;
+  }
+
+  &__view {
+    display: flex;
+    align-items: center;
+    column-gap: f.px2em(20);
+    justify-content: space-between;
+
+    & > p {
+      @include mx.header-h3;
+      font-size: f.px2rem(15);
+    }
+
+    & > img {
+      height: fit-content;
+    }
+  }
+}
