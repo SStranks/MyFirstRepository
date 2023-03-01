@@ -2,7 +2,7 @@ import Footer from '#Components/footer/Footer';
 import styles from './_DefaultLayout.module.scss';
 
 type ElemProps = {
-  children: JSX.Element;
+  children: JSX.Element[];
 };
 
 function DefaultLayout(props: ElemProps): JSX.Element {
