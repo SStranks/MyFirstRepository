@@ -1,4 +1,4 @@
-import Home from '#Pages/Home';
+import Home from '#Pages/home/Home';
 import { Route, Routes } from 'react-router-dom';
 
 // TODO:  Add all z-index to control manager
