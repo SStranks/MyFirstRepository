@@ -10,7 +10,7 @@
   padding-top: f.px2em(144);
   padding-bottom: f.px2em(72);
   background-color: c.$col-1b;
-  margin-top: 500px; // TEMP VALUE WHILST HEADER AND FOOTER ARE ADJACENT ELEMENTS. DELETE LATER.
+  margin-top: 380px;
 
   &__container {
     position: relative;
@@ -25,7 +25,7 @@
     align-items: center;
     width: 100%;
     background-color: c.$col-1a;
-    background-image: url(../../assets/svg/desktop/bg-pattern-call-to-action.svg);
+    background-image: url(~svg/desktop/bg-pattern-call-to-action.svg);
     background-position: center right;
     background-repeat: no-repeat;
     border-radius: 15px;

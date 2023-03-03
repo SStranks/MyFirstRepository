@@ -1,4 +1,4 @@
-import Card from '#Components/card/Card';
+import Card1 from '#Components/card/Card1';
 import Nav from '#Components/nav/Nav';
 import Quality from '#Components/quality/Quality';
 import DefaultLayout from '#Layouts/DefaultLayout';
@@ -32,9 +32,9 @@ function Home(): JSX.Element {
         <img src={ImgHero} alt="" />
       </div>
       <div className={styles.viewgrid}>
-        <Card title="web design" image={ImgWebDesign} />
-        <Card title="app design" image={ImgAppDesign} />
-        <Card title="graphic design" image={ImgGraphicDesign} />
+        <Card1 title="web design" image={ImgWebDesign} />
+        <Card1 title="app design" image={ImgAppDesign} />
+        <Card1 title="graphic design" image={ImgGraphicDesign} />
       </div>
       <div className={styles.qualities}>
         <Quality
