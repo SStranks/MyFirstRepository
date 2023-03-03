@@ -1,5 +1,5 @@
 import IconArrowRight from '#Svg/desktop/icon-right-arrow.svg';
-import styles from './_Card.module.scss';
+import styles from './_Card1.module.scss';
 
 type ElemProps = {
   title: string;
