@@ -9,6 +9,18 @@ export default {
   target: 'web',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    // For use in CSS url() imports e.g url(~svg/desktop/a.svg)
+    // Prefix with ~ to initiate module resolver
+    modules: [
+      path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'src/assets'
+      ),
+      path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        'node_modules'
+      ),
+    ],
     alias: {
       '#Img': path.resolve(
         path.dirname(url.fileURLToPath(import.meta.url)),

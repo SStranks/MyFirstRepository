@@ -26,8 +26,8 @@
   padding: f.px2em(145) f.px2em(95) 0;
   margin-bottom: f.px2em(160);
   background-color: c.$col-1a;
-  // background-image: url(~#Svg/desktop/bg-pattern-hero-home.svg); // HACK:  Can we fix this alias issue here?
-  background-image: url(../../assets/svg/desktop/bg-pattern-hero-home.svg);
+  background-image: url('~svg/desktop/bg-pattern-hero-home.svg'); // HACK:  Can we fix this alias issue here?
+  // background-image: url(../../assets/svg/desktop/bg-pattern-hero-home.svg);
   background-position: center right;
   background-repeat: no-repeat;
   background-size: contain;
