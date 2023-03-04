@@ -1,0 +1,72 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+
+.header {
+  display: flex;
+  margin-bottom: f.px2em(160);
+  color: c.$col-1c;
+  background-color: c.$col-1a;
+  background-image: url(~svg/desktop/bg-pattern-hero-about-desktop.svg);
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  border-radius: v.$border-radius-1;
+  overflow: hidden;
+
+  &__info {
+    padding: f.px2em(135) f.px2em(95) 0;
+
+    & > h1 {
+      @include mx.header-h1;
+    }
+
+    & > p {
+      margin-top: f.px2em(24);
+    }
+  }
+}
+
+.card {
+  display: flex;
+  background-color: c.$col-2d;
+  border-radius: v.$border-radius-1;
+  overflow: hidden;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: f.px2em(94);
+
+    & > h2 {
+      @include mx.header-h2;
+      color: c.$col-1a;
+    }
+
+    & > p {
+      margin-top: f.px2em(24);
+    }
+  }
+}
+
+.card-1 {
+  background-image: url(~svg/desktop/bg-pattern-two-circles.svg);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}
+
+.card-2 {
+  flex-direction: row-reverse;
+  background-image: url(~svg/desktop/bg-pattern-two-circles.svg);
+  background-repeat: no-repeat;
+  background-position: bottom left;
+}
+
+.qualities {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  margin: f.px2em(160) 0;
+}
