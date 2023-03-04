@@ -1,0 +1,40 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 30px;
+
+  & > div,
+  > img {
+    border-radius: v.$border-radius-1;
+    overflow: hidden;
+  }
+}
+
+.info {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 0 0 f.px2em(95);
+  background-color: c.$col-2d;
+  background-image: url(~svg/desktop/bg-pattern-two-circles.svg);
+  background-repeat: no-repeat;
+  background-position: bottom left;
+
+  & > h2 {
+    @include mx.header-h2;
+    color: c.$col-1a;
+  }
+}
+
+.column-1 {
+  grid-column: 1;
+  grid-row: 2;
+}
