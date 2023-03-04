@@ -1,0 +1,90 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+@use '#Sass/components/buttons' as btn;
+
+.header {
+  display: flex;
+  height: 480px;
+  margin-bottom: f.px2em(160);
+  color: c.$col-1c;
+  background-color: c.$col-1a;
+  background-image: url(~svg/desktop/bg-pattern-hero-about-desktop.svg);
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  border-radius: v.$border-radius-1;
+  overflow: hidden;
+
+  &__info {
+    max-width: 50%;
+    padding: f.px2em(135) 0 0 f.px2em(95);
+
+    & > h1 {
+      @include mx.header-h1;
+    }
+
+    & > p {
+      margin-top: f.px2em(24);
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: f.px2em(54) f.px2em(95);
+    & > button {
+      @include btn.btn-primary;
+      align-self: flex-end;
+      width: 150px;
+      margin-top: f.px2em(24);
+      text-transform: uppercase;
+    }
+  }
+
+  &__input {
+    & > input[type='text'] {
+      width: 100%;
+      padding: f.px2em(12);
+      border: none;
+      border-bottom: 1px solid c.$col-1c;
+      &::placeholder {
+        color: c.$col-1c;
+        opacity: 60%;
+      }
+      &:hover {
+        border-bottom: 3px solid c.$col-1c;
+        &::placeholder {
+          opacity: 100%;
+        }
+      }
+    }
+    & > textarea {
+      width: 100%;
+      height: 100px;
+      padding: f.px2em(12);
+      border: none;
+      border-bottom: 1px solid c.$col-1c;
+      resize: none;
+      &::placeholder {
+        color: c.$col-1c;
+        opacity: 60%;
+      }
+      &:hover {
+        border-bottom: 3px solid c.$col-1c;
+        &::placeholder {
+          opacity: 100%;
+        }
+      }
+    }
+  }
+}
+
+.qualities {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  margin: f.px2em(160) 0;
+}
