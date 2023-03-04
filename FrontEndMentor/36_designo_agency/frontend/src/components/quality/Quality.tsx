@@ -2,13 +2,14 @@ import styles from './_Quality.module.scss';
 
 type ElemProps = {
   title: string;
-  caption: string;
+  caption: string | undefined;
   illustration: string;
   bgRotation: string;
+  button: boolean;
 };
 
 function Quality(props: ElemProps): JSX.Element {
-  const { title, caption, illustration, bgRotation } = props;
+  const { title, caption, illustration, bgRotation, button } = props;
 
   return (
     <div className={styles.quality}>
@@ -20,7 +21,8 @@ function Quality(props: ElemProps): JSX.Element {
         />
       </div>
       <p className={styles.quality__title}>{title}</p>
-      <p className={styles.quality__caption}>{caption}</p>
+      {caption && <p className={styles.quality__caption}>{caption}</p>}
+      {button && <button type="button">see location</button>}
     </div>
   );
 }
