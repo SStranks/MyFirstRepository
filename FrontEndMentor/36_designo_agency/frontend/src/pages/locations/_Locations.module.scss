@@ -21,16 +21,28 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
   padding: 0 0 0 f.px2em(95);
   background-color: c.$col-2d;
   background-image: url(~svg/desktop/bg-pattern-two-circles.svg);
   background-repeat: no-repeat;
   background-position: bottom left;
 
-  & > h2 {
-    @include mx.header-h2;
-    color: c.$col-1a;
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: min-content min-content;
+    row-gap: f.px2em(24);
+    align-items: center;
+
+    & > h2 {
+      @include mx.header-h2;
+      grid-column: 1 / span 2;
+      color: c.$col-1a;
+    }
+  }
+
+  &__title {
+    font-weight: 700;
   }
 }
 
