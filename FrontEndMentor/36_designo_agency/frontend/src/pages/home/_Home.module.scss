@@ -1,6 +1,7 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
@@ -73,8 +74,21 @@
   column-gap: 30px;
   row-gap: 24px;
 
-  & > :nth-child(1) {
-    grid-row: 1 / span 2;
+  @include mq.media(
+    tablet-extra-large,
+    desktop-small,
+    desktop-medium,
+    desktop-large,
+    desktop-xlarge
+  ) {
+    & > :nth-child(1) {
+      grid-row: 1 / span 2;
+    }
+  }
+
+  @include mq.tablet-large {
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px;
   }
 }
 
@@ -82,4 +96,8 @@
   display: flex;
   position: relative;
   z-index: 1;
+
+  @include mq.media(tablet-all) {
+    flex-direction: column;
+  }
 }

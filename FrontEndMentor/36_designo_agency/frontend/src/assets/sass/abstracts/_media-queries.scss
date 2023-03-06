@@ -143,7 +143,7 @@ $desktop-xl: 2560px;
 }
 
 @mixin tablet-all {
-  @media only screen and (min-width: #{$mobile-l}) and (max-width: #{$desktop-s - 1px}) {
+  @media only screen and (min-width: #{$mobile-l}) and (max-width: #{$tablet-l - 1px}) {
     @content;
   }
 }
