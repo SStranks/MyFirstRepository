@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import LogoLight from '#Img/desktop/logo-light.png';
 import IconFacebook from '#Svg/desktop/icon-facebook.svg';
 import IconInstagram from '#Svg/desktop/icon-instagram.svg';
@@ -27,9 +29,15 @@ function Footer(): JSX.Element {
         <div className={styles.footer__nav}>
           <img className={styles.footer__logo} src={LogoLight} alt="" />
           <div className={styles.footer__links}>
-            <p className={styles.footer__link}>our company</p>
-            <p className={styles.footer__link}>locations</p>
-            <p className={styles.footer__link}>contact</p>
+            <Link to="/about">
+              <p className={styles.footer__link}>our company</p>
+            </Link>
+            <Link to="/locations">
+              <p className={styles.footer__link}>locations</p>
+            </Link>
+            <Link to="/contact">
+              <p className={styles.footer__link}>contact</p>
+            </Link>
           </div>
         </div>
         <hr className={styles.footer__hr} />

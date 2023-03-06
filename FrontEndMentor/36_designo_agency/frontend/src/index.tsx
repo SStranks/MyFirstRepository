@@ -1,4 +1,5 @@
 import App from '#Components/App';
+import ScrollToTop from '#Hooks/ScrollToTop';
 import '#Sass/global-imports.scss';
 // import React from 'react';
 import { createRoot } from 'react-dom/client';
@@ -13,6 +14,7 @@ const root = createRoot(container!);
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
+    <ScrollToTop />
     <App />
   </BrowserRouter>
   // </React.StrictMode>
