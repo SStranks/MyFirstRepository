@@ -26,7 +26,10 @@ $navbar-dim-height: 96px;
 /*   Margin & Padding               */
 /* -------------------------------- */
 
-$padding-desktop-sub-container: 0 f.px2em(165);
+$padding-desktop: 0 f.px2em(165);
+$padding-desktop-small: 0 f.px2em(120);
+$padding-tablet-xl: 0 f.px2em(80);
+$padding-tablet-large: 0 f.px2em(40);
 // $margin-forms: f.px2em(50) 0;
 // $padding-transition: padding 2500ms ease-out;
 // $grid-gap-transition: gap 1500ms ease-out;

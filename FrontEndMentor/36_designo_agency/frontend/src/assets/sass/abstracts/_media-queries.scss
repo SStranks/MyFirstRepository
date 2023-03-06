@@ -24,7 +24,8 @@ $tablet-m: 667px;
 $tablet-l: 768px;
 $desktop-s: 1024px;
 $desktop-m: 1440px;
-$desktop-l: 2560px;
+$desktop-l: 1920px;
+$desktop-xl: 2560px;
 
 /* -------------------------------- */
 /*   Media Queries: Multiple        */
@@ -84,6 +85,11 @@ $desktop-l: 2560px;
     }
     @if $arg == 'desktop-large' {
       @include desktop-large {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-xlarge' {
+      @include desktop-xlarge {
         @content;
       }
     }
@@ -155,7 +161,13 @@ $desktop-l: 2560px;
 }
 
 @mixin desktop-large {
-  @media only screen and (min-width: #{$desktop-l}) {
+  @media only screen and (min-width: #{$desktop-l}) and (max-width: #{$desktop-xl - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-xlarge {
+  @media only screen and (min-width: #{$desktop-xl}) {
     @content;
   }
 }

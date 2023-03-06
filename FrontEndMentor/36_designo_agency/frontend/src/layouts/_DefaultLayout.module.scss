@@ -7,6 +7,18 @@
   background-color: c.$col-1c;
 
   &__sub-container {
-    padding: v.$padding-desktop-sub-container;
+    padding: v.$padding-desktop;
+
+    @include mq.desktop-small {
+      padding: v.$padding-desktop-small;
+    }
+
+    @include mq.tablet-extra-large {
+      padding: v.$padding-tablet-xl;
+    }
+
+    @include mq.tablet-large {
+      padding: v.$padding-tablet-large;
+    }
   }
 }

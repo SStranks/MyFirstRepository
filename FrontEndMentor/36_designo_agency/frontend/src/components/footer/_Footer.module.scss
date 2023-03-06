@@ -1,16 +1,35 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
 .footer {
   width: 100%;
-  padding: v.$padding-desktop-sub-container;
+  padding: v.$padding-desktop;
   padding-top: f.px2em(144);
   padding-bottom: f.px2em(72);
   background-color: c.$col-1b;
   margin-top: 380px;
+
+  @include mq.desktop-small {
+    padding: v.$padding-desktop-small;
+    padding-top: f.px2em(144);
+    padding-bottom: f.px2em(72);
+  }
+
+  @include mq.tablet-extra-large {
+    padding: v.$padding-tablet-xl;
+    padding-top: f.px2em(144);
+    padding-bottom: f.px2em(72);
+  }
+
+  @include mq.tablet-large {
+    padding: v.$padding-tablet-large;
+    padding-top: f.px2em(144);
+    padding-bottom: f.px2em(72);
+  }
 
   &__container {
     position: relative;
