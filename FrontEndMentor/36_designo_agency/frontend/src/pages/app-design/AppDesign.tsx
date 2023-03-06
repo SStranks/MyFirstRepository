@@ -52,8 +52,12 @@ function AppDesign(): JSX.Element {
         />
       </div>
       <div className={styles.viewgrid}>
-        <Card1 title="app design" image={ImgAppDesign} />
-        <Card1 title="graphic design" image={ImgGraphicDesign} />
+        <Card1 title="app design" image={ImgAppDesign} url="/appdesign" />
+        <Card1
+          title="graphic design"
+          image={ImgGraphicDesign}
+          url="/graphicdesign"
+        />
       </div>
     </DefaultLayout>
   );

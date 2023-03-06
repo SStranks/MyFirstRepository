@@ -32,9 +32,13 @@ function Home(): JSX.Element {
         <img src={ImgHero} alt="" />
       </div>
       <div className={styles.viewgrid}>
-        <Card1 title="web design" image={ImgWebDesign} />
-        <Card1 title="app design" image={ImgAppDesign} />
-        <Card1 title="graphic design" image={ImgGraphicDesign} />
+        <Card1 title="web design" image={ImgWebDesign} url="/webdesign" />
+        <Card1 title="app design" image={ImgAppDesign} url="/appdesign" />
+        <Card1
+          title="graphic design"
+          image={ImgGraphicDesign}
+          url="/graphicdesign"
+        />
       </div>
       <div className={styles.qualities}>
         <Quality
