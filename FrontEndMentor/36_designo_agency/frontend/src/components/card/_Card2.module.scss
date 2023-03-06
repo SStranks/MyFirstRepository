@@ -19,6 +19,16 @@
     text-align: center;
     background-color: c.$col-2d;
 
+    &:hover {
+      cursor: pointer;
+      background-color: c.$col-1a;
+
+      & > h3,
+      > p {
+        color: c.$col-1c;
+      }
+    }
+
     & > h3 {
       @include mx.header-h3;
       color: c.$col-1a;
