@@ -7,6 +7,7 @@ import Locations from '#Pages/locations/Locations';
 import WebDesign from '#Pages/web-design/WebDesign';
 import { Route, Routes } from 'react-router-dom';
 
+// TODO:  ! Sort out hero mobile image; maybe crop the original to extents of phone - has large wasted border, interfers with placement
 // TODO:  Add all z-index to control manager
 // TODO:  Updates all img src attributes
 // TODO:  Check all resizing/overflow on blocks

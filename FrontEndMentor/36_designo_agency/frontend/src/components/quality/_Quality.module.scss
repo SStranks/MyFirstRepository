@@ -1,10 +1,15 @@
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/components/buttons' as btn;
 
 .image {
   position: relative;
   width: fit-content;
+
+  @include mq.media(tablet-all) {
+    grid-row: 1 / span 2;
+  }
 
   & > img {
     position: relative;
@@ -30,19 +35,37 @@
 }
 
 .quality {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
+
+  @include mq.media(tablet-all) {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    column-gap: 48px;
+    justify-items: start;
+  }
 
   &__title {
     @include mx.header-h3;
     margin: f.px2em(48) 0 f.px2em(32);
     text-transform: uppercase;
+
+    @include mq.media(tablet-all) {
+      align-self: center;
+      margin: 0;
+    }
   }
 
   &__caption {
     padding: 0 f.px2em(12);
     text-align: center;
+
+    @include mq.media(tablet-all) {
+      text-align: left;
+      padding: 0;
+    }
   }
 
   & > button {
