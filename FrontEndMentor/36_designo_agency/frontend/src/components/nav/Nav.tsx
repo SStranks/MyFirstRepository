@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import LogoDark from '#Img/desktop/logo-dark.png';
+import IconMenu from '#Svg/mobile/icon-hamburger.svg';
 import styles from './_Nav.module.scss';
 
 function Nav(): JSX.Element {
@@ -9,6 +10,7 @@ function Nav(): JSX.Element {
       <Link to="/">
         <img src={LogoDark} alt="" className={styles.nav__logo} />
       </Link>
+      <img src={IconMenu} alt="" />
       <div className={styles.nav__links}>
         <Link to="/about">
           <p className={styles.nav__link}>our company</p>

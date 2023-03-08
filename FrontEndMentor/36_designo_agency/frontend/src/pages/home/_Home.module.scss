@@ -49,6 +49,13 @@
     margin-bottom: f.px2em(120);
   }
 
+  @include mq.media(mobile-all) {
+    padding: f.px2em(80) f.px2em(24) 0;
+    margin: 0 -24px f.px2em(120);
+    height: 850px;
+    border-radius: 0;
+  }
+
   &__info {
     max-width: 50%;
     margin-bottom: f.px2em(120);
@@ -61,6 +68,10 @@
 
     & > h1 {
       @include mx.header-h1;
+      @include mq.media(mobile-all) {
+        font-size: f.px2em(32);
+        line-height: 36px;
+      }
     }
 
     & > p {
@@ -70,6 +81,10 @@
       @include mq.media(tablet-all, mobile-all) {
         padding: 0;
         margin: f.px2em(20) 0;
+      }
+
+      @include mq.media(mobile-all) {
+        font-size: f.px2em(15);
       }
     }
 
@@ -93,6 +108,11 @@
     @include mq.media(tablet-all, mobile-all) {
       position: relative;
       transform: unset;
+    }
+
+    @include mq.media(mobile-all) {
+      transform: scale(180%);
+      margin-top: 50px;
     }
   }
 }

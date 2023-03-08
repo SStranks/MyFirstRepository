@@ -1,13 +1,17 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
-@use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/mixins' as mx;
 
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: f.px2em(64) 0;
+
+  @include mq.media(mobile-all) {
+    padding: f.px2em(35) 0;
+  }
 
   &__logo {
     height: 28px;
@@ -17,6 +21,10 @@
     display: flex;
     justify-content: space-between;
     column-gap: f.px2em(42);
+
+    @include mq.media(mobile-all) {
+      display: none;
+    }
   }
 
   &__link {
