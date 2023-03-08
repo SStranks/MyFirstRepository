@@ -39,8 +39,8 @@ function Footer(): JSX.Element {
               <p className={styles.footer__link}>contact</p>
             </Link>
           </div>
+          <hr className={styles.footer__hr} />
         </div>
-        <hr className={styles.footer__hr} />
         <div className={styles.footer__info}>
           <div className={styles.footer__details}>
             <div>
