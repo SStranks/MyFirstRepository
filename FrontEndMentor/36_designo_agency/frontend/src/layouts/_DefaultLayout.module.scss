@@ -20,5 +20,9 @@
     @include mq.tablet-large {
       padding: v.$padding-tablet-large;
     }
+
+    @include mq.mobile-all {
+      padding: v.$padding-mobile;
+    }
   }
 }

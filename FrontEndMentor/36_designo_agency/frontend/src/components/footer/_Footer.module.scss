@@ -31,6 +31,12 @@
     padding-bottom: f.px2em(72);
   }
 
+  @include mq.media(mobile-all) {
+    padding: v.$padding-mobile;
+    padding-top: f.px2em(250);
+    padding-bottom: f.px2em(64);
+  }
+
   &__container {
     position: relative;
   }
@@ -54,7 +60,10 @@
       flex-direction: column;
       justify-content: flex-end;
       text-align: center;
-      padding: f.px2em(57);
+    }
+
+    @include mq.media(mobile-all) {
+      padding: f.px2em(64) f.px2em(24);
     }
 
     &__header {
@@ -70,6 +79,12 @@
         max-width: none;
         width: 50%;
         margin: 0 auto f.px2em(6);
+      }
+
+      @include mq.media(mobile-all) {
+        font-size: f.px2em(32);
+        margin-bottom: f.px2em(12);
+        line-height: 36px;
       }
     }
 
@@ -95,6 +110,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include mq.media(mobile-all) {
+      flex-direction: column;
+    }
   }
 
   &__logo {
@@ -105,6 +124,12 @@
     display: flex;
     justify-content: space-between;
     column-gap: f.px2em(42);
+
+    @include mq.media(mobile-all) {
+      flex-direction: column;
+      row-gap: f.px2em(32);
+      text-align: center;
+    }
   }
 
   &__link {
@@ -128,6 +153,11 @@
     display: flex;
     justify-content: space-between;
 
+    @include mq.media(mobile-all) {
+      flex-direction: column;
+      align-items: center;
+    }
+
     & p {
       color: c.$col-1c;
       opacity: 50%;
@@ -140,12 +170,24 @@
     flex-grow: 1;
     max-width: 50%;
 
+    @include mq.media(mobile-all) {
+      flex-direction: column;
+      align-items: center;
+      row-gap: 40px;
+      max-width: unset;
+      text-align: center;
+    }
+
     & > div {
       flex-shrink: 0;
     }
 
     & > :nth-child(1) {
       margin-right: f.px2em(24);
+
+      @include mq.media(mobile-all) {
+        margin-right: 0;
+      }
     }
   }
 
@@ -159,6 +201,11 @@
     justify-content: space-between;
     align-self: flex-end;
     column-gap: 16px;
+
+    @include mq.media(mobile-all) {
+      align-self: center;
+      margin-top: f.px2em(40);
+    }
 
     & > img {
       height: fit-content;

@@ -1,5 +1,6 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
 
@@ -18,6 +19,10 @@
   color: c.$col-1c;
   row-gap: f.px2em(24);
 
+  @include mq.media(mobile-all) {
+    row-gap: 12px;
+  }
+
   &:hover {
     background-color: hsla(11deg, 73%, 66%, 1);
     background-blend-mode: multiply;
@@ -26,6 +31,12 @@
   & > h2 {
     @include mx.header-h2;
     z-index: 2;
+
+    @include mq.media(mobile-all) {
+      font-size: f.px2em(28);
+      line-height: 36px;
+      letter-spacing: 1.4px;
+    }
   }
 
   &__view {
