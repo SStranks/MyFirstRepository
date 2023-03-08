@@ -1,5 +1,6 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
 
@@ -16,6 +17,10 @@
   background-repeat: no-repeat;
   border-radius: v.$border-radius-1;
 
+  @include mq.media(tablet-all, mobile-all) {
+    margin-bottom: f.px2em(120);
+  }
+
   & > h1 {
     @include mx.header-h1;
   }
@@ -24,6 +29,10 @@
     max-width: 40%;
     margin-top: f.px2em(24);
     text-align: center;
+
+    @include mq.media(tablet-all, mobile-all) {
+      max-width: 65%;
+    }
   }
 }
 
@@ -33,6 +42,11 @@
   grid-template-rows: repeat(2, 1fr);
   gap: 32px;
   margin-bottom: f.px2em(160);
+
+  @include mq.media(tablet-all) {
+    grid-template-columns: 1fr;
+    margin-bottom: f.px2em(120);
+  }
 }
 
 .viewgrid {
@@ -42,4 +56,11 @@
   grid-template-columns: repeat(2, 1fr);
   height: 308px;
   column-gap: 30px;
+
+  @include mq.media(tablet-all) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 200px);
+    row-gap: 24px;
+    height: unset;
+  }
 }

@@ -2,6 +2,7 @@ import Nav from '#Components/nav/Nav';
 import DefaultLayout from '#Layouts/DefaultLayout';
 
 import ImgHero from '#Img/desktop/image-about-hero.jpg';
+import ImgRealDeal from '#Img/desktop/image-real-deal.jpg';
 import ImgTalent from '#Img/desktop/image-world-class-talent.jpg';
 import SvgAustralia from '#Svg/desktop/illustration-australia.svg';
 import SvgCanada from '#Svg/desktop/illustration-canada.svg';
@@ -25,10 +26,10 @@ function About(): JSX.Element {
             and digital experiences that connect with our clients’ audiences.
           </p>
         </div>
-        <img src={ImgHero} alt="" />
+        <img className={styles.header__img} src={ImgHero} alt="" />
       </div>
       <div className={`${styles.card} ${styles['card-1']}`}>
-        <img src={ImgTalent} alt="" />
+        <img className={styles['card-1__img']} src={ImgTalent} alt="" />
         <div className={styles.card__info}>
           <h2>World-class talent</h2>
           <p>
@@ -69,7 +70,7 @@ function About(): JSX.Element {
         />
       </div>
       <div className={`${styles.card} ${styles['card-2']}`}>
-        <img src={ImgTalent} alt="" />
+        <img className={styles['card-2__img']} src={ImgRealDeal} alt="" />
         <div className={styles.card__info}>
           <h2>The real deal</h2>
           <p>

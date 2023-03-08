@@ -11,6 +11,10 @@
   height: fit-content;
   transform: translateY(50%);
   z-index: 0;
+
+  @include mq.media(tablet-all, mobile-all) {
+    display: none;
+  }
 }
 
 .bgLeafBottom {
@@ -19,6 +23,10 @@
   height: fit-content;
   transform: rotate(180deg) translateY(50%);
   z-index: 0;
+
+  @include mq.media(tablet-all, mobile-all) {
+    display: none;
+  }
 }
 
 .hero {

@@ -50,6 +50,13 @@
     border-radius: 15px;
     padding: f.px2em(72) f.px2em(95);
 
+    @include mq.media(tablet-all, mobile-all) {
+      flex-direction: column;
+      justify-content: flex-end;
+      text-align: center;
+      padding: f.px2em(57);
+    }
+
     &__header {
       @include mx.header-h2;
       min-width: 350px;
@@ -57,12 +64,24 @@
       color: c.$col-1c;
       line-height: f.px2rem(40);
       margin-bottom: f.px2em(6);
+
+      @include mq.media(tablet-all, mobile-all) {
+        min-width: none;
+        max-width: none;
+        width: 50%;
+        margin: 0 auto f.px2em(6);
+      }
     }
 
     &__body {
       @include mx.body-r;
       max-width: 62%;
       color: c.$col-1c;
+
+      @include mq.media(tablet-all, mobile-all) {
+        max-width: none;
+        margin-bottom: f.px2em(32);
+      }
     }
 
     &__button {

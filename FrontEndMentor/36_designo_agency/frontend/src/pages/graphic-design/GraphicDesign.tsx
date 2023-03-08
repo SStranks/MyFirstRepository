@@ -16,10 +16,10 @@ function GraphicDesign(): JSX.Element {
     <DefaultLayout>
       <Nav />
       <div className={styles.header}>
-        <h1>Web Design</h1>
+        <h1>Graphic Design</h1>
         <p>
-          We build websites that serve as powerful marketing tools and bring
-          memorable brand experiences.
+          We deliver eye-catching branding materials that are tailored to meet
+          your business objectives.
         </p>
       </div>
       <div className={styles.examplegrid}>

@@ -1,10 +1,13 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
 
 .header {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
   margin-bottom: f.px2em(160);
   color: c.$col-1c;
   background-color: c.$col-1a;
@@ -14,8 +17,15 @@
   border-radius: v.$border-radius-1;
   overflow: hidden;
 
+  @include mq.media(tablet-all) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    margin-bottom: f.px2em(120);
+    text-align: center;
+  }
+
   &__info {
-    padding: f.px2em(135) f.px2em(95) 0;
+    padding: f.px2em(40) f.px2em(95);
 
     & > h1 {
       @include mx.header-h1;
@@ -25,19 +35,36 @@
       margin-top: f.px2em(24);
     }
   }
+
+  &__img {
+    @include mq.media(tablet-all) {
+      content: url(~img/tablet/image-about-hero.jpg);
+      order: -1;
+    }
+  }
 }
 
 .card {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   background-color: c.$col-2d;
   border-radius: v.$border-radius-1;
   overflow: hidden;
+
+  @include mq.media(tablet-all) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
 
   &__info {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: f.px2em(94);
+
+    @include mq.media(tablet-all) {
+      padding: f.px2em(68) f.px2em(60);
+    }
 
     & > h2 {
       @include mx.header-h2;
@@ -54,6 +81,12 @@
   background-image: url(~svg/desktop/bg-pattern-two-circles.svg);
   background-repeat: no-repeat;
   background-position: bottom center;
+
+  &__img {
+    @include mq.media(tablet-all) {
+      content: url(~img/tablet/image-world-class-talent.jpg);
+    }
+  }
 }
 
 .card-2 {
@@ -61,6 +94,12 @@
   background-image: url(~svg/desktop/bg-pattern-two-circles.svg);
   background-repeat: no-repeat;
   background-position: bottom left;
+
+  &__img {
+    @include mq.media(tablet-all) {
+      content: url(~img/tablet/image-real-deal.jpg);
+    }
+  }
 }
 
 .qualities {
@@ -69,4 +108,8 @@
   position: relative;
   z-index: 1;
   margin: f.px2em(160) 0;
+
+  @include mq.media(tablet-all) {
+    flex-direction: column;
+  }
 }

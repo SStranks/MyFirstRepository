@@ -4,12 +4,12 @@ import Nav from '#Components/nav/Nav';
 import DefaultLayout from '#Layouts/DefaultLayout';
 
 import ImgAirfilter from '#Img/desktop/image-airfilter.jpg';
-import ImgAppDesign from '#Img/desktop/image-app-design.jpg';
 import ImgEyecam from '#Img/desktop/image-eyecam.jpg';
 import ImgFaceit from '#Img/desktop/image-faceit.jpg';
 import ImgGraphicDesign from '#Img/desktop/image-graphic-design.jpg';
 import ImgLoopstudios from '#Img/desktop/image-loopstudios.jpg';
 import ImgTodo from '#Img/desktop/image-todo.jpg';
+import ImgWebDesign from '#Img/desktop/image-web-design-large.jpg';
 
 import styles from './_AppDesign.module.scss';
 
@@ -52,7 +52,7 @@ function AppDesign(): JSX.Element {
         />
       </div>
       <div className={styles.viewgrid}>
-        <Card1 title="app design" image={ImgAppDesign} url="/appdesign" />
+        <Card1 title="web design" image={ImgWebDesign} url="/webdesign" />
         <Card1
           title="graphic design"
           image={ImgGraphicDesign}
