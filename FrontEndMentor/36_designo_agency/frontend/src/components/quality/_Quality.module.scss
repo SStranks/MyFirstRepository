@@ -47,6 +47,10 @@
     justify-items: start;
   }
 
+  @include mq.media(mobile-all) {
+    margin-bottom: f.px2em(48);
+  }
+
   &__title {
     @include mx.header-h3;
     margin: f.px2em(48) 0 f.px2em(32);

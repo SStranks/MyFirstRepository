@@ -1,5 +1,6 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
@@ -16,9 +17,23 @@
   border-radius: v.$border-radius-1;
   overflow: hidden;
 
+  @include mq.media(mobile-all) {
+    flex-direction: column;
+    height: unset;
+    padding: f.px2em(72) f.px2em(24);
+    margin: 0 -24px f.px2em(120);
+    border-radius: 0;
+  }
+
   &__info {
     max-width: 50%;
     padding: f.px2em(135) 0 0 f.px2em(95);
+
+    @include mq.media(mobile-all) {
+      max-width: 100%;
+      padding: 0;
+      text-align: center;
+    }
 
     & > h1 {
       @include mx.header-h1;
@@ -34,12 +49,23 @@
     flex-direction: column;
     width: 100%;
     padding: f.px2em(54) f.px2em(95);
+
+    @include mq.media(mobile-all) {
+      padding: 0;
+      margin-top: f.px2em(48);
+    }
+
     & > button {
       @include btn.btn-primary;
       align-self: flex-end;
       width: 150px;
       margin-top: f.px2em(24);
       text-transform: uppercase;
+
+      @include mq.media(mobile-all) {
+        align-self: center;
+        margin-top: f.px2em(40);
+      }
     }
   }
 
@@ -87,4 +113,9 @@
   position: relative;
   z-index: 1;
   margin: f.px2em(160) 0;
+
+  @include mq.media(mobile-all) {
+    flex-direction: column;
+    margin: f.px2em(120) 0;
+  }
 }

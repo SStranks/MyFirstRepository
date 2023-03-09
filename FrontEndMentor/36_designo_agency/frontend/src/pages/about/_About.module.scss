@@ -17,18 +17,33 @@
   border-radius: v.$border-radius-1;
   overflow: hidden;
 
-  @include mq.media(tablet-all) {
+  @include mq.media(tablet-all, mobile-all) {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
     margin-bottom: f.px2em(120);
     text-align: center;
   }
 
+  @include mq.media(mobile-all) {
+    grid-template-rows: repeat(2, auto);
+    margin: 0 -24px;
+    border-radius: 0;
+  }
+
   &__info {
     padding: f.px2em(40) f.px2em(95);
 
+    @include mq.media(mobile-all) {
+      grid-row: 2;
+      padding: f.px2em(105) f.px2em(24);
+    }
+
     & > h1 {
       @include mx.header-h1;
+      @include mq.media(mobile-all) {
+        font-size: f.px2em(32);
+        line-height: 36px;
+      }
     }
 
     & > p {
@@ -41,6 +56,9 @@
       content: url(~img/tablet/image-about-hero.jpg);
       order: -1;
     }
+    @include mq.media(tablet-all) {
+      content: url(~img/mobile/image-about-hero.jpg);
+    }
   }
 }
 
@@ -51,9 +69,14 @@
   border-radius: v.$border-radius-1;
   overflow: hidden;
 
-  @include mq.media(tablet-all) {
+  @include mq.media(tablet-all, mobile-all) {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
+  }
+
+  @include mq.media(mobile-all) {
+    margin: 0 -24px;
+    border-radius: 0;
   }
 
   &__info {
@@ -66,9 +89,18 @@
       padding: f.px2em(68) f.px2em(60);
     }
 
+    @include mq.media(mobile-all) {
+      padding: f.px2em(80) f.px2em(24);
+      text-align: center;
+    }
+
     & > h2 {
       @include mx.header-h2;
       color: c.$col-1a;
+      @include mq.media(mobile-all) {
+        font-size: f.px2em(32);
+        line-height: 36px;
+      }
     }
 
     & > p {
@@ -86,6 +118,9 @@
     @include mq.media(tablet-all) {
       content: url(~img/tablet/image-world-class-talent.jpg);
     }
+    @include mq.media(mobile-all) {
+      content: url(~img/mobile/image-world-class-talent.jpg);
+    }
   }
 }
 
@@ -100,6 +135,12 @@
       content: url(~img/tablet/image-real-deal.jpg);
     }
   }
+
+  &__img {
+    @include mq.media(mobile-all) {
+      content: url(~img/mobile/image-real-deal.jpg);
+    }
+  }
 }
 
 .qualities {
@@ -109,7 +150,11 @@
   z-index: 1;
   margin: f.px2em(160) 0;
 
-  @include mq.media(tablet-all) {
+  @include mq.media(tablet-all, mobile-all) {
     flex-direction: column;
+  }
+
+  @include mq.media(mobile-all) {
+    margin: f.px2em(120) 0;
   }
 }

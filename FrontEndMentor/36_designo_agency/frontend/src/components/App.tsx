@@ -9,6 +9,8 @@ import { Route, Routes } from 'react-router-dom';
 
 // TODO:  ! Sort out hero mobile image; maybe crop the original to extents of phone - has large wasted border, interfers with placement
 // TODO:  Sort out mobile hamburger menu
+// TODO:  Sort form functionality and hover affecting vertical alignment of elements
+// TODO:  Sort out circles on backgrounds on mobile sized layout
 // TODO:  Sort out 'qualities' - has different grid layout on tablet home vs about pages
 // TODO:  Add all z-index to control manager
 // TODO:  Updates all img src attributes
@@ -18,6 +20,7 @@ import { Route, Routes } from 'react-router-dom';
 // ✖
 
 // NOTE:  Could refactor some of the SASS for shared hero elements and layout potential.
+// NOTE:  Could refactor negative margin on about page / make variable to hold -24px for use elsewhere
 
 function App(): JSX.Element {
   return (
