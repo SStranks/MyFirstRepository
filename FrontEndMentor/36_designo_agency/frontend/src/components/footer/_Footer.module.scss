@@ -75,15 +75,16 @@
       margin-bottom: f.px2em(6);
 
       @include mq.media(tablet-all, mobile-all) {
-        min-width: none;
-        max-width: none;
+        min-width: unset;
+        max-width: unset;
         width: 50%;
         margin: 0 auto f.px2em(6);
       }
 
       @include mq.media(mobile-all) {
-        font-size: f.px2em(32);
+        width: unset;
         margin-bottom: f.px2em(12);
+        font-size: f.px2em(32);
         line-height: 36px;
       }
     }

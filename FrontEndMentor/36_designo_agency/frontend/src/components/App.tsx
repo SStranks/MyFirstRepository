@@ -17,6 +17,8 @@ import { Route, Routes } from 'react-router-dom';
 // ✔
 // ✖
 
+// NOTE:  Could refactor some of the SASS for shared hero elements and layout potential.
+
 function App(): JSX.Element {
   return (
     <Routes>
