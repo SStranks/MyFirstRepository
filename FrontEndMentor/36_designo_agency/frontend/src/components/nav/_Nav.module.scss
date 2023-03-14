@@ -18,6 +18,13 @@
     height: 28px;
   }
 
+  &__btn {
+    display: none;
+    @include mq.media(mobile-all) {
+      display: block;
+    }
+  }
+
   &__links {
     display: flex;
     justify-content: space-between;
@@ -41,7 +48,7 @@
   &__link {
     @include mx.body-nav-link;
     text-transform: uppercase;
-    color: c.$col-1c;
+    color: c.$col-2b;
 
     &:hover {
       @include mx.text-link-underline;
@@ -49,6 +56,7 @@
 
     @include mq.media(mobile-all) {
       font-size: f.px2em(24);
+      color: c.$col-1c;
     }
   }
 }
