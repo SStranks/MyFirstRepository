@@ -33,7 +33,7 @@
 
     @include mq.media(mobile-all) {
       grid-template-columns: 1fr;
-      grid-template-rows: auto auto;
+      grid-template-rows: 45% 55%;
       column-gap: 0;
     }
 
@@ -62,7 +62,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 0 0 f.px2em(95);
+  align-items: center;
   background-color: c.$col-2d;
   background-image: url(~svg/desktop/bg-pattern-two-circles.svg);
   background-repeat: no-repeat;
@@ -78,6 +78,7 @@
     grid-template-rows: min-content min-content;
     row-gap: f.px2em(24);
     align-items: center;
+    width: 80%;
 
     @include mq.media(mobile-all) {
       grid-template-columns: 1fr;
@@ -109,27 +110,33 @@
 .img {
   border-radius: v.$border-radius-1;
 
+  @include mq.media(tablet-all, mobile-all) {
+    order: -1;
+  }
   @include mq.media(mobile-all) {
     border-radius: 0;
   }
 
   &__canada {
-    @include mq.media(tablet-all) {
+    @include mq.media(tablet-all, mobile-all) {
       content: url(~img/tablet/image-map-canada.png);
+      width: 100%;
+      min-height: 100%;
     }
   }
 
   &__australia {
     order: -1;
-    @include mq.media(tablet-all) {
+    @include mq.media(tablet-all, mobile-all) {
       content: url(~img/tablet/image-map-australia.png);
-      order: unset;
+      width: 100%;
     }
   }
 
   &__uk {
-    @include mq.media(tablet-all) {
+    @include mq.media(tablet-all, mobile-all) {
       content: url(~img/tablet/image-map-uk.png);
+      width: 100%;
     }
   }
 }

@@ -17,8 +17,12 @@
       padding: v.$padding-tablet-xl;
     }
 
-    @include mq.tablet-large {
-      padding: v.$padding-tablet-large;
+    @include mq.media(tablet-large) {
+      padding: v.$padding-tablet;
+    }
+
+    @include mq.media(tablet-medium, tablet-small) {
+      padding: v.$padding-tablet-small;
     }
 
     @include mq.mobile-all {

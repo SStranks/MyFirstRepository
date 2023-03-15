@@ -17,6 +17,8 @@ function Nav(): JSX.Element {
   };
 
   useEffect(() => {
+    // DEBUG:  If hamburger icon is 'X' when resizing out of mobile and back, it persists.
+    // Watch for window resize event
     const mq = window.matchMedia('(max-width: 480px)');
     const links = document.querySelector('#nav-links');
     const addHidden = () => {
@@ -31,12 +33,6 @@ function Nav(): JSX.Element {
     return () => mq.removeEventListener('change', addHidden);
   }, []);
 
-  // useLayoutEffect(() => {
-  //   const links = document.querySelector('#nav-links');
-  //   const docWidth = window.innerWidth;
-  //   if (docWidth <= 480) links?.classList.add('hidden');
-  // }, []);
-
   return (
     <div className={styles.nav}>
       <Link to="/">
@@ -45,10 +41,7 @@ function Nav(): JSX.Element {
       <button type="button" className={styles.nav__btn} onClick={mobileMenuBtn}>
         <img src={mobileMenuOpen ? IconClose : IconMenu} alt="" />
       </button>
-      <div
-        id="nav-links"
-        // className={`${styles.nav__links} ${mobileMenuOpen ? '' : 'hidden'}`}>
-        className={styles.nav__links}>
+      <div id="nav-links" className={styles.nav__links}>
         <Link to="/about">
           <p className={styles.nav__link}>our company</p>
         </Link>

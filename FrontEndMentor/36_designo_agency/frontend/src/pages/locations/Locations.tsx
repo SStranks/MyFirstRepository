@@ -35,7 +35,7 @@ function Locations(): JSX.Element {
           </div>
           <img
             src={ImgCanada}
-            className={`${styles.img} ${styles.img__australia}`}
+            className={`${styles.img} ${styles.img__canada}`}
             alt=""
           />
         </div>
@@ -89,7 +89,7 @@ function Locations(): JSX.Element {
           </div>
           <img
             src={ImgUnitedKingdom}
-            className={`${styles.img} ${styles.img__australia}`}
+            className={`${styles.img} ${styles.img__uk}`}
             alt=""
           />
         </div>

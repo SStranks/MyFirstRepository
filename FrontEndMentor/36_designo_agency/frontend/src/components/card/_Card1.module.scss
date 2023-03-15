@@ -21,6 +21,8 @@
 
   @include mq.media(mobile-all) {
     row-gap: 12px;
+    background-color: hsla(0deg, 0%, 0%, 0.45);
+    background-blend-mode: multiply;
   }
 
   &:hover {

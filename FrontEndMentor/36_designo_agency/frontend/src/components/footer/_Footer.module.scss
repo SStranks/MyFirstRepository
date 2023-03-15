@@ -26,7 +26,7 @@
   }
 
   @include mq.tablet-large {
-    padding: v.$padding-tablet-large;
+    padding: v.$padding-tablet;
     padding-top: f.px2em(144);
     padding-bottom: f.px2em(72);
   }

@@ -30,6 +30,10 @@
     justify-content: space-between;
     column-gap: f.px2em(42);
 
+    @include mq.media(tablet-all) {
+      column-gap: f.px2em(20);
+    }
+
     @include mq.media(mobile-all) {
       position: absolute;
       bottom: 0;

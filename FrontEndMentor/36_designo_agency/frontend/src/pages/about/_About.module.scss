@@ -120,6 +120,7 @@
     }
     @include mq.media(mobile-all) {
       content: url(~img/mobile/image-world-class-talent.jpg);
+      width: 100%;
     }
   }
 }
@@ -139,6 +140,7 @@
   &__img {
     @include mq.media(mobile-all) {
       content: url(~img/mobile/image-real-deal.jpg);
+      width: 100%;
     }
   }
 }
