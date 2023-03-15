@@ -64,6 +64,7 @@
 
     @include mq.media(mobile-all) {
       padding: f.px2em(64) f.px2em(24);
+      transform: translateY(-115%);
     }
 
     &__header {

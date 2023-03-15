@@ -37,6 +37,9 @@
 
     & > h1 {
       @include mx.header-h1;
+      @include mq.media(mobile-all) {
+        font-size: f.px2rem(32);
+      }
     }
 
     & > p {

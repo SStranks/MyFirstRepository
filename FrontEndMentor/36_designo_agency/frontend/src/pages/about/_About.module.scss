@@ -35,7 +35,7 @@
 
     @include mq.media(mobile-all) {
       grid-row: 2;
-      padding: f.px2em(105) f.px2em(24);
+      padding: f.px2em(80) f.px2em(24);
     }
 
     & > h1 {
@@ -92,6 +92,10 @@
     @include mq.media(mobile-all) {
       padding: f.px2em(80) f.px2em(24);
       text-align: center;
+    }
+
+    @include mq.media(mobile-small) {
+      padding: f.px2em(60) f.px2em(24);
     }
 
     & > h2 {

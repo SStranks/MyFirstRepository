@@ -7,6 +7,7 @@ import Locations from '#Pages/locations/Locations';
 import WebDesign from '#Pages/web-design/WebDesign';
 import { Route, Routes } from 'react-router-dom';
 
+// TODO:  Fix the images on locations page (zoom and crop for smaller screen sizes)
 // TODO:  ! Sort out hero mobile image; maybe crop the original to extents of phone - has large wasted border, interfers with placement
 // TODO:  Sort out mobile hamburger menu
 // TODO:  Sort form functionality and hover affecting vertical alignment of elements
