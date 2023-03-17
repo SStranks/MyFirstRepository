@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import LogoLight from '#Img/desktop/logo-light.png';
 import IconFacebook from '#Svg/desktop/icon-facebook.svg';
@@ -9,23 +9,31 @@ import IconYoutube from '#Svg/desktop/icon-youtube.svg';
 import styles from './_Footer.module.scss';
 
 function Footer(): JSX.Element {
+  // To deactivate the 'hero' element on the 'contact' page and adjust marg/pad
+  const { pathname } = useLocation();
+
   return (
-    <div className={styles.footer}>
+    <div
+      className={`${styles.footer} ${
+        pathname === '/contact' ? styles.routeContactPage : ''
+      }`}>
       <div className={styles.footer__container}>
-        <div className={styles.footer__hero}>
-          <div>
-            <p className={styles.footer__hero__header}>
-              Let&#39;s talk about your project
-            </p>
-            <p className={styles.footer__hero__body}>
-              Ready to take it to the next level? Contact us today and find out
-              how our expertise can help your business grow.
-            </p>
+        {pathname !== '/contact' && (
+          <div className={styles.footer__hero}>
+            <div>
+              <p className={styles.footer__hero__header}>
+                Let&#39;s talk about your project
+              </p>
+              <p className={styles.footer__hero__body}>
+                Ready to take it to the next level? Contact us today and find
+                out how our expertise can help your business grow.
+              </p>
+            </div>
+            <button className={styles.footer__hero__button} type="button">
+              get in touch
+            </button>
           </div>
-          <button className={styles.footer__hero__button} type="button">
-            get in touch
-          </button>
-        </div>
+        )}
         <div className={styles.footer__nav}>
           <img className={styles.footer__logo} src={LogoLight} alt="" />
           <div className={styles.footer__links}>

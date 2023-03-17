@@ -10,6 +10,13 @@
   align-items: center;
   padding: f.px2em(64) 0;
 
+  @media only screen and (min-width: #{mq.$mobile-l + 1px}) and (max-width: 600px) {
+    // Fixing the cramped top links at this range
+    flex-direction: column;
+    row-gap: 20px;
+    padding: f.px2em(42) 0;
+  }
+
   @include mq.media(mobile-all) {
     padding: f.px2em(35) 0;
   }

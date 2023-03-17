@@ -32,6 +32,8 @@
 
   & > h2 {
     @include mx.header-h2;
+    padding: 0 f.px2em(8);
+    text-align: center;
     z-index: 2;
 
     @include mq.media(mobile-all) {
