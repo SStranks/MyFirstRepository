@@ -33,7 +33,7 @@ function Contact(): JSX.Element {
             <input type="text" placeholder="Phone" />
           </div>
           <div className={styles.header__input}>
-            <textarea placeholder="Your Message" />
+            <textarea rows={20} placeholder="Your Message" />
           </div>
           <button type="submit">submit</button>
         </form>

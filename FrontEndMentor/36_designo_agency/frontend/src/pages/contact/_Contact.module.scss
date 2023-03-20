@@ -53,6 +53,10 @@
     width: 100%;
     padding: f.px2em(54) f.px2em(95);
 
+    @include mq.media(desktop-small, tablet-xlarge) {
+      padding: f.px2em(54) f.px2em(60);
+    }
+
     @include mq.media(mobile-all) {
       padding: 0;
       margin-top: f.px2em(48);
@@ -91,7 +95,7 @@
     }
     & > textarea {
       width: 100%;
-      height: 100px;
+      height: 150px;
       padding: f.px2em(12);
       border: none;
       border-bottom: 1px solid c.$col-1c;

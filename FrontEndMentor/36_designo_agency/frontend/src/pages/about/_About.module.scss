@@ -6,7 +6,7 @@
 
 .header {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: minmax(auto, 1fr) minmax(min-content, 1fr);
   align-items: center;
   margin-bottom: f.px2em(160);
   color: c.$col-1c;
@@ -56,19 +56,20 @@
   }
 
   &__img {
+    object-fit: cover;
+    justify-self: end;
+
     @include mq.media(tablet-all) {
       content: url(~img/tablet/image-about-hero.jpg);
       order: -1;
-    }
-    @include mq.media(tablet-all) {
-      content: url(~img/mobile/image-about-hero.jpg);
+      object-fit: cover;
     }
   }
 }
 
 .card {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
   background-color: c.$col-2d;
   border-radius: v.$border-radius-1;
   overflow: hidden;
@@ -123,6 +124,8 @@
   background-position: bottom center;
 
   &__img {
+    object-fit: cover;
+
     @include mq.media(tablet-all) {
       content: url(~img/tablet/image-world-class-talent.jpg);
     }
@@ -140,6 +143,8 @@
   background-position: bottom left;
 
   &__img {
+    object-fit: cover;
+
     @include mq.media(tablet-all) {
       content: url(~img/tablet/image-real-deal.jpg);
     }
