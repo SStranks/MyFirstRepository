@@ -17,6 +17,10 @@
   border-radius: v.$border-radius-1;
   overflow: hidden;
 
+  @include mq.media(tablet-xlarge) {
+    margin-bottom: f.px2em(120);
+  }
+
   @include mq.media(tablet-all, mobile-all) {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
@@ -156,6 +160,9 @@
   z-index: 1;
   margin: f.px2em(160) 0;
 
+  @include mq.media(tablet-xlarge) {
+    margin: f.px2em(120) 0;
+  }
   @include mq.media(tablet-all, mobile-all) {
     flex-direction: column;
   }

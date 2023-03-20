@@ -17,7 +17,7 @@
   background-repeat: no-repeat;
   border-radius: v.$border-radius-1;
 
-  @include mq.media(tablet-all) {
+  @include mq.media(tablet-all, tablet-xlarge) {
     margin-bottom: f.px2em(120);
   }
 
@@ -61,6 +61,10 @@
   grid-template-rows: repeat(2, 1fr);
   gap: 32px;
   margin-bottom: f.px2em(160);
+
+  @include mq.media(tablet-xlarge) {
+    margin-bottom: f.px2em(120);
+  }
 
   @include mq.media(tablet-all, mobile-all) {
     grid-template-columns: 1fr;
