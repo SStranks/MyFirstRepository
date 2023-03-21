@@ -17,21 +17,45 @@
   border-radius: v.$border-radius-1;
   overflow: hidden;
 
-  @include mq.media(mobile-all) {
+  @include mq.media(tablet-all) {
+    padding: f.px2em(72) f.px2em(58);
+  }
+
+  @include mq.media(tablet-all, mobile-all) {
     flex-direction: column;
     height: unset;
-    padding: f.px2em(72) f.px2em(24);
     margin: 0 -24px f.px2em(120);
+  }
+
+  @include mq.media(mobile-all) {
+    padding: f.px2em(72) f.px2em(24);
     border-radius: 0;
   }
 
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 60%;
+
+    @include mq.media(tablet-all, mobile-all) {
+      max-width: unset;
+    }
+  }
+
   &__info {
-    max-width: 50%;
-    padding: f.px2em(135) 0 0 f.px2em(95);
+    margin: 0 0 0 f.px2em(95);
+
+    @include mq.media(tablet-xlarge) {
+      margin: 0 0 0 f.px2em(40);
+    }
+
+    @include mq.media(tablet-all) {
+      margin: 0;
+    }
 
     @include mq.media(mobile-all) {
-      max-width: 100%;
-      padding: 0;
+      margin: 0;
       text-align: center;
     }
 
@@ -53,8 +77,17 @@
     width: 100%;
     padding: f.px2em(54) f.px2em(95);
 
-    @include mq.media(desktop-small, tablet-xlarge) {
+    @include mq.media(desktop-small) {
       padding: f.px2em(54) f.px2em(60);
+    }
+
+    @include mq.media(tablet-xlarge) {
+      padding: f.px2em(54) f.px2em(40);
+    }
+
+    @include mq.media(tablet-all) {
+      padding: 0;
+      margin-top: f.px2em(40);
     }
 
     @include mq.media(mobile-all) {
