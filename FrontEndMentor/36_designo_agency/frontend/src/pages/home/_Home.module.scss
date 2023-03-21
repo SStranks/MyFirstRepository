@@ -32,6 +32,7 @@
 .hero {
   display: flex;
   position: relative;
+  height: 640px;
   padding: f.px2em(145) f.px2em(95) 0;
   margin-bottom: f.px2em(160);
   background-color: c.$col-1a;
@@ -42,6 +43,10 @@
   border-radius: v.$border-radius-1;
   color: c.$col-1c;
   overflow: hidden;
+
+  @include mq.media(tablet-all) {
+    height: 843px;
+  }
 
   @include mq.media(tablet-all, mobile-all) {
     flex-direction: column;
@@ -57,7 +62,7 @@
   }
 
   &__info {
-    max-width: 50%;
+    max-width: 60%;
     margin-bottom: f.px2em(120);
 
     @include mq.media(tablet-all, mobile-all) {

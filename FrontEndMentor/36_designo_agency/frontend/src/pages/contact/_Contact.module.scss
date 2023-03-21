@@ -19,16 +19,17 @@
 
   @include mq.media(tablet-all) {
     padding: f.px2em(72) f.px2em(58);
+    margin-bottom: f.px2em(120);
   }
 
   @include mq.media(tablet-all, mobile-all) {
     flex-direction: column;
     height: unset;
-    margin: 0 -24px f.px2em(120);
   }
 
   @include mq.media(mobile-all) {
     padding: f.px2em(72) f.px2em(24);
+    margin: 0 -24px f.px2em(120);
     border-radius: 0;
   }
 
@@ -154,7 +155,7 @@
   z-index: 1;
   margin: f.px2em(160) 0;
 
-  @include mq.media(mobile-all) {
+  @media only screen and (max-width: 850px) {
     flex-direction: column;
     margin: f.px2em(120) 0;
   }

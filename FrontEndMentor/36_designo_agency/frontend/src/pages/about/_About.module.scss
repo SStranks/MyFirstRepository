@@ -165,9 +165,11 @@
   z-index: 1;
   margin: f.px2em(160) 0;
 
-  @include mq.media(tablet-xlarge) {
+  @media only screen and (max-width: 850px) {
+    flex-direction: column;
     margin: f.px2em(120) 0;
   }
+
   @include mq.media(tablet-all, mobile-all) {
     flex-direction: column;
   }

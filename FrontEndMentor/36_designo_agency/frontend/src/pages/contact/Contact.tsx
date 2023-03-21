@@ -5,7 +5,7 @@ import SvgAustralia from '#Svg/desktop/illustration-australia.svg';
 import SvgCanada from '#Svg/desktop/illustration-canada.svg';
 import SvgUnitedKingdom from '#Svg/desktop/illustration-united-kingdom.svg';
 
-import Quality from '#Components/quality/Quality';
+import Location from '#Components/location/Location';
 import styles from './_Contact.module.scss';
 
 function Contact(): JSX.Element {
@@ -41,26 +41,16 @@ function Contact(): JSX.Element {
         </form>
       </div>
       <div className={styles.qualities}>
-        <Quality
-          title="canada"
-          caption=""
-          illustration={SvgCanada}
-          bgRotation="0deg"
-          button
-        />
-        <Quality
+        <Location title="canada" illustration={SvgCanada} bgRotation="0deg" />
+        <Location
           title="australia"
-          caption=""
           illustration={SvgAustralia}
           bgRotation="270deg"
-          button
         />
-        <Quality
+        <Location
           title="united kingdom"
-          caption=""
           illustration={SvgUnitedKingdom}
           bgRotation="90deg"
-          button
         />
       </div>
     </DefaultLayout>

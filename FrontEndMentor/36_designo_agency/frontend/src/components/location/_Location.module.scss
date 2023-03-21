@@ -1,0 +1,65 @@
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/components/buttons' as btn;
+
+.image {
+  position: relative;
+  width: fit-content;
+
+  @include mq.media(tablet-all) {
+    grid-row: 1 / span 2;
+  }
+
+  & > img {
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+    z-index: 1;
+  }
+}
+
+.bg-circle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('~svg/desktop/bg-pattern-small-circle.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 0;
+}
+
+.quality {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
+
+  @media only screen and (min-width: 769px) and (max-width: 850px) {
+    margin-bottom: f.px2em(96);
+  }
+
+  @include mq.media(tablet-all) {
+    margin-bottom: f.px2em(96);
+  }
+
+  @include mq.media(mobile-all) {
+    margin-bottom: f.px2em(48);
+  }
+
+  &__title {
+    @include mx.header-h3;
+    margin: f.px2em(48) 0 f.px2em(32);
+    text-transform: uppercase;
+  }
+
+  & > button {
+    @include btn.btn-secondary;
+    text-transform: uppercase;
+  }
+}
