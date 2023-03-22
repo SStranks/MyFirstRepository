@@ -77,6 +77,10 @@
 
     & > h1 {
       @include mx.header-h1;
+      @include mq.media(tablet-medium, tablet-small) {
+        font-size: f.px2em(39);
+        line-height: 36px;
+      }
       @include mq.media(mobile-all) {
         font-size: f.px2em(32);
         line-height: 36px;
@@ -115,18 +119,20 @@
     object-position: -100px -60px;
     transform: translate(0%, 5%);
 
-    @include mq.media(tablet-xlarge, tablet-all, mobile-all) {
-      position: absolute;
-      top: unset;
-      right: unset;
-      bottom: 0;
-      margin: 0 auto;
-      transform: translate(8%, 35%);
+    @include mq.media(tablet-xlarge, tablet-all) {
+      position: relative;
+      object-fit: contain;
+      object-position: unset;
+      transform: translate(0, -40px) scale(120%);
+    }
+
+    @include mq.media(tablet-medium, tablet-small) {
+      transform: translate(0, 0) scale(120%);
     }
 
     @include mq.media(mobile-all) {
       position: relative;
-      object-fit: fill;
+      object-fit: cover;
       object-position: unset;
       transform: translate(0, 20%) scale(150%);
     }
