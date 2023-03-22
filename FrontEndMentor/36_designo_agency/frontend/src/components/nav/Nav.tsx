@@ -36,7 +36,11 @@ function Nav(): JSX.Element {
   return (
     <div className={styles.nav}>
       <Link to="/">
-        <img src={LogoDark} alt="" className={styles.nav__logo} />
+        <img
+          src={LogoDark}
+          alt="Designo Site Home."
+          className={styles.nav__logo}
+        />
       </Link>
       <button type="button" className={styles.nav__btn} onClick={mobileMenuBtn}>
         <img src={mobileMenuOpen ? IconClose : IconMenu} alt="" />

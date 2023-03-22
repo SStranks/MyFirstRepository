@@ -35,7 +35,13 @@ function Footer(): JSX.Element {
           </div>
         )}
         <div className={styles.footer__nav}>
-          <img className={styles.footer__logo} src={LogoLight} alt="" />
+          <Link to="/">
+            <img
+              className={styles.footer__logo}
+              src={LogoLight}
+              alt="Designo Site Home."
+            />
+          </Link>
           <div className={styles.footer__links}>
             <Link to="/about">
               <p className={styles.footer__link}>our company</p>
@@ -65,11 +71,11 @@ function Footer(): JSX.Element {
             </div>
           </div>
           <div className={styles.footer__icons}>
-            <img src={IconFacebook} alt="" />
-            <img src={IconYoutube} alt="" />
-            <img src={IconTwitter} alt="" />
-            <img src={IconPinterest} alt="" />
-            <img src={IconInstagram} alt="" />
+            <img src={IconFacebook} alt="Designo facebook media page." />
+            <img src={IconYoutube} alt="Designo youtube media page." />
+            <img src={IconTwitter} alt="Designo twitter media page." />
+            <img src={IconPinterest} alt="Designo pinterest media page." />
+            <img src={IconInstagram} alt="Designo instagram media page." />
           </div>
         </div>
       </div>

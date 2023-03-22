@@ -112,6 +112,7 @@
 
   &__input {
     & > input[type='text'] {
+      height: 48px;
       width: 100%;
       padding: f.px2em(12);
       border: none;

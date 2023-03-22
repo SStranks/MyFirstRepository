@@ -36,7 +36,7 @@ function Locations(): JSX.Element {
           <img
             src={ImgCanada}
             className={`${styles.img} ${styles.img__canada}`}
-            alt=""
+            alt="Google location map of Canada."
           />
         </div>
         <div className={`${styles.grid__row} ${styles['grid__row--reverse']}`}>
@@ -63,7 +63,7 @@ function Locations(): JSX.Element {
           <img
             src={ImgAustralia}
             className={`${styles.img} ${styles.img__australia}`}
-            alt=""
+            alt="Google location map of Australia."
           />
         </div>
         <div className={styles.grid__row}>
@@ -90,7 +90,7 @@ function Locations(): JSX.Element {
           <img
             src={ImgUnitedKingdom}
             className={`${styles.img} ${styles.img__uk}`}
-            alt=""
+            alt="Google location map of United Kingdom."
           />
         </div>
       </div>

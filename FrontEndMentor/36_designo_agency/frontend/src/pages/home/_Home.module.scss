@@ -181,6 +181,6 @@
 
   @include mq.media(tablet-all, mobile-all) {
     flex-direction: column;
-    row-gap: 32px;
+    row-gap: 35px;
   }
 }

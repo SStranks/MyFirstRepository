@@ -7,15 +7,16 @@ import Locations from '#Pages/locations/Locations';
 import WebDesign from '#Pages/web-design/WebDesign';
 import { Route, Routes } from 'react-router-dom';
 
-// TODO:  Fix the images on locations page (zoom and crop for smaller screen sizes)
-// TODO:  ! Sort out hero mobile image; maybe crop the original to extents of phone - has large wasted border, interfers with placement
-// TODO:  Sort out mobile hamburger menu
-// TODO:  Sort form functionality and hover affecting vertical alignment of elements
 // TODO:  Sort out circles on backgrounds on mobile sized layout
-// TODO:  Sort out 'qualities' - has different grid layout on tablet home vs about pages
 // TODO:  Add all z-index to control manager
-// TODO:  Updates all img src attributes
-// TODO:  Check all resizing/overflow on blocks
+// TODO:  Complete tasks on readme: locations API. form error status.
+// TODO:  // ✔  Sort form functionality and hover affecting vertical alignment of elements
+// TODO:  // ✔  Updates all img src attributes
+// TODO:  // ✔  Check all resizing/overflow on blocks
+// TODO:  // ✔  Fix the images on locations page (zoom and crop for smaller screen sizes)
+// TODO:  // ✔  Sort out hero mobile image
+// TODO:  // ✔  Sort out mobile hamburger menu
+// TODO:  // ✔  Sort out 'qualities' - has different grid layout on tablet home vs about pages
 // TODO:  // ✔  Solve aliasing for CSS
 // ✔
 // ✖
