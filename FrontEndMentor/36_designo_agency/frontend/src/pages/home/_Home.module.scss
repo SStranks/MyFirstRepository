@@ -32,8 +32,9 @@
 .hero {
   display: flex;
   position: relative;
+  align-items: center;
   height: 640px;
-  padding: f.px2em(145) f.px2em(95) 0;
+  padding: 0 f.px2em(95) 0;
   margin-bottom: f.px2em(160);
   background-color: c.$col-1a;
   background-image: url('~svg/desktop/bg-pattern-hero-home.svg'); // HACK:  Successful aliasing example
@@ -44,11 +45,16 @@
   color: c.$col-1c;
   overflow: hidden;
 
+  @include mq.media(tablet-xlarge) {
+    min-height: 743px;
+    padding: f.px2em(100) f.px2em(95) 0;
+  }
+
   @include mq.media(tablet-all) {
     height: 843px;
   }
 
-  @include mq.media(tablet-all, mobile-all) {
+  @include mq.media(tablet-xlarge, tablet-all, mobile-all) {
     flex-direction: column;
     padding: f.px2em(60) f.px2em(60) 0;
     margin-bottom: f.px2em(120);
@@ -63,12 +69,10 @@
 
   &__info {
     max-width: 60%;
-    margin-bottom: f.px2em(120);
 
-    @include mq.media(tablet-all, mobile-all) {
+    @include mq.media(tablet-xlarge, tablet-all, mobile-all) {
       max-width: unset;
       text-align: center;
-      margin-bottom: f.px2em(75);
     }
 
     & > h1 {
@@ -83,7 +87,7 @@
       margin: f.px2em(35) 0;
       padding-right: f.px2em(150);
 
-      @include mq.media(tablet-all, mobile-all) {
+      @include mq.media(tablet-xlarge, tablet-all, mobile-all) {
         padding: 0;
         margin: f.px2em(20) 0;
       }
@@ -97,8 +101,8 @@
       @include btn.btn-primary;
       text-transform: uppercase;
 
-      @include mq.media(tablet-all, mobile-all) {
-        margin: 0 auto 0 auto;
+      @include mq.media(tablet-xlarge, tablet-all, mobile-all) {
+        margin: 0 auto;
       }
     }
   }
@@ -107,17 +111,24 @@
     position: absolute;
     right: 0;
     top: 0;
-    height: fit-content;
-    transform: translate(12%, -3%);
+    object-fit: none;
+    object-position: -100px -60px;
+    transform: translate(0%, 5%);
 
-    @include mq.media(tablet-all, mobile-all) {
-      position: relative;
-      transform: unset;
+    @include mq.media(tablet-xlarge, tablet-all, mobile-all) {
+      position: absolute;
+      top: unset;
+      right: unset;
+      bottom: 0;
+      margin: 0 auto;
+      transform: translate(8%, 35%);
     }
 
     @include mq.media(mobile-all) {
-      transform: scale(180%);
-      margin-top: 50px;
+      position: relative;
+      object-fit: fill;
+      object-position: unset;
+      transform: translate(0, 20%) scale(150%);
     }
   }
 }
