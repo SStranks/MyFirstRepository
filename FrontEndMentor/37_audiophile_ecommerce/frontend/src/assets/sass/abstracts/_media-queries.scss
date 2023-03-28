@@ -1,0 +1,195 @@
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+
+/* -------------------------------- */
+/*   Breakpoints                    */
+/* -------------------------------- */
+
+$mobile-s: 320px;
+$mobile-m: 375px;
+$mobile-l: 480px;
+$tablet-xs: 576px;
+$tablet-s: 667px;
+$tablet-m: 768px;
+$tablet-l: 800px;
+$tablet-xl: 992px;
+$desktop-s: 1200px;
+$desktop-m: 1400px;
+$desktop-l: 1920px;
+
+/* -------------------------------- */
+/*   Media Queries: Multiple        */
+/* -------------------------------- */
+
+@mixin media($args...) {
+  @each $arg in $args {
+    @if $arg == 'mobile-small' {
+      @include mobile-small {
+        @content;
+      }
+    }
+    @if $arg == 'mobile-large' {
+      @include mobile-large {
+        @content;
+      }
+    }
+    @if $arg == 'mobile-all' {
+      @include mobile-all {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-micro' {
+      @include tablet-micro {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-mini' {
+      @include tablet-mini {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-small' {
+      @include tablet-small {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-regular' {
+      @include tablet-regular {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-large' {
+      @include tablet-large {
+        @content;
+      }
+    }
+    @if $arg == 'tablet-all' {
+      @include tablet-all {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-mini' {
+      @include desktop-mini {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-small' {
+      @include desktop-small {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-medium' {
+      @include desktop-medium {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-large' {
+      @include desktop-large {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-all' {
+      @include desktop-all {
+        @content;
+      }
+    }
+  }
+}
+
+/* -------------------------------- */
+/*   Media Queries: Specific        */
+/* -------------------------------- */
+
+@mixin mobile-small {
+  @media only screen and (#{$mobile-s} <= width < #{$mobile-m}) {
+    @content;
+  }
+}
+
+@mixin mobile-large {
+  @media only screen and (#{$mobile-m} <= width <= #{$mobile-l}) {
+    @content;
+  }
+}
+
+@mixin mobile-all {
+  @media only screen and (width <= #{$mobile-l}) {
+    @content;
+  }
+}
+
+@mixin tablet-micro {
+  @media only screen and (#{$mobile-l} < width < #{$tablet-xs}) {
+    @content;
+  }
+}
+
+@mixin tablet-mini {
+  @media only screen and (#{$tablet-xs} <= width < #{$tablet-s}) {
+    @content;
+  }
+}
+
+@mixin tablet-small {
+  @media only screen and (#{$tablet-s} <= width < #{$tablet-m}) {
+    @content;
+  }
+}
+
+@mixin tablet-regular {
+  @media only screen and (#{$tablet-m} <= width < #{$tablet-l}) {
+    @content;
+  }
+}
+@mixin tablet-large {
+  @media only screen and (#{$tablet-l} <= width < #{$tablet-xl}) {
+    @content;
+  }
+}
+
+@mixin tablet-all {
+  @media only screen and (#{$mobile-l} < width <= #{$tablet-l}) {
+    @content;
+  }
+}
+
+@mixin desktop-mini {
+  @media only screen and (#{$tablet-xl} <= width < #{$desktop-s}) {
+    @content;
+  }
+}
+
+@mixin desktop-small {
+  @media only screen and (#{$desktop-s} <= width < #{$desktop-m}) {
+    @content;
+  }
+}
+
+@mixin desktop-medium {
+  @media only screen and (#{$desktop-m} <= width < #{$desktop-l}) {
+    @content;
+  }
+}
+
+@mixin desktop-large {
+  @media only screen and (width <= #{$desktop-l}) {
+    @content;
+  }
+}
+
+@mixin desktop-all {
+  @media only screen and (#{$tablet-xl} <= width) {
+    @content;
+  }
+}

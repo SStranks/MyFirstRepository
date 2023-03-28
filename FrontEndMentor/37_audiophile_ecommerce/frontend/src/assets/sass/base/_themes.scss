@@ -1,0 +1,53 @@
+/* -------------------------------- */
+/*   Themes                         */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use '../abstracts/colors' as *;
+
+/* -------------------------------- */
+/*   Light Theme                    */
+/* -------------------------------- */
+/*  Referenced in _root.scss        */
+/* -------------------------------- */
+
+$light-theme: (
+  background: #{$Light_Grey},
+  elements: #{$White},
+  text-p: #{$Dark_Grey},
+  text-h: #{$Very_Dark_Blue},
+  placeholder: hsl(216deg, 5%, 57%),
+  input-text: #{$Dark_Grey},
+);
+
+/* -------------------------------- */
+/*   Dark Theme                     */
+/* -------------------------------- */
+
+$dark-theme: (
+  background: #{$Midnight},
+  elements: #{$Very_Dark_Blue},
+  text-p: #{$Dark_Grey},
+  text-h: #{$White},
+  placeholder: hsl(216deg, 5%, 57%),
+  input-text: #{$White},
+);
+
+// Class applied to body tag to overwrite default variables
+.dark-theme {
+  @each $theme-item, $value in $dark-theme {
+    --thm-#{$theme-item}: #{$value};
+  }
+}
+
+/* -------------------------------- */
+/*   Alt Theme                      */
+/* -------------------------------- */

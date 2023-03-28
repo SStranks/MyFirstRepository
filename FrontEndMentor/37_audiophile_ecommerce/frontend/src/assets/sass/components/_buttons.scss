@@ -1,0 +1,70 @@
+/* -------------------------------- */
+/*   Buttons                        */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use '../abstracts/animations' as a;
+@use '../abstracts/functions' as f;
+@use '../abstracts/colors' as c;
+@use '../abstracts/mixins' as mx;
+@use '../abstracts/variables' as v;
+@use '../base/themes' as t;
+
+/* -------------------------------- */
+/*   Default                        */
+/* -------------------------------- */
+
+@mixin btn-default {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // Width to be determined by encapsulating DIV
+  // width: 100%;
+  font-size: f.px2rem(15);
+  font-weight: 500;
+  line-height: f.px2rem(22);
+  letter-spacing: f.px2rem(1);
+}
+
+/* -------------------------------- */
+/*   Button On Dark                 */
+/* -------------------------------- */
+
+@mixin btn-primary {
+  @include btn-default;
+  padding: f.px2em(18) f.px2em(24);
+  background-color: c.$col-1c;
+  color: c.$col-2b;
+  border-radius: v.$border-radius-btn-1;
+  // transition: a.$Theme-transition-bg, a.$Theme-transition-color;
+
+  &:hover {
+    background-color: c.$col-2a;
+    color: c.$col-1c;
+  }
+}
+
+/* -------------------------------- */
+/*  Button On Light                 */
+/* -------------------------------- */
+
+@mixin btn-secondary {
+  @include btn-default;
+  padding: f.px2em(18) f.px2em(24);
+  background-color: c.$col-1a;
+  color: c.$col-1c;
+  border-radius: v.$border-radius-btn-1;
+  // transition: a.$Theme-transition-bg, a.$Theme-transition-color;
+
+  &:hover {
+    background-color: c.$col-2a;
+  }
+}
