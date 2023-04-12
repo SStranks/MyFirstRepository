@@ -5,8 +5,18 @@
 @use '#Sass/abstracts/variables' as v;
 
 .footer {
+  position: relative;
   padding: f.px2em(75) v.$padding-desktop f.px2em(50) v.$padding-desktop;
   background-color: c.$col-1b;
+
+  &__hr {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 4px;
+    background-color: c.$col-1a;
+    border: none;
+  }
 
   &__nav {
     display: flex;
@@ -36,16 +46,23 @@
   }
 
   &__bottombar {
+    position: relative;
     display: flex;
     justify-content: space-between;
   }
 
   &__social {
+    position: absolute;
+    right: 0;
+    bottom: 70px;
     display: flex;
     justify-content: space-between;
     column-gap: f.px2em(16);
 
     &__icon {
+      width: 24px;
+      height: 24px;
+
       &:hover {
         filter: brightness(0) saturate(100%) invert(49%) sepia(47%)
           saturate(591%) hue-rotate(338deg) brightness(104%) contrast(90%);

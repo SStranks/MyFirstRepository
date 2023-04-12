@@ -9,6 +9,7 @@ import styles from './_Footer.module.scss';
 function Footer(): JSX.Element {
   return (
     <div className={styles.footer}>
+      <hr className={styles.footer__hr} />
       <nav className={styles.footer__nav}>
         <img src={Logo} alt="" />
         <div className={styles.footer__links}>
