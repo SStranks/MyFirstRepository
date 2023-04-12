@@ -2,11 +2,13 @@
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
 
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: f.px2em(35) v.$padding-desktop;
   background-color: c.$col-1b;
 
   &__logo {
@@ -22,6 +24,10 @@
   &__link {
     @include mx.header-subtitle;
     color: c.$col-2b;
+
+    &:hover {
+      color: c.$col-1a;
+    }
   }
 
   &__icon {

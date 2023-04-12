@@ -1,5 +1,5 @@
-@use 'root';
-@use 'typography';
-@use 'animations';
-@use 'functions';
-@use 'globals';
+@use './base/reset';
+@use './base/root';
+@use './base/typography';
+@use './base/globals';
+@use './base/themes';

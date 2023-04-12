@@ -6,24 +6,26 @@ import styles from './_Nav.module.scss';
 
 function Nav(): JSX.Element {
   return (
-    <div className={styles.nav}>
-      <img src={Logo} alt="" />
+    <nav className={styles.nav}>
+      <Link to="/">
+        <img src={Logo} alt="" />
+      </Link>
       <div className={styles.nav__links}>
         <Link to="/">
-          <p>home</p>
+          <p className={styles.nav__link}>home</p>
         </Link>
         <Link to="/headphones">
-          <p>headphones</p>
+          <p className={styles.nav__link}>headphones</p>
         </Link>
         <Link to="/speakers">
-          <p>speakers</p>
+          <p className={styles.nav__link}>speakers</p>
         </Link>
         <Link to="/earphones">
-          <p>earphones</p>
+          <p className={styles.nav__link}>earphones</p>
         </Link>
       </div>
       <img src={IconCart} alt="" />
-    </div>
+    </nav>
   );
 }
 

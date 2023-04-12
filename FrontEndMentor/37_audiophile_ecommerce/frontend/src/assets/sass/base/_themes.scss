@@ -20,12 +20,12 @@
 /* -------------------------------- */
 
 $light-theme: (
-  background: #{$Light_Grey},
-  elements: #{$White},
-  text-p: #{$Dark_Grey},
-  text-h: #{$Very_Dark_Blue},
-  placeholder: hsl(216deg, 5%, 57%),
-  input-text: #{$Dark_Grey},
+  // background: #{$Light_Grey},
+  // elements: #{$White},
+  // text-p: #{$Dark_Grey},
+  // text-h: #{$Very_Dark_Blue},
+  // placeholder: hsl(216deg, 5%, 57%),
+  // input-text: #{$Dark_Grey},
 );
 
 /* -------------------------------- */
@@ -33,12 +33,12 @@ $light-theme: (
 /* -------------------------------- */
 
 $dark-theme: (
-  background: #{$Midnight},
-  elements: #{$Very_Dark_Blue},
-  text-p: #{$Dark_Grey},
-  text-h: #{$White},
-  placeholder: hsl(216deg, 5%, 57%),
-  input-text: #{$White},
+  // background: #{$Midnight},
+  // elements: #{$Very_Dark_Blue},
+  // text-p: #{$Dark_Grey},
+  // text-h: #{$White},
+  // placeholder: hsl(216deg, 5%, 57%),
+  // input-text: #{$White},
 );
 
 // Class applied to body tag to overwrite default variables

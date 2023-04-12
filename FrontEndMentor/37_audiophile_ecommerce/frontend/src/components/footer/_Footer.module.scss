@@ -1,0 +1,61 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+
+.footer {
+  padding: f.px2em(75) v.$padding-desktop f.px2em(50) v.$padding-desktop;
+  background-color: c.$col-1b;
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    column-gap: f.px2em(34);
+  }
+
+  &__link {
+    @include mx.header-subtitle;
+    color: c.$col-2b;
+
+    &:hover {
+      color: c.$col-1a;
+    }
+  }
+
+  &__info {
+    @include mx.body-regular;
+    max-width: 50%;
+    padding: f.px2em(36) 0 f.px2em(56) 0;
+    color: c.$col-3b;
+  }
+
+  &__bottombar {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__social {
+    display: flex;
+    justify-content: space-between;
+    column-gap: f.px2em(16);
+
+    &__icon {
+      &:hover {
+        filter: brightness(0) saturate(100%) invert(49%) sepia(47%)
+          saturate(591%) hue-rotate(338deg) brightness(104%) contrast(90%);
+      }
+    }
+  }
+
+  &__copyright {
+    @include mx.body-regular;
+    font-weight: 700;
+    color: c.$col-3b;
+  }
+}

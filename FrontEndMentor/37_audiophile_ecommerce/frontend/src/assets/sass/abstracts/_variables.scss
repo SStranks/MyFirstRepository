@@ -11,24 +11,21 @@
 /* -------------------------------- */
 
 /*   Imports                        */
+@use 'functions' as f;
 
 /* -------------------------------- */
 /*   Margin & Padding               */
 /* -------------------------------- */
 
-$padding-desktop: 0 165px 56px 165px;
-$padding-transition: padding 2500ms ease-out;
-$grid-gap-transition: gap 1500ms ease-out;
+$padding-desktop: f.px2em(165); // Left/Right
+// $padding-transition: padding 2500ms ease-out;
+// $grid-gap-transition: gap 1500ms ease-out;
 
 /* -------------------------------- */
 /*   Borders                        */
 /* -------------------------------- */
 
 $border-radius-1: 8px;
-$border-radius-2: 6px;
-$border-radius-3: 24px;
-$border-radius-4: 20px;
-$border-radius-5: 4px;
 
 /* -------------------------------- */
 /*   Shadows                        */
