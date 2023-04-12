@@ -1,0 +1,30 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/mixins' as mx;
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: c.$col-1b;
+
+  &__logo {
+    height: 25px;
+  }
+
+  &__links {
+    display: flex;
+    justify-content: space-between;
+    column-gap: f.px2em(34);
+  }
+
+  &__link {
+    @include mx.header-subtitle;
+    color: c.$col-2b;
+  }
+
+  &__icon {
+    height: 20px;
+  }
+}
