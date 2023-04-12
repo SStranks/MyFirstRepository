@@ -17,21 +17,22 @@
 /*   Primary Colors                 */
 /* -------------------------------- */
 
-$Violet: hsl(235deg, 69%, 61%);
-$Light_Violet: hsl(235deg, 82%, 77%);
-$Fine_Violet: hsl(253deg, 74%, 91%);
-$Very_Dark_Blue: hsl(219deg, 29%, 14%);
-$Midnight: hsl(220deg, 29%, 10%);
+$col-1a: hsl(22deg, 65%, 57%); // Orange
+$col-1b: hsl(0deg, 0%, 6%); // Off Black
+$col-1c: hsl(0deg, 0%, 95%); // Grey
+$col-1d: hsl(0deg, 0%, 98%); // Light Grey
 
 /* -------------------------------- */
 /*   Secondary Colors               */
 /* -------------------------------- */
 
-$White: hsl(0deg, 0%, 100%);
-$Light_Grey: hsl(210deg, 22%, 96%);
-$Grey: hsl(212deg, 23%, 69%);
-$Dark_Grey: hsl(214deg, 17%, 51%);
+$col-2a: hsl(21deg, 94%, 75%); // Orange
+$col-2b: hsl(0deg, 0%, 100%); // White
+$col-2c: hsl(0deg, 0%, 0%); // Black
+$col-2d: hsl(0deg, 65%, 49%); // Blood
 
 /* -------------------------------- */
 /*   Tertiary Colors                */
 /* -------------------------------- */
+
+$col-3a: hsla(0deg, 0%, 0%, 0.5); // Black

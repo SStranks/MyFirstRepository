@@ -1,0 +1,49 @@
+/* -------------------------------- */
+/*   Form Elements                  */
+/* -------------------------------- */
+/*   ~~[PROJECT NAME]~~             */
+/*   # [PROJECT DETAILS]            */
+/* -------------------------------- */
+/*   version:   1.0                 */
+/*   date:      xx/xx/xxxx          */
+/*   author:    Simon Stranks       */
+/*   website:   github.com/SStranks */
+/* -------------------------------- */
+
+/*   Imports                        */
+@use '../abstracts/functions' as f;
+@use '../abstracts/colors' as c;
+@use '../abstracts/mixins' as mx;
+@use '../abstracts/variables' as v;
+@use '../base/themes' as t;
+
+/* -------------------------------- */
+/*   Input Fields                   */
+/* -------------------------------- */
+
+@mixin form-textfield-root {
+  @include mx.input-text;
+  padding: f.px2em(18) f.px2em(24);
+  border-radius: 8px;
+}
+
+@mixin form-textfield-default {
+  @include form-textfield-root;
+  border: 1px solid c.$col-1c;
+
+  &::placeholder {
+    color: c.$col-1c;
+  }
+}
+
+@mixin form-textfield-active {
+  @include form-textfield-root;
+  border: 1px solid c.$col-1a;
+  color: c.$col-2c;
+  caret-color: c.$col-1a;
+}
+
+@mixin form-textfield-error {
+  @include form-textfield-root;
+  border: 1px solid c.$col-2d;
+}

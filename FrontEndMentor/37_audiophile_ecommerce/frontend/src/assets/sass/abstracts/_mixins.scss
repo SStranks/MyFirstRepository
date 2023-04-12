@@ -11,16 +11,127 @@
 /* -------------------------------- */
 
 /*   Imports                        */
-@use './variables' as *;
+@use 'animations' as a;
+@use 'colors' as c;
+@use 'functions' as f;
+@use 'variables' as v;
 
+/* -------------------------------- */
+/*   Text: Header                   */
+/* -------------------------------- */
+@mixin header-h1 {
+  font-weight: 700;
+  font-size: f.px2rem(56);
+  line-height: f.px2rem(58);
+  letter-spacing: f.px2rem(2);
+  text-transform: uppercase;
+}
+
+@mixin header-h2 {
+  font-weight: 700;
+  font-size: f.px2rem(40);
+  line-height: f.px2rem(44);
+  letter-spacing: f.px2rem(1.5);
+  text-transform: uppercase;
+}
+
+@mixin header-h3 {
+  font-weight: 700;
+  font-size: f.px2rem(32);
+  line-height: f.px2rem(36);
+  letter-spacing: f.px2rem(1.15);
+  text-transform: uppercase;
+}
+
+@mixin header-h4 {
+  font-weight: 700;
+  font-size: f.px2rem(28);
+  line-height: f.px2rem(38);
+  letter-spacing: f.px2rem(2);
+  text-transform: uppercase;
+}
+
+@mixin header-h5 {
+  font-weight: 700;
+  font-size: f.px2rem(24);
+  line-height: f.px2rem(33);
+  letter-spacing: f.px2rem(1.7);
+  text-transform: uppercase;
+}
+
+@mixin header-h6 {
+  font-weight: 700;
+  font-size: f.px2rem(18);
+  line-height: f.px2rem(24);
+  letter-spacing: f.px2rem(1.3);
+  text-transform: uppercase;
+}
+
+@mixin header-overline {
+  font-weight: 400;
+  font-size: f.px2rem(14);
+  line-height: f.px2rem(19);
+  letter-spacing: f.px2rem(10);
+  text-transform: uppercase;
+}
+
+@mixin header-subtitle {
+  font-weight: 700;
+  font-size: f.px2rem(13);
+  line-height: f.px2rem(25);
+  letter-spacing: f.px2rem(1);
+  text-transform: uppercase;
+}
+
+/* -------------------------------- */
 /*   Text: Body                     */
-// @mixin body-1 {
-//   font-weight: 400;
-//   font-size: f.px2rem(16);
-//   line-height: f.px2rem(15);
-//   letter-spacing: f.px2rem(-0.25);
-//   color: $color-2b;
-// }
+/* -------------------------------- */
+
+@mixin body-regular {
+  font-weight: 500;
+  font-size: f.px2rem(15);
+  line-height: f.px2rem(25);
+}
+
+/* -------------------------------- */
+/*   Text: Decoration               */
+/* -------------------------------- */
+
+@mixin text-link-underline {
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+}
+
+/* -------------------------------- */
+/*   Extend Click Area              */
+/* -------------------------------- */
+
+@mixin extend-clickarea($x: 175%, $y: 150%, $visible: true) {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: $x;
+    height: $y;
+    @if $visible == true {
+      background: rgba(239, 172, 207, 0.8);
+    }
+  }
+}
+
+/* -------------------------------- */
+/*   Input: Text                    */
+/* -------------------------------- */
+
+@mixin input-text {
+  font-weight: 700;
+  font-size: f.px2rem(14);
+  line-height: f.px2rem(20);
+  letter-spacing: f.px2rem(-0.25);
+}
 
 // @mixin text-modifier-black {
 //   font-weight: 700;
@@ -76,20 +187,6 @@
 //     }
 //   }
 // }
-
-/* -------------------------------- */
-/*   Buttons                        */
-/* -------------------------------- */
-
-@mixin btn-default {
-  font-size: f.px2rem(15);
-  font-weight: 500;
-  line-height: f.px2rem(15);
-  letter-spacing: -0.25px;
-  color: $white;
-  height: 48px;
-  border-radius: 24px;
-}
 
 /* -------------------------------- */
 /*   Fluid Typogrpahy               */

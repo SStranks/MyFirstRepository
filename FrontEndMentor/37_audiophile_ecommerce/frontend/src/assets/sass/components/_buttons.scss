@@ -22,49 +22,44 @@
 /*   Default                        */
 /* -------------------------------- */
 
-@mixin btn-default {
+@mixin btn-root {
+  @include mx.header-subtitle;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: f.px2em(15) f.px2em(30);
   // Width to be determined by encapsulating DIV
   // width: 100%;
-  font-size: f.px2rem(15);
-  font-weight: 500;
-  line-height: f.px2rem(22);
-  letter-spacing: f.px2rem(1);
 }
 
-/* -------------------------------- */
-/*   Button On Dark                 */
-/* -------------------------------- */
-
-@mixin btn-primary {
-  @include btn-default;
-  padding: f.px2em(18) f.px2em(24);
-  background-color: c.$col-1c;
+@mixin btn-default-1 {
+  @include btn-root;
+  background-color: c.$col-1a;
   color: c.$col-2b;
-  border-radius: v.$border-radius-btn-1;
-  // transition: a.$Theme-transition-bg, a.$Theme-transition-color;
 
   &:hover {
     background-color: c.$col-2a;
-    color: c.$col-1c;
   }
 }
 
-/* -------------------------------- */
-/*  Button On Light                 */
-/* -------------------------------- */
-
-@mixin btn-secondary {
-  @include btn-default;
-  padding: f.px2em(18) f.px2em(24);
-  background-color: c.$col-1a;
-  color: c.$col-1c;
-  border-radius: v.$border-radius-btn-1;
-  // transition: a.$Theme-transition-bg, a.$Theme-transition-color;
+@mixin btn-default-2 {
+  @include btn-root;
+  background-color: c.$col-2b;
+  border: 1px solid c.$col-2c;
+  color: c.$col-2c;
 
   &:hover {
-    background-color: c.$col-2a;
+    background-color: c.$col-2c;
+    color: c.$col-2b;
+  }
+}
+
+@mixin btn-default-3 {
+  @include btn-root;
+  background-color: transparent;
+  color: c.$col-3a;
+
+  &:hover {
+    color: c.$col-1a;
   }
 }
