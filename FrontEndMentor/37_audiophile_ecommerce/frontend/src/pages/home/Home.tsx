@@ -1,4 +1,4 @@
-// import ImgHero from '#Img/home/desktop/image-hero.jpg';
+import ProductExampleShopList from '#Components/products/ProductExampleShopList';
 import DefaultLayout from '#Layouts/DefaultLayout';
 
 import styles from './_Home.module.scss';
@@ -20,6 +20,9 @@ function Home(): JSX.Element {
           </button>
         </div>
       </div>
+      <main className={styles.main}>
+        <ProductExampleShopList />
+      </main>
     </DefaultLayout>
   );
 }

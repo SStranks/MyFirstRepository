@@ -6,14 +6,12 @@
 @use '#Sass/components/buttons' as btn;
 
 .hero {
-  // position: relative;
   height: 632px;
   padding: 0 v.$padding-desktop;
   background-color: c.$col-1b;
   background-image: url(~img/home/desktop/image-hero.jpg);
   background-repeat: no-repeat;
   background-position: bottom;
-  // background-blend-mode: hue;
 
   &__hr {
     width: 100%;
@@ -21,10 +19,6 @@
     background-color: c.$col-3c;
     border: none;
   }
-
-  // &__img {
-  //   position: absolute;
-  // }
 
   &__container {
     max-width: 40%;
@@ -52,4 +46,9 @@
   &__btn {
     @include btn.btn-default-1;
   }
+}
+
+.main {
+  padding: 120px v.$padding-desktop 200px v.$padding-desktop;
+  background-color: c.$col-2b;
 }
