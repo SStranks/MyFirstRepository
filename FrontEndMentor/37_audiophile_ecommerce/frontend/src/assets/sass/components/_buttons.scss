@@ -44,7 +44,7 @@
 
 @mixin btn-default-2 {
   @include btn-root;
-  background-color: c.$col-2b;
+  background-color: transparent;
   border: 1px solid c.$col-2c;
   color: c.$col-2c;
 
@@ -61,5 +61,15 @@
 
   &:hover {
     color: c.$col-1a;
+  }
+}
+
+@mixin btn-default-4 {
+  @include btn-root;
+  background-color: c.$col-2c;
+  color: c.$col-2b;
+
+  &:hover {
+    background-color: c.$col-2e;
   }
 }

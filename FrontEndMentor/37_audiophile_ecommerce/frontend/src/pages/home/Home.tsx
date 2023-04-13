@@ -1,3 +1,4 @@
+import CompanyStatement from '#Components/products/CompanyStatement';
 import ProductExampleShopList from '#Components/products/ProductExampleShopList';
 import DefaultLayout from '#Layouts/DefaultLayout';
 
@@ -22,6 +23,38 @@ function Home(): JSX.Element {
       </div>
       <main className={styles.main}>
         <ProductExampleShopList />
+        <div className={styles.main__grid}>
+          <div className={styles.zx9}>
+            <div className={styles.zx9__container}>
+              <p className={styles.zx9__title}>zx9 speaker</p>
+              <p className={styles.zx9__info}>
+                Upgrade to premium speakers that are phenomenally built to
+                deliver truly remarkable sound.
+              </p>
+              <button className={styles.zx9__btn} type="button">
+                see product
+              </button>
+            </div>
+          </div>
+          <div className={styles.zx7}>
+            <div>
+              <p className={styles.zx7__title}>zx7 speaker</p>
+              <button className={styles.zx7__btn} type="button">
+                see product
+              </button>
+            </div>
+          </div>
+          <div className={styles['yx1-img']} />
+          <div className={styles.yx1}>
+            <div>
+              <p className={styles.yx1__title}>yx1 earphones</p>
+              <button className={styles.yx1__btn} type="button">
+                see product
+              </button>
+            </div>
+          </div>
+        </div>
+        <CompanyStatement />
       </main>
     </DefaultLayout>
   );
