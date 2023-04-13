@@ -1,0 +1,41 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 204px;
+  background-color: c.$col-1c;
+  border-radius: 8px;
+
+  &__img {
+    transform: translateY(20px);
+  }
+
+  &__name {
+    @include mx.header-h6;
+    margin-bottom: f.px2em(10);
+    color: c.$col-2c;
+  }
+
+  &__shop {
+    display: flex;
+    align-items: center;
+    column-gap: 13px;
+    margin-bottom: f.px2em(30);
+
+    &__text {
+      @include mx.header-subtitle;
+      color: c.$col-3a;
+    }
+
+    &__img {
+      height: 10px;
+    }
+  }
+}
