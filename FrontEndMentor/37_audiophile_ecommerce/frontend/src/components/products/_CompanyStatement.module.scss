@@ -1,0 +1,31 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  &__info {
+    align-self: center;
+    padding-right: f.px2em(125);
+  }
+
+  &__title {
+    @include mx.header-h2;
+    margin-bottom: 32px;
+
+    & > span {
+      color: c.$col-1a;
+    }
+  }
+
+  &__statement {
+    @include mx.body-regular;
+    color: c.$col-3a;
+  }
+
+  &__img {
+    border-radius: 8px;
+  }
+}
