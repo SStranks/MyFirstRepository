@@ -9,7 +9,8 @@
   padding: f.px2em(75) v.$padding-desktop f.px2em(50) v.$padding-desktop;
   background-color: c.$col-1b;
 
-  &__hr {
+  &::before {
+    content: '';
     position: absolute;
     top: 0;
     width: 100px;
