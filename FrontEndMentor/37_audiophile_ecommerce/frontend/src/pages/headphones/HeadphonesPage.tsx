@@ -4,7 +4,7 @@ import DefaultLayout from '#Layouts/DefaultLayout';
 import ImgXX59 from '#Img/product-xx59-headphones/desktop/image-category-page-preview.jpg';
 import ImgXX99MarkI from '#Img/product-xx99-mark-one-headphones/desktop/image-category-page-preview.jpg';
 import ImgXX99MarkII from '#Img/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg';
-// import styles from './_Headphones.module.scss';
+// import styles from './_HeadphonesPage.module.scss';
 
 const productList = [
   {
@@ -33,7 +33,7 @@ const productList = [
   },
 ];
 
-function Headphones(): JSX.Element {
+function HeadphonesPage(): JSX.Element {
   return (
     <DefaultLayout>
       <CategoryLayout productCategory="headphones" productList={productList} />
@@ -41,4 +41,4 @@ function Headphones(): JSX.Element {
   );
 }
 
-export default Headphones;
+export default HeadphonesPage;

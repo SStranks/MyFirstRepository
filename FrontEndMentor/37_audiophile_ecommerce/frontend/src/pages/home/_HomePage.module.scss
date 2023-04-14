@@ -1,0 +1,141 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+@use '#Sass/components/buttons' as btn;
+
+.hero {
+  height: 632px;
+  padding: 0 v.$padding-desktop;
+  background-color: c.$col-1b;
+  background-image: url(~img/home/desktop/image-hero.jpg);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  margin-bottom: f.px2em(120);
+
+  &__hr {
+    width: 100%;
+    height: 1px;
+    background-color: c.$col-3c;
+    border: none;
+  }
+
+  &__container {
+    max-width: 40%;
+    margin-top: f.px2em(128);
+  }
+
+  &__title {
+    @include mx.header-overline;
+    padding-bottom: f.px2em(24);
+    color: c.$col-3b;
+  }
+
+  &__product {
+    @include mx.header-h1;
+    padding-bottom: 24px;
+    color: c.$col-2b;
+  }
+
+  &__info {
+    @include mx.body-regular;
+    padding-bottom: f.px2em(40);
+    color: c.$col-3d;
+  }
+
+  &__btn {
+    @include btn.btn-default-1;
+  }
+}
+
+.main {
+  padding: 120px v.$padding-desktop 200px v.$padding-desktop;
+  background-color: c.$col-2b;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 560px 320px 320px;
+    row-gap: 48px;
+    column-gap: 30px;
+    margin: f.px2em(165) 0 f.px2em(200);
+  }
+}
+
+.zx9 {
+  grid-column: 1 / span 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 95px;
+  background-color: c.$col-1a;
+  background-image: url(~img/home/desktop/image-speaker-zx9.png);
+  background-repeat: no-repeat;
+  background-size: 375px;
+  background-position: bottom -10px left 118px;
+  border-radius: 8px;
+
+  &__container {
+    max-width: 350px;
+  }
+
+  &__title {
+    @include mx.header-h1;
+    margin-bottom: 24px;
+    color: c.$col-2b;
+  }
+
+  &__info {
+    @include mx.body-regular;
+    margin-bottom: 40px;
+    color: c.$col-2b;
+  }
+
+  &__btn {
+    @include btn.btn-default-4;
+  }
+}
+
+.zx7 {
+  grid-column: 1 / span 2;
+  display: flex;
+  align-items: center;
+  padding-left: f.px2em(95);
+  background-color: c.$col-1c;
+  background-image: url(~img/home/desktop/image-speaker-zx7.jpg);
+  background-position: right;
+  background-repeat: no-repeat;
+  border-radius: 8px;
+
+  &__title {
+    @include mx.header-h4;
+    margin-bottom: 32px;
+  }
+
+  &__btn {
+    @include btn.btn-default-2;
+  }
+}
+
+.yx1-img {
+  background-image: url(~img/home/desktop/image-earphones-yx1.jpg);
+  border-radius: 8px;
+}
+
+.yx1 {
+  display: flex;
+  align-items: center;
+  padding-left: f.px2em(95);
+  background-color: c.$col-1c;
+  border-radius: 8px;
+
+  &__title {
+    @include mx.header-h4;
+    margin-bottom: 32px;
+  }
+
+  &__btn {
+    @include btn.btn-default-2;
+  }
+}

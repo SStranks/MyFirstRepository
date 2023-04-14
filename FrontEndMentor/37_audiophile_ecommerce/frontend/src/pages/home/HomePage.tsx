@@ -1,8 +1,8 @@
-import CompanyStatement from '#Components/products/CompanyStatement';
+// import CompanyStatement from '#Components/products/CompanyStatement';
 import ProductExampleShopList from '#Components/products/ProductExampleShopList';
 import DefaultLayout from '#Layouts/DefaultLayout';
 
-import styles from './_Home.module.scss';
+import styles from './_HomePage.module.scss';
 
 function Home(): JSX.Element {
   return (
@@ -22,7 +22,7 @@ function Home(): JSX.Element {
         </div>
       </div>
       <main className={styles.main}>
-        <ProductExampleShopList />
+        <ProductExampleShopList appendClass="" />
         <div className={styles.main__grid}>
           <div className={styles.zx9}>
             <div className={styles.zx9__container}>
@@ -54,7 +54,7 @@ function Home(): JSX.Element {
             </div>
           </div>
         </div>
-        <CompanyStatement />
+        {/* <CompanyStatement /> */}
       </main>
     </DefaultLayout>
   );
