@@ -18,16 +18,8 @@
   }
 }
 
-main {
+.main {
   padding: 0 v.$padding-desktop;
-
-  & > :nth-child(2) {
-    margin-bottom: f.px2em(160);
-  }
-
-  & > :nth-child(3) {
-    margin-bottom: f.px2em(160);
-  }
 }
 
 .grid {
@@ -36,4 +28,12 @@ main {
   grid-auto-rows: 560px;
   row-gap: 160px;
   margin-bottom: f.px2em(200);
+}
+
+.productExampleShopList {
+  margin-bottom: f.px2em(160);
+}
+
+.companyStatement {
+  margin-bottom: f.px2em(160);
 }

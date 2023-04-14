@@ -1,0 +1,16 @@
+// @use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+// @use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/variables' as v;
+
+.main {
+  padding: 0 v.$padding-desktop;
+}
+
+.productExampleShopList {
+  margin-bottom: f.px2em(160);
+}
+
+.companyStatement {
+  margin-bottom: f.px2em(160);
+}

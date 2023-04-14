@@ -11,7 +11,13 @@ const productsList = [
   { id: 3, name: 'earphones', image: ImgEarphones },
 ];
 
-function ProductExampleShopList(): JSX.Element {
+type ElemProps = {
+  appendClass: string;
+};
+
+function ProductExampleShopList(props: ElemProps): JSX.Element {
+  const { appendClass } = props;
+
   const productItems = productsList.map((el) => {
     return (
       <ProductExampleShopCard
@@ -22,7 +28,7 @@ function ProductExampleShopList(): JSX.Element {
     );
   });
 
-  return <div className={styles.list}>{productItems}</div>;
+  return <div className={`${styles.list} ${appendClass}`}>{productItems}</div>;
 }
 
 export default ProductExampleShopList;

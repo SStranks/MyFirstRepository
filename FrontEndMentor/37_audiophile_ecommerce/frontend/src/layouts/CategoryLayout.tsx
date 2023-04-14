@@ -31,13 +31,13 @@ function CategoryLayout(props: ElemProps): JSX.Element {
 
   return (
     <>
-      <div className={styles.banner}>
+      <header className={styles.banner}>
         <h1 className={styles.banner__title}>{productCategory}</h1>
-      </div>
+      </header>
       <main className={styles.main}>
         <div className={styles.grid}>{products}</div>
-        <ProductExampleShopList />
-        <CompanyStatement />
+        <ProductExampleShopList appendClass={styles.productExampleShopList} />
+        <CompanyStatement appendClass={styles.companyStatement} />
       </main>
     </>
   );

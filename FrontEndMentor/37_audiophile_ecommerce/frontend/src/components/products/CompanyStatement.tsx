@@ -1,9 +1,15 @@
 import ImgBestGear from '#Img/shared/desktop/image-best-gear.jpg';
 import styles from './_CompanyStatement.module.scss';
 
-function CompanyStatement(): JSX.Element {
+type ElemProps = {
+  appendClass: string;
+};
+
+function CompanyStatement(props: ElemProps): JSX.Element {
+  const { appendClass } = props;
+
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${appendClass}`}>
       <div className={styles.card__info}>
         <p className={styles.card__title}>
           Bringing you the <span>best</span> audio gear
