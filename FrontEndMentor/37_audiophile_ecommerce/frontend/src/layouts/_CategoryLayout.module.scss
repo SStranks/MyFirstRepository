@@ -1,0 +1,39 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+// @use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 240px;
+  margin-bottom: f.px2em(160);
+  background-color: c.$col-2c;
+
+  &__title {
+    @include mx.header-h2;
+    color: c.$col-2b;
+  }
+}
+
+main {
+  padding: 0 v.$padding-desktop;
+
+  & > :nth-child(2) {
+    margin-bottom: f.px2em(160);
+  }
+
+  & > :nth-child(3) {
+    margin-bottom: f.px2em(160);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 560px;
+  row-gap: 160px;
+  margin-bottom: f.px2em(200);
+}
