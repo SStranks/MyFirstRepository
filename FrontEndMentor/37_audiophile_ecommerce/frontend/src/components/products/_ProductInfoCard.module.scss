@@ -5,9 +5,14 @@
 // @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
+.reverse {
+  flex-direction: row-reverse;
+  margin-left: 0;
+  margin-right: f.px2em(125);
+}
+
 .card {
   display: flex;
-  // flex-direction: row-reverse;
   align-items: center;
 
   &__img {
