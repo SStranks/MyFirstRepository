@@ -1,10 +1,33 @@
-// @use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
 // @use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/variables' as v;
 
 .main {
   padding: 0 v.$padding-desktop;
+
+  &__btnBack {
+    @include mx.body-regular;
+    margin-bottom: 56px;
+    background-color: transparent;
+    color: c.$col-3a;
+    text-transform: capitalize;
+  }
+
+  &__alternatives {
+    @include mx.header-h3;
+    margin-bottom: 64px;
+    text-align: center;
+  }
+}
+
+.productImageGrid {
+  margin-bottom: f.px2em(160);
+}
+
+.productExampleSeeList {
+  margin-bottom: f.px2em(160);
 }
 
 .productExampleShopList {

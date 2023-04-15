@@ -1,0 +1,23 @@
+// @use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/components/buttons' as btn;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__img {
+    border-radius: 8px;
+  }
+
+  &__title {
+    @include mx.header-h5;
+    margin: 40px 0 32px;
+  }
+
+  &__btn {
+    @include btn.btn-default-1;
+  }
+}

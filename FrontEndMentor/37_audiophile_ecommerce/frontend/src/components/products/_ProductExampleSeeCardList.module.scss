@@ -1,0 +1,9 @@
+// @use '#Sass/abstracts/colors' as c;
+// @use '#Sass/abstracts/functions' as f;
+// @use '#Sass/abstracts/mixins' as mx;
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 30px;
+}

@@ -1,0 +1,30 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+
+.grid {
+  display: grid;
+  grid-template-columns: 445px 635px;
+  grid-template-rows: 280px 280px;
+  grid-template-areas:
+    'img1 img2'
+    'img3 img2';
+  column-gap: 30px;
+  row-gap: 32px;
+
+  & > img {
+    border-radius: 8px;
+  }
+}
+
+.gridArea1 {
+  grid-area: img1;
+}
+
+.gridArea2 {
+  grid-area: img2;
+}
+
+.gridArea3 {
+  grid-area: img3;
+}
