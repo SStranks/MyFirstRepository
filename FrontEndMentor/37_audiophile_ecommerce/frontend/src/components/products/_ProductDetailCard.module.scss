@@ -1,0 +1,90 @@
+@use '#Sass/abstracts/colors' as c;
+// @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+// @use '#Sass/abstracts/media-queries' as mq;
+// @use '#Sass/abstracts/variables' as v;
+@use '#Sass/components/buttons' as btn;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 160px;
+}
+
+.cardPrimary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  &__img {
+    border-radius: 8px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 125px;
+  }
+
+  &__new {
+    @include mx.header-overline;
+    margin-bottom: 16px;
+    color: c.$col-1a;
+  }
+
+  &__title {
+    @include mx.header-h2;
+    margin-bottom: 32px;
+  }
+
+  &__details {
+    @include mx.body-regular;
+    margin-bottom: 32px;
+    color: c.$col-3a;
+  }
+
+  &__price {
+    @include mx.header-h6;
+    margin-bottom: 50px;
+  }
+
+  &__purchase {
+    display: flex;
+    column-gap: 16px;
+  }
+
+  &__btn {
+    @include btn.btn-default-1;
+  }
+}
+
+.cardSecondary {
+  display: flex;
+
+  &__header {
+    @include mx.header-h3;
+    margin-bottom: 32px;
+  }
+
+  &__featuresInfo {
+    @include mx.body-regular;
+    max-width: 40%;
+    color: c.$col-3a;
+  }
+
+  &__list {
+    // list-style: none;
+
+    &__item {
+      @include mx.body-regular;
+      color: c.$col-3a;
+      text-transform: capitalize;
+    }
+
+    &__quantity {
+      margin-right: 24px;
+      color: c.$col-1a;
+      font-weight: 700;
+    }
+  }
+}

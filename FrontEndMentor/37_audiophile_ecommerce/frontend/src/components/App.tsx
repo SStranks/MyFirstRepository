@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 
 // // ✔ // ✖
 // ✖ // DEBUG:  Various resizing on Home page: grid images max out at 1110px.
+// ✖ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
 // ✖ // TODO:  Fix category page grid row reversal, for desktop size only.
 // ✖ // TODO:  Possible redundant styles imports on pages/categories to be removed.
 // ✖ // TODO:  Adjust various tags (p) into correct semantic tags etc.

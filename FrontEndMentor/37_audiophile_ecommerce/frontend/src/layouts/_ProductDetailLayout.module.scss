@@ -5,7 +5,7 @@
 @use '#Sass/abstracts/variables' as v;
 
 .main {
-  padding: 0 v.$padding-desktop;
+  padding: 80px v.$padding-desktop 0 v.$padding-desktop;
 
   &__btnBack {
     @include mx.body-regular;
@@ -20,6 +20,10 @@
     margin-bottom: 64px;
     text-align: center;
   }
+}
+
+.productDetailCard {
+  margin-bottom: f.px2em(160);
 }
 
 .productImageGrid {
