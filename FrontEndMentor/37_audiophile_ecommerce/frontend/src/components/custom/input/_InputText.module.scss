@@ -1,0 +1,25 @@
+// @use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+// @use '#Sass/abstracts/mixins' as mx;
+// @use '#Sass/abstracts/media-queries' as mq;
+// @use '#Sass/abstracts/variables' as v;
+// @use '#Sass/components/buttons' as btn;
+@use '#Sass/components/form' as form;
+
+.container {
+  &__title {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: f.px2em(12);
+    letter-spacing: f.px2em(-0.2);
+  }
+
+  &__input {
+    @include form.form-textfield-default;
+    width: 100%;
+
+    &:focus {
+      @include form.form-textfield-active;
+    }
+  }
+}

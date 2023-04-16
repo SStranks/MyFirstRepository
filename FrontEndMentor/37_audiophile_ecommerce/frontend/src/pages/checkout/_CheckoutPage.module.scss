@@ -1,0 +1,109 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+// @use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/variables' as v;
+@use '#Sass/components/buttons' as btn;
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  column-gap: 30px;
+  padding: 80px v.$padding-desktop 140px v.$padding-desktop;
+  background-color: c.$col-1c;
+
+  &__btnBack {
+    grid-column: 1 / span 2;
+    justify-self: start;
+    @include mx.body-regular;
+    margin-bottom: 56px;
+    background-color: transparent;
+    color: c.$col-3a;
+    text-transform: capitalize;
+  }
+}
+
+.checkout {
+  padding: 48px;
+  background-color: c.$col-2b;
+  border-radius: 8px;
+
+  &__header {
+    @include mx.header-h3;
+    margin: 6px 0 40px;
+  }
+
+  &__subHeader {
+    @include mx.header-subtitle;
+    grid-column: 1 / span 2;
+    margin-bottom: f.px2em(16);
+    color: c.$col-1a;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    column-gap: 16px;
+  }
+
+  &__inputText {
+    margin-bottom: 24px;
+  }
+}
+
+.summary {
+  height: fit-content;
+  padding: 32px;
+  background-color: c.$col-2b;
+  border-radius: 8px;
+
+  &__header {
+    @include mx.header-h6;
+    margin-bottom: 32px;
+  }
+
+  &__products {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    row-gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  &__financial {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    row-gap: 8px;
+    margin-bottom: 32px;
+
+    &__heading {
+      @include mx.body-regular;
+      color: c.$col-3a;
+      text-transform: uppercase;
+    }
+
+    &__total {
+      @include mx.header-h6;
+      justify-self: end;
+    }
+
+    &__grandTotal {
+      @include mx.header-h6;
+      justify-self: end;
+      color: c.$col-1a;
+    }
+  }
+
+  &__btn {
+    @include btn.btn-default-1;
+    width: 100%;
+  }
+}
+
+.gridColumnSpan {
+  grid-column: 1 / span 2;
+}
+
+.gridLastRow {
+  margin-top: 18px;
+}
