@@ -24,15 +24,12 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
     productItems,
   } = props;
 
+  // '&nbsp;' to add space char; ensure capitalize style works
   const productInTheBox = productItems.map((el) => {
     return (
       <li key={el.item}>
-        <p className={styles.cardSecondary__list__item}>
-          <span className={styles.cardSecondary__list__quantity}>
-            {el.quantity}x
-          </span>
-          {el.item}
-        </p>
+        <p className={styles.cardSecondary__list__quantity}>{el.quantity}x</p>
+        <p className={styles.cardSecondary__list__item}>&nbsp;{el.item}</p>
       </li>
     );
   });
@@ -57,13 +54,13 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
         </div>
       </div>
       <div className={styles.cardSecondary}>
-        <div className="">
+        <div className={styles.cardSecondary__features}>
           <p className={styles.cardSecondary__header}>features</p>
           <p className={styles.cardSecondary__featuresInfo}>
             {productFeatures}
           </p>
         </div>
-        <div className="">
+        <div className={styles.cardSecondary__inBox}>
           <p className={styles.cardSecondary__header}>in the box</p>
           <ul className={styles.cardSecondary__list}>{productInTheBox}</ul>
         </div>

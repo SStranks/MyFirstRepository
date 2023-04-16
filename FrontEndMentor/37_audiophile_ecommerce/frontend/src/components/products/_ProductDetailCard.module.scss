@@ -60,29 +60,54 @@
 
 .cardSecondary {
   display: flex;
+  justify-content: space-between;
+
+  &__features {
+    margin-right: 125px;
+    white-space: pre-line;
+  }
 
   &__header {
     @include mx.header-h3;
     margin-bottom: 32px;
+    white-space: nowrap;
   }
 
   &__featuresInfo {
     @include mx.body-regular;
-    max-width: 40%;
     color: c.$col-3a;
   }
 
+  &__inBox {
+    min-width: 350px;
+  }
+
   &__list {
-    // list-style: none;
+    display: grid;
+    grid-template-columns: minmax(25px, auto) 1fr;
+    column-gap: 25px;
+    padding: 0;
+    list-style-type: none;
+
+    & > li {
+      grid-column: 1 / span 2;
+      display: grid;
+      grid-template-columns: inherit;
+      column-gap: inherit;
+      padding: 0;
+    }
 
     &__item {
+      grid-column: 2;
       @include mx.body-regular;
       color: c.$col-3a;
       text-transform: capitalize;
+      white-space: nowrap;
     }
 
     &__quantity {
-      margin-right: 24px;
+      grid-column: 1;
+      // margin-right: 24px;
       color: c.$col-1a;
       font-weight: 700;
     }
