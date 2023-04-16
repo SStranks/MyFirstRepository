@@ -1,4 +1,4 @@
-import ProductQuantityButton from '#Components/buttons/ProductQuantityButton';
+import ProductQuantityButton from '#Components/custom/buttons/ProductQuantityButton';
 import styles from './_ProductDetailCard.module.scss';
 
 type ElemProps = {

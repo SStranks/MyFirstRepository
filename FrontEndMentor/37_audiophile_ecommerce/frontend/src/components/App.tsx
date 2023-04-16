@@ -1,3 +1,4 @@
+import CheckoutPage from '#Pages/checkout/CheckoutPage';
 import EarphonesPage from '#Pages/earphones/EarphonesPage';
 import HeadphonesPage from '#Pages/headphones/HeadphonesPage';
 import HomePage from '#Pages/home/HomePage';
@@ -23,6 +24,7 @@ function App(): JSX.Element {
       <Route path="/speakers/:productId" element={<ProductDetailsPage />} />
       <Route path="/earphones" element={<EarphonesPage />} />
       <Route path="/earphones/:productId" element={<ProductDetailsPage />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
     </Routes>
   );
 }

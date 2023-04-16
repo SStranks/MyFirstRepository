@@ -29,15 +29,16 @@
 
 @mixin form-textfield-default {
   @include form-textfield-root;
-  border: 1px solid c.$col-1c;
+  border: 1px solid c.$col-1e;
 
   &::placeholder {
-    color: c.$col-1c;
+    color: c.$col-3a;
   }
 }
 
 @mixin form-textfield-active {
   @include form-textfield-root;
+  outline: none;
   border: 1px solid c.$col-1a;
   color: c.$col-2c;
   caret-color: c.$col-1a;
