@@ -1,5 +1,5 @@
 @use '#Sass/abstracts/colors' as c;
-// @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
 // @use '#Sass/abstracts/media-queries' as mq;
 // @use '#Sass/abstracts/variables' as v;
@@ -48,6 +48,55 @@
 
   &__homeBtn {
     @include btn.btn-default-1;
-    // width: 100%;
+    width: 100%;
+  }
+}
+
+.orderDetails {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-bottom: 46px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    background-color: c.$col-1c;
+
+    &__hr {
+      width: 100%;
+      margin: 12px 0;
+      border: 1px solid c.$col-3e;
+    }
+
+    &__totalQuantity {
+      font-weight: 700;
+      font-size: f.px2rem(12);
+      letter-spacing: f.px2rem(-0.21);
+      color: c.$col-3a;
+    }
+  }
+
+  &__grandTotal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 41px 32px;
+    background-color: c.$col-2c;
+
+    &__title {
+      @include mx.body-regular;
+      margin-bottom: 8px;
+      color: c.$col-3b;
+      text-transform: uppercase;
+    }
+
+    &__amount {
+      @include mx.header-h6;
+      color: c.$col-2b;
+    }
   }
 }
