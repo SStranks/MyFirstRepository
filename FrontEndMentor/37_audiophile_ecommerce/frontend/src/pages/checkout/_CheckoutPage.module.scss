@@ -4,6 +4,7 @@
 // @use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
+@use '#Sass/components/radio' as radio;
 
 .form {
   display: grid;
@@ -40,11 +41,26 @@
     color: c.$col-1a;
   }
 
+  &__labelTitle {
+    font-weight: 700;
+    font-size: f.px2em(12);
+    letter-spacing: f.px2em(-0.2);
+    text-transform: capitalize;
+  }
+
   &__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     column-gap: 16px;
+  }
+
+  &__paymentMethod {
+    grid-column: 1 / span 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
   }
 
   &__inputText {
@@ -65,7 +81,7 @@
 
   &__products {
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: 1fr;
     row-gap: 24px;
     margin-bottom: 32px;
   }
@@ -106,4 +122,8 @@
 
 .gridLastRow {
   margin-top: 18px;
+}
+
+.gridColumn2 {
+  grid-column: 2;
 }

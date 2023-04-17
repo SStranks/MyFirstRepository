@@ -1,3 +1,5 @@
+import CheckoutSummaryProductCard from '#Components/checkout/CheckoutSummaryProductCard';
+import InputRadio from '#Components/custom/input/InputRadio';
 import InputText from '#Components/custom/input/InputText';
 import ImgXX99MKII from '#Img/cart/image-xx99-mark-two-headphones.jpg';
 import DefaultLayout from '#Layouts/DefaultLayout';
@@ -16,6 +18,12 @@ const cartProducts = [
     productPrice: 2999,
     productQuantity: 1,
   },
+  {
+    productImg: ImgXX99MKII,
+    productTitle: 'xx99 mk iii',
+    productPrice: 2999,
+    productQuantity: 1,
+  },
 ];
 
 function CheckoutPage(): JSX.Element {
@@ -23,9 +31,13 @@ function CheckoutPage(): JSX.Element {
 
   const productsList = cartProducts.map((el) => {
     return (
-      <div className="" key={el.productTitle}>
-        test
-      </div>
+      <CheckoutSummaryProductCard
+        key={el.productTitle}
+        productImg={el.productImg}
+        productTitle={el.productTitle}
+        productPrice={el.productPrice}
+        productQuantity={el.productQuantity}
+      />
     );
   });
 
@@ -45,59 +57,64 @@ function CheckoutPage(): JSX.Element {
             <InputText
               appendClass={styles.checkout__inputText}
               inputName="Name"
-              inputPlaceholder="Insert your name"
+              inputPlaceholder="Insert full name"
             />
             <InputText
               appendClass={styles.checkout__inputText}
               inputName="Email Address"
-              inputPlaceholder="Insert your email address"
+              inputPlaceholder="Insert email address"
             />
             <InputText
               appendClass={styles.checkout__inputText}
               inputName="Phone Number"
-              inputPlaceholder="Insert your phone number"
+              inputPlaceholder="Insert phone number"
             />
             <p className={styles.checkout__subHeader}>shipping info</p>
             <InputText
               appendClass={`${styles.checkout__inputText} ${styles.gridColumnSpan}`}
               inputName="Address"
-              inputPlaceholder="Insert your address"
+              inputPlaceholder="Insert address"
             />
             <InputText
               appendClass={styles.checkout__inputText}
               inputName="ZIP Code"
-              inputPlaceholder="Insert your ZIP code"
+              inputPlaceholder="Insert ZIP code"
             />
             <InputText
               appendClass={styles.checkout__inputText}
               inputName="City"
-              inputPlaceholder="Insert your city"
+              inputPlaceholder="Insert city"
             />
             <InputText
               appendClass={styles.checkout__inputText}
               inputName="Country"
-              inputPlaceholder="Insert your country"
+              inputPlaceholder="Insert country"
             />
             <p className={styles.checkout__subHeader}>payment details</p>
-            <InputText
-              appendClass={styles.checkout__inputText}
-              inputName="Address"
-              inputPlaceholder="Insert your address"
-            />
-            <InputText
-              appendClass={styles.checkout__inputText}
-              inputName="ZIP Code"
-              inputPlaceholder="Insert your ZIP code"
-            />
+            <div className={styles.checkout__paymentMethod}>
+              <p className={styles.checkout__labelTitle}>payment method</p>
+              <InputRadio
+                appendClass=""
+                inputName="e-Money"
+                inputId="e-Money"
+                inputGroup="payment method"
+              />
+              <InputRadio
+                appendClass={styles.gridColumn2}
+                inputName="Cash on Delivery"
+                inputId="CashOnDelivery"
+                inputGroup="payment method"
+              />
+            </div>
             <InputText
               appendClass={styles.checkout__inputText}
               inputName="e-Money Number"
-              inputPlaceholder="Insert your e-Money number"
+              inputPlaceholder="Insert e-Money number"
             />
             <InputText
               appendClass={styles.checkout__inputText}
               inputName="e-Money PIN"
-              inputPlaceholder="Insert your e-Money PIN"
+              inputPlaceholder="Insert e-Money PIN"
             />
           </div>
         </div>

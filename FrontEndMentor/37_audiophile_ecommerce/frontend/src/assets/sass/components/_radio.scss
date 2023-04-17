@@ -22,27 +22,25 @@
 /* -------------------------------- */
 
 @mixin radio-default {
-  input[type='radio'] {
-    appearance: none;
-    display: grid;
-    place-content: center;
-    margin: 0;
-    width: f.px2em(20);
-    height: f.px2em(20);
-    border: 1px solid c.$col-1c;
-    border-radius: 50%;
-    background-color: transparent;
-    color: c.$col-1c;
-  }
+  appearance: none;
+  display: grid;
+  place-content: center;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid c.$col-1e;
+  border-radius: 50%;
+  background-color: transparent;
+  color: c.$col-1c;
 
-  input[type='radio']::before {
+  &::before {
     content: '';
-    width: f.px2em(10);
-    height: f.px2em(10);
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
   }
 
-  input[type='radio']:checked::before {
+  &:checked::before {
     box-shadow: inset 1em 1em c.$col-1a;
   }
 }
