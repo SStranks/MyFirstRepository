@@ -46,7 +46,7 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
             $ {productPrice.toLocaleString('en-US')}
           </p>
           <div className={styles.cardPrimary__purchase}>
-            <ProductQuantityButton />
+            <ProductQuantityButton appendClass="" />
             <button className={styles.cardPrimary__btn} type="button">
               add to cart
             </button>

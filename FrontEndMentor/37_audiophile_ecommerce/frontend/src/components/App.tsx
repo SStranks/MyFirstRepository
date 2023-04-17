@@ -5,6 +5,8 @@ import HomePage from '#Pages/home/HomePage';
 import ProductDetailsPage from '#Pages/product-details/ProductDetailsPage';
 import SpeakersPage from '#Pages/speakers/SpeakersPage';
 import { Route, Routes } from 'react-router-dom';
+// import CartSummaryCard from './checkout/CartSummaryCard';
+import OrderCompleteCard from './checkout/OrderCompleteCard';
 
 // // ✔ // ✖
 // ✖ // DEBUG:  Various resizing on Home page: grid images max out at 1110px.
@@ -26,6 +28,14 @@ function App(): JSX.Element {
       <Route path="/earphones" element={<EarphonesPage />} />
       <Route path="/earphones/:productId" element={<ProductDetailsPage />} />
       <Route path="/checkout" element={<CheckoutPage />} />
+      {/* // TEMP DEV:  Temporary Routes */}
+      <Route
+        path="/temp"
+        element={
+          // <CartSummaryCard cartItemsQuantity={3} cartTotalAmount={5396} />
+          <OrderCompleteCard />
+        }
+      />
     </Routes>
   );
 }
