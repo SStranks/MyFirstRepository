@@ -1,0 +1,53 @@
+@use '#Sass/abstracts/colors' as c;
+// @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+// @use '#Sass/abstracts/media-queries' as mq;
+// @use '#Sass/abstracts/variables' as v;
+@use '#Sass/components/buttons' as btn;
+
+.containerTemp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: c.$col-3a;
+}
+
+.card {
+  padding: 48px;
+  background-color: c.$col-2b;
+  border-radius: 8px;
+
+  &__circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 34px;
+    background-color: c.$col-1a;
+    border-radius: 50%;
+
+    &__check {
+      filter: brightness(100);
+      height: 25px;
+    }
+  }
+
+  &__header {
+    @include mx.header-h3;
+    margin-bottom: 24px;
+  }
+
+  &__subHeader {
+    @include mx.body-regular;
+    color: c.$col-3a;
+    margin-bottom: 34px;
+  }
+
+  &__homeBtn {
+    @include btn.btn-default-1;
+    // width: 100%;
+  }
+}

@@ -1,0 +1,61 @@
+@use '#Sass/abstracts/colors' as c;
+// @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+// @use '#Sass/abstracts/media-queries' as mq;
+// @use '#Sass/abstracts/variables' as v;
+@use '#Sass/components/buttons' as btn;
+
+.containerTemp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: c.$col-3a;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 32px;
+  background-color: c.$col-2b;
+  border-radius: 8px;
+
+  &__header {
+    @include mx.header-h6;
+  }
+
+  &__removeAllBtn {
+    justify-self: end;
+    background-color: transparent;
+    color: c.$col-3a;
+    text-transform: capitalize;
+    text-decoration: underline;
+  }
+
+  &__productList {
+    grid-column: 1 / span 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+    margin: 32px 0;
+  }
+
+  &__total {
+    @include mx.body-regular;
+    color: c.$col-3a;
+    text-transform: uppercase;
+  }
+
+  &__amount {
+    justify-self: end;
+    @include mx.header-h6;
+  }
+
+  &__checkoutBtn {
+    grid-column: 1 / span 2;
+    @include btn.btn-default-1;
+    margin-top: 24px;
+    width: 100%;
+  }
+}
