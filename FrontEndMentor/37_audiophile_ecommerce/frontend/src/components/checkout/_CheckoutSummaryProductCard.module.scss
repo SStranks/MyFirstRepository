@@ -1,0 +1,42 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/media-queries' as mq;
+// @use '#Sass/abstracts/variables' as v;
+
+.card {
+  @include mx.body-regular;
+  font-weight: 700;
+  display: grid;
+  grid-template-areas:
+    'img title quantity'
+    'img price _';
+  grid-template-columns: 64px auto auto;
+  grid-template-rows: repeat(2, 1fr);
+  column-gap: 16px;
+  width: 100%;
+
+  &__img {
+    grid-row: 1 / span 2;
+    border-radius: 8px;
+  }
+
+  &__title {
+    align-self: end;
+    font-size: f.px2rem(15);
+    text-transform: uppercase;
+  }
+
+  &__price {
+    grid-area: price;
+    align-self: start;
+    color: c.$col-3a;
+  }
+
+  &__quantity {
+    grid-area: quantity;
+    align-self: end;
+    justify-self: end;
+    color: c.$col-3a;
+  }
+}
