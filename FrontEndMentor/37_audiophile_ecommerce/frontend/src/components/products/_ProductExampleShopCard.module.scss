@@ -30,6 +30,10 @@
     &__text {
       @include mx.header-subtitle;
       color: c.$col-3a;
+
+      &:hover {
+        color: c.$col-1a;
+      }
     }
 
     &__img {

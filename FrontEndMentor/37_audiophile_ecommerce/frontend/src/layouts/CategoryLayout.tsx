@@ -8,9 +8,9 @@ type ElemProps = {
   productList: {
     id: number;
     new: boolean;
-    img: string;
-    title: string;
-    details: string;
+    productName: string;
+    description: string;
+    categoryImage: { desktop: string };
   }[];
 };
 
@@ -22,9 +22,11 @@ function CategoryLayout(props: ElemProps): JSX.Element {
       <ProductInfoCard
         key={el.id}
         newProduct={el.new}
-        productImg={el.img}
-        productTitle={el.title}
-        productDetails={el.details}
+        productImg={el.categoryImage.desktop}
+        productTitle={el.productName}
+        productDetails={el.description}
+        productCategory={productCategory}
+        productId={el.id}
       />
     );
   });

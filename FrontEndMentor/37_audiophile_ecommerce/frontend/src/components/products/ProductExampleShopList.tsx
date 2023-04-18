@@ -6,9 +6,19 @@ import ProductExampleShopCard from './ProductExampleShopCard';
 import styles from './_ProductExampleShopList.module.scss';
 
 const productsList = [
-  { id: 1, name: 'headphones', image: ImgHeadphones },
-  { id: 2, name: 'speakers', image: ImgSpeakers },
-  { id: 3, name: 'earphones', image: ImgEarphones },
+  {
+    id: 1,
+    name: 'headphones',
+    image: ImgHeadphones,
+    productShopURL: '/headphones',
+  },
+  { id: 2, name: 'speakers', image: ImgSpeakers, productShopURL: '/speakers' },
+  {
+    id: 3,
+    name: 'earphones',
+    image: ImgEarphones,
+    productShopURL: '/earphones',
+  },
 ];
 
 type ElemProps = {
@@ -21,9 +31,10 @@ function ProductExampleShopList(props: ElemProps): JSX.Element {
   const productItems = productsList.map((el) => {
     return (
       <ProductExampleShopCard
+        key={el.id}
         productName={el.name}
         productImg={el.image}
-        key={el.id}
+        productShopURL={el.productShopURL}
       />
     );
   });

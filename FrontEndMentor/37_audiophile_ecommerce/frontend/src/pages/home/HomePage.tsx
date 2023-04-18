@@ -1,6 +1,7 @@
-// import CompanyStatement from '#Components/products/CompanyStatement';
+import CompanyStatement from '#Components/products/CompanyStatement';
 import ProductExampleShopList from '#Components/products/ProductExampleShopList';
 import DefaultLayout from '#Layouts/DefaultLayout';
+import { Link } from 'react-router-dom';
 
 import styles from './_HomePage.module.scss';
 
@@ -16,9 +17,11 @@ function Home(): JSX.Element {
             Experience natural, lifelike audio and exceptional build quality
             made for the passionate music enthusiast.
           </p>
-          <button className={styles.hero__btn} type="button">
-            see product
-          </button>
+          <Link to="/headphones/4">
+            <button className={styles.hero__btn} type="button">
+              see product
+            </button>
+          </Link>
         </div>
       </div>
       <main className={styles.main}>
@@ -31,30 +34,36 @@ function Home(): JSX.Element {
                 Upgrade to premium speakers that are phenomenally built to
                 deliver truly remarkable sound.
               </p>
-              <button className={styles.zx9__btn} type="button">
-                see product
-              </button>
+              <Link to="/speakers/6">
+                <button className={styles.zx9__btn} type="button">
+                  see product
+                </button>
+              </Link>
             </div>
           </div>
           <div className={styles.zx7}>
             <div>
               <p className={styles.zx7__title}>zx7 speaker</p>
-              <button className={styles.zx7__btn} type="button">
-                see product
-              </button>
+              <Link to="/speakers/5">
+                <button className={styles.zx7__btn} type="button">
+                  see product
+                </button>
+              </Link>
             </div>
           </div>
           <div className={styles['yx1-img']} />
           <div className={styles.yx1}>
             <div>
               <p className={styles.yx1__title}>yx1 earphones</p>
-              <button className={styles.yx1__btn} type="button">
-                see product
-              </button>
+              <Link to="/earphones/1">
+                <button className={styles.yx1__btn} type="button">
+                  see product
+                </button>
+              </Link>
             </div>
           </div>
         </div>
-        {/* <CompanyStatement /> */}
+        <CompanyStatement appendClass="" />
       </main>
     </DefaultLayout>
   );
