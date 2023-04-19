@@ -45,7 +45,10 @@ function ProductDetailLayout(): JSX.Element {
         />
       )}
       <p className={styles.main__alternatives}>you may also like</p>
-      <ProductExampleSeeCardList appendClass={styles.productExampleSeeList} />
+      <ProductExampleSeeCardList
+        appendClass={styles.productExampleSeeList}
+        currentProductId={productId}
+      />
       <ProductExampleShopList appendClass={styles.productExampleShopList} />
       <CompanyStatement appendClass={styles.companyStatement} />
     </main>

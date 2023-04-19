@@ -5,7 +5,7 @@ type ElemProps = {
   productImg: string;
   productTitle: string;
   productCategory: string;
-  productId: string;
+  productId: number;
 };
 
 function ProductExampleSeeCard(props: ElemProps): JSX.Element {
@@ -15,7 +15,9 @@ function ProductExampleSeeCard(props: ElemProps): JSX.Element {
     <div className={styles.card}>
       <img className={styles.card__img} src={productImg} alt="" />
       <p className={styles.card__title}>{productTitle}</p>
-      <Link to={`/${productCategory}/${productId}`}>
+      <Link
+        to={`/${productCategory}/${productId}`}
+        state={{ productCategory, productId }}>
         <button className={styles.card__btn} type="button">
           see product
         </button>
