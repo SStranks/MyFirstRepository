@@ -20,20 +20,6 @@ function ProductInfoCard(props: ElemProps): JSX.Element {
     productId,
   } = props;
 
-  // let image;
-  // let test;
-  // import(`${productImg}`).then((el) => {
-  //   image = el.default;
-  // });
-  // import(
-  //   '#Img/product-xx59-headphones/desktop/image-category-page-preview.jpg'
-  // ).then((el) => {
-  //   console.log(el.default);
-  //   test = el.default;
-  // });
-
-  // console.log(image);
-
   return (
     <div className={styles.card}>
       <img className={styles.card__img} src={productImg} alt="" />
@@ -41,7 +27,9 @@ function ProductInfoCard(props: ElemProps): JSX.Element {
         {newProduct && <p className={styles.card__new}>new product</p>}
         <p className={styles.card__title}>{productTitle}</p>
         <p className={styles.card__details}>{productDetails}</p>
-        <Link to={`/${productCategory}/${productId}`}>
+        <Link
+          to={`/${productCategory}/${productId}`}
+          state={{ productCategory, productId }}>
           <button className={styles.card__btn} type="button">
             see product
           </button>

@@ -2,13 +2,21 @@ import styles from './_ProductImageGrid.module.scss';
 
 type ElemProps = {
   appendClass: string;
-  productImagesURL: string[];
+  productImagesGallery: Record<
+    string,
+    { mobile: string; tablet: string; desktop: string }
+  >;
 };
 
 function ProductImageGrid(props: ElemProps): JSX.Element {
-  const { appendClass, productImagesURL } = props;
+  const { appendClass, productImagesGallery } = props;
 
-  const productImages = productImagesURL.map((imgURL, i) => {
+  const images = [
+    productImagesGallery.first.desktop,
+    productImagesGallery.third.desktop,
+    productImagesGallery.second.desktop,
+  ];
+  const productImages = images.map((imgURL, i) => {
     return (
       <img
         key={imgURL}

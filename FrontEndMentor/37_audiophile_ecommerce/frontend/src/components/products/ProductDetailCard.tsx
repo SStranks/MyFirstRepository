@@ -6,7 +6,7 @@ type ElemProps = {
   newProduct: boolean;
   productImg: string;
   productTitle: string;
-  productDetail: string;
+  productDescription: string;
   productPrice: number;
   productFeatures: string;
   productItems: { quantity: number; item: string }[];
@@ -18,7 +18,7 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
     newProduct,
     productImg,
     productTitle,
-    productDetail,
+    productDescription,
     productPrice,
     productFeatures,
     productItems,
@@ -41,7 +41,7 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
         <div className={styles.cardPrimary__info}>
           {newProduct && <p className={styles.cardPrimary__new}>new product</p>}
           <p className={styles.cardPrimary__title}>{productTitle}</p>
-          <p className={styles.cardPrimary__details}>{productDetail}</p>
+          <p className={styles.cardPrimary__details}>{productDescription}</p>
           <p className={styles.cardPrimary__price}>
             $ {productPrice.toLocaleString('en-US')}
           </p>

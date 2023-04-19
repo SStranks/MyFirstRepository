@@ -6,7 +6,12 @@ import ProductExampleSeeCard from './ProductExampleSeeCard';
 import styles from './_ProductExampleSeeCardList.module.scss';
 
 const productList = [
-  { id: 1, name: 'xx99 mark i', image: ImgXX99MarkI },
+  {
+    id: 1,
+    name: 'xx99 mark i',
+    image: ImgXX99MarkI,
+    productCategory: 'headphones',
+  },
   { id: 2, name: 'xx59', image: ImgXX59 },
   { id: 3, name: 'zx9 speaker', image: ImgZX9 },
 ];
@@ -24,6 +29,8 @@ function ProductExampleSeeCardList(props: ElemProps): JSX.Element {
         key={el.id}
         productImg={el.image}
         productTitle={el.name}
+        productCategory={}
+        productId={}
       />
     );
   });

@@ -17,7 +17,9 @@ function Home(): JSX.Element {
             Experience natural, lifelike audio and exceptional build quality
             made for the passionate music enthusiast.
           </p>
-          <Link to="/headphones/4">
+          <Link
+            to="/headphones/4"
+            state={{ productCategory: 'headphones', productId: 4 }}>
             <button className={styles.hero__btn} type="button">
               see product
             </button>
@@ -34,7 +36,9 @@ function Home(): JSX.Element {
                 Upgrade to premium speakers that are phenomenally built to
                 deliver truly remarkable sound.
               </p>
-              <Link to="/speakers/6">
+              <Link
+                to="/speakers/6"
+                state={{ productCategory: 'speakers', productId: 6 }}>
                 <button className={styles.zx9__btn} type="button">
                   see product
                 </button>
@@ -44,7 +48,9 @@ function Home(): JSX.Element {
           <div className={styles.zx7}>
             <div>
               <p className={styles.zx7__title}>zx7 speaker</p>
-              <Link to="/speakers/5">
+              <Link
+                to="/speakers/5"
+                state={{ productCategory: 'speakers', productId: 5 }}>
                 <button className={styles.zx7__btn} type="button">
                   see product
                 </button>
@@ -55,7 +61,9 @@ function Home(): JSX.Element {
           <div className={styles.yx1}>
             <div>
               <p className={styles.yx1__title}>yx1 earphones</p>
-              <Link to="/earphones/1">
+              <Link
+                to="/earphones/1"
+                state={{ productCategory: 'earphones', productId: 1 }}>
                 <button className={styles.yx1__btn} type="button">
                   see product
                 </button>

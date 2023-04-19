@@ -1,20 +1,25 @@
+import { Link } from 'react-router-dom';
 import styles from './_ProductExampleSeeCard.module.scss';
 
 type ElemProps = {
   productImg: string;
   productTitle: string;
+  productCategory: string;
+  productId: string;
 };
 
 function ProductExampleSeeCard(props: ElemProps): JSX.Element {
-  const { productImg, productTitle } = props;
+  const { productImg, productTitle, productCategory, productId } = props;
 
   return (
     <div className={styles.card}>
       <img className={styles.card__img} src={productImg} alt="" />
       <p className={styles.card__title}>{productTitle}</p>
-      <button className={styles.card__btn} type="button">
-        see product
-      </button>
+      <Link to={`/${productCategory}/${productId}`}>
+        <button className={styles.card__btn} type="button">
+          see product
+        </button>
+      </Link>
     </div>
   );
 }
