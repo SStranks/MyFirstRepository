@@ -9,7 +9,7 @@
   height: 632px;
   padding: 0 v.$padding-desktop;
   background-color: c.$col-1b;
-  background-image: url(~img/home/desktop/image-hero.jpg);
+  background-image: url('/public/img/home/desktop/image-hero.jpg');
   background-repeat: no-repeat;
   background-position: bottom;
   margin-bottom: f.px2em(120);
@@ -70,7 +70,7 @@
   justify-content: flex-end;
   padding-right: 95px;
   background-color: c.$col-1a;
-  background-image: url(~img/home/desktop/image-speaker-zx9.png);
+  background-image: url('/public/img/home/desktop/image-speaker-zx9.png');
   background-repeat: no-repeat;
   background-size: 375px;
   background-position: bottom -10px left 118px;
@@ -103,7 +103,7 @@
   align-items: center;
   padding-left: f.px2em(95);
   background-color: c.$col-1c;
-  background-image: url(~img/home/desktop/image-speaker-zx7.jpg);
+  background-image: url('/public/img/home/desktop/image-speaker-zx7.jpg');
   background-position: right;
   background-repeat: no-repeat;
   border-radius: 8px;
@@ -119,7 +119,7 @@
 }
 
 .yx1-img {
-  background-image: url(~img/home/desktop/image-earphones-yx1.jpg);
+  background-image: url('/public/img/home/desktop/image-earphones-yx1.jpg');
   border-radius: 8px;
 }
 

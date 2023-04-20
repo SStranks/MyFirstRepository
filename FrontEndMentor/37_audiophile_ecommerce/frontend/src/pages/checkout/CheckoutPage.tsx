@@ -1,7 +1,6 @@
 import CheckoutSummaryProductCard from '#Components/checkout/CheckoutSummaryProductCard';
 import InputRadio from '#Components/custom/input/InputRadio';
 import InputText from '#Components/custom/input/InputText';
-import ImgXX99MKII from '#Img/cart/image-xx99-mark-two-headphones.jpg';
 import DefaultLayout from '#Layouts/DefaultLayout';
 import { useNavigate } from 'react-router-dom';
 import styles from './_CheckoutPage.module.scss';
@@ -13,13 +12,13 @@ const invoiceVAT = 1079;
 const invoiceGrandTotal = 5446;
 const cartProducts = [
   {
-    productImg: ImgXX99MKII,
+    productImg: '/assets/img/cart/image-xx99-mark-two-headphones.jpg',
     productTitle: 'xx99 mk ii',
     productPrice: 2999,
     productQuantity: 1,
   },
   {
-    productImg: ImgXX99MKII,
+    productImg: '/assets/img/cart/image-xx99-mark-two-headphones.jpg',
     productTitle: 'xx99 mk iii',
     productPrice: 2999,
     productQuantity: 1,

@@ -1,6 +1,4 @@
-import ImgEarphones from '#Img/shared/desktop/image-category-thumbnail-earphones.png';
-import ImgHeadphones from '#Img/shared/desktop/image-category-thumbnail-headphones.png';
-import ImgSpeakers from '#Img/shared/desktop/image-category-thumbnail-speakers.png';
+// import Data from '#Data/Data.json';
 import ProductExampleShopCard from './ProductExampleShopCard';
 
 import styles from './_ProductExampleShopList.module.scss';
@@ -9,14 +7,19 @@ const productsList = [
   {
     id: 1,
     name: 'headphones',
-    image: ImgHeadphones,
+    image: '/img/shared/desktop/image-category-thumbnail-headphones.png',
     productShopURL: '/headphones',
   },
-  { id: 2, name: 'speakers', image: ImgSpeakers, productShopURL: '/speakers' },
+  {
+    id: 2,
+    name: 'speakers',
+    image: '/img/shared/desktop/image-category-thumbnail-speakers.png',
+    productShopURL: '/speakers',
+  },
   {
     id: 3,
     name: 'earphones',
-    image: ImgEarphones,
+    image: '/img/shared/desktop/image-category-thumbnail-earphones.png',
     productShopURL: '/earphones',
   },
 ];

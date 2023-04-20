@@ -1,4 +1,3 @@
-import ImgBestGear from '#Img/shared/desktop/image-best-gear.jpg';
 import styles from './_CompanyStatement.module.scss';
 
 type ElemProps = {
@@ -23,7 +22,11 @@ function CompanyStatement(props: ElemProps): JSX.Element {
           best place to buy your portable audio equipment.
         </p>
       </div>
-      <img className={styles.card__img} src={ImgBestGear} alt="" />
+      <img
+        className={styles.card__img}
+        src="/img/shared/desktop/image-best-gear.jpg"
+        alt=""
+      />
     </div>
   );
 }

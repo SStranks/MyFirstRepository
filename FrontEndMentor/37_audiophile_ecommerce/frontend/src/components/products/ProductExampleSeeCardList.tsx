@@ -1,4 +1,4 @@
-import ProductData from '#Data/Data';
+import ProductData from '#Data/Data.json';
 import ProductExampleSeeCard from './ProductExampleSeeCard';
 
 import styles from './_ProductExampleSeeCardList.module.scss';
@@ -15,14 +15,20 @@ function ProductExampleSeeCardList(props: ElemProps): JSX.Element {
     return product.id === currentProductId;
   });
 
-  const productItems = currentProduct?.others.map((product) => {
+  const productItems = currentProduct?.others.map((others) => {
+    const findProduct = ProductData.find((product) => {
+      return product.slug === others.slug;
+    });
+
+    if (!findProduct) return false;
+
     return (
       <ProductExampleSeeCard
-        key={product.productName}
-        productImg={product.image.desktop}
-        productTitle={product.productName}
-        productCategory={product.category}
-        productId={product.id}
+        key={findProduct.productName}
+        productImg={findProduct.image.desktop}
+        productTitle={findProduct.productName}
+        productCategory={findProduct.category}
+        productId={findProduct.id}
       />
     );
   });

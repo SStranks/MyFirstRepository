@@ -15,6 +15,11 @@
   & > button {
     padding: 15px;
     background-color: transparent;
+
+    &:hover {
+      color: c.$col-1a;
+      font-weight: 700;
+    }
   }
 
   &__quantity {

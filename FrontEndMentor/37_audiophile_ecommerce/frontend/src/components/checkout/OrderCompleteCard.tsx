@@ -1,11 +1,10 @@
-import ImgXX99MKII from '#Img/cart/image-xx99-mark-two-headphones.jpg';
 import IconCheck from '#Svg/desktop/icon-check.svg';
 import CheckoutSummaryProductCard from './CheckoutSummaryProductCard';
 import styles from './_OrderCompleteCard.module.scss';
 
 // TEMP DEV: .
 const productExample = {
-  productImg: ImgXX99MKII,
+  productImg: '/public/img/cart/image-xx99-mark-two-headphones.jpg',
   productTitle: 'xx99 mk ii',
   productPrice: 2999,
   productQuantity: 1,

@@ -1,17 +1,16 @@
 // TEMP DEV: .
-import ImgXX99MKII from '#Img/cart/image-xx99-mark-two-headphones.jpg';
 import CartProductCard from './CartProductCard';
 import styles from './_CartSummaryCard.module.scss';
 
 const cartProducts = [
   {
-    productImg: ImgXX99MKII,
+    productImg: '/assets/img/cart/image-xx99-mark-two-headphones.jpg',
     productTitle: 'xx99 mk ii',
     productPrice: 2999,
     productQuantity: 1,
   },
   {
-    productImg: ImgXX99MKII,
+    productImg: '/assets/img/cart/image-xx99-mark-two-headphones.jpg',
     productTitle: 'xx99 mk iii',
     productPrice: 2999,
     productQuantity: 1,

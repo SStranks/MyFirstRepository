@@ -1,4 +1,4 @@
-import ProductData from '#Data/Data';
+import ProductData from '#Data/Data.json';
 import CategoryLayout from '#Layouts/CategoryLayout';
 import DefaultLayout from '#Layouts/DefaultLayout';
 

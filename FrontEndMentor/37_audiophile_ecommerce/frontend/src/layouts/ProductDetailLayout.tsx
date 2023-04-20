@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 // TEMP DEV:  .
 import ProductDetailCard from '#Components/products/ProductDetailCard';
-import ProductData from '#Data/Data';
+import ProductData from '#Data/Data.json';
 import styles from './_ProductDetailLayout.module.scss';
 
 function ProductDetailLayout(): JSX.Element {
