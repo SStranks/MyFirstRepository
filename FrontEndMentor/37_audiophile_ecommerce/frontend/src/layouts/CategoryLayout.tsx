@@ -1,6 +1,7 @@
 import CompanyStatement from '#Components/products/CompanyStatement';
 import ProductExampleShopList from '#Components/products/ProductExampleShopList';
 import ProductInfoCard from '#Components/products/ProductInfoCard';
+import MainTagLayout from './MainTagLayout';
 import styles from './_CategoryLayout.module.scss';
 
 type ElemProps = {
@@ -33,14 +34,16 @@ function CategoryLayout(props: ElemProps): JSX.Element {
 
   return (
     <>
-      <header className={styles.banner}>
-        <h1 className={styles.banner__title}>{productCategory}</h1>
+      <header className={styles.header}>
+        <h1 className={styles.header__title}>{productCategory}</h1>
       </header>
-      <main className={styles.main}>
+      <MainTagLayout>
+        {/* <main className={styles.main}> */}
         <div className={styles.grid}>{products}</div>
         <ProductExampleShopList appendClass={styles.productExampleShopList} />
         <CompanyStatement appendClass={styles.companyStatement} />
-      </main>
+        {/* </main> */}
+      </MainTagLayout>
     </>
   );
 }

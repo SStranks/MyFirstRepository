@@ -1,0 +1,40 @@
+@use '#Sass/abstracts/colors' as c;
+// @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
+// @use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
+
+.main {
+  padding: v.$padding-desktop-vertical v.$padding-desktop-horizontal;
+  background-color: c.$col-2b;
+
+  @include mq.media(desktop-small) {
+    background-color: green;
+    padding: v.$padding-desktop-vertical v.$padding-desktop-small-horizontal;
+  }
+
+  @include mq.media(desktop-mini) {
+    background-color: red;
+    padding: v.$padding-desktop-vertical v.$padding-desktop-mini-horizontal;
+  }
+
+  @include mq.media(tablet-large) {
+    background-color: blue;
+    padding: v.$padding-desktop-vertical v.$padding-tablet-horizontal;
+  }
+
+  @include mq.media(tablet-regular, tablet-small) {
+    background-color: purple;
+    padding: v.$padding-desktop-vertical v.$padding-tablet-small-horizontal;
+  }
+
+  @include mq.media(tablet-mini, tablet-micro) {
+    background-color: gold;
+    padding: v.$padding-desktop-vertical v.$padding-tablet-mini-horizontal;
+  }
+
+  @include mq.media(mobile-all) {
+    background-color: cyan;
+    padding: v.$padding-desktop-vertical v.$padding-mobile-horizontal;
+  }
+}

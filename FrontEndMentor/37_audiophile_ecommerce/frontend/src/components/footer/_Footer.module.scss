@@ -6,7 +6,8 @@
 
 .footer {
   position: relative;
-  padding: f.px2em(75) v.$padding-desktop f.px2em(50) v.$padding-desktop;
+  padding: f.px2em(75) v.$padding-desktop-horizontal f.px2em(50)
+    v.$padding-desktop-horizontal;
   background-color: c.$col-1b;
 
   &::before {
@@ -17,6 +18,11 @@
     height: 4px;
     background-color: c.$col-1a;
     border: none;
+  }
+
+  &__logo {
+    width: fit-content;
+    height: fit-content;
   }
 
   &__nav {
@@ -75,5 +81,101 @@
     @include mx.body-regular;
     font-weight: 700;
     color: c.$col-3b;
+  }
+}
+
+.footer {
+  @include mq.media(desktop-small) {
+    padding: f.px2em(75) v.$padding-desktop-small-horizontal f.px2em(50)
+      v.$padding-desktop-small-horizontal;
+  }
+
+  @include mq.media(desktop-mini) {
+    padding: f.px2em(75) v.$padding-desktop-mini-horizontal f.px2em(50)
+      v.$padding-desktop-mini-horizontal;
+  }
+
+  @include mq.media(tablet-large) {
+    padding: f.px2em(75) v.$padding-tablet-horizontal f.px2em(50)
+      v.$padding-tablet-horizontal;
+  }
+
+  @include mq.media(tablet-regular, tablet-small) {
+    padding: f.px2em(60) v.$padding-tablet-small-horizontal f.px2em(45)
+      v.$padding-tablet-small-horizontal;
+  }
+
+  @include mq.media(tablet-mini, tablet-micro) {
+    padding: f.px2em(60) v.$padding-tablet-mini-horizontal f.px2em(45)
+      v.$padding-tablet-mini-horizontal;
+  }
+
+  @include mq.media(mobile-all) {
+    padding: f.px2em(52) v.$padding-mobile-horizontal f.px2em(38)
+      v.$padding-mobile-horizontal;
+  }
+
+  &::before {
+    @include mq.media(mobile-all) {
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  &__nav {
+    @include mq.media(tablet-all, mobile-all) {
+      flex-direction: column;
+      row-gap: 32px;
+    }
+
+    @include mq.media(mobile-all) {
+      align-items: center;
+      row-gap: 48px;
+    }
+  }
+
+  &__links {
+    @include mq.media(tablet-all) {
+      justify-content: unset;
+      column-gap: f.px2em(34);
+    }
+
+    @include mq.media(mobile-all) {
+      flex-direction: column;
+      align-items: center;
+      row-gap: f.px2em(16);
+    }
+  }
+
+  &__info {
+    @include mq.media(tablet-all) {
+      max-width: unset;
+    }
+
+    @include mq.media(mobile-all) {
+      max-width: unset;
+      text-align: center;
+    }
+  }
+
+  &__bottombar {
+    @include mq.media(mobile-all) {
+      flex-direction: column;
+      align-items: center;
+      row-gap: 48px;
+    }
+  }
+
+  &__social {
+    @include mq.media(tablet-all) {
+      bottom: 0;
+    }
+
+    @include mq.media(mobile-all) {
+      position: relative;
+      bottom: unset;
+      right: unset;
+      justify-content: unset;
+    }
   }
 }

@@ -4,22 +4,18 @@
 // @use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/variables' as v;
 
-.main {
-  padding: 80px v.$padding-desktop 0 v.$padding-desktop;
+.btnBack {
+  @include mx.body-regular;
+  margin-bottom: 56px;
+  background-color: transparent;
+  color: c.$col-3a;
+  text-transform: capitalize;
+}
 
-  &__btnBack {
-    @include mx.body-regular;
-    margin-bottom: 56px;
-    background-color: transparent;
-    color: c.$col-3a;
-    text-transform: capitalize;
-  }
-
-  &__alternatives {
-    @include mx.header-h3;
-    margin-bottom: 64px;
-    text-align: center;
-  }
+.alternatives {
+  @include mx.header-h3;
+  margin-bottom: 64px;
+  text-align: center;
 }
 
 .productDetailCard {
@@ -39,5 +35,5 @@
 }
 
 .companyStatement {
-  margin-bottom: f.px2em(160);
+  margin-bottom: f.px2em(40);
 }

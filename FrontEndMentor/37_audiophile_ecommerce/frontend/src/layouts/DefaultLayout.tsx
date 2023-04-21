@@ -3,7 +3,7 @@ import Nav from '#Components/nav/Nav';
 import styles from './_DefaultLayout.module.scss';
 
 type ElemProps = {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 };
 
 function DefaultLayout(props: ElemProps): JSX.Element {

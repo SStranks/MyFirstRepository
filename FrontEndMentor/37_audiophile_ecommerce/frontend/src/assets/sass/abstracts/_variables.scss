@@ -17,7 +17,15 @@
 /*   Margin & Padding               */
 /* -------------------------------- */
 
-$padding-desktop: f.px2em(165); // Left/Right
+$padding-desktop-horizontal: f.px2em(165);
+$padding-desktop-small-horizontal: f.px2em(100);
+$padding-desktop-mini-horizontal: f.px2em(80);
+$padding-tablet-horizontal: f.px2em(60);
+$padding-tablet-small-horizontal: f.px2em(40);
+$padding-tablet-mini-horizontal: f.px2em(32);
+$padding-mobile-horizontal: f.px2em(24);
+
+$padding-desktop-vertical: f.px2em(120);
 // $padding-transition: padding 2500ms ease-out;
 // $grid-gap-transition: gap 1500ms ease-out;
 

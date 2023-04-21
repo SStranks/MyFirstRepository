@@ -10,7 +10,8 @@
   display: grid;
   grid-template-columns: repeat(2, auto);
   column-gap: 30px;
-  padding: 80px v.$padding-desktop 140px v.$padding-desktop;
+  padding: 80px v.$padding-desktop-horizontal 140px
+    v.$padding-desktop-horizontal;
   background-color: c.$col-1c;
 
   &__btnBack {

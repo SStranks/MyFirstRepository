@@ -159,7 +159,7 @@ $desktop-l: 1920px;
 }
 
 @mixin tablet-all {
-  @media only screen and (#{$mobile-l} < width <= #{$tablet-l}) {
+  @media only screen and (#{$mobile-l} < width <= #{$desktop-s}) {
     @content;
   }
 }

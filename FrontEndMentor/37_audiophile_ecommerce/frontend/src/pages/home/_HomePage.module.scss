@@ -7,7 +7,7 @@
 
 .hero {
   height: 632px;
-  padding: 0 v.$padding-desktop;
+  padding: 0 v.$padding-desktop-horizontal;
   background-color: c.$col-1b;
   background-image: url('/public/img/home/desktop/image-hero.jpg');
   background-repeat: no-repeat;
@@ -49,18 +49,13 @@
   }
 }
 
-.main {
-  padding: 120px v.$padding-desktop 200px v.$padding-desktop;
-  background-color: c.$col-2b;
-
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 560px 320px 320px;
-    row-gap: 48px;
-    column-gap: 30px;
-    margin: f.px2em(165) 0 f.px2em(200);
-  }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 560px 320px 320px;
+  row-gap: 48px;
+  column-gap: 30px;
+  margin: f.px2em(165) 0 f.px2em(200);
 }
 
 .zx9 {
@@ -137,5 +132,103 @@
 
   &__btn {
     @include btn.btn-default-2;
+  }
+}
+
+.companyStatement {
+  margin-bottom: 80px;
+}
+
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */
+
+.hero {
+  @include mq.media(desktop-small) {
+    padding: 0 v.$padding-desktop-small-horizontal;
+  }
+
+  @include mq.media(desktop-mini) {
+    padding: 0 v.$padding-desktop-mini-horizontal;
+  }
+
+  @include mq.media(tablet-large) {
+    padding: 0 v.$padding-tablet-horizontal;
+  }
+
+  @include mq.media(tablet-regular, tablet-small) {
+    padding: 0 v.$padding-tablet-small-horizontal;
+    background-image: url('/public/img/home/tablet/image-header.jpg');
+    background-size: cover;
+  }
+
+  @include mq.media(tablet-mini, tablet-micro) {
+    padding: 0 v.$padding-tablet-mini-horizontal;
+    background-image: url('/public/img/home/tablet/image-header.jpg');
+    background-size: cover;
+  }
+
+  @include mq.media(mobile-all) {
+    height: fit-content;
+    padding: 0 v.$padding-mobile-horizontal;
+    background-image: url('/public/img/home/mobile/image-header.jpg');
+    background-size: 100%;
+    background-position: 0 -50px;
+  }
+
+  &__container {
+    @include mq.media(
+      tablet-regular,
+      tablet-small,
+      tablet-mini,
+      tablet-micro,
+      mobile-all
+    ) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: unset;
+      padding: 130px 0;
+      margin-top: 0;
+    }
+
+    @include mq.media(mobile-large) {
+      padding: 100px 0;
+    }
+
+    @include mq.media(mobile-small) {
+      padding: 75px 0;
+    }
+  }
+
+  &__product {
+    @include mq.media(
+      tablet-regular,
+      tablet-small,
+      tablet-mini,
+      tablet-micro,
+      mobile-all
+    ) {
+      text-align: center;
+    }
+
+    @include mq.media(mobile-all) {
+      font-size: f.px2rem(36);
+      line-height: f.px2rem(40);
+      letter-spacing: f.px2rem(1.29);
+    }
+  }
+
+  &__info {
+    @include mq.media(tablet-regular, tablet-small, tablet-mini, tablet-micro) {
+      max-width: 55%;
+      text-align: center;
+    }
+
+    @include mq.media(mobile-all) {
+      max-width: 65%;
+      text-align: center;
+    }
   }
 }

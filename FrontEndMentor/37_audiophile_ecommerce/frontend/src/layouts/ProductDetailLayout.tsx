@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import ProductDetailCard from '#Components/products/ProductDetailCard';
 import ProductData from '#Data/Data.json';
 import styles from './_ProductDetailLayout.module.scss';
+import MainTagLayout from './MainTagLayout';
 
 function ProductDetailLayout(): JSX.Element {
   const navHook = useNavigate();
@@ -19,9 +20,9 @@ function ProductDetailLayout(): JSX.Element {
   );
 
   return (
-    <main className={styles.main}>
+    <MainTagLayout>
       <button
-        className={styles.main__btnBack}
+        className={styles.btnBack}
         onClick={() => navHook(-1)}
         type="button">
         go back
@@ -44,14 +45,14 @@ function ProductDetailLayout(): JSX.Element {
           productImagesGallery={product.gallery}
         />
       )}
-      <p className={styles.main__alternatives}>you may also like</p>
+      <p className={styles.alternatives}>you may also like</p>
       <ProductExampleSeeCardList
         appendClass={styles.productExampleSeeList}
         currentProductId={productId}
       />
       <ProductExampleShopList appendClass={styles.productExampleShopList} />
       <CompanyStatement appendClass={styles.companyStatement} />
-    </main>
+    </MainTagLayout>
   );
 }
 

@@ -3,6 +3,7 @@ import ProductExampleShopList from '#Components/products/ProductExampleShopList'
 import DefaultLayout from '#Layouts/DefaultLayout';
 import { Link } from 'react-router-dom';
 
+import MainTagLayout from '#Layouts/MainTagLayout';
 import styles from './_HomePage.module.scss';
 
 function Home(): JSX.Element {
@@ -26,9 +27,9 @@ function Home(): JSX.Element {
           </Link>
         </div>
       </div>
-      <main className={styles.main}>
+      <MainTagLayout>
         <ProductExampleShopList appendClass="" />
-        <div className={styles.main__grid}>
+        <div className={styles.grid}>
           <div className={styles.zx9}>
             <div className={styles.zx9__container}>
               <p className={styles.zx9__title}>zx9 speaker</p>
@@ -71,8 +72,8 @@ function Home(): JSX.Element {
             </div>
           </div>
         </div>
-        <CompanyStatement appendClass="" />
-      </main>
+        <CompanyStatement appendClass={styles.companyStatement} />
+      </MainTagLayout>
     </DefaultLayout>
   );
 }
