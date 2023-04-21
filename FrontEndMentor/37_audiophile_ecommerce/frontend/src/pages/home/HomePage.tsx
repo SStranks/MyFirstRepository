@@ -58,7 +58,12 @@ function Home(): JSX.Element {
               </Link>
             </div>
           </div>
-          <div className={styles['yx1-img']} />
+          <img
+            className={styles['yx1-img']}
+            // src=""
+            src="/img/home/desktop/image-earphones-yx1.jpg"
+            alt=""
+          />
           <div className={styles.yx1}>
             <div>
               <p className={styles.yx1__title}>yx1 earphones</p>

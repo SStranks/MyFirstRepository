@@ -11,6 +11,8 @@ import OrderCompleteCard from './checkout/OrderCompleteCard';
 // // ✔ // ✖
 // ✖ // DEBUG:  Various resizing on Home page: grid images max out at 1110px.
 // ✖ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
+// ✖ // TODO:  Replace buttons that are not form/function orientated i.e. not just a link.
+// ✖ // TODO:  Replace divs as imgs (background-image) with dedicated <img>
 // ✖ // TODO:  Tablet/Mobile: Nav Bar: Hamburger Menu Button functionality.
 // ✖ // TODO:  Cart system; useContext
 // ✖ // TODO:  Checkout form: Functionality. Error states.

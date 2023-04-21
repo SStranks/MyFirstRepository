@@ -1,6 +1,7 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/media-queries' as mq;
 
 .card {
   display: grid;
@@ -27,5 +28,53 @@
 
   &__img {
     border-radius: 8px;
+  }
+}
+
+.card {
+  // tablet-regular, tablet-small, tablet-mini, tablet-micro
+  @include mq.media(tablet-all, mobile-all) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 63px;
+
+    &__info {
+      padding: 0 f.px2em(57);
+      text-align: center;
+    }
+
+    &__img {
+      grid-row: 1;
+      content: url('/public/img/shared/tablet/image-best-gear.jpg');
+    }
+  }
+
+  @include mq.media(mobile-all) {
+    row-gap: 40px;
+
+    &__info {
+      padding: 0;
+    }
+
+    &__title {
+      @include mx.header-h2;
+      margin-bottom: 32px;
+      font-size: f.px2rem(30);
+    }
+
+    &__statement {
+      @include mx.body-regular;
+    }
+
+    &__img {
+      grid-row: 1;
+      content: url('/public/img/shared/mobile/image-best-gear.jpg');
+    }
+  }
+
+  @include mq.media(tablet-micro) {
+    &__img {
+      content: url('/public/img/shared/mobile/image-best-gear.jpg');
+    }
   }
 }

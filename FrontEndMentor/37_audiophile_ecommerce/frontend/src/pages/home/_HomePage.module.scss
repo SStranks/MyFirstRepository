@@ -114,7 +114,9 @@
 }
 
 .yx1-img {
-  background-image: url('/public/img/home/desktop/image-earphones-yx1.jpg');
+  // background-image: url('/public/img/home/desktop/image-earphones-yx1.jpg');
+  background-size: cover;
+  object-fit: cover;
   border-radius: 8px;
 }
 

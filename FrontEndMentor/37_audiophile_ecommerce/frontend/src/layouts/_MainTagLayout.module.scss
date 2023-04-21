@@ -9,32 +9,32 @@
   background-color: c.$col-2b;
 
   @include mq.media(desktop-small) {
-    background-color: green;
+    // background-color: green;
     padding: v.$padding-desktop-vertical v.$padding-desktop-small-horizontal;
   }
 
   @include mq.media(desktop-mini) {
-    background-color: red;
+    // background-color: red;
     padding: v.$padding-desktop-vertical v.$padding-desktop-mini-horizontal;
   }
 
   @include mq.media(tablet-large) {
-    background-color: blue;
+    // background-color: blue;
     padding: v.$padding-desktop-vertical v.$padding-tablet-horizontal;
   }
 
   @include mq.media(tablet-regular, tablet-small) {
-    background-color: purple;
+    // background-color: purple;
     padding: v.$padding-desktop-vertical v.$padding-tablet-small-horizontal;
   }
 
   @include mq.media(tablet-mini, tablet-micro) {
-    background-color: gold;
+    // background-color: gold;
     padding: v.$padding-desktop-vertical v.$padding-tablet-mini-horizontal;
   }
 
   @include mq.media(mobile-all) {
-    background-color: cyan;
+    // background-color: cyan;
     padding: v.$padding-desktop-vertical v.$padding-mobile-horizontal;
   }
 }
