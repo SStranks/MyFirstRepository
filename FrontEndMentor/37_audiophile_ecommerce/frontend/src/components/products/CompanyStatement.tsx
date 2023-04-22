@@ -8,11 +8,13 @@ function CompanyStatement(props: ElemProps): JSX.Element {
   const { appendClass } = props;
 
   return (
-    <div className={`${styles.card} ${appendClass}`}>
+    <article
+      className={`${styles.card} ${appendClass}`}
+      aria-labelledby="company statement">
       <div className={styles.card__info}>
-        <p className={styles.card__title}>
+        <h2 className={styles.card__title} id="company statement">
           Bringing you the <span>best</span> audio gear
-        </p>
+        </h2>
         <p className={styles.card__statement}>
           Located at the heart of New York City, Audiophile is the premier store
           for high end headphones, earphones, speakers, and audio accessories.
@@ -27,7 +29,7 @@ function CompanyStatement(props: ElemProps): JSX.Element {
         src="/img/shared/desktop/image-best-gear.jpg"
         alt=""
       />
-    </div>
+    </article>
   );
 }
 

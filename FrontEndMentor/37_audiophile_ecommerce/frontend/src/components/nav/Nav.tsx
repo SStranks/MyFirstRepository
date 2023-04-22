@@ -5,31 +5,37 @@ import Logo from '#Svg/desktop/logo.svg';
 import IconMenu from '#Svg/tablet/icon-hamburger.svg';
 import styles from './_Nav.module.scss';
 
-function Nav(): JSX.Element {
+type ElemProps = {
+  appendClass: string;
+};
+
+function Nav(props: ElemProps): JSX.Element {
+  const { appendClass } = props;
+
   return (
-    <nav className={styles.nav}>
+    <nav className={`${styles.nav} ${appendClass}`} aria-label="primary">
       <button className={styles.nav__menuBtn} type="button">
-        <img src={IconMenu} alt="" />
+        <img src={IconMenu} alt="Menu Product Categories" />
       </button>
       <Link to="/">
-        <img src={Logo} alt="" />
+        <img src={Logo} alt="Audiophile Home" />
       </Link>
       <div className={styles.nav__links}>
-        <Link to="/">
-          <p className={styles.nav__link}>home</p>
+        <Link to="/" className={styles.nav__link}>
+          home
         </Link>
-        <Link to="/headphones">
-          <p className={styles.nav__link}>headphones</p>
+        <Link to="/headphones" className={styles.nav__link}>
+          headphones
         </Link>
-        <Link to="/speakers">
-          <p className={styles.nav__link}>speakers</p>
+        <Link to="/speakers" className={styles.nav__link}>
+          speakers
         </Link>
-        <Link to="/earphones">
-          <p className={styles.nav__link}>earphones</p>
+        <Link to="/earphones" className={styles.nav__link}>
+          earphones
         </Link>
       </div>
       <button className={styles.nav__cartBtn} type="button">
-        <img src={IconCart} alt="" />
+        <img src={IconCart} alt="Shopping Cart" />
       </button>
     </nav>
   );

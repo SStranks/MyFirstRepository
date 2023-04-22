@@ -8,21 +8,21 @@ import styles from './_Footer.module.scss';
 
 function Footer(): JSX.Element {
   return (
-    <div className={styles.footer}>
-      <nav className={styles.footer__nav}>
-        <img className={styles.footer__logo} src={Logo} alt="" />
+    <footer className={styles.footer}>
+      <nav className={styles.footer__nav} aria-label="secondary">
+        <img className={styles.footer__logo} src={Logo} alt="Audiophile Logo" />
         <div className={styles.footer__links}>
-          <Link to="/">
-            <p className={styles.footer__link}>home</p>
+          <Link to="/" className={styles.footer__link}>
+            home
           </Link>
-          <Link to="/headphones">
-            <p className={styles.footer__link}>headphones</p>
+          <Link to="/headphones" className={styles.footer__link}>
+            headphones
           </Link>
-          <Link to="/speakers">
-            <p className={styles.footer__link}>speakers</p>
+          <Link to="/speakers" className={styles.footer__link}>
+            speakers
           </Link>
-          <Link to="/earphones">
-            <p className={styles.footer__link}>earphones</p>
+          <Link to="/earphones" className={styles.footer__link}>
+            earphones
           </Link>
         </div>
       </nav>
@@ -44,7 +44,7 @@ function Footer(): JSX.Element {
             <img
               className={styles.footer__social__icon}
               src={IconFacebook}
-              alt=""
+              alt="Facebook Media Page"
             />
           </a>
           <a
@@ -54,7 +54,7 @@ function Footer(): JSX.Element {
             <img
               className={styles.footer__social__icon}
               src={IconTwitter}
-              alt=""
+              alt="Twitter Media Page"
             />
           </a>
           <a
@@ -64,12 +64,12 @@ function Footer(): JSX.Element {
             <img
               className={styles.footer__social__icon}
               src={IconInstagram}
-              alt=""
+              alt="Instagram Media Page"
             />
           </a>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 

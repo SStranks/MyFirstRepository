@@ -21,21 +21,23 @@ function ProductInfoCard(props: ElemProps): JSX.Element {
   } = props;
 
   return (
-    <div className={styles.card}>
+    <article className={styles.card} aria-labelledby={productTitle}>
       <img className={styles.card__img} src={productImg} alt="" />
       <div className={styles.card__panel}>
         {newProduct && <p className={styles.card__new}>new product</p>}
-        <p className={styles.card__title}>{productTitle}</p>
+        <h2 className={styles.card__title} id={productTitle}>
+          {productTitle}
+        </h2>
         <p className={styles.card__details}>{productDetails}</p>
         <Link
           to={`/${productCategory}/${productId}`}
-          state={{ productCategory, productId }}>
-          <button className={styles.card__btn} type="button">
-            see product
-          </button>
+          className={styles.card__link}
+          state={{ productCategory, productId }}
+          aria-label={`See product ${productTitle}`}>
+          see product
         </Link>
       </div>
-    </div>
+    </article>
   );
 }
 

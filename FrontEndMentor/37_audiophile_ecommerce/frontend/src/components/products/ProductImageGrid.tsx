@@ -6,10 +6,11 @@ type ElemProps = {
     string,
     { mobile: string; tablet: string; desktop: string }
   >;
+  productTitle: string;
 };
 
 function ProductImageGrid(props: ElemProps): JSX.Element {
-  const { appendClass, productImagesGallery } = props;
+  const { appendClass, productImagesGallery, productTitle } = props;
 
   const images = [
     productImagesGallery.first.desktop,
@@ -22,7 +23,7 @@ function ProductImageGrid(props: ElemProps): JSX.Element {
         key={imgURL}
         className={styles[`gridArea${i + 1}`]}
         src={imgURL}
-        alt=""
+        alt={`${productTitle}`}
       />
     );
   });

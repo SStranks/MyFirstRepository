@@ -33,18 +33,19 @@ function CategoryLayout(props: ElemProps): JSX.Element {
   });
 
   return (
-    <>
+    <section aria-labelledby={productCategory}>
       <header className={styles.header}>
-        <h1 className={styles.header__title}>{productCategory}</h1>
+        <hr className={styles.header__hr} />
+        <h1 className={styles.header__title} id={productCategory}>
+          {productCategory}
+        </h1>
       </header>
       <MainTagLayout>
-        {/* <main className={styles.main}> */}
         <div className={styles.grid}>{products}</div>
         <ProductExampleShopList appendClass={styles.productExampleShopList} />
         <CompanyStatement appendClass={styles.companyStatement} />
-        {/* </main> */}
       </MainTagLayout>
-    </>
+    </section>
   );
 }
 

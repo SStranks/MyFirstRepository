@@ -40,7 +40,7 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
         <img className={styles.cardPrimary__img} src={productImg} alt="" />
         <div className={styles.cardPrimary__info}>
           {newProduct && <p className={styles.cardPrimary__new}>new product</p>}
-          <p className={styles.cardPrimary__title}>{productTitle}</p>
+          <h2 className={styles.cardPrimary__title}>{productTitle}</h2>
           <p className={styles.cardPrimary__details}>{productDescription}</p>
           <p className={styles.cardPrimary__price}>
             $ {productPrice.toLocaleString('en-US')}
@@ -55,13 +55,13 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
       </div>
       <div className={styles.cardSecondary}>
         <div className={styles.cardSecondary__features}>
-          <p className={styles.cardSecondary__header}>features</p>
+          <h3 className={styles.cardSecondary__header}>features</h3>
           <p className={styles.cardSecondary__featuresInfo}>
             {productFeatures}
           </p>
         </div>
         <div className={styles.cardSecondary__inBox}>
-          <p className={styles.cardSecondary__header}>in the box</p>
+          <h3 className={styles.cardSecondary__header}>in the box</h3>
           <ul className={styles.cardSecondary__list}>{productInTheBox}</ul>
         </div>
       </div>

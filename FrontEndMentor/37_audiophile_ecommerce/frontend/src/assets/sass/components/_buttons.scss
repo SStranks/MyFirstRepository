@@ -27,9 +27,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: fit-content;
   padding: f.px2em(15) f.px2em(30);
-  // Width to be determined by encapsulating DIV
-  // width: 100%;
 }
 
 @mixin btn-default-1 {

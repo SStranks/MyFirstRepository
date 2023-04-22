@@ -1,4 +1,5 @@
 import IconCheck from '#Svg/desktop/icon-check.svg';
+import { Link } from 'react-router-dom';
 import CheckoutSummaryProductCard from './CheckoutSummaryProductCard';
 import styles from './_OrderCompleteCard.module.scss';
 
@@ -15,11 +16,13 @@ const cartTotalQuantity = 2;
 function OrderCompleteCard(): JSX.Element {
   return (
     <div className={styles.containerTemp}>
-      <div className={styles.card}>
+      <div className={styles.card} aria-labelledby="header">
         <div className={styles.card__circle}>
           <img className={styles.card__circle__check} src={IconCheck} alt="" />
         </div>
-        <p className={styles.card__header}>thank you for your order</p>
+        <h3 className={styles.card__header} id="header">
+          thank you for your order
+        </h3>
         <p className={styles.card__subHeader}>
           You will receive an email conformation shortly
         </p>
@@ -45,9 +48,9 @@ function OrderCompleteCard(): JSX.Element {
             </p>
           </div>
         </div>
-        <button className={styles.card__homeBtn} type="button">
+        <Link to="/" className={styles.card__homeBtn}>
           back to home
-        </button>
+        </Link>
       </div>
     </div>
   );

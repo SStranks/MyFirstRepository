@@ -12,15 +12,14 @@ function ProductExampleSeeCard(props: ElemProps): JSX.Element {
   const { productImg, productTitle, productCategory, productId } = props;
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} aria-label={`see product ${productTitle}`}>
       <img className={styles.card__img} src={productImg} alt="" />
-      <p className={styles.card__title}>{productTitle}</p>
+      <h5 className={styles.card__title}>{productTitle}</h5>
       <Link
         to={`/${productCategory}/${productId}`}
+        className={styles.card__btn}
         state={{ productCategory, productId }}>
-        <button className={styles.card__btn} type="button">
-          see product
-        </button>
+        see product
       </Link>
     </div>
   );

@@ -6,24 +6,38 @@
 @use '#Sass/components/buttons' as btn;
 
 .hero {
-  height: 632px;
-  padding: 0 v.$padding-desktop-horizontal;
+  position: relative;
   background-color: c.$col-1b;
-  background-image: url('/public/img/home/desktop/image-hero.jpg');
-  background-repeat: no-repeat;
-  background-position: bottom;
   margin-bottom: f.px2em(120);
+  aspect-ratio: 160 / 81; // Computed from <img> hero.
+
+  &__nav {
+    position: relative;
+    background-color: transparent;
+  }
 
   &__hr {
-    width: 100%;
+    position: relative;
     height: 1px;
+    margin: 0 v.$padding-desktop-horizontal;
     background-color: c.$col-3c;
     border: none;
   }
 
+  &__img {
+    position: absolute;
+    object-fit: cover;
+    z-index: 0;
+  }
+
   &__container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     max-width: 40%;
-    margin-top: f.px2em(128);
+    height: 100%;
+    margin-left: v.$padding-desktop-horizontal;
   }
 
   &__title {
@@ -40,11 +54,12 @@
 
   &__info {
     @include mx.body-regular;
+    max-width: 65%;
     padding-bottom: f.px2em(40);
     color: c.$col-3d;
   }
 
-  &__btn {
+  &__seeProductLink {
     @include btn.btn-default-1;
   }
 }
@@ -146,40 +161,66 @@
 /* -------------------------------- */
 
 .hero {
-  @include mq.media(desktop-small) {
-    padding: 0 v.$padding-desktop-small-horizontal;
-  }
-
-  @include mq.media(desktop-mini) {
-    padding: 0 v.$padding-desktop-mini-horizontal;
-  }
-
-  @include mq.media(tablet-large) {
-    padding: 0 v.$padding-tablet-horizontal;
-  }
-
-  @include mq.media(tablet-regular, tablet-small) {
-    padding: 0 v.$padding-tablet-small-horizontal;
-    background-image: url('/public/img/home/tablet/image-header.jpg');
-    background-size: cover;
-  }
-
-  @include mq.media(tablet-mini, tablet-micro) {
-    padding: 0 v.$padding-tablet-mini-horizontal;
-    background-image: url('/public/img/home/tablet/image-header.jpg');
-    background-size: cover;
+  @include mq.media(
+    tablet-large,
+    tablet-regular,
+    tablet-small,
+    tablet-mini,
+    tablet-micro
+  ) {
+    aspect-ratio: 256/243;
   }
 
   @include mq.media(mobile-all) {
-    height: fit-content;
-    padding: 0 v.$padding-mobile-horizontal;
-    background-image: url('/public/img/home/mobile/image-header.jpg');
-    background-size: 100%;
-    background-position: 0 -50px;
+    aspect-ratio: 5/8;
+  }
+
+  &__hr,
+  &__container {
+    @include mq.media(desktop-small) {
+      margin: 0 v.$padding-desktop-small-horizontal;
+    }
+
+    @include mq.media(desktop-mini) {
+      margin: 0 v.$padding-desktop-mini-horizontal;
+    }
+
+    @include mq.media(tablet-large) {
+      margin: 0 v.$padding-tablet-horizontal;
+    }
+
+    @include mq.media(tablet-regular, tablet-small) {
+      margin: 0 v.$padding-tablet-small-horizontal;
+    }
+
+    @include mq.media(tablet-mini, tablet-micro) {
+      margin: 0 v.$padding-tablet-mini-horizontal;
+    }
+
+    @include mq.media(mobile-all) {
+      margin: 0 v.$padding-mobile-horizontal;
+    }
+  }
+
+  &__img {
+    @include mq.media(
+      tablet-large,
+      tablet-regular,
+      tablet-small,
+      tablet-mini,
+      tablet-micro
+    ) {
+      content: url('/public/img/home/tablet/image-header.jpg');
+    }
+
+    @include mq.media(mobile-all) {
+      content: url('/public/img/home/mobile/image-header.jpg');
+    }
   }
 
   &__container {
     @include mq.media(
+      tablet-large,
       tablet-regular,
       tablet-small,
       tablet-mini,
@@ -194,18 +235,11 @@
       padding: 130px 0;
       margin-top: 0;
     }
-
-    @include mq.media(mobile-large) {
-      padding: 100px 0;
-    }
-
-    @include mq.media(mobile-small) {
-      padding: 75px 0;
-    }
   }
 
   &__product {
     @include mq.media(
+      tablet-large,
       tablet-regular,
       tablet-small,
       tablet-mini,
@@ -223,7 +257,13 @@
   }
 
   &__info {
-    @include mq.media(tablet-regular, tablet-small, tablet-mini, tablet-micro) {
+    @include mq.media(
+      tablet-large,
+      tablet-regular,
+      tablet-small,
+      tablet-mini,
+      tablet-micro
+    ) {
       max-width: 55%;
       text-align: center;
     }

@@ -11,7 +11,7 @@ function DefaultLayout(props: ElemProps): JSX.Element {
 
   return (
     <div className={styles.container}>
-      <Nav />
+      <Nav appendClass="" />
       {children}
       <Footer />
     </div>

@@ -10,14 +10,15 @@ function InputText(props: ElemProps): JSX.Element {
   const { appendClass, inputName, inputPlaceholder } = props;
 
   return (
-    <div className={`${styles.container} ${appendClass}`}>
+    <label className={`${styles.container} ${appendClass}`} htmlFor={inputName}>
       <p className={styles.container__title}>{inputName}</p>
       <input
         className={styles.container__input}
         type="text"
         placeholder={inputPlaceholder}
+        id={inputName}
       />
-    </div>
+    </label>
   );
 }
 

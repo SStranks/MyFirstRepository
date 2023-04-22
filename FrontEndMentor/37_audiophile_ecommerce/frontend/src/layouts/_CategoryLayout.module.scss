@@ -1,16 +1,28 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
-// @use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
 
 .header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 240px;
   margin-bottom: f.px2em(40);
   background-color: c.$col-2c;
+
+  &__hr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    margin: 0 v.$padding-desktop-horizontal;
+    background-color: c.$col-3c;
+    border: none;
+  }
 
   &__title {
     @include mx.header-h2;
@@ -32,4 +44,36 @@
 
 .companyStatement {
   margin-bottom: f.px2em(40);
+}
+
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */
+
+.header {
+  &__hr {
+    @include mq.media(desktop-small) {
+      margin: 0 v.$padding-desktop-small-horizontal;
+    }
+
+    @include mq.media(desktop-mini) {
+      margin: 0 v.$padding-desktop-mini-horizontal;
+    }
+
+    @include mq.media(tablet-large) {
+      margin: 0 v.$padding-tablet-horizontal;
+    }
+
+    @include mq.media(tablet-regular, tablet-small) {
+      margin: 0 v.$padding-tablet-small-horizontal;
+    }
+
+    @include mq.media(tablet-mini, tablet-micro) {
+      margin: 0 v.$padding-tablet-mini-horizontal;
+    }
+
+    @include mq.media(mobile-all) {
+      margin: 0 v.$padding-mobile-horizontal;
+    }
+  }
 }

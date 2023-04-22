@@ -5,14 +5,15 @@ import HomePage from '#Pages/home/HomePage';
 import ProductDetailsPage from '#Pages/product-details/ProductDetailsPage';
 import SpeakersPage from '#Pages/speakers/SpeakersPage';
 import { Route, Routes } from 'react-router-dom';
-// import CartSummaryCard from './checkout/CartSummaryCard';
-import OrderCompleteCard from './checkout/OrderCompleteCard';
+import CartSummaryCard from './checkout/CartSummaryCard';
+// import OrderCompleteCard from './checkout/OrderCompleteCard';
 
 // // ✔ // ✖
 // ✖ // DEBUG:  Various resizing on Home page: grid images max out at 1110px.
 // ✖ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
+// ✖ // TODO:  alt on to img, inputs.
 // ✖ // TODO:  Replace buttons that are not form/function orientated i.e. not just a link.
-// ✖ // TODO:  Replace divs as imgs (background-image) with dedicated <img>
+// ✖ // TODO:  Replace divs as imgs (background-image) with dedicated <img>; if it is content, use <img>, if it is just styling use background-image.
 // ✖ // TODO:  Tablet/Mobile: Nav Bar: Hamburger Menu Button functionality.
 // ✖ // TODO:  Cart system; useContext
 // ✖ // TODO:  Checkout form: Functionality. Error states.
@@ -37,8 +38,8 @@ function App(): JSX.Element {
       <Route
         path="/temp"
         element={
-          // <CartSummaryCard cartItemsQuantity={3} cartTotalAmount={5396} />
-          <OrderCompleteCard />
+          <CartSummaryCard cartItemsQuantity={3} cartTotalAmount={5396} />
+          // <OrderCompleteCard />
         }
       />
     </Routes>

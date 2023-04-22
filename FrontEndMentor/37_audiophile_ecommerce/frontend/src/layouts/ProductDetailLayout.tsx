@@ -43,6 +43,7 @@ function ProductDetailLayout(): JSX.Element {
         <ProductImageGrid
           appendClass={styles.productImageGrid}
           productImagesGallery={product.gallery}
+          productTitle={product.productName}
         />
       )}
       <p className={styles.alternatives}>you may also like</p>
