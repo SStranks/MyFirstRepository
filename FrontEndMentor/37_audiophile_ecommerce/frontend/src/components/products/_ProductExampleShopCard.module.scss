@@ -12,6 +12,7 @@
   border-radius: 8px;
 
   &__img {
+    object-fit: cover;
     transform: translateY(20px);
   }
 

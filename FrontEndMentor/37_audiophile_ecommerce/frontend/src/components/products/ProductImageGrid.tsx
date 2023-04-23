@@ -23,7 +23,7 @@ function ProductImageGrid(props: ElemProps): JSX.Element {
         key={imgURL}
         className={styles[`gridArea${i + 1}`]}
         src={imgURL}
-        alt={`${productTitle}`}
+        alt={`${productTitle} being used`}
       />
     );
   });

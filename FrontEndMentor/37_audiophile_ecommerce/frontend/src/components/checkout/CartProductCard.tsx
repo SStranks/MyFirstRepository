@@ -12,9 +12,11 @@ function CartProductCard(props: ElemProps): JSX.Element {
   const { productImg, productTitle, productPrice } = props;
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} aria-labelledby={productTitle}>
       <img className={styles.card__img} src={productImg} alt="" />
-      <p className={styles.card__title}>{productTitle}</p>
+      <p className={styles.card__title} id={productTitle}>
+        {productTitle}
+      </p>
       <p className={styles.card__price}>
         $ {productPrice.toLocaleString('en-US')}
       </p>

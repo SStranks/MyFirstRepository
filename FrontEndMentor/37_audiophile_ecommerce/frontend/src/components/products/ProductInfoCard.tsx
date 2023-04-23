@@ -22,7 +22,11 @@ function ProductInfoCard(props: ElemProps): JSX.Element {
 
   return (
     <article className={styles.card} aria-labelledby={productTitle}>
-      <img className={styles.card__img} src={productImg} alt="" />
+      <img
+        className={styles.card__img}
+        src={productImg}
+        alt={`${productTitle}`}
+      />
       <div className={styles.card__panel}>
         {newProduct && <p className={styles.card__new}>new product</p>}
         <h2 className={styles.card__title} id={productTitle}>

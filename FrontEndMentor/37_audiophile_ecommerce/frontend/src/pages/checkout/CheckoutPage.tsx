@@ -144,7 +144,7 @@ function CheckoutPage(): JSX.Element {
               $ {invoiceGrandTotal.toLocaleString('en-US')}
             </p>
           </div>
-          <button className={styles.summary__btn} type="button">
+          <button className={styles.summary__btn} type="submit">
             continue &#38; pay
           </button>
         </div>

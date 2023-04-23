@@ -14,7 +14,7 @@
   }
 
   @include mq.media(desktop-mini) {
-    // background-color: red;
+    background-color: red;
     padding: v.$padding-desktop-vertical v.$padding-desktop-mini-horizontal;
   }
 

@@ -39,6 +39,11 @@ function Home(): JSX.Element {
         <ProductExampleShopList appendClass="" />
         <div className={styles.grid}>
           <div className={styles.zx9}>
+            <img
+              className={styles.zx9__img}
+              src="/img/home/desktop/image-speaker-zx9.png"
+              alt="product ZX9 speaker"
+            />
             <div className={styles.zx9__container}>
               <p className={styles.zx9__title}>zx9 speaker</p>
               <p className={styles.zx9__info}>
@@ -55,7 +60,12 @@ function Home(): JSX.Element {
             </div>
           </div>
           <div className={styles.zx7}>
-            <div>
+            <img
+              className={styles.zx7__img}
+              src="/img/home/desktop/image-speaker-zx7.jpg"
+              alt="product ZX7 speaker"
+            />
+            <div className={styles.zx7__container}>
               <p className={styles.zx7__title}>zx7 speaker</p>
               <Link
                 to="/speakers/5"
@@ -69,18 +79,20 @@ function Home(): JSX.Element {
           <img
             className={styles['yx1-img']}
             src="/img/home/desktop/image-earphones-yx1.jpg"
-            alt=""
+            alt="product YX1 earphones"
           />
           <div className={styles.yx1}>
-            <div>
-              <p className={styles.yx1__title}>yx1 earphones</p>
-              <Link
-                to="/earphones/1"
-                className={styles.yx1__btn}
-                state={{ productCategory: 'earphones', productId: 1 }}
-                aria-label="See product YX1 earphones">
-                see product
-              </Link>
+            <div className={styles.yx1__container}>
+              <div className={styles.yx1__container__subContainer}>
+                <p className={styles.yx1__title}>yx1 earphones</p>
+                <Link
+                  to="/earphones/1"
+                  className={styles.yx1__btn}
+                  state={{ productCategory: 'earphones', productId: 1 }}
+                  aria-label="See product YX1 earphones">
+                  see product
+                </Link>
+              </div>
             </div>
           </div>
         </div>

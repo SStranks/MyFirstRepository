@@ -37,7 +37,11 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
   return (
     <div className={`${styles.container} ${appendClass}`}>
       <div className={styles.cardPrimary}>
-        <img className={styles.cardPrimary__img} src={productImg} alt="" />
+        <img
+          className={styles.cardPrimary__img}
+          src={productImg}
+          alt={`${productTitle}`}
+        />
         <div className={styles.cardPrimary__info}>
           {newProduct && <p className={styles.cardPrimary__new}>new product</p>}
           <h2 className={styles.cardPrimary__title}>{productTitle}</h2>

@@ -13,7 +13,7 @@ function ProductExampleSeeCard(props: ElemProps): JSX.Element {
 
   return (
     <div className={styles.card} aria-label={`see product ${productTitle}`}>
-      <img className={styles.card__img} src={productImg} alt="" />
+      <img className={styles.card__img} src={productImg} alt={productTitle} />
       <h5 className={styles.card__title}>{productTitle}</h5>
       <Link
         to={`/${productCategory}/${productId}`}

@@ -13,9 +13,9 @@ function ProductExampleShopCard(props: ElemProps): JSX.Element {
   const { productName, productImg, productShopURL } = props;
 
   return (
-    <div className={styles.card} aria-label={`see ${productName} category`}>
+    <div className={styles.card} aria-label={`see all ${productName} shop`}>
       <img className={styles.card__img} src={productImg} alt="" />
-      <h6 className={styles.card__name}>{productName}</h6>
+      <p className={styles.card__name}>{productName}</p>
       <div className={styles.card__shop}>
         <Link to={productShopURL} className={styles.card__shop__text}>
           shop

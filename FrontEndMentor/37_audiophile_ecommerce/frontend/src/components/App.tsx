@@ -11,9 +11,10 @@ import CartSummaryCard from './checkout/CartSummaryCard';
 // // ✔ // ✖
 // ✖ // DEBUG:  Various resizing on Home page: grid images max out at 1110px.
 // ✖ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
-// ✖ // TODO:  alt on to img, inputs.
-// ✖ // TODO:  Replace buttons that are not form/function orientated i.e. not just a link.
+// ✖ // TODO:  alt on to img
+// ✖ // TODO:  add circles behind zx9 speaker on home page
 // ✖ // TODO:  Replace divs as imgs (background-image) with dedicated <img>; if it is content, use <img>, if it is just styling use background-image.
+// ✖ // TODO:  Replace buttons that are not form/function orientated i.e. not just a link.
 // ✖ // TODO:  Tablet/Mobile: Nav Bar: Hamburger Menu Button functionality.
 // ✖ // TODO:  Cart system; useContext
 // ✖ // TODO:  Checkout form: Functionality. Error states.
@@ -22,6 +23,7 @@ import CartSummaryCard from './checkout/CartSummaryCard';
 // ✖ // TODO:  Possible redundant styles imports on pages/categories to be removed.
 // ✖ // TODO:  Adjust various tags (p) into correct semantic tags etc.
 // ✖ // TODO:  Consolidate border-radius into variables definition.
+// ✖ // TODO:  ARIA: see https://alistapart.com/article/accessibility-the-missing-ingredient/ for how to do the ProductQuantityButton component ARIA.
 
 function App(): JSX.Element {
   return (

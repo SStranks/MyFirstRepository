@@ -67,6 +67,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  // grid-template-columns: 1fr;
   grid-template-rows: 560px 320px 320px;
   row-gap: 48px;
   column-gap: 30px;
@@ -75,19 +76,29 @@
 
 .zx9 {
   grid-column: 1 / span 2;
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 95px;
+  justify-content: center;
+  padding: 0 50px;
   background-color: c.$col-1a;
-  background-image: url('/public/img/home/desktop/image-speaker-zx9.png');
+  background-image: url('/src/assets/svg/desktop/pattern-circles.svg');
   background-repeat: no-repeat;
-  background-size: 375px;
-  background-position: bottom -10px left 118px;
+  background-position: -200px -50px;
   border-radius: 8px;
+  overflow: hidden;
 
   &__container {
     max-width: 350px;
+  }
+
+  &__img {
+    object-fit: cover;
+    height: 100%;
+    max-height: 493px;
+    width: auto;
+    margin-right: 140px;
+    transform: translateY(50px);
   }
 
   &__title {
@@ -109,14 +120,25 @@
 
 .zx7 {
   grid-column: 1 / span 2;
+  position: relative;
   display: flex;
   align-items: center;
   padding-left: f.px2em(95);
-  background-color: c.$col-1c;
-  background-image: url('/public/img/home/desktop/image-speaker-zx7.jpg');
-  background-position: right;
-  background-repeat: no-repeat;
   border-radius: 8px;
+  overflow: hidden;
+
+  &__container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__img {
+    position: absolute;
+    left: 0;
+    object-fit: cover;
+    width: 100%;
+    z-index: 0;
+  }
 
   &__title {
     @include mx.header-h4;
@@ -129,18 +151,28 @@
 }
 
 .yx1-img {
-  // background-image: url('/public/img/home/desktop/image-earphones-yx1.jpg');
-  background-size: cover;
   object-fit: cover;
+  // max-width: 540px;
+  width: 100%;
+  min-width: 320px;
   border-radius: 8px;
 }
 
 .yx1 {
+  // grid-column: 1 / span 2;
   display: flex;
-  align-items: center;
-  padding-left: f.px2em(95);
-  background-color: c.$col-1c;
-  border-radius: 8px;
+  // column-gap: 30px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    // padding: f.px2em(95);
+    padding-left: f.px2em(128);
+    // margin-left: 95px;
+    background-color: c.$col-1c;
+    border-radius: 8px;
+  }
 
   &__title {
     @include mx.header-h4;
@@ -271,6 +303,25 @@
     @include mq.media(mobile-all) {
       max-width: 65%;
       text-align: center;
+    }
+  }
+}
+
+.yx1 {
+  @include mq.media(desktop-mini) {
+    justify-content: center;
+  }
+
+  &__container {
+    @include mq.media(desktop-mini) {
+      justify-content: center;
+      padding: 0;
+
+      &__subContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     }
   }
 }

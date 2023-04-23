@@ -42,7 +42,10 @@ function CartSummaryCard(props: ElemProps): JSX.Element {
         <p className={styles.card__header}>
           cart &#40;{cartItemsQuantity}&#41;
         </p>
-        <button className={styles.card__removeAllBtn} type="button">
+        <button
+          className={styles.card__removeAllBtn}
+          type="button"
+          aria-label="remove all products from cart">
           remove all
         </button>
         <div className={styles.card__productList}>{productsList}</div>

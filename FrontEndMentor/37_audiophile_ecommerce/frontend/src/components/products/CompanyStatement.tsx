@@ -27,7 +27,7 @@ function CompanyStatement(props: ElemProps): JSX.Element {
       <img
         className={styles.card__img}
         src="/img/shared/desktop/image-best-gear.jpg"
-        alt=""
+        alt="Furnishing our customers with the best gear"
       />
     </article>
   );
