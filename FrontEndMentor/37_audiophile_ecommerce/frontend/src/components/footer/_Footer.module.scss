@@ -84,13 +84,17 @@
   }
 }
 
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */
+
 .footer {
   @include mq.media(desktop-small) {
     padding: f.px2em(75) v.$padding-desktop-small-horizontal f.px2em(50)
       v.$padding-desktop-small-horizontal;
   }
 
-  @include mq.media(desktop-mini) {
+  @include mq.media(desktop-mini, desktop-micro) {
     padding: f.px2em(75) v.$padding-desktop-mini-horizontal f.px2em(50)
       v.$padding-desktop-mini-horizontal;
   }

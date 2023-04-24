@@ -1,8 +1,7 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
-// @use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
-// @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
 .reverse {
@@ -40,5 +39,31 @@
 
   &__link {
     @include btn.btn-default-1;
+  }
+}
+
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */
+
+.card {
+  @include mq.media(desktop-mini, desktop-micro, tablet-all, mobile-all) {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 52px;
+  }
+
+  @include mq.media(desktop-mini, desktop-micro, tablet-all) {
+    row-gap: 32px;
+  }
+
+  &__panel {
+    @include mq.media(desktop-mini, desktop-micro, tablet-all, mobile-all) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 0;
+      text-align: center;
+    }
   }
 }

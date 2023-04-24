@@ -56,7 +56,7 @@
       margin: 0 v.$padding-desktop-small-horizontal;
     }
 
-    @include mq.media(desktop-mini) {
+    @include mq.media(desktop-mini, desktop-micro) {
       margin: 0 v.$padding-desktop-mini-horizontal;
     }
 
@@ -75,5 +75,19 @@
     @include mq.media(mobile-all) {
       margin: 0 v.$padding-mobile-horizontal;
     }
+  }
+}
+
+.grid {
+  @include mq.media(desktop-mini, desktop-micro, tablet-all, mobile-all) {
+    grid-auto-rows: auto;
+    row-gap: 120px;
+    margin-bottom: f.px2em(120);
+  }
+}
+
+.productExampleShopList {
+  @include mq.media(tablet-all, mobile-all) {
+    margin-bottom: f.px2em(120);
   }
 }

@@ -52,7 +52,7 @@
     padding: f.px2em(35) v.$padding-desktop-small-horizontal;
   }
 
-  @include mq.media(desktop-mini) {
+  @include mq.media(desktop-mini, desktop-micro) {
     padding: f.px2em(35) v.$padding-desktop-mini-horizontal;
   }
 

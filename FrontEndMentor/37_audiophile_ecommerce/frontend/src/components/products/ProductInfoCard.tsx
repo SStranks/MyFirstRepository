@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from './_ProductInfoCard.module.scss';
 
 type ElemProps = {
-  productImg: string;
+  productImgs: { desktop: string; tablet: string; mobile: string };
   productTitle: string;
   productDetails: string;
   newProduct: boolean;
@@ -12,7 +12,7 @@ type ElemProps = {
 
 function ProductInfoCard(props: ElemProps): JSX.Element {
   const {
-    productImg,
+    productImgs,
     productTitle,
     productDetails,
     newProduct,
@@ -22,11 +22,19 @@ function ProductInfoCard(props: ElemProps): JSX.Element {
 
   return (
     <article className={styles.card} aria-labelledby={productTitle}>
-      <img
-        className={styles.card__img}
-        src={productImg}
-        alt={`${productTitle}`}
-      />
+      <picture>
+        <source srcSet={productImgs.desktop} media="(min-width: 1200px)" />
+        <source
+          srcSet={productImgs.tablet}
+          media="(min-width: 481px) and (max-width: 1199px)"
+        />
+        <source srcSet={productImgs.mobile} media="(max-width: 480px)" />
+        <img
+          className={styles.card__img}
+          src={productImgs.desktop}
+          alt={`${productTitle}`}
+        />
+      </picture>
       <div className={styles.card__panel}>
         {newProduct && <p className={styles.card__new}>new product</p>}
         <h2 className={styles.card__title} id={productTitle}>

@@ -11,7 +11,7 @@ type ElemProps = {
     new: boolean;
     productName: string;
     description: string;
-    categoryImage: { desktop: string };
+    categoryImage: { desktop: string; tablet: string; mobile: string };
   }[];
 };
 
@@ -23,7 +23,7 @@ function CategoryLayout(props: ElemProps): JSX.Element {
       <ProductInfoCard
         key={el.id}
         newProduct={el.new}
-        productImg={el.categoryImage.desktop}
+        productImgs={el.categoryImage}
         productTitle={el.productName}
         productDetails={el.description}
         productCategory={productCategory}
