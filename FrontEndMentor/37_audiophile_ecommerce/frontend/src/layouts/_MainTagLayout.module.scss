@@ -18,6 +18,11 @@
     padding: v.$padding-desktop-vertical v.$padding-desktop-mini-horizontal;
   }
 
+  @include mq.media(desktop-micro) {
+    // background-color: red;
+    padding: v.$padding-desktop-vertical v.$padding-desktop-mini-horizontal;
+  }
+
   @include mq.media(tablet-large) {
     // background-color: blue;
     padding: v.$padding-desktop-vertical v.$padding-tablet-horizontal;

@@ -67,7 +67,6 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  // grid-template-columns: 1fr;
   grid-template-rows: 560px 320px 320px;
   row-gap: 48px;
   column-gap: 30px;
@@ -152,24 +151,19 @@
 
 .yx1-img {
   object-fit: cover;
-  // max-width: 540px;
   width: 100%;
   min-width: 320px;
   border-radius: 8px;
 }
 
 .yx1 {
-  // grid-column: 1 / span 2;
   display: flex;
-  // column-gap: 30px;
 
   &__container {
     display: flex;
     align-items: center;
     width: 100%;
-    // padding: f.px2em(95);
     padding-left: f.px2em(128);
-    // margin-left: 95px;
     background-color: c.$col-1c;
     border-radius: 8px;
   }
@@ -194,6 +188,8 @@
 
 .hero {
   @include mq.media(
+    desktop-mini,
+    desktop-micro,
     tablet-large,
     tablet-regular,
     tablet-small,
@@ -203,16 +199,6 @@
     margin-bottom: 0;
     aspect-ratio: 256/243;
   }
-
-  // @include mq.media(
-  //   tablet-large,
-  //   tablet-regular,
-  //   tablet-small,
-  //   tablet-mini,
-  //   tablet-micro
-  // ) {
-  //   margin-bottom: f.px2em(0);
-  // }
 
   @include mq.media(mobile-all) {
     aspect-ratio: 5/8;
@@ -320,8 +306,123 @@
 }
 
 .grid {
+  @include mq.media(desktop-micro, tablet-all) {
+    grid-template-rows: auto 320px 320px;
+  }
+
   @include mq.media(tablet-regular, tablet-small, tablet-mini, tablet-micro) {
-    margin: f.px2em(96) 0 f.px2em(200);
+    row-gap: 32px;
+    column-gap: 11px;
+    margin: f.px2em(96) 0;
+  }
+
+  @include mq.media(
+    tablet-regular,
+    tablet-small,
+    tablet-mini,
+    tablet-micro,
+    mobile-all
+  ) {
+    grid-template-rows: auto 320px auto;
+    grid-auto-rows: auto;
+  }
+
+  @include mq.media(mobile-all) {
+    grid-template-rows: auto minmax(auto, 320px) auto;
+    row-gap: 24px;
+    margin: f.px2em(120) 0;
+  }
+}
+
+.zx9 {
+  @include mq.media(desktop-micro, tablet-all, mobile-all) {
+    flex-direction: column;
+    row-gap: 64px;
+    padding: 64px 0;
+    background-position: center -250px;
+  }
+
+  @include mq.media(mobile-all) {
+    background-size: cover;
+    background-position: center -150px;
+  }
+
+  &__img {
+    @include mq.media(desktop-micro, tablet-all) {
+      content: url('/public/img/home/tablet/image-speaker-zx9.png');
+      aspect-ratio: 61/74;
+      max-height: 327px;
+      margin: 0;
+      transform: translateY(0);
+    }
+
+    @include mq.media(mobile-all) {
+      content: url('/public/img/home/mobile/image-speaker-zx9.png');
+      aspect-ratio: 80/97;
+      max-height: 240px;
+      margin: 0;
+      transform: translateY(0);
+    }
+  }
+
+  &__container {
+    @include mq.media(desktop-micro, tablet-all, mobile-all) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__title {
+    @include mq.media(mobile-all) {
+      font-size: f.px2rem(36);
+      line-height: f.px2rem(40);
+      padding: 0 25px;
+    }
+  }
+
+  &__info {
+    @include mq.media(mobile-all) {
+      padding: 0 25px;
+    }
+  }
+}
+
+.zx7 {
+  @include mq.media(tablet-small, tablet-mini, tablet-micro) {
+    padding-left: 60px;
+  }
+
+  @include mq.media(mobile-all) {
+    padding-left: 24px;
+  }
+
+  &__img {
+    @include mq.media(desktop-micro, tablet-all) {
+      content: url('/public/img/home/tablet/image-speaker-zx7.jpg');
+      aspect-ratio: 689/320;
+    }
+
+    @include mq.media(tablet-mini, tablet-micro, mobile-all) {
+      content: url('/public/img/home/mobile/image-speaker-zx7.jpg');
+      aspect-ratio: 327/320;
+    }
+  }
+}
+
+.yx1-img {
+  @include mq.media(tablet-regular, tablet-small, tablet-mini, tablet-micro) {
+    content: url('/public/img/home/tablet/image-earphones-yx1.jpg');
+    aspect-ratio: 339/320;
+    min-width: unset;
+  }
+
+  @include mq.media(tablet-mini, tablet-micro, mobile-all) {
+    content: url('/public/img/home/mobile/image-earphones-yx1.jpg');
+    grid-column: 1 / span 2;
+    aspect-ratio: 327/200;
+    min-width: unset;
   }
 }
 
@@ -331,7 +432,7 @@
   }
 
   &__container {
-    @include mq.media(desktop-mini) {
+    @include mq.media(desktop-mini, desktop-micro, tablet-large) {
       justify-content: center;
       padding: 0;
 
@@ -341,5 +442,17 @@
         align-items: center;
       }
     }
+
+    @include mq.media(tablet-regular, tablet-small) {
+      padding: 0 8%;
+    }
+
+    @include mq.media(tablet-mini, tablet-micro, mobile-all) {
+      padding: 41px 24px;
+    }
+  }
+
+  @include mq.media(tablet-mini, tablet-micro, mobile-all) {
+    grid-column: 1 / span 2;
   }
 }

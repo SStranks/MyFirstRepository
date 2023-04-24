@@ -34,7 +34,7 @@
 
 .card {
   // tablet-regular, tablet-small, tablet-mini, tablet-micro
-  @include mq.media(tablet-all, mobile-all) {
+  @include mq.media(desktop-micro, tablet-all, mobile-all) {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     row-gap: 63px;
