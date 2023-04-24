@@ -14,7 +14,7 @@
   }
 
   @include mq.media(desktop-mini) {
-    background-color: red;
+    // background-color: red;
     padding: v.$padding-desktop-vertical v.$padding-desktop-mini-horizontal;
   }
 
@@ -35,6 +35,6 @@
 
   @include mq.media(mobile-all) {
     // background-color: cyan;
-    padding: v.$padding-desktop-vertical v.$padding-mobile-horizontal;
+    padding: v.$padding-mobile-vertical v.$padding-mobile-horizontal;
   }
 }

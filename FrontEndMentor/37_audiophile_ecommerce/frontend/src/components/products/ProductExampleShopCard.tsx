@@ -14,6 +14,7 @@ function ProductExampleShopCard(props: ElemProps): JSX.Element {
 
   return (
     <div className={styles.card} aria-label={`see all ${productName} shop`}>
+      <div className={styles.card__bg} />
       <img className={styles.card__img} src={productImg} alt="" />
       <p className={styles.card__name}>{productName}</p>
       <div className={styles.card__shop}>

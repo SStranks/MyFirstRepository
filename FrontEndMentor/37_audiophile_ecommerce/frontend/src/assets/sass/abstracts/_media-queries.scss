@@ -24,9 +24,33 @@ $tablet-s: 667px;
 $tablet-m: 768px;
 $tablet-l: 800px;
 $tablet-xl: 992px;
+$desktop-xs: 1024px;
 $desktop-s: 1200px;
 $desktop-m: 1400px;
 $desktop-l: 1920px;
+
+/* -------------------------------- */
+/*   Mixin Ranges                   */
+/* -------------------------------- */
+
+// @include media(...) {...}
+
+// 320 - 375       --- mobile-small
+// 375 - 480       --- mobile-large
+// 480 - 576       --- tablet-micro
+// 576 - 667       --- tablet-mini
+// 667 - 768       --- tablet-small
+// 768 - 800       --- tablet-regular
+// 800 - 992       --- tablet-large
+// 992 - 1024      --- desktop-micro
+// 1024 - 1200     --- desktop-mini
+// 1200 - 1400     --- desktop-small
+// 1400 - 1920     --- desktop-medium
+// 1920 >          --- desktop-large
+
+// < 480           --- mobile-all
+// 480 - 992       --- tablet-all
+// > 992           --- desktop-all
 
 /* -------------------------------- */
 /*   Media Queries: Multiple        */
@@ -76,6 +100,11 @@ $desktop-l: 1920px;
     }
     @if $arg == 'tablet-all' {
       @include tablet-all {
+        @content;
+      }
+    }
+    @if $arg == 'desktop-micro' {
+      @include desktop-micro {
         @content;
       }
     }
@@ -159,13 +188,19 @@ $desktop-l: 1920px;
 }
 
 @mixin tablet-all {
-  @media only screen and (#{$mobile-l} < width <= #{$desktop-s}) {
+  @media only screen and (#{$mobile-l} < width <= #{$tablet-xl}) {
+    @content;
+  }
+}
+
+@mixin desktop-micro {
+  @media only screen and (#{$tablet-xl} <= width < #{$desktop-xs}) {
     @content;
   }
 }
 
 @mixin desktop-mini {
-  @media only screen and (#{$tablet-xl} <= width < #{$desktop-s}) {
+  @media only screen and (#{$desktop-xs} <= width < #{$desktop-s}) {
     @content;
   }
 }

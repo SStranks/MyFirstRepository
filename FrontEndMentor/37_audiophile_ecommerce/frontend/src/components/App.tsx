@@ -23,6 +23,7 @@ import CartSummaryCard from './checkout/CartSummaryCard';
 // ✖ // TODO:  Possible redundant styles imports on pages/categories to be removed.
 // ✖ // TODO:  Adjust various tags (p) into correct semantic tags etc.
 // ✖ // TODO:  Consolidate border-radius into variables definition.
+// ✖ // TODO:  Add hover animation on category images; vertical beizer.
 // ✖ // TODO:  ARIA: see https://alistapart.com/article/accessibility-the-missing-ingredient/ for how to do the ProductQuantityButton component ARIA.
 
 function App(): JSX.Element {

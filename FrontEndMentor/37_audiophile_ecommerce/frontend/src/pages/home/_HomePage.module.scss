@@ -200,11 +200,23 @@
     tablet-mini,
     tablet-micro
   ) {
+    margin-bottom: 0;
     aspect-ratio: 256/243;
   }
 
+  // @include mq.media(
+  //   tablet-large,
+  //   tablet-regular,
+  //   tablet-small,
+  //   tablet-mini,
+  //   tablet-micro
+  // ) {
+  //   margin-bottom: f.px2em(0);
+  // }
+
   @include mq.media(mobile-all) {
     aspect-ratio: 5/8;
+    margin-bottom: 0;
   }
 
   &__hr,
@@ -304,6 +316,12 @@
       max-width: 65%;
       text-align: center;
     }
+  }
+}
+
+.grid {
+  @include mq.media(tablet-regular, tablet-small, tablet-mini, tablet-micro) {
+    margin: f.px2em(96) 0 f.px2em(200);
   }
 }
 

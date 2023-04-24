@@ -1,15 +1,27 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  height: 204px;
-  background-color: c.$col-1c;
+  // height: 204px;
+  background-color: transparent;
   border-radius: 8px;
+
+  &__bg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 204px;
+    background-color: c.$col-1c;
+    border-radius: 8px;
+    z-index: 0;
+  }
 
   &__img {
     object-fit: cover;
@@ -20,6 +32,7 @@
     @include mx.header-h6;
     margin-bottom: f.px2em(10);
     color: c.$col-2c;
+    z-index: 1;
   }
 
   &__shop {
@@ -27,6 +40,7 @@
     align-items: center;
     column-gap: 13px;
     margin-bottom: f.px2em(30);
+    z-index: 1;
 
     &__text {
       @include mx.header-subtitle;
@@ -39,6 +53,34 @@
 
     &__img {
       height: 10px;
+    }
+  }
+}
+
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */
+
+.card {
+  &__bg {
+    @include mq.media(tablet-mini, tablet-micro) {
+      height: 165px;
+    }
+
+    @include mq.media(mobile-all) {
+      height: 165px;
+    }
+  }
+
+  &__img {
+    @include mq.media(tablet-small) {
+      max-height: 250px;
+      transform: translateY(0);
+    }
+
+    @include mq.media(mobile-all) {
+      max-height: 140px;
+      transform: translateY(10px);
     }
   }
 }
