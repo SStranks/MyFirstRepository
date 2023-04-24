@@ -1,7 +1,7 @@
 @use '#Sass/abstracts/colors' as c;
 // @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
-// @use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/media-queries' as mq;
 // @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
@@ -15,7 +15,13 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
+  &__picture {
+    object-fit: cover;
+    aspect-ratio: 27/28;
+  }
+
   &__img {
+    object-fit: cover;
     border-radius: 8px;
   }
 
@@ -110,6 +116,36 @@
       // margin-right: 24px;
       color: c.$col-1a;
       font-weight: 700;
+    }
+  }
+}
+
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */
+
+.cardPrimary {
+  @include mq.media(tablet-mini, tablet-micro, mobile-all) {
+    grid-template-columns: 1fr;
+  }
+
+  &__picture {
+    @include mq.media(tablet-large, tablet-regular, tablet-small) {
+      aspect-ratio: 281/480;
+    }
+
+    @include mq.media(tablet-micro, tablet-mini, mobile-all) {
+      aspect-ratio: 1/1;
+    }
+  }
+
+  &__info {
+    @include mq.media(tablet-all) {
+      padding-left: 70px;
+    }
+
+    @include mq.media(tablet-small) {
+      padding-left: 45px;
     }
   }
 }

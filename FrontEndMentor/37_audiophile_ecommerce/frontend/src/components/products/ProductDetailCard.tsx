@@ -4,7 +4,7 @@ import styles from './_ProductDetailCard.module.scss';
 type ElemProps = {
   appendClass: string;
   newProduct: boolean;
-  productImg: string;
+  productImages: { desktop: string; tablet: string; mobile: string };
   productTitle: string;
   productDescription: string;
   productPrice: number;
@@ -16,7 +16,7 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
   const {
     appendClass,
     newProduct,
-    productImg,
+    productImages,
     productTitle,
     productDescription,
     productPrice,
@@ -37,11 +37,16 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
   return (
     <div className={`${styles.container} ${appendClass}`}>
       <div className={styles.cardPrimary}>
-        <img
-          className={styles.cardPrimary__img}
-          src={productImg}
-          alt={`${productTitle}`}
-        />
+        <picture className={styles.cardPrimary__picture}>
+          <source srcSet={productImages.desktop} media="(min-width: 992px)" />
+          <source srcSet={productImages.tablet} media="(min-width: 667px)" />
+          <source srcSet={productImages.mobile} media="(max-width: 666px)" />
+          <img
+            className={styles.cardPrimary__img}
+            src={productImages.desktop}
+            alt={`${productTitle}`}
+          />
+        </picture>
         <div className={styles.cardPrimary__info}>
           {newProduct && <p className={styles.cardPrimary__new}>new product</p>}
           <h2 className={styles.cardPrimary__title}>{productTitle}</h2>

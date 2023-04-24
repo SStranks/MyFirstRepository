@@ -31,7 +31,7 @@ function ProductDetailLayout(): JSX.Element {
         <ProductDetailCard
           appendClass={styles.productDetailCard}
           newProduct={product.new}
-          productImg={product.image.desktop}
+          productImages={product.image}
           productTitle={product.productName}
           productPrice={product.price}
           productDescription={product.description}
