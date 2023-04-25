@@ -1,8 +1,7 @@
 @use '#Sass/abstracts/colors' as c;
-// @use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/media-queries' as mq;
-// @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
 .container {
@@ -92,6 +91,7 @@
     display: grid;
     grid-template-columns: minmax(25px, auto) 1fr;
     column-gap: 25px;
+    row-gap: 8px;
     padding: 0;
     list-style-type: none;
 
@@ -124,9 +124,16 @@
 /*   Media Queries                  */
 /* -------------------------------- */
 
+.container {
+  @include mq.media(mobile-all) {
+    row-gap: 88px;
+  }
+}
+
 .cardPrimary {
   @include mq.media(tablet-mini, tablet-micro, mobile-all) {
     grid-template-columns: 1fr;
+    row-gap: 32px;
   }
 
   &__picture {
@@ -134,7 +141,7 @@
       aspect-ratio: 281/480;
     }
 
-    @include mq.media(tablet-micro, tablet-mini, mobile-all) {
+    @include mq.media(tablet-mini, tablet-micro, mobile-all) {
       aspect-ratio: 1/1;
     }
   }
@@ -144,8 +151,29 @@
       padding-left: 70px;
     }
 
-    @include mq.media(tablet-small) {
-      padding-left: 45px;
+    @include mq.media(tablet-mini, tablet-micro, mobile-all) {
+      padding-left: 0;
+    }
+  }
+
+  &__title {
+    @include mq.media(mobile-all) {
+      font-size: f.px2rem(28);
+    }
+  }
+}
+
+.cardSecondary {
+  // display: flex;
+  // justify-content: space-between;
+  @include mq.media(tablet-mini, tablet-micro, mobile-all) {
+    flex-direction: column;
+    row-gap: 110px;
+  }
+
+  &__features {
+    @include mq.media(tablet-mini, tablet-micro, mobile-all) {
+      margin-right: 0;
     }
   }
 }

@@ -12,19 +12,18 @@ type ElemProps = {
 function ProductImageGrid(props: ElemProps): JSX.Element {
   const { appendClass, productImagesGallery, productTitle } = props;
 
-  const images = [
-    productImagesGallery.first.desktop,
-    productImagesGallery.third.desktop,
-    productImagesGallery.second.desktop,
-  ];
-  const productImages = images.map((imgURL, i) => {
+  const images = Object.values(productImagesGallery);
+
+  const productImages = images.map((img, i) => {
     return (
-      <img
-        key={imgURL}
-        className={styles[`gridArea${i + 1}`]}
-        src={imgURL}
-        alt={`${productTitle} being used`}
-      />
+      <picture
+        className={`${styles.grid__picture} ${styles[`gridArea${i + 1}`]}`}
+        key={img.desktop}>
+        <source srcSet={img.desktop} media="(min-width: 1024px)" />
+        <source srcSet={img.tablet} media="(min-width: 481px)" />
+        <source srcSet={img.mobile} media="(max-width: 480px)" />
+        <img src={img.desktop} alt={`${productTitle} being used`} />
+      </picture>
     );
   });
 
