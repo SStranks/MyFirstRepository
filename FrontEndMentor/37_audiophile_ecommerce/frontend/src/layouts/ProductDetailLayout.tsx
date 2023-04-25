@@ -20,7 +20,7 @@ function ProductDetailLayout(): JSX.Element {
   );
 
   return (
-    <MainTagLayout>
+    <MainTagLayout appendClass={styles.mainTag}>
       <button
         className={styles.btnBack}
         onClick={() => navHook(-1)}

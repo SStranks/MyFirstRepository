@@ -16,19 +16,19 @@ function ProductExampleSeeCardList(props: ElemProps): JSX.Element {
   });
 
   const productItems = currentProduct?.others.map((others) => {
-    const findProduct = ProductData.find((product) => {
-      return product.slug === others.slug;
+    const product = ProductData.find((products) => {
+      return products.slug === others.slug;
     });
 
-    if (!findProduct) return false;
+    if (!product) return false;
 
     return (
       <ProductExampleSeeCard
-        key={findProduct.productName}
-        productImg={findProduct.image.desktop}
-        productTitle={findProduct.productName}
-        productCategory={findProduct.category}
-        productId={findProduct.id}
+        key={product.productName}
+        productImages={others.image}
+        productTitle={others.productName}
+        productCategory={product.category}
+        productId={product.id}
       />
     );
   });

@@ -55,7 +55,8 @@
 
   &__purchase {
     display: flex;
-    column-gap: 16px;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 
   &__btn {
@@ -125,7 +126,7 @@
 /* -------------------------------- */
 
 .container {
-  @include mq.media(mobile-all) {
+  @include mq.media(tablet-all, mobile-all) {
     row-gap: 88px;
   }
 }
@@ -164,11 +165,9 @@
 }
 
 .cardSecondary {
-  // display: flex;
-  // justify-content: space-between;
-  @include mq.media(tablet-mini, tablet-micro, mobile-all) {
+  @include mq.media(tablet-all, mobile-all) {
     flex-direction: column;
-    row-gap: 110px;
+    row-gap: 88px;
   }
 
   &__features {

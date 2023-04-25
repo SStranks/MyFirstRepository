@@ -35,7 +35,7 @@ function Home(): JSX.Element {
           </Link>
         </div>
       </header>
-      <MainTagLayout>
+      <MainTagLayout appendClass="">
         <ProductExampleShopList appendClass="" />
         <div className={styles.grid}>
           <div className={styles.zx9}>

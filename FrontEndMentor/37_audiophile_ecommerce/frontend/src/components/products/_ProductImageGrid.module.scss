@@ -16,6 +16,10 @@
   &__picture {
     border-radius: 8px;
     overflow: hidden;
+
+    & > img {
+      object-fit: cover;
+    }
   }
 }
 
@@ -47,6 +51,17 @@
   @include mq.media(tablet-all) {
     column-gap: 18px;
     row-gap: 20px;
+  }
+
+  @include mq.media(mobile-all) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'img1'
+      'img2'
+      'img3';
+    row-gap: 20px;
+    column-gap: 0;
   }
 }
 
