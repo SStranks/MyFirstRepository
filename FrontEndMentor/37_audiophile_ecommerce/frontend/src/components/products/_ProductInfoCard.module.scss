@@ -11,14 +11,19 @@
 }
 
 .card {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 
   &__img {
+    object-fit: cover;
+    max-height: 540px;
     border-radius: 8px;
   }
 
   &__panel {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
     margin-left: f.px2em(125);
   }
 
@@ -48,6 +53,7 @@
 
 .card {
   @include mq.media(desktop-mini, desktop-micro, tablet-all, mobile-all) {
+    display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 52px;

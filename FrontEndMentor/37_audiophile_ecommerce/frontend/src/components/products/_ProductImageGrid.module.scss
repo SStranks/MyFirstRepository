@@ -12,14 +12,11 @@
     'img2 img3';
   column-gap: 30px;
   row-gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
 
-  &__picture {
+  &__img {
     border-radius: 8px;
-    overflow: hidden;
-
-    & > img {
-      object-fit: cover;
-    }
   }
 }
 

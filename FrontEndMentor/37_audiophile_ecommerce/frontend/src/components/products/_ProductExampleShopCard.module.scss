@@ -9,7 +9,6 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  // height: 204px;
   background-color: transparent;
   border-radius: 8px;
 
@@ -25,6 +24,7 @@
 
   &__img {
     object-fit: cover;
+    max-height: 250px;
     transform: translateY(20px);
   }
 

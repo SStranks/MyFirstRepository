@@ -22,7 +22,11 @@ function ProductImageGrid(props: ElemProps): JSX.Element {
         <source srcSet={img.desktop} media="(min-width: 1024px)" />
         <source srcSet={img.tablet} media="(min-width: 481px)" />
         <source srcSet={img.mobile} media="(max-width: 480px)" />
-        <img src={img.desktop} alt={`${productTitle} being used`} />
+        <img
+          className={styles.grid__img}
+          src={img.desktop}
+          alt={`${productTitle} being used`}
+        />
       </picture>
     );
   });

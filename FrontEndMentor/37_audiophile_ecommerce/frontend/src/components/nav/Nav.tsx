@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 
+import ProductExampleShopList from '#Components/products/ProductExampleShopList';
 import IconCart from '#Svg/desktop/icon-cart.svg';
 import Logo from '#Svg/desktop/logo.svg';
 import IconMenu from '#Svg/tablet/icon-hamburger.svg';
+import { useState } from 'react';
 import styles from './_Nav.module.scss';
 
 type ElemProps = {
@@ -11,14 +13,34 @@ type ElemProps = {
 
 function Nav(props: ElemProps): JSX.Element {
   const { appendClass } = props;
+  const [menuModal, setMenuModal] = useState(false);
+
+  const toggleModal = () => {
+    // Overflow prevents page scrolling when modal open
+    if (menuModal) {
+      document.body.style.overflow = 'unset';
+      setMenuModal((prev) => !prev);
+    } else {
+      document.body.style.overflow = 'hidden';
+      setMenuModal((prev) => !prev);
+    }
+  };
 
   return (
     <nav className={`${styles.nav} ${appendClass}`} aria-label="primary">
-      <button className={styles.nav__menuBtn} type="button">
-        <img src={IconMenu} alt="Menu Product Categories" />
+      <button
+        className={styles.nav__menuBtn}
+        type="button"
+        onClick={toggleModal}>
+        <img
+          src={IconMenu}
+          alt="Menu Product Categories"
+          width="16"
+          height="15"
+        />
       </button>
       <Link to="/">
-        <img src={Logo} alt="Audiophile Home" />
+        <img src={Logo} alt="Audiophile Home" width="143" height="25" />
       </Link>
       <div className={styles.nav__links}>
         <Link to="/" className={styles.nav__link}>
@@ -35,8 +57,16 @@ function Nav(props: ElemProps): JSX.Element {
         </Link>
       </div>
       <button className={styles.nav__cartBtn} type="button">
-        <img src={IconCart} alt="Shopping Cart" />
+        <img src={IconCart} alt="Shopping Cart" width="23" height="20" />
       </button>
+      <div
+        className={`${styles.menuModal} ${
+          menuModal ? styles.menuModalOpen : ''
+        }`}>
+        <div className={styles.menuModal__container}>
+          <ProductExampleShopList appendClass="" />
+        </div>
+      </div>
     </nav>
   );
 }

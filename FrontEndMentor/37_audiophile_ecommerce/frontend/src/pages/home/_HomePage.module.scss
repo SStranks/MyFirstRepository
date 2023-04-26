@@ -215,6 +215,10 @@
       margin: 0 v.$padding-desktop-mini-horizontal;
     }
 
+    @include mq.media(desktop-micro) {
+      margin: 0 v.$padding-desktop-mini-horizontal;
+    }
+
     @include mq.media(tablet-large) {
       margin: 0 v.$padding-tablet-horizontal;
     }

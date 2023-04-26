@@ -14,13 +14,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
-  &__picture {
-    object-fit: cover;
-    aspect-ratio: 27/28;
-  }
-
   &__img {
     object-fit: cover;
+    max-height: 815px;
     border-radius: 8px;
   }
 

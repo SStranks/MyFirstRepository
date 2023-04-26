@@ -5,6 +5,7 @@
 @use '#Sass/abstracts/variables' as v;
 
 .nav {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -41,6 +42,25 @@
   &__icon {
     height: 20px;
   }
+}
+
+.menuModal {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 100vh;
+  background-color: c.$col-3f;
+  z-index: 5;
+
+  &__container {
+    background-color: c.$col-2b;
+    border-radius: 0 0 8px 8px;
+  }
+}
+
+.menuModalOpen {
+  display: block;
 }
 
 /* -------------------------------- */
@@ -108,5 +128,27 @@
     ) {
       display: none;
     }
+  }
+}
+
+.menuModal {
+  &__container {
+    @include mq.media(tablet-regular, tablet-small) {
+      padding: f.px2em(32) v.$padding-tablet-small-horizontal;
+    }
+
+    @include mq.media(tablet-mini, tablet-micro) {
+      padding: f.px2em(32) v.$padding-tablet-mini-horizontal;
+    }
+
+    @include mq.media(mobile-all) {
+      padding: f.px2em(32) v.$padding-mobile-horizontal;
+    }
+  }
+}
+
+.menuModalOpen {
+  @include mq.media(desktop-all, tablet-large) {
+    display: none;
   }
 }

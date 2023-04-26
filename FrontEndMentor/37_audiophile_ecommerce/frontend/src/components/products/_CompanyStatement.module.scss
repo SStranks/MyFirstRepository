@@ -6,6 +6,8 @@
 .card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  max-width: 1560px;
+  margin: 0 auto;
 
   &__info {
     align-self: center;

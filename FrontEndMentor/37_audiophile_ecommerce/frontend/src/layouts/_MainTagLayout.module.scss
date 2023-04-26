@@ -8,6 +8,11 @@
   padding: v.$padding-desktop-vertical v.$padding-desktop-horizontal;
   background-color: c.$col-2b;
 
+  &__container {
+    margin: 0 auto;
+    max-width: 1400px;
+  }
+
   @include mq.media(desktop-small) {
     // background-color: green;
     padding: v.$padding-desktop-vertical v.$padding-desktop-small-horizontal;
@@ -43,3 +48,7 @@
     padding: v.$padding-mobile-vertical v.$padding-mobile-horizontal;
   }
 }
+
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */

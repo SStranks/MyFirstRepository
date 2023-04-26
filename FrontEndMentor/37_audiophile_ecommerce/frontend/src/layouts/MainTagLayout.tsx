@@ -8,7 +8,11 @@ type ElemProps = {
 function MainTagLayout(props: ElemProps): JSX.Element {
   const { appendClass, children } = props;
 
-  return <main className={`${styles.main} ${appendClass}`}>{children}</main>;
+  return (
+    <main className={`${styles.main} ${appendClass}`}>
+      <div className={styles.main__container}>{children}</div>
+    </main>
+  );
 }
 
 export default MainTagLayout;

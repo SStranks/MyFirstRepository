@@ -1,6 +1,5 @@
 import CompanyStatement from '#Components/products/CompanyStatement';
 import ProductExampleShopList from '#Components/products/ProductExampleShopList';
-// import DefaultLayout from '#Layouts/DefaultLayout';
 import { Link } from 'react-router-dom';
 
 import Footer from '#Components/footer/Footer';

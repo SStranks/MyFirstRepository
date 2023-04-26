@@ -218,7 +218,7 @@ $desktop-l: 1920px;
 }
 
 @mixin desktop-large {
-  @media only screen and (width <= #{$desktop-l}) {
+  @media only screen and (#{$desktop-l} <= width) {
     @content;
   }
 }
