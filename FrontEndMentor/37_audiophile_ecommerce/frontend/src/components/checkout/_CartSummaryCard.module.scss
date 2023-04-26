@@ -17,6 +17,7 @@
 .card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  width: fit-content;
   padding: 32px;
   background-color: c.$col-2b;
   border-radius: 8px;

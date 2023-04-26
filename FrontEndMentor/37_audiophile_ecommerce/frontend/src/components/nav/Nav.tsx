@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import CartSummaryCard from '#Components/checkout/CartSummaryCard';
 import ProductExampleShopList from '#Components/products/ProductExampleShopList';
 import IconCart from '#Svg/desktop/icon-cart.svg';
 import Logo from '#Svg/desktop/logo.svg';
@@ -13,16 +14,30 @@ type ElemProps = {
 
 function Nav(props: ElemProps): JSX.Element {
   const { appendClass } = props;
-  const [menuModal, setMenuModal] = useState(false);
+  const [menuCategoryModal, setMenuCategoryModal] = useState(false);
+  const [menuCartModal, setMenuCartModal] = useState(false);
 
-  const toggleModal = () => {
+  const toggleCategoryModal = () => {
     // Overflow prevents page scrolling when modal open
-    if (menuModal) {
+    if (menuCategoryModal) {
       document.body.style.overflow = 'unset';
-      setMenuModal((prev) => !prev);
+      setMenuCategoryModal((prev) => !prev);
     } else {
       document.body.style.overflow = 'hidden';
-      setMenuModal((prev) => !prev);
+      setMenuCartModal(false);
+      setMenuCategoryModal((prev) => !prev);
+    }
+  };
+
+  const toggleCartModal = () => {
+    // Overflow prevents page scrolling when modal open
+    if (menuCartModal) {
+      document.body.style.overflow = 'unset';
+      setMenuCartModal((prev) => !prev);
+    } else {
+      document.body.style.overflow = 'hidden';
+      setMenuCategoryModal(false);
+      setMenuCartModal((prev) => !prev);
     }
   };
 
@@ -31,7 +46,7 @@ function Nav(props: ElemProps): JSX.Element {
       <button
         className={styles.nav__menuBtn}
         type="button"
-        onClick={toggleModal}>
+        onClick={toggleCategoryModal}>
         <img
           src={IconMenu}
           alt="Menu Product Categories"
@@ -56,15 +71,26 @@ function Nav(props: ElemProps): JSX.Element {
           earphones
         </Link>
       </div>
-      <button className={styles.nav__cartBtn} type="button">
+      <button
+        className={styles.nav__cartBtn}
+        type="button"
+        onClick={toggleCartModal}>
         <img src={IconCart} alt="Shopping Cart" width="23" height="20" />
       </button>
       <div
         className={`${styles.menuModal} ${
-          menuModal ? styles.menuModalOpen : ''
+          menuCategoryModal ? styles.menuCategoryModalOpen : ''
         }`}>
         <div className={styles.menuModal__container}>
           <ProductExampleShopList appendClass="" />
+        </div>
+      </div>
+      <div
+        className={`${styles.menuCart} ${
+          menuCartModal ? styles.menuCartModalOpen : ''
+        }`}>
+        <div className={styles.menuCart__container}>
+          <CartSummaryCard cartItemsQuantity={3} cartTotalAmount={5396} />
         </div>
       </div>
     </nav>
