@@ -90,7 +90,7 @@ function Nav(props: ElemProps): JSX.Element {
           menuCartModal ? styles.menuCartModalOpen : ''
         }`}>
         <div className={styles.menuCart__container}>
-          <CartSummaryCard cartItemsQuantity={3} cartTotalAmount={5396} />
+          <CartSummaryCard itemsQuantity={3} totalAmount={5396} />
         </div>
       </div>
     </nav>

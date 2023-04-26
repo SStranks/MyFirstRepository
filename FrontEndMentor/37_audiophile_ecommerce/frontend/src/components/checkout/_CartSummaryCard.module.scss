@@ -1,7 +1,7 @@
 @use '#Sass/abstracts/colors' as c;
 // @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
-// @use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/media-queries' as mq;
 // @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
@@ -17,7 +17,7 @@
 .card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: fit-content;
+  width: 377px;
   padding: 32px;
   background-color: c.$col-2b;
   border-radius: 8px;
@@ -58,5 +58,15 @@
     @include btn.btn-default-1;
     margin-top: 24px;
     width: 100%;
+  }
+}
+
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */
+
+.card {
+  @include mq.media(mobile-all) {
+    width: minmax(327px, 377px);
   }
 }

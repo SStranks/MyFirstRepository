@@ -13,6 +13,7 @@ import CartSummaryCard from './checkout/CartSummaryCard';
 // ✖ // TODO:  alt on to img
 // ✖ // TODO:  alt on to img
 // ✖ // TODO:  Replace divs as imgs (background-image) with dedicated <img>; if it is content, use <img>, if it is just styling use background-image.
+// ✖ // TODO:  CartSummaryCard; mobile layout squished; could use scrollable rows and hover effect to indicate.
 // ✖ // TODO:  Cart system; useContext
 // ✖ // TODO:  Checkout form: Functionality. Error states.
 // ✖ // TODO:  Checkout form: Radio buttons, checked and required; useState required?
@@ -44,7 +45,7 @@ function App(): JSX.Element {
       <Route
         path="/temp"
         element={
-          <CartSummaryCard cartItemsQuantity={3} cartTotalAmount={5396} />
+          <CartSummaryCard itemsQuantity={3} totalAmount={5396} />
           // <OrderCompleteCard />
         }
       />
