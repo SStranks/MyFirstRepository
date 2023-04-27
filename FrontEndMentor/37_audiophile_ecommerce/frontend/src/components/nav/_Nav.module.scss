@@ -11,6 +11,7 @@
   align-items: center;
   padding: f.px2em(35) v.$padding-desktop-horizontal;
   background-color: c.$col-2c;
+  // z-index: 10;
 
   &__menuBtn {
     display: none;

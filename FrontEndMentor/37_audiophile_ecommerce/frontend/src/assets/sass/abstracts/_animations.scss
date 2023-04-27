@@ -18,3 +18,27 @@
 /* -------------------------------- */
 
 $Theme-transition: background 1s, color 1s, fill 1s;
+
+/* -------------------------------- */
+/*   Modal Transitions              */
+/* -------------------------------- */
+
+// Order Complete Modal
+.orderCompleteModal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.orderCompleteModal-enter-done {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.orderCompleteModal-exit {
+  opacity: 1;
+}
+
+.orderCompleteModal-exit-active {
+  opacity: 0;
+  transition: opacity 800ms;
+}

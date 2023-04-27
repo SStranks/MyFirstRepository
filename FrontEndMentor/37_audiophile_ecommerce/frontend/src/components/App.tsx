@@ -6,7 +6,6 @@ import ProductDetailsPage from '#Pages/product-details/ProductDetailsPage';
 import SpeakersPage from '#Pages/speakers/SpeakersPage';
 import { Route, Routes } from 'react-router-dom';
 import CartSummaryCard from './checkout/CartSummaryCard';
-// import OrderCompleteCard from './checkout/OrderCompleteCard';
 
 // // ✔ // ✖
 // ✖ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
@@ -44,10 +43,7 @@ function App(): JSX.Element {
       {/* // TEMP DEV:  Temporary Routes */}
       <Route
         path="/temp"
-        element={
-          <CartSummaryCard itemsQuantity={3} totalAmount={5396} />
-          // <OrderCompleteCard />
-        }
+        element={<CartSummaryCard itemsQuantity={3} totalAmount={5396} />}
       />
     </Routes>
   );
