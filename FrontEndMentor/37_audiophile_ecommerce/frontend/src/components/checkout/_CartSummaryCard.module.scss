@@ -55,9 +55,13 @@
 
   &__checkoutBtn {
     grid-column: 1 / span 2;
-    @include btn.btn-default-1;
     margin-top: 24px;
     width: 100%;
+
+    & > button {
+      @include btn.btn-default-1;
+      width: 100%;
+    }
   }
 }
 

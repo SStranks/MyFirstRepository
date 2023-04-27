@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import CartProductCard from './CartProductCard';
 import styles from './_CartSummaryCard.module.scss';
 
@@ -25,11 +26,12 @@ type ElemProps = {
 
 function CartSummaryCard(props: ElemProps): JSX.Element {
   const { itemsQuantity, totalAmount } = props;
-  const [cartItemsQuantity, setCartItemsQuantity] = useState(itemsQuantity);
-  const [cartTotalAmount, setCartTotalAmount] = useState(totalAmount);
+  const [cartItemsQuantity, setCartItemsQuantity] =
+    useState<number>(itemsQuantity);
+  const [cartTotalAmount, setCartTotalAmount] = useState<number>(totalAmount);
   const [cartItems, setCartItems] = useState<JSX.Element[]>([]);
+  const location = useLocation();
 
-  // let productsList = [];
   useEffect(() => {
     const productsList = cartProducts.map((el) => {
       return (
@@ -50,6 +52,9 @@ function CartSummaryCard(props: ElemProps): JSX.Element {
     setCartItems([]);
   };
 
+  // Hide the checkout link if already at checkout
+  const onCheckoutRoute = location.pathname !== '/checkout';
+
   return (
     // <div className={styles.containerTemp}>
     <div className={styles.card}>
@@ -66,9 +71,17 @@ function CartSummaryCard(props: ElemProps): JSX.Element {
       <p className={styles.card__amount}>
         $ {cartTotalAmount.toLocaleString('en-US')}
       </p>
-      <button className={styles.card__checkoutBtn} type="button">
-        checkout
-      </button>
+      {onCheckoutRoute && (
+        <Link to="/checkout" className={styles.card__checkoutBtn}>
+          {/* // TODO:  on click check if cart is empty; don't nav. */}
+          <button
+            type="button"
+            // onClick={navigateToCheckout}
+            disabled={cartItemsQuantity < 0}>
+            checkout
+          </button>
+        </Link>
+      )}
     </div>
     // </div>
   );

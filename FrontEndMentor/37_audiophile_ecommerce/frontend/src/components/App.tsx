@@ -9,6 +9,13 @@ import CartSummaryCard from './checkout/CartSummaryCard';
 
 // // ✔ // ✖
 // ✖ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
+// ✖ // DEBUG:  Modal causing scrollbar width resize.
+// ✖ // DEBUG:  Category page product images; set width/height on eaech source? to stop flicker layout?
+// ✖ // DEBUG:  Nav component rerenders on route switch - sit outside page layouts?
+// ✖ // DEBUG:  Flicker when changing routes. useLayoutEffect causing it?
+// NOTE:  Add nav modals as components/create a wrapped for portal? Need to handle esc/click opaque black.
+// ✖ // TODO:  Subtle animations for nav modals
+// ✖ // TODO:  Styles: thanks for your order - mobile.
 // ✖ // TODO:  alt on to img
 // ✖ // TODO:  alt on to img
 // ✖ // TODO:  Replace divs as imgs (background-image) with dedicated <img>; if it is content, use <img>, if it is just styling use background-image.

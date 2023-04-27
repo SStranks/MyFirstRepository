@@ -17,6 +17,7 @@ function Nav(props: ElemProps): JSX.Element {
   const [menuCategoryModal, setMenuCategoryModal] = useState(false);
   const [menuCartModal, setMenuCartModal] = useState(false);
 
+  // toggleCategoryModal and toggleCartModal ensure only one nav button modal is open at a time.
   const toggleCategoryModal = () => {
     // Overflow prevents page scrolling when modal open
     if (menuCategoryModal) {
@@ -40,6 +41,8 @@ function Nav(props: ElemProps): JSX.Element {
       setMenuCartModal((prev) => !prev);
     }
   };
+
+  console.log('render nav');
 
   return (
     <nav className={`${styles.nav} ${appendClass}`} aria-label="primary">

@@ -8,6 +8,7 @@ import MainTagLayout from '#Layouts/MainTagLayout';
 import styles from './_HomePage.module.scss';
 
 function Home(): JSX.Element {
+  console.log('render homepage');
   return (
     <>
       <header className={styles.hero}>
