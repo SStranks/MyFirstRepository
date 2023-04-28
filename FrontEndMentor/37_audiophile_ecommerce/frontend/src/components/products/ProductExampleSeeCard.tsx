@@ -10,13 +10,28 @@ type ElemProps = {
 
 function ProductExampleSeeCard(props: ElemProps): JSX.Element {
   const { productImages, productTitle, productCategory, productId } = props;
-
+  console.log(productImages);
   return (
     <div className={styles.card} aria-label={`see product ${productTitle}`}>
       <picture>
-        <source srcSet={productImages.desktop} media="(min-width: 1200px)" />
-        <source srcSet={productImages.tablet} media="(min-width: 768px)" />
-        <source srcSet={productImages.mobile} media="(max-width: 480px)" />
+        <source
+          srcSet={productImages.desktop}
+          media="(min-width: 1200px)"
+          width="700px"
+          height="636px"
+        />
+        <source
+          srcSet={productImages.tablet}
+          media="(min-width: 768px)"
+          width="446px"
+          height="636px"
+        />
+        <source
+          srcSet={productImages.mobile}
+          media="(max-width: 480px)"
+          width="654px"
+          height="240px"
+        />
         <img
           className={styles.card__img}
           src={productImages.desktop}

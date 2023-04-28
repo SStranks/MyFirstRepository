@@ -23,12 +23,24 @@ function ProductInfoCard(props: ElemProps): JSX.Element {
   return (
     <article className={styles.card} aria-labelledby={productTitle}>
       <picture>
-        <source srcSet={productImgs.desktop} media="(min-width: 1200px)" />
+        <source
+          srcSet={productImgs.desktop}
+          media="(min-width: 1200px)"
+          width="1080px"
+          height="1120px"
+        />
         <source
           srcSet={productImgs.tablet}
           media="(min-width: 481px) and (max-width: 1199px)"
+          width="562px"
+          height="960px"
         />
-        <source srcSet={productImgs.mobile} media="(max-width: 480px)" />
+        <source
+          srcSet={productImgs.mobile}
+          media="(max-width: 480px)"
+          width="654px"
+          height="654px"
+        />
         <img
           className={styles.card__img}
           src={productImgs.desktop}

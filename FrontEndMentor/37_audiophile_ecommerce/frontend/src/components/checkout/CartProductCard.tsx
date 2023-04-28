@@ -13,7 +13,7 @@ function CartProductCard(props: ElemProps): JSX.Element {
 
   return (
     <div className={styles.card} aria-labelledby={productTitle}>
-      <img className={styles.card__img} src={productImg} alt="" />
+      <img className={styles.card__img} src={productImg} alt={productTitle} />
       <p className={styles.card__title} id={productTitle}>
         {productTitle}
       </p>

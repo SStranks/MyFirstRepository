@@ -2,6 +2,7 @@
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/variables' as v;
 
 .card {
   position: relative;
@@ -10,7 +11,7 @@
   justify-content: flex-end;
   align-items: center;
   background-color: transparent;
-  border-radius: 8px;
+  border-radius: v.$border-radius-1;
 
   &__bg {
     position: absolute;
@@ -18,7 +19,7 @@
     width: 100%;
     height: 204px;
     background-color: c.$col-1c;
-    border-radius: 8px;
+    border-radius: v.$border-radius-1;
     z-index: 0;
   }
 

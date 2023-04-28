@@ -5,21 +5,23 @@
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
+.container {
+  margin-top: -#{v.$navbar-dim-vertical};
+}
+
 .hero {
   position: relative;
   background-color: c.$col-1b;
   margin-bottom: f.px2em(120);
   aspect-ratio: 160 / 81; // Computed from <img> hero.
 
-  &__nav {
-    position: relative;
-    background-color: transparent;
-  }
-
   &__hr {
-    position: relative;
+    position: absolute;
+    top: v.$navbar-dim-vertical;
+    left: 0;
+    right: 0;
     height: 1px;
-    margin: 0 v.$padding-desktop-horizontal;
+    margin: 0 v.$padding-desktop-horizontal 0 v.$padding-desktop-horizontal;
     background-color: c.$col-3c;
     border: none;
   }
@@ -37,6 +39,7 @@
     justify-content: center;
     max-width: 40%;
     height: 100%;
+    padding-top: 95px;
     margin-left: v.$padding-desktop-horizontal;
   }
 
@@ -193,14 +196,13 @@
     tablet-large,
     tablet-regular,
     tablet-small,
-    tablet-mini,
-    tablet-micro
+    tablet-mini
   ) {
     margin-bottom: 0;
     aspect-ratio: 256/243;
   }
 
-  @include mq.media(mobile-all) {
+  @include mq.media(tablet-micro, mobile-all) {
     aspect-ratio: 5/8;
     margin-bottom: 0;
   }
@@ -237,17 +239,11 @@
   }
 
   &__img {
-    @include mq.media(
-      tablet-large,
-      tablet-regular,
-      tablet-small,
-      tablet-mini,
-      tablet-micro
-    ) {
+    @include mq.media(tablet-large, tablet-regular, tablet-small, tablet-mini) {
       content: url('/public/img/home/tablet/image-header.jpg');
     }
 
-    @include mq.media(mobile-all) {
+    @include mq.media(tablet-micro, mobile-all) {
       content: url('/public/img/home/mobile/image-header.jpg');
     }
   }
@@ -266,7 +262,6 @@
       align-items: center;
       justify-content: center;
       max-width: unset;
-      padding: 130px 0;
       margin-top: 0;
     }
   }
@@ -283,7 +278,7 @@
       text-align: center;
     }
 
-    @include mq.media(mobile-all) {
+    @include mq.media(tablet-micro, mobile-all) {
       font-size: f.px2rem(36);
       line-height: f.px2rem(40);
       letter-spacing: f.px2rem(1.29);
@@ -291,19 +286,13 @@
   }
 
   &__info {
-    @include mq.media(
-      tablet-large,
-      tablet-regular,
-      tablet-small,
-      tablet-mini,
-      tablet-micro
-    ) {
+    @include mq.media(tablet-large, tablet-regular, tablet-small, tablet-mini) {
       max-width: 55%;
       text-align: center;
     }
 
-    @include mq.media(mobile-all) {
-      max-width: 65%;
+    @include mq.media(tablet-micro, mobile-all) {
+      max-width: 75%;
       text-align: center;
     }
   }

@@ -11,7 +11,11 @@
   align-items: center;
   padding: f.px2em(35) v.$padding-desktop-horizontal;
   background-color: c.$col-2c;
-  // z-index: 10;
+  z-index: 10;
+
+  &__navLayoutEffect {
+    background-color: transparent;
+  }
 
   &__menuBtn {
     display: none;
@@ -67,7 +71,7 @@
 
   &__container {
     background-color: c.$col-2b;
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 v.$border-radius-1 v.$border-radius-1;
   }
 }
 

@@ -2,22 +2,18 @@ import CompanyStatement from '#Components/products/CompanyStatement';
 import ProductExampleShopList from '#Components/products/ProductExampleShopList';
 import { Link } from 'react-router-dom';
 
-import Footer from '#Components/footer/Footer';
-import Nav from '#Components/nav/Nav';
 import MainTagLayout from '#Layouts/MainTagLayout';
 import styles from './_HomePage.module.scss';
 
 function Home(): JSX.Element {
-  console.log('render homepage');
   return (
-    <>
+    <div className={styles.container}>
       <header className={styles.hero}>
         <img
           src="/img/home/desktop/image-hero.jpg"
           className={styles.hero__img}
           alt="XX99 mark 2 headphones"
         />
-        <Nav appendClass={styles.hero__nav} />
         <hr className={styles.hero__hr} />
         <div className={styles.hero__container}>
           <p className={styles.hero__title}>new product</p>
@@ -98,8 +94,7 @@ function Home(): JSX.Element {
         </div>
         <CompanyStatement appendClass={styles.companyStatement} />
       </MainTagLayout>
-      <Footer />
-    </>
+    </div>
   );
 }
 

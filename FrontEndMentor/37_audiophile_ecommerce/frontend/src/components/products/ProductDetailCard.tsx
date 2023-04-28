@@ -38,9 +38,24 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
     <div className={`${styles.container} ${appendClass}`}>
       <div className={styles.cardPrimary}>
         <picture className={styles.cardPrimary__picture}>
-          <source srcSet={productImages.desktop} media="(min-width: 992px)" />
-          <source srcSet={productImages.tablet} media="(min-width: 667px)" />
-          <source srcSet={productImages.mobile} media="(max-width: 666px)" />
+          <source
+            srcSet={productImages.desktop}
+            media="(min-width: 992px)"
+            width="1080px"
+            height="1120px"
+          />
+          <source
+            srcSet={productImages.tablet}
+            media="(min-width: 667px)"
+            width="562px"
+            height="960px"
+          />
+          <source
+            srcSet={productImages.mobile}
+            media="(max-width: 666px)"
+            width="654px"
+            height="654px"
+          />
           <img
             className={styles.cardPrimary__img}
             src={productImages.desktop}

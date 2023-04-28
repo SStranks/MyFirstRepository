@@ -2,6 +2,7 @@
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/variables' as v;
 
 .card {
   display: grid;
@@ -30,7 +31,7 @@
 
   &__img {
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: v.$border-radius-1;
   }
 }
 

@@ -2,8 +2,7 @@
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/media-queries' as mq;
-// @use '#Sass/abstracts/variables' as v;
-// @use '#Sass/components/buttons' as btn;
+@use '#Sass/abstracts/variables' as v;
 
 .card {
   @include mx.body-regular;
@@ -21,7 +20,7 @@
     height: 100%;
     grid-row: 1 / span 2;
     aspect-ratio: 1/1;
-    border-radius: 8px;
+    border-radius: v.$border-radius-1;
   }
 
   &__title {

@@ -12,7 +12,7 @@ function CheckoutSummaryProductCard(props: ElemProps): JSX.Element {
 
   return (
     <div className={styles.card}>
-      <img className={styles.card__img} src={productImg} alt="" />
+      <img className={styles.card__img} src={productImg} alt={productTitle} />
       <p className={styles.card__title}>{productTitle}</p>
       <p className={styles.card__price}>
         $ {productPrice.toLocaleString('en-US')}

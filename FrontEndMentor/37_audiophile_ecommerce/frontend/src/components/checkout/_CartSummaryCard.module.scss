@@ -2,7 +2,7 @@
 // @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/media-queries' as mq;
-// @use '#Sass/abstracts/variables' as v;
+@use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
 .containerTemp {
@@ -20,7 +20,7 @@
   width: 377px;
   padding: 32px;
   background-color: c.$col-2b;
-  border-radius: 8px;
+  border-radius: v.$border-radius-1;
 
   &__header {
     @include mx.header-h6;

@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import CartSummaryCard from '#Components/checkout/CartSummaryCard';
 import ProductExampleShopList from '#Components/products/ProductExampleShopList';
 import IconCart from '#Svg/desktop/icon-cart.svg';
 import Logo from '#Svg/desktop/logo.svg';
 import IconMenu from '#Svg/tablet/icon-hamburger.svg';
-import { useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import styles from './_Nav.module.scss';
 
 type ElemProps = {
@@ -16,6 +16,7 @@ function Nav(props: ElemProps): JSX.Element {
   const { appendClass } = props;
   const [menuCategoryModal, setMenuCategoryModal] = useState(false);
   const [menuCartModal, setMenuCartModal] = useState(false);
+  const location = useLocation();
 
   // toggleCategoryModal and toggleCartModal ensure only one nav button modal is open at a time.
   const toggleCategoryModal = () => {
@@ -42,10 +43,21 @@ function Nav(props: ElemProps): JSX.Element {
     }
   };
 
-  console.log('render nav');
+  useLayoutEffect(() => {
+    // Home Page requires nav to be transparent against hero image
+    const nav = document.querySelector('#primary-nav');
+    if (nav && location.pathname === '/') {
+      (nav as HTMLElement).classList.add(styles.nav__navLayoutEffect);
+    } else {
+      (nav as HTMLElement).classList.remove(styles.nav__navLayoutEffect);
+    }
+  }, [location.pathname]);
 
   return (
-    <nav className={`${styles.nav} ${appendClass}`} aria-label="primary">
+    <nav
+      className={`${styles.nav} ${appendClass}`}
+      id="primary-nav"
+      aria-label="primary">
       <button
         className={styles.nav__menuBtn}
         type="button"
