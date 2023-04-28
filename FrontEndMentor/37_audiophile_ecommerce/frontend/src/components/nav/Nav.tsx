@@ -5,7 +5,7 @@ import ProductExampleShopList from '#Components/products/ProductExampleShopList'
 import IconCart from '#Svg/desktop/icon-cart.svg';
 import Logo from '#Svg/desktop/logo.svg';
 import IconMenu from '#Svg/tablet/icon-hamburger.svg';
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from './_Nav.module.scss';
 
 type ElemProps = {
@@ -17,6 +17,7 @@ function Nav(props: ElemProps): JSX.Element {
   const [menuCategoryModal, setMenuCategoryModal] = useState(false);
   const [menuCartModal, setMenuCartModal] = useState(false);
   const location = useLocation();
+  const ref = useRef(null);
 
   // toggleCategoryModal and toggleCartModal ensure only one nav button modal is open at a time.
   const toggleCategoryModal = () => {
@@ -46,6 +47,7 @@ function Nav(props: ElemProps): JSX.Element {
   useLayoutEffect(() => {
     // Home Page requires nav to be transparent against hero image
     const nav = document.querySelector('#primary-nav');
+    // (nav as HTMLElement).classList.remove(styles.nav__tmp);
     if (nav && location.pathname === '/') {
       (nav as HTMLElement).classList.add(styles.nav__navLayoutEffect);
     } else {
@@ -53,8 +55,25 @@ function Nav(props: ElemProps): JSX.Element {
     }
   }, [location.pathname]);
 
+  useEffect(() => {
+    // Changing the colour of the nav bar when scrolling (sticky)
+    const observer = new IntersectionObserver(
+      ([e]) =>
+        e.target.classList.toggle(
+          styles.nav__positionSticky,
+          e.intersectionRatio < 1
+        ),
+      { threshold: [1] }
+    );
+
+    if (ref?.current) observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  });
+
   return (
     <nav
+      ref={ref}
       className={`${styles.nav} ${appendClass}`}
       id="primary-nav"
       aria-label="primary">

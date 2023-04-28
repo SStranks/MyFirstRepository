@@ -15,13 +15,25 @@ function ProductExampleShopCard(props: ElemProps): JSX.Element {
   return (
     <div className={styles.card} aria-label={`see all ${productName} shop`}>
       <div className={styles.card__bg} />
-      <img className={styles.card__img} src={productImg} alt="" />
+      <img
+        className={styles.card__img}
+        src={productImg}
+        alt=""
+        width="438px"
+        height="380px"
+      />
       <p className={styles.card__name}>{productName}</p>
       <div className={styles.card__shop}>
         <Link to={productShopURL} className={styles.card__shop__text}>
           shop
         </Link>
-        <img className={styles.card__shop__img} src={IconArrowRight} alt="" />
+        <img
+          className={styles.card__shop__img}
+          src={IconArrowRight}
+          alt=""
+          width="8px"
+          height="12px"
+        />
       </div>
     </div>
   );

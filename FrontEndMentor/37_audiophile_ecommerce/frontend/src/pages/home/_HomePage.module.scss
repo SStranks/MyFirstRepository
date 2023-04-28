@@ -12,7 +12,6 @@
 .hero {
   position: relative;
   background-color: c.$col-1b;
-  margin-bottom: f.px2em(120);
   aspect-ratio: 160 / 81; // Computed from <img> hero.
 
   &__hr {
@@ -29,7 +28,6 @@
   &__img {
     position: absolute;
     object-fit: cover;
-    z-index: 0;
   }
 
   &__container {
@@ -131,15 +129,14 @@
 
   &__container {
     position: relative;
-    z-index: 1;
   }
 
   &__img {
-    position: absolute;
-    left: 0;
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    z-index: 0;
   }
 
   &__title {
@@ -198,13 +195,11 @@
     tablet-small,
     tablet-mini
   ) {
-    margin-bottom: 0;
     aspect-ratio: 256/243;
   }
 
   @include mq.media(tablet-micro, mobile-all) {
     aspect-ratio: 5/8;
-    margin-bottom: 0;
   }
 
   &__hr,
@@ -235,16 +230,6 @@
 
     @include mq.media(mobile-all) {
       margin: 0 v.$padding-mobile-horizontal;
-    }
-  }
-
-  &__img {
-    @include mq.media(tablet-large, tablet-regular, tablet-small, tablet-mini) {
-      content: url('/public/img/home/tablet/image-header.jpg');
-    }
-
-    @include mq.media(tablet-micro, mobile-all) {
-      content: url('/public/img/home/mobile/image-header.jpg');
     }
   }
 
@@ -342,7 +327,6 @@
 
   &__img {
     @include mq.media(desktop-micro, tablet-all) {
-      content: url('/public/img/home/tablet/image-speaker-zx9.png');
       aspect-ratio: 61/74;
       max-height: 327px;
       margin: 0;
@@ -350,7 +334,6 @@
     }
 
     @include mq.media(mobile-all) {
-      content: url('/public/img/home/mobile/image-speaker-zx9.png');
       aspect-ratio: 80/97;
       max-height: 240px;
       margin: 0;
@@ -393,12 +376,10 @@
 
   &__img {
     @include mq.media(desktop-micro, tablet-all) {
-      content: url('/public/img/home/tablet/image-speaker-zx7.jpg');
       aspect-ratio: 689/320;
     }
 
     @include mq.media(tablet-mini, tablet-micro, mobile-all) {
-      content: url('/public/img/home/mobile/image-speaker-zx7.jpg');
       aspect-ratio: 327/320;
     }
   }
@@ -406,13 +387,11 @@
 
 .yx1-img {
   @include mq.media(tablet-regular, tablet-small, tablet-mini, tablet-micro) {
-    content: url('/public/img/home/tablet/image-earphones-yx1.jpg');
     aspect-ratio: 339/320;
     min-width: unset;
   }
 
   @include mq.media(tablet-mini, tablet-micro, mobile-all) {
-    content: url('/public/img/home/mobile/image-earphones-yx1.jpg');
     grid-column: 1 / span 2;
     aspect-ratio: 327/200;
     min-width: unset;

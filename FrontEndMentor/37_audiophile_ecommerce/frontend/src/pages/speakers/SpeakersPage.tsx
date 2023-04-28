@@ -1,8 +1,6 @@
 import ProductData from '#Data/Data.json';
 import CategoryLayout from '#Layouts/CategoryLayout';
 
-// import styles from './_SpeakersPage.module.scss';
-
 // TEMP DEV: .
 const productList = ProductData.filter((el) => el.category === 'speakers');
 

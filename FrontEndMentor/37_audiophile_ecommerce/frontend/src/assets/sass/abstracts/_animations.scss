@@ -20,9 +20,16 @@
 $Theme-transition: background 1s, color 1s, fill 1s;
 
 /* -------------------------------- */
+/*   Element Transitions            */
+/* -------------------------------- */
+
+$nav-sticky-transition: background-color 1s;
+
+/* -------------------------------- */
 /*   Modal Transitions              */
 /* -------------------------------- */
 
+// Utilizing 'CSSTransition'
 // Order Complete Modal
 .orderCompleteModal {
   opacity: 0;

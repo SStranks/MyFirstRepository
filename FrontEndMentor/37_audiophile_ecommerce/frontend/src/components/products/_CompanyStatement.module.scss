@@ -47,9 +47,8 @@
       text-align: center;
     }
 
-    &__img {
+    &__picture {
       grid-row: 1;
-      content: url('/public/img/shared/tablet/image-best-gear.jpg');
     }
   }
 
@@ -70,15 +69,8 @@
       @include mx.body-regular;
     }
 
-    &__img {
+    &__picture {
       grid-row: 1;
-      content: url('/public/img/shared/mobile/image-best-gear.jpg');
-    }
-  }
-
-  @include mq.media(tablet-micro) {
-    &__img {
-      content: url('/public/img/shared/mobile/image-best-gear.jpg');
     }
   }
 }

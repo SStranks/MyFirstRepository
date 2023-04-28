@@ -1,7 +1,7 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
-// @use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
@@ -12,17 +12,20 @@
 
 .containerTemp {
   position: fixed;
-  top: 0;
+  top: calc(0px + v.$navbar-dim-vertical);
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: calc(100% - v.$navbar-dim-vertical);
   background-color: c.$col-3a;
+  overflow-y: auto;
+  z-index: f.z('modal');
 }
 
 .card {
   padding: 48px;
+  margin: 24px;
   background-color: c.$col-2b;
   border-radius: v.$border-radius-1;
 
@@ -104,6 +107,47 @@
     &__amount {
       @include mx.header-h6;
       color: c.$col-2b;
+    }
+  }
+}
+
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */
+
+.card {
+  @include mq.media(tablet-micro, mobile-all) {
+    padding: 32px;
+  }
+
+  @include mq.media(mobile-small) {
+    column-gap: 0;
+  }
+}
+
+.orderDetails {
+  @include mq.media(tablet-micro, mobile-all) {
+    grid-template-columns: 1fr;
+    margin-bottom: 23px;
+    border-radius: v.$border-radius-1;
+    overflow: hidden;
+
+    &__items {
+      padding: 24px;
+    }
+
+    &__grandTotal {
+      padding: 15px 24px;
+    }
+  }
+
+  @include mq.media(mobile-small) {
+    &__items {
+      padding: 18px;
+    }
+
+    &__grandTotal {
+      padding: 15px 18px;
     }
   }
 }

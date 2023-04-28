@@ -24,11 +24,31 @@ function CompanyStatement(props: ElemProps): JSX.Element {
           best place to buy your portable audio equipment.
         </p>
       </div>
-      <img
-        className={styles.card__img}
-        src="/img/shared/desktop/image-best-gear.jpg"
-        alt="Furnishing our customers with the best gear"
-      />
+      <picture className={styles.card__picture}>
+        <source
+          srcSet="/img/shared/desktop/image-best-gear.jpg"
+          media="(min-width: 1024px)"
+          width="540"
+          height="588"
+        />
+        <source
+          srcSet="/img/shared/tablet/image-best-gear.jpg"
+          media="(min-width: 576px)"
+          width="1378"
+          height="600"
+        />
+        <source
+          srcSet="/img/shared/mobile/image-best-gear.jpg"
+          media="(max-width: 575px)"
+          width="654"
+          height="600"
+        />
+        <img
+          className={styles.card__img}
+          src="/img/shared/desktop/image-best-gear.jpg"
+          alt="Furnishing our customers with the best gear"
+        />
+      </picture>
     </article>
   );
 }

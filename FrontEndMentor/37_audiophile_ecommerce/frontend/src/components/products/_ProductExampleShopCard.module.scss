@@ -24,7 +24,7 @@
   }
 
   &__img {
-    object-fit: cover;
+    object-fit: contain;
     max-height: 250px;
     transform: translateY(20px);
   }
