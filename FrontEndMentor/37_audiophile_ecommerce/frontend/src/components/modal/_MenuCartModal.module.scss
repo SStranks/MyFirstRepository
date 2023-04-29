@@ -1,0 +1,49 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/abstracts/media-queries' as mq;
+@use '#Sass/abstracts/variables' as v;
+
+// NOTE: .
+// The modal CSSTransition classes are in the _animations.scss file.
+// .module.scss files are hashed, and this interferes with the dynamic addition
+// of transition class names, e.g. '-enter-done', on top of the base 'modal' class name
+
+.container {
+  // 1px accounts for Nav top, used in intersection observer
+  position: fixed;
+  top: calc(0px + v.$navbar-dim-vertical - 1px);
+  bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 100%;
+  height: calc(100% - v.$navbar-dim-vertical + 1px);
+  padding-top: 32px;
+  background-color: c.$col-3a;
+  overflow-y: auto;
+  z-index: f.z('modal');
+
+  @include mq.media(desktop-small) {
+    padding-inline: v.$padding-desktop-small-horizontal;
+  }
+
+  @include mq.media(desktop-mini, desktop-micro) {
+    padding-inline: v.$padding-desktop-mini-horizontal;
+  }
+
+  @include mq.media(tablet-large) {
+    padding-inline: v.$padding-tablet-horizontal;
+  }
+
+  @include mq.media(tablet-regular, tablet-small) {
+    padding-inline: v.$padding-tablet-small-horizontal;
+  }
+
+  @include mq.media(tablet-mini, tablet-micro) {
+    padding-inline: v.$padding-tablet-mini-horizontal;
+  }
+
+  @include mq.media(mobile-all) {
+    padding-inline: v.$padding-mobile-horizontal;
+  }
+}
