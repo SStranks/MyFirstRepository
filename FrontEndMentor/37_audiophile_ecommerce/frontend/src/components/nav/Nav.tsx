@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 
-import CartSummaryCard from '#Components/checkout/CartSummaryCard';
-import ProductExampleShopList from '#Components/products/ProductExampleShopList';
+import MenuCartModal from '#Components/modal/MenuCartModal';
+import MenuCategoryModal from '#Components/modal/MenuCategoryModal';
 import IconCart from '#Svg/desktop/icon-cart.svg';
 import Logo from '#Svg/desktop/logo.svg';
 import IconMenu from '#Svg/tablet/icon-hamburger.svg';
@@ -111,22 +111,11 @@ function Nav(props: ElemProps): JSX.Element {
         onClick={toggleCartModal}>
         <img src={IconCart} alt="Shopping Cart" width="23" height="20" />
       </button>
-      <div
-        className={`${styles.menuModal} ${
-          menuCategoryModal ? styles.menuCategoryModalOpen : ''
-        }`}>
-        <div className={styles.menuModal__container}>
-          <ProductExampleShopList appendClass="" />
-        </div>
-      </div>
-      <div
-        className={`${styles.menuCart} ${
-          menuCartModal ? styles.menuCartModalOpen : ''
-        }`}>
-        <div className={styles.menuCart__container}>
-          <CartSummaryCard itemsQuantity={3} totalAmount={5396} />
-        </div>
-      </div>
+      <MenuCategoryModal
+        modalOpen={menuCategoryModal}
+        modalClose={setMenuCategoryModal}
+      />
+      <MenuCartModal modalOpen={menuCartModal} modalClose={setMenuCartModal} />
     </nav>
   );
 }

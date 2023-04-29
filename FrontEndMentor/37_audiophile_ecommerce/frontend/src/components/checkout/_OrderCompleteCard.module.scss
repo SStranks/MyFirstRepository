@@ -5,27 +5,9 @@
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as btn;
 
-// NOTE: .
-// The modal CSSTransition classes are in the _animations.scss file.
-// .module.scss files are hashed, and this interferes with the dynamic addition
-// of transition class names, e.g. '-enter-done', on top of the base 'modal' class name
-
-.containerTemp {
-  position: fixed;
-  top: calc(0px + v.$navbar-dim-vertical);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: calc(100% - v.$navbar-dim-vertical);
-  background-color: c.$col-3a;
-  overflow-y: auto;
-  z-index: f.z('modal');
-}
-
 .card {
   padding: 48px;
-  margin: 24px;
+  margin: auto 24px;
   background-color: c.$col-2b;
   border-radius: v.$border-radius-1;
 

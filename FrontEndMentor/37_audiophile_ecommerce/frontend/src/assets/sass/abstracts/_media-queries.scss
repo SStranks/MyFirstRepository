@@ -141,7 +141,7 @@ $desktop-l: 1920px;
 /* -------------------------------- */
 
 @mixin mobile-small {
-  @media only screen and (#{$mobile-s} <= width < #{$mobile-m}) {
+  @media only screen and (width < #{$mobile-m}) {
     @content;
   }
 }

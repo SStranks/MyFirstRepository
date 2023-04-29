@@ -12,10 +12,7 @@ import { Route, Routes } from 'react-router-dom';
 // ✖ // DEBUG:  Nav sticky transition; see if we can fade out on class remove - setting transition implicitly on nav will trigger on element mount.
 // ✖ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
 // ✖ // DEBUG:  Modal causing scrollbar width resize.
-// NOTE:  Add nav modals as components/create a wrapped for portal? Need to handle esc/click opaque black.
-// ✖ // TODO:  Styles: thanks for your order - mobile.
-// ✖ // TODO:  Adjust various tags (p) into correct semantic tags etc.
-// ✖ // TODO:  CartSummaryCard; mobile layout squished; could use scrollable rows and hover effect to indicate.
+// ✖ // TODO:  menuCart/Category modals closeModal prop; necessary/delete?
 // ✖ // TODO:  Subtle animations for nav modals
 // ✖ // TODO:  Checkout form: Functionality. Error states.
 // ✖ // TODO:  Checkout form: Radio buttons, checked and required; useState required?
@@ -26,6 +23,10 @@ import { Route, Routes } from 'react-router-dom';
 // ✔ // DEBUG:  Flicker when changing routes. useLayoutEffect causing it?
 // ✔ // DEBUG:  Nav component rerenders on route switch - sit outside page layouts?
 // ✔ // DEBUG:  Various resizing on Home page: grid images max out at 1110px.
+// ✔ // TODO:  CartSummaryCard; mobile layout squished; could use scrollable rows and hover effect to indicate.
+// ✔ // TODO:  Add nav modals as components/create a wrapped for portal? Need to handle esc/click opaque black.
+// ✔ // TODO:  Styles: thanks for your order - mobile.
+// ✔ // TODO:  Adjust various tags (p) into correct semantic tags etc.
 // ✔ // TODO:  Z-Index manager; Nav top
 // ✔ // TODO:  Possible redundant styles imports on pages/categories to be removed.
 // ✔ // TODO:  Replace divs as imgs (background-image) with dedicated <img>; if it is content, use <img>, if it is just styling use background-image.

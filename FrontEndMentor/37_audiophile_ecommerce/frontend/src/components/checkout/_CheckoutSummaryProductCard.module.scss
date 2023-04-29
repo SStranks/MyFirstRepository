@@ -40,3 +40,20 @@
     color: c.$col-3a;
   }
 }
+
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */
+
+.card {
+  @include mq.media(mobile-small) {
+    grid-template-areas:
+      'title quantity'
+      'price _';
+    grid-template-columns: auto auto;
+
+    &__img {
+      display: none;
+    }
+  }
+}

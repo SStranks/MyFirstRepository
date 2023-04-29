@@ -1,7 +1,7 @@
 import CheckoutSummaryProductCard from '#Components/checkout/CheckoutSummaryProductCard';
-import OrderCompleteCard from '#Components/checkout/OrderCompleteCard';
 import InputRadio from '#Components/custom/input/InputRadio';
 import InputText from '#Components/custom/input/InputText';
+import OrderCompleteModal from '#Components/modal/OrderCompleteModal';
 import MainTagLayout from '#Layouts/MainTagLayout';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -49,6 +49,7 @@ function CheckoutPage(): JSX.Element {
   };
 
   const closeOrderCompleteModal = () => {
+    console.log('btn clicked');
     document.body.style.overflow = 'unset';
     setModalOpen(false);
   };
@@ -165,7 +166,7 @@ function CheckoutPage(): JSX.Element {
           </button>
         </div>
       </form>
-      <OrderCompleteCard
+      <OrderCompleteModal
         modalOpen={modalOpen}
         modalClose={closeOrderCompleteModal}
       />

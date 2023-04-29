@@ -22,10 +22,11 @@ const cartProducts = [
 type ElemProps = {
   itemsQuantity: number;
   totalAmount: number;
+  closeCartModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function CartSummaryCard(props: ElemProps): JSX.Element {
-  const { itemsQuantity, totalAmount } = props;
+  const { itemsQuantity, totalAmount, closeCartModal } = props;
   const [cartItemsQuantity, setCartItemsQuantity] =
     useState<number>(itemsQuantity);
   const [cartTotalAmount, setCartTotalAmount] = useState<number>(totalAmount);
@@ -56,7 +57,6 @@ function CartSummaryCard(props: ElemProps): JSX.Element {
   const onCheckoutRoute = location.pathname !== '/checkout';
 
   return (
-    // <div className={styles.containerTemp}>
     <div className={styles.card}>
       <p className={styles.card__header}>cart &#40;{cartItemsQuantity}&#41;</p>
       <button
@@ -72,7 +72,10 @@ function CartSummaryCard(props: ElemProps): JSX.Element {
         $ {cartTotalAmount.toLocaleString('en-US')}
       </p>
       {onCheckoutRoute && (
-        <Link to="/checkout" className={styles.card__checkoutBtn}>
+        <Link
+          to="/checkout"
+          className={styles.card__checkoutBtn}
+          onClick={() => closeCartModal(false)}>
           {/* // TODO:  on click check if cart is empty; don't nav. */}
           <button
             type="button"
@@ -83,7 +86,6 @@ function CartSummaryCard(props: ElemProps): JSX.Element {
         </Link>
       )}
     </div>
-    // </div>
   );
 }
 
