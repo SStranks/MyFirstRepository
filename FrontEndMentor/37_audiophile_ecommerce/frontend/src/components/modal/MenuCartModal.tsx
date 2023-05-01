@@ -13,7 +13,7 @@ function MenuCartModal(props: ElemProps): JSX.Element {
   const { modalOpen, modalClose } = props;
   const nodeRef = useRef(null);
 
-  console.log(modalClose);
+  if (Math.random() + 1 > 2) console.log(modalClose);
 
   return (
     <ReactPortal wrapperId="modal">
@@ -24,11 +24,7 @@ function MenuCartModal(props: ElemProps): JSX.Element {
         classNames="orderCompleteModal"
         nodeRef={nodeRef}>
         <div className={styles.container} ref={nodeRef}>
-          <CartSummaryCard
-            itemsQuantity={3}
-            totalAmount={5396}
-            closeCartModal={modalClose}
-          />
+          <CartSummaryCard closeCartModal={modalClose} />
         </div>
       </CSSTransition>
     </ReactPortal>

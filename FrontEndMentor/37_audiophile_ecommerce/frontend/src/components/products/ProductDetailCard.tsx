@@ -1,4 +1,4 @@
-import ProductQuantityButton from '#Components/custom/buttons/ProductQuantityButton';
+// import ProductQuantityButton from '#Components/custom/buttons/ProductQuantityButton';
 import styles from './_ProductDetailCard.module.scss';
 
 type ElemProps = {
@@ -70,7 +70,11 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
             $ {productPrice.toLocaleString('en-US')}
           </p>
           <div className={styles.cardPrimary__purchase}>
-            <ProductQuantityButton appendClass="" />
+            {/* <ProductQuantityButton
+              appendClass=""
+              productId={null}
+              productQuantity={1}
+            /> */}
             <button className={styles.cardPrimary__btn} type="button">
               add to cart
             </button>

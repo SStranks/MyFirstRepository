@@ -1,75 +1,53 @@
-import { useEffect, useState } from 'react';
+import { useShoppingCartContext } from '#Context/ShoppingCartContext';
+import ProductData from '#Data/Data.json';
 import { Link, useLocation } from 'react-router-dom';
 import CartProductCard from './CartProductCard';
 import styles from './_CartSummaryCard.module.scss';
 
-// TEMP DEV: .
-const cartProducts = [
-  {
-    productImg: '/img/cart/image-xx99-mark-two-headphones.jpg',
-    productTitle: 'xx99 mk ii',
-    productPrice: 2999,
-    productQuantity: 1,
-  },
-  {
-    productImg: '/img/cart/image-xx99-mark-two-headphones.jpg',
-    productTitle: 'xx99 mk iii',
-    productPrice: 2999,
-    productQuantity: 1,
-  },
-];
-
 type ElemProps = {
-  itemsQuantity: number;
-  totalAmount: number;
   closeCartModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function CartSummaryCard(props: ElemProps): JSX.Element {
-  const { itemsQuantity, totalAmount, closeCartModal } = props;
-  const [cartItemsQuantity, setCartItemsQuantity] =
-    useState<number>(itemsQuantity);
-  const [cartTotalAmount, setCartTotalAmount] = useState<number>(totalAmount);
-  const [cartItems, setCartItems] = useState<JSX.Element[]>([]);
+  const { closeCartModal } = props;
   const location = useLocation();
+  const { cartItems, cartTotalPrice, cartItemsCount, removeAllItems } =
+    useShoppingCartContext();
 
-  useEffect(() => {
-    const productsList = cartProducts.map((el) => {
-      return (
-        <CartProductCard
-          key={el.productTitle}
-          productImg={el.productImg}
-          productTitle={el.productTitle}
-          productPrice={el.productPrice}
-        />
-      );
-    });
-    setCartItems(productsList);
-  }, []);
+  const cartItemsCards = cartItems.map((product) => {
+    const productData = ProductData.find((el) => el.id === product.id);
 
-  const removeAllItemsBtn = () => {
-    setCartTotalAmount(0);
-    setCartItemsQuantity(0);
-    setCartItems([]);
-  };
+    if (!productData) return false;
+
+    return (
+      <CartProductCard
+        key={productData.id}
+        productId={productData.id}
+        productImg={productData.cartImg}
+        productTitle={productData.cartSlug}
+        productPrice={productData.price}
+        productQuantity={product.quantity}
+      />
+    );
+  });
 
   // Hide the checkout link if already at checkout
   const onCheckoutRoute = location.pathname !== '/checkout';
 
   return (
     <div className={styles.card}>
-      <p className={styles.card__header}>cart &#40;{cartItemsQuantity}&#41;</p>
+      <p className={styles.card__header}>cart &#40;{cartItemsCount}&#41;</p>
       <button
         className={styles.card__removeAllBtn}
         type="button"
-        onClick={removeAllItemsBtn}
+        onClick={removeAllItems}
         aria-label="remove all products from cart">
         remove all
       </button>
-      <div className={styles.card__productList}>{cartItems}</div>
+      <div className={styles.card__productList}>{cartItemsCards}</div>
       <p className={styles.card__total}>total</p>
       <p className={styles.card__amount}>
-        $ {cartTotalAmount.toLocaleString('en-US')}
+        $ {cartTotalPrice().toLocaleString('en-US')}
       </p>
       {onCheckoutRoute && (
         <Link
@@ -80,7 +58,7 @@ function CartSummaryCard(props: ElemProps): JSX.Element {
           <button
             type="button"
             // onClick={navigateToCheckout}
-            disabled={cartItemsQuantity < 0}>
+            disabled={cartItemsCount < 0}>
             checkout
           </button>
         </Link>

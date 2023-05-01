@@ -1,3 +1,4 @@
+import { ShoppingCartProvider } from '#Context/ShoppingCartContext';
 import DefaultLayout from '#Layouts/DefaultLayout';
 import CheckoutPage from '#Pages/checkout/CheckoutPage';
 import EarphonesPage from '#Pages/earphones/EarphonesPage';
@@ -41,18 +42,26 @@ import { Route, Routes } from 'react-router-dom';
 
 function App(): JSX.Element {
   return (
-    <DefaultLayout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/headphones" element={<HeadphonesPage />} />
-        <Route path="/headphones/:productId" element={<ProductDetailsPage />} />
-        <Route path="/speakers" element={<SpeakersPage />} />
-        <Route path="/speakers/:productId" element={<ProductDetailsPage />} />
-        <Route path="/earphones" element={<EarphonesPage />} />
-        <Route path="/earphones/:productId" element={<ProductDetailsPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
-      </Routes>
-    </DefaultLayout>
+    <ShoppingCartProvider>
+      <DefaultLayout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/headphones" element={<HeadphonesPage />} />
+          <Route
+            path="/headphones/:productId"
+            element={<ProductDetailsPage />}
+          />
+          <Route path="/speakers" element={<SpeakersPage />} />
+          <Route path="/speakers/:productId" element={<ProductDetailsPage />} />
+          <Route path="/earphones" element={<EarphonesPage />} />
+          <Route
+            path="/earphones/:productId"
+            element={<ProductDetailsPage />}
+          />
+          <Route path="/checkout" element={<CheckoutPage />} />
+        </Routes>
+      </DefaultLayout>
+    </ShoppingCartProvider>
   );
 }
 

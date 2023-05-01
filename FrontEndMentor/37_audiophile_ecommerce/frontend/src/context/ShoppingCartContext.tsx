@@ -1,0 +1,100 @@
+import ProductData from '#Data/Data.json';
+import { createContext, useContext, useState } from 'react';
+
+type CartItem = {
+  id: number;
+  quantity: number;
+};
+
+type ShoppingCartContext = {
+  cartTotalPrice: () => number;
+  increaseCartItem: (id: number) => void;
+  decreaseCartItem: (id: number) => void;
+  removeItem: (id: number) => void;
+  removeAllItems: () => void;
+  cartItemsCount: number;
+  cartItems: CartItem[];
+};
+
+type ElemProps = {
+  children: React.ReactNode;
+};
+
+const ShoppingCartContext = createContext({} as ShoppingCartContext);
+
+function useShoppingCartContext() {
+  return useContext(ShoppingCartContext);
+}
+
+function ShoppingCartProvider(props: ElemProps) {
+  const { children } = props;
+  // TEMP DEV:  state should be empty array when finished developing? Or not, for demo purposes.
+  const [cartItems, setCartItems] = useState<CartItem[]>([
+    { id: 1, quantity: 1 },
+    { id: 2, quantity: 2 },
+    { id: 4, quantity: 2 },
+  ]);
+
+  const cartItemsCount = cartItems.reduce((acc, cur) => cur.quantity + acc, 0);
+
+  function cartTotalPrice() {
+    // eslint-disable-next-line unicorn/no-array-reduce
+    return cartItems.reduce((acc, cur) => {
+      const product = ProductData.find((item) => item.id === cur.id);
+      return acc + (product?.price || 0) * cur.quantity;
+    }, 0);
+  }
+
+  function increaseCartItem(id: number) {
+    setCartItems((items) => {
+      return items.find((item) => item.id === id) === null
+        ? [...items, { id, quantity: 1 }]
+        : items.map((item) => {
+            return item.id === id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item;
+          });
+    });
+  }
+
+  function decreaseCartItem(id: number) {
+    setCartItems((items) => {
+      return items.find((item) => item.id === id)?.quantity === 1
+        ? items.filter((item) => item.id !== id)
+        : items.map((item) => {
+            return item.id === id
+              ? { ...item, quantity: item.quantity - 1 }
+              : item;
+          });
+    });
+  }
+
+  function removeItem(id: number) {
+    setCartItems((items) => {
+      return items.filter((item) => item.id !== id);
+    });
+  }
+
+  function removeAllItems() {
+    setCartItems([]);
+  }
+
+  return (
+    // NOTE:  If context has parent/s that cause re-render, then wrap provider value with useMemo to prevent unecessary re-renders of this context child consumers.
+    <ShoppingCartContext.Provider
+      // eslint-disable-next-line react/jsx-no-constructed-context-values
+      value={{
+        cartTotalPrice,
+        increaseCartItem,
+        decreaseCartItem,
+        removeItem,
+        removeAllItems,
+        cartItemsCount,
+        cartItems,
+      }}>
+      {children}
+    </ShoppingCartContext.Provider>
+  );
+}
+
+export { ShoppingCartProvider, useShoppingCartContext };

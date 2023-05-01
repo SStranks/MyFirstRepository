@@ -19,6 +19,7 @@
   width: 100%;
   height: calc(100% - v.$navbar-dim-vertical + 1px);
   padding-top: 32px;
+  padding-inline: v.$padding-desktop-horizontal;
   background-color: c.$col-3a;
   overflow-y: auto;
   z-index: f.z('modal');
