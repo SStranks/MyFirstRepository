@@ -1,33 +1,39 @@
 import { useShoppingCartContext } from '#Context/ShoppingCartContext';
 import ProductData from '#Data/Data.json';
-import { Link, useLocation } from 'react-router-dom';
+import { forwardRef } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import CartProductCard from './CartProductCard';
 import styles from './_CartSummaryCard.module.scss';
 
 type ElemProps = {
   closeCartModal: React.Dispatch<React.SetStateAction<boolean>>;
-  fRef?: React.Ref<HTMLDivElement> | null;
 };
 
-function CartSummaryCard(props: ElemProps): JSX.Element {
-  const { closeCartModal, fRef } = props;
+function CartSummaryCard(
+  props: ElemProps,
+  ref: React.Ref<HTMLDivElement>
+): JSX.Element {
+  const { closeCartModal } = props;
   const location = useLocation();
+  const nav = useNavigate();
   const { cartItems, cartTotalPrice, cartItemsCount, removeAllItems } =
     useShoppingCartContext();
 
-  const cartItemsCards = cartItems.map((product) => {
-    const productData = ProductData.find((el) => el.id === product.id);
+  const cartItemsCards = cartItems.map((cartItem) => {
+    const productData = ProductData.find(
+      (product) => product.id === cartItem.id
+    );
 
     if (!productData) return false;
 
     return (
       <CartProductCard
-        key={productData.id}
+        key={cartItem.id}
         productId={productData.id}
         productImg={productData.cartImg}
         productTitle={productData.cartSlug}
         productPrice={productData.price}
-        productQuantity={product.quantity}
+        productQuantity={cartItem.quantity}
       />
     );
   });
@@ -35,8 +41,14 @@ function CartSummaryCard(props: ElemProps): JSX.Element {
   // Hide the checkout link if already at checkout
   const onCheckoutRoute = location.pathname !== '/checkout';
 
+  // If cart not empty, navigate to checkout
+  const checkoutBtnHandler = () => {
+    nav('/checkout');
+    closeCartModal(false);
+  };
+
   return (
-    <div className={styles.card} ref={fRef}>
+    <div className={styles.card} ref={ref}>
       <p className={styles.card__header}>cart &#40;{cartItemsCount}&#41;</p>
       <button
         className={styles.card__removeAllBtn}
@@ -51,21 +63,16 @@ function CartSummaryCard(props: ElemProps): JSX.Element {
         $ {cartTotalPrice().toLocaleString('en-US')}
       </p>
       {onCheckoutRoute && (
-        <Link
-          to="/checkout"
+        <button
           className={styles.card__checkoutBtn}
-          onClick={() => closeCartModal(false)}>
-          {/* // TODO:  on click check if cart is empty; don't nav. */}
-          <button
-            type="button"
-            // onClick={navigateToCheckout}
-            disabled={cartItemsCount < 0}>
-            checkout
-          </button>
-        </Link>
+          type="button"
+          onClick={checkoutBtnHandler}
+          disabled={cartItemsCount === 0}>
+          checkout
+        </button>
       )}
     </div>
   );
 }
 
-export default CartSummaryCard;
+export default forwardRef(CartSummaryCard);

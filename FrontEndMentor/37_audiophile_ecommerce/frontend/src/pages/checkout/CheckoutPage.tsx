@@ -2,43 +2,32 @@ import CheckoutSummaryProductCard from '#Components/checkout/CheckoutSummaryProd
 import InputRadio from '#Components/custom/input/InputRadio';
 import InputText from '#Components/custom/input/InputText';
 import OrderCompleteModal from '#Components/modal/OrderCompleteModal';
+import { useShoppingCartContext } from '#Context/ShoppingCartContext';
+import ProductData from '#Data/Data.json';
 import MainTagLayout from '#Layouts/MainTagLayout';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './_CheckoutPage.module.scss';
 
-// TEMP DEV: .
-const invoiceTotal = 5396;
-const invoiceShipping = 50;
-const invoiceVAT = 1079;
-const invoiceGrandTotal = 5446;
-const cartProducts = [
-  {
-    productImg: '/img/cart/image-xx99-mark-two-headphones.jpg',
-    productTitle: 'xx99 mk ii',
-    productPrice: 2999,
-    productQuantity: 1,
-  },
-  {
-    productImg: '/img/cart/image-xx99-mark-two-headphones.jpg',
-    productTitle: 'xx99 mk iii',
-    productPrice: 2999,
-    productQuantity: 1,
-  },
-];
-
 function CheckoutPage(): JSX.Element {
   const navHook = useNavigate();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const { cartItems, cartTotalPrice } = useShoppingCartContext();
 
-  const productsList = cartProducts.map((el) => {
+  const productsList = cartItems.map((cartItem) => {
+    const productData = ProductData.find(
+      (product) => product.id === cartItem.id
+    );
+
+    if (!productData) return false;
+
     return (
       <CheckoutSummaryProductCard
-        key={el.productTitle}
-        productImg={el.productImg}
-        productTitle={el.productTitle}
-        productPrice={el.productPrice}
-        productQuantity={el.productQuantity}
+        key={cartItem.id}
+        productImg={productData.cartImg}
+        productTitle={productData.cartSlug}
+        productPrice={productData.price}
+        productQuantity={cartItem.quantity}
       />
     );
   });
@@ -49,10 +38,14 @@ function CheckoutPage(): JSX.Element {
   };
 
   const closeOrderCompleteModal = () => {
-    console.log('btn clicked');
     document.body.style.overflow = 'unset';
     setModalOpen(false);
   };
+
+  const totalAmount = cartTotalPrice();
+  const vatAmount = totalAmount * 0.2;
+  const shippingAmount = 50;
+  const grandTotal = totalAmount + vatAmount + shippingAmount;
 
   return (
     <MainTagLayout appendClass={styles.mainTag}>
@@ -137,17 +130,17 @@ function CheckoutPage(): JSX.Element {
           <div className={styles.summary__financial}>
             <p className={styles.summary__financial__heading}>total</p>
             <p className={styles.summary__financial__total}>
-              $ {invoiceTotal.toLocaleString('en-US')}
+              $ {totalAmount.toLocaleString('en-US')}
             </p>
             <p className={styles.summary__financial__heading}>shipping</p>
             <p className={styles.summary__financial__total}>
-              $ {invoiceShipping.toLocaleString('en-US')}
+              $ {shippingAmount.toLocaleString('en-US')}
             </p>
             <p className={styles.summary__financial__heading}>
               vat &#40;included&#41;
             </p>
             <p className={styles.summary__financial__total}>
-              $ {invoiceVAT.toLocaleString('en-US')}
+              $ {vatAmount.toLocaleString('en-US')}
             </p>
             <p
               className={`${styles.summary__financial__heading} ${styles.gridLastRow}`}>
@@ -155,7 +148,7 @@ function CheckoutPage(): JSX.Element {
             </p>
             <p
               className={`${styles.summary__financial__grandTotal} ${styles.gridLastRow}`}>
-              $ {invoiceGrandTotal.toLocaleString('en-US')}
+              $ {grandTotal.toLocaleString('en-US')}
             </p>
           </div>
           <button

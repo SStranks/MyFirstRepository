@@ -23,7 +23,6 @@ function Nav(props: ElemProps): JSX.Element {
   const toggleCategoryModal = () => {
     // Overflow prevents page scrolling when modal open
     if (menuCategoryModal) {
-      document.body.style.overflow = 'unset';
       setMenuCategoryModal((prev) => !prev);
     } else {
       document.body.style.overflow = 'hidden';
@@ -35,7 +34,6 @@ function Nav(props: ElemProps): JSX.Element {
   const toggleCartModal = () => {
     // Overflow prevents page scrolling when modal open
     if (menuCartModal) {
-      document.body.style.overflow = 'unset';
       setMenuCartModal((prev) => !prev);
     } else {
       document.body.style.overflow = 'hidden';
@@ -113,7 +111,7 @@ function Nav(props: ElemProps): JSX.Element {
       </button>
       <MenuCategoryModal
         modalOpen={menuCategoryModal}
-        modalClose={setMenuCategoryModal}
+        setModal={setMenuCategoryModal}
       />
       <MenuCartModal modalOpen={menuCartModal} setModal={setMenuCartModal} />
     </nav>

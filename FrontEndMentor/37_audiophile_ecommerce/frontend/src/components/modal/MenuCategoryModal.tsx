@@ -1,30 +1,36 @@
 import ProductExampleShopList from '#Components/products/ProductExampleShopList';
+import useModalClose from '#Hooks/useModalClose';
 import React, { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import ReactPortal from './ReactPortal';
 import styles from './_MenuCategoryModal.module.scss';
 
+const scrollUnlock = () => {
+  document.body.style.overflow = 'unset';
+};
+
 type ElemProps = {
   modalOpen: boolean;
-  modalClose: React.Dispatch<React.SetStateAction<boolean>>;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function MenuCategoryModal(props: ElemProps): JSX.Element {
-  const { modalOpen, modalClose } = props;
+  const { modalOpen, setModal } = props;
   const nodeRef = useRef(null);
-
-  if (Math.random() + 1 > 2) console.log(modalClose);
+  const modalContentsRef = useRef<HTMLDivElement>(null);
+  useModalClose(setModal, modalContentsRef); // Handles ESC and Mouse Click
 
   return (
     <ReactPortal wrapperId="modal">
       <CSSTransition
         in={modalOpen}
+        onExit={scrollUnlock}
         timeout={{ exit: 800 }}
         unmountOnExit
         classNames="orderCompleteModal"
         nodeRef={nodeRef}>
         <div className={styles.container} ref={nodeRef}>
-          <div className={styles.elementContainer}>
+          <div className={styles.elementContainer} ref={modalContentsRef}>
             <ProductExampleShopList appendClass="" />
           </div>
         </div>

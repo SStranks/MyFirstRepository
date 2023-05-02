@@ -5,6 +5,10 @@ import { CSSTransition } from 'react-transition-group';
 import ReactPortal from './ReactPortal';
 import styles from './_MenuCartModal.module.scss';
 
+const scrollUnlock = () => {
+  document.body.style.overflow = 'unset';
+};
+
 type ElemProps = {
   modalOpen: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,12 +24,13 @@ function MenuCartModal(props: ElemProps): JSX.Element {
     <ReactPortal wrapperId="modal">
       <CSSTransition
         in={modalOpen}
+        onExit={scrollUnlock}
         timeout={{ exit: 800 }}
         unmountOnExit
         classNames="orderCompleteModal"
         nodeRef={nodeRef}>
         <div className={styles.container} ref={nodeRef}>
-          <CartSummaryCard closeCartModal={setModal} fRef={modalContentsRef} />
+          <CartSummaryCard closeCartModal={setModal} ref={modalContentsRef} />
         </div>
       </CSSTransition>
     </ReactPortal>

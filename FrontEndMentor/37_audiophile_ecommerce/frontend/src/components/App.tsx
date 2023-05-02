@@ -13,7 +13,6 @@ import { Route, Routes } from 'react-router-dom';
 // ✖ // DEBUG:  Nav sticky transition; see if we can fade out on class remove - setting transition implicitly on nav will trigger on element mount.
 // ✖ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
 // ✖ // DEBUG:  Modal causing scrollbar width resize.
-// ✖ // TODO:  menuCart/Category modals closeModal prop; necessary/delete?
 // ✖ // TODO:  Subtle animations for nav modals
 // ✖ // TODO:  Checkout form: Functionality. Error states.
 // ✖ // TODO:  Checkout form: Radio buttons, checked and required; useState required?
@@ -23,6 +22,8 @@ import { Route, Routes } from 'react-router-dom';
 // ✔ // DEBUG:  Flicker when changing routes. useLayoutEffect causing it?
 // ✔ // DEBUG:  Nav component rerenders on route switch - sit outside page layouts?
 // ✔ // DEBUG:  Various resizing on Home page: grid images max out at 1110px.
+// ✔ // TODO:  Checkout page; summary card is not dynamic with context
+// ✔ // TODO:  menuCart/Category modals closeModal prop; necessary/delete?
 // ✔ // TODO:  Cart system; useContext
 // ✔ // TODO:  CartSummaryCard; mobile layout squished; could use scrollable rows and hover effect to indicate.
 // ✔ // TODO:  Add nav modals as components/create a wrapped for portal? Need to handle esc/click opaque black.
