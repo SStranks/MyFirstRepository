@@ -17,13 +17,13 @@ import { Route, Routes } from 'react-router-dom';
 // ✖ // TODO:  Subtle animations for nav modals
 // ✖ // TODO:  Checkout form: Functionality. Error states.
 // ✖ // TODO:  Checkout form: Radio buttons, checked and required; useState required?
-// ✖ // TODO:  Cart system; useContext
 // ✖ // TODO:  Add hover animation on category images; vertical beizer.
 // ✖ // TODO:  ARIA: see https://alistapart.com/article/accessibility-the-missing-ingredient/ for how to do the ProductQuantityButton component ARIA.
 // ✔ // DEBUG:  Category page product images; set width/height on eaech source? to stop flicker layout?
 // ✔ // DEBUG:  Flicker when changing routes. useLayoutEffect causing it?
 // ✔ // DEBUG:  Nav component rerenders on route switch - sit outside page layouts?
 // ✔ // DEBUG:  Various resizing on Home page: grid images max out at 1110px.
+// ✔ // TODO:  Cart system; useContext
 // ✔ // TODO:  CartSummaryCard; mobile layout squished; could use scrollable rows and hover effect to indicate.
 // ✔ // TODO:  Add nav modals as components/create a wrapped for portal? Need to handle esc/click opaque black.
 // ✔ // TODO:  Styles: thanks for your order - mobile.

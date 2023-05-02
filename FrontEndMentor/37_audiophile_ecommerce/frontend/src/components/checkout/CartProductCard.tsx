@@ -1,4 +1,5 @@
-import ProductQuantityButton from '#Components/custom/buttons/ProductQuantityButton';
+import QuantityToggleButton from '#Components/custom/buttons/QuantityToggleButton';
+import { useShoppingCartContext } from '#Context/ShoppingCartContext';
 import styles from './_CartProductCard.module.scss';
 
 type ElemProps = {
@@ -9,10 +10,18 @@ type ElemProps = {
   productQuantity: number;
 };
 
-// TODO:  Make cart toggles and quantities dynamic
 function CartProductCard(props: ElemProps): JSX.Element {
   const { productId, productImg, productTitle, productPrice, productQuantity } =
     props;
+  const { decreaseCartItem, increaseCartItem } = useShoppingCartContext();
+
+  const decreaseFn = () => {
+    decreaseCartItem(productId);
+  };
+
+  const increaseFn = () => {
+    increaseCartItem(productId);
+  };
 
   return (
     <div className={styles.card} aria-labelledby={productTitle}>
@@ -23,10 +32,12 @@ function CartProductCard(props: ElemProps): JSX.Element {
       <p className={styles.card__price}>
         $ {productPrice.toLocaleString('en-US')}
       </p>
-      <ProductQuantityButton
+      <QuantityToggleButton
         appendClass={styles.productQuantityBtn}
-        productId={productId}
-        productQuantity={productQuantity}
+        currentValue={productQuantity}
+        maxLimit={99}
+        decreaseFn={decreaseFn}
+        increaseFn={increaseFn}
       />
     </div>
   );

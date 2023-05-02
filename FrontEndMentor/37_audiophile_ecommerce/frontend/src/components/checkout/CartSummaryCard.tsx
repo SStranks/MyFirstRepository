@@ -6,10 +6,11 @@ import styles from './_CartSummaryCard.module.scss';
 
 type ElemProps = {
   closeCartModal: React.Dispatch<React.SetStateAction<boolean>>;
+  fRef?: React.Ref<HTMLDivElement> | null;
 };
 
 function CartSummaryCard(props: ElemProps): JSX.Element {
-  const { closeCartModal } = props;
+  const { closeCartModal, fRef } = props;
   const location = useLocation();
   const { cartItems, cartTotalPrice, cartItemsCount, removeAllItems } =
     useShoppingCartContext();
@@ -35,7 +36,7 @@ function CartSummaryCard(props: ElemProps): JSX.Element {
   const onCheckoutRoute = location.pathname !== '/checkout';
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} ref={fRef}>
       <p className={styles.card__header}>cart &#40;{cartItemsCount}&#41;</p>
       <button
         className={styles.card__removeAllBtn}

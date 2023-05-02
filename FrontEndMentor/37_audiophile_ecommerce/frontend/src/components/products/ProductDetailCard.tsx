@@ -1,8 +1,9 @@
-// import ProductQuantityButton from '#Components/custom/buttons/ProductQuantityButton';
+import AddToCartButton from '#Components/custom/buttons/AddToCartButton';
 import styles from './_ProductDetailCard.module.scss';
 
 type ElemProps = {
   appendClass: string;
+  productId: number;
   newProduct: boolean;
   productImages: { desktop: string; tablet: string; mobile: string };
   productTitle: string;
@@ -15,6 +16,7 @@ type ElemProps = {
 function ProductDetailCard(props: ElemProps): JSX.Element {
   const {
     appendClass,
+    productId,
     newProduct,
     productImages,
     productTitle,
@@ -70,14 +72,17 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
             $ {productPrice.toLocaleString('en-US')}
           </p>
           <div className={styles.cardPrimary__purchase}>
-            {/* <ProductQuantityButton
+            <AddToCartButton productId={productId} />
+            {/* <QuantityToggleButton
               appendClass=""
-              productId={null}
-              productQuantity={1}
-            /> */}
+              initialValue={1}
+              minLimit={1}
+              maxLimit={99}
+              returnValue={testFn}
+            />
             <button className={styles.cardPrimary__btn} type="button">
               add to cart
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

@@ -30,6 +30,7 @@ function ProductDetailLayout(): JSX.Element {
       {product && (
         <ProductDetailCard
           appendClass={styles.productDetailCard}
+          productId={productId}
           newProduct={product.new}
           productImages={product.image}
           productTitle={product.productName}

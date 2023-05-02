@@ -8,7 +8,7 @@ type CartItem = {
 
 type ShoppingCartContext = {
   cartTotalPrice: () => number;
-  increaseCartItem: (id: number) => void;
+  increaseCartItem: (id: number, val?: number) => void;
   decreaseCartItem: (id: number) => void;
   removeItem: (id: number) => void;
   removeAllItems: () => void;
@@ -45,15 +45,15 @@ function ShoppingCartProvider(props: ElemProps) {
     }, 0);
   }
 
-  function increaseCartItem(id: number) {
+  function increaseCartItem(id: number, quantity = 1) {
     setCartItems((items) => {
-      return items.find((item) => item.id === id) === null
-        ? [...items, { id, quantity: 1 }]
-        : items.map((item) => {
+      return items.some((item) => item.id === id)
+        ? items.map((item) => {
             return item.id === id
-              ? { ...item, quantity: item.quantity + 1 }
+              ? { ...item, quantity: item.quantity + quantity }
               : item;
-          });
+          })
+        : [...items, { id, quantity }];
     });
   }
 

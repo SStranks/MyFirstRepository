@@ -115,7 +115,7 @@ function Nav(props: ElemProps): JSX.Element {
         modalOpen={menuCategoryModal}
         modalClose={setMenuCategoryModal}
       />
-      <MenuCartModal modalOpen={menuCartModal} modalClose={setMenuCartModal} />
+      <MenuCartModal modalOpen={menuCartModal} setModal={setMenuCartModal} />
     </nav>
   );
 }

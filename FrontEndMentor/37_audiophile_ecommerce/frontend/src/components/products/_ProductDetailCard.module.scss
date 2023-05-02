@@ -55,10 +55,6 @@
     flex-wrap: wrap;
     gap: 16px;
   }
-
-  &__btn {
-    @include btn.btn-default-1;
-  }
 }
 
 .cardSecondary {

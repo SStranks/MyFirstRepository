@@ -1,4 +1,5 @@
 import CartSummaryCard from '#Components/checkout/CartSummaryCard';
+import useModalClose from '#Hooks/useModalClose';
 import { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import ReactPortal from './ReactPortal';
@@ -6,14 +7,14 @@ import styles from './_MenuCartModal.module.scss';
 
 type ElemProps = {
   modalOpen: boolean;
-  modalClose: React.Dispatch<React.SetStateAction<boolean>>;
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function MenuCartModal(props: ElemProps): JSX.Element {
-  const { modalOpen, modalClose } = props;
-  const nodeRef = useRef(null);
-
-  if (Math.random() + 1 > 2) console.log(modalClose);
+  const { modalOpen, setModal } = props;
+  const nodeRef = useRef<HTMLDivElement>(null);
+  const modalContentsRef = useRef<HTMLDivElement>(null);
+  useModalClose(setModal, modalContentsRef); // Handles ESC and Mouse Click
 
   return (
     <ReactPortal wrapperId="modal">
@@ -24,7 +25,7 @@ function MenuCartModal(props: ElemProps): JSX.Element {
         classNames="orderCompleteModal"
         nodeRef={nodeRef}>
         <div className={styles.container} ref={nodeRef}>
-          <CartSummaryCard closeCartModal={modalClose} />
+          <CartSummaryCard closeCartModal={setModal} fRef={modalContentsRef} />
         </div>
       </CSSTransition>
     </ReactPortal>

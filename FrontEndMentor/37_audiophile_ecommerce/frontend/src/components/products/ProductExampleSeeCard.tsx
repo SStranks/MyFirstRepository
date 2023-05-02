@@ -10,7 +10,7 @@ type ElemProps = {
 
 function ProductExampleSeeCard(props: ElemProps): JSX.Element {
   const { productImages, productTitle, productCategory, productId } = props;
-  console.log(productImages);
+
   return (
     <div className={styles.card} aria-label={`see product ${productTitle}`}>
       <picture>
