@@ -1,14 +1,12 @@
 import CompanyStatement from '#Components/products/CompanyStatement';
+import ProductDetailCard from '#Components/products/ProductDetailCard';
 import ProductExampleSeeCardList from '#Components/products/ProductExampleSeeCardList';
 import ProductExampleShopList from '#Components/products/ProductExampleShopList';
 import ProductImageGrid from '#Components/products/ProductImageGrid';
-import { useLocation, useNavigate } from 'react-router-dom';
-
-// TEMP DEV:  .
-import ProductDetailCard from '#Components/products/ProductDetailCard';
 import ProductData from '#Data/Data.json';
-import styles from './_ProductDetailLayout.module.scss';
+import { useLocation, useNavigate } from 'react-router-dom';
 import MainTagLayout from './MainTagLayout';
+import styles from './_ProductDetailLayout.module.scss';
 
 function ProductDetailLayout(): JSX.Element {
   const navHook = useNavigate();

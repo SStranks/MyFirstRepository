@@ -5,6 +5,7 @@ import OrderCompleteModal from '#Components/modal/OrderCompleteModal';
 import { useShoppingCartContext } from '#Context/ShoppingCartContext';
 import ProductData from '#Data/Data.json';
 import MainTagLayout from '#Layouts/MainTagLayout';
+import formatCurrency from '#Utils/formatCurrency';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './_CheckoutPage.module.scss';
@@ -45,7 +46,7 @@ function CheckoutPage(): JSX.Element {
   const totalAmount = cartTotalPrice();
   const vatAmount = totalAmount * 0.2;
   const shippingAmount = 50;
-  const grandTotal = totalAmount + vatAmount + shippingAmount;
+  const grandTotal = formatCurrency(totalAmount + vatAmount + shippingAmount);
 
   return (
     <MainTagLayout appendClass={styles.mainTag}>
@@ -129,26 +130,22 @@ function CheckoutPage(): JSX.Element {
           <div className={styles.summary__products}>{productsList}</div>
           <div className={styles.summary__financial}>
             <p className={styles.summary__financial__heading}>total</p>
-            <p className={styles.summary__financial__total}>
-              $ {totalAmount.toLocaleString('en-US')}
-            </p>
+            <p className={styles.summary__financial__total}>$ {totalAmount}</p>
             <p className={styles.summary__financial__heading}>shipping</p>
             <p className={styles.summary__financial__total}>
-              $ {shippingAmount.toLocaleString('en-US')}
+              $ {shippingAmount}
             </p>
             <p className={styles.summary__financial__heading}>
               vat &#40;included&#41;
             </p>
-            <p className={styles.summary__financial__total}>
-              $ {vatAmount.toLocaleString('en-US')}
-            </p>
+            <p className={styles.summary__financial__total}>$ {vatAmount}</p>
             <p
               className={`${styles.summary__financial__heading} ${styles.gridLastRow}`}>
               grand total
             </p>
             <p
               className={`${styles.summary__financial__grandTotal} ${styles.gridLastRow}`}>
-              $ {grandTotal.toLocaleString('en-US')}
+              $ {grandTotal}
             </p>
           </div>
           <button

@@ -1,16 +1,11 @@
+import ViewMoreCartItemsButton from '#Components/custom/buttons/ViewMoreCartItemsButton';
+import { useShoppingCartContext } from '#Context/ShoppingCartContext';
+import ProductData from '#Data/Data.json';
 import IconCheck from '#Svg/desktop/icon-check.svg';
+import formatCurrency from '#Utils/formatCurrency';
+import { useRef } from 'react';
 import CheckoutSummaryProductCard from './CheckoutSummaryProductCard';
 import styles from './_OrderCompleteCard.module.scss';
-
-// TEMP DEV: .
-const productExample = {
-  productImg: '/img/cart/image-xx99-mark-two-headphones.jpg',
-  productTitle: 'xx99 mk ii',
-  productPrice: 2999,
-  productQuantity: 1,
-};
-const grandTotal = 5446;
-const cartTotalQuantity = 2;
 
 type ElemProps = {
   modalClose: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,6 +13,36 @@ type ElemProps = {
 
 function OrderCompleteCard(props: ElemProps): JSX.Element | null {
   const { modalClose } = props;
+  const { cartTotalPrice, cartItems } = useShoppingCartContext();
+  const grandTotalRef = useRef<HTMLDivElement>(null);
+  const itemsListRef = useRef<HTMLDivElement>(null);
+
+  const cartItemsCards = cartItems.map((cartItem) => {
+    const productData = ProductData.find(
+      (product) => product.id === cartItem.id
+    );
+
+    if (!productData) return false;
+
+    return (
+      <CheckoutSummaryProductCard
+        key={cartItem.id}
+        productImg={productData.cartImg}
+        productTitle={productData.cartSlug}
+        productPrice={productData.price}
+        productQuantity={cartItem.quantity}
+      />
+    );
+  });
+
+  const viewMoreBtnHandler = () => {
+    grandTotalRef.current?.classList.toggle(
+      styles['orderDetails__grandTotal--active']
+    );
+    itemsListRef.current?.classList.toggle(
+      styles['orderDetails__items--active']
+    );
+  };
 
   return (
     <div className={styles.card} aria-labelledby="header">
@@ -31,22 +56,22 @@ function OrderCompleteCard(props: ElemProps): JSX.Element | null {
         You will receive an email conformation shortly
       </p>
       <div className={styles.orderDetails}>
-        <div className={styles.orderDetails__items}>
-          <CheckoutSummaryProductCard
-            productImg={productExample.productImg}
-            productTitle={productExample.productTitle}
-            productPrice={productExample.productPrice}
-            productQuantity={productExample.productQuantity}
-          />
-          <hr className={styles.orderDetails__items__hr} />
-          <p className={styles.orderDetails__items__totalQuantity}>
-            and {cartTotalQuantity} other item&#40;s&#41;
-          </p>
+        <div className={styles.orderDetails__items} ref={itemsListRef}>
+          {cartItemsCards}
+          {cartItems.length > 1 && (
+            <hr className={styles.orderDetails__items__hr} />
+          )}
+          {cartItems.length > 1 && (
+            <ViewMoreCartItemsButton
+              cartItemLength={cartItems.length}
+              onClickFn={viewMoreBtnHandler}
+            />
+          )}
         </div>
-        <div className={styles.orderDetails__grandTotal}>
+        <div className={styles.orderDetails__grandTotal} ref={grandTotalRef}>
           <p className={styles.orderDetails__grandTotal__title}>grand total</p>
           <p className={styles.orderDetails__grandTotal__amount}>
-            ${grandTotal.toLocaleString('en-US')}
+            ${formatCurrency(cartTotalPrice())}
           </p>
         </div>
       </div>

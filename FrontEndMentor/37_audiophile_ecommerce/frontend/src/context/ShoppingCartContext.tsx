@@ -28,7 +28,6 @@ function useShoppingCartContext() {
 
 function ShoppingCartProvider(props: ElemProps) {
   const { children } = props;
-  // TEMP DEV:  state should be empty array when finished developing? Or not, for demo purposes.
   const [cartItems, setCartItems] = useState<CartItem[]>([
     { id: 1, quantity: 1 },
     { id: 2, quantity: 2 },
