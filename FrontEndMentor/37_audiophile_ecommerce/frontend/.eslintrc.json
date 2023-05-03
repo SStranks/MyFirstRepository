@@ -54,7 +54,10 @@
     "unicorn/filename-case": [
       "error",
       {
-        "case": "pascalCase",
+        "cases": {
+          "camelCase": true,
+          "pascalCase": true
+        },
         "ignore": [
           "index.(js|jsx|ts|tsx)",
           "webpack.*",
