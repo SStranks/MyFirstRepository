@@ -1,0 +1,13 @@
+@use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
+// @use '#Sass/abstracts/mixins' as mx;
+// @use '#Sass/abstracts/media-queries' as mq;
+// @use '#Sass/abstracts/variables' as v;
+// @use '#Sass/components/buttons' as btn;
+
+.button {
+  font-weight: 700;
+  font-size: f.px2rem(12);
+  letter-spacing: f.px2rem(-0.21);
+  color: c.$col-3a;
+}
