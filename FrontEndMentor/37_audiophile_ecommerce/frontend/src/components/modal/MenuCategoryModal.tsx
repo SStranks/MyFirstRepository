@@ -12,13 +12,14 @@ const scrollUnlock = () => {
 type ElemProps = {
   modalOpen: boolean;
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  modalButtonRef: React.Ref<HTMLButtonElement>;
 };
 
 function MenuCategoryModal(props: ElemProps): JSX.Element {
-  const { modalOpen, setModal } = props;
+  const { modalOpen, setModal, modalButtonRef } = props;
   const nodeRef = useRef(null);
   const modalContentsRef = useRef<HTMLDivElement>(null);
-  useModalClose(setModal, modalContentsRef); // Handles ESC and Mouse Click
+  useModalClose(setModal, modalContentsRef, modalButtonRef); // Handles ESC and Mouse Click
 
   return (
     <ReactPortal wrapperId="modal">

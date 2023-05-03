@@ -14,33 +14,25 @@ type ElemProps = {
 
 function Nav(props: ElemProps): JSX.Element {
   const { appendClass } = props;
-  const [menuCategoryModal, setMenuCategoryModal] = useState(false);
-  const [menuCartModal, setMenuCartModal] = useState(false);
+  const [menuCategoryModal, setMenuCategoryModal] = useState<boolean>(false);
+  const [menuCartModal, setMenuCartModal] = useState<boolean>(false);
   const location = useLocation();
-  const ref = useRef(null);
+  const navRef = useRef<HTMLDivElement>(null);
+  const menuCartBtnRef = useRef<HTMLButtonElement>(null);
+  const menuCategoryBtnRef = useRef<HTMLButtonElement>(null);
 
-  // toggleCategoryModal and toggleCartModal ensure only one nav button modal is open at a time.
   const toggleCategoryModal = () => {
-    // Overflow prevents page scrolling when modal open
-    if (menuCategoryModal) {
-      setMenuCategoryModal((prev) => !prev);
-    } else {
-      document.body.style.overflow = 'hidden';
-      setMenuCartModal(false);
-      setMenuCategoryModal((prev) => !prev);
-    }
+    setMenuCategoryModal((prev) => !prev);
   };
 
   const toggleCartModal = () => {
-    // Overflow prevents page scrolling when modal open
-    if (menuCartModal) {
-      setMenuCartModal((prev) => !prev);
-    } else {
-      document.body.style.overflow = 'hidden';
-      setMenuCategoryModal(false);
-      setMenuCartModal((prev) => !prev);
-    }
+    setMenuCartModal((prev) => !prev);
   };
+
+  useLayoutEffect(() => {
+    document.body.style.overflow =
+      menuCartModal || menuCategoryModal ? 'hidden' : 'unset';
+  });
 
   useLayoutEffect(() => {
     // Home Page requires nav to be transparent against hero image
@@ -64,21 +56,22 @@ function Nav(props: ElemProps): JSX.Element {
       { threshold: [1] }
     );
 
-    if (ref?.current) observer.observe(ref.current);
+    if (navRef?.current) observer.observe(navRef.current);
 
     return () => observer.disconnect();
   });
 
   return (
     <nav
-      ref={ref}
+      ref={navRef}
       className={`${styles.nav} ${appendClass}`}
       id="primary-nav"
       aria-label="primary">
       <button
         className={styles.nav__menuBtn}
         type="button"
-        onClick={toggleCategoryModal}>
+        onClick={toggleCategoryModal}
+        ref={menuCategoryBtnRef}>
         <img
           src={IconMenu}
           alt="Menu Product Categories"
@@ -106,14 +99,20 @@ function Nav(props: ElemProps): JSX.Element {
       <button
         className={styles.nav__cartBtn}
         type="button"
-        onClick={toggleCartModal}>
+        onClick={toggleCartModal}
+        ref={menuCartBtnRef}>
         <img src={IconCart} alt="Shopping Cart" width="23" height="20" />
       </button>
       <MenuCategoryModal
         modalOpen={menuCategoryModal}
         setModal={setMenuCategoryModal}
+        modalButtonRef={menuCategoryBtnRef}
       />
-      <MenuCartModal modalOpen={menuCartModal} setModal={setMenuCartModal} />
+      <MenuCartModal
+        modalOpen={menuCartModal}
+        setModal={setMenuCartModal}
+        modalButtonRef={menuCartBtnRef}
+      />
     </nav>
   );
 }
