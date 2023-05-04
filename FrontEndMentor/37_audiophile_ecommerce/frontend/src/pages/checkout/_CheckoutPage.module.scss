@@ -1,137 +1,19 @@
 @use '#Sass/abstracts/colors' as c;
-@use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/media-queries' as mq;
-@use '#Sass/abstracts/variables' as v;
-@use '#Sass/components/buttons' as btn;
-@use '#Sass/components/radio' as radio;
-
-@mixin gridColumnSpan {
-  grid-column: 1 / span 2;
-  @include mq.media(mobile-all) {
-    grid-column: 1;
-  }
-}
 
 .mainTag {
   padding-top: 80px;
   background-color: c.$col-1d;
 }
 
-.form {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  column-gap: 30px;
-
-  &__btnBack {
-    @include gridColumnSpan;
-    justify-self: start;
-    @include mx.body-regular;
-    margin-bottom: 56px;
-    background-color: transparent;
-    color: c.$col-3a;
-    text-transform: capitalize;
-  }
-}
-
-.checkout {
-  padding: 48px;
-  background-color: c.$col-2b;
-  border-radius: 8px;
-
-  &__header {
-    @include mx.header-h3;
-    margin: 6px 0 40px;
-  }
-
-  &__subHeader {
-    @include gridColumnSpan;
-    @include mx.header-subtitle;
-    margin-bottom: f.px2em(16);
-    color: c.$col-1a;
-  }
-
-  &__labelTitle {
-    font-weight: 700;
-    font-size: f.px2em(12);
-    letter-spacing: f.px2em(-0.2);
-    text-transform: capitalize;
-  }
-
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
-    column-gap: 16px;
-  }
-
-  &__paymentMethod {
-    @include gridColumnSpan;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-
-  &__inputText {
-    margin-bottom: 24px;
-  }
-}
-
-.summary {
-  height: fit-content;
-  padding: 32px;
-  background-color: c.$col-2b;
-  border-radius: 8px;
-
-  &__header {
-    @include mx.header-h6;
-    margin-bottom: 32px;
-  }
-
-  &__products {
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 24px;
-    margin-bottom: 32px;
-  }
-
-  &__financial {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    row-gap: 8px;
-    margin-bottom: 32px;
-
-    &__heading {
-      @include mx.body-regular;
-      color: c.$col-3a;
-      text-transform: uppercase;
-    }
-
-    &__total {
-      @include mx.header-h6;
-      justify-self: end;
-    }
-
-    &__grandTotal {
-      @include mx.header-h6;
-      justify-self: end;
-      color: c.$col-1a;
-    }
-  }
-
-  &__btn {
-    @include btn.btn-default-1;
-    width: 100%;
-  }
-}
-
-.gridLastRow {
-  margin-top: 18px;
-}
-
-.gridColumn2 {
-  grid-column: 2;
+.btnBack {
+  justify-self: start;
+  @include mx.body-regular;
+  margin-bottom: 56px;
+  background-color: transparent;
+  color: c.$col-3a;
+  text-transform: capitalize;
 }
 
 /* -------------------------------- */
@@ -145,44 +27,5 @@
 
   @include mq.media(mobile-all) {
     padding-top: 16px;
-  }
-}
-
-.form {
-  @include mq.media(tablet-all, mobile-all) {
-    grid-template-columns: 1fr;
-    column-gap: 0;
-    row-gap: 30px;
-
-    &__btnBack {
-      grid-column: 1;
-      margin-bottom: 0;
-    }
-  }
-}
-
-.checkout {
-  @include mq.media(mobile-all) {
-    padding: 24px;
-  }
-
-  &__grid {
-    @include mq.media(mobile-all) {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-      column-gap: 0;
-    }
-  }
-
-  &__paymentMethod {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-}
-
-.gridColumn2 {
-  @include mq.media(mobile-all) {
-    grid-column: 1;
   }
 }

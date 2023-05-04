@@ -4,16 +4,19 @@ import styles from './_InputRadio.module.scss';
 //   // TODO:  Set value attribute
 interface ElemProps extends React.HTMLProps<HTMLInputElement> {
   appendClass?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputRadio = memo((props: ElemProps): JSX.Element => {
   const {
     appendClass,
+    onChange,
     id,
     checked,
     defaultChecked,
     disabled,
     name,
+    ref,
     required,
     tabIndex,
     title,
@@ -30,6 +33,8 @@ const InputRadio = memo((props: ElemProps): JSX.Element => {
         defaultChecked={defaultChecked}
         disabled={disabled}
         name={name}
+        onChange={onChange}
+        ref={ref}
         required={required}
         tabIndex={tabIndex}
         title={title}
