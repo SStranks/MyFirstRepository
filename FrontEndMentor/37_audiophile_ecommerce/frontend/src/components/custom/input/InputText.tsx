@@ -1,25 +1,57 @@
+import { memo } from 'react';
 import styles from './_InputText.module.scss';
 
-type ElemProps = {
-  appendClass: string;
-  inputName: string;
-  inputPlaceholder: string;
-};
+interface ElemProps extends React.HTMLProps<HTMLInputElement> {
+  appendClass?: string;
+}
 
-function InputText(props: ElemProps): JSX.Element {
-  const { appendClass, inputName, inputPlaceholder } = props;
+const InputText = memo((props: ElemProps): JSX.Element => {
+  const {
+    appendClass,
+    id,
+    autoCapitalize,
+    autoComplete,
+    defaultValue,
+    disabled,
+    maxLength,
+    minLength,
+    name,
+    pattern,
+    placeholder,
+    readOnly,
+    required,
+    tabIndex,
+    title,
+    value,
+  } = props;
 
   return (
-    <label className={`${styles.container} ${appendClass}`} htmlFor={inputName}>
-      <p className={styles.container__title}>{inputName}</p>
+    <label className={`${styles.container} ${appendClass}`} htmlFor={id}>
+      <p className={styles.container__title}>{id}</p>
       <input
-        className={styles.container__input}
         type="text"
-        placeholder={inputPlaceholder}
-        id={inputName}
+        className={styles.container__input}
+        id={id}
+        autoCapitalize={autoCapitalize}
+        autoComplete={autoComplete}
+        defaultValue={defaultValue}
+        disabled={disabled}
+        minLength={minLength}
+        maxLength={maxLength}
+        name={name}
+        pattern={pattern}
+        placeholder={placeholder}
+        readOnly={readOnly}
+        required={required}
+        tabIndex={tabIndex}
+        title={title}
+        value={value}
       />
     </label>
   );
-}
+});
+
+// For debugging
+InputText.displayName = 'Text Input';
 
 export default InputText;

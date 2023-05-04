@@ -1,5 +1,7 @@
 import CheckoutSummaryProductCard from '#Components/checkout/CheckoutSummaryProductCard';
+import InputEmail from '#Components/custom/input/InputEmail';
 import InputRadio from '#Components/custom/input/InputRadio';
+import InputTel from '#Components/custom/input/InputTel';
 import InputText from '#Components/custom/input/InputText';
 import OrderCompleteModal from '#Components/modal/OrderCompleteModal';
 import { useShoppingCartContext } from '#Context/ShoppingCartContext';
@@ -48,80 +50,114 @@ function CheckoutPage(): JSX.Element {
   const shippingAmount = 50;
   const grandTotal = formatCurrency(totalAmount + vatAmount + shippingAmount);
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formElement = e.target as HTMLFormElement;
+    const isValid = formElement.checkValidity();
+
+    // TODO:  Make class for this;
+    formElement.classList.add(styles.submitted);
+
+    // Focus on first invalid input
+    const firstInvalidInput = formElement.querySelector(
+      ':invalid'
+    ) as HTMLInputElement;
+    firstInvalidInput?.focus();
+
+    // Submit if valid
+    if (isValid) {
+      const dataObject = new FormData(formElement);
+      // Faux Submission
+      console.log(Object.fromEntries(dataObject.entries()));
+      openOrderCompleteModal();
+    }
+  };
+
   return (
     <MainTagLayout appendClass={styles.mainTag}>
-      <form className={styles.form}>
-        <button
-          className={styles.form__btnBack}
-          onClick={() => navHook(-1)}
-          type="button">
-          go back
-        </button>
+      <button
+        className={styles.form__btnBack}
+        onClick={() => navHook(-1)}
+        type="button">
+        go back
+      </button>
+      <form className={styles.form} onSubmit={onSubmit} noValidate>
         <div className={styles.checkout}>
           <p className={styles.checkout__header}>checkout</p>
           <div className={styles.checkout__grid}>
             <p className={styles.checkout__subHeader}>billing details</p>
             <InputText
               appendClass={styles.checkout__inputText}
-              inputName="Name"
-              inputPlaceholder="Insert full name"
+              name="Name"
+              placeholder="Insert full name"
+              required
             />
-            <InputText
+            <InputEmail
               appendClass={styles.checkout__inputText}
-              inputName="Email Address"
-              inputPlaceholder="Insert email address"
+              name="Email Address"
+              placeholder="Insert email address"
+              required
             />
-            <InputText
+            <InputTel
               appendClass={styles.checkout__inputText}
-              inputName="Phone Number"
-              inputPlaceholder="Insert phone number"
+              name="Phone Number"
+              placeholder="Insert phone number"
+              required
             />
+
             <p className={styles.checkout__subHeader}>shipping info</p>
             <InputText
               appendClass={`${styles.checkout__inputText} ${styles.gridColumnSpan}`}
-              inputName="Address"
-              inputPlaceholder="Insert address"
+              name="Address"
+              placeholder="Insert address"
+              required
             />
             <InputText
               appendClass={styles.checkout__inputText}
-              inputName="ZIP Code"
-              inputPlaceholder="Insert ZIP code"
+              name="ZIP Code"
+              placeholder="Insert ZIP code"
+              required
             />
             <InputText
               appendClass={styles.checkout__inputText}
-              inputName="City"
-              inputPlaceholder="Insert city"
+              name="City"
+              placeholder="Insert city"
+              required
             />
             <InputText
               appendClass={styles.checkout__inputText}
-              inputName="Country"
-              inputPlaceholder="Insert country"
+              name="Country"
+              placeholder="Insert country"
+              required
             />
             <p className={styles.checkout__subHeader}>payment details</p>
             <div className={styles.checkout__paymentMethod}>
               <p className={styles.checkout__labelTitle}>payment method</p>
               <InputRadio
                 appendClass=""
-                inputName="e-Money"
-                inputId="e-Money"
-                inputGroup="payment method"
+                name="payment method"
+                id="e-Money"
+                required
               />
               <InputRadio
                 appendClass={styles.gridColumn2}
-                inputName="Cash on Delivery"
-                inputId="CashOnDelivery"
-                inputGroup="payment method"
+                name="payment method"
+                id="CashOnDelivery"
+                required
               />
             </div>
             <InputText
               appendClass={styles.checkout__inputText}
-              inputName="e-Money Number"
-              inputPlaceholder="Insert e-Money number"
+              name="e-Money Number"
+              placeholder="Insert e-Money number"
+              required
             />
             <InputText
               appendClass={styles.checkout__inputText}
-              inputName="e-Money PIN"
-              inputPlaceholder="Insert e-Money PIN"
+              name="e-Money PIN"
+              placeholder="Insert e-Money PIN"
+              required
             />
           </div>
         </div>
@@ -150,8 +186,9 @@ function CheckoutPage(): JSX.Element {
           </div>
           <button
             className={styles.summary__btn}
-            type="button"
-            onClick={openOrderCompleteModal}>
+            type="submit"
+            // onClick={openOrderCompleteModal}
+          >
             continue &#38; pay
           </button>
         </div>
