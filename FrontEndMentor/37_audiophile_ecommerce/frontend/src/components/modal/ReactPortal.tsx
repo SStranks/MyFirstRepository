@@ -14,6 +14,7 @@ type WrapperState = Element | null;
 function createWrapperAndAppendToBody(wrapperId: string) {
   const wrapperElement = document.createElement('div');
   wrapperElement.setAttribute('id', wrapperId);
+  wrapperElement.setAttribute('aria-hidden', 'true');
   document.body.append(wrapperElement);
   return wrapperElement;
 }
@@ -26,7 +27,8 @@ function ReactPortal({
   const [wrapperElement, setWrapperElement] = useState<WrapperState>(null);
 
   useLayoutEffect(() => {
-    let element = document.querySelector('#wrapperId');
+    // let element = document.querySelector('#wrapperId');
+    let element = document.querySelector(`#${wrapperId}`);
     let systemCreated = false;
     // if element is not found with wrapperId or wrapperId is not provided,
     // create and append to body

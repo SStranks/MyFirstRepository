@@ -13,6 +13,12 @@
   background-color: transparent;
   border-radius: v.$border-radius-1;
 
+  &:hover {
+    & .card__img {
+      transform: translateY(10px);
+    }
+  }
+
   &__bg {
     position: absolute;
     bottom: 0;
@@ -27,6 +33,7 @@
     object-fit: contain;
     max-height: 250px;
     transform: translateY(20px);
+    transition: transform 0.2s ease-in;
   }
 
   &__name {

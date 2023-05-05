@@ -22,11 +22,19 @@ function Nav(props: ElemProps): JSX.Element {
   const menuCategoryBtnRef = useRef<HTMLButtonElement>(null);
 
   const toggleCategoryModal = () => {
-    setMenuCategoryModal((prev) => !prev);
+    setMenuCategoryModal((prev) => {
+      document.querySelector('#root')?.setAttribute('aria-hidden', `${!prev}`);
+      document.querySelector('#modal')?.setAttribute('aria-hidden', `${prev}`);
+      return !prev;
+    });
   };
 
   const toggleCartModal = () => {
-    setMenuCartModal((prev) => !prev);
+    setMenuCartModal((prev) => {
+      document.querySelector('#root')?.setAttribute('aria-hidden', `${!prev}`);
+      document.querySelector('#modal')?.setAttribute('aria-hidden', `${prev}`);
+      return !prev;
+    });
   };
 
   useLayoutEffect(() => {
