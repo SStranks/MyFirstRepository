@@ -19,8 +19,11 @@
     background-color: transparent;
   }
 
-  &__positionSticky {
+  &__positionStickyBgColor {
     background-color: c.$col-2c;
+  }
+
+  &__positionStickyTransition {
     transition: a.$nav-sticky-transition;
   }
 

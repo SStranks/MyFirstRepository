@@ -10,18 +10,18 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 // // ✔  // ✖  Checklist
 // ----------------------
-// ✖ // DEBUG:  Nav sticky transition; see if we can fade out on class remove - setting transition implicitly on nav will trigger on element mount.
 // ✖ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
-// ✖ // DEBUG:  Modal causing scrollbar width resize.
-// ✖ // TODO:  localStorage for Cart
 // ✖ // TODO:  Lazy load images
 // ✖ // TODO:  Subtle animations for nav modals
 // ✖ // TODO:  Add hover animation on category images; vertical beizer.
 // ✖ // TODO:  ARIA: see https://alistapart.com/article/accessibility-the-missing-ingredient/ for how to do the ProductQuantityButton component ARIA.
+// ✔ // DEBUG:  Modal causing scrollbar width resize.
 // ✔ // DEBUG:  Category page product images; set width/height on eaech source? to stop flicker layout?
 // ✔ // DEBUG:  Flicker when changing routes. useLayoutEffect causing it?
 // ✔ // DEBUG:  Nav component rerenders on route switch - sit outside page layouts?
 // ✔ // DEBUG:  Various resizing on Home page: grid images max out at 1110px.
+// ✔ // DEBUG:  Nav sticky transition; see if we can fade out on class remove - setting transition implicitly on nav will trigger on element mount.
+// ✔ // TODO:  localStorage for Cart
 // ✔ // TODO:  Checkout form: Functionality. Error states.
 // ✔ // TODO:  Checkout form: Radio buttons, checked and required; useState required?
 // ✔ // TODO:  Money needs two decimal places.

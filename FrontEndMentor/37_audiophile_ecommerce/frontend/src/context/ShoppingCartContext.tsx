@@ -1,5 +1,6 @@
 import ProductData from '#Data/Data.json';
-import { createContext, useContext, useState } from 'react';
+import useLocalStorage from '#Hooks/useLocalStorage';
+import { createContext, useContext } from 'react';
 
 type CartItem = {
   id: number;
@@ -28,11 +29,10 @@ function useShoppingCartContext() {
 
 function ShoppingCartProvider(props: ElemProps) {
   const { children } = props;
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    { id: 1, quantity: 1 },
-    { id: 2, quantity: 2 },
-    { id: 4, quantity: 2 },
-  ]);
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
+    'shopping-cart',
+    []
+  );
 
   const cartItemsCount = cartItems.reduce((acc, cur) => cur.quantity + acc, 0);
 

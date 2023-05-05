@@ -31,7 +31,7 @@ function Nav(props: ElemProps): JSX.Element {
 
   useLayoutEffect(() => {
     document.body.style.overflow =
-      menuCartModal || menuCategoryModal ? 'hidden' : 'unset';
+      menuCartModal || menuCategoryModal ? 'hidden' : '';
   });
 
   useLayoutEffect(() => {
@@ -42,17 +42,22 @@ function Nav(props: ElemProps): JSX.Element {
       (nav as HTMLElement).classList.add(styles.nav__navLayoutEffect);
     } else {
       (nav as HTMLElement).classList.remove(styles.nav__navLayoutEffect);
+      (nav as HTMLElement).classList.remove(
+        styles.nav__positionStickyTransition
+      );
     }
   }, [location.pathname]);
 
   useEffect(() => {
     // Changing the colour of the nav bar when scrolling (sticky)
     const observer = new IntersectionObserver(
-      ([e]) =>
+      ([e]) => {
+        e.target.classList.add(styles.nav__positionStickyTransition);
         e.target.classList.toggle(
-          styles.nav__positionSticky,
+          styles.nav__positionStickyBgColor,
           e.intersectionRatio < 1
-        ),
+        );
+      },
       { threshold: [1] }
     );
 
