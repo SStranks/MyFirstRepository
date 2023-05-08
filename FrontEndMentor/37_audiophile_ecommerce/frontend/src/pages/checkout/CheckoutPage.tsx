@@ -44,7 +44,7 @@ function CheckoutPage(): JSX.Element {
   const totalAmount = cartTotalPrice();
 
   return (
-    <MainTagLayout appendClass={styles.mainTag}>
+    <MainTagLayout appendClass={styles.mainTag} id="skipto-main">
       <button
         className={styles.btnBack}
         onClick={() => navHook(-1)}
