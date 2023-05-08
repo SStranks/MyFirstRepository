@@ -1,7 +1,7 @@
 import styles from './_CompanyStatement.module.scss';
 
 type ElemProps = {
-  appendClass: string;
+  appendClass?: string;
 };
 
 function CompanyStatement(props: ElemProps): JSX.Element {

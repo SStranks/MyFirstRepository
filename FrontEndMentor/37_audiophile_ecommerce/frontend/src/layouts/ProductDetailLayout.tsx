@@ -9,6 +9,7 @@ import MainTagLayout from './MainTagLayout';
 import styles from './_ProductDetailLayout.module.scss';
 
 function ProductDetailLayout(): JSX.Element {
+  console.log('PRODUCT PAGE');
   const navHook = useNavigate();
   const location = useLocation();
   const { productCategory, productId } = location.state;
@@ -18,7 +19,7 @@ function ProductDetailLayout(): JSX.Element {
   );
 
   return (
-    <MainTagLayout appendClass={styles.mainTag}>
+    <MainTagLayout appendClass={styles.mainTag} id="skipto-main">
       <button
         className={styles.btnBack}
         onClick={() => navHook(-1)}

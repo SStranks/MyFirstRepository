@@ -4,7 +4,7 @@ import ProductExampleSeeCard from './ProductExampleSeeCard';
 import styles from './_ProductExampleSeeCardList.module.scss';
 
 type ElemProps = {
-  appendClass: string;
+  appendClass?: string;
   currentProductId: number;
 };
 

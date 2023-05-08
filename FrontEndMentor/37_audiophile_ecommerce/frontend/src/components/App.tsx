@@ -11,7 +11,6 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 // // ✔  // ✖  Checklist
 // ----------------------
 // ✖ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
-// ✖ // TODO:  TabIndex?
 // ✖ // TODO:  Lazy load images
 // ✖ // TODO:  ARIA: see https://alistapart.com/article/accessibility-the-missing-ingredient/ for how to do the ProductQuantityButton component ARIA.
 // ✔ // DEBUG:  Modal causing scrollbar width resize.
@@ -20,6 +19,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 // ✔ // DEBUG:  Nav component rerenders on route switch - sit outside page layouts?
 // ✔ // DEBUG:  Various resizing on Home page: grid images max out at 1110px.
 // ✔ // DEBUG:  Nav sticky transition; see if we can fade out on class remove - setting transition implicitly on nav will trigger on element mount.
+// ✔ // TODO:  TabIndex?
 // ✔ // TODO:  Add hover animation on category images; vertical beizer.
 // ✔ // TODO:  Subtle animations for nav modals
 // ✔ // TODO:  localStorage for Cart

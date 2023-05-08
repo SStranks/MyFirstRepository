@@ -1,3 +1,4 @@
+import SkipTo from '#Components/custom/SkipTo';
 import Footer from '#Components/footer/Footer';
 import Nav from '#Components/nav/Nav';
 import styles from './_DefaultLayout.module.scss';
@@ -11,7 +12,9 @@ function DefaultLayout(props: ElemProps): JSX.Element {
 
   return (
     <div className={styles.container}>
-      <Nav appendClass="" />
+      <SkipTo contentName="Main Content" contentId="#skipto-main" />
+      <SkipTo contentName="Footer Content" contentId="#skipto-footer" />
+      <Nav />
       {children}
       <Footer />
     </div>

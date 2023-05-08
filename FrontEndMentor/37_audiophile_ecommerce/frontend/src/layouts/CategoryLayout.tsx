@@ -40,7 +40,7 @@ function CategoryLayout(props: ElemProps): JSX.Element {
           {productCategory}
         </h1>
       </header>
-      <MainTagLayout appendClass="">
+      <MainTagLayout id="skipto-main">
         <div className={styles.grid}>{products}</div>
         <ProductExampleShopList appendClass={styles.productExampleShopList} />
         <CompanyStatement appendClass={styles.companyStatement} />

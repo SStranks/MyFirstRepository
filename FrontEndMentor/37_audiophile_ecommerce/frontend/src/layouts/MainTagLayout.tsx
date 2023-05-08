@@ -1,15 +1,15 @@
 import styles from './_MainTagLayout.module.scss';
 
-type ElemProps = {
-  appendClass: string;
+interface ElemProps extends React.HTMLProps<HTMLElement> {
+  appendClass?: string;
   children: React.ReactNode;
-};
+}
 
 function MainTagLayout(props: ElemProps): JSX.Element {
-  const { appendClass, children } = props;
+  const { appendClass, children, id } = props;
 
   return (
-    <main className={`${styles.main} ${appendClass}`}>
+    <main className={`${styles.main} ${appendClass}`} id={id}>
       <div className={styles.main__container}>{children}</div>
     </main>
   );

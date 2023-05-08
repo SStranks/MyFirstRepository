@@ -25,7 +25,7 @@ const productsList = [
 ];
 
 type ElemProps = {
-  appendClass: string;
+  appendClass?: string;
 };
 
 function ProductExampleShopList(props: ElemProps): JSX.Element {

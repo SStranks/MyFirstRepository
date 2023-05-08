@@ -9,7 +9,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import styles from './_Nav.module.scss';
 
 type ElemProps = {
-  appendClass: string;
+  appendClass?: string;
 };
 
 function Nav(props: ElemProps): JSX.Element {

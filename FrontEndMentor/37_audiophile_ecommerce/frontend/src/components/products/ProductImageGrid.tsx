@@ -1,7 +1,7 @@
 import styles from './_ProductImageGrid.module.scss';
 
 type ElemProps = {
-  appendClass: string;
+  appendClass?: string;
   productImagesGallery: Record<
     string,
     { mobile: string; tablet: string; desktop: string }

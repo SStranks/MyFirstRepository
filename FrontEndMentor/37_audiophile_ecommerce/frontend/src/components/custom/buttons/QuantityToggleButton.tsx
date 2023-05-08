@@ -1,7 +1,7 @@
 import styles from './_ProductQuantityButton.module.scss';
 
 type ElemProps = {
-  appendClass: string;
+  appendClass?: string;
   currentValue: number;
   maxLimit?: number;
   minLimit?: number;

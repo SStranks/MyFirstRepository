@@ -32,7 +32,7 @@ function MenuCategoryModal(props: ElemProps): JSX.Element {
         nodeRef={nodeRef}>
         <div className={styles.container} ref={nodeRef}>
           <div className={styles.elementContainer} ref={modalContentsRef}>
-            <ProductExampleShopList appendClass="" />
+            <ProductExampleShopList />
           </div>
         </div>
       </CSSTransition>

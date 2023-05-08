@@ -27,7 +27,6 @@ function AddToCartButton(props: ElemProps): JSX.Element {
   return (
     <div className={styles.container}>
       <QuantityToggleButton
-        appendClass=""
         currentValue={currentValue}
         minLimit={1}
         maxLimit={99}

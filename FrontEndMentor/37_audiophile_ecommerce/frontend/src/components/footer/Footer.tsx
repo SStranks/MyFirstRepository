@@ -8,7 +8,7 @@ import styles from './_Footer.module.scss';
 
 function Footer(): JSX.Element {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} id="skipto-footer">
       <nav className={styles.footer__nav} aria-label="secondary">
         <img className={styles.footer__logo} src={Logo} alt="Audiophile Logo" />
         <div className={styles.footer__links}>

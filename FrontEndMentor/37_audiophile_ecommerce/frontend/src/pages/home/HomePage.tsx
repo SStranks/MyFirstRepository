@@ -8,7 +8,7 @@ import styles from './_HomePage.module.scss';
 function Home(): JSX.Element {
   return (
     <div className={styles.container}>
-      <header className={styles.hero}>
+      <header className={styles.hero} id="skipto-main">
         <picture>
           <source
             srcSet="/img/home/desktop/image-hero.jpg"
@@ -51,8 +51,8 @@ function Home(): JSX.Element {
           </Link>
         </div>
       </header>
-      <MainTagLayout appendClass="">
-        <ProductExampleShopList appendClass="" />
+      <MainTagLayout>
+        <ProductExampleShopList />
         <div className={styles.grid}>
           <div className={styles.zx9}>
             <picture>

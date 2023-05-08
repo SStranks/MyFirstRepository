@@ -2,7 +2,7 @@ import AddToCartButton from '#Components/custom/buttons/AddToCartButton';
 import styles from './_ProductDetailCard.module.scss';
 
 type ElemProps = {
-  appendClass: string;
+  appendClass?: string;
   productId: number;
   newProduct: boolean;
   productImages: { desktop: string; tablet: string; mobile: string };
@@ -73,16 +73,6 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
           </p>
           <div className={styles.cardPrimary__purchase}>
             <AddToCartButton productId={productId} />
-            {/* <QuantityToggleButton
-              appendClass=""
-              initialValue={1}
-              minLimit={1}
-              maxLimit={99}
-              returnValue={testFn}
-            />
-            <button className={styles.cardPrimary__btn} type="button">
-              add to cart
-            </button> */}
           </div>
         </div>
       </div>
