@@ -49,3 +49,39 @@ $nav-sticky-transition: background-color 1s;
   opacity: 0;
   transition: opacity 800ms;
 }
+
+/* -------------------------------- */
+/*   Suspense/Fallback Transitions  */
+/* -------------------------------- */
+
+.fallback-fade-in {
+  visibility: hidden;
+  animation: fadein 1.5s;
+  animation-fill-mode: forwards;
+  animation-delay: 0.5s; /* no spinner flickering for fast load times */
+}
+
+.fallback-fade-out {
+  animation: fadeout 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadein {
+  from {
+    visibility: visible;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

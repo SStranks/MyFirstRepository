@@ -43,14 +43,14 @@ import Fallback from './custom/accessibility/Fallback';
 // ✔ // TODO:  fix resize issue: add to cart btn on productdetail page.
 // ✔ // TODO:  fix resize issue: top margin above go back btn on productdetail page.
 
-// const HeadphonesPage = lazy(() =>
-//   Promise.all([
-//     import('#Pages/headphones/HeadphonesPage'),
-//     // eslint-disable-next-line no-promise-executor-return
-//     new Promise((resolve) => setTimeout(resolve, 9000)), // ensures minimal delay
-//   ]).then(([module]) => module)
-// );
-const HeadphonesPage = lazy(() => import('#Pages/headphones/HeadphonesPage'));
+// NOTE:  Artifical demonstration of transition animation for lazy-loading.
+const HeadphonesPage = lazy(() =>
+  Promise.all([
+    import('#Pages/headphones/HeadphonesPage'),
+    // eslint-disable-next-line no-promise-executor-return
+    new Promise((resolve) => setTimeout(resolve, 3000)), // ensures minimal delay
+  ]).then(([module]) => module)
+);
 const EarphonesPage = lazy(() => import('#Pages/earphones/EarphonesPage'));
 const SpeakersPage = lazy(() => import('#Pages/speakers/SpeakersPage'));
 const ProductDetailsPage = lazy(
@@ -59,6 +59,8 @@ const ProductDetailsPage = lazy(
 const CheckoutPage = lazy(() => import('#Pages/checkout/CheckoutPage'));
 
 function App(): JSX.Element {
+  // const { DeferredComponent, hasImportFinished, enableComponent } =
+  //   useSuspenseAnimation('headphones/HeadphonesPage');
   return (
     <ShoppingCartProvider>
       <DefaultLayout>
