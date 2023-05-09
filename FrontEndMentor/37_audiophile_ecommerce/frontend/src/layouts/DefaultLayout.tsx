@@ -1,4 +1,4 @@
-import SkipTo from '#Components/custom/SkipTo';
+import SkipTo from '#Components/custom/accessibility/SkipTo';
 import Footer from '#Components/footer/Footer';
 import Nav from '#Components/nav/Nav';
 import styles from './_DefaultLayout.module.scss';

@@ -1,12 +1,9 @@
 import { ShoppingCartProvider } from '#Context/ShoppingCartContext';
 import DefaultLayout from '#Layouts/DefaultLayout';
-import CheckoutPage from '#Pages/checkout/CheckoutPage';
-import EarphonesPage from '#Pages/earphones/EarphonesPage';
-import HeadphonesPage from '#Pages/headphones/HeadphonesPage';
 import HomePage from '#Pages/home/HomePage';
-import ProductDetailsPage from '#Pages/product-details/ProductDetailsPage';
-import SpeakersPage from '#Pages/speakers/SpeakersPage';
+import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import Fallback from './custom/accessibility/Fallback';
 
 // // ✔  // ✖  Checklist
 // ----------------------
@@ -46,27 +43,47 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 // ✔ // TODO:  fix resize issue: add to cart btn on productdetail page.
 // ✔ // TODO:  fix resize issue: top margin above go back btn on productdetail page.
 
+// const HeadphonesPage = lazy(() =>
+//   Promise.all([
+//     import('#Pages/headphones/HeadphonesPage'),
+//     // eslint-disable-next-line no-promise-executor-return
+//     new Promise((resolve) => setTimeout(resolve, 9000)), // ensures minimal delay
+//   ]).then(([module]) => module)
+// );
+const HeadphonesPage = lazy(() => import('#Pages/headphones/HeadphonesPage'));
+const EarphonesPage = lazy(() => import('#Pages/earphones/EarphonesPage'));
+const SpeakersPage = lazy(() => import('#Pages/speakers/SpeakersPage'));
+const ProductDetailsPage = lazy(
+  () => import('#Pages/product-details/ProductDetailsPage')
+);
+const CheckoutPage = lazy(() => import('#Pages/checkout/CheckoutPage'));
+
 function App(): JSX.Element {
   return (
     <ShoppingCartProvider>
       <DefaultLayout>
-        <Routes>
-          <Route path="*" element={<Navigate to="/" replace />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/headphones" element={<HeadphonesPage />} />
-          <Route
-            path="/headphones/:productId"
-            element={<ProductDetailsPage />}
-          />
-          <Route path="/speakers" element={<SpeakersPage />} />
-          <Route path="/speakers/:productId" element={<ProductDetailsPage />} />
-          <Route path="/earphones" element={<EarphonesPage />} />
-          <Route
-            path="/earphones/:productId"
-            element={<ProductDetailsPage />}
-          />
-          <Route path="/checkout" element={<CheckoutPage />} />
-        </Routes>
+        <Suspense fallback={<Fallback />}>
+          <Routes>
+            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/headphones" element={<HeadphonesPage />} />
+            <Route
+              path="/headphones/:productId"
+              element={<ProductDetailsPage />}
+            />
+            <Route path="/speakers" element={<SpeakersPage />} />
+            <Route
+              path="/speakers/:productId"
+              element={<ProductDetailsPage />}
+            />
+            <Route path="/earphones" element={<EarphonesPage />} />
+            <Route
+              path="/earphones/:productId"
+              element={<ProductDetailsPage />}
+            />
+            <Route path="/checkout" element={<CheckoutPage />} />
+          </Routes>
+        </Suspense>
       </DefaultLayout>
     </ShoppingCartProvider>
   );
