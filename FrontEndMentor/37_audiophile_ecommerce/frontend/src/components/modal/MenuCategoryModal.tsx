@@ -28,7 +28,12 @@ function MenuCategoryModal(props: ElemProps): JSX.Element {
         onExit={scrollUnlock}
         timeout={{ exit: 800 }}
         unmountOnExit
-        classNames="orderCompleteModal"
+        classNames={{
+          appear: 'modal-appear',
+          enterDone: 'modal-enter-done',
+          exit: 'modal-exit',
+          exitActive: 'modal-exit-active',
+        }}
         nodeRef={nodeRef}>
         <div className={styles.container} ref={nodeRef}>
           <div className={styles.elementContainer} ref={modalContentsRef}>

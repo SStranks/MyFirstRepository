@@ -1,7 +1,7 @@
 import { ShoppingCartProvider } from '#Context/ShoppingCartContext';
 import DefaultLayout from '#Layouts/DefaultLayout';
 import HomePage from '#Pages/home/HomePage';
-import { lazy, Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Fallback from './custom/accessibility/Fallback';
 

@@ -23,7 +23,12 @@ function OrderCompleteModal(props: ElemProps): JSX.Element {
         timeout={{ exit: 800 }}
         onExited={() => navigate('/')}
         unmountOnExit
-        classNames="orderCompleteModal"
+        classNames={{
+          appear: 'modal-appear',
+          enterDone: 'modal-enter-done',
+          exit: 'modal-exit',
+          exitActive: 'modal-exit-active',
+        }}
         nodeRef={nodeRef}>
         <div className={styles.container} ref={nodeRef}>
           <OrderCompleteCard modalClose={modalClose} />

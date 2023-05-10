@@ -30,22 +30,21 @@ $nav-sticky-transition: background-color 1s;
 /* -------------------------------- */
 
 // Utilizing 'CSSTransition'
-// Order Complete Modal
-.orderCompleteModal {
+.modal-appear {
   opacity: 0;
   pointer-events: none;
 }
 
-.orderCompleteModal-enter-done {
+.modal-enter-done {
   opacity: 1;
   pointer-events: auto;
 }
 
-.orderCompleteModal-exit {
+.modal-exit {
   opacity: 1;
 }
 
-.orderCompleteModal-exit-active {
+.modal-exit-active {
   opacity: 0;
   transition: opacity 800ms;
 }
