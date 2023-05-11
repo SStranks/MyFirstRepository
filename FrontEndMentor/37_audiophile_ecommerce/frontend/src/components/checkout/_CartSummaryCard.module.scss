@@ -13,7 +13,8 @@
   border-radius: v.$border-radius-1;
 
   &__header {
-    @include mx.header-h6;
+    @include mx.header-h6 using ($REM) {
+    }
   }
 
   &__removeAllBtn {
@@ -40,7 +41,8 @@
 
   &__amount {
     justify-self: end;
-    @include mx.header-h6;
+    @include mx.header-h6 using ($REM) {
+    }
   }
 
   &__checkoutBtn {

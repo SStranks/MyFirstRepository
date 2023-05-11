@@ -23,12 +23,13 @@
 /* -------------------------------- */
 
 @mixin btn-root {
-  @include mx.header-subtitle;
+  @include mx.header-subtitle using ($REM) {
+    padding: f.px2emParent(15, $REM) f.px2emParent(30, $REM);
+  }
   display: flex;
   justify-content: center;
   align-items: center;
   width: fit-content;
-  padding: f.px2em(15) f.px2em(30);
 }
 
 @mixin btn-default-1 {

@@ -21,6 +21,7 @@
 html {
   height: 100%;
   font-size: 100%;
+  color-scheme: light dark;
 }
 
 body {
@@ -46,7 +47,9 @@ body {
   }
 }
 
-img {
+img,
+svg,
+video {
   display: block;
   max-width: 100%;
   height: 100%;

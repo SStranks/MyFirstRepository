@@ -42,8 +42,9 @@
 
   &__subHeader {
     @include gridColumnSpan;
-    @include mx.header-subtitle;
-    margin-bottom: f.px2em(16);
+    @include mx.header-subtitle using ($REM) {
+      margin-bottom: f.px2emParent(16, $REM);
+    }
     color: c.$col-1a;
   }
 
@@ -93,8 +94,9 @@
   border-radius: 8px;
 
   &__header {
-    @include mx.header-h6;
-    margin-bottom: 32px;
+    @include mx.header-h6 using ($REM) {
+      margin-bottom: f.px2emParent(32, $REM);
+    }
   }
 
   &__products {
@@ -117,12 +119,14 @@
     }
 
     &__total {
-      @include mx.header-h6;
+      @include mx.header-h6 using ($REM) {
+      }
       justify-self: end;
     }
 
     &__grandTotal {
-      @include mx.header-h6;
+      @include mx.header-h6 using ($REM) {
+      }
       justify-self: end;
       color: c.$col-1a;
     }

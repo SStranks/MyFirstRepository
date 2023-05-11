@@ -1,4 +1,5 @@
 @use '#Sass/abstracts/colors' as c;
+@use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/media-queries' as mq;
 
@@ -9,8 +10,9 @@
 
 .btnBack {
   justify-self: start;
-  @include mx.body-regular;
-  margin-bottom: 56px;
+  @include mx.body-regular using ($REM) {
+    margin-bottom: f.px2emParent(56, $REM);
+  }
   background-color: transparent;
   color: c.$col-3a;
   text-transform: capitalize;

@@ -50,43 +50,53 @@
 }
 
 @mixin header-h4 {
-  font-weight: 700;
+  $REM: f.px2rem(28);
   font-size: f.px2rem(28);
+  font-weight: 700;
   line-height: f.px2rem(38);
   letter-spacing: f.px2rem(2);
   text-transform: uppercase;
+  @content ($REM);
 }
 
 @mixin header-h5 {
-  font-weight: 700;
+  $REM: f.px2rem(24);
   font-size: f.px2rem(24);
+  font-weight: 700;
   line-height: f.px2rem(33);
   letter-spacing: f.px2rem(1.7);
   text-transform: uppercase;
+  @content ($REM);
 }
 
 @mixin header-h6 {
-  font-weight: 700;
+  $REM: f.px2rem(18);
   font-size: f.px2rem(18);
+  font-weight: 700;
   line-height: f.px2rem(24);
   letter-spacing: f.px2rem(1.3);
   text-transform: uppercase;
+  @content ($REM);
 }
 
 @mixin header-overline {
-  font-weight: 400;
+  $REM: f.px2rem(14);
   font-size: f.px2rem(14);
+  font-weight: 400;
   line-height: f.px2rem(19);
   letter-spacing: f.px2rem(10);
   text-transform: uppercase;
+  @content ($REM);
 }
 
 @mixin header-subtitle {
-  font-weight: 700;
+  $REM: f.px2rem(14);
   font-size: f.px2rem(13);
+  font-weight: 700;
   line-height: f.px2rem(25);
   letter-spacing: f.px2rem(1);
   text-transform: uppercase;
+  @content ($REM);
 }
 
 /* -------------------------------- */
@@ -94,9 +104,11 @@
 /* -------------------------------- */
 
 @mixin body-regular {
-  font-weight: 500;
+  $REM: f.px2rem(15);
   font-size: f.px2rem(15);
+  font-weight: 500;
   line-height: f.px2rem(25);
+  @content ($REM);
 }
 
 /* -------------------------------- */

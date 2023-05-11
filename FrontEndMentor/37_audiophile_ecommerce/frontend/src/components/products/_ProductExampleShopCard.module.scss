@@ -37,8 +37,9 @@
   }
 
   &__name {
-    @include mx.header-h6;
-    margin-bottom: f.px2em(10);
+    @include mx.header-h6 using ($REM) {
+      margin-bottom: f.px2emParent(10, $REM);
+    }
     color: c.$col-2c;
     z-index: 1;
   }
@@ -51,7 +52,8 @@
     z-index: 1;
 
     &__text {
-      @include mx.header-subtitle;
+      @include mx.header-subtitle using ($REM) {
+      }
       color: c.$col-3a;
 
       &:hover {

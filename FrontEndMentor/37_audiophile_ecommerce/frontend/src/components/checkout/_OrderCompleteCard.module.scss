@@ -34,9 +34,10 @@
   }
 
   &__subHeader {
-    @include mx.body-regular;
+    @include mx.body-regular using ($REM) {
+      margin-bottom: f.px2emParent(34, $REM);
+    }
     color: c.$col-3a;
-    margin-bottom: 34px;
   }
 
   &__homeBtn {
@@ -86,14 +87,16 @@
     transition: flex 1s;
 
     &__title {
-      @include mx.body-regular;
-      margin-bottom: 8px;
+      @include mx.body-regular using ($REM) {
+        margin-bottom: f.px2emParent(8, $REM);
+      }
       color: c.$col-3b;
       text-transform: uppercase;
     }
 
     &__amount {
-      @include mx.header-h6;
+      @include mx.header-h6 using ($REM) {
+      }
       color: c.$col-2b;
     }
 

@@ -29,8 +29,9 @@
   }
 
   &__new {
-    @include mx.header-overline;
-    margin-bottom: 16px;
+    @include mx.header-overline using ($REM) {
+      margin-bottom: f.px2emParent(16, $REM);
+    }
     color: c.$col-1a;
   }
 
@@ -41,14 +42,16 @@
   }
 
   &__details {
-    @include mx.body-regular;
-    margin-bottom: 32px;
+    @include mx.body-regular using ($REM) {
+      margin-bottom: f.px2emParent(32, $REM);
+    }
     color: c.$col-3a;
   }
 
   &__price {
-    @include mx.header-h6;
-    margin-bottom: 50px;
+    @include mx.header-h6 using ($REM) {
+      margin-bottom: f.px2emParent(50, $REM);
+    }
   }
 
   &__purchase {

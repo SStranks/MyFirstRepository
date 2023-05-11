@@ -14,8 +14,9 @@
   }
 
   &__title {
-    @include mx.header-h5;
-    margin: 40px 0 32px;
+    @include mx.header-h5 using ($REM) {
+      margin: f.px2emParent(40, $REM) 0 f.px2emParent(32, $REM);
+    }
     text-align: center;
   }
 

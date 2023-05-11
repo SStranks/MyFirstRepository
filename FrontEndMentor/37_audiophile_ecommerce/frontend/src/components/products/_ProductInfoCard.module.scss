@@ -29,8 +29,9 @@
   }
 
   &__new {
-    @include mx.header-overline;
-    margin-bottom: f.px2em(16);
+    @include mx.header-overline using ($REM) {
+      margin-bottom: f.px2emParent(16, $REM);
+    }
     color: c.$col-1a;
   }
 
@@ -40,8 +41,9 @@
   }
 
   &__details {
-    @include mx.body-regular;
-    margin: f.px2em(32) 0 f.px2em(40);
+    @include mx.body-regular using ($REM) {
+      margin: f.px2emParent(32, $REM) 0 f.px2emParent(40, $REM);
+    }
   }
 
   &__link {

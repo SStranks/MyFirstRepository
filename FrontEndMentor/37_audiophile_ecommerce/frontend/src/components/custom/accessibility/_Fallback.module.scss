@@ -4,11 +4,8 @@
 @use '#Sass/abstracts/mixins' as mx;
 
 .fallback {
-  // position: fixed;
   display: flex;
   flex-direction: column;
-  // top: 0;
-  // left: 0;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -17,10 +14,12 @@
   z-index: f.z('fallback');
 
   &__loading {
-    @include mx.header-subtitle;
-    font-size: f.px2rem(18);
+    @include mx.header-subtitle using ($REM) {
+      $REM: f.px2rem(18);
+      font-size: $REM;
+      margin-top: f.px2emParent(10, $REM);
+    }
     color: c.$col-3b;
-    margin-top: 10px;
   }
 
   &__bars {

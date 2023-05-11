@@ -42,8 +42,9 @@
   }
 
   &__title {
-    @include mx.header-overline;
-    padding-bottom: f.px2em(24);
+    @include mx.header-overline using ($REM) {
+      padding-bottom: f.px2emParent(24, $REM);
+    }
     color: c.$col-3b;
   }
 
@@ -55,9 +56,10 @@
   }
 
   &__info {
-    @include mx.body-regular;
+    @include mx.body-regular using ($REM) {
+      padding-bottom: f.px2emParent(40, $REM);
+    }
     max-width: 65%;
-    padding-bottom: f.px2em(40);
     color: c.$col-3d;
   }
 
@@ -109,8 +111,9 @@
   }
 
   &__info {
-    @include mx.body-regular;
-    margin-bottom: 40px;
+    @include mx.body-regular using ($REM) {
+      margin-bottom: f.px2emParent(40, $REM);
+    }
     color: c.$col-2b;
   }
 
@@ -141,8 +144,9 @@
   }
 
   &__title {
-    @include mx.header-h4;
-    margin-bottom: 32px;
+    @include mx.header-h4 using ($REM) {
+      margin-bottom: f.px2emParent(32, $REM);
+    }
   }
 
   &__btn {
@@ -170,8 +174,9 @@
   }
 
   &__title {
-    @include mx.header-h4;
-    margin-bottom: 32px;
+    @include mx.header-h4 using ($REM) {
+      margin-bottom: f.px2emParent(32, $REM);
+    }
   }
 
   &__btn {

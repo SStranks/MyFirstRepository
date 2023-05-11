@@ -37,7 +37,8 @@
   }
 
   &__link {
-    @include mx.header-subtitle;
+    @include mx.header-subtitle using ($REM) {
+    }
     color: c.$col-2b;
 
     &:hover {
@@ -46,9 +47,10 @@
   }
 
   &__info {
-    @include mx.body-regular;
+    @include mx.body-regular using ($REM) {
+      padding: f.px2emParent(36, $REM) 0 f.px2emParent(56, $REM) 0;
+    }
     max-width: 50%;
-    padding: f.px2em(36) 0 f.px2em(56) 0;
     color: c.$col-3b;
   }
 
