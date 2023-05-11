@@ -12,6 +12,7 @@
 
 /*   Imports                        */
 @use 'sass:math';
+@use 'sass:meta';
 
 /* -------------------------------- */
 /*   Functions                      */
@@ -20,7 +21,7 @@
 // Convert pixel value to REM. Returns 0 if input is 0, err if unit included
 @function px2rem($pixel) {
   @if math.is-unitless($pixel) {
-    $rem-value: math.div($pixel, 16) + rem;
+    $rem-value: math.div($pixel, 16) + 0rem;
     $zero-safe-rem: if($pixel == 0, 0, $rem-value);
     @return $zero-safe-rem;
   } @else {
@@ -31,12 +32,31 @@
 // Convert pixel value to EM. Returns 0 if input is 0, err if unit included
 @function px2em($pixel) {
   @if math.is-unitless($pixel) {
-    $em-value: math.div($pixel, 16) + em;
+    $em-value: math.div($pixel, 16) + 0em;
     $zero-safe-em: if($pixel == 0, 0, $em-value);
     @return $zero-safe-em;
   } @else {
     @error 'Don\'t use units when using the em() function';
   }
+}
+
+// Convert pixel value to EM, taking parent REM into consideration.
+// Returns 0 if input is 0, err if unit included
+@function px2emParent($pixel, $REM) {
+  $val1: strip-unit($pixel);
+  $val2: strip-unit($REM);
+  $em-value: math.div($val1, ($val2 * 16)) + 0em;
+  $zero-safe-em: if($val1 == 0, 0, $em-value);
+  @return $zero-safe-em;
+}
+
+// Removes the unit of a number
+@function strip-unit($number) {
+  @if meta.type-of($number) == 'number' and not math.is-unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
 }
 
 /* -------------------------------- */

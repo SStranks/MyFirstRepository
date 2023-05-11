@@ -35,7 +35,8 @@
   }
 
   &__title {
-    @include mx.header-h2;
+    @include mx.header-h2() using ($REM) {
+    }
   }
 
   &__details {

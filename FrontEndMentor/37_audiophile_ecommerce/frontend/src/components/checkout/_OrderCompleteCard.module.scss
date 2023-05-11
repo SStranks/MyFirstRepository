@@ -28,8 +28,9 @@
   }
 
   &__header {
-    @include mx.header-h3;
-    margin-bottom: 24px;
+    @include mx.header-h3 using ($REM) {
+      margin-bottom: f.px2emParent(24, $REM);
+    }
   }
 
   &__subHeader {

@@ -17,8 +17,9 @@
 }
 
 .alternatives {
-  @include mx.header-h3;
-  margin-bottom: 64px;
+  @include mx.header-h3() using ($REM) {
+    margin-bottom: f.px2emParent(64, $REM);
+  }
   text-align: center;
 }
 

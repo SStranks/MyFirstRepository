@@ -20,27 +20,33 @@
 /*   Text: Header                   */
 /* -------------------------------- */
 @mixin header-h1 {
+  $REM: f.px2rem(56);
+  font-size: $REM;
   font-weight: 700;
-  font-size: f.px2rem(56);
   line-height: f.px2rem(58);
   letter-spacing: f.px2rem(2);
   text-transform: uppercase;
+  @content ($REM);
 }
 
 @mixin header-h2 {
+  $REM: f.px2rem(40);
+  font-size: $REM;
   font-weight: 700;
-  font-size: f.px2rem(40);
   line-height: f.px2rem(44);
   letter-spacing: f.px2rem(1.5);
   text-transform: uppercase;
+  @content ($REM);
 }
 
 @mixin header-h3 {
-  font-weight: 700;
+  $REM: f.px2rem(32);
   font-size: f.px2rem(32);
+  font-weight: 700;
   line-height: f.px2rem(36);
   letter-spacing: f.px2rem(1.15);
   text-transform: uppercase;
+  @content ($REM);
 }
 
 @mixin header-h4 {

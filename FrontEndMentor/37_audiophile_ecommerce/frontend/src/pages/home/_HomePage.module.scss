@@ -37,7 +37,7 @@
     justify-content: center;
     max-width: 40%;
     height: 100%;
-    padding-top: 95px;
+    padding-top: f.px2em(95);
     margin-left: v.$padding-desktop-horizontal;
   }
 
@@ -48,8 +48,9 @@
   }
 
   &__product {
-    @include mx.header-h1;
-    padding-bottom: 24px;
+    @include mx.header-h1() using ($REM) {
+      padding-bottom: f.px2emParent(24, $REM);
+    }
     color: c.$col-2b;
   }
 

@@ -35,8 +35,9 @@
   }
 
   &__title {
-    @include mx.header-h2;
-    margin-bottom: 32px;
+    @include mx.header-h2() using ($REM) {
+      margin-bottom: f.px2emParent(32, $REM);
+    }
   }
 
   &__details {
@@ -67,8 +68,9 @@
   }
 
   &__header {
-    @include mx.header-h3;
-    margin-bottom: 32px;
+    @include mx.header-h3() using ($REM) {
+      margin-bottom: f.px2emParent(32, $REM);
+    }
     white-space: nowrap;
   }
 

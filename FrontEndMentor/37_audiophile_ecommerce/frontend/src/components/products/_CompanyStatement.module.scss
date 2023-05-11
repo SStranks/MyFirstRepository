@@ -16,8 +16,9 @@
   }
 
   &__title {
-    @include mx.header-h2;
-    margin-bottom: 32px;
+    @include mx.header-h2() using ($REM) {
+      margin-bottom: f.px2emParent(32, $REM);
+    }
 
     & > span {
       color: c.$col-1a;
@@ -60,9 +61,11 @@
     }
 
     &__title {
-      @include mx.header-h2;
-      margin-bottom: 32px;
-      font-size: f.px2rem(30);
+      @include mx.header-h2() using ($REM) {
+        $REM: f.px2rem(30);
+        margin-bottom: f.px2emParent(32, $REM);
+        font-size: $REM;
+      }
     }
 
     &__statement {

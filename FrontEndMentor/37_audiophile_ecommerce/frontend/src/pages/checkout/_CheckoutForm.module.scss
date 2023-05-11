@@ -35,8 +35,9 @@
   border-radius: 8px;
 
   &__header {
-    @include mx.header-h3;
-    margin: 6px 0 40px;
+    @include mx.header-h3() using ($REM) {
+      margin: f.px2emParent(6, $REM) 0 f.px2emParent(40, $REM);
+    }
   }
 
   &__subHeader {
