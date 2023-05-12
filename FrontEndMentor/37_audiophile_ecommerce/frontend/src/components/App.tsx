@@ -7,9 +7,9 @@ import Fallback from './custom/accessibility/Fallback';
 
 // // ✔  // ✖  Checklist
 // ----------------------
-// ✖ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
 // ✖ // TODO:  Lazy load images
 // ✖ // TODO:  ARIA: see https://alistapart.com/article/accessibility-the-missing-ingredient/ for how to do the ProductQuantityButton component ARIA.
+// ✔ // DEBUG:  Determine the f.px2em usage; when/where is not accurate.
 // ✔ // DEBUG:  Modal causing scrollbar width resize.
 // ✔ // DEBUG:  Category page product images; set width/height on eaech source? to stop flicker layout?
 // ✔ // DEBUG:  Flicker when changing routes. useLayoutEffect causing it?
