@@ -124,6 +124,6 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
 
-  "include": ["src/**/*", "global.d.ts"],
+  "include": ["src/**/*", "global.d.ts", "jest.setup.ts"],
   "exclude": ["node_modules", "public"]
 }

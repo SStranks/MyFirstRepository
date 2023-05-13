@@ -1,0 +1,26 @@
+import '@testing-library/jest-dom';
+// https://github.com/testing-library/jest-dom
+// --- Custom matchers ---
+// toBeDisabled
+// toBeEnabled
+// toBeEmptyDOMElement
+// toBeInTheDocument
+// toBeInvalid
+// toBeRequired
+// toBeValid
+// toBeVisible
+// toContainElement
+// toContainHTML
+// toHaveAccessibleDescription
+// toHaveAccessibleName
+// toHaveAttribute
+// toHaveClass
+// toHaveFocus
+// toHaveFormValues
+// toHaveStyle
+// toHaveTextContent
+// toHaveValue
+// toHaveDisplayValue
+// toBeChecked
+// toBePartiallyChecked
+// toHaveErrorMessage
