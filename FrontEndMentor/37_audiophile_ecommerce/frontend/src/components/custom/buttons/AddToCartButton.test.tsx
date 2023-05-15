@@ -6,10 +6,22 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AddToCartButton from './AddToCartButton';
 
+// NOTE:  Comment block: To test if child component is passed props
+const mockChildComponent = jest.fn();
+// expect(mockChildComponent).toHaveBeenCalledWith(
+//   expect.objectContaining({
+//     open: true,
+//     data: "some data",
+//   })
+// );
+
 // eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('./QuantityToggleButton', () => ({
   __esModule: true,
-  default: () => <div data-testid="quantity-toggle-button" />,
+  default: (props: unknown) => {
+    mockChildComponent(props);
+    return <div data-testid="quantity-toggle-button" />;
+  },
 }));
 
 describe('Appearance', () => {
