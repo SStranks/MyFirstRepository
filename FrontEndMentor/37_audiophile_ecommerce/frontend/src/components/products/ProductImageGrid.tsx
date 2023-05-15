@@ -31,9 +31,7 @@ function ProductImageGrid(props: ElemProps): JSX.Element {
     );
   });
 
-  return (
-    <div className={`${styles.grid} ${appendClass}`}>{...productImages}</div>
-  );
+  return <div className={`${styles.grid} ${appendClass}`}>{productImages}</div>;
 }
 
 export default ProductImageGrid;

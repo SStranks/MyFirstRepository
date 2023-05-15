@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom';
 import styles from './_SkipTo.module.scss';
 
 type ElemProps = {

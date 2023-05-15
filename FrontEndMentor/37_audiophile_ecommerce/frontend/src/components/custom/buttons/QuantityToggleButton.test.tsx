@@ -5,10 +5,11 @@ import QuantityToggleButton from './QuantityToggleButton';
 describe('Appearance', () => {
   test('Component base should be fully rendered', () => {
     const mockFn = jest.fn();
+    const currentValue = 123;
     const { container } = render(
       <QuantityToggleButton
         appendClass="additionalStyles"
-        currentValue={123}
+        currentValue={currentValue}
         increaseFn={mockFn}
         decreaseFn={mockFn}
       />
