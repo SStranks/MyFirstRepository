@@ -8,7 +8,10 @@ import styles from './_HomePage.module.scss';
 function Home(): JSX.Element {
   return (
     <div className={styles.container}>
-      <header className={styles.hero} id="skipto-main">
+      <header
+        className={styles.hero}
+        id="skipto-main"
+        data-testid="skipto-main">
         <picture>
           <source
             srcSet="/img/home/desktop/image-hero.jpg"
