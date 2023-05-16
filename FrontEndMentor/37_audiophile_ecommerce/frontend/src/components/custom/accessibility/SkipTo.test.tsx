@@ -1,16 +1,17 @@
-/* eslint-disable jest/no-commented-out-tests */
-// import DefaultLayout from '#Layouts/DefaultLayout';
-// import CheckoutPage from '#Pages/checkout/CheckoutPage';
-// import EarphonesPage from '#Pages/earphones/EarphonesPage';
-// import HeadphonesPage from '#Pages/headphones/HeadphonesPage';
-// import Home from '#Pages/home/HomePage';
-// import ProductDetailsPage from '#Pages/product-details/ProductDetailsPage';
-// import SpeakersPage from '#Pages/speakers/SpeakersPage';
 import App from '#Components/App';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import SkipTo from './SkipTo';
+
+const ROUTES = {
+  home: '/',
+  speakers: '/speakers',
+  headphones: '/headphones',
+  earphones: '/earphones',
+  productDetail: '/speakers/1',
+  checkout: '/checkout',
+};
 
 describe('Appearance', () => {
   test('Component base should be fully rendered', () => {
@@ -25,10 +26,13 @@ describe('Appearance', () => {
 });
 
 describe('Functionality', () => {
+  // NOTE:  Test ID manually added to components on lazy loaded pages; require 'await' to ensure page is loaded.
+  // NOTE:  Extra timeout added on findBy Query on Headphones page; accounts for deliberate fallback animation.
+  // NOTE:  State passed to route on ProductDetail page; using category 'speakers' and productId '1'.
   describe('Clicking component should focus on `main content` on all route pages', () => {
     test('Home Page', async () => {
       render(
-        <MemoryRouter initialEntries={['/']}>
+        <MemoryRouter initialEntries={[`${ROUTES.home}`]}>
           <App />
         </MemoryRouter>
       );
@@ -36,52 +40,244 @@ describe('Functionality', () => {
       const skipToMainContentLink = screen.getByRole('link', {
         name: /Skip to Main Content/,
       });
-      const mainContent = document.querySelector('#skipto-main');
+
+      const mainContent = await screen.findByTestId('skipto-main');
 
       expect(skipToMainContentLink).toBeInTheDocument();
       expect(mainContent).toBeInTheDocument();
       await userEvent.click(skipToMainContentLink);
       expect(mainContent).toHaveFocus();
     });
-    // test('Speakers Page', () => {});
-    // test('Headphones Page', () => {});
-    // test('Earphones Page', () => {});
-    // test('Product Details Page', () => {});
-    // test('Checkout Page', () => {});
+
+    test('Speakers Page', async () => {
+      render(
+        <MemoryRouter initialEntries={[`${ROUTES.speakers}`]}>
+          <App />
+        </MemoryRouter>
+      );
+
+      const skipToMainContentLink = screen.getByRole('link', {
+        name: /Skip to Main Content/,
+      });
+
+      const mainContent = await screen.findByTestId('skipto-main');
+
+      expect(skipToMainContentLink).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
+      await userEvent.click(skipToMainContentLink);
+      expect(mainContent).toHaveFocus();
+    });
+
+    test('Headphones Page', async () => {
+      render(
+        <MemoryRouter initialEntries={[`${ROUTES.headphones}`]}>
+          <App />
+        </MemoryRouter>
+      );
+
+      const skipToMainContentLink = screen.getByRole('link', {
+        name: /Skip to Main Content/,
+      });
+
+      const mainContent = await screen.findByTestId('skipto-main', undefined, {
+        timeout: 3000,
+      });
+
+      expect(skipToMainContentLink).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
+      await userEvent.click(skipToMainContentLink);
+      expect(mainContent).toHaveFocus();
+    });
+
+    test('Earphones Page', async () => {
+      render(
+        <MemoryRouter initialEntries={[`${ROUTES.earphones}`]}>
+          <App />
+        </MemoryRouter>
+      );
+
+      const skipToMainContentLink = screen.getByRole('link', {
+        name: /Skip to Main Content/,
+      });
+
+      const mainContent = await screen.findByTestId('skipto-main');
+
+      expect(skipToMainContentLink).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
+      await userEvent.click(skipToMainContentLink);
+      expect(mainContent).toHaveFocus();
+    });
+
+    test('Product Details Page', async () => {
+      render(
+        <MemoryRouter
+          initialEntries={[
+            {
+              pathname: `${ROUTES.productDetail}`,
+              state: { productCategory: 'speakers', productId: '1' },
+            },
+          ]}>
+          <App />
+        </MemoryRouter>
+      );
+
+      const skipToMainContentLink = screen.getByRole('link', {
+        name: /Skip to Main Content/,
+      });
+
+      const mainContent = await screen.findByTestId('skipto-main');
+
+      expect(skipToMainContentLink).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
+      await userEvent.click(skipToMainContentLink);
+      expect(mainContent).toHaveFocus();
+    });
+
+    test('Checkout Page', async () => {
+      render(
+        <MemoryRouter initialEntries={[`${ROUTES.checkout}`]}>
+          <App />
+        </MemoryRouter>
+      );
+
+      const skipToMainContentLink = screen.getByRole('link', {
+        name: /Skip to Main Content/,
+      });
+
+      const mainContent = await screen.findByTestId('skipto-main');
+
+      expect(skipToMainContentLink).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
+      await userEvent.click(skipToMainContentLink);
+      expect(mainContent).toHaveFocus();
+    });
   });
-  // test('', () => {
-  //   [
-  //     <Home key="1" />,
-  //     <SpeakersPage key="2" />,
-  //     <HeadphonesPage key="3" />,
-  //     <EarphonesPage key="4" />,
-  //     <ProductDetailsPage key="5" />,
-  //     <CheckoutPage key="6" />,
-  //     // eslint-disable-next-line unicorn/no-array-for-each
-  //   ].forEach((pageComponent) => {
-  //     // Test each individual page
-  //     test('page scenario', async () => {
-  //       render(<DefaultLayout>{pageComponent}</DefaultLayout>);
 
-  //       const skipToMainContentLink = screen.getByRole('link', {
-  //         name: /Skip to #skipto-main/,
-  //       });
-  //       const mainContent = screen.getByRole('main');
+  describe('Clicking component should focus on `footer content` on all route pages', () => {
+    test('Home Page', async () => {
+      render(
+        <MemoryRouter initialEntries={[`${ROUTES.home}`]}>
+          <App />
+        </MemoryRouter>
+      );
 
-  //       expect(skipToMainContentLink).toBeInTheDocument();
-  //       expect(mainContent).toBeInTheDocument();
-  //       await userEvent.click(skipToMainContentLink);
-  //       expect(mainContent).toHaveFocus();
-  //     });
-  //   });
-  // });
+      const skipToMainContentLink = screen.getByRole('link', {
+        name: /Skip to Footer Content/,
+      });
 
-  // eslint-disable-next-line jest/no-commented-out-tests
-  // test('Clicking component should focus on `footer content` on all route pages', () => {
-  //   render(<SkipTo contentName="Dummy name" contentId="Dummy id" />);
+      const mainContent = await screen.findByTestId('skipto-footer');
 
-  //   const component = screen.getByRole('link');
+      expect(skipToMainContentLink).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
+      await userEvent.click(skipToMainContentLink);
+      expect(mainContent).toHaveFocus();
+    });
 
-  //   expect(component).toBeInTheDocument();
-  // });
+    test('Speakers Page', async () => {
+      render(
+        <MemoryRouter initialEntries={[`${ROUTES.speakers}`]}>
+          <App />
+        </MemoryRouter>
+      );
+
+      const skipToMainContentLink = screen.getByRole('link', {
+        name: /Skip to Footer Content/,
+      });
+
+      const mainContent = await screen.findByTestId('skipto-footer');
+
+      expect(skipToMainContentLink).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
+      await userEvent.click(skipToMainContentLink);
+      expect(mainContent).toHaveFocus();
+    });
+
+    test('Headphones Page', async () => {
+      render(
+        <MemoryRouter initialEntries={[`${ROUTES.headphones}`]}>
+          <App />
+        </MemoryRouter>
+      );
+
+      const skipToMainContentLink = screen.getByRole('link', {
+        name: /Skip to Footer Content/,
+      });
+
+      const mainContent = await screen.findByTestId(
+        'skipto-footer',
+        undefined,
+        {
+          timeout: 3000,
+        }
+      );
+
+      expect(skipToMainContentLink).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
+      await userEvent.click(skipToMainContentLink);
+      expect(mainContent).toHaveFocus();
+    });
+
+    test('Earphones Page', async () => {
+      render(
+        <MemoryRouter initialEntries={[`${ROUTES.earphones}`]}>
+          <App />
+        </MemoryRouter>
+      );
+
+      const skipToMainContentLink = screen.getByRole('link', {
+        name: /Skip to Footer Content/,
+      });
+
+      const mainContent = await screen.findByTestId('skipto-footer');
+
+      expect(skipToMainContentLink).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
+      await userEvent.click(skipToMainContentLink);
+      expect(mainContent).toHaveFocus();
+    });
+
+    test('Product Details Page', async () => {
+      render(
+        <MemoryRouter
+          initialEntries={[
+            {
+              pathname: `${ROUTES.productDetail}`,
+              state: { productCategory: 'speakers', productId: '1' },
+            },
+          ]}>
+          <App />
+        </MemoryRouter>
+      );
+
+      const skipToMainContentLink = screen.getByRole('link', {
+        name: /Skip to Footer Content/,
+      });
+
+      const mainContent = await screen.findByTestId('skipto-footer');
+
+      expect(skipToMainContentLink).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
+      await userEvent.click(skipToMainContentLink);
+      expect(mainContent).toHaveFocus();
+    });
+
+    test('Checkout Page', async () => {
+      render(
+        <MemoryRouter initialEntries={[`${ROUTES.checkout}`]}>
+          <App />
+        </MemoryRouter>
+      );
+
+      const skipToMainContentLink = screen.getByRole('link', {
+        name: /Skip to Footer Content/,
+      });
+
+      const mainContent = await screen.findByTestId('skipto-footer');
+
+      expect(skipToMainContentLink).toBeInTheDocument();
+      expect(mainContent).toBeInTheDocument();
+      await userEvent.click(skipToMainContentLink);
+      expect(mainContent).toHaveFocus();
+    });
+  });
 });

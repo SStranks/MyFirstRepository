@@ -16,7 +16,7 @@ const config: Config = {
   ],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/fileMock.js',
+      '<rootDir>/jest.fileMock.ts',
     '\\.(css|sass|scss)$': 'identity-obj-proxy',
     '^#Img/(.*)$': '<rootDir>/src/assets/img/$1',
     '^#Sass/(.*)$': '<rootDir>/src/assets/sass/$1',
