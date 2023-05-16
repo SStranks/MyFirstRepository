@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-null */
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
@@ -38,6 +39,9 @@ describe('Functionality', () => {
     );
 
     const HomeLink = screen.getByRole('link', { name: /^home$/i });
+    const HeadphoneLink = screen.getByRole('link', { name: /^headphones$/i });
+    const SpeakersLink = screen.getByRole('link', { name: /^speakers$/i });
+    const EarphonesLink = screen.getByRole('link', { name: /^earphones$/i });
 
     await userEvent.click(HomeLink);
     expect(history.push).toHaveBeenCalledTimes(1);
@@ -45,6 +49,54 @@ describe('Functionality', () => {
       {
         hash: '',
         pathname: '/',
+        search: '',
+      },
+      undefined,
+      {
+        preventScrollReset: undefined,
+        relative: undefined,
+        replace: false,
+        state: undefined,
+      }
+    );
+    await userEvent.click(HeadphoneLink);
+    expect(history.push).toHaveBeenCalledTimes(2);
+    expect(history.push).toHaveBeenCalledWith(
+      {
+        hash: '',
+        pathname: '/headphones',
+        search: '',
+      },
+      undefined,
+      {
+        preventScrollReset: undefined,
+        relative: undefined,
+        replace: false,
+        state: undefined,
+      }
+    );
+    await userEvent.click(SpeakersLink);
+    expect(history.push).toHaveBeenCalledTimes(3);
+    expect(history.push).toHaveBeenCalledWith(
+      {
+        hash: '',
+        pathname: '/speakers',
+        search: '',
+      },
+      undefined,
+      {
+        preventScrollReset: undefined,
+        relative: undefined,
+        replace: false,
+        state: undefined,
+      }
+    );
+    await userEvent.click(EarphonesLink);
+    expect(history.push).toHaveBeenCalledTimes(4);
+    expect(history.push).toHaveBeenCalledWith(
+      {
+        hash: '',
+        pathname: '/earphones',
         search: '',
       },
       undefined,
