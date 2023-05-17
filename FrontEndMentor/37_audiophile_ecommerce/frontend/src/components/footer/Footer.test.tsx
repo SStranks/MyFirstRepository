@@ -108,4 +108,25 @@ describe('Functionality', () => {
       }
     );
   });
+
+  test('Social media links hrefs are correctly defined', async () => {
+    render(<Footer />, { wrapper: BrowserRouter });
+
+    const FacebookLink = screen.getByRole('link', {
+      name: 'Facebook Media Page',
+    });
+    const TwitterLink = screen.getByRole('link', {
+      name: 'Twitter Media Page',
+    });
+    const InstagramLink = screen.getByRole('link', {
+      name: 'Instagram Media Page',
+    });
+
+    expect(FacebookLink).toHaveAttribute('href', 'http://www.facebook.com');
+    expect(FacebookLink).toHaveAttribute('target', '_blank');
+    expect(TwitterLink).toHaveAttribute('href', 'http://www.twitter.com');
+    expect(TwitterLink).toHaveAttribute('target', '_blank');
+    expect(InstagramLink).toHaveAttribute('href', 'http://www.instagram.com');
+    expect(InstagramLink).toHaveAttribute('target', '_blank');
+  });
 });
