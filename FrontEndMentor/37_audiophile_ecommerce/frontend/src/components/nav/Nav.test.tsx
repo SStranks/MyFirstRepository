@@ -1,3 +1,4 @@
+import { ShoppingCartProvider } from '#Context/ShoppingCartContext';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
@@ -147,7 +148,27 @@ describe('Functionality', () => {
       screen.queryByLabelText(/see all \w+ shop/i)
     ).not.toBeInTheDocument();
     await userEvent.click(menuBtn);
-    screen.debug();
     expect(screen.getAllByLabelText(/^see all \w+ shop$/i)).toHaveLength(3);
+  });
+
+  test('Cart button accepts click and opens Cart Modal', async () => {
+    render(
+      <ShoppingCartProvider>
+        <Nav />
+      </ShoppingCartProvider>,
+      { wrapper: BrowserRouter }
+    );
+
+    const cartBtn = screen.getByRole('button', {
+      name: 'Shopping Cart',
+    });
+
+    expect(
+      screen.queryByRole('button', { name: /checkout/i })
+    ).not.toBeInTheDocument();
+    await userEvent.click(cartBtn);
+    expect(
+      screen.getByRole('button', { name: /checkout/i })
+    ).toBeInTheDocument();
   });
 });
