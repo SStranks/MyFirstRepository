@@ -1,5 +1,6 @@
 import { useShoppingCartContext } from '#Context/ShoppingCartContext';
 import ProductData from '#Data/Data.json';
+import formatCurrency from '#Utils/formatCurrency';
 import { forwardRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import CartProductCard from './CartProductCard';
@@ -60,7 +61,7 @@ function CartSummaryCard(
       <div className={styles.card__productList}>{cartItemsCards}</div>
       <p className={styles.card__total}>total</p>
       <p className={styles.card__amount}>
-        $ {cartTotalPrice().toLocaleString('en-US')}
+        $ {formatCurrency(cartTotalPrice())}
       </p>
       {onCheckoutRoute && (
         <button
