@@ -98,9 +98,38 @@ describe('Functionality', () => {
 
     await userEvent.click(checkoutBtn);
     expect(mockFn).toHaveBeenCalledTimes(1);
-    await waitFor(() => expect(mockedUsedNavigate).toHaveBeenCalledTimes(1));
-    await waitFor(() =>
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('/checkout')
+    await waitFor(() => {
+      expect(mockedUsedNavigate).toHaveBeenCalledTimes(1);
+      expect(mockedUsedNavigate).toHaveBeenCalledWith('/checkout');
+    });
+  });
+
+  test('Remove all button empties the context cart - should be empty array', async () => {
+    const mockFn = jest.fn();
+    localStorage.setItem(
+      'shopping-cart',
+      JSON.stringify([{ id: 1, quantity: 3 }])
+    );
+    render(
+      <ShoppingCartProvider>
+        <CartSummaryCard closeCartModal={mockFn} />
+      </ShoppingCartProvider>,
+      {
+        wrapper: BrowserRouter,
+      }
+    );
+
+    const removeAllBtn = screen.getByRole('button', {
+      name: 'remove all products from cart',
+    });
+    const cartItems = JSON.parse(
+      localStorage.getItem('shopping-cart') as string
+    );
+
+    expect(cartItems).toEqual([{ id: 1, quantity: 3 }]);
+    await userEvent.click(removeAllBtn);
+    expect(JSON.parse(localStorage.getItem('shopping-cart') as string)).toEqual(
+      []
     );
   });
 });

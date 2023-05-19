@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import CartProductCard from './CartProductCard';
 
 const mockQuantityToggleButton = jest.fn();
-// eslint-disable-next-line unicorn/consistent-function-scoping
 jest.mock('#Components/custom/buttons/QuantityToggleButton', () => ({
   __esModule: true,
   default: (props: unknown) => {
