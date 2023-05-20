@@ -2,7 +2,7 @@ import { ShoppingCartProvider } from '#Context/ShoppingCartContext';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
-import MenuCartModal from './MenuCartModal';
+import OrderCompleteModal from './OrderCompleteModal';
 
 let $root: HTMLDivElement;
 
@@ -21,47 +21,33 @@ describe('Appearance', () => {
     const mockSetModalFn = jest.fn();
     const { container } = render(
       <ShoppingCartProvider>
-        <MenuCartModal
-          modalOpen
-          setModal={mockSetModalFn}
-          // eslint-disable-next-line unicorn/no-null
-          modalButtonRef={null}
-        />
+        <OrderCompleteModal modalOpen modalClose={mockSetModalFn} />
       </ShoppingCartProvider>,
       { wrapper: BrowserRouter, container: $root }
     );
 
     const componentPortal = container;
-    const modalBtn = screen.getByRole('button', {
-      name: 'remove all products from cart',
-      hidden: true,
-    });
+    const modalText = screen.getByText('thank you for your order');
 
     expect(componentPortal).toBeInTheDocument();
-    expect(modalBtn).toBeInTheDocument();
+    expect(modalText).toBeInTheDocument();
   });
 });
 
 describe('Functionality', () => {
-  test('Clicking outside modal contents/Pressing `Esc`, fires close modal call', async () => {
+  test('Clicking `back to home` button fires close modal call', async () => {
     const mockSetModalFn = jest.fn();
-    const { container } = render(
+    render(
       <ShoppingCartProvider>
-        <MenuCartModal
-          modalOpen
-          setModal={mockSetModalFn}
-          // eslint-disable-next-line unicorn/no-null
-          modalButtonRef={null}
-        />
+        <OrderCompleteModal modalOpen modalClose={mockSetModalFn} />
       </ShoppingCartProvider>,
       { wrapper: BrowserRouter, container: $root }
     );
 
-    const modalContainer = container.querySelector('div.container');
+    const backBtn = screen.getByRole('button', { name: 'back to home' });
 
-    await userEvent.click(modalContainer as Element);
-    await userEvent.keyboard('{Escape}');
-    expect(mockSetModalFn).toHaveBeenCalledTimes(2);
-    expect(mockSetModalFn).toHaveBeenCalledWith(false);
+    await userEvent.click(backBtn);
+    expect(mockSetModalFn).toHaveBeenCalledTimes(1);
+    expect(mockSetModalFn).toHaveBeenCalledWith(true);
   });
 });

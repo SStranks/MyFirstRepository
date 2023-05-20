@@ -2,7 +2,7 @@ import { ShoppingCartProvider } from '#Context/ShoppingCartContext';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
-import MenuCartModal from './MenuCartModal';
+import MenuCategoryModal from './MenuCategoryModal';
 
 let $root: HTMLDivElement;
 
@@ -21,7 +21,7 @@ describe('Appearance', () => {
     const mockSetModalFn = jest.fn();
     const { container } = render(
       <ShoppingCartProvider>
-        <MenuCartModal
+        <MenuCategoryModal
           modalOpen
           setModal={mockSetModalFn}
           // eslint-disable-next-line unicorn/no-null
@@ -32,13 +32,12 @@ describe('Appearance', () => {
     );
 
     const componentPortal = container;
-    const modalBtn = screen.getByRole('button', {
-      name: 'remove all products from cart',
-      hidden: true,
-    });
+    const modalContainer = container.querySelector('div.container');
+    const modalText = screen.getAllByLabelText(/^see all \w+ shop$/i);
 
     expect(componentPortal).toBeInTheDocument();
-    expect(modalBtn).toBeInTheDocument();
+    expect(modalContainer).toBeInTheDocument();
+    expect(modalText).toHaveLength(3);
   });
 });
 
@@ -47,7 +46,7 @@ describe('Functionality', () => {
     const mockSetModalFn = jest.fn();
     const { container } = render(
       <ShoppingCartProvider>
-        <MenuCartModal
+        <MenuCategoryModal
           modalOpen
           setModal={mockSetModalFn}
           // eslint-disable-next-line unicorn/no-null
