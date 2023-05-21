@@ -1,4 +1,3 @@
-// import Data from '#Data/Data.json';
 import ProductExampleShopCard from './ProductExampleShopCard';
 
 import styles from './_ProductExampleShopList.module.scss';
