@@ -1,12 +1,12 @@
+import { PropsWithChildren } from 'react';
 import styles from './_MainTagLayout.module.scss';
 
 interface ElemProps extends React.HTMLProps<HTMLElement> {
   appendClass?: string;
-  children: React.ReactNode;
   testId?: string;
 }
 
-function MainTagLayout(props: ElemProps): JSX.Element {
+function MainTagLayout(props: PropsWithChildren<ElemProps>): JSX.Element {
   const { appendClass, children, id, testId } = props;
 
   return (

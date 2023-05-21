@@ -1,13 +1,10 @@
 import SkipTo from '#Components/custom/accessibility/SkipTo';
 import Footer from '#Components/footer/Footer';
 import Nav from '#Components/nav/Nav';
+import { PropsWithChildren } from 'react';
 import styles from './_DefaultLayout.module.scss';
 
-type ElemProps = {
-  children: React.ReactNode;
-};
-
-function DefaultLayout(props: ElemProps): JSX.Element {
+function DefaultLayout(props: PropsWithChildren): JSX.Element {
   const { children } = props;
 
   return (

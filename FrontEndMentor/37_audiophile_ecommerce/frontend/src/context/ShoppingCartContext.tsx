@@ -1,6 +1,6 @@
 import ProductData from '#Data/Data.json';
 import useLocalStorage from '#Hooks/useLocalStorage';
-import { createContext, useContext } from 'react';
+import { PropsWithChildren, createContext, useContext } from 'react';
 
 type CartItem = {
   id: number;
@@ -17,17 +17,13 @@ type ShoppingCartContext = {
   cartItems: CartItem[];
 };
 
-type ElemProps = {
-  children: React.ReactNode;
-};
-
 const ShoppingCartContext = createContext({} as ShoppingCartContext);
 
 function useShoppingCartContext() {
   return useContext(ShoppingCartContext);
 }
 
-function ShoppingCartProvider(props: ElemProps) {
+function ShoppingCartProvider(props: PropsWithChildren) {
   const { children } = props;
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
     'shopping-cart',
