@@ -26,6 +26,7 @@ describe('Appearance', () => {
     });
     const h5Text = screen.getByRole('heading', {
       name: /^dummyProductTitle$/,
+      level: 5,
     });
     const link = screen.getByRole('link', { name: /^see product$/ });
 

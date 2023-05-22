@@ -21,6 +21,7 @@ describe('Appearance', () => {
     const iconCheck = document.querySelector('img.card__circle__check');
     const textH3 = screen.getByRole('heading', {
       name: 'thank you for your order',
+      level: 3,
     });
     const textInfo = screen.getByText(
       'You will receive an email conformation shortly'

@@ -17,6 +17,7 @@ describe('Appearance', () => {
     });
     const H1Text = within(header).getByRole('heading', {
       name: /^xx99 mark ii headphones$/i,
+      level: 1,
     });
     const heroLink = within(header).getByRole('link', {
       name: /^See product XX99 mark 2 headphones\.$/,

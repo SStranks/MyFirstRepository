@@ -28,15 +28,22 @@ describe('Appearance', () => {
     const component = container.querySelector('div');
     const productImg = screen.getByRole('img', { name: 'dummyProductTitle' });
     const newProductText = screen.getByText(/^new product$/);
-    const productTitle = screen.getByRole('heading', {
+    const productTitleH2 = screen.getByRole('heading', {
       name: /^dummyProductTitle$/,
+      level: 2,
     });
     const productDescription = screen.getByText(/^dummyProductDescription$/);
     const productPrice = screen.getByText(/^\$ 99\.01$/);
     const addToCartBtn = screen.getByRole('button', { name: 'add to cart' });
-    const productFeaturesH3 = screen.getByRole('heading', { name: 'features' });
+    const productFeaturesH3 = screen.getByRole('heading', {
+      name: 'features',
+      level: 3,
+    });
     const productFeatures = screen.getByText('dummyProductFeatures');
-    const inTheBoxH3 = screen.getByRole('heading', { name: 'in the box' });
+    const inTheBoxH3 = screen.getByRole('heading', {
+      name: 'in the box',
+      level: 3,
+    });
     const productInTheBoxUL = screen.getByRole('list');
     const { getAllByRole } = within(productInTheBoxUL);
     const listItems = getAllByRole('listitem');
@@ -45,7 +52,7 @@ describe('Appearance', () => {
     expect(component).toHaveClass('container');
     expect(productImg).toBeInTheDocument();
     expect(newProductText).toBeInTheDocument();
-    expect(productTitle).toBeInTheDocument();
+    expect(productTitleH2).toBeInTheDocument();
     expect(productDescription).toBeInTheDocument();
     expect(productPrice).toBeInTheDocument();
     expect(addToCartBtn).toBeInTheDocument();

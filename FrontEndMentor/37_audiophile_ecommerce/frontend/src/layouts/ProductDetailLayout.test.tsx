@@ -30,6 +30,7 @@ describe('Appearance', () => {
     const alternativeProductsText = screen.getByText(/^you may also like$/);
     const productDetailCard = screen.getByRole('heading', {
       name: 'in the box',
+      level: 3,
     });
     const productImageGrid = screen.getAllByRole('img', {
       name: /^.+ being used$/,

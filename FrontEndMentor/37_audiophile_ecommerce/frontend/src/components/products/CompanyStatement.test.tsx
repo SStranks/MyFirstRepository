@@ -9,6 +9,7 @@ describe('Appearance', () => {
     const component = screen.getByRole('article');
     const h2Text = screen.getByRole('heading', {
       name: /^Bringing you the best audio gear$/,
+      level: 2,
     });
     const statementText = screen.getByText(
       /^Located at the heart of New York City/

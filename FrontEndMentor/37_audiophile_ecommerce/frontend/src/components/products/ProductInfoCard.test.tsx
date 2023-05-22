@@ -27,6 +27,7 @@ describe('Appearance', () => {
     const newProduct = screen.getByText(/^new product$/);
     const productTitle = screen.getByRole('heading', {
       name: 'dummyProductTitle',
+      level: 2,
     });
     const productDetails = screen.getByText('dummyProductDetails');
     const productLink = screen.getByRole('link', {

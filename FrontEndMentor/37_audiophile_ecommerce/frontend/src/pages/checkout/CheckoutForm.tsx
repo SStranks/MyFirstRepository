@@ -17,9 +17,11 @@ function CheckoutForm(props: ElemProps): JSX.Element {
   const { totalAmount, openOrderCompleteModal, productsList } = props;
   const [paymentMethod, setPaymentMethod] = useState<string>('');
 
-  const vatAmount = totalAmount * 0.2;
+  const vatAmount = (totalAmount * 0.2).toFixed(2);
   const shippingAmount = 50;
-  const grandTotal = formatCurrency(totalAmount + vatAmount + shippingAmount);
+  const grandTotal = formatCurrency(
+    totalAmount + Number(vatAmount) + shippingAmount
+  );
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,7 +53,11 @@ function CheckoutForm(props: ElemProps): JSX.Element {
   };
 
   return (
-    <form className={styles.form} onSubmit={onSubmit} noValidate>
+    <form
+      className={styles.form}
+      onSubmit={onSubmit}
+      noValidate
+      aria-label="form">
       <div className={styles.checkout}>
         <p className={styles.checkout__header}>checkout</p>
         <div className={styles.checkout__grid}>
