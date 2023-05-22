@@ -3,7 +3,7 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CheckoutForm from './CheckoutForm';
 
-const dummyProductSummaryCard = (): JSX.Element => {
+const DummyProductSummaryCard = (): JSX.Element => {
   return (
     <CheckoutSummaryProductCard
       key={1}
@@ -22,7 +22,7 @@ describe('Appearance', () => {
       <CheckoutForm
         totalAmount={99.01}
         openOrderCompleteModal={mockFn}
-        productsList={[dummyProductSummaryCard()]}
+        productsList={[DummyProductSummaryCard()]}
       />
     );
 
@@ -139,7 +139,7 @@ describe('Functionality', () => {
       <CheckoutForm
         totalAmount={99.01}
         openOrderCompleteModal={mockFn}
-        productsList={[dummyProductSummaryCard()]}
+        productsList={[DummyProductSummaryCard()]}
       />
     );
 
@@ -160,7 +160,7 @@ describe('Functionality', () => {
       <CheckoutForm
         totalAmount={99.01}
         openOrderCompleteModal={mockFn}
-        productsList={[dummyProductSummaryCard()]}
+        productsList={[DummyProductSummaryCard()]}
       />
     );
 
@@ -181,7 +181,7 @@ describe('Functionality', () => {
       <CheckoutForm
         totalAmount={99.01}
         openOrderCompleteModal={mockFn}
-        productsList={[dummyProductSummaryCard()]}
+        productsList={[DummyProductSummaryCard()]}
       />
     );
 
@@ -202,7 +202,7 @@ describe('Functionality', () => {
       <CheckoutForm
         totalAmount={99.01}
         openOrderCompleteModal={mockFn}
-        productsList={[dummyProductSummaryCard()]}
+        productsList={[DummyProductSummaryCard()]}
       />
     );
 

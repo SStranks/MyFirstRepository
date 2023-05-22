@@ -10,8 +10,6 @@ describe('Appearance', () => {
     const inputTypeText = screen.getByRole('textbox');
     const paragraphText = screen.getByText('label text');
 
-    screen.logTestingPlaygroundURL(); // Serves current HTML in codepen
-
     expect(component).toBeInTheDocument();
     expect(component).toContainElement(inputTypeText);
     expect(paragraphText).toBeInTheDocument();

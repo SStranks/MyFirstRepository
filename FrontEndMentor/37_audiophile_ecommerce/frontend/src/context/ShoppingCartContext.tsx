@@ -41,6 +41,7 @@ function ShoppingCartProvider(props: PropsWithChildren) {
   }
 
   function increaseCartItem(id: number, quantity = 1) {
+    if (quantity < 1) return;
     setCartItems((items) => {
       return items.some((item) => item.id === id)
         ? items.map((item) => {
