@@ -1,8 +1,8 @@
 import CompanyStatement from '#Components/products/CompanyStatement';
 import ProductExampleShopList from '#Components/products/ProductExampleShopList';
+import MainTagLayout from '#Layouts/MainTagLayout';
 import { Link } from 'react-router-dom';
 
-import MainTagLayout from '#Layouts/MainTagLayout';
 import styles from './_HomePage.module.scss';
 
 function Home(): JSX.Element {
