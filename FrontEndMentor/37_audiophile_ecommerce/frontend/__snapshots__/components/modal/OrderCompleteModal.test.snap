@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    aria-labelledby="header"
+    className="card"
+  >
+    <div
+      className="card__circle"
+    >
+      <img
+        alt=""
+        className="card__circle__check"
+        src=""
+      />
+    </div>
+    <h3
+      className="card__header"
+      id="header"
+    >
+      thank you for your order
+    </h3>
+    <p
+      className="card__subHeader"
+    >
+      You will receive an email conformation shortly
+    </p>
+    <div
+      className="orderDetails"
+    >
+      <div
+        className="orderDetails__items"
+      />
+      <div
+        className="orderDetails__grandTotal"
+      >
+        <p
+          className="orderDetails__grandTotal__title"
+        >
+          grand total
+        </p>
+        <p
+          className="orderDetails__grandTotal__amount"
+        >
+          $
+          0.00
+        </p>
+      </div>
+    </div>
+    <button
+      className="card__homeBtn"
+      onClick={[Function]}
+      type="button"
+    >
+      back to home
+    </button>
+  </div>
+</div>
+`;

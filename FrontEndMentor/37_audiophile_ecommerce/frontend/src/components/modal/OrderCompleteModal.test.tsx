@@ -1,6 +1,7 @@
 import { ShoppingCartProvider } from '#Context/ShoppingCartContext';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import OrderCompleteModal from './OrderCompleteModal';
@@ -19,14 +20,23 @@ afterEach(() => {
 
 describe('Appearance', () => {
   test('Component render matches snapshot', () => {
+    ReactDOM.createPortal = jest.fn((element) => {
+      return element as React.ReactPortal;
+    });
+
+    const mockSetModalFn = jest.fn();
     const tree = renderer
       .create(
         <BrowserRouter>
-          <Nav />
+          <ShoppingCartProvider>
+            <OrderCompleteModal modalOpen modalClose={mockSetModalFn} />
+          </ShoppingCartProvider>
         </BrowserRouter>
       )
       .toJSON();
     expect(tree).toMatchSnapshot();
+
+    (ReactDOM.createPortal as jest.Mock).mockClear();
   });
 
   test('Component base should be fully rendered', () => {
