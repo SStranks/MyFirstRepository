@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<label
+  className="label undefined"
+  htmlFor="label text"
+>
+  <input
+    className="label__radioBtn"
+    id="label text"
+    type="radio"
+  />
+  <p
+    className="label__title"
+  >
+    label text
+  </p>
+</label>
+`;

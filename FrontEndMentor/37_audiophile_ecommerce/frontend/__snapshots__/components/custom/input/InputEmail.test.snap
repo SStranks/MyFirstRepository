@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<label
+  className="container undefined"
+  htmlFor="label text"
+>
+  <p
+    className="container__title"
+  >
+    label text
+  </p>
+  <input
+    className="container__input"
+    id="label text"
+    maxLength={256}
+    type="email"
+  />
+</label>
+`;

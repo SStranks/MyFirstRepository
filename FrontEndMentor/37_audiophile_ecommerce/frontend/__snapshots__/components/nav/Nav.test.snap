@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<nav
+  aria-label="primary"
+  className="nav undefined"
+  id="primary-nav"
+>
+  <button
+    className="nav__menuBtn"
+    onClick={[Function]}
+    type="button"
+  >
+    <img
+      alt="Menu Product Categories"
+      height="15"
+      src=""
+      width="16"
+    />
+  </button>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    <img
+      alt="Audiophile Home"
+      height="25"
+      src=""
+      width="143"
+    />
+  </a>
+  <div
+    className="nav__links"
+  >
+    <a
+      className="nav__link"
+      href="/"
+      onClick={[Function]}
+    >
+      home
+    </a>
+    <a
+      className="nav__link"
+      href="/headphones"
+      onClick={[Function]}
+    >
+      headphones
+    </a>
+    <a
+      className="nav__link"
+      href="/speakers"
+      onClick={[Function]}
+    >
+      speakers
+    </a>
+    <a
+      className="nav__link"
+      href="/earphones"
+      onClick={[Function]}
+    >
+      earphones
+    </a>
+  </div>
+  <button
+    className="nav__cartBtn"
+    onClick={[Function]}
+    type="button"
+  >
+    <img
+      alt="Shopping Cart"
+      height="20"
+      src=""
+      width="23"
+    />
+  </button>
+</nav>
+`;

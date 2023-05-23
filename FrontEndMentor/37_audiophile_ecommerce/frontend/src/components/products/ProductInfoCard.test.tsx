@@ -2,9 +2,32 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { BrowserRouter, Router } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import ProductInfoCard from './ProductInfoCard';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer
+      .create(
+        <BrowserRouter>
+          <ProductInfoCard
+            productImgs={{
+              desktop: 'desktopImgURL',
+              tablet: 'tabletImgURL',
+              mobile: 'mobileImgURL',
+            }}
+            productTitle="dummyProductTitle"
+            productDetails="dummyProductDetails"
+            newProduct
+            productCategory="dummyProductCategory"
+            productId={1}
+          />
+        </BrowserRouter>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     render(
       <ProductInfoCard

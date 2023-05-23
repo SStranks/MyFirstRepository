@@ -2,6 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import ProductDetailLayout from './ProductDetailLayout';
 
 const mockedUsedNavigate = jest.fn();
@@ -15,6 +16,20 @@ beforeEach(() => {
 });
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const history = createMemoryHistory();
+    const state = { productCategory: 'speakers', productId: 5 };
+    history.push('/', state);
+    const tree = renderer
+      .create(
+        <Router location={history.location} navigator={history}>
+          <ProductDetailLayout />
+        </Router>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const history = createMemoryHistory();
     const state = { productCategory: 'speakers', productId: 5 };

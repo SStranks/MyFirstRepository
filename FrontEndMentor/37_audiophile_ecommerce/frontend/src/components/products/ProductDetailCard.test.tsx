@@ -1,8 +1,34 @@
 import { render, screen, within } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import ProductDetailCard from './ProductDetailCard';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer
+      .create(
+        <BrowserRouter>
+          <ProductDetailCard
+            appendClass="additionalStyles"
+            productId={0}
+            newProduct
+            productImages={{
+              desktop: '',
+              tablet: '',
+              mobile: '',
+            }}
+            productTitle="dummyProductTitle"
+            productDescription="dummyProductDescription"
+            productPrice={99.01}
+            productFeatures="dummyProductFeatures"
+            productItems={[{ item: 'dummyItem', quantity: 1 }]}
+          />
+        </BrowserRouter>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const { container } = render(
       <ProductDetailCard

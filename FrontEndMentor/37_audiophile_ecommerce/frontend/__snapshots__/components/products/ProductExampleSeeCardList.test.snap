@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="list undefined"
+>
+  <div
+    aria-label="see product XX99 Mark I"
+    className="card"
+  >
+    <picture>
+      <source
+        height="636px"
+        media="(min-width: 1200px)"
+        srcSet="/img/shared/desktop/image-xx99-mark-one-headphones.jpg"
+        width="700px"
+      />
+      <source
+        height="636px"
+        media="(min-width: 768px)"
+        srcSet="/img/shared/tablet/image-xx99-mark-one-headphones.jpg"
+        width="446px"
+      />
+      <source
+        height="240px"
+        media="(max-width: 480px)"
+        srcSet="/img/shared/mobile/image-xx99-mark-one-headphones.jpg"
+        width="654px"
+      />
+      <img
+        alt="XX99 Mark I"
+        className="card__img"
+        src="/img/shared/desktop/image-xx99-mark-one-headphones.jpg"
+      />
+    </picture>
+    <h5
+      className="card__title"
+    >
+      XX99 Mark I
+    </h5>
+    <a
+      className="card__btn"
+      href="/headphones/3"
+      onClick={[Function]}
+    >
+      see product
+    </a>
+  </div>
+  <div
+    aria-label="see product XX59"
+    className="card"
+  >
+    <picture>
+      <source
+        height="636px"
+        media="(min-width: 1200px)"
+        srcSet="/img/shared/desktop/image-xx59-headphones.jpg"
+        width="700px"
+      />
+      <source
+        height="636px"
+        media="(min-width: 768px)"
+        srcSet="/img/shared/tablet/image-xx59-headphones.jpg"
+        width="446px"
+      />
+      <source
+        height="240px"
+        media="(max-width: 480px)"
+        srcSet="/img/shared/mobile/image-xx59-headphones.jpg"
+        width="654px"
+      />
+      <img
+        alt="XX59"
+        className="card__img"
+        src="/img/shared/desktop/image-xx59-headphones.jpg"
+      />
+    </picture>
+    <h5
+      className="card__title"
+    >
+      XX59
+    </h5>
+    <a
+      className="card__btn"
+      href="/headphones/2"
+      onClick={[Function]}
+    >
+      see product
+    </a>
+  </div>
+  <div
+    aria-label="see product ZX9 Speaker"
+    className="card"
+  >
+    <picture>
+      <source
+        height="636px"
+        media="(min-width: 1200px)"
+        srcSet="/img/shared/desktop/image-zx9-speaker.jpg"
+        width="700px"
+      />
+      <source
+        height="636px"
+        media="(min-width: 768px)"
+        srcSet="/img/shared/tablet/image-zx9-speaker.jpg"
+        width="446px"
+      />
+      <source
+        height="240px"
+        media="(max-width: 480px)"
+        srcSet="/img/shared/mobile/image-zx9-speaker.jpg"
+        width="654px"
+      />
+      <img
+        alt="ZX9 Speaker"
+        className="card__img"
+        src="/img/shared/desktop/image-zx9-speaker.jpg"
+      />
+    </picture>
+    <h5
+      className="card__title"
+    >
+      ZX9 Speaker
+    </h5>
+    <a
+      className="card__btn"
+      href="/speakers/6"
+      onClick={[Function]}
+    >
+      see product
+    </a>
+  </div>
+</div>
+`;

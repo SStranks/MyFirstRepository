@@ -14,6 +14,7 @@ const config: Config = {
     '<rootDir>/node_modules/@testing-library/jest-dom/extend-expect',
     '<rootDir>/jest.setup.ts',
   ],
+  snapshotResolver: '<rootDir>/__snapshots__/snapshotResolver.ts',
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/jest.fileMock.ts',

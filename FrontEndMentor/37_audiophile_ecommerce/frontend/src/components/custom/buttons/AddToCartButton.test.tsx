@@ -4,6 +4,7 @@ import {
 } from '#Context/ShoppingCartContext';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderer from 'react-test-renderer';
 import AddToCartButton from './AddToCartButton';
 
 // NOTE:  Comment block: To test if child component is passed props
@@ -25,6 +26,11 @@ jest.mock('./QuantityToggleButton', () => ({
 }));
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer.create(<AddToCartButton productId={1} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const { container } = render(<AddToCartButton productId={1} />);
 

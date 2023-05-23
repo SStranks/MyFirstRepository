@@ -2,6 +2,7 @@ import App from '#Components/App';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import SkipTo from './SkipTo';
 
 const ROUTES = {
@@ -14,6 +15,13 @@ const ROUTES = {
 };
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer
+      .create(<SkipTo contentName="Dummy name" contentId="Dummy id" />)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     render(<SkipTo contentName="Dummy name" contentId="Dummy id" />);
 

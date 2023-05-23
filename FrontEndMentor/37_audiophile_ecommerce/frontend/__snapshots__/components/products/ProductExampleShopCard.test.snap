@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<a
+  className="card__shop__text"
+  href="/"
+  onClick={[Function]}
+>
+  <div
+    aria-label="see all dummyProductName shop"
+    className="card"
+  >
+    <div
+      className="card__bg"
+    />
+    <img
+      alt=""
+      className="card__img"
+      height="380px"
+      src=""
+      width="438px"
+    />
+    <p
+      className="card__name"
+    >
+      dummyProductName
+    </p>
+    <div
+      className="card__shop"
+    >
+      <p
+        className="card__shop__text"
+      >
+        shop
+      </p>
+      <img
+        alt=""
+        className="card__shop__img"
+        height="12px"
+        src=""
+        width="8px"
+      />
+    </div>
+  </div>
+</a>
+`;

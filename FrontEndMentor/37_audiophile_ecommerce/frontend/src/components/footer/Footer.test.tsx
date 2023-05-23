@@ -3,9 +3,21 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { BrowserRouter, Router } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import Footer from './Footer';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer
+      .create(
+        <BrowserRouter>
+          <Footer />
+        </BrowserRouter>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     render(<Footer />, { wrapper: BrowserRouter });
 

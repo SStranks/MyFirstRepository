@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<main
+  className="main undefined"
+>
+  <div
+    className="main__container"
+  />
+</main>
+`;

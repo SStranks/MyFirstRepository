@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { BrowserRouter, Router } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import CartSummaryCard from './CartSummaryCard';
 
 const mockedUsedNavigate = jest.fn();
@@ -16,6 +17,20 @@ beforeEach(() => {
 });
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const mockFn = jest.fn();
+    const tree = renderer
+      .create(
+        <BrowserRouter>
+          <ShoppingCartProvider>
+            <CartSummaryCard closeCartModal={mockFn} />
+          </ShoppingCartProvider>
+        </BrowserRouter>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const mockFn = jest.fn();
     const { container } = render(

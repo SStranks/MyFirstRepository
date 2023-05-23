@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  aria-labelledby="productTitle"
+  className="card"
+>
+  <img
+    alt="productTitle"
+    className="card__img"
+    src="productImage"
+  />
+  <p
+    className="card__title"
+    id="productTitle"
+  >
+    productTitle
+  </p>
+  <p
+    className="card__price"
+  >
+    $ 
+    123
+  </p>
+  <div
+    data-testid="quantity-toggle-button"
+  />
+</div>
+`;

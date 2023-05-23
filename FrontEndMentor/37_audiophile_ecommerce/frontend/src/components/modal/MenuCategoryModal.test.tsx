@@ -2,6 +2,7 @@ import { ShoppingCartProvider } from '#Context/ShoppingCartContext';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import MenuCategoryModal from './MenuCategoryModal';
 
 let $root: HTMLDivElement;
@@ -17,6 +18,17 @@ afterEach(() => {
 });
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer
+      .create(
+        <BrowserRouter>
+          <Nav />
+        </BrowserRouter>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const mockSetModalFn = jest.fn();
     const { container } = render(

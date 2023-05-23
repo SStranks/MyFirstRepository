@@ -1,7 +1,22 @@
 import { render, screen } from '@testing-library/react';
+import renderer from 'react-test-renderer';
 import CheckoutSummaryProductCard from './CheckoutSummaryProductCard';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer
+      .create(
+        <CheckoutSummaryProductCard
+          productImg="imgURL"
+          productPrice={9.99}
+          productQuantity={3}
+          productTitle="dummyTitle"
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const { container } = render(
       <CheckoutSummaryProductCard

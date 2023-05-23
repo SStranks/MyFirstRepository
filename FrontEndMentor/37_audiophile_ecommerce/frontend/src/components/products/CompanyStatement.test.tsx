@@ -1,8 +1,20 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import CompanyStatement from './CompanyStatement';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer
+      .create(
+        <BrowserRouter>
+          <CompanyStatement />
+        </BrowserRouter>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     render(<CompanyStatement />, { wrapper: BrowserRouter });
 

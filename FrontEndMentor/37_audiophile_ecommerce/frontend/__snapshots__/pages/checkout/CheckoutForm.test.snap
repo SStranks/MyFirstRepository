@@ -1,0 +1,276 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<form
+  aria-label="form"
+  className="form"
+  noValidate={true}
+  onSubmit={[Function]}
+>
+  <div
+    className="checkout"
+  >
+    <p
+      className="checkout__header"
+    >
+      checkout
+    </p>
+    <div
+      className="checkout__grid"
+    >
+      <p
+        className="checkout__subHeader"
+      >
+        billing details
+      </p>
+      <label
+        className="container checkout__inputText"
+      >
+        <p
+          className="container__title"
+        />
+        <input
+          className="container__input"
+          name="Name"
+          placeholder="Insert full name"
+          required={true}
+          type="text"
+        />
+      </label>
+      <label
+        className="container checkout__inputText"
+      >
+        <p
+          className="container__title"
+        />
+        <input
+          className="container__input"
+          maxLength={256}
+          name="Email Address"
+          placeholder="Insert email address"
+          required={true}
+          type="email"
+        />
+      </label>
+      <label
+        className="container checkout__inputText"
+      >
+        <p
+          className="container__title"
+        />
+        <input
+          className="container__input"
+          name="Phone Number"
+          placeholder="Insert phone number"
+          required={true}
+          type="tel"
+        />
+      </label>
+      <p
+        className="checkout__subHeader"
+      >
+        shipping info
+      </p>
+      <label
+        className="container checkout__inputText gridColumnSpan"
+      >
+        <p
+          className="container__title"
+        />
+        <input
+          className="container__input"
+          name="Address"
+          placeholder="Insert address"
+          required={true}
+          type="text"
+        />
+      </label>
+      <label
+        className="container checkout__inputText"
+      >
+        <p
+          className="container__title"
+        />
+        <input
+          className="container__input"
+          name="ZIP Code"
+          placeholder="Insert ZIP code"
+          required={true}
+          type="text"
+        />
+      </label>
+      <label
+        className="container checkout__inputText"
+      >
+        <p
+          className="container__title"
+        />
+        <input
+          className="container__input"
+          name="City"
+          placeholder="Insert city"
+          required={true}
+          type="text"
+        />
+      </label>
+      <label
+        className="container checkout__inputText"
+      >
+        <p
+          className="container__title"
+        />
+        <input
+          className="container__input"
+          name="Country"
+          placeholder="Insert country"
+          required={true}
+          type="text"
+        />
+      </label>
+      <p
+        className="checkout__subHeader"
+      >
+        payment details
+      </p>
+      <div
+        className="checkout__paymentMethod"
+      >
+        <p
+          className="checkout__labelTitle"
+        >
+          payment method
+        </p>
+        <label
+          className="label undefined"
+          htmlFor="e-Money"
+        >
+          <input
+            className="label__radioBtn"
+            id="e-Money"
+            name="payment method"
+            onChange={[Function]}
+            required={true}
+            type="radio"
+          />
+          <p
+            className="label__title"
+          >
+            e-Money
+          </p>
+        </label>
+        <label
+          className="label gridColumn2"
+          htmlFor="cash"
+        >
+          <input
+            className="label__radioBtn"
+            id="cash"
+            name="payment method"
+            onChange={[Function]}
+            required={true}
+            type="radio"
+          />
+          <p
+            className="label__title"
+          >
+            cash
+          </p>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div
+    className="summary"
+  >
+    <p
+      className="summary__header"
+    >
+      summary
+    </p>
+    <div
+      className="summary__products"
+    >
+      <div
+        className="card"
+      >
+        <img
+          alt="dummyProductTitle"
+          className="card__img"
+          src="dummyImgURL"
+        />
+        <p
+          className="card__title"
+        >
+          dummyProductTitle
+        </p>
+        <p
+          className="card__price"
+        >
+          $ 
+          123.45
+        </p>
+        <p
+          className="card__quantity"
+        >
+          x
+          3
+        </p>
+      </div>
+    </div>
+    <div
+      className="summary__financial"
+    >
+      <p
+        className="summary__financial__heading"
+      >
+        total
+      </p>
+      <p
+        className="summary__financial__total"
+      >
+        $ 
+        99.01
+      </p>
+      <p
+        className="summary__financial__heading"
+      >
+        shipping
+      </p>
+      <p
+        className="summary__financial__total"
+      >
+        $ 
+        50
+      </p>
+      <p
+        className="summary__financial__heading"
+      >
+        vat (included)
+      </p>
+      <p
+        className="summary__financial__total"
+      >
+        $ 
+        19.80
+      </p>
+      <p
+        className="summary__financial__heading gridLastRow"
+      >
+        grand total
+      </p>
+      <p
+        className="summary__financial__grandTotal gridLastRow"
+      >
+        $ 
+        168.81
+      </p>
+    </div>
+    <button
+      className="summary__btn"
+      type="submit"
+    >
+      continue & pay
+    </button>
+  </div>
+</form>
+`;

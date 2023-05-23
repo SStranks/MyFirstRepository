@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="container additionalStyles"
+>
+  <div
+    className="cardPrimary"
+  >
+    <picture
+      className="cardPrimary__picture"
+    >
+      <source
+        height="1120px"
+        media="(min-width: 992px)"
+        srcSet=""
+        width="1080px"
+      />
+      <source
+        height="960px"
+        media="(min-width: 667px)"
+        srcSet=""
+        width="562px"
+      />
+      <source
+        height="654px"
+        media="(max-width: 666px)"
+        srcSet=""
+        width="654px"
+      />
+      <img
+        alt="dummyProductTitle"
+        className="cardPrimary__img"
+        src=""
+      />
+    </picture>
+    <div
+      className="cardPrimary__info"
+    >
+      <p
+        className="cardPrimary__new"
+      >
+        new product
+      </p>
+      <h2
+        className="cardPrimary__title"
+      >
+        dummyProductTitle
+      </h2>
+      <p
+        className="cardPrimary__details"
+      >
+        dummyProductDescription
+      </p>
+      <p
+        className="cardPrimary__price"
+      >
+        $ 
+        99.01
+      </p>
+      <div
+        className="cardPrimary__purchase"
+      >
+        <div
+          className="container"
+        >
+          <div
+            className="button undefined"
+          >
+            <button
+              onClick={[Function]}
+              type="button"
+            >
+              -
+            </button>
+            <p
+              className="button__quantity"
+            >
+              1
+            </p>
+            <button
+              onClick={[Function]}
+              type="button"
+            >
+              +
+            </button>
+          </div>
+          <button
+            className="container__btn"
+            onClick={[Function]}
+            type="button"
+          >
+            add to cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="cardSecondary"
+  >
+    <div
+      className="cardSecondary__features"
+    >
+      <h3
+        className="cardSecondary__header"
+      >
+        features
+      </h3>
+      <p
+        className="cardSecondary__featuresInfo"
+      >
+        dummyProductFeatures
+      </p>
+    </div>
+    <div
+      className="cardSecondary__inBox"
+    >
+      <h3
+        className="cardSecondary__header"
+      >
+        in the box
+      </h3>
+      <ul
+        className="cardSecondary__list"
+      >
+        <li>
+          <p
+            className="cardSecondary__list__quantity"
+          >
+            1
+            x
+          </p>
+          <p
+            className="cardSecondary__list__item"
+          >
+             
+            dummyItem
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+`;

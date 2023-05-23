@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="fallback fallback-fade-in"
+>
+  <div
+    className="fallback__bars"
+  >
+    <div
+      className="fallback__bars__bar"
+    />
+    <div
+      className="fallback__bars__bar"
+    />
+    <div
+      className="fallback__bars__bar"
+    />
+    <div
+      className="fallback__bars__bar"
+    />
+    <div
+      className="fallback__bars__bar"
+    />
+  </div>
+  <p
+    className="fallback__loading"
+  >
+    Loading
+  </p>
+</div>
+`;

@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<footer
+  className="footer"
+  data-testid="skipto-footer"
+  id="skipto-footer"
+>
+  <nav
+    aria-label="secondary"
+    className="footer__nav"
+  >
+    <img
+      alt="Audiophile Logo"
+      className="footer__logo"
+      src=""
+    />
+    <div
+      className="footer__links"
+    >
+      <a
+        className="footer__link"
+        href="/"
+        onClick={[Function]}
+      >
+        home
+      </a>
+      <a
+        className="footer__link"
+        href="/headphones"
+        onClick={[Function]}
+      >
+        headphones
+      </a>
+      <a
+        className="footer__link"
+        href="/speakers"
+        onClick={[Function]}
+      >
+        speakers
+      </a>
+      <a
+        className="footer__link"
+        href="/earphones"
+        onClick={[Function]}
+      >
+        earphones
+      </a>
+    </div>
+  </nav>
+  <p
+    className="footer__info"
+  >
+    Audiophile is an all in one stop to fulfill your audio needs. We're a small team of music lovers and sound specialists who are devoted to helping you get the most out of personal audio. Come and visit our demo facility - we're open 7 days a week.
+  </p>
+  <div
+    className="footer__bottombar"
+  >
+    <p
+      className="footer__copyright"
+    >
+      Copyright 2021. All Rights Reserved
+    </p>
+    <div
+      className="footer__social"
+    >
+      <a
+        href="http://www.facebook.com"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="Facebook Media Page"
+          className="footer__social__icon"
+          src=""
+        />
+      </a>
+      <a
+        href="http://www.twitter.com"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="Twitter Media Page"
+          className="footer__social__icon"
+          src=""
+        />
+      </a>
+      <a
+        href="http://www.instagram.com"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="Instagram Media Page"
+          className="footer__social__icon"
+          src=""
+        />
+      </a>
+    </div>
+  </div>
+</footer>
+`;

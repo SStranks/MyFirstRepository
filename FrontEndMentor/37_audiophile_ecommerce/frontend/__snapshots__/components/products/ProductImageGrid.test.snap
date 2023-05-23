@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="grid undefined"
+>
+  <picture
+    className="grid__picture gridArea1"
+  >
+    <source
+      media="(min-width: 1024px)"
+      srcSet="desktopImg"
+    />
+    <source
+      media="(min-width: 481px)"
+      srcSet="tabletImg"
+    />
+    <source
+      media="(max-width: 480px)"
+      srcSet="mobileImg"
+    />
+    <img
+      alt="dummyProductTitle being used"
+      className="grid__img"
+      src="desktopImg"
+    />
+  </picture>
+</div>
+`;

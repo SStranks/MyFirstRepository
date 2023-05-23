@@ -1,8 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderer from 'react-test-renderer';
 import ViewMoreCartItemsButton from './ViewMoreCartItemsButton';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const mockFn = jest.fn();
+    const tree = renderer
+      .create(<ViewMoreCartItemsButton cartItemLength={2} onClickFn={mockFn} />)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const mockFn = jest.fn();
     render(<ViewMoreCartItemsButton cartItemLength={2} onClickFn={mockFn} />);

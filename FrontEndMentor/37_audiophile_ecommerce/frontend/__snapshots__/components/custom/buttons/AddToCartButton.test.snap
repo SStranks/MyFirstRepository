@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    data-testid="quantity-toggle-button"
+  />
+  <button
+    className="container__btn"
+    onClick={[Function]}
+    type="button"
+  >
+    add to cart
+  </button>
+</div>
+`;

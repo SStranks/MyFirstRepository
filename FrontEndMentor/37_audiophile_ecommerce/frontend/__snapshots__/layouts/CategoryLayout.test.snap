@@ -1,0 +1,274 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<section
+  aria-labelledby="dummyProductCategory"
+>
+  <header
+    className="header"
+  >
+    <hr
+      className="header__hr"
+    />
+    <h1
+      className="header__title"
+      id="dummyProductCategory"
+    >
+      dummyProductCategory
+    </h1>
+  </header>
+  <main
+    className="main undefined"
+    data-testid="skipto-main"
+    id="skipto-main"
+  >
+    <div
+      className="main__container"
+    >
+      <div
+        className="grid"
+      >
+        <article
+          aria-labelledby="dummyProductName"
+          className="card"
+        >
+          <picture>
+            <source
+              height="1120px"
+              media="(min-width: 1200px)"
+              srcSet="desktopImgURL"
+              width="1080px"
+            />
+            <source
+              height="960px"
+              media="(min-width: 481px) and (max-width: 1199px)"
+              srcSet="tabletImgURL"
+              width="562px"
+            />
+            <source
+              height="654px"
+              media="(max-width: 480px)"
+              srcSet="mobileImgURL"
+              width="654px"
+            />
+            <img
+              alt="dummyProductName"
+              className="card__img"
+              src="desktopImgURL"
+            />
+          </picture>
+          <div
+            className="card__panel"
+          >
+            <p
+              className="card__new"
+            >
+              new product
+            </p>
+            <h2
+              className="card__title"
+              id="dummyProductName"
+            >
+              dummyProductName
+            </h2>
+            <p
+              className="card__details"
+            >
+              dummyDescription
+            </p>
+            <a
+              aria-label="See product dummyProductName"
+              className="card__link"
+              href="/dummyProductCategory/1"
+              onClick={[Function]}
+            >
+              see product
+            </a>
+          </div>
+        </article>
+      </div>
+      <div
+        className="list productExampleShopList"
+      >
+        <a
+          className="card__shop__text"
+          href="/headphones"
+          onClick={[Function]}
+        >
+          <div
+            aria-label="see all headphones shop"
+            className="card"
+          >
+            <div
+              className="card__bg"
+            />
+            <img
+              alt=""
+              className="card__img"
+              height="380px"
+              src="/img/shared/desktop/image-category-thumbnail-headphones.png"
+              width="438px"
+            />
+            <p
+              className="card__name"
+            >
+              headphones
+            </p>
+            <div
+              className="card__shop"
+            >
+              <p
+                className="card__shop__text"
+              >
+                shop
+              </p>
+              <img
+                alt=""
+                className="card__shop__img"
+                height="12px"
+                src=""
+                width="8px"
+              />
+            </div>
+          </div>
+        </a>
+        <a
+          className="card__shop__text"
+          href="/speakers"
+          onClick={[Function]}
+        >
+          <div
+            aria-label="see all speakers shop"
+            className="card"
+          >
+            <div
+              className="card__bg"
+            />
+            <img
+              alt=""
+              className="card__img"
+              height="380px"
+              src="/img/shared/desktop/image-category-thumbnail-speakers.png"
+              width="438px"
+            />
+            <p
+              className="card__name"
+            >
+              speakers
+            </p>
+            <div
+              className="card__shop"
+            >
+              <p
+                className="card__shop__text"
+              >
+                shop
+              </p>
+              <img
+                alt=""
+                className="card__shop__img"
+                height="12px"
+                src=""
+                width="8px"
+              />
+            </div>
+          </div>
+        </a>
+        <a
+          className="card__shop__text"
+          href="/earphones"
+          onClick={[Function]}
+        >
+          <div
+            aria-label="see all earphones shop"
+            className="card"
+          >
+            <div
+              className="card__bg"
+            />
+            <img
+              alt=""
+              className="card__img"
+              height="380px"
+              src="/img/shared/desktop/image-category-thumbnail-earphones.png"
+              width="438px"
+            />
+            <p
+              className="card__name"
+            >
+              earphones
+            </p>
+            <div
+              className="card__shop"
+            >
+              <p
+                className="card__shop__text"
+              >
+                shop
+              </p>
+              <img
+                alt=""
+                className="card__shop__img"
+                height="12px"
+                src=""
+                width="8px"
+              />
+            </div>
+          </div>
+        </a>
+      </div>
+      <article
+        aria-labelledby="company statement"
+        className="card companyStatement"
+      >
+        <div
+          className="card__info"
+        >
+          <h2
+            className="card__title"
+            id="company statement"
+          >
+            Bringing you the 
+            <span>
+              best
+            </span>
+             audio gear
+          </h2>
+          <p
+            className="card__statement"
+          >
+            Located at the heart of New York City, Audiophile is the premier store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment.
+          </p>
+        </div>
+        <picture
+          className="card__picture"
+        >
+          <source
+            height="588"
+            media="(min-width: 1024px)"
+            srcSet="/img/shared/desktop/image-best-gear.jpg"
+            width="540"
+          />
+          <source
+            height="600"
+            media="(min-width: 576px)"
+            srcSet="/img/shared/tablet/image-best-gear.jpg"
+            width="1378"
+          />
+          <source
+            height="600"
+            media="(max-width: 575px)"
+            srcSet="/img/shared/mobile/image-best-gear.jpg"
+            width="654"
+          />
+          <img
+            alt="Furnishing our customers with the best gear"
+            className="card__img"
+            src="/img/shared/desktop/image-best-gear.jpg"
+          />
+        </picture>
+      </article>
+    </div>
+  </main>
+</section>
+`;

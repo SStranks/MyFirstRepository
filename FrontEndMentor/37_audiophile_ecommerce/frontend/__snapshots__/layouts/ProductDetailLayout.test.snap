@@ -1,0 +1,598 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<main
+  className="main mainTag"
+  data-testid="skipto-main"
+  id="skipto-main"
+>
+  <div
+    className="main__container"
+  >
+    <button
+      className="btnBack"
+      onClick={[Function]}
+      type="button"
+    >
+      go back
+    </button>
+    <div
+      className="container productDetailCard"
+    >
+      <div
+        className="cardPrimary"
+      >
+        <picture
+          className="cardPrimary__picture"
+        >
+          <source
+            height="1120px"
+            media="(min-width: 992px)"
+            srcSet="/img/product-zx7-speaker/desktop/image-product.jpg"
+            width="1080px"
+          />
+          <source
+            height="960px"
+            media="(min-width: 667px)"
+            srcSet="/img/product-zx7-speaker/tablet/image-product.jpg"
+            width="562px"
+          />
+          <source
+            height="654px"
+            media="(max-width: 666px)"
+            srcSet="/img/product-zx7-speaker/mobile/image-product.jpg"
+            width="654px"
+          />
+          <img
+            alt="ZX7 Speaker"
+            className="cardPrimary__img"
+            src="/img/product-zx7-speaker/desktop/image-product.jpg"
+          />
+        </picture>
+        <div
+          className="cardPrimary__info"
+        >
+          <h2
+            className="cardPrimary__title"
+          >
+            ZX7 Speaker
+          </h2>
+          <p
+            className="cardPrimary__details"
+          >
+            Stream high quality sound wirelessly with minimal to no loss. The ZX7 speaker uses high-end audiophile components that represents the top of the line powered speakers for home or studio use.
+          </p>
+          <p
+            className="cardPrimary__price"
+          >
+            $ 
+            3,500
+          </p>
+          <div
+            className="cardPrimary__purchase"
+          >
+            <div
+              className="container"
+            >
+              <div
+                className="button undefined"
+              >
+                <button
+                  onClick={[Function]}
+                  type="button"
+                >
+                  -
+                </button>
+                <p
+                  className="button__quantity"
+                >
+                  1
+                </p>
+                <button
+                  onClick={[Function]}
+                  type="button"
+                >
+                  +
+                </button>
+              </div>
+              <button
+                className="container__btn"
+                onClick={[Function]}
+                type="button"
+              >
+                add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="cardSecondary"
+      >
+        <div
+          className="cardSecondary__features"
+        >
+          <h3
+            className="cardSecondary__header"
+          >
+            features
+          </h3>
+          <p
+            className="cardSecondary__featuresInfo"
+          >
+            Reap the advantages of a flat diaphragm tweeter cone. This provides a fast response rate and excellent high frequencies that lower tiered bookshelf speakers cannot provide. The woofers are made from aluminum that produces a unique and clear sound. XLR inputs allow you to connect to a mixer for more advanced usage.
+
+The ZX7 speaker is the perfect blend of stylish design and high performance. It houses an encased MDF wooden enclosure which minimises acoustic resonance. Dual connectivity allows pairing through bluetooth or traditional optical and RCA input. Switch input sources and control volume at your finger tips with the included wireless remote. This versatile speaker is equipped to deliver an authentic listening experience.
+          </p>
+        </div>
+        <div
+          className="cardSecondary__inBox"
+        >
+          <h3
+            className="cardSecondary__header"
+          >
+            in the box
+          </h3>
+          <ul
+            className="cardSecondary__list"
+          >
+            <li>
+              <p
+                className="cardSecondary__list__quantity"
+              >
+                2
+                x
+              </p>
+              <p
+                className="cardSecondary__list__item"
+              >
+                 
+                Speaker unit
+              </p>
+            </li>
+            <li>
+              <p
+                className="cardSecondary__list__quantity"
+              >
+                2
+                x
+              </p>
+              <p
+                className="cardSecondary__list__item"
+              >
+                 
+                Speaker cloth panel
+              </p>
+            </li>
+            <li>
+              <p
+                className="cardSecondary__list__quantity"
+              >
+                1
+                x
+              </p>
+              <p
+                className="cardSecondary__list__item"
+              >
+                 
+                User manual
+              </p>
+            </li>
+            <li>
+              <p
+                className="cardSecondary__list__quantity"
+              >
+                1
+                x
+              </p>
+              <p
+                className="cardSecondary__list__item"
+              >
+                 
+                3.5mm 7.5m audio cable
+              </p>
+            </li>
+            <li>
+              <p
+                className="cardSecondary__list__quantity"
+              >
+                1
+                x
+              </p>
+              <p
+                className="cardSecondary__list__item"
+              >
+                 
+                7.5m optical cable
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div
+      className="grid productImageGrid"
+    >
+      <picture
+        className="grid__picture gridArea1"
+      >
+        <source
+          media="(min-width: 1024px)"
+          srcSet="/img/product-zx7-speaker/desktop/image-gallery-1.jpg"
+        />
+        <source
+          media="(min-width: 481px)"
+          srcSet="/img/product-zx7-speaker/tablet/image-gallery-1.jpg"
+        />
+        <source
+          media="(max-width: 480px)"
+          srcSet="/img/product-zx7-speaker/mobile/image-gallery-1.jpg"
+        />
+        <img
+          alt="ZX7 Speaker being used"
+          className="grid__img"
+          src="/img/product-zx7-speaker/desktop/image-gallery-1.jpg"
+        />
+      </picture>
+      <picture
+        className="grid__picture gridArea2"
+      >
+        <source
+          media="(min-width: 1024px)"
+          srcSet="/img/product-zx7-speaker/desktop/image-gallery-2.jpg"
+        />
+        <source
+          media="(min-width: 481px)"
+          srcSet="/img/product-zx7-speaker/tablet/image-gallery-2.jpg"
+        />
+        <source
+          media="(max-width: 480px)"
+          srcSet="/img/product-zx7-speaker/mobile/image-gallery-2.jpg"
+        />
+        <img
+          alt="ZX7 Speaker being used"
+          className="grid__img"
+          src="/img/product-zx7-speaker/desktop/image-gallery-2.jpg"
+        />
+      </picture>
+      <picture
+        className="grid__picture gridArea3"
+      >
+        <source
+          media="(min-width: 1024px)"
+          srcSet="/img/product-zx7-speaker/desktop/image-gallery-3.jpg"
+        />
+        <source
+          media="(min-width: 481px)"
+          srcSet="/img/product-zx7-speaker/tablet/image-gallery-3.jpg"
+        />
+        <source
+          media="(max-width: 480px)"
+          srcSet="/img/product-zx7-speaker/mobile/image-gallery-3.jpg"
+        />
+        <img
+          alt="ZX7 Speaker being used"
+          className="grid__img"
+          src="/img/product-zx7-speaker/desktop/image-gallery-3.jpg"
+        />
+      </picture>
+    </div>
+    <p
+      className="alternatives"
+    >
+      you may also like
+    </p>
+    <div
+      className="list productExampleSeeList"
+    >
+      <div
+        aria-label="see product ZX9 Speaker"
+        className="card"
+      >
+        <picture>
+          <source
+            height="636px"
+            media="(min-width: 1200px)"
+            srcSet="/img/shared/desktop/image-zx9-speaker.jpg"
+            width="700px"
+          />
+          <source
+            height="636px"
+            media="(min-width: 768px)"
+            srcSet="/img/shared/tablet/image-zx9-speaker.jpg"
+            width="446px"
+          />
+          <source
+            height="240px"
+            media="(max-width: 480px)"
+            srcSet="/img/shared/mobile/image-zx9-speaker.jpg"
+            width="654px"
+          />
+          <img
+            alt="ZX9 Speaker"
+            className="card__img"
+            src="/img/shared/desktop/image-zx9-speaker.jpg"
+          />
+        </picture>
+        <h5
+          className="card__title"
+        >
+          ZX9 Speaker
+        </h5>
+        <a
+          className="card__btn"
+          href="/speakers/6"
+          onClick={[Function]}
+        >
+          see product
+        </a>
+      </div>
+      <div
+        aria-label="see product XX99 Mark I"
+        className="card"
+      >
+        <picture>
+          <source
+            height="636px"
+            media="(min-width: 1200px)"
+            srcSet="/img/shared/desktop/image-xx99-mark-one-headphones.jpg"
+            width="700px"
+          />
+          <source
+            height="636px"
+            media="(min-width: 768px)"
+            srcSet="/img/shared/tablet/image-xx99-mark-one-headphones.jpg"
+            width="446px"
+          />
+          <source
+            height="240px"
+            media="(max-width: 480px)"
+            srcSet="/img/shared/mobile/image-xx99-mark-one-headphones.jpg"
+            width="654px"
+          />
+          <img
+            alt="XX99 Mark I"
+            className="card__img"
+            src="/img/shared/desktop/image-xx99-mark-one-headphones.jpg"
+          />
+        </picture>
+        <h5
+          className="card__title"
+        >
+          XX99 Mark I
+        </h5>
+        <a
+          className="card__btn"
+          href="/headphones/3"
+          onClick={[Function]}
+        >
+          see product
+        </a>
+      </div>
+      <div
+        aria-label="see product XX59"
+        className="card"
+      >
+        <picture>
+          <source
+            height="636px"
+            media="(min-width: 1200px)"
+            srcSet="/img/shared/desktop/image-xx59-headphones.jpg"
+            width="700px"
+          />
+          <source
+            height="636px"
+            media="(min-width: 768px)"
+            srcSet="/img/shared/tablet/image-xx59-headphones.jpg"
+            width="446px"
+          />
+          <source
+            height="240px"
+            media="(max-width: 480px)"
+            srcSet="/img/shared/mobile/image-xx59-headphones.jpg"
+            width="654px"
+          />
+          <img
+            alt="XX59"
+            className="card__img"
+            src="/img/shared/desktop/image-xx59-headphones.jpg"
+          />
+        </picture>
+        <h5
+          className="card__title"
+        >
+          XX59
+        </h5>
+        <a
+          className="card__btn"
+          href="/headphones/2"
+          onClick={[Function]}
+        >
+          see product
+        </a>
+      </div>
+    </div>
+    <div
+      className="list productExampleShopList"
+    >
+      <a
+        className="card__shop__text"
+        href="/headphones"
+        onClick={[Function]}
+      >
+        <div
+          aria-label="see all headphones shop"
+          className="card"
+        >
+          <div
+            className="card__bg"
+          />
+          <img
+            alt=""
+            className="card__img"
+            height="380px"
+            src="/img/shared/desktop/image-category-thumbnail-headphones.png"
+            width="438px"
+          />
+          <p
+            className="card__name"
+          >
+            headphones
+          </p>
+          <div
+            className="card__shop"
+          >
+            <p
+              className="card__shop__text"
+            >
+              shop
+            </p>
+            <img
+              alt=""
+              className="card__shop__img"
+              height="12px"
+              src=""
+              width="8px"
+            />
+          </div>
+        </div>
+      </a>
+      <a
+        className="card__shop__text"
+        href="/speakers"
+        onClick={[Function]}
+      >
+        <div
+          aria-label="see all speakers shop"
+          className="card"
+        >
+          <div
+            className="card__bg"
+          />
+          <img
+            alt=""
+            className="card__img"
+            height="380px"
+            src="/img/shared/desktop/image-category-thumbnail-speakers.png"
+            width="438px"
+          />
+          <p
+            className="card__name"
+          >
+            speakers
+          </p>
+          <div
+            className="card__shop"
+          >
+            <p
+              className="card__shop__text"
+            >
+              shop
+            </p>
+            <img
+              alt=""
+              className="card__shop__img"
+              height="12px"
+              src=""
+              width="8px"
+            />
+          </div>
+        </div>
+      </a>
+      <a
+        className="card__shop__text"
+        href="/earphones"
+        onClick={[Function]}
+      >
+        <div
+          aria-label="see all earphones shop"
+          className="card"
+        >
+          <div
+            className="card__bg"
+          />
+          <img
+            alt=""
+            className="card__img"
+            height="380px"
+            src="/img/shared/desktop/image-category-thumbnail-earphones.png"
+            width="438px"
+          />
+          <p
+            className="card__name"
+          >
+            earphones
+          </p>
+          <div
+            className="card__shop"
+          >
+            <p
+              className="card__shop__text"
+            >
+              shop
+            </p>
+            <img
+              alt=""
+              className="card__shop__img"
+              height="12px"
+              src=""
+              width="8px"
+            />
+          </div>
+        </div>
+      </a>
+    </div>
+    <article
+      aria-labelledby="company statement"
+      className="card companyStatement"
+    >
+      <div
+        className="card__info"
+      >
+        <h2
+          className="card__title"
+          id="company statement"
+        >
+          Bringing you the 
+          <span>
+            best
+          </span>
+           audio gear
+        </h2>
+        <p
+          className="card__statement"
+        >
+          Located at the heart of New York City, Audiophile is the premier store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment.
+        </p>
+      </div>
+      <picture
+        className="card__picture"
+      >
+        <source
+          height="588"
+          media="(min-width: 1024px)"
+          srcSet="/img/shared/desktop/image-best-gear.jpg"
+          width="540"
+        />
+        <source
+          height="600"
+          media="(min-width: 576px)"
+          srcSet="/img/shared/tablet/image-best-gear.jpg"
+          width="1378"
+        />
+        <source
+          height="600"
+          media="(max-width: 575px)"
+          srcSet="/img/shared/mobile/image-best-gear.jpg"
+          width="654"
+        />
+        <img
+          alt="Furnishing our customers with the best gear"
+          className="card__img"
+          src="/img/shared/desktop/image-best-gear.jpg"
+        />
+      </picture>
+    </article>
+  </div>
+</main>
+`;

@@ -1,7 +1,26 @@
 import { render, screen } from '@testing-library/react';
+import renderer from 'react-test-renderer';
 import ProductImageGrid from './ProductImageGrid';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer
+      .create(
+        <ProductImageGrid
+          productImagesGallery={{
+            dummyProduct: {
+              mobile: 'mobileImg',
+              tablet: 'tabletImg',
+              desktop: 'desktopImg',
+            },
+          }}
+          productTitle="dummyProductTitle"
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const { container } = render(
       <ProductImageGrid

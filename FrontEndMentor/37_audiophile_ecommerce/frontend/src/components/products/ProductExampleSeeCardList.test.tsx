@@ -1,8 +1,20 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import ProductExampleSeeCardList from './ProductExampleSeeCardList';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer
+      .create(
+        <BrowserRouter>
+          <ProductExampleSeeCardList currentProductId={1} />
+        </BrowserRouter>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const { container } = render(
       <ProductExampleSeeCardList currentProductId={1} />,

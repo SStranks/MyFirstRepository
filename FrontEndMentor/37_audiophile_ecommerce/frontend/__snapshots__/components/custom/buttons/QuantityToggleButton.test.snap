@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="button additionalStyles"
+>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    -
+  </button>
+  <p
+    className="button__quantity"
+  >
+    123
+  </p>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    +
+  </button>
+</div>
+`;

@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderer from 'react-test-renderer';
 import InputText from './InputText';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer.create(<InputText id="label text" />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     // Render Component
     const { container } = render(<InputText id="label text" />);

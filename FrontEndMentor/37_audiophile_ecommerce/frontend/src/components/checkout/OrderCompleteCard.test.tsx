@@ -1,9 +1,22 @@
 import { ShoppingCartProvider } from '#Context/ShoppingCartContext';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderer from 'react-test-renderer';
 import OrderCompleteCard from './OrderCompleteCard';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const mockFn = jest.fn();
+    const tree = renderer
+      .create(
+        <ShoppingCartProvider>
+          <OrderCompleteCard modalClose={mockFn} />
+        </ShoppingCartProvider>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const mockFn = jest.fn();
     localStorage.setItem(

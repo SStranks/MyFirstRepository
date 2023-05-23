@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  aria-label="see product dummyProductTitle"
+  className="card"
+>
+  <picture>
+    <source
+      height="636px"
+      media="(min-width: 1200px)"
+      srcSet=""
+      width="700px"
+    />
+    <source
+      height="636px"
+      media="(min-width: 768px)"
+      srcSet=""
+      width="446px"
+    />
+    <source
+      height="240px"
+      media="(max-width: 480px)"
+      srcSet=""
+      width="654px"
+    />
+    <img
+      alt="dummyProductTitle"
+      className="card__img"
+      src=""
+    />
+  </picture>
+  <h5
+    className="card__title"
+  >
+    dummyProductTitle
+  </h5>
+  <a
+    className="card__btn"
+    href="//0"
+  >
+    see product
+  </a>
+</div>
+`;

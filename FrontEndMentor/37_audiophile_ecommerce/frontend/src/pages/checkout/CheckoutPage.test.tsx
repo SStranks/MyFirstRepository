@@ -3,6 +3,7 @@ import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { BrowserRouter, Router } from 'react-router-dom';
+import renderer from 'react-test-renderer';
 import CheckoutPage from './CheckoutPage';
 
 const mockedUsedNavigate = jest.fn();
@@ -16,6 +17,19 @@ beforeEach(() => {
 });
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer
+      .create(
+        <BrowserRouter>
+          <ShoppingCartProvider>
+            <CheckoutPage />
+          </ShoppingCartProvider>
+        </BrowserRouter>
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     render(
       <ShoppingCartProvider>

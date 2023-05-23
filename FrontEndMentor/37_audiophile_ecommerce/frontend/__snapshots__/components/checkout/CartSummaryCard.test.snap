@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="card"
+>
+  <p
+    className="card__header"
+  >
+    cart (
+    0
+    )
+  </p>
+  <button
+    aria-label="remove all products from cart"
+    className="card__removeAllBtn"
+    onClick={[Function]}
+    type="button"
+  >
+    remove all
+  </button>
+  <div
+    className="card__productList"
+  />
+  <p
+    className="card__total"
+  >
+    total
+  </p>
+  <p
+    className="card__amount"
+  >
+    $ 
+    0.00
+  </p>
+  <button
+    className="card__checkoutBtn"
+    disabled={true}
+    onClick={[Function]}
+    type="button"
+  >
+    checkout
+  </button>
+</div>
+`;

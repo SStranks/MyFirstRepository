@@ -1,6 +1,7 @@
 import CheckoutSummaryProductCard from '#Components/checkout/CheckoutSummaryProductCard';
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderer from 'react-test-renderer';
 import CheckoutForm from './CheckoutForm';
 
 const DummyProductSummaryCard = (): JSX.Element => {
@@ -16,6 +17,20 @@ const DummyProductSummaryCard = (): JSX.Element => {
 };
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const mockFn = jest.fn();
+    const tree = renderer
+      .create(
+        <CheckoutForm
+          totalAmount={99.01}
+          openOrderCompleteModal={mockFn}
+          productsList={[DummyProductSummaryCard()]}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const mockFn = jest.fn();
     render(

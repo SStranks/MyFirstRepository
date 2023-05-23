@@ -45,6 +45,7 @@ function Nav(props: ElemProps): JSX.Element {
   useLayoutEffect(() => {
     // Home Page requires nav to be transparent against hero image
     const nav = document.querySelector('#primary-nav');
+    if (!nav) return;
     // (nav as HTMLElement).classList.remove(styles.nav__tmp);
     if (nav && location.pathname === '/') {
       (nav as HTMLElement).classList.add(styles.nav__navLayoutEffect);

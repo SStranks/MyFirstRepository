@@ -1,8 +1,25 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderer from 'react-test-renderer';
 import QuantityToggleButton from './QuantityToggleButton';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const mockFn = jest.fn();
+    const currentValue = 123;
+    const tree = renderer
+      .create(
+        <QuantityToggleButton
+          appendClass="additionalStyles"
+          currentValue={currentValue}
+          increaseFn={mockFn}
+          decreaseFn={mockFn}
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const mockFn = jest.fn();
     const currentValue = 123;

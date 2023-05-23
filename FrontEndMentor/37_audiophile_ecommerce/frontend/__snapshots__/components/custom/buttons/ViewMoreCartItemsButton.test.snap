@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  type="button"
+>
+  and 1 other itemfalse
+</button>
+`;

@@ -1,8 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import renderer from 'react-test-renderer';
 import InputRadio from './InputRadio';
 
 describe('Appearance', () => {
+  test('Component render matches snapshot', () => {
+    const tree = renderer.create(<InputRadio id="label text" />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   test('Component base should be fully rendered', () => {
     const { container } = render(<InputRadio id="label text" />);
 
