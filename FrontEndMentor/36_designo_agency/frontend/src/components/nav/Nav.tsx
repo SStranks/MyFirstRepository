@@ -34,7 +34,7 @@ function Nav(): JSX.Element {
   }, []);
 
   return (
-    <div className={styles.nav}>
+    <nav className={styles.nav}>
       <Link to="/">
         <img
           src={LogoDark}
@@ -56,7 +56,7 @@ function Nav(): JSX.Element {
           <p className={styles.nav__link}>contact</p>
         </Link>
       </div>
-    </div>
+    </nav>
   );
 }
 

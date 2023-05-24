@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="container__sub-container"
+  />
+  <footer
+    className="footer "
+  >
+    <div
+      className="footer__container"
+    >
+      <div
+        className="footer__hero"
+      >
+        <div>
+          <p
+            className="footer__hero__header"
+          >
+            Let's talk about your project
+          </p>
+          <p
+            className="footer__hero__body"
+          >
+            Ready to take it to the next level? Contact us today and find out how our expertise can help your business grow.
+          </p>
+        </div>
+        <button
+          className="footer__hero__button"
+          type="button"
+        >
+          get in touch
+        </button>
+      </div>
+      <div
+        className="footer__nav"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <img
+            alt="Designo Site Home."
+            className="footer__logo"
+            src=""
+          />
+        </a>
+        <div
+          className="footer__links"
+        >
+          <a
+            href="/about"
+            onClick={[Function]}
+          >
+            <p
+              className="footer__link"
+            >
+              our company
+            </p>
+          </a>
+          <a
+            href="/locations"
+            onClick={[Function]}
+          >
+            <p
+              className="footer__link"
+            >
+              locations
+            </p>
+          </a>
+          <a
+            href="/contact"
+            onClick={[Function]}
+          >
+            <p
+              className="footer__link"
+            >
+              contact
+            </p>
+          </a>
+        </div>
+        <hr
+          className="footer__hr"
+        />
+      </div>
+      <div
+        className="footer__info"
+      >
+        <div
+          className="footer__details"
+        >
+          <div>
+            <p
+              className="footer__bold-text"
+            >
+              Designo Central Office
+            </p>
+            <p>
+              3386 Wellington Street
+            </p>
+            <p>
+              Toronto, Ontario M9C 3J5
+            </p>
+          </div>
+          <div
+            className="footer__bold-text"
+          >
+            <p>
+              Contact Us (Central Office)
+            </p>
+            <p>
+              P : +1 253-863-8967
+            </p>
+            <p>
+              M : contact@designo.co
+            </p>
+          </div>
+        </div>
+        <div
+          className="footer__icons"
+        >
+          <img
+            alt="Designo facebook media page."
+            src=""
+          />
+          <img
+            alt="Designo youtube media page."
+            src=""
+          />
+          <img
+            alt="Designo twitter media page."
+            src=""
+          />
+          <img
+            alt="Designo pinterest media page."
+            src=""
+          />
+          <img
+            alt="Designo instagram media page."
+            src=""
+          />
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+`;

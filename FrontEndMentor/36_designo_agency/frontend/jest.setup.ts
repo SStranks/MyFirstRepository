@@ -42,6 +42,19 @@ function setupIntersectionObserverMock({
 
 setupIntersectionObserverMock();
 
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: jest.fn().mockImplementation((query) => ({
+    matches: false,
+    media: query,
+    // eslint-disable-next-line unicorn/no-null
+    onchange: null,
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
 // Implicit ARIA Roles for getByRole:
 // https://www.w3.org/TR/html-aria/#docconformance
 

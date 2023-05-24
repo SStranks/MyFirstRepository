@@ -7,6 +7,7 @@ import Locations from '#Pages/locations/Locations';
 import WebDesign from '#Pages/web-design/WebDesign';
 import { Route, Routes } from 'react-router-dom';
 
+// TODO:  Add 'skip-to' functionality - see proj#37
 // TODO:  Sort out circles on backgrounds on mobile sized layout
 // TODO:  Add all z-index to control manager
 // TODO:  Complete tasks on readme: locations API. form error status.

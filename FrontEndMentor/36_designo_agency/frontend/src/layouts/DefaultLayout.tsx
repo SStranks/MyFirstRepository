@@ -1,11 +1,12 @@
 import Footer from '#Components/footer/Footer';
+import { PropsWithChildren } from 'react';
 import styles from './_DefaultLayout.module.scss';
 
-type ElemProps = {
-  children: JSX.Element[];
-};
+// type ElemProps = {
+//   children: JSX.Element[];
+// };
 
-function DefaultLayout(props: ElemProps): JSX.Element {
+function DefaultLayout(props: PropsWithChildren): JSX.Element {
   const { children } = props;
 
   return (

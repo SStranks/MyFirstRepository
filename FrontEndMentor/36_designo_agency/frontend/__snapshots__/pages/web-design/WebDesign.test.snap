@@ -1,0 +1,392 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="container__sub-container"
+  >
+    <nav
+      className="nav"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <img
+          alt="Designo Site Home."
+          className="nav__logo"
+          src=""
+        />
+      </a>
+      <button
+        className="nav__btn"
+        onClick={[Function]}
+        type="button"
+      >
+        <img
+          alt=""
+          src=""
+        />
+      </button>
+      <div
+        className="nav__links"
+        id="nav-links"
+      >
+        <a
+          href="/about"
+          onClick={[Function]}
+        >
+          <p
+            className="nav__link"
+          >
+            our company
+          </p>
+        </a>
+        <a
+          href="/locations"
+          onClick={[Function]}
+        >
+          <p
+            className="nav__link"
+          >
+            locations
+          </p>
+        </a>
+        <a
+          href="/contact"
+          onClick={[Function]}
+        >
+          <p
+            className="nav__link"
+          >
+            contact
+          </p>
+        </a>
+      </div>
+    </nav>
+    <div
+      className="header"
+    >
+      <h1>
+        Web Design
+      </h1>
+      <p>
+        We build websites that serve as powerful marketing tools and bring memorable brand experiences.
+      </p>
+    </div>
+    <div
+      className="examplegrid"
+    >
+      <div
+        className="card"
+      >
+        <img
+          alt=""
+          src=""
+        />
+        <div
+          className="card__info"
+        >
+          <h3>
+            express
+          </h3>
+          <p>
+            A multi-carrier shipping website for ecommerce businesses
+          </p>
+        </div>
+      </div>
+      <div
+        className="card"
+      >
+        <img
+          alt=""
+          src=""
+        />
+        <div
+          className="card__info"
+        >
+          <h3>
+            transfer
+          </h3>
+          <p>
+            Site for low-cost money transfers and sending money within seconds
+          </p>
+        </div>
+      </div>
+      <div
+        className="card"
+      >
+        <img
+          alt=""
+          src=""
+        />
+        <div
+          className="card__info"
+        >
+          <h3>
+            photon
+          </h3>
+          <p>
+            A state-of-the-art music player with high-resolution audio and DSP effects
+          </p>
+        </div>
+      </div>
+      <div
+        className="card"
+      >
+        <img
+          alt=""
+          src=""
+        />
+        <div
+          className="card__info"
+        >
+          <h3>
+            builder
+          </h3>
+          <p>
+            Connects users with local contractors based on their location
+          </p>
+        </div>
+      </div>
+      <div
+        className="card"
+      >
+        <img
+          alt=""
+          src=""
+        />
+        <div
+          className="card__info"
+        >
+          <h3>
+            blogr
+          </h3>
+          <p>
+            Blogr is a platform for creating an online blog or publication
+          </p>
+        </div>
+      </div>
+      <div
+        className="card"
+      >
+        <img
+          alt=""
+          src=""
+        />
+        <div
+          className="card__info"
+        >
+          <h3>
+            camp
+          </h3>
+          <p>
+            Get expert training in coding, data, design, and digital marketing
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      className="viewgrid"
+    >
+      <a
+        href="/appdesign"
+        onClick={[Function]}
+      >
+        <div
+          className="card"
+          style={
+            {
+              "backgroundImage": "url()",
+            }
+          }
+        >
+          <h2>
+            app design
+          </h2>
+          <div
+            className="card__view"
+          >
+            <p>
+              view projects
+            </p>
+            <img
+              alt=""
+              src=""
+            />
+          </div>
+        </div>
+      </a>
+      <a
+        href="/graphicdesign"
+        onClick={[Function]}
+      >
+        <div
+          className="card"
+          style={
+            {
+              "backgroundImage": "url()",
+            }
+          }
+        >
+          <h2>
+            graphic design
+          </h2>
+          <div
+            className="card__view"
+          >
+            <p>
+              view projects
+            </p>
+            <img
+              alt=""
+              src=""
+            />
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <footer
+    className="footer "
+  >
+    <div
+      className="footer__container"
+    >
+      <div
+        className="footer__hero"
+      >
+        <div>
+          <p
+            className="footer__hero__header"
+          >
+            Let's talk about your project
+          </p>
+          <p
+            className="footer__hero__body"
+          >
+            Ready to take it to the next level? Contact us today and find out how our expertise can help your business grow.
+          </p>
+        </div>
+        <button
+          className="footer__hero__button"
+          type="button"
+        >
+          get in touch
+        </button>
+      </div>
+      <div
+        className="footer__nav"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <img
+            alt="Designo Site Home."
+            className="footer__logo"
+            src=""
+          />
+        </a>
+        <div
+          className="footer__links"
+        >
+          <a
+            href="/about"
+            onClick={[Function]}
+          >
+            <p
+              className="footer__link"
+            >
+              our company
+            </p>
+          </a>
+          <a
+            href="/locations"
+            onClick={[Function]}
+          >
+            <p
+              className="footer__link"
+            >
+              locations
+            </p>
+          </a>
+          <a
+            href="/contact"
+            onClick={[Function]}
+          >
+            <p
+              className="footer__link"
+            >
+              contact
+            </p>
+          </a>
+        </div>
+        <hr
+          className="footer__hr"
+        />
+      </div>
+      <div
+        className="footer__info"
+      >
+        <div
+          className="footer__details"
+        >
+          <div>
+            <p
+              className="footer__bold-text"
+            >
+              Designo Central Office
+            </p>
+            <p>
+              3386 Wellington Street
+            </p>
+            <p>
+              Toronto, Ontario M9C 3J5
+            </p>
+          </div>
+          <div
+            className="footer__bold-text"
+          >
+            <p>
+              Contact Us (Central Office)
+            </p>
+            <p>
+              P : +1 253-863-8967
+            </p>
+            <p>
+              M : contact@designo.co
+            </p>
+          </div>
+        </div>
+        <div
+          className="footer__icons"
+        >
+          <img
+            alt="Designo facebook media page."
+            src=""
+          />
+          <img
+            alt="Designo youtube media page."
+            src=""
+          />
+          <img
+            alt="Designo twitter media page."
+            src=""
+          />
+          <img
+            alt="Designo pinterest media page."
+            src=""
+          />
+          <img
+            alt="Designo instagram media page."
+            src=""
+          />
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+`;

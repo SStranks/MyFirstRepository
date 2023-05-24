@@ -13,7 +13,7 @@ function Footer(): JSX.Element {
   const { pathname } = useLocation();
 
   return (
-    <div
+    <footer
       className={`${styles.footer} ${
         pathname === '/contact' ? styles.routeContactPage : ''
       }`}>
@@ -79,7 +79,7 @@ function Footer(): JSX.Element {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 
