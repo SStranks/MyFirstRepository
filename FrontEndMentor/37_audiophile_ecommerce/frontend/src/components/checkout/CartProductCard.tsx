@@ -1,5 +1,6 @@
 import QuantityToggleButton from '#Components/custom/buttons/QuantityToggleButton';
 import { useShoppingCartContext } from '#Context/ShoppingCartContext';
+import formatCurrency from '#Utils/formatCurrency';
 import styles from './_CartProductCard.module.scss';
 
 type ElemProps = {
@@ -29,9 +30,7 @@ function CartProductCard(props: ElemProps): JSX.Element {
       <p className={styles.card__title} id={productTitle}>
         {productTitle}
       </p>
-      <p className={styles.card__price}>
-        $ {productPrice.toLocaleString('en-US')}
-      </p>
+      <p className={styles.card__price}>$ {formatCurrency(productPrice)}</p>
       <QuantityToggleButton
         appendClass={styles.productQuantityBtn}
         currentValue={productQuantity}

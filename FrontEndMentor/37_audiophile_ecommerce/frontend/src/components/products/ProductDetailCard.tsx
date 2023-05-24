@@ -1,4 +1,5 @@
 import AddToCartButton from '#Components/custom/buttons/AddToCartButton';
+import formatCurrency from '#Utils/formatCurrency';
 import styles from './_ProductDetailCard.module.scss';
 
 type ElemProps = {
@@ -69,7 +70,7 @@ function ProductDetailCard(props: ElemProps): JSX.Element {
           <h2 className={styles.cardPrimary__title}>{productTitle}</h2>
           <p className={styles.cardPrimary__details}>{productDescription}</p>
           <p className={styles.cardPrimary__price}>
-            $ {productPrice.toLocaleString('en-US')}
+            $ {formatCurrency(productPrice)}
           </p>
           <div className={styles.cardPrimary__purchase}>
             <AddToCartButton productId={productId} />
