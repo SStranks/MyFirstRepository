@@ -13,6 +13,7 @@
     "plugin:react/jsx-runtime",
     "plugin:jsx-a11y/recommended",
     "plugin:jest/recommended",
+    "plugin:jest-dom/recommended",
     "plugin:unicorn/recommended",
     "plugin:prettier/recommended"
   ],
@@ -22,15 +23,15 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "sourceType": "module"
-    // "requireConfigFile": false
+    "sourceType": "module",
+    "requireConfigFile": false
   },
   "plugins": [
     "@typescript-eslint",
     "react",
     "jsx-a11y",
-    "import",
     "jest",
+    "jest-dom",
     "unicorn",
     "prettier"
   ],
@@ -55,19 +56,20 @@
     "unicorn/filename-case": [
       "error",
       {
-        "case": "pascalCase",
+        "cases": {
+          "camelCase": true,
+          "pascalCase": true
+        },
         "ignore": [
           "index.(js|jsx|ts|tsx)",
-          "use\\w*.tsx",
           "webpack.*",
+          ".d.ts",
           ".test.ts",
-          ".d.ts"
+          "use\\w*.tsx"
         ]
       }
     ],
     "unicorn/prevent-abbreviations": "off",
-    "unicorn/no-array-for-each": "off",
-    "unicorn/no-array-reduce": "off",
     "arrow-body-style": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/extensions": "off"
@@ -77,15 +79,8 @@
     // "class-methods-use-this": "off",
   },
   "settings": {
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
-    },
     "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true,
-        // NOTE:  ESLint works from <root>; the workspace/folder open. See vscode.code-workspace.
-        "project": "./"
-      }
+      "typescript": {}
     }
   },
   "ignorePatterns": ["node_modules", "public/*"]
