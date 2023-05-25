@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="quality"
+>
+  <div
+    className="image"
+  >
+    <img
+      alt=""
+      src="imgURL"
+    />
+    <div
+      className="bg-circle"
+      style={
+        {
+          "transform": "rotate(0deg)",
+        }
+      }
+    />
+  </div>
+  <p
+    className="quality__title"
+  >
+    dummyTitle
+  </p>
+  <button
+    type="button"
+  >
+    see location
+  </button>
+</div>
+`;

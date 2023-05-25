@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<nav
+  className="nav"
+>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    <img
+      alt="Designo Site Home."
+      className="nav__logo"
+      src=""
+    />
+  </a>
+  <button
+    className="nav__btn"
+    onClick={[Function]}
+    type="button"
+  >
+    <img
+      alt=""
+      src=""
+    />
+  </button>
+  <div
+    className="nav__links"
+    id="nav-links"
+  >
+    <a
+      href="/about"
+      onClick={[Function]}
+    >
+      <p
+        className="nav__link"
+      >
+        our company
+      </p>
+    </a>
+    <a
+      href="/locations"
+      onClick={[Function]}
+    >
+      <p
+        className="nav__link"
+      >
+        locations
+      </p>
+    </a>
+    <a
+      href="/contact"
+      onClick={[Function]}
+    >
+      <p
+        className="nav__link"
+      >
+        contact
+      </p>
+    </a>
+  </div>
+</nav>
+`;

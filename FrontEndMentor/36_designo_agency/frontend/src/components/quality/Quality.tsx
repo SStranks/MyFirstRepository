@@ -20,7 +20,11 @@ function Quality(props: ElemProps): JSX.Element {
         />
       </div>
       <p className={styles.quality__title}>{title}</p>
-      {caption && <p className={styles.quality__caption}>{caption}</p>}
+      {caption && (
+        <p className={styles.quality__caption} data-testid="caption">
+          {caption}
+        </p>
+      )}
     </div>
   );
 }
