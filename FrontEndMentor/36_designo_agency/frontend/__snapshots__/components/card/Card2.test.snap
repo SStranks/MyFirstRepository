@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="card"
+>
+  <img
+    alt=""
+    src="imgURL"
+  />
+  <div
+    className="card__info"
+  >
+    <h3>
+      dummyTitle
+    </h3>
+    <p>
+      dummyCaption
+    </p>
+  </div>
+</div>
+`;

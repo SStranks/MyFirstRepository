@@ -5,7 +5,7 @@ import GraphicDesign from '#Pages/graphic-design/GraphicDesign';
 import Home from '#Pages/home/Home';
 import Locations from '#Pages/locations/Locations';
 import WebDesign from '#Pages/web-design/WebDesign';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 // TODO:  Add 'skip-to' functionality - see proj#37
 // TODO:  Sort out circles on backgrounds on mobile sized layout
@@ -28,6 +28,7 @@ import { Route, Routes } from 'react-router-dom';
 function App(): JSX.Element {
   return (
     <Routes>
+      <Route path="*" element={<Navigate to="/" replace />} />
       <Route path="/" element={<Home />} />
       <Route path="/webdesign" element={<WebDesign />} />
       <Route path="/appdesign" element={<AppDesign />} />

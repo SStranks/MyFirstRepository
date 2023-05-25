@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<a
+  href="/dummyURL"
+  onClick={[Function]}
+>
+  <div
+    className="card"
+    style={
+      {
+        "backgroundImage": "url(imgURL)",
+      }
+    }
+  >
+    <h2>
+      dummyTitle
+    </h2>
+    <div
+      className="card__view"
+    >
+      <p>
+        view projects
+      </p>
+      <img
+        alt=""
+        src=""
+      />
+    </div>
+  </div>
+</a>
+`;
