@@ -1,0 +1,428 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="container__sub-container"
+  >
+    <nav
+      className="nav"
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <img
+          alt="Designo Site Home."
+          className="nav__logo"
+          src=""
+        />
+      </a>
+      <button
+        className="nav__btn"
+        onClick={[Function]}
+        type="button"
+      >
+        <img
+          alt=""
+          src=""
+        />
+      </button>
+      <div
+        className="nav__links"
+        id="nav-links"
+      >
+        <a
+          href="/about"
+          onClick={[Function]}
+        >
+          <p
+            className="nav__link"
+          >
+            our company
+          </p>
+        </a>
+        <a
+          href="/locations"
+          onClick={[Function]}
+        >
+          <p
+            className="nav__link"
+          >
+            locations
+          </p>
+        </a>
+        <a
+          href="/contact"
+          onClick={[Function]}
+        >
+          <p
+            className="nav__link"
+          >
+            contact
+          </p>
+        </a>
+      </div>
+    </nav>
+    <img
+      alt=""
+      className="bgLeafTop"
+      data-testid="bgImgTop"
+      src=""
+    />
+    <section
+      aria-label="hero section"
+      className="hero"
+    >
+      <div
+        className="hero__info"
+      >
+        <h1>
+          Award-winning custom designs and digital branding solutions
+        </h1>
+        <p>
+          With over 10 years in the industry, we are experienced in creating fully responsive websites, app design, and engaging brand experiences. Find out more about our services.
+        </p>
+        <button
+          type="button"
+        >
+          learn more
+        </button>
+      </div>
+      <img
+        alt=""
+        src=""
+      />
+    </section>
+    <div
+      className="viewgrid"
+    >
+      <a
+        href="/webdesign"
+        onClick={[Function]}
+      >
+        <div
+          className="card"
+          style={
+            {
+              "backgroundImage": "url()",
+            }
+          }
+        >
+          <h2>
+            web design
+          </h2>
+          <div
+            className="card__view"
+          >
+            <p>
+              view projects
+            </p>
+            <img
+              alt=""
+              src=""
+            />
+          </div>
+        </div>
+      </a>
+      <a
+        href="/appdesign"
+        onClick={[Function]}
+      >
+        <div
+          className="card"
+          style={
+            {
+              "backgroundImage": "url()",
+            }
+          }
+        >
+          <h2>
+            app design
+          </h2>
+          <div
+            className="card__view"
+          >
+            <p>
+              view projects
+            </p>
+            <img
+              alt=""
+              src=""
+            />
+          </div>
+        </div>
+      </a>
+      <a
+        href="/graphicdesign"
+        onClick={[Function]}
+      >
+        <div
+          className="card"
+          style={
+            {
+              "backgroundImage": "url()",
+            }
+          }
+        >
+          <h2>
+            graphic design
+          </h2>
+          <div
+            className="card__view"
+          >
+            <p>
+              view projects
+            </p>
+            <img
+              alt=""
+              src=""
+            />
+          </div>
+        </div>
+      </a>
+    </div>
+    <div
+      className="qualities"
+    >
+      <div
+        className="quality"
+      >
+        <div
+          className="image"
+        >
+          <img
+            alt=""
+            src=""
+          />
+          <div
+            className="bg-circle"
+            style={
+              {
+                "transform": "rotate(0deg)",
+              }
+            }
+          />
+        </div>
+        <p
+          className="quality__title"
+        >
+          passionate
+        </p>
+        <p
+          className="quality__caption"
+        >
+          Each project starts with an in-depth brand research to ensure we only create products that serve a purpose. We merge art, design, and technology into exciting new solutions.
+        </p>
+      </div>
+      <div
+        className="quality"
+      >
+        <div
+          className="image"
+        >
+          <img
+            alt=""
+            src=""
+          />
+          <div
+            className="bg-circle"
+            style={
+              {
+                "transform": "rotate(270deg)",
+              }
+            }
+          />
+        </div>
+        <p
+          className="quality__title"
+        >
+          resourceful
+        </p>
+        <p
+          className="quality__caption"
+        >
+          Everything that we do has a strategic purpose. We use an agile approach in all of our projects and value customer collaboration. It guarantees superior results that fulfill our clients’ needs.
+        </p>
+      </div>
+      <div
+        className="quality"
+      >
+        <div
+          className="image"
+        >
+          <img
+            alt=""
+            src=""
+          />
+          <div
+            className="bg-circle"
+            style={
+              {
+                "transform": "rotate(90deg)",
+              }
+            }
+          />
+        </div>
+        <p
+          className="quality__title"
+        >
+          friendly
+        </p>
+        <p
+          className="quality__caption"
+        >
+          We are a group of enthusiastic folks who know how to put people first. Our success depends on our customers, and we strive to give them the best experience a company can provide.
+        </p>
+      </div>
+    </div>
+    <img
+      alt=""
+      className="bgLeafBottom"
+      data-testid="bgImgBottom"
+      src=""
+    />
+  </div>
+  <footer
+    className="footer "
+  >
+    <div
+      className="footer__container"
+    >
+      <div
+        className="footer__hero"
+      >
+        <div>
+          <p
+            className="footer__hero__header"
+          >
+            Let's talk about your project
+          </p>
+          <p
+            className="footer__hero__body"
+          >
+            Ready to take it to the next level? Contact us today and find out how our expertise can help your business grow.
+          </p>
+        </div>
+        <button
+          className="footer__hero__button"
+          type="button"
+        >
+          get in touch
+        </button>
+      </div>
+      <div
+        className="footer__nav"
+      >
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          <img
+            alt="Designo Site Home."
+            className="footer__logo"
+            src=""
+          />
+        </a>
+        <div
+          className="footer__links"
+        >
+          <a
+            href="/about"
+            onClick={[Function]}
+          >
+            <p
+              className="footer__link"
+            >
+              our company
+            </p>
+          </a>
+          <a
+            href="/locations"
+            onClick={[Function]}
+          >
+            <p
+              className="footer__link"
+            >
+              locations
+            </p>
+          </a>
+          <a
+            href="/contact"
+            onClick={[Function]}
+          >
+            <p
+              className="footer__link"
+            >
+              contact
+            </p>
+          </a>
+        </div>
+        <hr
+          className="footer__hr"
+        />
+      </div>
+      <div
+        className="footer__info"
+      >
+        <div
+          className="footer__details"
+        >
+          <div>
+            <p
+              className="footer__bold-text"
+            >
+              Designo Central Office
+            </p>
+            <p>
+              3386 Wellington Street
+            </p>
+            <p>
+              Toronto, Ontario M9C 3J5
+            </p>
+          </div>
+          <div
+            className="footer__bold-text"
+          >
+            <p>
+              Contact Us (Central Office)
+            </p>
+            <p>
+              P : +1 253-863-8967
+            </p>
+            <p>
+              M : contact@designo.co
+            </p>
+          </div>
+        </div>
+        <div
+          className="footer__icons"
+        >
+          <img
+            alt="Designo facebook media page."
+            src=""
+          />
+          <img
+            alt="Designo youtube media page."
+            src=""
+          />
+          <img
+            alt="Designo twitter media page."
+            src=""
+          />
+          <img
+            alt="Designo pinterest media page."
+            src=""
+          />
+          <img
+            alt="Designo instagram media page."
+            src=""
+          />
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+`;

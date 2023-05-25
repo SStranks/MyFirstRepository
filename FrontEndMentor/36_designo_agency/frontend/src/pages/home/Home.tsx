@@ -18,8 +18,13 @@ function Home(): JSX.Element {
   return (
     <DefaultLayout>
       <Nav />
-      <img className={styles.bgLeafTop} src={SvgBgLeaf} alt="" />
-      <div className={styles.hero}>
+      <img
+        className={styles.bgLeafTop}
+        src={SvgBgLeaf}
+        alt=""
+        data-testid="bgImgTop"
+      />
+      <section className={styles.hero} aria-label="hero section">
         <div className={styles.hero__info}>
           <h1>Award-winning custom designs and digital branding solutions</h1>
           <p>
@@ -30,7 +35,7 @@ function Home(): JSX.Element {
           <button type="button">learn more</button>
         </div>
         <img src={ImgHero} alt="" />
-      </div>
+      </section>
       <div className={styles.viewgrid}>
         <Card1 title="web design" image={ImgWebDesign} url="/webdesign" />
         <Card1 title="app design" image={ImgAppDesign} url="/appdesign" />
@@ -60,7 +65,12 @@ function Home(): JSX.Element {
           bgRotation="90deg"
         />
       </div>
-      <img className={styles.bgLeafBottom} src={SvgBgLeaf} alt="" />
+      <img
+        className={styles.bgLeafBottom}
+        src={SvgBgLeaf}
+        alt=""
+        data-testid="bgImgBottom"
+      />
     </DefaultLayout>
   );
 }
