@@ -17,13 +17,13 @@ function AppDesign(): JSX.Element {
   return (
     <DefaultLayout>
       <Nav />
-      <div className={styles.header}>
+      <header className={styles.header}>
         <h1>App Design</h1>
         <p>
           Our mobile designs bring intuitive digital solutions to your customers
           right at their fingertips.
         </p>
-      </div>
+      </header>
       <div className={styles.examplegrid}>
         <Card2
           title="airfilter"

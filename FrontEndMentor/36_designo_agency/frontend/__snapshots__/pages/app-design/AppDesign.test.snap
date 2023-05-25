@@ -70,10 +70,10 @@ exports[`Appearance Component render matches snapshot 1`] = `
       className="header"
     >
       <h1>
-        Web Design
+        App Design
       </h1>
       <p>
-        We build websites that serve as powerful marketing tools and bring memorable brand experiences.
+        Our mobile designs bring intuitive digital solutions to your customers right at their fingertips.
       </p>
     </header>
     <div
@@ -90,7 +90,7 @@ exports[`Appearance Component render matches snapshot 1`] = `
           className="card__info"
         >
           <h3>
-            express
+            airfilter
           </h3>
           <p>
             A multi-carrier shipping website for ecommerce businesses
@@ -108,7 +108,7 @@ exports[`Appearance Component render matches snapshot 1`] = `
           className="card__info"
         >
           <h3>
-            transfer
+            eyecam
           </h3>
           <p>
             Site for low-cost money transfers and sending money within seconds
@@ -126,7 +126,7 @@ exports[`Appearance Component render matches snapshot 1`] = `
           className="card__info"
         >
           <h3>
-            photon
+            faceit
           </h3>
           <p>
             A state-of-the-art music player with high-resolution audio and DSP effects
@@ -144,7 +144,7 @@ exports[`Appearance Component render matches snapshot 1`] = `
           className="card__info"
         >
           <h3>
-            builder
+            todo
           </h3>
           <p>
             Connects users with local contractors based on their location
@@ -162,28 +162,10 @@ exports[`Appearance Component render matches snapshot 1`] = `
           className="card__info"
         >
           <h3>
-            blogr
+            loopstudios
           </h3>
           <p>
             Blogr is a platform for creating an online blog or publication
-          </p>
-        </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
-        >
-          <h3>
-            camp
-          </h3>
-          <p>
-            Get expert training in coding, data, design, and digital marketing
           </p>
         </div>
       </div>
@@ -192,7 +174,7 @@ exports[`Appearance Component render matches snapshot 1`] = `
       className="viewgrid"
     >
       <a
-        href="/appdesign"
+        href="/webdesign"
         onClick={[Function]}
       >
         <div
@@ -204,7 +186,7 @@ exports[`Appearance Component render matches snapshot 1`] = `
           }
         >
           <h2>
-            app design
+            web design
           </h2>
           <div
             className="card__view"

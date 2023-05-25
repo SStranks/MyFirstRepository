@@ -70,10 +70,10 @@ exports[`Appearance Component render matches snapshot 1`] = `
       className="header"
     >
       <h1>
-        Web Design
+        Graphic Design
       </h1>
       <p>
-        We build websites that serve as powerful marketing tools and bring memorable brand experiences.
+        We deliver eye-catching branding materials that are tailored to meet your business objectives.
       </p>
     </header>
     <div
@@ -90,10 +90,10 @@ exports[`Appearance Component render matches snapshot 1`] = `
           className="card__info"
         >
           <h3>
-            express
+            tim brown
           </h3>
           <p>
-            A multi-carrier shipping website for ecommerce businesses
+            A book cover designed for Tim Brown’s new release, ‘Change’
           </p>
         </div>
       </div>
@@ -108,10 +108,10 @@ exports[`Appearance Component render matches snapshot 1`] = `
           className="card__info"
         >
           <h3>
-            transfer
+            boxed water
           </h3>
           <p>
-            Site for low-cost money transfers and sending money within seconds
+            A simple packaging concept made for Boxed Water
           </p>
         </div>
       </div>
@@ -126,64 +126,10 @@ exports[`Appearance Component render matches snapshot 1`] = `
           className="card__info"
         >
           <h3>
-            photon
+            science
           </h3>
           <p>
-            A state-of-the-art music player with high-resolution audio and DSP effects
-          </p>
-        </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
-        >
-          <h3>
-            builder
-          </h3>
-          <p>
-            Connects users with local contractors based on their location
-          </p>
-        </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
-        >
-          <h3>
-            blogr
-          </h3>
-          <p>
-            Blogr is a platform for creating an online blog or publication
-          </p>
-        </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
-        >
-          <h3>
-            camp
-          </h3>
-          <p>
-            Get expert training in coding, data, design, and digital marketing
+            A poster made in collaboration with the Federal Art Project
           </p>
         </div>
       </div>

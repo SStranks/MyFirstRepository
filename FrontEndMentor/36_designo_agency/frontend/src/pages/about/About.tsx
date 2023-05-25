@@ -15,7 +15,7 @@ function About(): JSX.Element {
   return (
     <DefaultLayout>
       <Nav />
-      <div className={styles.header}>
+      <header className={styles.header}>
         <div className={styles.header__info}>
           <h1>About Us</h1>
           <p>
@@ -27,11 +27,13 @@ function About(): JSX.Element {
           </p>
         </div>
         <img className={styles.header__img} src={ImgHero} alt="" />
-      </div>
-      <div className={`${styles.card} ${styles['card-1']}`}>
+      </header>
+      <section
+        className={`${styles.card} ${styles['card-1']}`}
+        aria-labelledby="section_1">
         <img className={styles['card-1__img']} src={ImgTalent} alt="" />
         <div className={styles.card__info}>
-          <h2>World-class talent</h2>
+          <h2 id="section_1">World-class talent</h2>
           <p>
             We are a crew of strategists, problem-solvers, and technologists.
             Every design is thoughtfully crafted from concept to launch,
@@ -45,8 +47,8 @@ function About(): JSX.Element {
             encapsulates their brand’s story and mission.
           </p>
         </div>
-      </div>
-      <div className={styles.qualities}>
+      </section>
+      <div className={styles.locations}>
         <Location title="canada" illustration={SvgCanada} bgRotation="0deg" />
         <Location
           title="australia"
@@ -59,10 +61,12 @@ function About(): JSX.Element {
           bgRotation="90deg"
         />
       </div>
-      <div className={`${styles.card} ${styles['card-2']}`}>
+      <section
+        className={`${styles.card} ${styles['card-2']}`}
+        aria-labelledby="section_2">
         <img className={styles['card-2__img']} src={ImgRealDeal} alt="" />
         <div className={styles.card__info}>
-          <h2>The real deal</h2>
+          <h2 id="section_2">The real deal</h2>
           <p>
             As strategic partners in our clients’ businesses, we are ready to
             take on any challenge as our own. Solving real problems require
@@ -76,7 +80,7 @@ function About(): JSX.Element {
             take action and drive real results.
           </p>
         </div>
-      </div>
+      </section>
     </DefaultLayout>
   );
 }

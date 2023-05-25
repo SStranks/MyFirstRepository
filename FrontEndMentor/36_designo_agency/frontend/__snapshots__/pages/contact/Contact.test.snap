@@ -69,184 +69,156 @@ exports[`Appearance Component render matches snapshot 1`] = `
     <header
       className="header"
     >
-      <h1>
-        Web Design
-      </h1>
-      <p>
-        We build websites that serve as powerful marketing tools and bring memorable brand experiences.
-      </p>
+      <div
+        className="header__container"
+      >
+        <div
+          className="header__info"
+        >
+          <h1>
+            Contact Us
+          </h1>
+          <p>
+            Ready to take it to the next level? Let’s talk about your project or idea and find out how we can help your business grow. If you are looking for unique digital experiences that’s relatable to your users, drop us a line.
+          </p>
+        </div>
+      </div>
+      <form
+        aria-label="form"
+        className="header__form"
+      >
+        <div
+          className="header__input"
+        >
+          <input
+            placeholder="Name"
+            type="text"
+          />
+        </div>
+        <div
+          className="header__input"
+        >
+          <input
+            placeholder="Email Address"
+            type="text"
+          />
+        </div>
+        <div
+          className="header__input"
+        >
+          <input
+            placeholder="Phone"
+            type="text"
+          />
+        </div>
+        <div
+          className="header__input"
+        >
+          <textarea
+            placeholder="Your Message"
+            rows={20}
+          />
+        </div>
+        <button
+          type="submit"
+        >
+          submit
+        </button>
+      </form>
     </header>
     <div
-      className="examplegrid"
+      className="qualities"
     >
       <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
-        >
-          <h3>
-            express
-          </h3>
-          <p>
-            A multi-carrier shipping website for ecommerce businesses
-          </p>
-        </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
-        >
-          <h3>
-            transfer
-          </h3>
-          <p>
-            Site for low-cost money transfers and sending money within seconds
-          </p>
-        </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
-        >
-          <h3>
-            photon
-          </h3>
-          <p>
-            A state-of-the-art music player with high-resolution audio and DSP effects
-          </p>
-        </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
-        >
-          <h3>
-            builder
-          </h3>
-          <p>
-            Connects users with local contractors based on their location
-          </p>
-        </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
-        >
-          <h3>
-            blogr
-          </h3>
-          <p>
-            Blogr is a platform for creating an online blog or publication
-          </p>
-        </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
-        >
-          <h3>
-            camp
-          </h3>
-          <p>
-            Get expert training in coding, data, design, and digital marketing
-          </p>
-        </div>
-      </div>
-    </div>
-    <div
-      className="viewgrid"
-    >
-      <a
-        href="/appdesign"
-        onClick={[Function]}
+        className="quality"
       >
         <div
-          className="card"
-          style={
-            {
-              "backgroundImage": "url()",
-            }
-          }
+          className="image"
         >
-          <h2>
-            app design
-          </h2>
+          <img
+            alt=""
+            src=""
+          />
           <div
-            className="card__view"
-          >
-            <p>
-              view projects
-            </p>
-            <img
-              alt=""
-              src=""
-            />
-          </div>
+            className="bg-circle"
+            style={
+              {
+                "transform": "rotate(0deg)",
+              }
+            }
+          />
         </div>
-      </a>
-      <a
-        href="/graphicdesign"
-        onClick={[Function]}
+        <p
+          className="quality__title"
+        >
+          canada
+        </p>
+        <button
+          type="button"
+        >
+          see location
+        </button>
+      </div>
+      <div
+        className="quality"
       >
         <div
-          className="card"
-          style={
-            {
-              "backgroundImage": "url()",
-            }
-          }
+          className="image"
         >
-          <h2>
-            graphic design
-          </h2>
+          <img
+            alt=""
+            src=""
+          />
           <div
-            className="card__view"
-          >
-            <p>
-              view projects
-            </p>
-            <img
-              alt=""
-              src=""
-            />
-          </div>
+            className="bg-circle"
+            style={
+              {
+                "transform": "rotate(270deg)",
+              }
+            }
+          />
         </div>
-      </a>
+        <p
+          className="quality__title"
+        >
+          australia
+        </p>
+        <button
+          type="button"
+        >
+          see location
+        </button>
+      </div>
+      <div
+        className="quality"
+      >
+        <div
+          className="image"
+        >
+          <img
+            alt=""
+            src=""
+          />
+          <div
+            className="bg-circle"
+            style={
+              {
+                "transform": "rotate(90deg)",
+              }
+            }
+          />
+        </div>
+        <p
+          className="quality__title"
+        >
+          united kingdom
+        </p>
+        <button
+          type="button"
+        >
+          see location
+        </button>
+      </div>
     </div>
   </div>
   <footer

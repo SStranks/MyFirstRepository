@@ -12,7 +12,7 @@ function Contact(): JSX.Element {
   return (
     <DefaultLayout>
       <Nav />
-      <div className={styles.header}>
+      <header className={styles.header}>
         <div className={styles.header__container}>
           <div className={styles.header__info}>
             <h1>Contact Us</h1>
@@ -24,7 +24,7 @@ function Contact(): JSX.Element {
             </p>
           </div>
         </div>
-        <form className={styles.header__form}>
+        <form className={styles.header__form} aria-label="form">
           <div className={styles.header__input}>
             <input type="text" placeholder="Name" />
           </div>
@@ -39,8 +39,8 @@ function Contact(): JSX.Element {
           </div>
           <button type="submit">submit</button>
         </form>
-      </div>
-      <div className={styles.qualities}>
+      </header>
+      <div className={styles.locations}>
         <Location title="canada" illustration={SvgCanada} bgRotation="0deg" />
         <Location
           title="australia"

@@ -69,185 +69,166 @@ exports[`Appearance Component render matches snapshot 1`] = `
     <header
       className="header"
     >
-      <h1>
-        Web Design
-      </h1>
-      <p>
-        We build websites that serve as powerful marketing tools and bring memorable brand experiences.
-      </p>
+      <div
+        className="header__info"
+      >
+        <h1>
+          About Us
+        </h1>
+        <p>
+          Founded in 2010, we are a creative agency that produces lasting results for our clients. We’ve partnered with many startups, corporations, and nonprofits alike to craft designs that make real impact. We’re always looking forward to creating brands, products, and digital experiences that connect with our clients’ audiences.
+        </p>
+      </div>
+      <img
+        alt=""
+        className="header__img"
+        src=""
+      />
     </header>
+    <section
+      aria-labelledby="section_1"
+      className="card card-1"
+    >
+      <img
+        alt=""
+        className="card-1__img"
+        src=""
+      />
+      <div
+        className="card__info"
+      >
+        <h2
+          id="section_1"
+        >
+          World-class talent
+        </h2>
+        <p>
+          We are a crew of strategists, problem-solvers, and technologists. Every design is thoughtfully crafted from concept to launch, ensuring success in its given market. We are constantly updating our skills in a myriad of platforms. 
+          <br />
+          <br />
+          Our team is multi-disciplinary and we are not merely interested in form — content and meaning are just as important. We give great importance to craftsmanship, service, and prompt delivery. Clients have always been impressed with our high-quality outcomes that encapsulates their brand’s story and mission.
+        </p>
+      </div>
+    </section>
     <div
-      className="examplegrid"
+      className="locations"
     >
       <div
-        className="card"
+        className="quality"
       >
-        <img
-          alt=""
-          src=""
-        />
         <div
-          className="card__info"
+          className="image"
         >
-          <h3>
-            express
-          </h3>
-          <p>
-            A multi-carrier shipping website for ecommerce businesses
-          </p>
+          <img
+            alt=""
+            src=""
+          />
+          <div
+            className="bg-circle"
+            style={
+              {
+                "transform": "rotate(0deg)",
+              }
+            }
+          />
         </div>
+        <p
+          className="quality__title"
+        >
+          canada
+        </p>
+        <button
+          type="button"
+        >
+          see location
+        </button>
       </div>
       <div
-        className="card"
+        className="quality"
       >
-        <img
-          alt=""
-          src=""
-        />
         <div
-          className="card__info"
+          className="image"
         >
-          <h3>
-            transfer
-          </h3>
-          <p>
-            Site for low-cost money transfers and sending money within seconds
-          </p>
+          <img
+            alt=""
+            src=""
+          />
+          <div
+            className="bg-circle"
+            style={
+              {
+                "transform": "rotate(270deg)",
+              }
+            }
+          />
         </div>
+        <p
+          className="quality__title"
+        >
+          australia
+        </p>
+        <button
+          type="button"
+        >
+          see location
+        </button>
       </div>
       <div
-        className="card"
+        className="quality"
       >
-        <img
-          alt=""
-          src=""
-        />
         <div
-          className="card__info"
+          className="image"
         >
-          <h3>
-            photon
-          </h3>
-          <p>
-            A state-of-the-art music player with high-resolution audio and DSP effects
-          </p>
+          <img
+            alt=""
+            src=""
+          />
+          <div
+            className="bg-circle"
+            style={
+              {
+                "transform": "rotate(90deg)",
+              }
+            }
+          />
         </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
+        <p
+          className="quality__title"
         >
-          <h3>
-            builder
-          </h3>
-          <p>
-            Connects users with local contractors based on their location
-          </p>
-        </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
+          united kingdom
+        </p>
+        <button
+          type="button"
         >
-          <h3>
-            blogr
-          </h3>
-          <p>
-            Blogr is a platform for creating an online blog or publication
-          </p>
-        </div>
-      </div>
-      <div
-        className="card"
-      >
-        <img
-          alt=""
-          src=""
-        />
-        <div
-          className="card__info"
-        >
-          <h3>
-            camp
-          </h3>
-          <p>
-            Get expert training in coding, data, design, and digital marketing
-          </p>
-        </div>
+          see location
+        </button>
       </div>
     </div>
-    <div
-      className="viewgrid"
+    <section
+      aria-labelledby="section_2"
+      className="card card-2"
     >
-      <a
-        href="/appdesign"
-        onClick={[Function]}
+      <img
+        alt=""
+        className="card-2__img"
+        src=""
+      />
+      <div
+        className="card__info"
       >
-        <div
-          className="card"
-          style={
-            {
-              "backgroundImage": "url()",
-            }
-          }
+        <h2
+          id="section_2"
         >
-          <h2>
-            app design
-          </h2>
-          <div
-            className="card__view"
-          >
-            <p>
-              view projects
-            </p>
-            <img
-              alt=""
-              src=""
-            />
-          </div>
-        </div>
-      </a>
-      <a
-        href="/graphicdesign"
-        onClick={[Function]}
-      >
-        <div
-          className="card"
-          style={
-            {
-              "backgroundImage": "url()",
-            }
-          }
-        >
-          <h2>
-            graphic design
-          </h2>
-          <div
-            className="card__view"
-          >
-            <p>
-              view projects
-            </p>
-            <img
-              alt=""
-              src=""
-            />
-          </div>
-        </div>
-      </a>
-    </div>
+          The real deal
+        </h2>
+        <p>
+          As strategic partners in our clients’ businesses, we are ready to take on any challenge as our own. Solving real problems require empathy and collaboration, and we strive to bring a fresh perspective to every opportunity. We make design and technology more accessible and give you tools to measure success.
+          <br />
+          <br />
+          We are visual storytellers in appealing and captivating ways. By combining business and marketing strategies, we inspire audiences to take action and drive real results.
+        </p>
+      </div>
+    </section>
   </div>
   <footer
     className="footer "

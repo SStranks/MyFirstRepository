@@ -15,13 +15,13 @@ function GraphicDesign(): JSX.Element {
   return (
     <DefaultLayout>
       <Nav />
-      <div className={styles.header}>
+      <header className={styles.header}>
         <h1>Graphic Design</h1>
         <p>
           We deliver eye-catching branding materials that are tailored to meet
           your business objectives.
         </p>
-      </div>
+      </header>
       <div className={styles.examplegrid}>
         <Card2
           title="tim brown"

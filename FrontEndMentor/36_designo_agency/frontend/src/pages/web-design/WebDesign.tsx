@@ -18,13 +18,13 @@ function WebDesign(): JSX.Element {
   return (
     <DefaultLayout>
       <Nav />
-      <div className={styles.header}>
+      <header className={styles.header}>
         <h1>Web Design</h1>
         <p>
           We build websites that serve as powerful marketing tools and bring
           memorable brand experiences.
         </p>
-      </div>
+      </header>
       <div className={styles.examplegrid}>
         <Card2
           title="express"

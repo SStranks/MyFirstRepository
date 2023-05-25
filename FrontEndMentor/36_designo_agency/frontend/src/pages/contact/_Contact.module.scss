@@ -111,6 +111,11 @@
   }
 
   &__input {
+    & input[type='text'],
+    textarea {
+      color: c.$col-1c;
+      outline: none;
+    }
     & > input[type='text'] {
       height: 48px;
       width: 100%;
@@ -149,7 +154,7 @@
   }
 }
 
-.qualities {
+.locations {
   display: flex;
   justify-content: space-between;
   position: relative;
