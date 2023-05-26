@@ -13,6 +13,7 @@
     "plugin:react/jsx-runtime",
     "plugin:jsx-a11y/recommended",
     "plugin:jest/recommended",
+    "plugin:jest-dom/recommended",
     "plugin:unicorn/recommended",
     "plugin:prettier/recommended"
   ],
@@ -22,21 +23,22 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "sourceType": "module"
-    // "requireConfigFile": false
+    "sourceType": "module",
+    "requireConfigFile": false
   },
   "plugins": [
     "@typescript-eslint",
     "react",
     "jsx-a11y",
-    "import",
     "jest",
+    "jest-dom",
     "unicorn",
     "prettier"
   ],
   "rules": {
     "prettier/prettier": ["error"],
-    "no-unused-vars": "warn",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "no-console": "off",
     // Typescript Rules --
     "react/prop-types": "off",
@@ -53,8 +55,17 @@
     "unicorn/filename-case": [
       "error",
       {
-        "case": "pascalCase",
-        "ignore": ["index.(js|jsx|ts|tsx)", "webpack.*", ".test.ts", ".d.ts"]
+        "cases": {
+          "camelCase": true,
+          "pascalCase": true
+        },
+        "ignore": [
+          "index.(js|jsx|ts|tsx)",
+          "webpack.*",
+          ".d.ts",
+          ".test.ts",
+          "use\\w*.tsx"
+        ]
       }
     ],
     "unicorn/prevent-abbreviations": "off",
@@ -67,13 +78,8 @@
     // "class-methods-use-this": "off",
   },
   "settings": {
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
-    },
     "import/resolver": {
-      "typescript": {
-        "project": "./frontend/tsconfig.json"
-      }
+      "typescript": {}
     }
   },
   "ignorePatterns": ["node_modules", "public/*"]
