@@ -1,0 +1,160 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Appearance Component render matches snapshot 1`] = `
+<div
+  className="container"
+>
+  <nav
+    className="navbar"
+  >
+    <div
+      className="navbar__logo"
+    >
+      <img
+        alt=""
+        className="navbar__logo__img"
+        src=""
+      />
+    </div>
+    <div
+      className="navbar__head"
+    >
+      <h1
+        className="navbar__title"
+      />
+      <div
+        className="navbar__controls"
+      >
+        <button
+          className="navbar__controls__addTask"
+          disabled={true}
+          onClick={[Function]}
+          type="button"
+        >
+          <img
+            alt=""
+            src=""
+          />
+          <span>
+            + Add New Task
+          </span>
+        </button>
+        <button
+          className="navbar__controls__boardOptions"
+          onClick={[Function]}
+          type="button"
+        >
+          <img
+            alt=""
+            src=""
+          />
+        </button>
+        <div
+          className="navbar__controls__dropdownMenu hidden"
+          onClickCapture={[Function]}
+        >
+          <p>
+            Edit Board
+          </p>
+          <p>
+            Delete Board
+          </p>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div
+    className="container__subcontainer"
+  >
+    <aside
+      className="sidebar"
+      id="sidebar"
+    >
+      <div
+        className="sidebar__boards"
+      >
+        <h2>
+          ALL BOARDS (
+          0
+          )
+        </h2>
+        <ul
+          onClickCapture={[Function]}
+        />
+      </div>
+      <div
+        className="sidebar__controls"
+      >
+        <div
+          className="sidebar__theme"
+        >
+          <img
+            alt=""
+            src=""
+          />
+          <div
+            className="toggle-slider"
+          >
+            <label
+              htmlFor="theme-switch"
+            >
+              <input
+                id="theme-switch"
+                onClick={[Function]}
+                type="checkbox"
+              />
+              <span />
+            </label>
+          </div>
+          <img
+            alt=""
+            src=""
+          />
+        </div>
+        <button
+          className="sidebar__hide"
+          onClick={[Function]}
+          type="button"
+        >
+          <img
+            alt=""
+            src=""
+          />
+          <p>
+            Hide Sidebar
+          </p>
+        </button>
+      </div>
+      <button
+        className="sidebar__show"
+        id="sidebar-btn-show"
+        onClick={[Function]}
+        type="button"
+      >
+        <img
+          alt=""
+          src=""
+        />
+      </button>
+    </aside>
+    <main
+      className="main"
+    >
+      <div
+        className="main__empty"
+      >
+        <p>
+          This board is empty. Create a new column to get started
+        </p>
+        <button
+          onClick={[Function]}
+          type="button"
+        >
+           
+          + Add New Column
+        </button>
+      </div>
+    </main>
+  </div>
+</div>
+`;
