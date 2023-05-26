@@ -1,3 +1,4 @@
+import CopyPlugin from 'copy-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
@@ -12,10 +13,10 @@ export default merge(common, {
   output: {
     path: path.resolve(
       path.dirname(url.fileURLToPath(import.meta.url)),
-      'public'
+      'dist'
     ),
     filename: 'main.[contenthash].js',
-    // assetModuleFilename: 'images/[name].[hash][ext]',
+    assetModuleFilename: 'assets/[ext]/[name].[hash][ext]',
     clean: true,
   },
   module: {
@@ -27,6 +28,12 @@ export default merge(common, {
           {
             loader: 'css-loader',
             options: {
+              url: {
+                filter: (assetUrl) => {
+                  if (assetUrl.startsWith('/public')) return false;
+                  return true;
+                },
+              },
               modules: { localIdentName: '[local]-[hash:base64:5]' },
               importLoaders: 2, // => post-css and sass
             },
@@ -62,6 +69,22 @@ export default merge(common, {
         collapseWhitespace: true,
         removeComments: true,
       },
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(
+            path.dirname(url.fileURLToPath(import.meta.url)),
+            'public'
+          ),
+          to: path.join(
+            path.dirname(url.fileURLToPath(import.meta.url)),
+            'dist',
+            'public'
+          ),
+          noErrorOnMissing: true,
+        },
+      ],
     }),
     new Dotenv({ path: './.env.prod' }),
   ],

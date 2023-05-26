@@ -68,12 +68,13 @@ export default {
     rules: [
       {
         test: /\.(ts|tsx|js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/],
         use: [
           'babel-loader',
           {
             loader: 'ts-loader',
             options: {
+              onlyCompileBundledFiles: true,
               compilerOptions: {
                 noEmit: false,
               },
