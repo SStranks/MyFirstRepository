@@ -13,6 +13,7 @@
     "plugin:react/jsx-runtime",
     "plugin:jsx-a11y/recommended",
     "plugin:jest/recommended",
+    "plugin:jest-dom/recommended",
     "plugin:unicorn/recommended",
     "plugin:prettier/recommended"
   ],
@@ -22,21 +23,22 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "sourceType": "module"
-    // "requireConfigFile": false
+    "sourceType": "module",
+    "requireConfigFile": false
   },
   "plugins": [
     "@typescript-eslint",
     "react",
     "jsx-a11y",
-    "import",
     "jest",
+    "jest-dom",
     "unicorn",
     "prettier"
   ],
   "rules": {
     "prettier/prettier": ["error"],
-    "no-unused-vars": "off", // Rule handled by "@typescript-eslint/no-unused-vars": "warn"
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "no-console": "off",
     "no-underscore-dangle": "off",
     // Typescript Rules --
@@ -55,13 +57,16 @@
     "unicorn/filename-case": [
       "error",
       {
-        "case": "pascalCase",
+        "cases": {
+          "camelCase": true,
+          "pascalCase": true
+        },
         "ignore": [
           "index.(js|jsx|ts|tsx)",
-          "use\\w*.tsx",
           "webpack.*",
+          ".d.ts",
           ".test.ts",
-          ".d.ts"
+          "use\\w*.tsx"
         ]
       }
     ],
@@ -77,15 +82,8 @@
     // "class-methods-use-this": "off",
   },
   "settings": {
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
-    },
     "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true,
-        // NOTE:  ESLint works from <root>; the workspace/folder open. See vscode.code-workspace.
-        "project": "./"
-      }
+      "typescript": {}
     }
   },
   "ignorePatterns": ["node_modules", "public/*"]
