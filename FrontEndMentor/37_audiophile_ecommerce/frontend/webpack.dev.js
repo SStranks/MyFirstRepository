@@ -14,7 +14,7 @@ export default merge(common, {
       path.dirname(url.fileURLToPath(import.meta.url)),
       'build'
     ),
-    filename: 'main.[contenthash].js',
+    filename: 'main.js',
     publicPath: '/',
   },
   devtool: 'inline-source-map',

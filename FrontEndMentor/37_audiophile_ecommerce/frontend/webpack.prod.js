@@ -9,6 +9,7 @@ import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'node:path';
 import url from 'node:url';
+import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 import { merge } from 'webpack-merge';
 import common from './webpack.common.js';
 
@@ -117,7 +118,14 @@ export default merge(common, {
       threshold: 10240,
       minRatio: 0.7,
     }),
-    new CopyPlugin({ patterns: ['public'] }),
+    new CopyPlugin({
+      patterns: [{ from: 'public', to: '[path][name].[contenthash][ext]' }],
+    }),
+    new WebpackManifestPlugin({
+      fileName: 'assets-manifest.json',
+      publicPath: '',
+      writeToFileEmit: true,
+    }),
     new Dotenv({ path: './.env.prod' }),
   ],
 });
