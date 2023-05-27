@@ -66,7 +66,7 @@ export default merge(common, {
       new CssMinimizerPlugin(),
       new ImageMinimizerPlugin({
         test: /\.(jpe?g|png|gif|svg)$/i,
-        exclude: [/favicon/i],
+        exclude: [/favicon/i, /image-hero/i],
         minimizer: {
           implementation: ImageMinimizerPlugin.imageminMinify,
           options: {
@@ -93,8 +93,11 @@ export default merge(common, {
   plugins: [
     new MiniCssExtractPlugin(),
     new HTMLWebpackPlugin({
-      template: './src/index-template.html',
+      template: './src/index-template.html.ejs',
       favicon: './src/favicon-32x32.png',
+      templateParameters: {
+        PUBLIC_URL: process.env.PUBLIC_URL,
+      },
       minify: {
         removeAttributeQuotes: true,
         collapseWhitespace: true,

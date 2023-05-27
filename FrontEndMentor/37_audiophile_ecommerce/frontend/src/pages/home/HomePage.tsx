@@ -14,25 +14,25 @@ function Home(): JSX.Element {
         data-testid="skipto-main">
         <picture>
           <source
-            srcSet="/img/home/desktop/image-hero.webp"
+            srcSet="/img/home/desktop/image-hero.jpg"
             media="(min-width: 992px)"
             width="1440px"
             height="729px"
           />
           <source
-            srcSet="/img/home/tablet/image-header.webp"
+            srcSet="/img/home/tablet/image-header.jpg"
             media="(min-width: 576px)"
             width="1536px"
             height="1458px"
           />
           <source
-            srcSet="/img/home/mobile/image-header.webp"
+            srcSet="/img/home/mobile/image-header.jpg"
             media="(max-width: 575px)"
             width="750px"
             height="1200px"
           />
           <img
-            src="/img/home/desktop/image-hero.webp"
+            src="/img/home/desktop/image-hero.jpg"
             className={styles.hero__img}
             alt="XX99 mark 2 headphones"
           />

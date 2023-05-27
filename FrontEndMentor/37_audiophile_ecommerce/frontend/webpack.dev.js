@@ -74,8 +74,11 @@ export default merge(common, {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: './src/index-template.html',
+      template: './src/index-template.html.ejs',
       favicon: './src/favicon-32x32.png',
+      templateParameters: {
+        PUBLIC_URL: process.env.PUBLIC_URL,
+      },
     }),
     new ImageMinimizerPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
