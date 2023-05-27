@@ -1,5 +1,7 @@
+import CopyPlugin from 'copy-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
+import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 import path from 'node:path';
 import url from 'node:url';
 import { merge } from 'webpack-merge';
@@ -10,16 +12,26 @@ export default merge(common, {
   output: {
     path: path.resolve(
       path.dirname(url.fileURLToPath(import.meta.url)),
-      'public'
+      'build'
     ),
     filename: 'main.[contenthash].js',
     publicPath: '/',
-    // assetModuleFilename: 'images/[name][ext]',
   },
   devtool: 'inline-source-map',
   devServer: {
     port: 3000,
-    static: ['./public'],
+    static: [
+      {
+        directory: path.resolve(
+          path.dirname(url.fileURLToPath(import.meta.url)),
+          'public'
+        ),
+        publicPath: '/',
+        staticOptions: {
+          extensions: ['jpeg', 'png'],
+        },
+      },
+    ],
     historyApiFallback: true,
     /** "open"
      * opens the browser after server is successfully started
@@ -65,6 +77,20 @@ export default merge(common, {
       template: './src/index-template.html',
       favicon: './src/favicon-32x32.png',
     }),
+    new ImageMinimizerPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      exclude: [/favicon/i],
+      generator: [
+        {
+          type: 'asset',
+          implementation: ImageMinimizerPlugin.imageminGenerate,
+          options: {
+            plugins: ['imagemin-webp'],
+          },
+        },
+      ],
+    }),
+    new CopyPlugin({ patterns: ['public'] }),
     new Dotenv({ path: './.env.dev' }),
   ],
 });

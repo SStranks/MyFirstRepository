@@ -2,8 +2,6 @@ import ESLintPlugin from 'eslint-webpack-plugin';
 import path from 'node:path';
 import url from 'node:url';
 
-// import CopyPlugin from 'copy-webpack-plugin';
-
 export default {
   entry: './src/index.tsx',
   target: 'web',
@@ -118,14 +116,5 @@ export default {
     new ESLintPlugin({
       extensions: ['js', 'jsx', 'ts', 'tsx'],
     }),
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: 'logos/',
-    //       to: 'assets/logos/',
-    //       context: 'src/assets/svg/',
-    //     },
-    //   ],
-    // }),
   ],
 };

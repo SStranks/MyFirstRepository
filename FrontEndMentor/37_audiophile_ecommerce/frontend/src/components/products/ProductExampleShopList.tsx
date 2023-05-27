@@ -6,19 +6,19 @@ const productsList = [
   {
     id: 1,
     name: 'headphones',
-    image: '/img/shared/desktop/image-category-thumbnail-headphones.png',
+    image: '/img/shared/desktop/image-category-thumbnail-headphones.webp',
     productShopURL: '/headphones',
   },
   {
     id: 2,
     name: 'speakers',
-    image: '/img/shared/desktop/image-category-thumbnail-speakers.png',
+    image: '/img/shared/desktop/image-category-thumbnail-speakers.webp',
     productShopURL: '/speakers',
   },
   {
     id: 3,
     name: 'earphones',
-    image: '/img/shared/desktop/image-category-thumbnail-earphones.png',
+    image: '/img/shared/desktop/image-category-thumbnail-earphones.webp',
     productShopURL: '/earphones',
   },
 ];

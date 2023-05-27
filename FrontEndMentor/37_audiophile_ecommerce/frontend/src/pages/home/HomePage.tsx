@@ -14,25 +14,25 @@ function Home(): JSX.Element {
         data-testid="skipto-main">
         <picture>
           <source
-            srcSet="/img/home/desktop/image-hero.jpg"
+            srcSet="/img/home/desktop/image-hero.webp"
             media="(min-width: 992px)"
             width="1440px"
             height="729px"
           />
           <source
-            srcSet="/img/home/tablet/image-header.jpg"
+            srcSet="/img/home/tablet/image-header.webp"
             media="(min-width: 576px)"
             width="1536px"
             height="1458px"
           />
           <source
-            srcSet="/img/home/mobile/image-header.jpg"
+            srcSet="/img/home/mobile/image-header.webp"
             media="(max-width: 575px)"
             width="750px"
             height="1200px"
           />
           <img
-            src="/img/home/desktop/image-hero.jpg"
+            src="/img/home/desktop/image-hero.webp"
             className={styles.hero__img}
             alt="XX99 mark 2 headphones"
           />
@@ -60,26 +60,26 @@ function Home(): JSX.Element {
           <div className={styles.zx9}>
             <picture>
               <source
-                srcSet="/img/home/desktop/image-speaker-zx9.png"
+                srcSet="/img/home/desktop/image-speaker-zx9.webp"
                 media="(min-width: 1024px)"
                 width="756px"
                 height="918px"
               />
               <source
-                srcSet="/img/home/tablet/image-speaker-zx9.png"
+                srcSet="/img/home/tablet/image-speaker-zx9.webp"
                 media="(min-width: 481px)"
                 width="366px"
                 height="444px"
               />
               <source
-                srcSet="/img/home/mobile/image-speaker-zx9.png"
+                srcSet="/img/home/mobile/image-speaker-zx9.webp"
                 media="(max-width: 480px)"
                 width="320px"
                 height="388px"
               />
               <img
                 className={styles.zx9__img}
-                src="/img/home/desktop/image-speaker-zx9.png"
+                src="/img/home/desktop/image-speaker-zx9.webp"
                 alt="product ZX9 speaker"
               />
             </picture>
@@ -101,26 +101,26 @@ function Home(): JSX.Element {
           <div className={styles.zx7}>
             <picture>
               <source
-                srcSet="/img/home/desktop/image-speaker-zx7.jpg"
+                srcSet="/img/home/desktop/image-speaker-zx7.webp"
                 media="(min-width: 1024px)"
                 width="1110px"
                 height="320px"
               />
               <source
-                srcSet="/img/home/tablet/image-speaker-zx7.jpg"
+                srcSet="/img/home/tablet/image-speaker-zx7.webp"
                 media="(min-width: 667px)"
                 width="689px"
                 height="320px"
               />
               <source
-                srcSet="/img/home/mobile/image-speaker-zx7.jpg"
+                srcSet="/img/home/mobile/image-speaker-zx7.webp"
                 media="(max-width: 666px)"
                 width="654px"
                 height="640px"
               />
               <img
                 className={styles.zx7__img}
-                src="/img/home/desktop/image-speaker-zx7.jpg"
+                src="/img/home/desktop/image-speaker-zx7.webp"
                 alt="product ZX7 speaker"
               />
             </picture>
@@ -137,26 +137,26 @@ function Home(): JSX.Element {
           </div>
           <picture>
             <source
-              srcSet="/img/home/desktop/image-earphones-yx1.jpg"
+              srcSet="/img/home/desktop/image-earphones-yx1.webp"
               media="(min-wdith: 800px)"
               width="540px"
               height="320px"
             />
             <source
-              srcSet="/img/home/tablet/image-earphones-yx1.jpg"
+              srcSet="/img/home/tablet/image-earphones-yx1.webp"
               media="(min-width: 667px)"
               width="678px"
               height="640px"
             />
             <source
-              srcSet="/img/home/mobile/image-earphones-yx1.jpg"
+              srcSet="/img/home/mobile/image-earphones-yx1.webp"
               media="(max-width: 666px)"
               width="654px"
               height="400px"
             />
             <img
               className={styles['yx1-img']}
-              src="/img/home/desktop/image-earphones-yx1.jpg"
+              src="/img/home/desktop/image-earphones-yx1.webp"
               alt="product YX1 earphones"
             />
           </picture>

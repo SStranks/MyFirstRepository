@@ -26,26 +26,26 @@ function CompanyStatement(props: ElemProps): JSX.Element {
       </div>
       <picture className={styles.card__picture}>
         <source
-          srcSet="/img/shared/desktop/image-best-gear.jpg"
+          srcSet="/img/shared/desktop/image-best-gear.webp"
           media="(min-width: 1024px)"
           width="540"
           height="588"
         />
         <source
-          srcSet="/img/shared/tablet/image-best-gear.jpg"
+          srcSet="/img/shared/tablet/image-best-gear.webp"
           media="(min-width: 576px)"
           width="1378"
           height="600"
         />
         <source
-          srcSet="/img/shared/mobile/image-best-gear.jpg"
+          srcSet="/img/shared/mobile/image-best-gear.webp"
           media="(max-width: 575px)"
           width="654"
           height="600"
         />
         <img
           className={styles.card__img}
-          src="/img/shared/desktop/image-best-gear.jpg"
+          src="/img/shared/desktop/image-best-gear.webp"
           alt="Furnishing our customers with the best gear"
         />
       </picture>

@@ -1,7 +1,11 @@
+/* eslint-disable unicorn/numeric-separators-style */
+import BrotliPlugin from 'brotli-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
+import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'node:path';
 import url from 'node:url';
@@ -57,7 +61,34 @@ export default merge(common, {
     ],
   },
   optimization: {
-    minimizer: ['...', new CssMinimizerPlugin()],
+    minimizer: [
+      '...',
+      new CssMinimizerPlugin(),
+      new ImageMinimizerPlugin({
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        exclude: [/favicon/i],
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            plugins: [
+              'imagemin-gifsicle',
+              'imagemin-mozjpeg',
+              'imagemin-pngquant',
+              'imagemin-svgo',
+            ],
+          },
+        },
+        generator: [
+          {
+            type: 'asset',
+            implementation: ImageMinimizerPlugin.imageminGenerate,
+            options: {
+              plugins: ['imagemin-webp'],
+            },
+          },
+        ],
+      }),
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin(),
@@ -70,22 +101,20 @@ export default merge(common, {
         removeComments: true,
       },
     }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: path.resolve(
-            path.dirname(url.fileURLToPath(import.meta.url)),
-            'public'
-          ),
-          to: path.join(
-            path.dirname(url.fileURLToPath(import.meta.url)),
-            'dist',
-            'public'
-          ),
-          noErrorOnMissing: true,
-        },
-      ],
+    new CompressionPlugin({
+      filename: '[path][base].gz',
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.7,
     }),
+    new BrotliPlugin({
+      asset: '[path].br[query]',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.7,
+    }),
+    new CopyPlugin({ patterns: ['public'] }),
     new Dotenv({ path: './.env.prod' }),
   ],
 });
