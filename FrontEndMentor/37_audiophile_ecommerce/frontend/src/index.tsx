@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './assets/sass/global-imports.scss';
 import App from './components/App';
+// import * as serviceWorker from './serviceWorker';
 
 const container = document.querySelector('#root');
 // As per Official React 18 docs
@@ -22,3 +23,5 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+// serviceWorker.register();

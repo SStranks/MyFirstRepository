@@ -15,12 +15,20 @@ import common from './webpack.common.js';
 
 export default merge(common, {
   mode: 'production',
+  entry: {
+    app: './src/index.tsx',
+    // script: './src/script.ts',
+    // serviceWorker: {
+    //   import: './src/serviceWorker.ts',
+    //   filename: 'serviceWorker.js',
+    // },
+  },
   output: {
     path: path.resolve(
       path.dirname(url.fileURLToPath(import.meta.url)),
       'dist'
     ),
-    filename: 'main.[contenthash].js',
+    filename: '[name].[contenthash].js',
     assetModuleFilename: 'assets/[ext]/[name].[hash][ext]',
     clean: true,
   },
@@ -96,6 +104,7 @@ export default merge(common, {
     new HTMLWebpackPlugin({
       template: './src/index-template.html.ejs',
       favicon: './src/favicon-32x32.png',
+      // excludeChunks: ['serviceWorker'],
       templateParameters: {
         PUBLIC_URL: process.env.PUBLIC_URL,
       },
@@ -119,7 +128,7 @@ export default merge(common, {
       minRatio: 0.7,
     }),
     new CopyPlugin({
-      patterns: [{ from: 'public', to: '[path][name].[contenthash][ext]' }],
+      patterns: [{ from: 'public' }],
     }),
     new WebpackManifestPlugin({
       fileName: 'assets-manifest.json',
