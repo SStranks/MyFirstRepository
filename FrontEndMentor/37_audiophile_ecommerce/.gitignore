@@ -8,6 +8,8 @@ frontend/node_modules
 
 # Public
 frontend/public
+frontend/dist
+backend/dist
 
 # FrontEndMentor
 *.sketch

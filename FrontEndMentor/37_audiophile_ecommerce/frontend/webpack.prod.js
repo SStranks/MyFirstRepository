@@ -3,7 +3,7 @@ import BrotliPlugin from 'brotli-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import Dotenv from 'dotenv-webpack';
+// import Dotenv from 'dotenv-webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
@@ -100,7 +100,9 @@ export default merge(common, {
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
     new HTMLWebpackPlugin({
       template: './src/index-template.html.ejs',
       favicon: './src/favicon-32x32.png',
@@ -133,8 +135,9 @@ export default merge(common, {
     new WebpackManifestPlugin({
       fileName: 'assets-manifest.json',
       publicPath: '',
+      filter: (file) => file.name.startsWith('img/'),
       writeToFileEmit: true,
     }),
-    new Dotenv({ path: './.env.prod' }),
+    // new Dotenv({ path: './.env.prod' }),
   ],
 });

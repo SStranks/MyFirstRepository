@@ -12,7 +12,17 @@
     "build:serve": "http-server ./dist --brotli",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "docker:build": "docker image build -f Dockerfile.prod -t $npm_package_config_dockerImageRepo:$npm_package_version .",
+    "docker:postbuild": "docker image tag $npm_package_config_dockerImageRepo:$npm_package_version $npm_package_config_dockerImageRepo:latest",
+    "docker:run": "docker run --name $npm_package_config_dockerImageName -d -p $npm_package_config_dockerImagePort:$npm_package_config_dockerInternalContainerPort $npm_package_config_dockerImageRepo",
+    "docker:clean": "docker rm -f $npm_package_config_imageName"
+  },
+  "config": {
+    "dockerImageRepo": "fem37image/frontend",
+    "dockerImageName": "FEM37-React-Nginx",
+    "dockerImagePort": "3000",
+    "dockerInternalContainerPort": "3000"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
