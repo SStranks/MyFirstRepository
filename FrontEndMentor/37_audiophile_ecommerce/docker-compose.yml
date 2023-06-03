@@ -1,13 +1,8 @@
+name: "fem37-audiophile"
 version: "3.7"
 services:
 
-  # Backend: Node API
-  node-api:
-    build:
-      context: ./backend
-
-
-  # Frontend: React App
-  react-app:
+  # Frontend: Nginx
+  nginx:
     build:
       context: ./frontend
