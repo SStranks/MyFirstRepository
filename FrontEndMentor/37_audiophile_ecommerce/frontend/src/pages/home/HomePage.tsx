@@ -60,26 +60,26 @@ function Home(): JSX.Element {
           <div className={styles.zx9}>
             <picture>
               <source
-                srcSet="/img/home/desktop/image-speaker-zx9.webp"
+                srcSet="/img/home/desktop/image-speaker-zx9.png"
                 media="(min-width: 1024px)"
                 width="756px"
                 height="918px"
               />
               <source
-                srcSet="/img/home/tablet/image-speaker-zx9.webp"
+                srcSet="/img/home/tablet/image-speaker-zx9.png"
                 media="(min-width: 481px)"
                 width="366px"
                 height="444px"
               />
               <source
-                srcSet="/img/home/mobile/image-speaker-zx9.webp"
+                srcSet="/img/home/mobile/image-speaker-zx9.png"
                 media="(max-width: 480px)"
                 width="320px"
                 height="388px"
               />
               <img
                 className={styles.zx9__img}
-                src="/img/home/desktop/image-speaker-zx9.webp"
+                src="/img/home/desktop/image-speaker-zx9.png"
                 alt="product ZX9 speaker"
               />
             </picture>
@@ -101,26 +101,26 @@ function Home(): JSX.Element {
           <div className={styles.zx7}>
             <picture>
               <source
-                srcSet="/img/home/desktop/image-speaker-zx7.webp"
+                srcSet="/img/home/desktop/image-speaker-zx7.jpg"
                 media="(min-width: 1024px)"
                 width="1110px"
                 height="320px"
               />
               <source
-                srcSet="/img/home/tablet/image-speaker-zx7.webp"
+                srcSet="/img/home/tablet/image-speaker-zx7.jpg"
                 media="(min-width: 667px)"
                 width="689px"
                 height="320px"
               />
               <source
-                srcSet="/img/home/mobile/image-speaker-zx7.webp"
+                srcSet="/img/home/mobile/image-speaker-zx7.jpg"
                 media="(max-width: 666px)"
                 width="654px"
                 height="640px"
               />
               <img
                 className={styles.zx7__img}
-                src="/img/home/desktop/image-speaker-zx7.webp"
+                src="/img/home/desktop/image-speaker-zx7.jpg"
                 alt="product ZX7 speaker"
               />
             </picture>
@@ -137,26 +137,26 @@ function Home(): JSX.Element {
           </div>
           <picture>
             <source
-              srcSet="/img/home/desktop/image-earphones-yx1.webp"
+              srcSet="/img/home/desktop/image-earphones-yx1.jpg"
               media="(min-wdith: 800px)"
               width="540px"
               height="320px"
             />
             <source
-              srcSet="/img/home/tablet/image-earphones-yx1.webp"
+              srcSet="/img/home/tablet/image-earphones-yx1.jpg"
               media="(min-width: 667px)"
               width="678px"
               height="640px"
             />
             <source
-              srcSet="/img/home/mobile/image-earphones-yx1.webp"
+              srcSet="/img/home/mobile/image-earphones-yx1.jpg"
               media="(max-width: 666px)"
               width="654px"
               height="400px"
             />
             <img
               className={styles['yx1-img']}
-              src="/img/home/desktop/image-earphones-yx1.webp"
+              src="/img/home/desktop/image-earphones-yx1.jpg"
               alt="product YX1 earphones"
             />
           </picture>
