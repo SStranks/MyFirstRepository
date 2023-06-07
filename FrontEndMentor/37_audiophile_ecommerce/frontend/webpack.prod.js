@@ -130,7 +130,14 @@ export default merge(common, {
       minRatio: 0.7,
     }),
     new CopyPlugin({
-      patterns: [{ from: 'public', to: '[path][name].[contenthash][ext]' }],
+      patterns: [
+        {
+          from: 'public/img',
+          to: 'img/[path][name].[contenthash][ext]',
+        },
+        { from: 'public/robots.txt' },
+        { from: 'public/sitemap.xml' },
+      ],
     }),
     new WebpackManifestPlugin({
       fileName: 'assets-manifest.json',

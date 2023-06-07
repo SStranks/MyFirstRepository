@@ -12,5 +12,6 @@ services:
     volumes:
       - ./frontend/dist:/usr/share/nginx/html:ro
       - ./frontend/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./frontend/nginx/headers.conf:/etc/nginx/conf.d/headers.conf:ro
       - ./frontend/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./frontend/nginx/redirects.map:/etc/nginx/redirects.map:ro
