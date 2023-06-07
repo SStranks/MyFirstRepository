@@ -11,6 +11,9 @@ frontend/public
 frontend/dist
 backend/dist
 
+# Private Files
+private.*
+
 # FrontEndMentor
 *.sketch
 *.xd
