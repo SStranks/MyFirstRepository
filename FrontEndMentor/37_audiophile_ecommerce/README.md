@@ -1,18 +1,13 @@
 # Frontend Mentor - Audiophile E-Commerce Website
 
-This is a solution to the [Audiophile e-commerce website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx).
-
-### Difficulty Rating: Level 5/5 (Guru)
+This is my solution for the [Audiophile e-commerce website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx).
 
 ## Table of contents
 
 - [Overview](#overview)
-
-#### Difficulty Rating: Level 5/5 (Guru)
-
-- [The challenge](#the-challenge)
-- [Screenshot](#screenshot)
-- [Links](#links)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -22,6 +17,8 @@ This is a solution to the [Audiophile e-commerce website challenge on Frontend M
 ## Overview
 
 ### The challenge
+
+### Difficulty Rating: Level 5/5 (Guru)
 
 Users should be able to:
 
