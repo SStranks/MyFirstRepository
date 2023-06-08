@@ -48,10 +48,14 @@
   @include mq.media(tablet-xlarge) {
     min-height: 743px;
     padding: f.px2em(100) f.px2em(95) 0;
+    background-size: 100%;
+    background-position: calc(100% + 50px) center;
   }
 
   @include mq.media(tablet-all) {
     height: 843px;
+    background-size: 643px auto;
+    background-position: calc(100% + 125px) center;
   }
 
   @include mq.media(tablet-xlarge, tablet-all, mobile-all) {
@@ -61,10 +65,12 @@
   }
 
   @include mq.media(mobile-all) {
-    padding: f.px2em(80) f.px2em(24) 0;
-    margin: 0 -24px f.px2em(120);
     height: 850px;
+    margin: 0 -24px f.px2em(120);
+    padding: f.px2em(80) f.px2em(24) 0;
     border-radius: 0;
+    background-size: 650px auto;
+    background-position: left center;
   }
 
   &__info {
