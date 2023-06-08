@@ -1,13 +1,18 @@
-# Frontend Mentor - Audiophile e-commerce website solution
+# Frontend Mentor - Audiophile E-Commerce Website
 
-This is a solution to the [Audiophile e-commerce website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Audiophile e-commerce website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx).
+
+### Difficulty Rating: Level 5/5 (Guru)
 
 ## Table of contents
 
 - [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
+
+#### Difficulty Rating: Level 5/5 (Guru)
+
+- [The challenge](#the-challenge)
+- [Screenshot](#screenshot)
+- [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -17,8 +22,6 @@ This is a solution to the [Audiophile e-commerce website challenge on Frontend M
 ## Overview
 
 ### The challenge
-
-#### Difficulty Rating: Level 5/5 (Guru)
 
 Users should be able to:
 
@@ -42,7 +45,8 @@ Users should be able to:
 
 - Live Site URL: [@Netlify]()
 - GitHub URL: [@GitHub](https://github.com/SStranks/MyFirstRepository/tree/master/FrontEndMentor/37_audiophile_ecommerce)
-- FrontEndMentor URL: [@FrontEndMentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx)
+- FrontEndMentor Challenge URL: [@FrontEndMentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx)
+- FrontEndMentor Profile URL: [@SStranks](https://www.frontendmentor.io/profile/SStranks)
 
 ## My process
 
@@ -112,7 +116,3 @@ This project definitely increased my confidence to handle a wide variety of tech
 - [Stackoverflow - Webpack 5 html-webpack-plugin](https://stackoverflow.com/a/56295889/20274651)
 - [Stackoverflow - Typescript & Service workers](https://stackoverflow.com/questions/56356655/structuring-a-typescript-project-with-workers/56374158#56374158)
 - [Stackoverflow - Webpack 5 Gifsicle](https://stackoverflow.com/a/65497967)
-
-## Author
-
-- Frontend Mentor - [@SStranks](https://www.frontendmentor.io/profile/SStranks)
