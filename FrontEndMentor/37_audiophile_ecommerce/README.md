@@ -12,7 +12,6 @@ This is my solution for the [Audiophile e-commerce website challenge on Frontend
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Useful resources](#useful-resources)
-- [Author](#author)
 
 ## Overview
 
@@ -38,6 +37,8 @@ Users should be able to:
 
 ![](./screenshot.jpg)
 
+Screenshots from my completed solution. Captured at the following breakpoints: Desktop - 1440px, Tablet - 768px, - Mobile: 375px.
+
 ### Links
 
 - Live Site URL: [@Netlify]()
@@ -57,7 +58,6 @@ Users should be able to:
 - Nginx
 - Docker
 - Cloudinary
-- [React](https://reactjs.org/) - JS library
 - [DockerHub](https://hub.docker.com/) - Docker Images
 
 ### What I learned
@@ -92,6 +92,7 @@ This project definitely increased my confidence to handle a wide variety of tech
 - [RTL - Snapshot & react portals](https://medium.com/@amanverma.dev/mocking-create-portal-to-utilize-react-test-renderer-in-writing-snapshot-uts-c49773c88acd)
 - [Webpack 5 - URL Loader](https://webpack.js.org/loaders/css-loader/#url)
 - [Webpack 5 - Brotli compression](https://tech.groww.in/enable-brotli-compression-in-webpack-with-fallback-to-gzip-397a57cf9fc6)
+- [Github - WSL2 Rootless Docker](https://github.com/microsoft/WSL/issues/10152)
 - [Github - @typescript-eslint/parser](https://github.com/typescript-eslint/typescript-eslint/issues/3517)
 - [Github - Hash classnames CSS modules](https://github.com/webpack-contrib/css-loader/issues/733)
 - [Github - Service worker example](https://github.com/mdn/dom-examples/blob/main/service-worker/simple-service-worker/sw.js)
