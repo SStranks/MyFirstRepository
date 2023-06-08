@@ -16,9 +16,9 @@ This is a solution to the [Audiophile e-commerce website challenge on Frontend M
 
 ## Overview
 
-### Difficulty Rating: Level 5/5 (Guru)
-
 ### The challenge
+
+#### Difficulty Rating: Level 5/5 (Guru)
 
 Users should be able to:
 
@@ -40,8 +40,9 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [@SStranks87](https://github.com/SStranks/MyFirstRepository/tree/master/FrontEndMentor/37_audiophile_ecommerce)
 - Live Site URL: [@Netlify]()
+- GitHub URL: [@GitHub](https://github.com/SStranks/MyFirstRepository/tree/master/FrontEndMentor/37_audiophile_ecommerce)
+- FrontEndMentor URL: [@FrontEndMentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx)
 
 ## My process
 
