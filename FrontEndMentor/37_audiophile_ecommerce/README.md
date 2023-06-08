@@ -18,7 +18,7 @@ This is my solution for the [Audiophile e-commerce website challenge on Frontend
 
 ### The challenge
 
-### Difficulty Rating: Level 5/5 (Guru)
+#### Difficulty Rating: Level 5/5 (Guru)
 
 Users should be able to:
 
