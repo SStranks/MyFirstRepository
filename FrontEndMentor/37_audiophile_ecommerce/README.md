@@ -37,14 +37,14 @@ Users should be able to:
 
 ![](./screenshot.jpg)
 
-Screenshots from my completed solution. Captured at the following breakpoints: Desktop - 1440px, Tablet - 768px, - Mobile: 375px.
+Captured at the following breakpoints from the live solution: Desktop - 1440px, Tablet - 768px, - Mobile: 375px.
 
 ### Links
 
-- Live Site URL: [@Netlify]()
-- GitHub URL: [@GitHub](https://github.com/SStranks/MyFirstRepository/tree/master/FrontEndMentor/37_audiophile_ecommerce)
-- FrontEndMentor Challenge URL: [@FrontEndMentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx)
-- FrontEndMentor Profile URL: [@SStranks](https://www.frontendmentor.io/profile/SStranks)
+- Live Site - [@Netlify]()
+- GitHub - [@GitHub](https://github.com/SStranks/MyFirstRepository/tree/master/FrontEndMentor/37_audiophile_ecommerce)
+- FrontEndMentor Challenge - [@FrontEndMentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx)
+- FrontEndMentor Profile - [@SStranks](https://www.frontendmentor.io/profile/SStranks)
 
 ## My process
 
@@ -57,8 +57,8 @@ Screenshots from my completed solution. Captured at the following breakpoints: D
 - Webpack 5
 - Nginx
 - Docker
-- Cloudinary
-- [DockerHub](https://hub.docker.com/) - Docker Images
+- [Cloudinary](https://cloudinary.com/)
+- [DockerHub](https://hub.docker.com/)
 
 ### What I learned
 

@@ -1,6 +1,6 @@
 # Frontend Mentor - Devjobs web app solution
 
-This is a solution to the [Devjobs web app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/devjobs-web-app-HuvC_LP4l). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Devjobs web app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/devjobs-web-app-HuvC_LP4l).
 
 ## Table of contents
 
@@ -12,17 +12,12 @@ This is a solution to the [Devjobs web app challenge on Frontend Mentor](https:/
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Useful resources](#useful-resources)
-- [Author](#author)
 
 ## Overview
 
 ### The challenge
 
-Your challenge is to build out this jobs board using a local `data.json` to retrieve the data. Your goal is to try to get your project looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-We provide the data in a local `data.json` file, so use that to populate the content on the first load. If you want to take it up a notch, feel free to build this as a full-stack application!
+#### Difficulty Rating: Level 4/5 (Advanced)
 
 Users should be able to:
 
@@ -36,10 +31,14 @@ Users should be able to:
 
 ![](./screenshot.jpg)
 
+Captured at the following breakpoints from the live solution: Desktop - 1440px, Tablet - 768px, - Mobile: 375px.
+
 ### Links
 
-- Solution URL: [@SStranks87](https://github.com/SStranks/MyFirstRepository/tree/master/FrontEndMentor/32_dev_jobs_webapp)
-- Live Site URL: [@Netlify]()
+- Live Site - [@Netlify]()
+- GitHub - [@GitHub](https://github.com/SStranks/MyFirstRepository/tree/master/FrontEndMentor/32_dev_jobs_webapp)
+- FrontEndMentor Challenge - [@FrontEndMentor](https://www.frontendmentor.io/challenges/devjobs-web-app-HuvC_LP4l)
+- FrontEndMentor Profile - [@SStranks](https://www.frontendmentor.io/profile/SStranks)
 
 ## My process
 
@@ -48,13 +47,11 @@ Users should be able to:
 - Semantic HTML5 markup
 - CSS: modules, custom properties, grid, flexbox
 - SASS
-- ESLint, Prettier
+- React and NodeJS
 - Webpack 5
 - Nginx
 - Docker
-- [React](https://reactjs.org/) - JS library
-- [NodeJS](https://nodejs.org/en/) - NodeJS
-- [DockerHub](https://hub.docker.com/) - Docker Images
+- [DockerHub](https://hub.docker.com/)
 
 ### What I learned
 
@@ -91,7 +88,3 @@ In the next project I hope to apply more time and finessse to the frontend and b
 - [Class Names via CSS Modules](https://stackoverflow.com/questions/69043268/class-names-via-css-modules-are-generated-in-a-strange-way)
 - [How to Pass Props Through React Router's Link Component](https://ui.dev/react-router-pass-props-to-link)
 - [Nginx Issue](https://stackoverflow.com/questions/64112684/nginx-cant-find-upstream-host-in-multi-container-docker-compose-setup-and-also)
-
-## Author
-
-- Frontend Mentor - [@SStranks](https://www.frontendmentor.io/profile/SStranks)
