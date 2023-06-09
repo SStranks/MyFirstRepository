@@ -10,8 +10,12 @@
     width: 100%;
     height: calc(100% - v.$navbar-dim-height);
 
-    @include mq.media(tablet-large) {
+    @include mq.media(tablet-large, tablet-medium) {
       height: calc(100% - v.$navbar-dim-height + 16px);
+    }
+
+    @include mq.media(tablet-small, mobile-all) {
+      height: calc(100% - v.$navbar-dim-height + 32px);
     }
   }
 }

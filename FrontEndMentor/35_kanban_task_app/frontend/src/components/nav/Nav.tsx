@@ -2,6 +2,7 @@ import RootModalDispatchContext from '#Context/RootModalContext';
 import IconAddTaskMobile from '#Svg/icon-add-task-mobile.svg';
 import IconEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import LogoDark from '#Svg/logo-dark.svg';
+import LogoLight from '#Svg/logo-light.svg';
 import { TBoard } from '#Types/types';
 import { useContext, useRef } from 'react';
 import styles from './_Nav.module.scss';
@@ -55,7 +56,8 @@ function Nav(props: ElemProps): JSX.Element {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbar__logo}>
-        <img src={LogoDark} className={styles.navbar__logo__img} alt="" />
+        <img src={LogoDark} className={`${styles.navbar__logo__img} ${styles['navbar__logo__img--dark']}`} alt="" />
+        <img src={LogoLight} className={`${styles.navbar__logo__img} ${styles['navbar__logo__img--light']}`} alt="" />
       </div>
       <div className={styles.navbar__head}>
         <h1 className={styles.navbar__title}>{activeBoard?.name}</h1>

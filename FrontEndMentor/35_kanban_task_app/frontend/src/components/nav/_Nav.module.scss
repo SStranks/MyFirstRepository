@@ -24,9 +24,7 @@
   }
 
   &__logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
     width: v.$sidebar-dim-width-l;
     border-right: 1px solid var(--thm-border-divider);
     transition: a.$Theme-transition-border;
@@ -41,7 +39,20 @@
     }
 
     &__img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);  
       height: auto;
+      transition: a.$Theme-transition-opacity;
+
+      &--dark {
+        opacity: var(--thm-nav-logo-dark);
+      }
+
+      &--light {
+        opacity: var(--thm-nav-logo-light);
+      }
 
       @include mq.media(tablet-small, mobile-all) {
         content: url(/src/assets/svg/logo-mobile.svg);
@@ -59,10 +70,6 @@
     padding: 0 f.px2em(24);
     color: var(--thm-nav-h1);
     transition: a.$Theme-transition-color;
-
-    @include mq.media(mobile-all) {
-      padding-left: 0;
-    }
   }
 
   &__title {
