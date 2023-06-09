@@ -10,11 +10,15 @@ export default merge(common, {
   output: {
     path: path.resolve(
       path.dirname(url.fileURLToPath(import.meta.url)),
-      'public'
+      'dist'
     ),
-    filename: 'main.[contenthash].js',
+    filename: 'main.js',
     publicPath: '/',
     // assetModuleFilename: 'images/[name][ext]',
+  },
+  watch: {
+    poll: 2000,
+    ignored: ['/node_modules/', '/nginx/'],
   },
   devtool: 'inline-source-map',
   devServer: {
