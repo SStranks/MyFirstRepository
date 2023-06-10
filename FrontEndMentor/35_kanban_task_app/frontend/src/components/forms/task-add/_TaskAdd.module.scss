@@ -20,6 +20,10 @@
   border-radius: v.$border-radius-forms;
   transition: a.$Theme-transition-bg;
 
+  @include mq.media(mobile-all) {
+    padding: f.px2em(24);
+  }
+
   &__title {
     @include mx.header-l;
     color: var(--thm-form-header-text);

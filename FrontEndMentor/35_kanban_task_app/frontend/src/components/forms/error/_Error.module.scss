@@ -2,6 +2,7 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/variables' as v;
 @use '#Sass/components/buttons' as *;
 
@@ -18,6 +19,10 @@
   background-color: var(--thm-form-bg);
   border-radius: v.$border-radius-forms;
   transition: a.$Theme-transition-bg;
+
+  @include mq.media(mobile-all) {
+    padding: f.px2em(24);
+  }
 
   &__title {
     @include mx.header-l;
