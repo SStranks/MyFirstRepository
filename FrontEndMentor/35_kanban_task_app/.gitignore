@@ -9,6 +9,9 @@ frontend/node_modules
 # Public
 frontend/public
 
+# Private
+private*
+
 # FrontEndMentor
 *.sketch
 *.xd

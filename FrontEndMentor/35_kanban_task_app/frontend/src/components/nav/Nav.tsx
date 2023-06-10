@@ -56,8 +56,16 @@ function Nav(props: ElemProps): JSX.Element {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbar__logo}>
-        <img src={LogoDark} className={`${styles.navbar__logo__img} ${styles['navbar__logo__img--dark']}`} alt="" />
-        <img src={LogoLight} className={`${styles.navbar__logo__img} ${styles['navbar__logo__img--light']}`} alt="" />
+        <img
+          src={LogoDark}
+          className={`${styles.navbar__logo__img} ${styles['navbar__logo__img--dark']}`}
+          alt=""
+        />
+        <img
+          src={LogoLight}
+          className={`${styles.navbar__logo__img} ${styles['navbar__logo__img--light']}`}
+          alt=""
+        />
       </div>
       <div className={styles.navbar__head}>
         <h1 className={styles.navbar__title}>{activeBoard?.name}</h1>
