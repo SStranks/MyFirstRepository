@@ -13,12 +13,20 @@
   background-color: c.$col-modal-bg;
   backdrop-filter: blur(1px);
   z-index: f.z('modal-container');
-  overflow-y: scroll;
-  // pointer-events: none;
+  overflow-y: auto;
 }
 
 .animation-fade-in {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
   animation: fadein 0.5s;
+}
+
+.sub-container {
+  flex-grow: 1;
+  max-width: 480px;
+  margin-inline: 16px;
 }
 
 @keyframes fadein {

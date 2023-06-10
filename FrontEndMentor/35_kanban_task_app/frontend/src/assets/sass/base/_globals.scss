@@ -15,6 +15,7 @@
 
 /*   Imports                        */
 @use '../abstracts/variables' as *;
+@use '../abstracts/colors' as c;
 
 /* -------------------------------- */
 /*   Globals                        */
@@ -32,6 +33,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-track {
+  background-color: var(--thm-bg-main);
+}
+::-webkit-scrollbar-corner {
+  background-color: var(--thm-bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background-color: c.$col-1b;
+  border-radius: 10px;
+  &:vertical:hover,
+  &:horizontal:hover {
+    background-color: c.$col-1a;
+  }
 }
 
 img {

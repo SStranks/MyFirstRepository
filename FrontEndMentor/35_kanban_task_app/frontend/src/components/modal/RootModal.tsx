@@ -128,11 +128,13 @@ function RootModal(props: ElemProps): JSX.Element | null {
     return (
       // eslint-disable-next-line react/no-array-index-key, @typescript-eslint/no-explicit-any
       <div className={styles['animation-fade-in']} key={i}>
-        <ModalComponent
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          {...(modalProps as any)}
-          // key={i}
-        />
+        <div className={styles['sub-container']}>
+          <ModalComponent
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            {...(modalProps as any)}
+            // key={i}
+          />
+        </div>
       </div>
     );
   });
