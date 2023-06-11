@@ -3,9 +3,9 @@ services:
   # Backend: NodeJS Express
   node-api:
     container_name: fem35-node-api-dev
-    build:
-      dockerfile: ./Dockerfile
-    image: fem35-nodejs-express-api
+    image: node:18-alpine3.17
+    working_dir: /backend
+    command: npm start
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     volumes:
@@ -16,19 +16,7 @@ services:
       - mongo-db
 
   # Frontend: React App
-  react-app:
-    container_name: fem35-react-app-dev
-    build:
-      dockerfile: ./Dockerfile
-    image: fem35-react-app
-    ports:
-      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
-    volumes:
-      - ./frontend/dist:/usr/share/nginx/html:ro
-    env_file:
-      - ./frontend/.env.dev
-    depends_on:
-      - node-api
+  # Use 'npm start' from ./frontend to init webpack-dev-server
 
   # DB: MongoDB
   mongo-db:
@@ -43,7 +31,7 @@ services:
     volumes:
       - mongodb-data:/data/db
 
-  # DB: MongoDB Express - DEV ONLY
+  # DB: MongoDB Express
   mongo-express:
     image: mongo-express
     depends_on:
@@ -60,5 +48,6 @@ services:
       - mongodb-data:/data/db
 
 volumes:
-  # Persist MongoDB Data
   mongodb-data:
+    name: mongodb-data
+    external: true

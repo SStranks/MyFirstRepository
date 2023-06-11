@@ -1,41 +1,26 @@
-version: "3.7"
 services:
 
-  # Backend: Node API
+  # Backend: NodeJS Express
   node-api:
-    container_name: node-api-dev
-    build:
-      dockerfile: ./Dockerfile.dev
-    image: img-node-api-dev
-    ports: 
+    container_name: fem33-node-api-dev
+    image: node:18-alpine3.17
+    working_dir: /backend
+    command: npm start
+    ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     volumes:
-      - ./backend:/src/myApp:ro
+      - ./backend:/backend:ro
     env_file:
       - ./backend/.env.dev
     depends_on:
       - mongo-db
 
-
   # Frontend: React App
-  react-app:
-    container_name: react-app-dev
-    build:
-      dockerfile: ./Dockerfile.dev
-    image: img-react-app-dev
-    ports: 
-      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
-    volumes:
-      - ./frontend:/src/myApp:ro
-    env_file:
-      - ./frontend/.env.dev
-    depends_on:
-      - node-api
-
+  # Use 'npm start' from ./frontend to init webpack-dev-server
 
   # DB: MongoDB
   mongo-db:
-    container_name: mongo-db
+    container_name: fem33-mongo-db
     image: mongo
     restart: unless-stopped
     environment:
@@ -44,10 +29,9 @@ services:
     ports:
       - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     volumes:
-      - mongodb-data:/data/db    
+      - mongodb-data:/data/db
 
-
-  # DB: MongoDB Express - DEV ONLY
+  # DB: MongoDB Express
   mongo-express:
     image: mongo-express
     depends_on:
@@ -63,8 +47,7 @@ services:
     volumes:
       - mongodb-data:/data/db
 
-
 volumes:
-  # Persist MongoDB Data
   mongodb-data:
-    #driver: local
+    name: mongodb-data
+    external: true

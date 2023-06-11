@@ -1,10 +1,10 @@
 services:
 
-  # Frontend: Nginx
+  # Frontend: Nginx-React
   nginx:
     container_name: nginx-prod
     restart: unless-stopped
     build:
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
     ports:
       - 3000:3000

@@ -1,49 +1,43 @@
-name: "FEM#32-MERN Webapp"
 services:
 
-  # Backend: Node API
+  # Backend: NodeJS Express
   node-api:
-    container_name: node-api-prod
+    container_name: fem33-node-api-prod
     build:
-      dockerfile: ./Dockerfile.prod
-    image: img-node-api-prod
+      dockerfile: ./Dockerfile
+    image: fem33-nodejs-express-api
     env_file:
       - ./backend/.env.prod
     networks:
-      - MERN_PROD
-  
+      - FEM33
 
-  # Frontend: React 
-  # NGINX Serving: Port 3000
+  # Frontend: Nginx-React
   react-app:
-    container_name: react-app-prod
+    container_name: fem33-react-app-prod
     build:
-      dockerfile: ./Dockerfile.prod
-    image: img-react-app-prod
+      dockerfile: ./Dockerfile
+    image: fem33-react-app
     env_file:
       - ./frontend/.env.prod
     depends_on:
       - node-api
     networks:
-      - MERN_PROD
-
-
+      - FEM33
 
   # NGINX
   nginx:
-    container_name: nginx-prod
-    restart: unless-stopped
+    container_name: fem33-nginx-prod
+    restart: on-failure
     build:
       context: ./nginx
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
     depends_on:
       - node-api
       - react-app
     ports:
-    - 8080:80
+      - 8080:80
     networks:
-      - MERN_PROD
-  
+      - FEM33
 
 networks:
-   MERN_PROD:
+  FEM33:

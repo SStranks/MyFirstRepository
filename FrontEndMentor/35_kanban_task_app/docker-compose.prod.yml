@@ -30,7 +30,7 @@ services:
     restart: on-failure
     build:
       context: ./nginx
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
     image: fem35-nginx-prod
     depends_on:
       - node-api

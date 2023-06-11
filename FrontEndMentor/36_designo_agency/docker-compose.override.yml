@@ -1,16 +1,15 @@
-name: "FEM#36-MERN-Designo-DEV"
 services:
 
-  # Backend: Node API
+  # Backend: NodeJS Express
   node-api:
-    container_name: node-api-dev
-    build:
-      dockerfile: ./Dockerfile.dev
-    image: img-node-api-dev
+    container_name: fem36-node-api-dev
+    image: node:18-alpine3.17
+    working_dir: /backend
+    command: npm start
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     volumes:
-      - ./backend:/src/myApp:ro
+      - ./backend:/backend:ro
     env_file:
       - ./backend/.env.dev
     depends_on:
@@ -19,25 +18,11 @@ services:
     #   - container-network
 
     # Frontend: React App
-  react-app:
-    container_name: react-app-dev
-    build:
-      dockerfile: ./Dockerfile.dev
-    image: img-react-app-dev
-    ports:
-      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
-    volumes:
-      - ./frontend:/src/myApp:ro
-    env_file:
-      - ./frontend/.env.dev
-    depends_on:
-      - node-api
-    # networks:
-    #   - container-network
+    # Use 'npm start' from ./frontend to init webpack-dev-server
 
     # DB: MongoDB
   mongo-db:
-    container_name: mongo-db
+    container_name: fem36-mongo-db
     image: mongo
     restart: unless-stopped
     environment:
@@ -47,10 +32,8 @@ services:
       - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     volumes:
       - mongodb-data:/data/db
-    # networks:
-    #   - container-network
 
-    # DB: MongoDB Express - DEV ONLY
+  # DB: MongoDB Express - DEV ONLY
   mongo-express:
     image: mongo-express
     depends_on:
@@ -65,15 +48,8 @@ services:
       - ME_CONFIG_BASICAUTH_PASSWORD=$MONGOEXP_BASICAUTH_PASS
     volumes:
       - mongodb-data:/data/db
-    # networks:
-    #   - container-network
 
 volumes:
-  # Persist MongoDB Data
   mongodb-data:
-    #driver: local
-
-    # networks:
-    #   container-network:
-    #     name: container-network
-    #     driver: bridge
+    name: mongodb-data
+    external: true
