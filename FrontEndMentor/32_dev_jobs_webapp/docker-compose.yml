@@ -1,13 +1,13 @@
+name: "fem32-dev-jobs-webapp"
 version: "3.7"
 services:
 
-  # Backend: Node API
+  # Backend: NodeJS Express
   node-api:
     build:
-      context: ./Backend
+      context: ./backend
 
-
-  # Frontend: React App
+  # Frontend: React
   react-app:
     build:
-      context: ./Frontend
+      context: ./frontend
