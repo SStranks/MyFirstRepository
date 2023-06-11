@@ -2,13 +2,13 @@ services:
 
   # Frontend: Nginx
   nginx:
-    container_name: nginx-dev
+    container_name: fem37-nginx-dev
     restart: unless-stopped
-    build:
-      dockerfile: Dockerfile.dev
-    image: fem37-audiophile-dev
+    # Image is custom / local
+    image: nginx-1.24-alpine-brotli
+    command: nginx -g 'daemon off;'
     ports:
-      - 3000:3000
+      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
     volumes:
       - ./frontend/dist:/usr/share/nginx/html:ro
       - ./frontend/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro

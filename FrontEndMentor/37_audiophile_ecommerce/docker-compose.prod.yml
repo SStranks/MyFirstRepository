@@ -2,9 +2,9 @@ services:
 
   # Frontend: Nginx-React
   nginx:
-    container_name: nginx-prod
+    container_name: fem37-nginx-prod
     restart: unless-stopped
     build:
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
