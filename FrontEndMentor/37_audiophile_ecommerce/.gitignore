@@ -1,18 +1,16 @@
 # Env files
-.env
-.env.*
+**/.env
+**/.env.*
 
 # Dependencies
-backend/node_modules
-frontend/node_modules
+**/node_modules
 
 # Public
 frontend/public
-frontend/dist
-backend/dist
+**/dist
 
 # Private Files
-private.*
+**/private.*
 
 # FrontEndMentor
 *.sketch
@@ -21,4 +19,4 @@ private.*
 .DS_Store
 
 # VSCode
-*.code-workspace
+.vscode
