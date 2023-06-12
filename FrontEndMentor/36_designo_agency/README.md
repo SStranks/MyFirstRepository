@@ -1,6 +1,6 @@
 # Frontend Mentor - Designo Agency Website
 
-This my solution for the [Designo agency website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/designo-multipage-website-G48K6rfUT).
+This is my solution for the [Designo agency website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/designo-multipage-website-G48K6rfUT).
 
 ## Table of contents
 

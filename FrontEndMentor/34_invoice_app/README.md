@@ -1,6 +1,6 @@
 # Frontend Mentor - Invoice App Solution
 
-This is my solution to the [Invoice app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl).
+This is my solution for the [Invoice app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl).
 
 ## Table of contents
 

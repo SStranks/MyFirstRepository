@@ -1,6 +1,6 @@
 # Frontend Mentor - Product Feedback App
 
-This is my solution to the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6).
+This is my solution for the [Product feedback app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-feedback-app-wbvUYqjR6).
 
 ## Table of contents
 
