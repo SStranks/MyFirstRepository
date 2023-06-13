@@ -78,13 +78,15 @@
   & button {
     grid-column: 2;
     padding: 0;
-    background-color: #eff0fc;
+    background-color: var(--color-advert-banner-btn);
+    transition: $Theme-transition;
     & span {
-      color: $Violet;
+      color: var(--color-advert-banner-btn-text);
       font-weight: 700;
+      transition: $Theme-transition;
     }
     &:hover {
-      background-color: #c5c9f4;
+      background-color: var(--color-advert-banner-btn-hover);
     }
 
     @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {

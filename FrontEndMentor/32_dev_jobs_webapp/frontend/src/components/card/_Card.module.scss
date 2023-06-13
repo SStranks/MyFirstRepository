@@ -1,18 +1,25 @@
 @use '../../assets/styles/variables' as *;
+@use '../../assets/styles/mixins' as *;
 
 .card {
   pointer-events: none;
   min-width: 350px;
-  height: 228px;
-  padding-left: 32px;
+  padding-inline: 32px;
+  padding-bottom: 36px;
   background-color: var(--color-elements);
   border-radius: 6px;
   transition: $Theme-transition, transform 500ms ease-in-out, box-shadow 500ms;
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    min-width: unset;
+  }
+
   &:hover {
     transform: scale(102%);
     box-shadow: 0 0 15px 5px hsla(0deg, 0%, 0%, 0.05);
   }
-  & div:first-child {
+
+  &__logo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,27 +28,33 @@
     padding: 5px;
     border-radius: 16px;
     transform: translate(0, -50%);
+
     & img {
       width: fit-content;
       height: fit-content;
     }
   }
-  & div:last-child {
-    display: grid;
-    grid-template-rows: repeat(5, 1fr);
-    row-gap: 5px;
+
+  &__info {
     margin-top: -15px;
+
     & span {
       margin: 0 10px;
       font-size: 32px;
       color: $Dark_Grey;
     }
-    & h3:hover {
-      color: $Dark_Grey;
-      cursor: pointer;
+
+    &__position {
+      margin: 12px 0;
+
+      &:hover {
+        color: $Dark_Grey;
+        cursor: pointer;
+      }
     }
+
     & h4 {
-      grid-row: 5;
+      margin-top: 44px;
     }
   }
 }

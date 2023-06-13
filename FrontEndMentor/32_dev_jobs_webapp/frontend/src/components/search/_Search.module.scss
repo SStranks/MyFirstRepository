@@ -36,6 +36,7 @@
       width: 100%;
       border: none;
       color: var(--color-input-text);
+      text-overflow: ellipsis;
 
       &::placeholder {
         color: var(--color-placeholder);
@@ -98,7 +99,7 @@
   }
 }
 
-#input-text-filter {
+#input-filter-location {
   @include media(mobile-large, mobile-medium, mobile-small) {
     display: none;
   }

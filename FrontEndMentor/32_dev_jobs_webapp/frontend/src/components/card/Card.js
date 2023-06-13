@@ -1,7 +1,7 @@
+import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import PropTypes from 'prop-types';
 import styles from './_Card.module.scss';
 
 function Card(props) {
@@ -31,17 +31,20 @@ function Card(props) {
       unmountOnExit
     >
       <div className={`${styles.card} ${styles.noHover}`} ref={nodeRef}>
-        <div style={{ backgroundColor: logoBackground }}>
+        <div
+          className={styles.card__logo}
+          style={{ backgroundColor: logoBackground }}
+        >
           <img src={logo} alt="company logo" />
         </div>
-        <div>
+        <div className={styles.card__info}>
           <p>
             {postedAt}
             <span>.</span>
             {contract}
           </p>
           <Link to="/job" state={props}>
-            <h3>{position}</h3>
+            <h3 className={styles.card__info__position}>{position}</h3>
           </Link>
           <p>{company}</p>
           <h4>{location}</h4>

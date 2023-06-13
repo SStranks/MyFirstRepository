@@ -21,6 +21,9 @@
   --color-text-h: #{$Very_Dark_Blue};
   --color-placeholder: hsl(216deg, 5%, 57%);
   --color-input-text: #{$Dark_Grey};
+  --color-advert-banner-btn: hsla(235deg, 69%, 61%, 0.1);
+  --color-advert-banner-btn-hover: hsla(235deg, 69%, 61%, 1);
+  --color-advert-banner-btn-text: #{$Violet};
 }
 
 .dark-theme {
@@ -30,4 +33,7 @@
   --color-text-h: #{$White};
   --color-placeholder: hsl(216deg, 5%, 57%);
   --color-input-text: #{$White};
+  --color-advert-banner-btn: hsl(220deg, 16%, 22%);
+  --color-advert-banner-btn-hover: hsl(217deg, 6%, 44%);
+  --color-advert-banner-btn-text: #{$White};
 }

@@ -40,7 +40,8 @@
   }
 
   @include media(mobile-large, mobile-medium, mobile-small) {
-    gap: 45px;
+    grid-template-columns: 1fr;
+    gap: 45px 0;
   }
 }
 

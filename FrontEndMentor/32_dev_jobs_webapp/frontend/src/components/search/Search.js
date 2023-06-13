@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import styles from './_Search.module.scss';
-import Modal from '../modal/modal';
+import React, { useState } from 'react';
+import IconFilter from '../../assets/svg/desktop/icon-location.svg';
+import IconSearch from '../../assets/svg/desktop/icon-search.svg';
+import IconFilterMobile from '../../assets/svg/mobile/icon-filter.svg';
 import ButtonSubmit from '../custom/ButtonSubmit';
 import Checkbox from '../custom/Checkbox';
-import IconSearch from '../../assets/svg/desktop/icon-search.svg';
-import IconFilter from '../../assets/svg/desktop/icon-location.svg';
-import IconFilterMobile from '../../assets/svg/mobile/icon-filter.svg';
+import Modal from '../modal/modal';
+import styles from './_Search.module.scss';
 
 function Search(props) {
   const { setJobs, setGridCount } = props;
@@ -60,7 +60,6 @@ function Search(props) {
   };
 
   return (
-    // <>
     <form className={styles['search-bar']} onSubmit={submitHandler}>
       <Modal
         onChangeHandler={onChangeHandler}
@@ -96,7 +95,7 @@ function Search(props) {
           <input
             type="text"
             name="filter"
-            id={styles['input-text-filter']}
+            id="input-filter-location"
             value={searchFields.filter}
             onChange={(e) => onChangeHandler(e)}
             placeholder="Filter by location..."
@@ -121,7 +120,6 @@ function Search(props) {
         />
       </div>
     </form>
-    // </>
   );
 }
 
