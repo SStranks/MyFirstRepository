@@ -11,3 +11,4 @@ services:
   react-app:
     build:
       context: ./frontend
+    profiles: [ "prod" ]
