@@ -30,26 +30,26 @@ function Card(props) {
       nodeRef={nodeRef}
       unmountOnExit
     >
-      <div className={`${styles.card} ${styles.noHover}`} ref={nodeRef}>
-        <div
-          className={styles.card__logo}
-          style={{ backgroundColor: logoBackground }}
-        >
-          <img src={logo} alt="company logo" />
-        </div>
-        <div className={styles.card__info}>
-          <p>
-            {postedAt}
-            <span>.</span>
-            {contract}
-          </p>
-          <Link to="/job" state={props}>
+      <Link to="/job" state={props}>
+        <div className={`${styles.card} ${styles.noHover}`} ref={nodeRef}>
+          <div
+            className={styles.card__logo}
+            style={{ backgroundColor: logoBackground }}
+          >
+            <img src={logo} alt="company logo" />
+          </div>
+          <div className={styles.card__info}>
+            <p>
+              {postedAt}
+              <span>.</span>
+              {contract}
+            </p>
             <h3 className={styles.card__info__position}>{position}</h3>
-          </Link>
-          <p>{company}</p>
-          <h4>{location}</h4>
+            <p>{company}</p>
+            <h4>{location}</h4>
+          </div>
         </div>
-      </div>
+      </Link>
     </CSSTransition>
   );
 }

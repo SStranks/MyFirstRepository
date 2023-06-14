@@ -17,25 +17,13 @@ button {
   }
 
   &:hover {
-    background-color: #939bf4;
+    background-color: hsl(235, 82%, 77%);
   }
 
   &:disabled {
     cursor: not-allowed;
     background-color: $Grey;
   }
-
-  // @include media(
-  //   desktop-large,
-  //   desktop-medium,
-  //   desktop-small,
-  //   tablet-regular,
-  //   tablet-small
-  // ) {
-  //   img {
-  //     display: none;
-  //   }
-  // }
 }
 
 .btn-text {
