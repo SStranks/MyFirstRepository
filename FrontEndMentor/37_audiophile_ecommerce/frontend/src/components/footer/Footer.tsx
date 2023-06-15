@@ -37,7 +37,8 @@ function Footer(): JSX.Element {
       </p>
       <div className={styles.footer__bottombar}>
         <p className={styles.footer__copyright}>
-          Copyright 2021. All Rights Reserved
+          Copyright 2021. <wbr />
+          All Rights Reserved
         </p>
         <div className={styles.footer__social}>
           <a

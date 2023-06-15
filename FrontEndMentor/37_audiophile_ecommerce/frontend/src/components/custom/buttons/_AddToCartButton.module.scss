@@ -1,8 +1,4 @@
-// @use '#Sass/abstracts/colors' as c;
-// @use '#Sass/abstracts/functions' as f;
-// @use '#Sass/abstracts/mixins' as mx;
-// @use '#Sass/abstracts/media-queries' as mq;
-// @use '#Sass/abstracts/variables' as v;
+@use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/components/buttons' as btn;
 
 .container {
@@ -11,5 +7,18 @@
 
   &__btn {
     @include btn.btn-default-1;
+    max-height: 48px;
+    white-space: nowrap;
+  }
+}
+
+/* -------------------------------- */
+/*   Media Queries                  */
+/* -------------------------------- */
+
+.container {
+  @include mq.media(mobile-small) {
+    flex-direction: column;
+    row-gap: 16px;
   }
 }

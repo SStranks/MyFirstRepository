@@ -135,7 +135,7 @@ function Home(): JSX.Element {
               </Link>
             </div>
           </div>
-          <picture>
+          <picture className={styles['yx1-picture']}>
             <source
               srcSet="/img/home/desktop/image-earphones-yx1.jpg"
               media="(min-wdith: 800px)"

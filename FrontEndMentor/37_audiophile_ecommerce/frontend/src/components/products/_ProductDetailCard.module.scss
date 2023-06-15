@@ -150,6 +150,10 @@
       padding-left: 70px;
     }
 
+    @include mq.media(tablet-small) {
+      padding-left: 30px;
+    }
+
     @include mq.media(tablet-mini, tablet-micro, mobile-all) {
       padding-left: 0;
     }
@@ -171,6 +175,12 @@
   &__features {
     @include mq.media(tablet-mini, tablet-micro, mobile-all) {
       margin-right: 0;
+    }
+  }
+
+  &__inBox {
+    @include mq.media(mobile-all) {
+      min-width: unset;
     }
   }
 }

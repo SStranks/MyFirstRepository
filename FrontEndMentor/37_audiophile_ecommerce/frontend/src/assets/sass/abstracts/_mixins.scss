@@ -44,7 +44,7 @@
 
 @mixin header-h3 {
   $REM: f.px2rem(32);
-  font-size: f.px2rem(32);
+  font-size: $REM;
   font-weight: 700;
   line-height: f.px2rem(36);
   letter-spacing: f.px2rem(1.15);
@@ -54,7 +54,7 @@
 
 @mixin header-h4 {
   $REM: f.px2rem(28);
-  font-size: f.px2rem(28);
+  font-size: $REM;
   font-weight: 700;
   line-height: f.px2rem(38);
   letter-spacing: f.px2rem(2);
@@ -64,7 +64,7 @@
 
 @mixin header-h5 {
   $REM: f.px2rem(24);
-  font-size: f.px2rem(24);
+  font-size: $REM;
   font-weight: 700;
   line-height: f.px2rem(33);
   letter-spacing: f.px2rem(1.7);
@@ -74,7 +74,7 @@
 
 @mixin header-h6 {
   $REM: f.px2rem(18);
-  font-size: f.px2rem(18);
+  font-size: $REM;
   font-weight: 700;
   line-height: f.px2rem(24);
   letter-spacing: f.px2rem(1.3);
@@ -84,7 +84,7 @@
 
 @mixin header-overline {
   $REM: f.px2rem(14);
-  font-size: f.px2rem(14);
+  font-size: $REM;
   font-weight: 400;
   line-height: f.px2rem(19);
   letter-spacing: f.px2rem(10);
@@ -108,7 +108,7 @@
 
 @mixin body-regular {
   $REM: f.px2rem(15);
-  font-size: f.px2rem(15);
+  font-size: $REM;
   font-weight: 500;
   line-height: f.px2rem(25);
   @content ($REM);

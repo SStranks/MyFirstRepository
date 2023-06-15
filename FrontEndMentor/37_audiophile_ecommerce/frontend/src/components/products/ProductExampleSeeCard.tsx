@@ -28,7 +28,7 @@ function ProductExampleSeeCard(props: ElemProps): JSX.Element {
         />
         <source
           srcSet={productImages.mobile}
-          media="(max-width: 480px)"
+          media="(max-width: 576px)"
           width="654px"
           height="240px"
         />

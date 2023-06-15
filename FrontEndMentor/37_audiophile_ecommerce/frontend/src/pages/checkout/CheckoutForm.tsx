@@ -17,11 +17,13 @@ function CheckoutForm(props: ElemProps): JSX.Element {
   const { totalAmount, openOrderCompleteModal, productsList } = props;
   const [paymentMethod, setPaymentMethod] = useState<string>('');
 
-  const vatAmount = (totalAmount * 0.2).toFixed(2);
+  const vatAmount = totalAmount * 0.2;
   const shippingAmount = 50;
   const grandTotal = formatCurrency(
     totalAmount + Number(vatAmount) + shippingAmount
   );
+  const totalAmountDisplayValue = formatCurrency(totalAmount);
+  const vatDisplayValue = formatCurrency(vatAmount);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -157,13 +159,17 @@ function CheckoutForm(props: ElemProps): JSX.Element {
         <div className={styles.summary__products}>{productsList}</div>
         <div className={styles.summary__financial}>
           <p className={styles.summary__financial__heading}>total</p>
-          <p className={styles.summary__financial__total}>$ {totalAmount}</p>
+          <p className={styles.summary__financial__total}>
+            $ {totalAmountDisplayValue}
+          </p>
           <p className={styles.summary__financial__heading}>shipping</p>
           <p className={styles.summary__financial__total}>$ {shippingAmount}</p>
           <p className={styles.summary__financial__heading}>
             vat &#40;included&#41;
           </p>
-          <p className={styles.summary__financial__total}>$ {vatAmount}</p>
+          <p className={styles.summary__financial__total}>
+            $ {vatDisplayValue}
+          </p>
           <p
             className={`${styles.summary__financial__heading} ${styles.gridLastRow}`}>
             grand total
