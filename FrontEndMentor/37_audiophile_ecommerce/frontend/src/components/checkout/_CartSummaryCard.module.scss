@@ -58,7 +58,11 @@
 /* -------------------------------- */
 
 .card {
-  @include mq.media(mobile-all) {
-    width: minmax(327px, 377px);
+  @include mq.media(mobile-small) {
+    &__total,
+    &__amount {
+      grid-column: 1 / span 2;
+      justify-self: center;
+    }
   }
 }

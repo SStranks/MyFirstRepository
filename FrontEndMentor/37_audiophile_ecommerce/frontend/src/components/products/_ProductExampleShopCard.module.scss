@@ -17,6 +17,10 @@
     & .card__img {
       transform: translateY(10px);
     }
+
+    & .card__shop__text {
+      color: c.$col-1a;
+    }
   }
 
   &__bg {
@@ -55,10 +59,6 @@
       @include mx.header-subtitle using ($REM) {
       }
       color: c.$col-3a;
-
-      &:hover {
-        color: c.$col-1a;
-      }
     }
 
     &__img {

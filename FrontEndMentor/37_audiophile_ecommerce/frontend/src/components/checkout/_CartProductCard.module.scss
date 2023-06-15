@@ -59,4 +59,20 @@
       display: none;
     }
   }
+
+  @include mq.media(mobile-small) {
+    grid-template-areas:
+      'title'
+      'quantity'
+      'price';
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+.productQuantityBtn {
+  @include mq.media(mobile-small) {
+    grid-row: 1;
+    margin-left: 0;
+  }
 }

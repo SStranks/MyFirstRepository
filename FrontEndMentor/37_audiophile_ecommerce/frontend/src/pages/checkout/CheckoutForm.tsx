@@ -67,18 +67,21 @@ function CheckoutForm(props: ElemProps): JSX.Element {
           <InputText
             appendClass={styles.checkout__inputText}
             name="Name"
+            id="Name"
             placeholder="Insert full name"
             required
           />
           <InputEmail
             appendClass={styles.checkout__inputText}
             name="Email Address"
+            id="Email Address"
             placeholder="Insert email address"
             required
           />
           <InputTel
             appendClass={styles.checkout__inputText}
             name="Phone Number"
+            id="Phone Number"
             placeholder="Insert phone number"
             required
           />
@@ -87,24 +90,28 @@ function CheckoutForm(props: ElemProps): JSX.Element {
           <InputText
             appendClass={`${styles.checkout__inputText} ${styles.gridColumnSpan}`}
             name="Address"
+            id="Address"
             placeholder="Insert address"
             required
           />
           <InputText
             appendClass={styles.checkout__inputText}
             name="ZIP Code"
+            id="ZIP Code"
             placeholder="Insert ZIP code"
             required
           />
           <InputText
             appendClass={styles.checkout__inputText}
             name="City"
+            id="City"
             placeholder="Insert city"
             required
           />
           <InputText
             appendClass={styles.checkout__inputText}
             name="Country"
+            id="Country"
             placeholder="Insert country"
             required
           />
@@ -130,12 +137,14 @@ function CheckoutForm(props: ElemProps): JSX.Element {
               <InputText
                 appendClass={styles.checkout__inputText}
                 name="e-Money Number"
+                id="e-Money Number"
                 placeholder="Insert e-Money number"
                 required
               />
               <InputText
                 appendClass={styles.checkout__inputText}
                 name="e-Money PIN"
+                id="e-Money PIN"
                 placeholder="Insert e-Money PIN"
                 required
               />
@@ -174,8 +183,7 @@ function CheckoutForm(props: ElemProps): JSX.Element {
             className={`${styles.summary__financial__heading} ${styles.gridLastRow}`}>
             grand total
           </p>
-          <p
-            className={`${styles.summary__financial__grandTotal} ${styles.gridLastRow}`}>
+          <p className={styles.summary__financial__grandTotal}>
             $ {grandTotal}
           </p>
         </div>

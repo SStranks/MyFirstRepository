@@ -19,6 +19,10 @@
   grid-template-columns: repeat(2, auto);
   column-gap: 30px;
 
+  & input {
+    text-overflow: ellipsis;
+  }
+
   &__submitted {
     & input[type='text']:invalid,
     input[type='tel']:invalid,
@@ -128,6 +132,7 @@
       @include mx.header-h6 using ($REM) {
       }
       justify-self: end;
+      margin-top: 18px;
       color: c.$col-1a;
     }
   }
@@ -184,6 +189,25 @@
 .summary {
   @include mq.media(mobile-all) {
     min-width: unset;
+  }
+
+  &__financial {
+    @include mq.media(mobile-small) {
+      grid-template-columns: 1fr;
+      row-gap: 2px;
+      margin-bottom: 32px;
+      text-align: left;
+
+      &__total {
+        justify-self: unset;
+        margin-bottom: 8px;
+      }
+
+      &__grandTotal {
+        justify-self: unset;
+        margin-top: 0;
+      }
+    }
   }
 }
 
