@@ -27,8 +27,13 @@
     & input[type='text']:invalid,
     input[type='tel']:invalid,
     input[type='email']:invalid,
-    label:has(input[type='radio']) {
+    label:has(input[type='radio']:invalid) {
       @include form.form-textfield-error;
+    }
+
+    // Form input label text
+    & p:has(+ input:invalid) {
+      color: c.$col-2d;
     }
   }
 }

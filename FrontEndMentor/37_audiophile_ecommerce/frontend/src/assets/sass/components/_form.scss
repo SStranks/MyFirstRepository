@@ -49,5 +49,5 @@
 
 @mixin form-textfield-error {
   @include form-textfield-root;
-  border: 1px solid c.$col-2d;
+  border: 2px solid c.$col-2d;
 }
