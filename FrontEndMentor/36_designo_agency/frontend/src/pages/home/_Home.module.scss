@@ -74,6 +74,7 @@
   }
 
   &__info {
+    z-index: 5;
     max-width: 60%;
 
     @include mq.media(tablet-xlarge, tablet-all, mobile-all) {
@@ -183,6 +184,7 @@
 .qualities {
   display: flex;
   position: relative;
+  column-gap: 30px;
   z-index: 1;
 
   @include mq.media(tablet-all, mobile-all) {

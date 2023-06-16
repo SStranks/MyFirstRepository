@@ -22,6 +22,11 @@
     margin-bottom: f.px2em(120);
   }
 
+  @include mq.media(tablet-medium, tablet-small) {
+    padding: f.px2em(60) f.px2em(40);
+    margin-bottom: f.px2em(120);
+  }
+
   @include mq.media(tablet-all, mobile-all) {
     flex-direction: column;
     height: unset;
@@ -108,24 +113,40 @@
         margin-top: f.px2em(40);
       }
     }
+
+    &__submitted {
+      & input:invalid + .header__input__error,
+      & textarea:invalid + .header__input__error {
+        display: flex;
+      }
+    }
   }
 
   &__input {
+    position: relative;
+
     & input[type='text'],
+    & input[type='tel'],
+    & input[type='email'],
     textarea {
       color: c.$col-1c;
       outline: none;
     }
-    & > input[type='text'] {
+
+    & > input[type='text'],
+    & > input[type='tel'],
+    & > input[type='email'] {
       height: 48px;
       width: 100%;
       padding: f.px2em(12);
       border: none;
       border-bottom: 1px solid c.$col-1c;
+
       &::placeholder {
         color: c.$col-1c;
         opacity: 60%;
       }
+
       &:hover {
         border-bottom: 3px solid c.$col-1c;
         &::placeholder {
@@ -133,6 +154,7 @@
         }
       }
     }
+
     & > textarea {
       width: 100%;
       height: 150px;
@@ -140,15 +162,41 @@
       border: none;
       border-bottom: 1px solid c.$col-1c;
       resize: none;
+
       &::placeholder {
         color: c.$col-1c;
         opacity: 60%;
       }
+
       &:hover {
         border-bottom: 3px solid c.$col-1c;
+
         &::placeholder {
           opacity: 100%;
         }
+      }
+    }
+
+    &__error {
+      display: none;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      align-items: center;
+      justify-content: end;
+      column-gap: 9px;
+      max-width: 60%;
+
+      & > p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      & > img {
+        height: 20px;
+        width: auto;
       }
     }
   }

@@ -32,7 +32,9 @@ function Home(): JSX.Element {
             fully responsive websites, app design, and engaging brand
             experiences. Find out more about our services.
           </p>
-          <button type="button">learn more</button>
+          <button type="button" className={styles.hero__btn}>
+            learn more
+          </button>
         </div>
         <img src={ImgHero} alt="" />
       </section>

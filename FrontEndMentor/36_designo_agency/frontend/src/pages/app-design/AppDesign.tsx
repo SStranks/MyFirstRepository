@@ -46,7 +46,13 @@ function AppDesign(): JSX.Element {
           image={ImgTodo}
         />
         <Card2
-          title="loopstudios"
+          title={
+            <>
+              loop
+              <wbr />
+              studio
+            </>
+          }
           caption="Blogr is a platform for creating an online blog or publication"
           image={ImgLoopstudios}
         />

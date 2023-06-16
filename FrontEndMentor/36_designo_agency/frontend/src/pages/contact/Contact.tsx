@@ -1,14 +1,50 @@
 import Nav from '#Components/nav/Nav';
 import DefaultLayout from '#Layouts/DefaultLayout';
 
+import IconError from '#Svg/desktop/icon-error.svg';
 import SvgAustralia from '#Svg/desktop/illustration-australia.svg';
 import SvgCanada from '#Svg/desktop/illustration-canada.svg';
 import SvgUnitedKingdom from '#Svg/desktop/illustration-united-kingdom.svg';
 
 import Location from '#Components/location/Location';
+import { useRef } from 'react';
 import styles from './_Contact.module.scss';
 
 function Contact(): JSX.Element {
+  const textInput = useRef<HTMLInputElement>(null);
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formElement = e.target as HTMLFormElement;
+    const isValid = formElement.checkValidity();
+
+    formElement.classList.add(styles.header__form__submitted);
+
+    // Focus on first invalid input
+    const firstInvalidInput = formElement.querySelector(
+      ':invalid'
+    ) as HTMLInputElement;
+    firstInvalidInput?.focus();
+
+    // Add error validation msg to invalid fields
+    const invalidInputs = formElement.querySelectorAll(':invalid');
+    if (invalidInputs) {
+      invalidInputs.forEach((el) => {
+        const textElem = el.nextSibling?.childNodes[0] as Element;
+        console.log(el);
+        textElem.textContent = (el as HTMLInputElement).validationMessage;
+      });
+    }
+
+    // Submit if valid
+    if (isValid) {
+      const dataObject = new FormData(formElement);
+      // Faux Submission
+      console.log(Object.fromEntries(dataObject.entries()));
+    }
+  };
+
   return (
     <DefaultLayout>
       <Nav />
@@ -24,18 +60,38 @@ function Contact(): JSX.Element {
             </p>
           </div>
         </div>
-        <form className={styles.header__form} aria-label="form">
+        <form
+          className={styles.header__form}
+          aria-label="form"
+          onSubmit={onSubmit}
+          noValidate>
           <div className={styles.header__input}>
-            <input type="text" placeholder="Name" />
+            <input type="text" placeholder="Name" required ref={textInput} />
+            <div className={styles.header__input__error}>
+              <p id="input-err" />
+              <img src={IconError} alt="" />
+            </div>
           </div>
           <div className={styles.header__input}>
-            <input type="text" placeholder="Email Address" />
+            <input type="email" placeholder="Email Address" required />
+            <div className={styles.header__input__error}>
+              <p />
+              <img src={IconError} alt="" />
+            </div>
           </div>
           <div className={styles.header__input}>
-            <input type="text" placeholder="Phone" />
+            <input type="tel" placeholder="Phone" required />
+            <div className={styles.header__input__error}>
+              <p />
+              <img src={IconError} alt="" />
+            </div>
           </div>
           <div className={styles.header__input}>
-            <textarea rows={20} placeholder="Your Message" />
+            <textarea rows={20} placeholder="Your Message" required />
+            <div className={styles.header__input__error}>
+              <p />
+              <img src={IconError} alt="" />
+            </div>
           </div>
           <button type="submit">submit</button>
         </form>

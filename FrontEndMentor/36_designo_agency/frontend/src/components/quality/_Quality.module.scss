@@ -37,7 +37,7 @@
 .quality {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto;
+  grid-template-rows: 202px auto auto;
   justify-items: center;
 
   @include mq.media(tablet-all) {

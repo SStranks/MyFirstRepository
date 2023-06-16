@@ -1,7 +1,7 @@
 import styles from './_Card2.module.scss';
 
 type ElemProps = {
-  title: string;
+  title: string | JSX.Element;
   caption: string;
   image: string;
 };

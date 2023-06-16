@@ -32,6 +32,7 @@
   }
 
   @include mq.media(mobile-all) {
+    margin-top: 320px;
     padding: v.$padding-mobile;
     padding-top: f.px2em(250);
     padding-bottom: f.px2em(64);
@@ -238,5 +239,31 @@
 // Adjust styles only for /contact route
 .routeContactPage {
   margin-top: 0;
-  padding: f.px2em(64) f.px2em(24);
+  padding: v.$padding-desktop;
+  padding-top: f.px2em(72);
+  padding-bottom: f.px2em(72);
+
+  @include mq.desktop-small {
+    padding: v.$padding-desktop-small;
+    padding-top: f.px2em(72);
+    padding-bottom: f.px2em(72);
+  }
+
+  @include mq.tablet-xlarge {
+    padding: v.$padding-tablet-xl;
+    padding-top: f.px2em(72);
+    padding-bottom: f.px2em(72);
+  }
+
+  @include mq.media(tablet-all) {
+    padding: v.$padding-tablet;
+    padding-top: f.px2em(80);
+    padding-bottom: f.px2em(80);
+  }
+
+  @include mq.media(mobile-all) {
+    padding: v.$padding-mobile;
+    padding-top: f.px2em(80);
+    padding-bottom: f.px2em(80);
+  }
 }
