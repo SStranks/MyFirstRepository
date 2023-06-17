@@ -7,12 +7,9 @@ import SvgCanada from '#Svg/desktop/illustration-canada.svg';
 import SvgUnitedKingdom from '#Svg/desktop/illustration-united-kingdom.svg';
 
 import Location from '#Components/location/Location';
-import { useRef } from 'react';
 import styles from './_Contact.module.scss';
 
 function Contact(): JSX.Element {
-  const textInput = useRef<HTMLInputElement>(null);
-
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -32,7 +29,6 @@ function Contact(): JSX.Element {
     if (invalidInputs) {
       invalidInputs.forEach((el) => {
         const textElem = el.nextSibling?.childNodes[0] as Element;
-        console.log(el);
         textElem.textContent = (el as HTMLInputElement).validationMessage;
       });
     }
@@ -66,9 +62,9 @@ function Contact(): JSX.Element {
           onSubmit={onSubmit}
           noValidate>
           <div className={styles.header__input}>
-            <input type="text" placeholder="Name" required ref={textInput} />
+            <input type="text" placeholder="Name" required pattern="/\p{L}/u" />
             <div className={styles.header__input__error}>
-              <p id="input-err" />
+              <p />
               <img src={IconError} alt="" />
             </div>
           </div>
@@ -80,7 +76,7 @@ function Contact(): JSX.Element {
             </div>
           </div>
           <div className={styles.header__input}>
-            <input type="tel" placeholder="Phone" required />
+            <input type="tel" placeholder="Phone" required pattern="[0-9]" />
             <div className={styles.header__input__error}>
               <p />
               <img src={IconError} alt="" />

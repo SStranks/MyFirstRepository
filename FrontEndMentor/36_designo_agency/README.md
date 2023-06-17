@@ -64,3 +64,4 @@ Captured at the following breakpoints from the live solution: Desktop - 1440px, 
 - [Stackoverflow - React: check if router path active](https://stackoverflow.com/questions/36289513/check-if-react-router-path-is-active)
 - [Stackoverflow - Jest: window.match](https://stackoverflow.com/questions/39830580/jest-test-fails-typeerror-window-matchmedia-is-not-a-function)
 - [Stackoverflow - CSS: inline elem shift on hover](https://stackoverflow.com/questions/556153/inline-elements-shifting-when-made-bold-on-hover)
+- [Stackoverflow - REGEX: Any char from any language](https://stackoverflow.com/questions/15861088/regex-to-match-only-language-chars-all-language)
