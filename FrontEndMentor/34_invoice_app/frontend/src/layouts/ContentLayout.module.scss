@@ -1,0 +1,39 @@
+@use '#Sass/variables' as *;
+@use '#Sass/mixins' as *;
+@use '#Sass/functions' as f;
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-height: 100%;
+  z-index: f.z('main');
+  margin-left: $sidebar-dim-desktop;
+
+  @include media(tablet-all) {
+    margin: $sidebar-dim-tablet 0 0 0;
+  }
+
+  @include media(mobile-all) {
+    margin: $sidebar-dim-mobile 0 0 0;
+  }
+
+  &__subContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: f.px2em(65);
+    width: 740px;
+    margin: f.px2em(72) f.px2em(20) 0 f.px2em(20);
+
+    @include media(tablet-large, tablet-medium, tablet-small, mobile-all) {
+      margin-top: f.px2em(56);
+      row-gap: f.px2em(32);
+    }
+
+    @include media(mobile-all) {
+      margin-top: f.px2em(32);
+      row-gap: f.px2em(32);
+    }
+  }
+}

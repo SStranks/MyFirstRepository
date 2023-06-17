@@ -1,5 +1,6 @@
 import Status from '#Components/custom/buttons/status/Status';
 import ArrowRight from '#Svg/icon-arrow-right.svg';
+import { useNavigate } from 'react-router-dom';
 import styles from './Invoice.module.scss';
 
 type CompProps = {
@@ -12,9 +13,14 @@ type CompProps = {
 
 function Invoice(props: CompProps): JSX.Element {
   const { invoiceId, paymentDue, clientName, total, status } = props;
+  const navigate = useNavigate();
+
+  const clickHandler = () => navigate(`/invoice/${invoiceId}`);
 
   return (
-    <div className={styles.container}>
+    // NOTE:  Fix jsx-al11y below.
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div className={styles.container} onClick={clickHandler}>
       <p className={styles.container__code}>
         #<span className={styles['container__code--black']}>{invoiceId}</span>
       </p>

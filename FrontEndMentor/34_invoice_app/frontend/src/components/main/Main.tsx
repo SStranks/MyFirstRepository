@@ -1,17 +1,13 @@
-import InvoiceEdit from '#Components/invoices/invoice-edit/InvoiceEdit';
-// import InvoiceList from '#Components/invoices/invoice-list/InvoiceList';
-// import UtilityBar from '#Components/invoices/utilitybar/UtilityBar';
-import styles from './Main.module.scss';
+import InvoiceList from '#Components/invoices/invoice-list/InvoiceList';
+import UtilityBar from '#Components/invoices/utilitybar/UtilityBar';
+import ContentLayout from '#Layouts/ContentLayout';
 
 function Main(): JSX.Element {
   return (
-    <div className={styles.container}>
-      <div className={styles.container__subContainer}>
-        <InvoiceEdit />
-        {/* <UtilityBar />
-        <InvoiceList /> */}
-      </div>
-    </div>
+    <ContentLayout>
+      <UtilityBar />
+      <InvoiceList />
+    </ContentLayout>
   );
 }
 
