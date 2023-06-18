@@ -18,7 +18,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: f.px2em(110) 0;
+  padding: f.px2em(110) f.px2em(24);
+  text-align: center;
+
+  @include media(mobile-all, mobile-large) {
+    margin: 0 24px;
+  }
 
   & > img {
     width: 130px;
@@ -38,13 +43,10 @@
   & > p {
     margin-bottom: f.px2em(48);
     color: $mute-blue;
-    text-align: center;
   }
 }
 
-.btnPlaceholder {
-  @include body-3;
-  padding: f.px2em(16) f.px2em(36);
-  background-color: $magenta;
-  color: $white;
+.btn {
+  width: 157px;
+  height: 44px;
 }

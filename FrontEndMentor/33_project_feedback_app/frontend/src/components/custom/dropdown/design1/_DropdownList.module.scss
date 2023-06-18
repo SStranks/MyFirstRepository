@@ -11,6 +11,11 @@
   box-shadow: $box-shadow-1;
   border-radius: $border-radius-1;
 
+  @include media(mobile-small) {
+    left: 50%;
+    transform: translate(-50%, 25%);
+  }
+
   &__radio {
     display: none;
 

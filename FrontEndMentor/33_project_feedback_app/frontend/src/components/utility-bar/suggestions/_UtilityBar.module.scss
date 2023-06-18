@@ -11,6 +11,11 @@
   margin-bottom: f.px2em(24);
   background-color: $dark-blue;
 
+  @include media(mobile-small) {
+    flex-direction: column-reverse;
+    row-gap: 15px;
+  }
+
   &__suggestions {
     display: flex;
     justify-content: space-between;

@@ -12,11 +12,14 @@
     color: $dark-blue;
     margin-bottom: f.px2em(24);
 
-    & a {
+    & > a {
       @include body-3;
       text-decoration: underline;
       text-underline-offset: 3px;
       color: $royal-blue;
+      &:hover {
+        color: $fade-blue-link;
+      }
     }
   }
 

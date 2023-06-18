@@ -21,7 +21,7 @@ function RoadmapList() {
     });
   };
 
-  // Temprary Dev
+  // TEMP DEV: .
   const num1 = 2;
   const num2 = 3;
   const num3 = 1;
@@ -47,8 +47,8 @@ function RoadmapList() {
   return (
     <div className={styles.grid}>
       <form className={styles['grid__mobile-nav']}>
-        <div>
-          <input
+        {/* <div> */}
+        {/* <input
             className={styles['grid__mobile-nav__radio']}
             type="radio"
             name="mobile-filter"
@@ -60,9 +60,23 @@ function RoadmapList() {
           <label
             className={styles['grid__mobile-nav__label']}
             htmlFor="planned">
-            Planned ({num1})
-          </label>
-        </div>
+            Planned <wbr /> ({num1})
+          </label> */}
+
+        <label className={styles['grid__mobile-nav__label']} htmlFor="planned">
+          Planned <wbr />{' '}
+          <input
+            className={styles['grid__mobile-nav__radio']}
+            type="radio"
+            name="mobile-filter"
+            value="planned"
+            id="planned"
+            onChange={radioInputHandler}
+            defaultChecked
+          />
+          ({num1})
+        </label>
+        {/* </div> */}
         <div>
           <input
             className={styles['grid__mobile-nav__radio']}

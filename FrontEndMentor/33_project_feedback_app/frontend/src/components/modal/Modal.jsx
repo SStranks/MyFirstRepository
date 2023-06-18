@@ -30,7 +30,7 @@ function Modal(props) {
       <div className={styles.modal}>
         <nav className={styles.nav}>
           <img src={IconArrowBack} alt="" />
-          <Link to="/">
+          <Link to="/" onClick={() => handleClose()}>
             <p>Go Back</p>
           </Link>
         </nav>
