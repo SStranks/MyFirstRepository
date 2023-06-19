@@ -3,6 +3,7 @@
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
+@use '#Sass/components/input_text' as input-text;
 
 .dropdown {
   position: relative;
@@ -12,8 +13,7 @@
   }
 
   .dropdown__button {
-    @include mx.input-text;
-    @include mx.body-l;
+    @include input-text.input-text-default;
     display: flex;
     align-items: center;
     justify-content: space-between;

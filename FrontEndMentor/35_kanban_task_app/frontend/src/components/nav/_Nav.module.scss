@@ -4,7 +4,7 @@
 @use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
-@use '#Sass/components/buttons' as *;
+@use '#Sass/components/buttons' as btn;
 
 .navbar {
   display: flex;
@@ -78,6 +78,7 @@
     flex: 1 0 0;
     align-items: center;
     justify-content: space-between;
+    min-width: 0;
     width: 100%;
     padding: 0 f.px2em(24);
     color: var(--thm-nav-h1);
@@ -92,7 +93,11 @@
     @include mx.header-xl;
     @include mq.media(tablet-large, tablet-medium, tablet-small, mobile-all) {
       @include mx.header-l;
+      min-width: 0;
       padding-right: f.px2em(10);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 
@@ -103,8 +108,8 @@
     column-gap: f.px2em(24);
 
     &__addTask {
-      @include btn-primary-l;
-      width: fit-content;
+      @include btn.btn-primary-l;
+      width: max-content;
       padding-left: f.px2em(18);
       padding-right: f.px2em(18);
 

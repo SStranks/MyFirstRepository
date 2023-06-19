@@ -54,6 +54,6 @@
 
   & > input:checked ~ .custom-checkbox__title {
     text-decoration: line-through;
-    color: c.$col-2d;
+    color: var(--thm-chkbox-default-label-text-strikethrough);
   }
 }

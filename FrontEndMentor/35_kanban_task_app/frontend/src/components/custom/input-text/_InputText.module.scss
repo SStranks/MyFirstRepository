@@ -1,12 +1,13 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/components/input_text' as input-text;
 
 .container {
   position: relative;
   width: 100%;
 
   &__input {
-    @include mx.input-text;
+    @include input-text.input-text-default;
     width: 100%;
 
     &:focus {

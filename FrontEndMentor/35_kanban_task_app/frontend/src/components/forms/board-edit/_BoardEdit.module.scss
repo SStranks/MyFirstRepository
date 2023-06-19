@@ -4,7 +4,7 @@
 @use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
-@use '#Sass/components/buttons' as *;
+@use '#Sass/components/buttons' as btn;
 
 .container {
   margin: auto 0;
@@ -52,11 +52,11 @@
   }
 
   &__btn-new-column {
-    @include btn-secondary;
+    @include btn.btn-secondary;
     width: 100%;
   }
 
   &__btn-create-board {
-    @include btn-primary-s;
+    @include btn.btn-primary-s;
   }
 }

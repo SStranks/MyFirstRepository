@@ -26,7 +26,7 @@
 
 @mixin input-text-default {
   @include mx.body-l;
-  padding: f.px2em(8) 0 f.px2em(8) f.px2em(16);
+  padding: f.px2em(8) f.px2em(16);
   color: var(--thm-input-text-default-active-text);
   background-color: var(--thm-input-text-default-bg);
   border-radius: v.$border-radius-input-text;

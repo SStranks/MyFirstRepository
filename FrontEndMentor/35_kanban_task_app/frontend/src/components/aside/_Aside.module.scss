@@ -44,9 +44,13 @@
         padding: f.px2em(15) 0 f.px2em(15) f.px2em(32);
         overflow-x: hidden;
         white-space: nowrap;
+        text-overflow: ellipsis;
 
         &:hover {
           color: c.$col-1a;
+          background-color: var(--thm-sidebar-item-hover);
+          border-radius: 0 v.$border-radius-sidebar-li
+            v.$border-radius-sidebar-li 0;
         }
       }
 
@@ -73,7 +77,7 @@
   }
 
   &__controls {
-    margin: 0 f.px2em(24) f.px2em(48) f.px2em(24);
+    margin: 0 f.px2em(24) f.px2em(48) 0;
 
     @include mq.media(tablet-large, tablet-medium, tablet-small) {
       margin: 0 f.px2em(12) f.px2em(48) f.px2em(12);
@@ -84,6 +88,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: f.px2em(24);
     padding: f.px2em(15) 0;
     background-color: var(--thm-bg-sidebar-theme);
     border-radius: v.$border-radius-sidebar-theme;
@@ -95,9 +100,16 @@
     display: flex;
     align-items: center;
     column-gap: f.px2em(15);
-    margin-top: f.px2em(22);
+    width: 100%;
+    padding: f.px2em(15) 0 f.px2em(15) f.px2em(32);
+    margin-top: f.px2em(8);
     color: inherit;
     background-color: transparent;
+
+    &:hover {
+      background-color: var(--thm-sidebar-item-hover);
+      border-radius: 0 v.$border-radius-sidebar-li v.$border-radius-sidebar-li 0;
+    }
 
     @include mq.media(tablet-large, tablet-medium, tablet-small) {
       margin: f.px2em(30) 0 0 f.px2em(11);
@@ -121,6 +133,10 @@
     border-radius: 0 v.$border-radius-sidebar-li v.$border-radius-sidebar-li 0;
     // Default position is off-screen
     transform: translateX(-100%);
+
+    &:hover {
+      background-color: c.$col-1b;
+    }
 
     & > img {
       height: auto;

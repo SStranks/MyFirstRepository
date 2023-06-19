@@ -35,6 +35,7 @@ $light-theme: (
   chkbox-default-chkbox-bg: #{$White},
   chkbox-default-label-bg: #{$col-1i},
   chkbox-default-label-text: #{$col-1c},
+  chkbox-default-label-text-strikethrough: #{$col-2d},
   chkbox-default-label-hover-bg: #{$col-1m},
   column-bg: #{$col-1p},
   dropdown-default-text: #{$Black},
@@ -53,10 +54,11 @@ $light-theme: (
   nav-logo-light: 0,
   task-card: #{$White},
   task-title: #{$Black},
+  sidebar-item-hover: #{$col-2g},
   // text-p: #{$Dark_Grey},
   // text-h: #{$Very_Dark_Blue},
   // placeholder: hsl(216deg, 5%, 57%),
-  // input-text: #{$Dark_Grey},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+  // input-text: #{$Dark_Grey},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 );
 
 /* -------------------------------- */
@@ -76,6 +78,7 @@ $dark-theme: (
   chkbox-default-chkbox-bg: #{$col-1e},
   chkbox-default-label-bg: #{$col-1d},
   chkbox-default-label-text: #{$White},
+  chkbox-default-label-text-strikethrough: #{$col-2h},
   chkbox-default-label-hover-bg: #{$col-1n},
   column-bg: #{$col-1e},
   dropdown-default-text: #{$White},
@@ -94,10 +97,11 @@ $dark-theme: (
   nav-logo-light: 1,
   task-card: #{$col-1e},
   task-title: #{$White},
+  sidebar-item-hover: #{$White},
   // text-p: #{$Dark_Grey},
   // text-h: #{$White},
   // placeholder: hsl(216deg, 5%, 57%),
-  // input-text: #{$White},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+  // input-text: #{$White},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 );
 
 // Class applied to body tag to overwrite default variables

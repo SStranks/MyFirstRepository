@@ -3,7 +3,7 @@
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
-@use '#Sass/components/buttons' as *;
+@use '#Sass/components/buttons' as btn;
 
 .main {
   display: flex;
@@ -27,7 +27,7 @@
     color: c.$col-1g;
 
     & > button {
-      @include btn-primary-l;
+      @include btn.btn-primary-l;
       width: fit-content;
       padding-left: f.px2em(18);
       padding-right: f.px2em(18);

@@ -4,7 +4,7 @@
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/variables' as v;
-@use '#Sass/components/buttons' as *;
+@use '#Sass/components/buttons' as btn;
 
 .container {
   margin: auto 0;
@@ -40,7 +40,7 @@
   }
 
   &__btn-delete {
-    @include btn-destructive;
+    @include btn.btn-destructive;
     width: 100%;
   }
 }

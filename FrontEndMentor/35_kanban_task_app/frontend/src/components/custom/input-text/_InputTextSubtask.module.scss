@@ -1,6 +1,7 @@
 @use '#Sass/abstracts/colors' as c;
 @use '#Sass/abstracts/functions' as f;
 @use '#Sass/abstracts/mixins' as mx;
+@use '#Sass/components/input_text' as input-text;
 
 .sub-task {
   display: flex;
@@ -13,7 +14,7 @@
   }
 
   &__input {
-    @include mx.input-text;
+    @include input-text.input-text-default;
     position: relative;
     width: 100%;
 
