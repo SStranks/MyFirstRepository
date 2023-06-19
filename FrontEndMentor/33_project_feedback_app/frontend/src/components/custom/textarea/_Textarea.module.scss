@@ -10,5 +10,5 @@
   @include textarea;
   @include input-error;
   position: relative;
-  height: 96px;
+  min-height: 96px;
 }

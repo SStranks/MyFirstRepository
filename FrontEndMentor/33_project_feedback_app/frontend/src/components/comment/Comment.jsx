@@ -62,8 +62,13 @@ function Comment(props) {
       </p>
       {formActive ? (
         <form className={styles.comment__form} action="submit" id="reply">
-          <Textarea className={styles.comment__textarea} />
-          <ButtonSubmit classList={['w-117', 'bg-magenta']} text="Post Reply" />
+          <Textarea />
+          <div className={styles.comment__form__btn}>
+            <ButtonSubmit
+              classList={['w-117', 'bg-magenta']}
+              text="Post Reply"
+            />
+          </div>
         </form>
       ) : (
         ''

@@ -88,8 +88,18 @@
     column-gap: f.px2em(16);
     margin-bottom: f.px2em(24);
 
-    & > :last-child {
-      flex: none;
+    @include media(mobile-large, mobile-all) {
+      grid-column: 1 / span 2;
+      flex-direction: column;
+      row-gap: 10px;
+    }
+
+    &__btn {
+      height: 44px;
+      width: 157px;
+      @include media(mobile-all) {
+        width: 100%;
+      }
     }
   }
 
