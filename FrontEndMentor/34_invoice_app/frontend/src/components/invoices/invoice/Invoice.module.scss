@@ -27,9 +27,14 @@
     outline: 1px solid $color-1a;
   }
 
-  @include media(tablet-small, mobile-all) {
+  @include media(tablet-large) {
+    padding: f.px2em(16) f.px2em(24);
+  }
+
+  @include media(tablet-medium, tablet-small, mobile-all) {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    padding: f.px2em(16) f.px2em(24);
   }
 
   @include media(mobile-small) {
@@ -56,7 +61,7 @@
     transition: a.$Theme-transition;
     margin-right: f.px2em(20);
 
-    @include media(tablet-small, mobile-all) {
+    @include media(tablet-medium, tablet-small, mobile-all) {
       grid-column: 1;
       grid-row: 2;
       align-self: end;
@@ -68,7 +73,7 @@
     transition: a.$Theme-transition;
     margin-right: f.px2em(20);
 
-    @include media(tablet-small, mobile-all) {
+    @include media(tablet-medium, tablet-small, mobile-all) {
       justify-self: end;
       margin: 0;
     }
@@ -84,7 +89,7 @@
     color: var(--color-text-p);
     transition: a.$Theme-transition;
 
-    @include media(tablet-small, mobile-all) {
+    @include media(tablet-medium, tablet-small, mobile-all) {
       grid-column: 1;
       grid-row: 3;
       justify-self: start;
@@ -92,7 +97,7 @@
   }
 
   &__status {
-    @include media(tablet-small, mobile-all) {
+    @include media(tablet-medium, tablet-small, mobile-all) {
       grid-row: 2 / 4;
       align-self: center;
       justify-self: end;
@@ -105,7 +110,7 @@
     height: fit-content;
     margin-left: f.px2em(20);
 
-    @include media(tablet-small, mobile-all) {
+    @include media(tablet-medium, tablet-small, mobile-all) {
       display: none;
     }
   }

@@ -30,12 +30,25 @@ function InvoiceEdit(): JSX.Element {
           {item.quantity}
         </p>
         <p className={styles.container__invoice__payment__grid__price}>
-          {item.price}
+          £ {item.price}
         </p>
         <p
           className={styles['container__invoice__payment__grid__total--black']}>
-          {item.total}
+          £ {item.total}
         </p>
+        <div className={styles.container__invoice__payment__grid__mobile}>
+          <p className={styles.container__invoice__payment__grid__mobile__name}>
+            {item.name}
+          </p>
+          <p
+            className={styles.container__invoice__payment__grid__mobile__price}>
+            £ {item.price}
+          </p>
+          <p
+            className={styles.container__invoice__payment__grid__mobile__combo}>
+            £ {item.total} x {item.price}
+          </p>
+        </div>
       </React.Fragment>
     );
   });

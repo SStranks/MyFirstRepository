@@ -7,6 +7,12 @@
   justify-content: space-between;
   align-items: center;
 
+  @include media(mobile-small) {
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 4px;
+  }
+
   & > h3 > span {
     display: none;
   }
@@ -14,5 +20,9 @@
   & > img {
     height: fit-content;
     margin-left: f.px2em(16);
+
+    @include media(mobile-small) {
+      margin-left: 0;
+    }
   }
 }

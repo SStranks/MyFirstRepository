@@ -12,8 +12,12 @@
     margin: f.px2em(-24) f.px2em(10) 0 f.px2em(10);
   }
 
-  @include media(mobile-all) {
+  @include media(tablet-small, mobile-all) {
     padding-bottom: f.px2em(105);
+  }
+
+  @include media(mobile-small) {
+    padding-bottom: f.px2em(135);
   }
 
   &__back {
@@ -59,8 +63,21 @@
         bottom: 0;
         left: 0;
         right: 0;
+        height: $edit-invoice-mobile-btns;
         padding: f.px2em(20) f.px2em(24);
         background-color: var(--color-elements);
+      }
+
+      @include media(mobile-small) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        row-gap: f.px2em(8);
+        height: fit-content;
+
+        & :nth-child(3) {
+          grid-column: 1 / span 2;
+        }
       }
     }
   }
@@ -174,7 +191,9 @@
         transition: a.$Theme-transition;
 
         @include media(mobile-all) {
-          grid-template-columns: repeat(2, auto);
+          grid-template-columns: 1fr;
+          row-gap: 24px;
+          padding: f.px2em(20);
         }
 
         &__title {
@@ -187,6 +206,10 @@
           $parent: &;
           text-align: left;
 
+          @include media(mobile-all) {
+            display: none;
+          }
+
           &--black {
             @extend #{$parent};
             @include text-modifier-black;
@@ -195,19 +218,50 @@
 
         &__qty {
           text-align: center;
+          @include media(mobile-all) {
+            display: none;
+          }
         }
 
         &__price {
           text-align: right;
+          @include media(mobile-all) {
+            display: none;
+          }
         }
 
         &__total {
           $parent: &;
           text-align: right;
+          @include media(mobile-all) {
+            display: none;
+          }
 
           &--black {
             @extend #{$parent};
             @include text-modifier-black;
+          }
+        }
+
+        &__mobile {
+          display: none;
+          @include media(mobile-all) {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            grid-template-rows: repeat(2, auto);
+            row-gap: 8px;
+
+            &__name {
+              @include text-modifier-black;
+            }
+
+            &__price {
+              grid-column: 2;
+              grid-row: 1 / span 2;
+              @include text-modifier-black;
+              align-self: center;
+              text-align: right;
+            }
           }
         }
       }
@@ -223,6 +277,10 @@
         border-radius: 0 0 $border-radius-1 $border-radius-1;
         transition: a.$Theme-transition;
 
+        @include media(mobile-all) {
+          padding: f.px2em(24) f.px2em(24);
+        }
+
         &__due {
           font-size: f.px2em(14);
           font-weight: 400;
@@ -231,6 +289,10 @@
         &__total {
           font-size: f.px2em(32);
           font-weight: 500;
+
+          @include media(mobile-all) {
+            font-size: f.px2em(20);
+          }
         }
       }
     }

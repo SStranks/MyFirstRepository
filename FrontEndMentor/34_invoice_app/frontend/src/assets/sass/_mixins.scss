@@ -159,14 +159,16 @@
 // }
 
 /*   Breakpoints                    */
-// mobile-s:   320px;
-// mobile-m:   375px;
-// mobile-l:   425px;
-// tablet-s:   700px;
-// tablet-r:   768px;
-// desktop-s:  1024px;
-// desktop-m:  1440px;
-// desktop-l:  2560px;
+
+// $mobile-s: 320px;
+// $mobile-m: 375px;
+// $mobile-l: 480px;
+// $tablet-s: 576px;
+// $tablet-m: 667px;
+// $tablet-l: 768px;
+// $desktop-s: 1024px;
+// $desktop-m: 1440px;
+// $desktop-l: 2560px;
 
 /*   Media Queries: Multiple        */
 @mixin media($args...) {
