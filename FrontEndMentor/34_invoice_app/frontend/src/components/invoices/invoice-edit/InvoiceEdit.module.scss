@@ -26,6 +26,10 @@
     align-items: center;
     font-weight: 700;
     margin-bottom: f.px2em(32);
+
+    &:hover {
+      color: $color-2c;
+    }
   }
 
   &__statusBar {
