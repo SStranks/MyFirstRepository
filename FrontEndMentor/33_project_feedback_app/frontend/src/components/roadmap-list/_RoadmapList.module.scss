@@ -47,14 +47,21 @@
       padding: 0 8px;
       color: $fade-blue;
       text-align: center;
+
+      &__br {
+        display: none;
+        @include media(mobile-small, mobile-medium) {
+          display: block;
+        }
+      }
+
+      &:has(input[type='radio']:checked) {
+        color: $navy-blue;
+      }
     }
 
     &__radio {
       display: none;
-
-      &:checked ~ #{$self}__label {
-        color: $navy-blue;
-      }
     }
 
     &__activebar {

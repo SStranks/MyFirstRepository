@@ -12,23 +12,23 @@ import JSONData from '../../data/data.json';
 function SuggestionsList() {
   const [modalOpen, setModalOpen] = useState(false);
 
-  // const list = JSONData.productRequests.map((el) => (
-  //   <Suggestion
-  //     key={el.id}
-  //     id={el.id}
-  //     upvotes={el.upvotes}
-  //     title={el.title}
-  //     description={el.description}
-  //     category={el.category}
-  //     active={false}
-  //     comments={el.comments}
-  //   />
-  // ));
+  const list = JSONData.productRequests.map((el) => (
+    <Suggestion
+      key={el.id}
+      id={el.id}
+      upvotes={el.upvotes}
+      title={el.title}
+      description={el.description}
+      category={el.category}
+      active={false}
+      comments={el.comments}
+    />
+  ));
 
   // TEMP DEV: .
   // Uncomment for no comments - comment out 'list' above
   // eslint-disable-next-line unicorn/no-null
-  const list = null;
+  // const list = null;
 
   return list ? (
     <div className={styles.list}>{list}</div>

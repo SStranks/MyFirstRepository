@@ -47,24 +47,7 @@ function RoadmapList() {
   return (
     <div className={styles.grid}>
       <form className={styles['grid__mobile-nav']}>
-        {/* <div> */}
-        {/* <input
-            className={styles['grid__mobile-nav__radio']}
-            type="radio"
-            name="mobile-filter"
-            value="planned"
-            id="planned"
-            onChange={radioInputHandler}
-            defaultChecked
-          />
-          <label
-            className={styles['grid__mobile-nav__label']}
-            htmlFor="planned">
-            Planned <wbr /> ({num1})
-          </label> */}
-
         <label className={styles['grid__mobile-nav__label']} htmlFor="planned">
-          Planned <wbr />{' '}
           <input
             className={styles['grid__mobile-nav__radio']}
             type="radio"
@@ -74,10 +57,12 @@ function RoadmapList() {
             onChange={radioInputHandler}
             defaultChecked
           />
-          ({num1})
+          Planned <br className={styles['grid__mobile-nav__label__br']} />(
+          {num1})
         </label>
-        {/* </div> */}
-        <div>
+        <label
+          className={styles['grid__mobile-nav__label']}
+          htmlFor="in-progress">
           <input
             className={styles['grid__mobile-nav__radio']}
             type="radio"
@@ -86,13 +71,10 @@ function RoadmapList() {
             id="in-progress"
             onChange={radioInputHandler}
           />
-          <label
-            className={styles['grid__mobile-nav__label']}
-            htmlFor="in-progress">
-            In-Progress ({num2})
-          </label>
-        </div>
-        <div>
+          In-Progress <br className={styles['grid__mobile-nav__label__br']} />(
+          {num2})
+        </label>
+        <label className={styles['grid__mobile-nav__label']} htmlFor="live">
           <input
             className={styles['grid__mobile-nav__radio']}
             type="radio"
@@ -101,10 +83,8 @@ function RoadmapList() {
             value="live"
             onChange={radioInputHandler}
           />
-          <label className={styles['grid__mobile-nav__label']} htmlFor="live">
-            Live ({num3})
-          </label>
-        </div>
+          Live <br className={styles['grid__mobile-nav__label__br']} />({num3})
+        </label>
         <div
           className={`${styles['grid__mobile-nav__activebar']} ${
             mobileFilter.planned
