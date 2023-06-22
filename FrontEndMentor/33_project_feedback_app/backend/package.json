@@ -4,24 +4,64 @@
   "description": "",
   "author": "Simon Stranks",
   "license": "ISC",
-  "main": "index.js",
+  "main": "./dist/server.js",
   "type": "module",
+  "engines": {
+    "npm": ">=9.0.0",
+    "node": ">=18.0.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "server"
+    ],
+    "exec": "ts-node --project ./tsconfig.json ./server/server.ts",
+    "ext": "ts, js"
+  },
   "scripts": {
+    "watch": "tsc -w",
+    "compile": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "start": "nodemon .",
     "prod": "node .",
     "test": "jest --coverage --verbose",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "db:import": "node ./server/config/dbImporter.js",
+    "docker:build": "docker image build -f Dockerfile.prod -t $npm_package_config_dockerImageRepo:$npm_package_version .",
+    "docker:postbuild": "docker image tag $npm_package_config_dockerImageRepo:$npm_package_version $npm_package_config_dockerImageRepo:latest",
+    "docker:run": "docker run --name $npm_package_config_dockerImageName -d -p $npm_package_config_dockerImagePort:$npm_package_config_dockerInternalContainerPort $npm_package_config_dockerImageRepo",
+    "docker:clean": "docker rm -f $npm_package_config_imageName"
+  },
+  "config": {
+    "dockerImageRepo": "fem35image/backend",
+    "dockerImageName": "FEM35-NodeJS-Express",
+    "dockerImagePort": "4000",
+    "dockerInternalContainerPort": "4000"
+  },
+  "imports": {
+    "#Dist/*": "./dist/*",
+    "#Config/*": "./server/config/*",
+    "#Controllers/*": "./server/controllers/*",
+    "#Models/*": "./server/models/*",
+    "#Routes/*": "./server/routes/*",
+    "#Utils/*": "./server/utils/*"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
+    "inquirer": "^9.2.7",
     "mongoose": "^6.6.1",
     "validator": "^13.9.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/inquirer": "^9.0.3",
     "@types/node": "^20.3.1",
     "@types/validator": "^13.7.17",
     "@typescript-eslint/eslint-plugin": "^5.59.11",

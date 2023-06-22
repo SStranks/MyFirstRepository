@@ -7,19 +7,48 @@
   "extends": [
     "airbnb-base",
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:security/recommended",
     "plugin:unicorn/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
     "plugin:prettier/recommended"
   ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "requireConfigFile": false,
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["unicorn", "prettier"],
+  "plugins": ["@typescript-eslint", "unicorn", "import", "prettier"],
   "rules": {
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "camelCase": true,
+          "pascalCase": true
+        }
+      }
+    ],
     "prettier/prettier": ["error"],
-    "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
+    "import/no-unresolved": "error",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "ignorePackages",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "off",
+      { "argsIgnorePattern": ["request", "response", "error"] }
+    ],
     "no-console": "off",
     "arrow-body-style": "off"
     // "func-names": "off",
@@ -27,5 +56,15 @@
     // "object-shorthand": "off",
     // "class-methods-use-this": "off",
   },
-  "ignorePatterns": ["node_modules"]
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
+  "ignorePatterns": ["node_modules", "dist"]
 }

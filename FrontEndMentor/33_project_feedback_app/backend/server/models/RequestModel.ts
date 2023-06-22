@@ -1,11 +1,20 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const requestSchema = new mongoose.Schema({
+interface IRequest {
+  title: string;
+  category: string;
+  upvotes: number;
+  status: string;
+  description: string;
+  comments: mongoose.Types.ObjectId[];
+}
+
+const requestSchema = new mongoose.Schema<IRequest>({
   title: {
     type: String,
     required: true,
     trim: true,
-    maxlength: [75, 'Title can be no longer than 75 characters ']
+    maxlength: [75, 'Title can be no longer than 75 characters '],
   },
   category: {
     type: String,
@@ -18,18 +27,20 @@ const requestSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['Planned', 'In-Progress', 'Live']
+    enum: ['Planned', 'In-Progress', 'Live'],
   },
   description: {
     type: String,
     required: true,
     trim: true,
-    maxlength: [250, 'Description can be no longer than 250 characters']
+    maxlength: [250, 'Description can be no longer than 250 characters'],
   },
-  comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment'
-  }],
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
 });
 
 const Request = mongoose.model('Request', requestSchema);

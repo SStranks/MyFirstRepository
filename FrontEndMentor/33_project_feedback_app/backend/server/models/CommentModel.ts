@@ -1,27 +1,36 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+
+interface IComment {
+  user: mongoose.Types.ObjectId;
+  content: string;
+  parents: mongoose.Types.ObjectId[];
+  created: string;
+}
 
 const commentSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
   },
   content: {
     type: String,
     trim: true,
     minlength: [2, 'Comment must be longer than 2 characters'],
-    maxlength: [500, 'Comment can be no longer than 500 characters']
+    maxlength: [500, 'Comment can be no longer than 500 characters'],
   },
-  parents: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment'
-  }],
+  parents: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment',
+    },
+  ],
   created: {
     type: Date,
     default: Date.now(),
-  }
+  },
 });
 
-const Comment = mongoose.model('Comment', commentSchema)
+const Comment = mongoose.model('Comment', commentSchema);
 
 export default Comment;

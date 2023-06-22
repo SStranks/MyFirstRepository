@@ -17,19 +17,6 @@ const connectDB = async () => {
     } as ConnectOptions)
     .then(() => {
       console.log(`*** Connected to database: ${DB_DATABASE} @ ${DB_HOST}`);
-      // Add dummy-data to DB if collection doesn't exist or collection has zero documents
-      const documentCount = async () => {
-        const collections = Object.keys(mongoose.connection.collections);
-        const count = await mongoose.connection
-          .collection('jobs')
-          .countDocuments({});
-        console.log(collections, count);
-        if (!collections.includes('jobs') || count === 0) {
-          await Job.create(jsonData);
-        }
-      };
-
-      documentCount();
     })
     .catch((error: Error) => {
       console.log(
