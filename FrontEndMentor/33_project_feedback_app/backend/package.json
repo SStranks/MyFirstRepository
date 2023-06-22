@@ -43,7 +43,6 @@
     "dockerInternalContainerPort": "4000"
   },
   "imports": {
-    "#Dist/*": "./dist/*",
     "#Config/*": "./server/config/*",
     "#Controllers/*": "./server/controllers/*",
     "#Models/*": "./server/models/*",
