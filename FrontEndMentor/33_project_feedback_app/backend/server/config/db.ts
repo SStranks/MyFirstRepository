@@ -11,6 +11,14 @@ mongoose.connection.on('connected', () => {
   console.log(`*** Connected to database: ${DB_DATABASE} @ ${DB_HOST}`);
 });
 
+mongoose.connection.on('disconnected', () => {
+  console.log(`*** Disconnected from database: ${DB_DATABASE} @ ${DB_HOST}`);
+});
+
+mongoose.connection.on('reconnected', () => {
+  console.log(`*** Reconnected to database: ${DB_DATABASE} @ ${DB_HOST}`);
+});
+
 const connectDB = async () => {
   try {
     await mongoose.connect(MONGO_URI);

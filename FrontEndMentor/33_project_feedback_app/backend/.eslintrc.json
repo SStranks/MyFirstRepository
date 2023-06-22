@@ -47,7 +47,7 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [
       "off",
-      { "argsIgnorePattern": ["request", "response", "error"] }
+      { "argsIgnorePattern": ["request", "response", "next"] }
     ],
     "no-console": "off",
     "arrow-body-style": "off"

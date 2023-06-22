@@ -18,7 +18,7 @@ const requestSchema = new mongoose.Schema<IRequest>({
   },
   category: {
     type: String,
-    enum: ['UI', 'UX', 'Enhancement', 'Bug', 'Feature'],
+    enum: ['ui', 'ux', 'enhancement', 'bug', 'feature'],
     required: true,
   },
   upvotes: {
@@ -27,7 +27,7 @@ const requestSchema = new mongoose.Schema<IRequest>({
   },
   status: {
     type: String,
-    enum: ['Planned', 'In-Progress', 'Live'],
+    enum: ['suggestion', 'planned', 'in-progress', 'live'],
   },
   description: {
     type: String,

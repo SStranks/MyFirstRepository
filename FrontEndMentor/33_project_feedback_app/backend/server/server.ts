@@ -1,19 +1,22 @@
+/* eslint-disable import/first */
 // NOTE:  Uncomment during production build - substitutes all alias names for actual paths.
 // import { replaceTscAliasPaths } from 'tsc-alias';
 // replaceTscAliasPaths({ configFile: '../tsconfig.json' });
 
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 // Unhandled Exception Errors: Needs to be before any runtime code.
-process.on('uncaughtException', (err: any) => {
+process.on('uncaughtException', (error: Error) => {
   console.log('Uncaught Exception. Shutting down server');
-  console.log(err.name, err.message);
+  console.log(error.name, error.message);
   process.exit(1);
 });
 
 import connectDB from '#Config/db';
 import app from './app';
+
 connectDB();
 
 const PORT = process.env.NODE_DOCKER_PORT || 3000;
@@ -25,7 +28,7 @@ const server = app.listen(PORT, () => {
 });
 
 // Unhandled Rejection Errors
-process.on('unhandledRejection', (error: { name: string; message: string }) => {
+process.on('unhandledRejection', (error: Error) => {
   console.log('Unhandled Rejection. Shutting down server');
   console.log(error.name, error.message);
   server.close(() => {

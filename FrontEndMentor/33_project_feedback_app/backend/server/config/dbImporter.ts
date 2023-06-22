@@ -67,6 +67,7 @@ const inquirerProcess = async () => {
       }
     });
 
+  // Get JSON and Model file names - users selects one of each (linked).
   async function importProcess() {
     const jsonFileNames = fs.readdirSync(jsonDirectoryPath);
     const modelFileNames = fs.readdirSync(modelsDirectoryPath);
@@ -102,6 +103,7 @@ const inquirerProcess = async () => {
   }
 };
 
+// Get Model filenames - user selects one. Import that Model and delete data based on that Model.
 async function deleteProcess() {
   const modelFileNames = fs.readdirSync(modelsDirectoryPath);
 
