@@ -33,7 +33,7 @@ services:
 
   # DB: MongoDB Express
   mongo-express:
-    image: mongo-express
+    image: mongo-express-custom
     depends_on:
       - mongo-db
     ports:
