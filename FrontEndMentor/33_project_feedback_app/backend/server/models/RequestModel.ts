@@ -14,7 +14,7 @@ const requestSchema = new mongoose.Schema<IRequest>({
     type: String,
     required: true,
     trim: true,
-    maxlength: [75, 'Title can be no longer than 75 characters '],
+    maxlength: [75, 'Title can be no longer than 75 characters'],
   },
   category: {
     type: String,

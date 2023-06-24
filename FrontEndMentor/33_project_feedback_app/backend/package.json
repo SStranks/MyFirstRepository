@@ -1,5 +1,5 @@
 {
-  "name": "fem32_feedback_app_backend",
+  "name": "fem33_feedback_app_backend",
   "version": "1.0.0",
   "description": "",
   "author": "Simon Stranks",
@@ -37,8 +37,8 @@
     "docker:clean": "docker rm -f $npm_package_config_imageName"
   },
   "config": {
-    "dockerImageRepo": "fem35image/backend",
-    "dockerImageName": "FEM35-NodeJS-Express",
+    "dockerImageRepo": "fem33image/backend",
+    "dockerImageName": "FEM33-NodeJS-Express",
     "dockerImagePort": "4000",
     "dockerInternalContainerPort": "4000"
   },
