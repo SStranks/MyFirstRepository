@@ -8,12 +8,7 @@
     "clientName": "Jensen Huang",
     "clientEmail": "jensenh@mail.com",
     "status": "paid",
-    "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
-    },
+    "senderAddress": "64983fe6272b008f5b5b8687",
     "clientAddress": {
       "street": "106 Kendell Street",
       "city": "Sharrington",
@@ -37,12 +32,7 @@
     "clientName": "Alex Grim",
     "clientEmail": "alexgrim@mail.com",
     "status": "pending",
-    "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
-    },
+    "senderAddress": "64983fe6272b008f5b5b8687",
     "clientAddress": {
       "street": "84 Church Way",
       "city": "Bradford",
@@ -71,12 +61,7 @@
     "clientName": "John Morrison",
     "clientEmail": "jm@myco.com",
     "status": "paid",
-    "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
-    },
+    "senderAddress": "64983fe6272b008f5b5b8687",
     "clientAddress": {
       "street": "79 Dover Road",
       "city": "Westhall",
@@ -100,12 +85,7 @@
     "clientName": "Alysa Werner",
     "clientEmail": "alysa@email.co.uk",
     "status": "pending",
-    "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
-    },
+    "senderAddress": "64983fe6272b008f5b5b8687",
     "clientAddress": {
       "street": "63 Warwick Road",
       "city": "Carlisle",
@@ -129,12 +109,7 @@
     "clientName": "Mellisa Clarke",
     "clientEmail": "mellisa.clarke@example.com",
     "status": "pending",
-    "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
-    },
+    "senderAddress": "64983fe6272b008f5b5b8687",
     "clientAddress": {
       "street": "46 Abbey Row",
       "city": "Cambridge",
@@ -163,12 +138,7 @@
     "clientName": "Thomas Wayne",
     "clientEmail": "thomas@dc.com",
     "status": "pending",
-    "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
-    },
+    "senderAddress": "64983fe6272b008f5b5b8687",
     "clientAddress": {
       "street": "3964  Queens Lane",
       "city": "Gotham",
@@ -192,12 +162,7 @@
     "clientName": "Anita Wainwright",
     "clientEmail": "anitawainwright582@gmail.com",
     "status": "draft",
-    "senderAddress": {
-      "street": "19 Union Terrace",
-      "city": "London",
-      "postCode": "E1 3EZ",
-      "country": "United Kingdom"
-    },
+    "senderAddress": "64983fe6272b008f5b5b8687",
     "clientAddress": {
       "street": "1256 Real Street",
       "city": "South Park",

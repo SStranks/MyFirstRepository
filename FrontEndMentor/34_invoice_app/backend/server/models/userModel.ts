@@ -1,3 +1,4 @@
+import { IAddress, addressSchema } from '#Models/addressSchema';
 import mongoose from 'mongoose';
 import validator from 'validator';
 
@@ -7,6 +8,8 @@ interface IUser {
   email: string;
   photo: string;
   role: string;
+  address: IAddress;
+  invoices: mongoose.Types.ObjectId[];
 }
 
 const userSchema = new mongoose.Schema<IUser>({
@@ -35,6 +38,16 @@ const userSchema = new mongoose.Schema<IUser>({
     enum: ['user', 'admin'],
     default: 'user',
   },
+  address: {
+    type: addressSchema,
+    required: true,
+  },
+  invoices: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Invoice',
+    },
+  ],
 });
 
 const User = mongoose.model('User', userSchema);

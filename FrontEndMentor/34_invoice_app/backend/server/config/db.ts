@@ -7,16 +7,33 @@ const MONGO_URI = `${DB_PROTOCOL}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_DA
 console.log(`*** ${MONGO_URI}`);
 console.log(`*** ${DB_PROTOCOL} *** ${DB_HOST} *** ${DB_DATABASE}`);
 
-mongoose.connection.on('connected', () => {
-  console.log(`*** Connected to database: ${DB_DATABASE} @ ${DB_HOST}`);
+mongoose.connection.on('connecting', () => {
+  console.log(
+    `*** Connecting to MongoDB database: ${DB_DATABASE} @ ${DB_HOST}`
+  );
 });
 
-mongoose.connection.on('disconnected', () => {
-  console.log(`*** Disconnected from database: ${DB_DATABASE} @ ${DB_HOST}`);
+mongoose.connection.on('connected', () => {
+  console.log(`*** Connected to MongoDB database: ${DB_DATABASE} @ ${DB_HOST}`);
 });
 
 mongoose.connection.on('reconnected', () => {
-  console.log(`*** Reconnected to database: ${DB_DATABASE} @ ${DB_HOST}`);
+  console.log(
+    `*** Reconnected to MongoDB database: ${DB_DATABASE} @ ${DB_HOST}`
+  );
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log(
+    `*** Disconnected from MongoDB database: ${DB_DATABASE} @ ${DB_HOST}`
+  );
+});
+
+mongoose.connection.on('error', (error) => {
+  console.log(
+    `*** MongoDB database error for: ${DB_DATABASE} @ ${DB_HOST}`,
+    `*** Error: ${error}`
+  );
 });
 
 const connectDB = async () => {

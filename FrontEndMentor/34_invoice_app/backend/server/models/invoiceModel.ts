@@ -2,15 +2,7 @@
 /* eslint-disable unicorn/no-array-reduce */
 import mongoose from 'mongoose';
 import validator from 'validator';
-
-// NOTE:  Make client address linked to user documents
-
-interface IAddress {
-  street: string;
-  city: string;
-  postCode: string;
-  country: string;
-}
+import { IAddress, addressSchema } from './addressSchema';
 
 interface IItem {
   name: string;
@@ -31,30 +23,6 @@ interface IInvoice {
   clientAddress: IAddress;
   items: IItem[];
 }
-
-const addressSchema = new mongoose.Schema<IAddress>(
-  {
-    street: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    postCode: {
-      type: String,
-      required: true,
-    },
-    country: {
-      type: String,
-      required: true,
-    },
-  },
-  {
-    id: false,
-  }
-);
 
 const itemSchema = new mongoose.Schema<IItem>(
   {
@@ -124,8 +92,8 @@ const invoiceSchema = new mongoose.Schema<IInvoice>(
       default: 'draft',
     },
     senderAddress: {
-      type: addressSchema,
-      required: true,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
     },
     clientAddress: {
       type: addressSchema,

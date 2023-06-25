@@ -4,10 +4,10 @@ interface IComment {
   user: mongoose.Types.ObjectId;
   content: string;
   parents: mongoose.Types.ObjectId[];
-  created: string;
+  created: Date;
 }
 
-const commentSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema<IComment>({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

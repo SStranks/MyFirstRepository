@@ -1,0 +1,30 @@
+[
+  {
+    "username": "admin",
+    "name": "Simon",
+    "email": "admin@admin.com",
+    "photo": "./assets/user-images/image-admin.jpg",
+    "role": "admin",
+    "address": {
+      "street": "null",
+      "city": "null",
+      "postCode": "null",
+      "country": "null"
+    },
+    "invoices": []
+  },
+  {
+    "username": "TomHood483",
+    "name": "Thomas Hood",
+    "email": "briggsbest@qiao.com",
+    "photo": "./assets/user-images/image-1.jpg",
+    "role": "user",
+    "address": {
+      "street": "19 Union Terrace",
+      "city": "London",
+      "postCode": "E1 3EZ",
+      "country": "United Kingdom"
+    },
+    "invoices": []
+  }
+]
