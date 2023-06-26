@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable unicorn/numeric-separators-style */
 import AppError from '#Utils/appError';
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 
@@ -8,9 +10,8 @@ const handleCastErrorDB = (err: any) => {
 
 const handleDuplicateFieldsDB = (err: any) => {
   if (err.errmsg) {
-    const value = (
-      (err.errmsg as string).match(/(["'])(\\?.)*?\1/) as Array<string>
-    )[0];
+    const value = // eslint-disable-next-line security/detect-unsafe-regex
+      ((err.errmsg as string).match(/(["'])(\\?.)*?\1/) as Array<string>)[0];
     const message = `Duplicate field value: ${value}. Please use another value!`;
     return new AppError(message, 400);
   }
@@ -28,7 +29,7 @@ const handleValidationErrorDB = (err: any) => {
   return new AppError(message, 400);
 };
 
-const sendErrorDev = (err: AppError, res: Response) => {
+const sendErrorDev = (err: any, res: Response) => {
   res.status(err.statusCode).json({
     status: err.status,
     error: err,
@@ -37,7 +38,7 @@ const sendErrorDev = (err: AppError, res: Response) => {
   });
 };
 
-const sendErrorProd = (err: AppError, res: Response) => {
+const sendErrorProd = (err: any, res: Response) => {
   // Operational: Error can be safely sent to client.
   if (err.isOperational) {
     res.status(err.statusCode).json({
@@ -56,18 +57,18 @@ const sendErrorProd = (err: AppError, res: Response) => {
 };
 
 const globalErrorHandler: ErrorRequestHandler = (
-  err: AppError | any,
+  err: any,
   _req: Request,
   res: Response,
   _next: NextFunction
 ): void => {
-  err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+  let error = { ...err };
+  error.statusCode = err.statusCode || 500;
+  error.status = err.status || 'error';
 
   if (process.env.NODE_ENV === 'development') {
-    sendErrorDev(err, res);
+    sendErrorDev(error, res);
   } else if (process.env.NODE_ENV === 'production') {
-    let error = { ...err };
     // MongoDB Casting Error
     if (error.name === 'CastError') error = handleCastErrorDB(error);
     // MongoDB Duplicate Fields Error.

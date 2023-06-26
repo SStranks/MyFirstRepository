@@ -17,7 +17,8 @@ const getAllInvoices = catchAsync(
       });
     });
 
-    if (!invoices) return next(new AppError('No invoices for this user', 404));
+    if (!invoices)
+      return next(new AppError('No documents for current user', 404));
 
     return res.status(200).json({
       status: 'success',
@@ -39,7 +40,7 @@ const getInvoice = catchAsync(
     });
 
     if (!invoice)
-      return next(new AppError('No invoice found with that ID', 404));
+      return next(new AppError('No document found with that ID', 404));
 
     return res.status(200).json({
       status: 'success',
@@ -71,7 +72,7 @@ const updateInvoice = catchAsync(
     });
 
     if (!invoice)
-      return next(new AppError('No invoice found with that ID', 404));
+      return next(new AppError('No document found with that ID', 404));
 
     return res.status(200).json({
       status: 'success',
@@ -85,6 +86,9 @@ const updateInvoice = catchAsync(
 const deleteInvoice = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const invoice = await Invoice.findByIdAndDelete(req.params.id);
+
+    if (!invoice)
+      return next(new AppError('No document found with that ID', 404));
 
     return res.status(204).json({
       status: 'success',

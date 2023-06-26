@@ -2,7 +2,7 @@ import cors from 'cors';
 import express, { Application, NextFunction, Request, Response } from 'express';
 
 import globalErrorHandler from '#Controllers/errorController';
-// import boardRouter from '#Routes/boardRoutes';
+import requestRouter from '#Routes/requestRoutes';
 import AppError from '#Utils/appError';
 
 const app: Application = express();
@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
-// app.use('/api/v1/boards', boardRouter);
+app.use('/api/v1/requests', requestRouter);
 
 // Error Handler
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
