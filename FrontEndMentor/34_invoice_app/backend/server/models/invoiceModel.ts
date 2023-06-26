@@ -22,6 +22,7 @@ interface IInvoice {
   senderAddress: IAddress;
   clientAddress: IAddress;
   items: IItem[];
+  total: number;
 }
 
 const itemSchema = new mongoose.Schema<IItem>(
@@ -75,6 +76,8 @@ const invoiceSchema = new mongoose.Schema<IInvoice>(
     paymentTerms: {
       type: Number,
       required: true,
+      enum: [1, 7, 14, 30],
+      default: 30,
     },
     clientName: {
       type: String,
