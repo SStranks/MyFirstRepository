@@ -14,7 +14,7 @@ process.on('uncaughtException', (error: Error) => {
   process.exit(1);
 });
 
-import connectDB from '#Config/db';
+import { connectDB } from '#Config/db';
 import app from './app';
 
 connectDB();

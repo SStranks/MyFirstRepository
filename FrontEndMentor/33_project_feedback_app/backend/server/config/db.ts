@@ -32,4 +32,12 @@ const connectDB = async () => {
   }
 };
 
-export default connectDB;
+const mongooseConnection = mongoose.connection;
+
+mongooseConnection.on('error', () => console.log('Mongoose Connection: Error'));
+
+mongooseConnection.once('open', () =>
+  console.log('Mongoose Connection: Successful')
+);
+
+export { connectDB, mongooseConnection };

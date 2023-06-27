@@ -11,6 +11,7 @@ const getAllRequests = catchAsync(
 
     return res.status(200).json({
       status: 'success',
+      results: requests.length,
       data: {
         data: requests,
       },
@@ -38,7 +39,7 @@ const createRequest = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const request = await RequestModel.create(req.body);
 
-    return res.status(204).json({
+    return res.status(201).json({
       status: 'success',
       data: {
         data: request,
