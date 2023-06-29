@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose, { Document } from 'mongoose';
 
-interface IComment {
+interface IComment extends Document {
   user: mongoose.Types.ObjectId;
   content: string;
   parents: mongoose.Types.ObjectId[];
@@ -31,6 +31,6 @@ const commentSchema = new mongoose.Schema<IComment>({
   },
 });
 
-const Comment = mongoose.model('Comment', commentSchema);
+const Comment = mongoose.model<IComment>('Comment', commentSchema);
 
 export { Comment, IComment };
