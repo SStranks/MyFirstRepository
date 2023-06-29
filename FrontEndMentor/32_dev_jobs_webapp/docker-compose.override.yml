@@ -21,7 +21,7 @@ services:
   # DB: MongoDB
   mongo-db:
     container_name: fem32-mongo-db
-    image: mongo
+    image: mongo:6.0.6
     restart: unless-stopped
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
