@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable func-names */
 import mongoose, { Document } from 'mongoose';
 
 interface IComment extends Document {
@@ -29,6 +31,12 @@ const commentSchema = new mongoose.Schema<IComment>({
     type: Date,
     default: Date.now(),
   },
+});
+
+// If Root comment; top parent id should be this._id
+commentSchema.pre('save', function (next) {
+  if (this.parents.length === 0) this.parents.push(this._id);
+  next();
 });
 
 const Comment = mongoose.model<IComment>('Comment', commentSchema);

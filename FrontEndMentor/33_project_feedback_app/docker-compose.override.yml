@@ -30,10 +30,17 @@ services:
       - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     volumes:
       - mongodb-data:/data/db
-    command: --replSet rs0 --bind_ip_all --keyFile /data/mongo.key
+    # healthcheck:
+    #   test: echo 'db.runCommand("ping").ok' | mongosh $MONGODB_HOST/$MONGODB_DATABASE --quiet
+    #   interval: 60s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 15s
+    command: --replSet $MONGODB_REPLSET --bind_ip_all --keyFile /data/mongo.key
 
   # Convert MongoDB from standalone to replica set
   mongo-setup:
+    container_name: fem33-mongo-replicaset-setup
     image: mongo:6.0.6-custom
     depends_on:
       - mongodb-1
@@ -52,10 +59,11 @@ services:
 
   # DB: MongoDB Express
   mongo-express:
+    container_name: fem33-mongo-express
     image: mongo-express-custom
     depends_on:
       - mongodb-1
-    restart: on-failure
+    restart: unless-stopped
     ports:
       - $MONGOEXP_LOCAL_PORT:$MONGOEXP_DOCKER_PORT
     environment:

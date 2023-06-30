@@ -59,3 +59,9 @@ Captured at the following breakpoints from the live solution: Desktop - 1440px, 
 ### What I learned
 
 ### Useful resources
+
+- [Express-Mongoose: Transactions](<https://www.ultimateakash.com/blog-details/IiwzQGAKYAo=/How-to-implement-Transactions-in-Mongoose-&-Node.Js-(Express)>)
+- [Docker-MongoDB: Create Replicaset](https://bytelanguage.com/2023/02/13/create-mongo-replicaset-using-docker-compose/)
+- [Stackoverflow: Create Replicaset](https://stackoverflow.com/questions/76013265/how-to-do-a-mongodb-6-single-node-replicaset-with-docker-compose)
+- [MongoDB: Delete Local DB / Privileges](https://superuser.com/questions/1443569/mongodb-cant-drop-local-database-with-root-user)
+- [TS: Transaction Helper](https://github.com/cashpositive-org/mongoose-transact-utils/blob/master/src/index.ts)

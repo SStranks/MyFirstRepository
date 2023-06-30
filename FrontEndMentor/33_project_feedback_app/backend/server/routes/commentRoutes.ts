@@ -3,6 +3,8 @@ import express from 'express';
 
 const commentRouter = express.Router();
 
-commentRouter.route('/').post(createComment).patch(updateComment);
+commentRouter.route('/').post(createComment);
+
+commentRouter.route('/:id').patch(updateComment);
 
 export default commentRouter;
