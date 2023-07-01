@@ -30,12 +30,6 @@ services:
       - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
     volumes:
       - mongodb-data:/data/db
-    # healthcheck:
-    #   test: echo 'db.runCommand("ping").ok' | mongosh $MONGODB_HOST/$MONGODB_DATABASE --quiet
-    #   interval: 60s
-    #   timeout: 10s
-    #   retries: 3
-    #   start_period: 15s
     command: --replSet $MONGODB_REPLSET --bind_ip_all --keyFile /data/mongo.key
 
   # Convert MongoDB from standalone to replica set
