@@ -5,7 +5,7 @@
 /* eslint-disable unicorn/text-encoding-identifier-case */
 /* eslint-disable unicorn/no-process-exit */
 
-import connectDB from '#Config/db';
+import { connectDB } from '#Config/db';
 import inquirer from 'inquirer';
 import mongoose, { Model } from 'mongoose';
 import * as fs from 'node:fs';
