@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import IconArrowBack from '../../../assets/svg/shared/icon-arrow-left.svg';
 import Button from '../../custom/button/Button';
 import FormFeedbackEdit from '../../form/feedback-edit/Form';
@@ -11,10 +12,12 @@ function UtilityBar() {
   return (
     <>
       <div className={styles.bar}>
-        <div className={styles.bar__back}>
-          <img src={IconArrowBack} alt="" />
-          <span>Go Back</span>
-        </div>
+        <Link to="/">
+          <div className={styles.bar__back}>
+            <img src={IconArrowBack} alt="" />
+            <span>Go Back</span>
+          </div>
+        </Link>
         <div className={styles.bar__btn}>
           <Button
             text="Edit Feedback"

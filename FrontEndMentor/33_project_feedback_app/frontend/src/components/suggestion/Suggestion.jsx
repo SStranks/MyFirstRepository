@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import IconMessage from '../../assets/svg/shared/icon-comments.svg';
 import Tag from '../custom/tag/Tag';
 import Upvote from '../custom/upvote/Upvote';
@@ -9,38 +10,40 @@ function Suggestion(props) {
   const { id, upvotes, title, description, category, active, comments } = props;
 
   return (
-    <div className={styles.item} key={id}>
-      <Upvote upvotes={upvotes} />
-      <div className={styles.item__suggestion}>
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <Tag
-          title={`${category[0].toUpperCase()}${category.slice(1)}`}
-          active={active}
-        />
+    <Link to={`/feedback?invoiceId=${id}`}>
+      <div className={styles.item} key={id}>
+        <Upvote upvotes={upvotes} />
+        <div className={styles.item__suggestion}>
+          <h3>{title}</h3>
+          <p>{description}</p>
+          <Tag
+            title={`${category[0].toUpperCase()}${category.slice(1)}`}
+            active={active}
+          />
+        </div>
+        <div className={styles.item__comment}>
+          <img src={IconMessage} alt="" />
+          <span className={!comments ? `${styles['no-comments']}` : ''}>
+            {comments ? comments.length : '0'}
+          </span>
+        </div>
       </div>
-      <div className={styles.item__comment}>
-        <img src={IconMessage} alt="" />
-        <span className={!comments ? `${styles['no-comments']}` : ''}>
-          {comments ? comments.length : '0'}
-        </span>
-      </div>
-    </div>
+    </Link>
   );
 }
 
 Suggestion.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   upvotes: PropTypes.number,
   title: PropTypes.string,
   description: PropTypes.string,
   category: PropTypes.string,
   active: PropTypes.bool,
-  comments: PropTypes.arrayOf(PropTypes.shape()),
+  comments: PropTypes.arrayOf(PropTypes.string),
 };
 
 Suggestion.defaultProps = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   upvotes: PropTypes.number,
   title: PropTypes.string,
   description: PropTypes.string,

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import IconSuggestion from '../../../assets/svg/shared/icon-suggestions.svg';
 import Button from '../../custom/button/Button';
@@ -6,11 +7,12 @@ import FormFeedbackNew from '../../form/feedback-new/Form';
 import Modal from '../../modal/Modal';
 import styles from './_UtilityBar.module.scss';
 
-function UtilityBar() {
+function UtilityBar(props) {
+  const { invoices } = props;
   const [modalOpen, setModalOpen] = useState(false);
 
-  // Temporary Dev
-  const numSuggestions = 6;
+  const numSuggestions =
+    invoices?.filter(({ status }) => status === 'suggestion').length || 0;
 
   const dropdownList = [
     'Most Upvotes',

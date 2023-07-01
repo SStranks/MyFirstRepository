@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   AsideRoadmap,
   AsideTags,
@@ -8,7 +9,9 @@ import {
 
 import styles from './_SuggestionBoard.module.scss';
 
-function SuggestionBoard() {
+function SuggestionBoard(props) {
+  const { invoices, isLoading } = props;
+
   return (
     <div className={styles.container}>
       <div className={styles.grid}>
@@ -20,13 +23,13 @@ function SuggestionBoard() {
             <AsideTags />
           </aside>
           <aside className={styles.grid__aside}>
-            <AsideRoadmap />
+            <AsideRoadmap invoices={invoices} />
           </aside>
         </div>
         <div className={styles['grid__sub-grid-2']}>
           <main>
-            <UtilityBarSuggestions />
-            <SuggestionsList />
+            <UtilityBarSuggestions invoices={invoices} />
+            <SuggestionsList invoices={invoices} isLoading={isLoading} />
           </main>
         </div>
       </div>

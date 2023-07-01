@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import NoFeedbackImg from '../../assets/svg/shared/illustration-empty.svg';
 import Button from '../custom/button/Button';
@@ -6,31 +7,30 @@ import Modal from '../modal/Modal';
 import Suggestion from '../suggestion/Suggestion';
 import styles from './_SuggestionsList.module.scss';
 
-// Development Data
-import JSONData from '../../data/data.json';
-
-function SuggestionsList() {
+function SuggestionsList(props) {
+  const { invoices, isLoading } = props;
   const [modalOpen, setModalOpen] = useState(false);
 
-  const list = JSONData.productRequests.map((el) => (
-    <Suggestion
-      key={el.id}
-      id={el.id}
-      upvotes={el.upvotes}
-      title={el.title}
-      description={el.description}
-      category={el.category}
-      active={false}
-      comments={el.comments}
-    />
-  ));
+  const list = invoices?.reduce((acc, cur) => {
+    if (cur.status === 'suggestion')
+      acc.push(
+        <Suggestion
+          key={cur.id}
+          id={cur.id}
+          upvotes={cur.upvotes}
+          title={cur.title}
+          description={cur.description}
+          category={cur.category}
+          active={false}
+          comments={cur.comments}
+        />
+      );
+    return acc;
+  }, []);
 
-  // TEMP DEV: .
-  // Uncomment for no comments - comment out 'list' above
-  // eslint-disable-next-line unicorn/no-null
-  // const list = null;
+  if (isLoading || !invoices) return false;
 
-  return list ? (
+  return list.length > 0 ? (
     <div className={styles.list}>{list}</div>
   ) : (
     <div className={styles['no-list']}>
