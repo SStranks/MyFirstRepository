@@ -8,11 +8,11 @@ import Modal from '../../modal/Modal';
 import styles from './_UtilityBar.module.scss';
 
 function UtilityBar(props) {
-  const { invoices } = props;
+  const { requests } = props;
   const [modalOpen, setModalOpen] = useState(false);
 
   const numSuggestions =
-    invoices?.filter(({ status }) => status === 'suggestion').length || 0;
+    requests?.filter(({ status }) => status === 'suggestion').length || 0;
 
   const dropdownList = [
     'Most Upvotes',

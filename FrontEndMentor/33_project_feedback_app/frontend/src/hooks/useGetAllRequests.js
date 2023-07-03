@@ -1,13 +1,13 @@
 /* eslint-disable unicorn/filename-case */
 import { useEffect, useState } from 'react';
 
-function useInvoices() {
+function useRequests() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState('');
-  const [invoices, setInvoices] = useState();
+  const [requests, setRequests] = useState();
 
   useEffect(() => {
-    async function getAllInvoices() {
+    async function getAllRequests() {
       try {
         setIsLoading(true);
         setIsError('');
@@ -19,7 +19,7 @@ function useInvoices() {
         const {
           data: { data },
         } = await res.json();
-        setInvoices(data);
+        setRequests(data);
       } catch (error) {
         setIsError(error.message);
       } finally {
@@ -27,10 +27,10 @@ function useInvoices() {
       }
     }
 
-    getAllInvoices();
+    getAllRequests();
   }, []);
 
-  return [invoices, isLoading, isError];
+  return [requests, isLoading, isError];
 }
 
-export default useInvoices;
+export default useRequests;

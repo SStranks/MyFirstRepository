@@ -10,10 +10,10 @@ import {
 import styles from './_FeedbackDetail.module.scss';
 
 function FeedbackDetail(props) {
-  const { invoices } = props;
+  const { requests } = props;
   const [searchParams] = useSearchParams();
-  const invoiceId = searchParams.get('invoiceId');
-  const invoice = invoices?.find((invoiceObj) => invoiceObj.id === invoiceId);
+  const requestId = searchParams.get('requestId');
+  const request = requests?.find((requestObj) => requestObj.id === requestId);
 
   return (
     <div className={styles.container}>
@@ -22,18 +22,18 @@ function FeedbackDetail(props) {
           <UtilityBarFeedback />
         </nav>
         <main className={styles.flex}>
-          {invoice ? (
+          {request ? (
             <Suggestion
-              id={invoice.id}
-              upvotes={invoice.upvotes}
-              title={invoice.title}
-              description={invoice.description}
-              category={invoice.category}
+              id={request.id}
+              upvotes={request.upvotes}
+              title={request.title}
+              description={request.description}
+              category={request.category}
               active={false}
-              comments={invoice.comments}
+              comments={request.comments}
             />
           ) : undefined}
-          <CommentsList />
+          <CommentsList request={request} />
           <FormCommentAdd />
         </main>
       </div>

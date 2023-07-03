@@ -1,6 +1,7 @@
 import {
   createRequest,
   deleteRequest,
+  getAllRequestComments,
   getAllRequests,
   getRequest,
   updateRequest,
@@ -16,5 +17,7 @@ requestRouter
   .get(getRequest)
   .patch(updateRequest)
   .delete(deleteRequest);
+
+requestRouter.route('/comments/:id').get(getAllRequestComments);
 
 export default requestRouter;

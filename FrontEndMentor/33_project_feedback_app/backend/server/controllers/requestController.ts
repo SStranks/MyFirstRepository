@@ -1,3 +1,4 @@
+import { Comment as CommentModel } from '#Models/CommentModel';
 import RequestModel from '#Models/RequestModel';
 import AppError from '#Utils/appError';
 import catchAsync from '#Utils/catchAsync';
@@ -85,9 +86,27 @@ const deleteRequest = catchAsync(
   }
 );
 
+const getAllRequestComments = catchAsync(async (req, res, next) => {
+  const requestId = req.params.id;
+  const comments = await CommentModel.find({ requestId });
+
+  // TODO:  Currently fetched all comments on a request. Now need to sort according to parents.length and build up a nested replies object to send back to client (which can then be parsed).
+
+  if (!comments)
+    return next(new AppError('No document found with that ID', 404));
+
+  return res.status(200).json({
+    status: 'success',
+    data: {
+      data: comments,
+    },
+  });
+});
+
 export {
   createRequest,
   deleteRequest,
+  getAllRequestComments,
   getAllRequests,
   getRequest,
   updateRequest,

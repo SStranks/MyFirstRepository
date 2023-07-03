@@ -8,10 +8,10 @@ import Suggestion from '../suggestion/Suggestion';
 import styles from './_SuggestionsList.module.scss';
 
 function SuggestionsList(props) {
-  const { invoices, isLoading } = props;
+  const { requests, isLoading } = props;
   const [modalOpen, setModalOpen] = useState(false);
 
-  const list = invoices?.reduce((acc, cur) => {
+  const list = requests?.reduce((acc, cur) => {
     if (cur.status === 'suggestion')
       acc.push(
         <Suggestion
@@ -28,7 +28,7 @@ function SuggestionsList(props) {
     return acc;
   }, []);
 
-  if (isLoading || !invoices) return false;
+  if (isLoading || !requests) return false;
 
   return list.length > 0 ? (
     <div className={styles.list}>{list}</div>

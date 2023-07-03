@@ -10,7 +10,7 @@ function Suggestion(props) {
   const { id, upvotes, title, description, category, active, comments } = props;
 
   return (
-    <Link to={`/feedback?invoiceId=${id}`}>
+    <Link to={`/feedback?requestId=${id}`}>
       <div className={styles.item} key={id}>
         <Upvote upvotes={upvotes} />
         <div className={styles.item__suggestion}>

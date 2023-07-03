@@ -10,7 +10,7 @@ import {
 import styles from './_SuggestionBoard.module.scss';
 
 function SuggestionBoard(props) {
-  const { invoices, isLoading } = props;
+  const { requests, isLoading } = props;
 
   return (
     <div className={styles.container}>
@@ -23,13 +23,13 @@ function SuggestionBoard(props) {
             <AsideTags />
           </aside>
           <aside className={styles.grid__aside}>
-            <AsideRoadmap invoices={invoices} />
+            <AsideRoadmap requests={requests} />
           </aside>
         </div>
         <div className={styles['grid__sub-grid-2']}>
           <main>
-            <UtilityBarSuggestions invoices={invoices} />
-            <SuggestionsList invoices={invoices} isLoading={isLoading} />
+            <UtilityBarSuggestions requests={requests} />
+            <SuggestionsList requests={requests} isLoading={isLoading} />
           </main>
         </div>
       </div>

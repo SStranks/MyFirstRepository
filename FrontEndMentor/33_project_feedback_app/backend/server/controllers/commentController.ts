@@ -4,20 +4,20 @@ import RequestModel from '#Models/RequestModel';
 import AppError from '#Utils/appError';
 import catchAsync from '#Utils/catchAsync';
 import catchAsyncTransaction from '#Utils/catchAsyncTransaction';
-import { NextFunction, Request, Response } from 'express';
 import mongoose from 'mongoose';
 
 const createComment = catchAsync(async (req, res, next) => {
-  // If requestID is specified on req.query then new comment is a root commment.
-  // If comentID is specified on req.query then new comment is a reply to another comment.
+  // If no commentId is specified on req.query then it is a root comment, otherwise it is a reply to comment
   const { request: requestId, comment: commentId } = req.query;
+  const { user, content } = req.body;
+  const commentData = { user, content, requestId };
 
-  if (requestId) {
+  if (!commentId) {
     // Find request document; add the new comment ID to request document comment[].
     const comment = await catchAsyncTransaction(
       // eslint-disable-next-line no-shadow
       async (req, res, next, session) => {
-        const commentDoc = await Comment.create([req.body], { session });
+        const commentDoc = await Comment.create([commentData], { session });
 
         const updateField = { $push: { comments: commentDoc[0]._id } };
         await RequestModel.findByIdAndUpdate(requestId, updateField, {
@@ -54,7 +54,7 @@ const createComment = catchAsync(async (req, res, next) => {
 
         const newObjId = new mongoose.Types.ObjectId();
         parents.push(newObjId);
-        const commentFields = { ...req.body, _id: newObjId, parents };
+        const commentFields = { ...commentData, _id: newObjId, parents };
         const commentDoc = await Comment.create([commentFields], { session });
         return commentDoc;
       }

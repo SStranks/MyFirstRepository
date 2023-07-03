@@ -2,8 +2,8 @@
 import FeedbackDetail from '../layouts/FeedbackDetail';
 
 function Feedback(props) {
-  const { invoices } = props;
-  return <FeedbackDetail invoices={invoices} />;
+  const { requests } = props;
+  return <FeedbackDetail requests={requests} />;
 }
 
 export default Feedback;
