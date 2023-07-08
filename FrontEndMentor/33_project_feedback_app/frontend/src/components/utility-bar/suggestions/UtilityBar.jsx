@@ -37,7 +37,7 @@ function UtilityBar(props) {
         />
       </div>
       <Modal handleClose={() => setModalOpen(false)} modalOpen={modalOpen}>
-        <FormFeedbackNew cancelBtnOnClick={() => setModalOpen(false)} />
+        <FormFeedbackNew setModalOpen={() => setModalOpen(false)} />
       </Modal>
     </div>
   );

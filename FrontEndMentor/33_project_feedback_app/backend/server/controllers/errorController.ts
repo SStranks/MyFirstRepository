@@ -63,6 +63,7 @@ const globalErrorHandler: ErrorRequestHandler = (
   _next: NextFunction
 ): void => {
   let error = { ...err };
+  error.message = err.message;
   error.statusCode = err.statusCode || 500;
   error.status = err.status || 'error';
 

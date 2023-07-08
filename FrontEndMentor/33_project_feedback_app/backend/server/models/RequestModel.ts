@@ -21,6 +21,7 @@ const requestSchema = new mongoose.Schema<IRequest>(
     },
     category: {
       type: String,
+      lowercase: true,
       enum: ['ui', 'ux', 'enhancement', 'bug', 'feature'],
       required: true,
     },
@@ -31,6 +32,7 @@ const requestSchema = new mongoose.Schema<IRequest>(
     status: {
       type: String,
       enum: ['suggestion', 'planned', 'in-progress', 'live'],
+      default: 'suggestion',
     },
     description: {
       type: String,

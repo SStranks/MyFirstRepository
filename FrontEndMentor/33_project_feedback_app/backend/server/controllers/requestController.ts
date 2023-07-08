@@ -38,7 +38,14 @@ const getRequest = catchAsync(
 
 const createRequest = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const request = await RequestModel.create(req.body);
+    const { title, category, description } = req.body;
+
+    if (!title || !category || !description)
+      throw new AppError('Invalid submission structure', 400);
+
+    const request = await RequestModel.create({ title, category, description });
+
+    if (!request) throw new AppError('Could not create document', 400);
 
     return res.status(201).json({
       status: 'success',

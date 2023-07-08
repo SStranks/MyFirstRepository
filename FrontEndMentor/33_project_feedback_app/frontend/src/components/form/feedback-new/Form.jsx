@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import IconNewFeedback from '../../../assets/svg/shared/icon-new-feedback.svg';
+import HttpAPI from '../../../services/httpAPI';
 import Button from '../../custom/button/Button';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import Dropdown from '../../custom/dropdown/design2/Dropdown';
@@ -7,10 +8,12 @@ import InputText from '../../custom/input-text/InputText';
 import InputTextArea from '../../custom/textarea/InputTextArea';
 import styles from './_Form.module.scss';
 
-function Form(props) {
-  const { cancelBtnOnClick } = props;
+const api = new HttpAPI();
 
-  const onSubmit = (e) => {
+function Form(props) {
+  const { setModalOpen } = props;
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formElement = e.target;
     const isValid = formElement.checkValidity();
@@ -21,20 +24,26 @@ function Form(props) {
     const firstInvalidInput = formElement.querySelector(':invalid');
     firstInvalidInput?.focus();
 
-    // Add error validation msg to invalid fields
-    // const invalidInputs = formElement.querySelectorAll(':invalid');
-    // if (invalidInputs) {
-    //   invalidInputs.forEach((el) => {
-    //     const textElem = el.nextSibling?.childNodes[0];
-    //     textElem.textContent = el.validationMessage;
-    //   });
-    // }
-
     // Submit if valid
     if (isValid) {
       const dataObject = new FormData(formElement);
-      // Faux Submission
-      console.log(Object.fromEntries(dataObject.entries()));
+      const { title, category, description } = Object.fromEntries(
+        dataObject.entries()
+      );
+
+      try {
+        const res = await api.post('/api/v1/requests', {
+          title,
+          category,
+          description,
+        });
+
+        // TODO:  Pop up success with toast?
+        setModalOpen(false);
+      } catch (error) {
+        // TODO:  Pop up error with toast?
+        console.log('ERROR', error);
+      }
     }
   };
 
@@ -47,12 +56,7 @@ function Form(props) {
       <div className={styles.form__feedback}>
         <h4>Feedback Title</h4>
         <p>Add a short, descriptive headline</p>
-        <InputText
-          type="text"
-          id="feedback-title"
-          name="feedback-title"
-          required
-        />
+        <InputText type="text" id="title" name="title" required />
       </div>
       <div className={styles.form__category}>
         <h4>Category</h4>
@@ -65,8 +69,8 @@ function Form(props) {
           Include any specific comments on what should be improved, added, etc
         </p>
         <InputTextArea
-          name="feedback-detail"
-          id="feedback-detail"
+          name="description"
+          id="description"
           cols={30}
           rows={10}
           required
@@ -78,7 +82,7 @@ function Form(props) {
             text="Cancel"
             disabled={false}
             classList={['bg-navy-blue']}
-            onClick={cancelBtnOnClick}
+            onClick={setModalOpen}
           />
         </div>
         <div className={styles.form__bar__btnSubmit}>
@@ -94,11 +98,11 @@ function Form(props) {
 }
 
 Form.propTypes = {
-  cancelBtnOnClick: PropTypes.func,
+  setModalOpen: PropTypes.func,
 };
 
 Form.defaultProps = {
-  cancelBtnOnClick: undefined,
+  setModalOpen: undefined,
 };
 
 export default Form;
