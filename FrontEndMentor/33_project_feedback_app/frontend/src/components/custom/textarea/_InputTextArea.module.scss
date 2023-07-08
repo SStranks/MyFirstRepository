@@ -12,3 +12,9 @@
   position: relative;
   min-height: 96px;
 }
+
+.error {
+  @include body-4;
+  margin-top: 8px;
+  color: $blood-red;
+}

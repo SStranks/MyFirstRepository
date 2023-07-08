@@ -1,51 +1,50 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './_InputText.module.scss';
 
 function InputText(props) {
-  const { id, name, formError, setFormError, innerRef } = props;
-  const [error, setError] = useState(false);
+  const { id, name, required } = props;
+  const [validationMessage, setValidationMessage] = useState();
 
-  useEffect(() => {
-    if (formError.inputtext && innerRef.current.value.length === 0)
-      setError(true);
-  }, [formError, innerRef]);
+  const onInvalid = (e) => {
+    const { target } = e;
+    setValidationMessage(target.validationMessage);
+  };
 
-  const textInputHandler = (e) => {
-    if (error && e.target.value.length > 0) {
-      setError(false);
-      setFormError((prev) => ({ ...prev, inputtext: false }));
-    }
+  const onChange = () => {
+    if (validationMessage) setValidationMessage();
   };
 
   return (
-    <div className={`${error ? styles['input--error'] : ''}`}>
+    <label className={styles.container} htmlFor={id}>
       <input
-        className={`${styles.input} ${error ? styles['input--error'] : ''}`}
-        onChange={textInputHandler}
+        className={styles.input}
         type="text"
         id={id}
         name={name}
-        ref={innerRef}
+        required={required}
+        onInvalid={onInvalid}
+        onChange={onChange}
       />
-    </div>
+      {!!validationMessage && (
+        <div className={styles.error}>
+          <p>{validationMessage}</p>
+        </div>
+      )}
+    </label>
   );
 }
 
 InputText.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
-  formError: PropTypes.shape(),
-  setFormError: PropTypes.func,
-  innerRef: PropTypes.shape(),
+  required: PropTypes.bool,
 };
 
 InputText.defaultProps = {
   id: undefined,
   name: undefined,
-  formError: undefined,
-  setFormError: undefined,
-  innerRef: undefined,
+  required: undefined,
 };
 
 export default InputText;

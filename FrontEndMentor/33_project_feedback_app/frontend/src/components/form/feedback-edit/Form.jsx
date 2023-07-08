@@ -5,7 +5,7 @@ import Button from '../../custom/button/Button';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import Dropdown from '../../custom/dropdown/design2/Dropdown';
 import InputText from '../../custom/input-text/InputText';
-import Textarea from '../../custom/textarea/Textarea';
+import Textarea from '../../custom/textarea/InputTextArea';
 import styles from './_Form.module.scss';
 
 function Form(props) {

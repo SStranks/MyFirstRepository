@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import ProfileIcon from '../../assets/img/image-elijah.jpg';
 import ButtonSubmit from '../custom/button/ButtonSubmit';
-import Textarea from '../custom/textarea/Textarea';
+import Textarea from '../custom/textarea/InputTextArea';
 import styles from './_Comment.module.scss';
 
 function Comment(props) {

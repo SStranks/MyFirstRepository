@@ -94,6 +94,10 @@
 }
 
 /*   Errors                         */
+@mixin inputError {
+  outline: 1px solid $blood-red;
+}
+
 @mixin input-error {
   $element: &;
   &--error {

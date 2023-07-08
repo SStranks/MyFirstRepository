@@ -12,7 +12,7 @@ function App() {
         element={<Home requests={requests} isLoading={isLoading} />}
       />
       <Route path="/feedback" element={<Feedback requests={requests} />} />
-      <Route path="/roadmap" element={<Roadmap />} />
+      <Route path="/roadmap" element={<Roadmap requests={requests} />} />
     </Routes>
   );
 }

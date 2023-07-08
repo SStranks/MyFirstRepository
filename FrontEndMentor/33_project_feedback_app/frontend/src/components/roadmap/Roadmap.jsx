@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import IconMessage from '../../assets/svg/shared/icon-comments.svg';
 import Tag from '../custom/tag/Tag';
 import Upvote from '../custom/upvote/Upvote';
 import styles from './_Roadmap.module.scss';
 
 function Roadmap(props) {
-  const { status, title, description, category, upvotes, comments } = props;
+  const { id, status, title, description, category, upvotes, comments } = props;
 
   return (
-    <div className={`${styles.outerCard} ${styles[`outerCard--${status}`]}`}>
+    <Link
+      to={`/feedback?requestId=${id}`}
+      className={`${styles.outerCard} ${styles[`outerCard--${status}`]}`}>
       <div className={styles.innerCard}>
         <div className={styles.innerCard__status}>
           <div
@@ -32,11 +35,12 @@ function Roadmap(props) {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
 Roadmap.propTypes = {
+  id: PropTypes.string,
   status: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
@@ -46,6 +50,7 @@ Roadmap.propTypes = {
 };
 
 Roadmap.defaultProps = {
+  id: undefined,
   status: undefined,
   title: undefined,
   description: undefined,

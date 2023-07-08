@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import { RoadmapList, UtilityBarRoadmap } from '../components';
 import styles from './_RoadmapDetail.module.scss';
 
-function RoadmapDetail() {
+function RoadmapDetail(props) {
+  const { requests } = props;
   return (
     <div className={styles.container}>
       <div className={styles.flex}>
@@ -9,7 +11,7 @@ function RoadmapDetail() {
           <UtilityBarRoadmap />
         </nav>
         <main>
-          <RoadmapList />
+          <RoadmapList requests={requests} />
         </main>
       </div>
     </div>

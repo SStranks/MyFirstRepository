@@ -20,3 +20,9 @@
     outline: 1px solid $royal-blue;
   }
 }
+
+.error {
+  @include body-4;
+  margin-top: 8px;
+  color: $blood-red;
+}

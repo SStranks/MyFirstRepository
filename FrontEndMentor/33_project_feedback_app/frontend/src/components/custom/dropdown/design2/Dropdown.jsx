@@ -16,9 +16,9 @@ function Dropdown(props) {
   return (
     <label htmlFor="current" className={styles.dropdown}>
       <input
+        type="text"
         className={styles.dropdown__current}
         onClick={btnClickHandler}
-        type="text"
         id="current"
         value={currentSort}
         readOnly
@@ -32,7 +32,6 @@ function Dropdown(props) {
       />
       <DropdownList
         listItems={listItems}
-        name="sort-by"
         active={active}
         setCurrentSort={setCurrentSort}
       />

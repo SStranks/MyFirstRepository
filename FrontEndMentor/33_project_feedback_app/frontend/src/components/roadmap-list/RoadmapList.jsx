@@ -1,15 +1,25 @@
+/* eslint-disable unicorn/no-array-for-each */
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import Roadmap from '../roadmap/Roadmap';
 import styles from './_RoadmapList.module.scss';
 
-// Development Data
-import JSONData from '../../data/data.json';
-
-function RoadmapList() {
+function RoadmapList(props) {
+  const { requests } = props;
   const [mobileFilter, setmobileFilter] = useState({
     planned: true,
     'in-progress': false,
     live: false,
+  });
+  let plannedNum = 0;
+  let inProgressNum = 0;
+  let liveNum = 0;
+
+  requests?.forEach((request) => {
+    const { status } = request;
+    if (status === 'planned') plannedNum += 1;
+    if (status === 'in-progress') inProgressNum += 1;
+    if (status === 'live') liveNum += 1;
   });
 
   const radioInputHandler = (e) => {
@@ -21,20 +31,12 @@ function RoadmapList() {
     });
   };
 
-  // TEMP DEV: .
-  const num1 = 2;
-  const num2 = 3;
-  const num3 = 1;
-  const numPlanned = 2;
-  const numProgress = 3;
-  const numLive = 1;
-
-  const roadmapItems = JSONData.productRequests
-    .filter((item) => ['planned', 'in-progress', 'live'].includes(item.status))
-    .map((item, i) => (
+  const roadmapItems = requests
+    ?.filter((item) => ['planned', 'in-progress', 'live'].includes(item.status))
+    .map((item) => (
       <Roadmap
-        // eslint-disable-next-line react/no-array-index-key
-        key={i}
+        key={item.id}
+        id={item.id}
         status={item.status}
         title={item.title}
         description={item.description}
@@ -58,7 +60,7 @@ function RoadmapList() {
             defaultChecked
           />
           Planned <br className={styles['grid__mobile-nav__label__br']} />(
-          {num1})
+          {plannedNum})
         </label>
         <label
           className={styles['grid__mobile-nav__label']}
@@ -72,7 +74,7 @@ function RoadmapList() {
             onChange={radioInputHandler}
           />
           In-Progress <br className={styles['grid__mobile-nav__label__br']} />(
-          {num2})
+          {inProgressNum})
         </label>
         <label className={styles['grid__mobile-nav__label']} htmlFor="live">
           <input
@@ -83,7 +85,8 @@ function RoadmapList() {
             value="live"
             onChange={radioInputHandler}
           />
-          Live <br className={styles['grid__mobile-nav__label__br']} />({num3})
+          Live <br className={styles['grid__mobile-nav__label__br']} />(
+          {liveNum})
         </label>
         <div
           className={`${styles['grid__mobile-nav__activebar']} ${
@@ -98,33 +101,33 @@ function RoadmapList() {
       <div className={styles['grid__mobile-nav__title']}>
         {mobileFilter.planned && (
           <>
-            <h3>{`Planned (${numPlanned})`}</h3>
+            <h3>{`Planned (${plannedNum})`}</h3>
             <p>Ideas prioritized for research</p>
           </>
         )}
         {mobileFilter['in-progress'] && (
           <>
-            <h3>{`In-Progress (${numProgress})`}</h3>
+            <h3>{`In-Progress (${inProgressNum})`}</h3>
             <p>Currently being developed</p>
           </>
         )}
         {mobileFilter.live && (
           <>
-            <h3>{`Live (${numLive})`}</h3>
+            <h3>{`Live (${liveNum})`}</h3>
             <p>Released features</p>
           </>
         )}
       </div>
       <div className={styles.grid__title}>
-        <h3>{`Planned (${numPlanned})`}</h3>
+        <h3>{`Planned (${plannedNum})`}</h3>
         <p>Ideas prioritized for research</p>
       </div>
       <div className={styles.grid__title}>
-        <h3>{`In-Progress (${numProgress})`}</h3>
+        <h3>{`In-Progress (${inProgressNum})`}</h3>
         <p>Currently being developed</p>
       </div>
       <div className={styles.grid__title}>
-        <h3>{`Live (${numLive})`}</h3>
+        <h3>{`Live (${liveNum})`}</h3>
         <p>Released features</p>
       </div>
       <div className={styles.grid__subgrid}>{roadmapItems}</div>

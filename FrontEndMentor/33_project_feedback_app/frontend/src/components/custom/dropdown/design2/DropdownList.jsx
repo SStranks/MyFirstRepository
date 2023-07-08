@@ -3,7 +3,7 @@ import IconCheck from '../../../../assets/svg/shared/icon-check.svg';
 import styles from './_DropdownList.module.scss';
 
 function DropdownList(props) {
-  const { listItems, name, setCurrentSort, active } = props;
+  const { listItems, setCurrentSort, active } = props;
 
   const onRadioCheck = (e) => {
     setCurrentSort(e.target.id);
@@ -16,7 +16,8 @@ function DropdownList(props) {
         type="radio"
         className={styles.list__radio}
         id={item}
-        name={name}
+        name="category"
+        value={item}
         defaultChecked={!i}
       />
       <label className={styles.list__label} htmlFor={item}>
@@ -35,14 +36,12 @@ function DropdownList(props) {
 
 DropdownList.propTypes = {
   listItems: PropTypes.arrayOf(PropTypes.string),
-  name: PropTypes.string,
   setCurrentSort: PropTypes.func,
   active: PropTypes.bool,
 };
 
 DropdownList.defaultProps = {
   listItems: undefined,
-  name: undefined,
   setCurrentSort: undefined,
   active: undefined,
 };

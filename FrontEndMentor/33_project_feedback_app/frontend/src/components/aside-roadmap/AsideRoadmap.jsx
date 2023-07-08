@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import styles from './_AsideRoadmap.module.scss';
 
 function AsideRoadmap(props) {
-  const { invoices } = props;
+  const { requests } = props;
   let plannedNum = 0;
   let inProgressNum = 0;
   let liveNum = 0;
 
-  invoices?.forEach((invoice) => {
-    const { status } = invoice;
+  requests?.forEach((request) => {
+    const { status } = request;
     if (status === 'planned') plannedNum += 1;
     if (status === 'in-progress') inProgressNum += 1;
     if (status === 'live') liveNum += 1;
