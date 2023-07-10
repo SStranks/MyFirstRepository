@@ -58,9 +58,14 @@ const createRequest = catchAsync(
 
 const updateRequest = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
+    const { title, category, status, description } = req.body;
+
+    if (!title || !category || !status || !description)
+      throw new AppError('Invalid submission structure', 400);
+
     const request = await RequestModel.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      { title, category, status, description },
       {
         new: true,
         runValidators: true,
@@ -110,6 +115,21 @@ const getAllRequestComments = catchAsync(async (req, res, next) => {
   });
 });
 
+const updateRequestUpvote = catchAsync(async (req, res, next) => {
+  // Transaction
+  // Find user, get upvote array
+  // If request id exists in array, throw error
+  // Add request id to array
+  // Increment the request upvote tally
+  const { id } = req.params;
+  const { userId } = req.query;
+  console.log(id, userId);
+
+  return res.status(200).json({
+    data: 'Hellooo',
+  });
+});
+
 export {
   createRequest,
   deleteRequest,
@@ -117,4 +137,5 @@ export {
   getAllRequests,
   getRequest,
   updateRequest,
+  updateRequestUpvote,
 };

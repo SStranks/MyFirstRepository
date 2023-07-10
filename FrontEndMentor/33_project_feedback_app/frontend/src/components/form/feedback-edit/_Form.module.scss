@@ -29,11 +29,11 @@
   &__detail {
     margin-bottom: f.px2em(24);
 
-    h4 {
+    > h4 {
       color: $navy-blue;
     }
 
-    p {
+    > p {
       @include body-4;
       color: $mute-blue;
       margin-bottom: f.px2em(16);
@@ -96,6 +96,13 @@
       @include media(tablet-small, mobile-large, mobile-medium, mobile-small) {
         width: 100%;
       }
+    }
+  }
+
+  &__submitted {
+    & input[type='text']:invalid,
+    textarea:invalid {
+      @include inputError;
     }
   }
 }

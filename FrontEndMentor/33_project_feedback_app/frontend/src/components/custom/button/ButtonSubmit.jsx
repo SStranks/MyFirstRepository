@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
 import styles from './_Button.module.scss';
 
 function ButtonSubmit(props) {
@@ -16,19 +16,5 @@ function ButtonSubmit(props) {
     </button>
   );
 }
-
-ButtonSubmit.propTypes = {
-  text: PropTypes.string,
-  value: PropTypes.string,
-  disabled: PropTypes.bool,
-  classList: PropTypes.arrayOf(PropTypes.string),
-};
-
-ButtonSubmit.defaultProps = {
-  text: PropTypes.string,
-  value: undefined,
-  disabled: PropTypes.bool,
-  classList: PropTypes.arrayOf(PropTypes.string),
-};
 
 export default ButtonSubmit;

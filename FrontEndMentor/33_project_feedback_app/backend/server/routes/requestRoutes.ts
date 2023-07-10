@@ -5,19 +5,18 @@ import {
   getAllRequests,
   getRequest,
   updateRequest,
+  updateRequestUpvote,
 } from '#Controllers/requestController';
 import express from 'express';
 
-const requestRouter = express.Router();
+const router = express.Router();
 
-requestRouter.route('/').get(getAllRequests).post(createRequest);
+router.route('/').get(getAllRequests).post(createRequest);
 
-requestRouter
-  .route('/:id')
-  .get(getRequest)
-  .patch(updateRequest)
-  .delete(deleteRequest);
+router.route('/:id').get(getRequest).patch(updateRequest).delete(deleteRequest);
 
-requestRouter.route('/comments/:id').get(getAllRequestComments);
+router.route('/:id/upvote').patch(updateRequestUpvote);
 
-export default requestRouter;
+router.route('/comments/:id').get(getAllRequestComments);
+
+export default router;

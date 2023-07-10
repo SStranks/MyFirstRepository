@@ -76,7 +76,6 @@
   }
 
   &__submitted {
-    // Inputs have structure: <label><p/><input/><label/>
     & input[type='text']:invalid,
     textarea:invalid {
       @include inputError;

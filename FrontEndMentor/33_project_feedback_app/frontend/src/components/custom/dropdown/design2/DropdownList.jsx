@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
 import IconCheck from '../../../../assets/svg/shared/icon-check.svg';
 import styles from './_DropdownList.module.scss';
 
 function DropdownList(props) {
-  const { listItems, setCurrentSort, active } = props;
+  const { listItems, setCurrentSort, active, name } = props;
 
   const onRadioCheck = (e) => {
     setCurrentSort(e.target.id);
@@ -16,7 +16,7 @@ function DropdownList(props) {
         type="radio"
         className={styles.list__radio}
         id={item}
-        name="category"
+        name={name}
         value={item}
         defaultChecked={!i}
       />
@@ -33,17 +33,5 @@ function DropdownList(props) {
     </ul>
   );
 }
-
-DropdownList.propTypes = {
-  listItems: PropTypes.arrayOf(PropTypes.string),
-  setCurrentSort: PropTypes.func,
-  active: PropTypes.bool,
-};
-
-DropdownList.defaultProps = {
-  listItems: undefined,
-  setCurrentSort: undefined,
-  active: undefined,
-};
 
 export default DropdownList;

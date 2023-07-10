@@ -31,6 +31,7 @@ const requestSchema = new mongoose.Schema<IRequest>(
     },
     status: {
       type: String,
+      lowercase: true,
       enum: ['suggestion', 'planned', 'in-progress', 'live'],
       default: 'suggestion',
     },

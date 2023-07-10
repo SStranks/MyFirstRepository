@@ -1,5 +1,8 @@
 /* eslint-disable unicorn/filename-case */
 import { useEffect, useState } from 'react';
+import HttpAPI from '../services/httpAPI';
+
+const API = new HttpAPI();
 
 function useRequests() {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,15 +15,15 @@ function useRequests() {
         setIsLoading(true);
         setIsError('');
 
-        const res = await fetch(`${process.env.API_HOST}/api/v1/requests`);
-
-        if (!res.ok) throw new Error('Error fetching invoice data');
-
         const {
-          data: { data },
-        } = await res.json();
+          data: {
+            data: { data },
+          },
+        } = await API.get('/requests');
+
         setRequests(data);
       } catch (error) {
+        console.log('HELP');
         setIsError(error.message);
       } finally {
         setIsLoading(false);

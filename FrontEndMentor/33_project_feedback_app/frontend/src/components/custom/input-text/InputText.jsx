@@ -1,14 +1,18 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import styles from './_InputText.module.scss';
 
 function InputText(props) {
-  const { id, name, required } = props;
+  const { id, name, value, required } = props;
   const [validationMessage, setValidationMessage] = useState();
 
   const onInvalid = (e) => {
     const { target } = e;
     setValidationMessage(target.validationMessage);
+  };
+
+  const onBlur = () => {
+    if (validationMessage) setValidationMessage();
   };
 
   const onChange = () => {
@@ -22,9 +26,11 @@ function InputText(props) {
         type="text"
         id={id}
         name={name}
+        defaultValue={value}
         required={required}
-        onInvalid={onInvalid}
         onChange={onChange}
+        onBlur={onBlur}
+        onInvalid={onInvalid}
       />
       {!!validationMessage && (
         <div className={styles.error}>
@@ -34,17 +40,5 @@ function InputText(props) {
     </label>
   );
 }
-
-InputText.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  required: PropTypes.bool,
-};
-
-InputText.defaultProps = {
-  id: undefined,
-  name: undefined,
-  required: undefined,
-};
 
 export default InputText;

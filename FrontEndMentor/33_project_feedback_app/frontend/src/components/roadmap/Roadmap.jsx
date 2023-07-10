@@ -9,9 +9,7 @@ function Roadmap(props) {
   const { id, status, title, description, category, upvotes, comments } = props;
 
   return (
-    <Link
-      to={`/feedback?requestId=${id}`}
-      className={`${styles.outerCard} ${styles[`outerCard--${status}`]}`}>
+    <div className={`${styles.outerCard} ${styles[`outerCard--${status}`]}`}>
       <div className={styles.innerCard}>
         <div className={styles.innerCard__status}>
           <div
@@ -21,21 +19,23 @@ function Roadmap(props) {
           />
           <p>{`${status[0].toUpperCase()}${status.slice(1)}`}</p>
         </div>
-        <h3 className={styles.innerCard__title}>{title}</h3>
-        <p className={styles.innerCard__content}>{description}</p>
+        <Link to={`/feedback?requestId=${id}`}>
+          <h3 className={styles.innerCard__title}>{title}</h3>
+          <p className={styles.innerCard__content}>{description}</p>
+        </Link>
         <Tag
           title={`${category[0].toUpperCase()}${category.slice(1)}`}
           active={false}
         />
         <div className={styles.innerCard__UI}>
-          <Upvote flexRow upvotes={upvotes} />
+          <Upvote flexRow upvotes={upvotes} requestId={id} />
           <div className={styles.innerCard__comment}>
             <img src={IconMessage} alt="" />
             <span>{comments}</span>
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 

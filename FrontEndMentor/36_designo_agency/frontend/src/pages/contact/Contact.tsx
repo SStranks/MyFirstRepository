@@ -24,14 +24,15 @@ function Contact(): JSX.Element {
     ) as HTMLInputElement;
     firstInvalidInput?.focus();
 
+    // NOTE:  Let inputs handle onInvalid state internally - see InputText for implementation.
     // Add error validation msg to invalid fields
-    const invalidInputs = formElement.querySelectorAll(':invalid');
-    if (invalidInputs) {
-      invalidInputs.forEach((el) => {
-        const textElem = el.nextSibling?.childNodes[0] as Element;
-        textElem.textContent = (el as HTMLInputElement).validationMessage;
-      });
-    }
+    // const invalidInputs = formElement.querySelectorAll(':invalid');
+    // if (invalidInputs) {
+    //   invalidInputs.forEach((el) => {
+    //     const textElem = el.nextSibling?.childNodes[0] as Element;
+    //     textElem.textContent = (el as HTMLInputElement).validationMessage;
+    //   });
+    // }
 
     // Submit if valid
     if (isValid) {

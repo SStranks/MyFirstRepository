@@ -8,7 +8,8 @@ import InputText from '../../custom/input-text/InputText';
 import InputTextArea from '../../custom/textarea/InputTextArea';
 import styles from './_Form.module.scss';
 
-const api = new HttpAPI();
+const API = new HttpAPI();
+const CATEGORIES = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
 
 function Form(props) {
   const { setModalOpen } = props;
@@ -32,7 +33,7 @@ function Form(props) {
       );
 
       try {
-        const res = await api.post('/api/v1/requests', {
+        const res = await API.post('/requests', {
           title,
           category,
           description,
@@ -47,8 +48,6 @@ function Form(props) {
     }
   };
 
-  const categories = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
-
   return (
     <form className={styles.form} onSubmit={onSubmit} noValidate>
       <img className={styles.form__icon} src={IconNewFeedback} alt="" />
@@ -61,7 +60,7 @@ function Form(props) {
       <div className={styles.form__category}>
         <h4>Category</h4>
         <p>Choose a category for your feedback</p>
-        <Dropdown listItems={categories} />
+        <Dropdown listItems={CATEGORIES} name="category" />
       </div>
       <div className={styles.form__detail}>
         <h4>Feedback Detail</h4>

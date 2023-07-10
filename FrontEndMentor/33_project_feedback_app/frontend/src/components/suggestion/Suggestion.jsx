@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
 import IconMessage from '../../assets/svg/shared/icon-comments.svg';
 import Tag from '../custom/tag/Tag';
@@ -10,9 +10,9 @@ function Suggestion(props) {
   const { id, upvotes, title, description, category, active, comments } = props;
 
   return (
-    <Link to={`/feedback?requestId=${id}`}>
-      <div className={styles.item} key={id}>
-        <Upvote upvotes={upvotes} />
+    <div className={styles.item} key={id}>
+      <Upvote upvotes={upvotes} requestId={id} />
+      <Link to={`/feedback?requestId=${id}`}>
         <div className={styles.item__suggestion}>
           <h3>{title}</h3>
           <p>{description}</p>
@@ -21,35 +21,15 @@ function Suggestion(props) {
             active={active}
           />
         </div>
-        <div className={styles.item__comment}>
-          <img src={IconMessage} alt="" />
-          <span className={!comments ? `${styles['no-comments']}` : ''}>
-            {comments ? comments.length : '0'}
-          </span>
-        </div>
+      </Link>
+      <div className={styles.item__comment}>
+        <img src={IconMessage} alt="" />
+        <span className={!comments ? `${styles['no-comments']}` : ''}>
+          {comments ? comments.length : '0'}
+        </span>
       </div>
-    </Link>
+    </div>
   );
 }
-
-Suggestion.propTypes = {
-  id: PropTypes.string,
-  upvotes: PropTypes.number,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  category: PropTypes.string,
-  active: PropTypes.bool,
-  comments: PropTypes.arrayOf(PropTypes.string),
-};
-
-Suggestion.defaultProps = {
-  id: PropTypes.string,
-  upvotes: PropTypes.number,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  category: PropTypes.string,
-  active: PropTypes.bool,
-  comments: undefined,
-};
 
 export default Suggestion;

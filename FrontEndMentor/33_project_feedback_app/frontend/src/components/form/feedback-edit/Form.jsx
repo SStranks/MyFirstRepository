@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types';
-import { useRef, useState } from 'react';
+/* eslint-disable react/prop-types */
+import { useNavigate } from 'react-router-dom';
 import IconEditFeedback from '../../../assets/svg/shared/icon-edit-feedback.svg';
+import HttpAPI from '../../../services/httpAPI';
 import Button from '../../custom/button/Button';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import Dropdown from '../../custom/dropdown/design2/Dropdown';
@@ -8,64 +9,93 @@ import InputText from '../../custom/input-text/InputText';
 import Textarea from '../../custom/textarea/InputTextArea';
 import styles from './_Form.module.scss';
 
+const API = new HttpAPI();
+const CATEGORIES = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
+const STATUS = ['Suggestion', 'Planned', 'In-Progress', 'Live'];
+
 function Form(props) {
-  const { cancelBtnOnClick } = props;
+  const { setModalOpen, request } = props;
+  const { id, title, category, status, description } = request;
+  const navigate = useNavigate();
 
-  // Temporary Dev; Top Title 'Editing'
-  const feedback = 'Add a dark theme option';
-
-  const [formError, setFormError] = useState({
-    inputtext: false,
-    textarea: false,
-  });
-
-  const textArea = useRef();
-  const inputText = useRef();
-
-  const submitBtnClickHandler = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    const { value } = e.nativeEvent.submitter;
 
-    const input1 = inputText.current.value.length;
-    const input2 = textArea.current.value.length;
+    if (value === 'submit') {
+      const formElement = e.target;
+      const isValid = formElement.checkValidity();
 
-    if (!input1 || !input2) {
-      return setFormError({
-        inputtext: !input1,
-        textarea: !input2,
-      });
+      formElement.classList.add(styles.form__submitted);
+
+      // Focus on first invalid input
+      const firstInvalidInput = formElement.querySelector(':invalid');
+      firstInvalidInput?.focus();
+
+      // Submit if valid
+      if (isValid) {
+        const dataObject = new FormData(formElement);
+        const {
+          title: newTitle,
+          category: newCategory,
+          status: newStatus,
+          description: newDescription,
+        } = Object.fromEntries(dataObject.entries());
+
+        try {
+          const res = await API.patch(`requests/${id}`, {
+            title: newTitle,
+            category: newCategory,
+            description: newDescription,
+            status: newStatus,
+          });
+
+          // TODO:  Pop up success with toast?
+          setModalOpen(false);
+          navigate('/');
+        } catch (error) {
+          // TODO:  Pop up error with toast?
+          console.log('ERROR', error);
+        }
+      }
     }
 
-    // TODO: Axios POST
-    return '';
+    if (value === 'delete') {
+      try {
+        const res = await API.delete(`/requests/${id}`);
+
+        // TODO:  Pop up success with toast?
+        setModalOpen(false);
+        navigate('/');
+      } catch (error) {
+        // TODO:  Pop up error with toast?
+        console.log('ERROR', error);
+      }
+    }
   };
 
-  const categoriesList1 = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
-  const categoriesList2 = ['Suggestion', 'Planned', 'In-Progress', 'Live'];
-
   return (
-    <form className={styles.form} onSubmit={submitBtnClickHandler}>
+    <form className={styles.form} onSubmit={onSubmit} noValidate>
       <img className={styles.form__icon} src={IconEditFeedback} alt="" />
-      <p className={styles.form__title}>Editing &lsquo;{feedback}&lsquo;</p>
+      <p className={styles.form__title}>Editing &lsquo;{title}&lsquo;</p>
       <div className={styles.form__feedback}>
         <h4>Feedback Title</h4>
         <p>Add a short, descriptive headline</p>
-        <InputText
-          id="feedback-title"
-          name="feedback-title"
-          formError={formError}
-          setFormError={setFormError}
-          innerRef={inputText}
-        />
+        <InputText id="title" name="title" value={title} required />
       </div>
       <div className={styles.form__category}>
         <h4>Category</h4>
         <p>Choose a category for your feedback</p>
-        <Dropdown listItems={categoriesList1} />
+        <Dropdown
+          listItems={CATEGORIES}
+          name="category"
+          defaultValue={category}
+        />
       </div>
       <div className={styles.form__status}>
         <h4>Update Status</h4>
         <p>Change feedback state</p>
-        <Dropdown listItems={categoriesList2} />
+        <Dropdown listItems={STATUS} name="status" defaultValue={status} />
       </div>
       <div className={styles.form__detail}>
         <h4>Feedback Detail</h4>
@@ -73,30 +103,35 @@ function Form(props) {
           Include any specific comments on what should be improved, added, etc
         </p>
         <Textarea
-          name="feedback-detail"
-          id="feedback-detail"
+          name="description"
+          id="description"
           cols={30}
           rows={10}
-          formError={formError}
-          setFormError={setFormError}
-          innerRef={textArea}
+          defaultValue={description}
+          required
         />
       </div>
       <div className={styles.form__bar}>
         <div className={styles.form__bar__btnDelete}>
-          <ButtonSubmit text="Delete" disabled={false} classList={['bg-red']} />
+          <ButtonSubmit
+            text="Delete"
+            value="delete"
+            disabled={false}
+            classList={['bg-red']}
+          />
         </div>
         <div className={styles.form__bar__btnCancel}>
           <Button
             text="Cancel"
             disabled={false}
             classList={['bg-navy-blue']}
-            onClick={cancelBtnOnClick}
+            onClick={setModalOpen}
           />
         </div>
         <div className={styles.form__bar__btnSubmit}>
           <ButtonSubmit
-            text="Add Feedback"
+            text="Edit Feedback"
+            value="submit"
             disabled={false}
             classList={['bg-magenta']}
           />
@@ -105,13 +140,5 @@ function Form(props) {
     </form>
   );
 }
-
-Form.propTypes = {
-  cancelBtnOnClick: PropTypes.func,
-};
-
-Form.defaultProps = {
-  cancelBtnOnClick: undefined,
-};
 
 export default Form;

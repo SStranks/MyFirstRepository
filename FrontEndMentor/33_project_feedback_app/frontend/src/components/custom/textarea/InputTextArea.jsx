@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import styles from './_InputTextArea.module.scss';
 
 function Textarea(props) {
-  const { name, id, cols, rows, required } = props;
+  const { name, id, cols, rows, defaultValue, required } = props;
   const [validationMessage, setValidationMessage] = useState();
 
   const onInvalid = (e) => {
@@ -24,6 +24,7 @@ function Textarea(props) {
           id={id}
           cols={cols}
           rows={rows}
+          defaultValue={defaultValue}
           required={required}
           onInvalid={onInvalid}
           onChange={onChange}
@@ -37,21 +38,5 @@ function Textarea(props) {
     </div>
   );
 }
-
-Textarea.propTypes = {
-  name: PropTypes.string,
-  id: PropTypes.string,
-  cols: PropTypes.number,
-  rows: PropTypes.number,
-  required: PropTypes.bool,
-};
-
-Textarea.defaultProps = {
-  name: PropTypes.string,
-  id: PropTypes.string,
-  cols: PropTypes.number,
-  rows: PropTypes.number,
-  required: PropTypes.bool,
-};
 
 export default Textarea;

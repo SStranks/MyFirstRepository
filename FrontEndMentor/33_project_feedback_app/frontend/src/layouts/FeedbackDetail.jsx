@@ -19,7 +19,7 @@ function FeedbackDetail(props) {
     <div className={styles.container}>
       <div className={styles.flex}>
         <nav>
-          <UtilityBarFeedback />
+          <UtilityBarFeedback request={request} />
         </nav>
         <main className={styles.flex}>
           {request ? (
