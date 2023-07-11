@@ -1,7 +1,9 @@
 import { Comment as CommentModel } from '#Models/CommentModel';
 import RequestModel from '#Models/RequestModel';
+import UserModel from '#Models/UserModel';
 import AppError from '#Utils/appError';
 import catchAsync from '#Utils/catchAsync';
+import catchAsyncTransaction from '#Utils/catchAsyncTransaction';
 import { NextFunction, Request, Response } from 'express';
 
 const getAllRequests = catchAsync(
@@ -14,7 +16,7 @@ const getAllRequests = catchAsync(
       status: 'success',
       results: requests.length,
       data: {
-        data: requests,
+        requests,
       },
     });
   }
@@ -30,7 +32,7 @@ const getRequest = catchAsync(
     return res.status(200).json({
       status: 'success',
       data: {
-        data: request,
+        request,
       },
     });
   }
@@ -50,7 +52,7 @@ const createRequest = catchAsync(
     return res.status(201).json({
       status: 'success',
       data: {
-        data: request,
+        request,
       },
     });
   }
@@ -78,7 +80,7 @@ const updateRequest = catchAsync(
     return res.status(200).json({
       status: 'success',
       data: {
-        data: request,
+        request,
       },
     });
   }
@@ -110,24 +112,50 @@ const getAllRequestComments = catchAsync(async (req, res, next) => {
   return res.status(200).json({
     status: 'success',
     data: {
-      data: comments,
+      comments,
     },
   });
 });
 
 const updateRequestUpvote = catchAsync(async (req, res, next) => {
-  // Transaction
-  // Find user, get upvote array
-  // If request id exists in array, throw error
-  // Add request id to array
-  // Increment the request upvote tally
-  const { id } = req.params;
+  const { id: requestId } = req.params;
   const { userId } = req.query;
-  console.log(id, userId);
 
-  return res.status(200).json({
-    data: 'Hellooo',
-  });
+  const request = await catchAsyncTransaction(
+    // eslint-disable-next-line no-shadow
+    async (req, res, next, session) => {
+      const userDoc = await UserModel.findById(userId, undefined, { session });
+
+      if (!userDoc)
+        throw new AppError('Could not find comment with that ID', 404);
+
+      const { upvotes } = userDoc;
+
+      if (upvotes.some((el) => el.toString() === requestId))
+        throw new AppError('Duplicate upvote', 404);
+
+      const userDocUpdated = await UserModel.findByIdAndUpdate(
+        userId,
+        { $addToSet: { upvotes: requestId } },
+        { session }
+      );
+
+      if (!userDoc) throw new AppError('Could not find user with that ID', 404);
+
+      const requestDoc = await RequestModel.findByIdAndUpdate(
+        requestId,
+        { $inc: { upvotes: 1 } },
+        { session, new: true }
+      );
+
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          request: requestDoc,
+        },
+      });
+    }
+  )(req, res, next);
 });
 
 export {

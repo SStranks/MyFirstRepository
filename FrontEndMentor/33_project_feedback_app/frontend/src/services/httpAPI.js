@@ -12,19 +12,23 @@ export default class httpAPI {
     this.client = client;
   }
 
-  get(url, config = {}) {
-    return this.client.get(url, config);
+  async get(url, config = {}) {
+    const res = await this.client.get(url, config);
+    return res.data.data;
   }
 
-  post(url, data = {}, config = {}) {
-    return this.client.post(url, data, config);
+  async post(url, data = {}, config = {}) {
+    const res = await this.client.post(url, data, config);
+    return res.data.data;
   }
 
-  patch(url, data = {}, config = {}) {
-    return this.client.patch(url, data, config);
+  async patch(url, data = {}, config = {}) {
+    const res = await this.client.patch(url, data, config);
+    return res.data.data;
   }
 
-  delete(url, config = {}) {
-    return this.client.delete(url, config);
+  async delete(url, config = {}) {
+    const res = await this.client.delete(url, config);
+    return res.data;
   }
 }

@@ -15,15 +15,11 @@ function useRequests() {
         setIsLoading(true);
         setIsError('');
 
-        const {
-          data: {
-            data: { data },
-          },
-        } = await API.get('/requests');
+        const { requests: data } = await API.get('/requests');
 
         setRequests(data);
       } catch (error) {
-        console.log('HELP');
+        console.log('HELP2');
         setIsError(error.message);
       } finally {
         setIsLoading(false);

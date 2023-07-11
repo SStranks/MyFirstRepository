@@ -33,12 +33,11 @@ function Form(props) {
       );
 
       try {
-        const res = await API.post('/requests', {
+        const { request } = await API.post('/requests', {
           title,
           category,
           description,
         });
-
         // TODO:  Pop up success with toast?
         setModalOpen(false);
       } catch (error) {

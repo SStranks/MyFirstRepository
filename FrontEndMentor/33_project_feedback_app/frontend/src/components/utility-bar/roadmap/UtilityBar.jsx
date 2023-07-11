@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FormFeedbackNew } from '../..';
 import IconArrowLeft from '../../../assets/svg/shared/icon-arrow-left.svg';
 import Button from '../../custom/button/Button';
+import FormFeedbackNew from '../../form/feedback-new/Form';
 import Modal from '../../modal/Modal';
 import styles from './_UtilityBar.module.scss';
 

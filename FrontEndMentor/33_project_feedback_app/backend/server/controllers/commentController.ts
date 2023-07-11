@@ -31,7 +31,7 @@ const createComment = catchAsync(async (req, res, next) => {
     return res.status(201).json({
       status: 'success',
       data: {
-        data: comment,
+        comment,
       },
     });
   }
@@ -63,7 +63,7 @@ const createComment = catchAsync(async (req, res, next) => {
     return res.status(201).json({
       status: 'success',
       data: {
-        data: comment,
+        comment,
       },
     });
   }
@@ -88,7 +88,7 @@ const updateComment = catchAsync(async (req, res, next) => {
   return res.status(200).json({
     status: 'success',
     data: {
-      data: comment,
+      comment,
     },
   });
 });

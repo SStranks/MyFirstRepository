@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema<IUser>({
   upvotes: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment',
+      ref: 'Request',
     },
   ],
 });

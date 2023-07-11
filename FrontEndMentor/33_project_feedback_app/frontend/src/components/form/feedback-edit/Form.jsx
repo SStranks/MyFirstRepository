@@ -43,7 +43,7 @@ function Form(props) {
         } = Object.fromEntries(dataObject.entries());
 
         try {
-          const res = await API.patch(`requests/${id}`, {
+          const { request: data } = await API.patch(`requests/${id}`, {
             title: newTitle,
             category: newCategory,
             description: newDescription,
@@ -63,6 +63,8 @@ function Form(props) {
     if (value === 'delete') {
       try {
         const res = await API.delete(`/requests/${id}`);
+
+        console.log(res);
 
         // TODO:  Pop up success with toast?
         setModalOpen(false);
