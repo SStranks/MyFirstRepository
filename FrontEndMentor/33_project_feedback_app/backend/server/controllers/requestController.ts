@@ -1,10 +1,19 @@
-import { Comment as CommentModel } from '#Models/CommentModel';
+/* eslint-disable unicorn/no-array-reduce */
+/* eslint-disable unicorn/prefer-object-from-entries */
+/* eslint-disable unicorn/no-array-for-each */
+/* eslint-disable no-underscore-dangle */
+import CommentModel, {
+  IComment,
+  ICommentHydrated,
+  ICommentPopulateUser,
+} from '#Models/CommentModel';
 import RequestModel from '#Models/RequestModel';
 import UserModel from '#Models/UserModel';
 import AppError from '#Utils/appError';
 import catchAsync from '#Utils/catchAsync';
 import catchAsyncTransaction from '#Utils/catchAsyncTransaction';
 import { NextFunction, Request, Response } from 'express';
+import { Types } from 'mongoose';
 
 const getAllRequests = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -100,11 +109,71 @@ const deleteRequest = catchAsync(
   }
 );
 
+// NOTE:  Could refactor this; responseCommentObject to array?
 const getAllRequestComments = catchAsync(async (req, res, next) => {
   const requestId = req.params.id;
-  const comments = await CommentModel.find({ requestId });
+  const comments = await CommentModel.find(
+    { requestId },
+    ' -requestId -created -__v'
+  ).populate<ICommentPopulateUser>('user', 'name username photo -_id');
 
-  // TODO:  Currently fetched all comments on a request. Now need to sort according to parents.length and build up a nested replies object to send back to client (which can then be parsed).
+  interface IResObj {
+    [key: string]: ICommentHydrated[];
+  }
+
+  // Hashmap of all comments. Strucutre: commentid: {comment}
+  const allComments: { [key: string]: ICommentHydrated } = comments.reduce(
+    (acc, cur) => ({ ...acc, [cur._id]: cur }),
+    {}
+  );
+
+  // Create object of arrays which hold all comments tied to a root comment
+  const responseCommentsObject: IResObj = {};
+  comments.forEach((el) => {
+    const rootCommentId = el.parents[0].toString();
+    if (!(rootCommentId in responseCommentsObject))
+      responseCommentsObject[`${rootCommentId}`] = [];
+    responseCommentsObject[`${rootCommentId}`].push(el);
+  });
+
+  // Sort each array so most deeply nested comments are first, root last
+  Object.keys(responseCommentsObject).forEach((el) => {
+    responseCommentsObject[`${el}`].sort((a, b) => {
+      if (a.parents.length < b.parents.length) return 1;
+      if (a.parents.length > b.parents.length) return -1;
+      return 0;
+    });
+  });
+
+  // Iterate over comments and build up the reply chain
+  Object.keys(responseCommentsObject).forEach((el) => {
+    responseCommentsObject[`${el}`].forEach((comment) => {
+      // Ignore Root
+      if (comment.parents.length > 1) {
+        const parentId = comment.parents[comment.parents.length - 2];
+        const parentComment = allComments[`${parentId}`];
+        const { username: replyingTo } = parentComment.user;
+
+        if (parentComment) {
+          if (!parentComment.replies) {
+            parentComment.replies = [];
+          }
+          const { user, content, replies } = comment;
+          parentComment.replies.push({ user, content, replies, replyingTo });
+        }
+      }
+    });
+  });
+
+  // Return formatted root comments only
+  const responseData = Object.keys(responseCommentsObject).map((el) => {
+    const rootComment =
+      responseCommentsObject[`${el}`][
+        responseCommentsObject[`${el}`].length - 1
+      ];
+    const { user, content, replies } = rootComment;
+    return { user, content, replies };
+  });
 
   if (!comments)
     return next(new AppError('No document found with that ID', 404));
@@ -112,7 +181,7 @@ const getAllRequestComments = catchAsync(async (req, res, next) => {
   return res.status(200).json({
     status: 'success',
     data: {
-      comments,
+      responseData,
     },
   });
 });
@@ -122,7 +191,6 @@ const updateRequestUpvote = catchAsync(async (req, res, next) => {
   const { userId } = req.query;
 
   const request = await catchAsyncTransaction(
-    // eslint-disable-next-line no-shadow
     async (req, res, next, session) => {
       const userDoc = await UserModel.findById(userId, undefined, { session });
 

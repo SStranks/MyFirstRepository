@@ -50,8 +50,10 @@
       { "argsIgnorePattern": ["request", "response", "next"] }
     ],
     "no-console": "off",
-    "arrow-body-style": "off"
-    // "func-names": "off",
+    "arrow-body-style": "off",
+    "no-shadow": ["error", { "allow": ["req", "res", "next"] }],
+    "func-names": "off",
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
     // "no-process-exit": "off",
     // "object-shorthand": "off",
     // "class-methods-use-this": "off",

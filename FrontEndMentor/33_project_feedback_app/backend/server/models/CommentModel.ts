@@ -1,42 +1,58 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable func-names */
-import mongoose, { Document } from 'mongoose';
+import { Document, Schema, Types, model } from 'mongoose';
 
-interface IComment extends Document {
-  user: mongoose.Types.ObjectId;
+export interface ICommentPopulateUser {
+  user: { username: string; user: string; photo: string };
+}
+
+export interface IComment extends Document {
+  user: Types.ObjectId;
   content: string;
   requestId: string;
-  parents: mongoose.Types.ObjectId[];
+  parents: Types.ObjectId[];
   created: Date;
 }
 
-const commentSchema = new mongoose.Schema<IComment>({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
-  content: {
-    type: String,
-    trim: true,
-    minlength: [2, 'Comment must be longer than 2 characters'],
-    maxlength: [500, 'Comment can be no longer than 500 characters'],
-  },
-  requestId: {
-    type: String,
-    required: true,
-  },
-  parents: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment',
+export interface ICommentHydrated
+  extends Omit<IComment, 'user'>,
+    ICommentPopulateUser {
+  _id: Types.ObjectId;
+  replyingTo?: string;
+  replies?: unknown[];
+}
+
+const commentSchema = new Schema<IComment>(
+  {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
     },
-  ],
-  created: {
-    type: Date,
-    default: Date.now(),
+    content: {
+      type: String,
+      trim: true,
+      minlength: [2, 'Comment must be longer than 2 characters'],
+      maxlength: [500, 'Comment can be no longer than 500 characters'],
+    },
+    requestId: {
+      type: String,
+      required: true,
+    },
+    parents: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment',
+      },
+    ],
+    created: {
+      type: Date,
+      default: Date.now(),
+    },
   },
-});
+  {
+    toObject: { virtuals: true },
+    toJSON: { virtuals: true },
+  }
+);
 
 // If Root comment; top parent id should be this._id
 commentSchema.pre('save', function (next) {
@@ -44,6 +60,9 @@ commentSchema.pre('save', function (next) {
   next();
 });
 
-const Comment = mongoose.model<IComment>('Comment', commentSchema);
+commentSchema.virtual('replies');
+commentSchema.virtual('replyingTo');
 
-export { Comment, IComment };
+const Comment = model<IComment>('Comment', commentSchema);
+
+export default Comment;

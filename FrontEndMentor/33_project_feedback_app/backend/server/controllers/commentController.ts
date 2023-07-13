@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { Comment } from '#Models/CommentModel';
+import CommentModel from '#Models/CommentModel';
 import RequestModel from '#Models/RequestModel';
 import AppError from '#Utils/appError';
 import catchAsync from '#Utils/catchAsync';
@@ -15,9 +15,10 @@ const createComment = catchAsync(async (req, res, next) => {
   if (!commentId) {
     // Find request document; add the new comment ID to request document comment[].
     const comment = await catchAsyncTransaction(
-      // eslint-disable-next-line no-shadow
       async (req, res, next, session) => {
-        const commentDoc = await Comment.create([commentData], { session });
+        const commentDoc = await CommentModel.create([commentData], {
+          session,
+        });
 
         const updateField = { $push: { comments: commentDoc[0]._id } };
         await RequestModel.findByIdAndUpdate(requestId, updateField, {
@@ -39,11 +40,14 @@ const createComment = catchAsync(async (req, res, next) => {
   if (commentId) {
     // Find comment document; copy comment.parents[] and merge it with new comment properties.
     const comment = await catchAsyncTransaction(
-      // eslint-disable-next-line no-shadow
       async (req, res, next, session) => {
-        const commentParent = await Comment.findById(commentId, undefined, {
-          session,
-        });
+        const commentParent = await CommentModel.findById(
+          commentId,
+          undefined,
+          {
+            session,
+          }
+        );
 
         let parents;
         if (commentParent) {
@@ -55,7 +59,9 @@ const createComment = catchAsync(async (req, res, next) => {
         const newObjId = new mongoose.Types.ObjectId();
         parents.push(newObjId);
         const commentFields = { ...commentData, _id: newObjId, parents };
-        const commentDoc = await Comment.create([commentFields], { session });
+        const commentDoc = await CommentModel.create([commentFields], {
+          session,
+        });
         return commentDoc;
       }
     )(req, res, next);
@@ -73,7 +79,7 @@ const createComment = catchAsync(async (req, res, next) => {
 
 const updateComment = catchAsync(async (req, res, next) => {
   const { content } = req.body;
-  const comment = await Comment.findByIdAndUpdate(
+  const comment = await CommentModel.findByIdAndUpdate(
     req.params.id,
     { content },
     {
