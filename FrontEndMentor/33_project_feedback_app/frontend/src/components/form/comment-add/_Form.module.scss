@@ -15,11 +15,11 @@
     margin-bottom: f.px2em(24);
   }
 
-  &__textarea {
+  & textarea {
     @include body-2;
     @include textarea;
     min-height: 80px;
-    margin-bottom: f.px2em(16);
+    margin-bottom: f.px2em(8);
   }
 
   &__bar {
@@ -33,5 +33,11 @@
   &__btnPost {
     width: 144px;
     height: 44px;
+  }
+
+  &__submitted {
+    & textarea:invalid {
+      @include inputError;
+    }
   }
 }

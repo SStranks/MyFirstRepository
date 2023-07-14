@@ -4,19 +4,22 @@ import Comment from '../comment/Comment.jsx';
 import styles from './_CommentsList.module.scss';
 
 // Development Data
-import JSONData from '../../data/data.json';
+// import JSONData from '../../data/data.json';
+// import HttpAPI from '../../services/httpAPI.js';
+import useComments from '../../hooks/useGetAllComments.js';
+
+// const API = new HttpAPI();
 
 function Comments(props) {
   const { request } = props;
-  // Temporary Development Data
-  const JSONComment = JSONData.productRequests[1].comments;
-  const numberOfComments = request?.comments.length;
-  // const comment = JSONComment.content;
-  // const { image, name, username } = JSONComment.user;
+  const [comments, isLoading, error] = useComments(request?.id);
+  const numberOfComments = comments?.results;
 
-  const commentsList = JSONComment.map((el, i, arr) => (
+  const commentsList = comments?.resComments.map((el, i, arr) => (
     <Fragment key={el.id}>
       <Comment
+        commentId={el.id}
+        requestId={request.id}
         name={el.user.name}
         username={el.user.username}
         content={el.content}

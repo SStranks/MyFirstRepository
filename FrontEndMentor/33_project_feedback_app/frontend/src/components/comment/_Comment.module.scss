@@ -101,6 +101,12 @@
         width: 100%;
       }
     }
+
+    &__submitted {
+      & textarea:invalid {
+        @include inputError;
+      }
+    }
   }
 
   &__replies-container {

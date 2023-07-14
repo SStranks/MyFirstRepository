@@ -9,6 +9,7 @@ interface IRequest {
   status: string;
   description: string;
   comments: mongoose.Types.ObjectId[];
+  totalComments: number;
 }
 
 const requestSchema = new mongoose.Schema<IRequest>(
@@ -47,6 +48,10 @@ const requestSchema = new mongoose.Schema<IRequest>(
         ref: 'Comment',
       },
     ],
+    totalComments: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     toJSON: { virtuals: true },

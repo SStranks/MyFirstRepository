@@ -1,24 +1,73 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import ProfileIcon from '../../assets/img/image-elijah.jpg';
+import { useUser } from '../../context/UserContext';
+import HttpAPI from '../../services/httpAPI';
 import ButtonSubmit from '../custom/button/ButtonSubmit';
-import Textarea from '../custom/textarea/InputTextArea';
+import InputTextarea from '../custom/textarea/InputTextArea';
 import styles from './_Comment.module.scss';
 
+const API = new HttpAPI();
+
 function Comment(props) {
-  const { name, username, content, parent, replies, replyingTo } = props;
+  const {
+    requestId,
+    commentId,
+    name,
+    username,
+    content,
+    parent,
+    replies,
+    replyingTo,
+  } = props;
   const [formActive, setFormActive] = useState(false);
+  const user = useUser();
 
   const btnReplyClickHandler = () => {
     setFormActive(true);
   };
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formElement = e.target;
+    const isValid = formElement.checkValidity();
+
+    formElement.classList.add(styles.comment__form__submitted);
+
+    // Focus on first invalid input
+    const firstInvalidInput = formElement.querySelector(':invalid');
+    firstInvalidInput?.focus();
+
+    // Submit if valid
+    if (isValid) {
+      const dataObject = new FormData(formElement);
+      const { comment } = Object.fromEntries(dataObject.entries());
+
+      try {
+        const res = await API.post(
+          `/comments?request=${requestId}&comment=${commentId}`,
+          {
+            user,
+            content: comment,
+          }
+        );
+        console.log(res);
+        // TODO:  Pop up success with toast?
+      } catch (error) {
+        // TODO:  Pop up error with toast?
+        console.log('ERROR', error);
+      }
+    }
+  };
+
   const commentReplies = replies
-    ? replies.map((el, i) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <div className={styles['comment__replies-container']} key={i}>
+    ? replies.map((el) => (
+        <div className={styles['comment__replies-container']} key={el.id}>
           <Comment
+            requestId={requestId}
+            commentId={el.id}
             replyingTo={el.replyingTo}
+            replies={el.replies}
             content={el.content}
             name={el.user.name}
             username={el.user.username}
@@ -61,8 +110,17 @@ function Comment(props) {
         {content}
       </p>
       {formActive ? (
-        <form className={styles.comment__form} action="submit" id="reply">
-          <Textarea />
+        <form
+          className={styles.comment__form}
+          onSubmit={onSubmit}
+          id="reply"
+          noValidate>
+          <InputTextarea
+            name="comment"
+            maxLength={250}
+            placeholder="Type your reply here"
+            required
+          />
           <div className={styles.comment__form__btn}>
             <ButtonSubmit
               classList={['w-117', 'bg-magenta']}
@@ -77,24 +135,5 @@ function Comment(props) {
     </div>
   );
 }
-
-Comment.propTypes = {
-  name: PropTypes.string,
-  username: PropTypes.string,
-  content: PropTypes.string,
-  parent: PropTypes.bool,
-  replyingTo: PropTypes.string,
-  replies: PropTypes.arrayOf(PropTypes.shape()),
-};
-
-Comment.defaultProps = {
-  name: 'Elijah DEFAULT',
-  username: 'hexagon.DEFAULT',
-  content:
-    'DEFAULT COMMENT Second this! I do a lot of late night coding and reading. Adding a dark theme can be great for preventing eye strain and the headaches that result. It’s also quite a trend with modern apps and  apparently saves battery life.',
-  parent: undefined,
-  replyingTo: undefined,
-  replies: undefined,
-};
 
 export default Comment;

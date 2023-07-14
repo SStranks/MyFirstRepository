@@ -1,24 +1,15 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
 import styles from './_Tag.module.scss';
 
 function Tag(props) {
-  const { title, active } = props;
+  const { title, name, id, defaultChecked, onChange } = props;
 
   return (
-    <div className={`${styles.tag} ${active ? styles['tag--active'] : ''}`}>
+    <label htmlFor={id} className={styles.tag} onChange={onChange}>
+      <input type="radio" name={name} id={id} defaultChecked={defaultChecked} />
       {title}
-    </div>
+    </label>
   );
 }
-
-Tag.propTypes = {
-  title: PropTypes.string,
-  active: PropTypes.bool,
-};
-
-Tag.defaultProps = {
-  title: PropTypes.string,
-  active: PropTypes.bool,
-};
 
 export default Tag;

@@ -30,11 +30,11 @@ function FeedbackDetail(props) {
               description={request.description}
               category={request.category}
               active={false}
-              comments={request.comments}
+              comments={request.totalComments}
             />
           ) : undefined}
           <CommentsList request={request} />
-          <FormCommentAdd />
+          <FormCommentAdd requestId={requestId} />
         </main>
       </div>
     </div>

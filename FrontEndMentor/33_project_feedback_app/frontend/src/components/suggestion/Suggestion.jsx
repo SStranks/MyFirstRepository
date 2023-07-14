@@ -25,7 +25,7 @@ function Suggestion(props) {
       <div className={styles.item__comment}>
         <img src={IconMessage} alt="" />
         <span className={!comments ? `${styles['no-comments']}` : ''}>
-          {comments ? comments.length : '0'}
+          {comments}
         </span>
       </div>
     </div>

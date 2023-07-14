@@ -22,7 +22,7 @@ function SuggestionsList(props) {
           description={cur.description}
           category={cur.category}
           active={false}
-          comments={cur.comments}
+          comments={cur.totalComments}
         />
       );
     return acc;

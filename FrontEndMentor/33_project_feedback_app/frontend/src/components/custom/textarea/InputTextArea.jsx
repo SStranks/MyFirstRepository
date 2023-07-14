@@ -2,8 +2,18 @@
 import { useState } from 'react';
 import styles from './_InputTextArea.module.scss';
 
-function Textarea(props) {
-  const { name, id, cols, rows, defaultValue, required } = props;
+function InputTextarea(props) {
+  const {
+    name,
+    id,
+    cols,
+    rows,
+    defaultValue,
+    required,
+    placeholder,
+    onChangeCallback,
+    maxLength,
+  } = props;
   const [validationMessage, setValidationMessage] = useState();
 
   const onInvalid = (e) => {
@@ -11,8 +21,9 @@ function Textarea(props) {
     setValidationMessage(target.validationMessage);
   };
 
-  const onChange = () => {
+  const onChange = (e) => {
     if (validationMessage) setValidationMessage();
+    if (onChangeCallback) onChangeCallback(maxLength, e.target.value.length);
   };
 
   return (
@@ -24,8 +35,10 @@ function Textarea(props) {
           id={id}
           cols={cols}
           rows={rows}
+          maxLength={maxLength}
           defaultValue={defaultValue}
           required={required}
+          placeholder={placeholder}
           onInvalid={onInvalid}
           onChange={onChange}
         />
@@ -39,4 +52,4 @@ function Textarea(props) {
   );
 }
 
-export default Textarea;
+export default InputTextarea;

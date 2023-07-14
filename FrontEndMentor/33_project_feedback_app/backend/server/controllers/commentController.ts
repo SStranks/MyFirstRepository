@@ -20,7 +20,10 @@ const createComment = catchAsync(async (req, res, next) => {
           session,
         });
 
-        const updateField = { $push: { comments: commentDoc[0]._id } };
+        const updateField = {
+          $push: { comments: commentDoc[0]._id },
+          $inc: { totalComments: 1 },
+        };
         await RequestModel.findByIdAndUpdate(requestId, updateField, {
           session,
         });
@@ -62,6 +65,14 @@ const createComment = catchAsync(async (req, res, next) => {
         const commentDoc = await CommentModel.create([commentFields], {
           session,
         });
+
+        const updateField = {
+          $inc: { totalComments: 1 },
+        };
+        await RequestModel.findByIdAndUpdate(requestId, updateField, {
+          session,
+        });
+
         return commentDoc;
       }
     )(req, res, next);

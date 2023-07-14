@@ -4,25 +4,27 @@ import HttpAPI from '../services/httpAPI';
 
 const API = new HttpAPI();
 
-function useRequests() {
+function useComments(requestId) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState('');
-  const [requests, setRequests] = useState();
+  const [comments, setComments] = useState();
 
   useEffect(() => {
     async function getAllRequests() {
+      if (!requestId) return;
       try {
         setIsLoading(true);
         setIsError('');
 
-        const res = await API.get('/requests');
+        const res = await API.get(`/requests/comments/${requestId}`);
         const {
-          data: { requests: resData },
+          results,
+          data: { resComments },
         } = res;
 
-        console.log(resData);
+        console.log(results, resComments);
 
-        setRequests(resData);
+        setComments({ resComments, results });
       } catch (error) {
         console.log('HELP2');
         setIsError(error.message);
@@ -32,9 +34,9 @@ function useRequests() {
     }
 
     getAllRequests();
-  }, []);
+  }, [requestId]);
 
-  return [requests, isLoading, isError];
+  return [comments, isLoading, isError];
 }
 
-export default useRequests;
+export default useComments;

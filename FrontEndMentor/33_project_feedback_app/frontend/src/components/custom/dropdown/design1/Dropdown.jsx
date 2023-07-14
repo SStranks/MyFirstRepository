@@ -1,16 +1,21 @@
-import PropTypes from 'prop-types';
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import IconArrowDown from '../../../../assets/svg/shared/icon-arrow-down.svg';
 import DropdownList from './DropdownList';
 import styles from './_Dropdown.module.scss';
 
 function Dropdown(props) {
-  const { listItems } = props;
+  const { listItems, dispatch } = props;
   const [currentSort, setCurrentSort] = useState(listItems[0]);
   const [active, setActive] = useState(false);
 
   const btnClickHandler = () => {
     setActive((prev) => !prev);
+  };
+
+  const dropdownClickHandler = (dropdownOption) => {
+    setCurrentSort(dropdownOption);
+    dispatch({ type: dropdownOption });
   };
 
   return (
@@ -35,18 +40,10 @@ function Dropdown(props) {
         listItems={listItems}
         name="sort-by"
         active={active}
-        setCurrentSort={setCurrentSort}
+        onClickSelectSort={dropdownClickHandler}
       />
     </div>
   );
 }
-
-Dropdown.propTypes = {
-  listItems: PropTypes.arrayOf(PropTypes.string),
-};
-
-Dropdown.defaultProps = {
-  listItems: undefined,
-};
 
 export default Dropdown;

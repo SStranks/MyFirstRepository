@@ -158,21 +158,27 @@ const getAllRequestComments = catchAsync(async (req, res, next) => {
           if (!parentComment.replies) {
             parentComment.replies = [];
           }
-          const { user, content, replies } = comment;
-          parentComment.replies.push({ user, content, replies, replyingTo });
+          const { user, content, replies, _id: id } = comment;
+          parentComment.replies.push({
+            user,
+            content,
+            replies,
+            replyingTo,
+            id,
+          });
         }
       }
     });
   });
 
   // Return formatted root comments only
-  const responseData = Object.keys(responseCommentsObject).map((el) => {
+  const resComments = Object.keys(responseCommentsObject).map((el) => {
     const rootComment =
       responseCommentsObject[`${el}`][
         responseCommentsObject[`${el}`].length - 1
       ];
-    const { user, content, replies } = rootComment;
-    return { user, content, replies };
+    const { user, content, replies, _id: id } = rootComment;
+    return { user, content, replies, id };
   });
 
   if (!comments)
@@ -180,8 +186,9 @@ const getAllRequestComments = catchAsync(async (req, res, next) => {
 
   return res.status(200).json({
     status: 'success',
+    results: comments.length,
     data: {
-      responseData,
+      resComments,
     },
   });
 });
