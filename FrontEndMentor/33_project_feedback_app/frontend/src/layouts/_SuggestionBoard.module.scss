@@ -4,9 +4,8 @@
 .container {
   display: flex;
   justify-content: center;
-  padding-top: f.px2em(94);
-  padding-bottom: f.px2em(128);
-  padding: f.px2em(94) f.px2em(40) f.px2em(128) f.px2em(40);
+  height: 100%;
+  padding: f.px2em(94) f.px2em(40) f.px2em(40) f.px2em(40);
 
   @include media(mobile-large, mobile-medium, mobile-small) {
     flex-direction: column;
@@ -20,11 +19,13 @@
   display: grid;
   grid-template-columns: minmax(200px, 255px) minmax(500px, 825px);
   column-gap: f.px2em(30);
+  height: 100%;
 
   &__sub-grid-1 {
     display: flex;
     flex-direction: column;
     row-gap: f.px2em(24);
+    height: 100%;
 
     @include media(tablet-regular, tablet-small) {
       display: grid;
@@ -42,8 +43,14 @@
   &__sub-grid-2 {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(1fr, auto);
     row-gap: f.px2em(24);
+    height: 100%;
+    overflow-y: hidden;
+
+    & > main {
+      height: 100%;
+      overflow-y: hidden;
+    }
   }
 
   @include media(tablet-regular, tablet-small) {

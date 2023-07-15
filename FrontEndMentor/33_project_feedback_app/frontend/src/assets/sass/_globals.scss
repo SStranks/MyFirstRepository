@@ -34,24 +34,23 @@ html {
 
 body {
   position: relative;
+  height: 100%;
   width: 100%;
   background: var(--color-background);
   color: var(--color-text-p);
   transition: a.$Theme-transition;
+  overflow-y: hidden;
+}
+
+#root {
+  max-height: 100vh;
+  height: 100%;
 }
 
 img {
   display: block;
   height: 100%;
 }
-
-// ul,
-// ol {
-//   padding-left: 1em;
-//   & li {
-//     padding-left: 1.5em;
-//   }
-// }
 
 button {
   display: flex;
@@ -81,22 +80,6 @@ input {
     transition: a.$Theme-transition;
   }
 }
-
-// *::-webkit-scrollbar {
-//   background: red;
-//   width: 10px;
-// }
-
-// *::-webkit-scrollbar-track {
-//   background: orange;
-//   width: 10px;
-// }
-
-// *::-webkit-scrollbar-thumb {
-//   background-color: blue;
-//   border-radius: 20px;
-//   border: 3px solid orange;
-// }
 
 textarea {
   cursor: pointer;

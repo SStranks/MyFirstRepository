@@ -20,8 +20,6 @@ function useRequests() {
           data: { requests: resData },
         } = res;
 
-        console.log(resData);
-
         setRequests(resData);
       } catch (error) {
         console.log('HELP2');

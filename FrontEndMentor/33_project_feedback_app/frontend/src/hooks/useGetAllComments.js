@@ -22,8 +22,6 @@ function useComments(requestId) {
           data: { resComments },
         } = res;
 
-        console.log(results, resComments);
-
         setComments({ resComments, results });
       } catch (error) {
         console.log('HELP2');

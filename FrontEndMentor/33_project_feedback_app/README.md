@@ -65,3 +65,5 @@ Captured at the following breakpoints from the live solution: Desktop - 1440px, 
 - [Stackoverflow: Create Replicaset](https://stackoverflow.com/questions/76013265/how-to-do-a-mongodb-6-single-node-replicaset-with-docker-compose)
 - [MongoDB: Delete Local DB / Privileges](https://superuser.com/questions/1443569/mongodb-cant-drop-local-database-with-root-user)
 - [TS: Transaction Helper](https://github.com/cashpositive-org/mongoose-transact-utils/blob/master/src/index.ts)
+- [Mongoose: TS Populate](https://mongoosejs.com/docs/typescript/populate.html)
+- [Array of Ancestors: Threaded Comments](https://citywebconsultants.co.uk/blogs/threaded-comments-with-an-array-of-ancestors-structure-in-mongodb)

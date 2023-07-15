@@ -9,8 +9,20 @@
   grid-template-columns: max-content auto max-content;
 
   @include media(mobile-large, mobile-medium, mobile-small) {
+    & > form {
+      grid-area: tag;
+    }
+
+    & > a {
+      grid-area: main;
+    }
+
+    & > div {
+      grid-area: comment;
+    }
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, max-content);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas: 'main main' 'tag comment';
     row-gap: f.px2em(16);
   }
 

@@ -25,7 +25,7 @@ function Roadmap(props) {
         </Link>
         <Tag
           title={`${category[0].toUpperCase()}${category.slice(1)}`}
-          active={false}
+          disabled
         />
         <div className={styles.innerCard__UI}>
           <Upvote flexRow upvotes={upvotes} requestId={id} />
