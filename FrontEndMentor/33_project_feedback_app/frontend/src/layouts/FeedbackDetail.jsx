@@ -17,25 +17,27 @@ function FeedbackDetail(props) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.flex}>
-        <nav>
-          <UtilityBarFeedback request={request} />
-        </nav>
-        <main className={styles.flex}>
-          {request ? (
-            <Suggestion
-              id={request.id}
-              upvotes={request.upvotes}
-              title={request.title}
-              description={request.description}
-              category={request.category}
-              active={false}
-              comments={request.totalComments}
-            />
-          ) : undefined}
-          <CommentsList request={request} />
-          <FormCommentAdd requestId={requestId} />
-        </main>
+      <div className={styles.subContainer}>
+        <div className={styles.flex}>
+          <nav>
+            <UtilityBarFeedback request={request} />
+          </nav>
+          <main className={styles.mainContent}>
+            {request ? (
+              <Suggestion
+                id={request.id}
+                upvotes={request.upvotes}
+                title={request.title}
+                description={request.description}
+                category={request.category}
+                active={false}
+                comments={request.totalComments}
+              />
+            ) : undefined}
+            <CommentsList request={request} />
+            <FormCommentAdd requestId={requestId} />
+          </main>
+        </div>
       </div>
     </div>
   );

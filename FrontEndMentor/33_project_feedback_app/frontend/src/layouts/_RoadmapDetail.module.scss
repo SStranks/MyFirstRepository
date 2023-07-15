@@ -5,8 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: f.px2em(78);
-  padding-bottom: f.px2em(178);
+  height: 100%;
   padding: f.px2em(78) f.px2em(20) f.px2em(178);
 
   @include media(tablet-regular, tablet-small, desktop-small) {
