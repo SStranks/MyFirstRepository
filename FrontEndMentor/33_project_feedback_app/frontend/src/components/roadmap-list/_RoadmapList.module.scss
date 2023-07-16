@@ -71,11 +71,13 @@
     &__title {
       // Only visible on mobile widths; Single title vs all three on larger devices
       padding: 0 f.px2em(24);
+
       h3 {
         @include body-8;
         color: $navy-blue;
         margin-bottom: f.px2em(5);
       }
+
       p {
         @include body-7;
         color: $mute-blue;
@@ -98,7 +100,7 @@
       display: none;
     }
 
-    h3 {
+    & > h3 {
       color: $navy-blue;
 
       @include media(
@@ -112,7 +114,7 @@
       }
     }
 
-    p {
+    & > p {
       color: $mute-blue;
 
       @include media(
@@ -127,13 +129,19 @@
     }
   }
 
-  &__subgrid {
+  // &__subgrid {
+  //   height: 100%;
+  // }
+
+  &__subgrid2 {
     grid-column: 1 / span 3;
     display: grid;
     grid-template-columns: inherit;
     grid-auto-flow: column;
     column-gap: inherit;
     row-gap: f.px2em(24);
+    // height: 100%;
+    // overflow-y: auto;
 
     @include media(tablet-regular, tablet-small) {
       row-gap: f.px2em(16);

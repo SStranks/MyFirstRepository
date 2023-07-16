@@ -1,16 +1,21 @@
 /* eslint-disable unicorn/no-array-for-each */
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import useMediaQuery from '../../hooks/useMediaQuery';
 import Roadmap from '../roadmap/Roadmap';
 import styles from './_RoadmapList.module.scss';
 
+import styles2 from '../../assets/sass/_exports.module.scss';
+
+console.log(styles2.test);
+
+// Width at which mobile request.status filtering becomes actives
+const mediaQuery = '(width < 700px)';
+
 function RoadmapList(props) {
   const { requests } = props;
-  const [mobileFilter, setmobileFilter] = useState({
-    planned: true,
-    'in-progress': false,
-    live: false,
-  });
+  const isMobileFilter = useMediaQuery(mediaQuery);
+  const [requestStatusFilter, setRequestStatusFilter] = useState('planned');
   let plannedNum = 0;
   let inProgressNum = 0;
   let liveNum = 0;
@@ -23,16 +28,17 @@ function RoadmapList(props) {
   });
 
   const radioInputHandler = (e) => {
-    setmobileFilter({
-      planned: false,
-      'in-progress': false,
-      live: false,
-      [e.target.value]: true,
-    });
+    setRequestStatusFilter(e.target.value);
   };
 
   const roadmapItems = requests
-    ?.filter((item) => ['planned', 'in-progress', 'live'].includes(item.status))
+    ?.filter((item) => {
+      if (item.status === 'suggestion') return false;
+      if (isMobileFilter) {
+        return item.status === requestStatusFilter;
+      }
+      return true;
+    })
     .map((item) => (
       <Roadmap
         key={item.id}
@@ -90,28 +96,28 @@ function RoadmapList(props) {
         </label>
         <div
           className={`${styles['grid__mobile-nav__activebar']} ${
-            mobileFilter.planned
+            requestStatusFilter === 'planned'
               ? styles.col1
-              : mobileFilter['in-progress']
+              : requestStatusFilter === 'in-progress'
               ? styles.col2
               : styles.col3
           }`}
         />
       </form>
       <div className={styles['grid__mobile-nav__title']}>
-        {mobileFilter.planned && (
+        {requestStatusFilter === 'planned' && (
           <>
             <h3>{`Planned (${plannedNum})`}</h3>
             <p>Ideas prioritized for research</p>
           </>
         )}
-        {mobileFilter['in-progress'] && (
+        {requestStatusFilter === 'in-progress' && (
           <>
             <h3>{`In-Progress (${inProgressNum})`}</h3>
             <p>Currently being developed</p>
           </>
         )}
-        {mobileFilter.live && (
+        {requestStatusFilter === 'live' && (
           <>
             <h3>{`Live (${liveNum})`}</h3>
             <p>Released features</p>
@@ -130,7 +136,10 @@ function RoadmapList(props) {
         <h3>{`Live (${liveNum})`}</h3>
         <p>Released features</p>
       </div>
-      <div className={styles.grid__subgrid}>{roadmapItems}</div>
+      <div className={styles.grid__subgrid}>
+        <div className={styles.grid__subgrid2}>{roadmapItems}</div>
+      </div>
+      {/* <div className={styles.grid__subgrid}>{roadmapItems}</div> */}
     </div>
   );
 }

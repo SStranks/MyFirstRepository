@@ -79,7 +79,7 @@ function SuggestionBoard(props) {
       <div className={styles.grid}>
         <div className={styles['grid__sub-grid-1']}>
           <header>
-            <Header />
+            <Header requests={requests} setCategoryFilter={setCategoryFilter} />
           </header>
           <aside className={styles.grid__aside}>
             <AsideTags setCategoryFilter={setCategoryFilter} />

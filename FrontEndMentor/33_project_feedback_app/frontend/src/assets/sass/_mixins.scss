@@ -219,6 +219,11 @@
         @content;
       }
     }
+    @if $arg == 'desktop-extra-small' {
+      @include desktop-extra-small {
+        @content;
+      }
+    }
     @if $arg == 'desktop-small' {
       @include desktop-small {
         @content;
@@ -276,6 +281,12 @@
 
 @mixin tablet-all {
   @media (min-width: #{$tablet-s}) and (max-width: #{$tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-extra-small {
+  @media (min-width: #{$tablet}) and (max-width: #{$desktop-s - 1px}) {
     @content;
   }
 }

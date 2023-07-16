@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import IconModalClose from '../../assets/svg/shared/icon-close.svg';
@@ -6,7 +7,8 @@ import AsideRoadmap from '../aside-roadmap/AsideRoadmap';
 import AsideTags from '../aside-tags/AsideTags';
 import styles from './_Header.module.scss';
 
-function Header() {
+function Header(props) {
+  const { requests, setCategoryFilter } = props;
   const [modalActive, setModalActive] = useState(false);
 
   const btnModalHandler = () => {
@@ -38,8 +40,8 @@ function Header() {
       {modalActive ? (
         <div className={styles['mobile-modal']}>
           <div className={styles['mobile-modal__side']}>
-            <AsideTags />
-            <AsideRoadmap />
+            <AsideTags setCategoryFilter={setCategoryFilter} />
+            <AsideRoadmap requests={requests} />
           </div>
         </div>
       ) : (

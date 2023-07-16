@@ -7,11 +7,14 @@
   height: 100%;
   padding: f.px2em(94) f.px2em(40) f.px2em(40) f.px2em(40);
 
+  @include media(desktop-extra-small, tablet-small) {
+    padding-top: f.px2em(50);
+  }
+
   @include media(mobile-large, mobile-medium, mobile-small) {
     flex-direction: column;
     width: 100%;
     padding: 0;
-    padding-bottom: f.px2em(55);
   }
 }
 
@@ -36,6 +39,7 @@
     @include media(mobile-large, mobile-medium, mobile-small) {
       display: grid;
       grid-template-columns: 1fr;
+      height: 100px;
       width: 100%;
     }
   }
@@ -60,6 +64,8 @@
 
   @include media(mobile-large, mobile-medium, mobile-small) {
     grid-template-columns: 1fr;
+    grid-template-rows: min-content auto;
+    row-gap: 0;
   }
 
   &__aside {
@@ -68,11 +74,3 @@
     }
   }
 }
-
-// .mobile-nav {
-//   @include media(mobile-large, mobile-medium, mobile-small) {
-//     position: absolute;
-//     bottom: 0;
-//     background-color: red;
-//   }
-// }
