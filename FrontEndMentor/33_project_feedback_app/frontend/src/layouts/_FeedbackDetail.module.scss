@@ -10,12 +10,13 @@
   overflow-y: auto;
 
   @include media(mobile-large, mobile-medium, mobile-small) {
-    padding: f.px2em(24) f.px2em(24) f.px2em(88);
+    padding: f.px2em(24) 0 f.px2em(88);
   }
 }
 
 .subContainer {
   height: 100%;
+  width: 100%;
 }
 
 .flex {
@@ -23,7 +24,13 @@
   flex-direction: column;
   row-gap: f.px2em(24);
   max-width: f.px2rem(730);
+  width: 100%;
   padding: f.px2em(80) f.px2em(40) f.px2em(129);
+  margin-inline: auto;
+
+  @include media(mobile-large, mobile-medium, mobile-small) {
+    padding: 0 f.px2em(20) f.px2em(129);
+  }
 }
 
 .mainContent {
