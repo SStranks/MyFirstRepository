@@ -6,14 +6,14 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
-  padding: f.px2em(78) f.px2em(20) f.px2em(178);
+  padding: f.px2em(78) f.px2em(20) f.px2em(0);
 
   @include media(tablet-regular, tablet-small, desktop-small) {
-    padding: f.px2em(56) f.px2em(30) f.px2em(95);
+    padding: f.px2em(56) f.px2em(30) f.px2em(0);
   }
 
   @include media(mobile-large, mobile-medium, mobile-small) {
-    padding: 0 0 f.px2em(95);
+    padding: 0;
   }
 }
 
@@ -21,7 +21,12 @@
   display: flex;
   flex-direction: column;
   row-gap: f.px2em(48);
+  height: 100%;
   max-width: 1110px;
+
+  & > main {
+    height: 100%;
+  }
 
   @include media(mobile-large, mobile-medium, mobile-small) {
     width: 100%;

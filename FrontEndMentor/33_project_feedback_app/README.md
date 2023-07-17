@@ -67,3 +67,4 @@ Captured at the following breakpoints from the live solution: Desktop - 1440px, 
 - [TS: Transaction Helper](https://github.com/cashpositive-org/mongoose-transact-utils/blob/master/src/index.ts)
 - [Mongoose: TS Populate](https://mongoosejs.com/docs/typescript/populate.html)
 - [Array of Ancestors: Threaded Comments](https://citywebconsultants.co.uk/blogs/threaded-comments-with-an-array-of-ancestors-structure-in-mongodb)
+- [Exporting SASS variables to JS](https://spacejelly.dev/posts/how-to-export-sass-variables-to-javascript-with-next-js/#step-3-exporting-sass-variables-and-importing-them-into-javascript)

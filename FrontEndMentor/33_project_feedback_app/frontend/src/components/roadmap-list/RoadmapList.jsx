@@ -5,10 +5,6 @@ import useMediaQuery from '../../hooks/useMediaQuery';
 import Roadmap from '../roadmap/Roadmap';
 import styles from './_RoadmapList.module.scss';
 
-import styles2 from '../../assets/sass/_exports.module.scss';
-
-console.log(styles2.test);
-
 // Width at which mobile request.status filtering becomes actives
 const mediaQuery = '(width < 700px)';
 
@@ -136,10 +132,10 @@ function RoadmapList(props) {
         <h3>{`Live (${liveNum})`}</h3>
         <p>Released features</p>
       </div>
-      <div className={styles.grid__subgrid}>
+      {/* <div className={styles.grid__subgrid}>
         <div className={styles.grid__subgrid2}>{roadmapItems}</div>
-      </div>
-      {/* <div className={styles.grid__subgrid}>{roadmapItems}</div> */}
+      </div> */}
+      <div className={styles.grid__subgrid}>{roadmapItems}</div>
     </div>
   );
 }
