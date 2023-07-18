@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from 'react-router-dom';
 import IconEditFeedback from '../../../assets/svg/shared/icon-edit-feedback.svg';
-import HttpAPI from '../../../services/httpAPI';
+import ApiClient from '../../../services/ApiHttp';
 import Button from '../../custom/button/Button';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import Dropdown from '../../custom/dropdown/design2/Dropdown';
@@ -9,7 +9,7 @@ import InputText from '../../custom/input-text/InputText';
 import Textarea from '../../custom/textarea/InputTextArea';
 import styles from './_Form.module.scss';
 
-const API = new HttpAPI();
+const API = new ApiClient();
 const CATEGORIES = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
 const STATUS = ['Suggestion', 'Planned', 'In-Progress', 'Live'];
 

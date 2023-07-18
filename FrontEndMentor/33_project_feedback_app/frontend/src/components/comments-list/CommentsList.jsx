@@ -5,10 +5,10 @@ import styles from './_CommentsList.module.scss';
 
 // Development Data
 // import JSONData from '../../data/data.json';
-// import HttpAPI from '../../services/httpAPI.js';
+// import ApiClient from '../../services/ApiHttp.js';
 import useComments from '../../hooks/useGetAllComments.js';
 
-// const API = new HttpAPI();
+// const API = new ApiClient();
 
 function Comments(props) {
   const { request } = props;

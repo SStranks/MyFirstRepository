@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useUser } from '../../../context/UserContext';
-import HttpAPI from '../../../services/httpAPI';
+import ApiClient from '../../../services/ApiHttp';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import InputTextArea from '../../custom/textarea/InputTextArea';
 import styles from './_Form.module.scss';
 
-const API = new HttpAPI();
+const API = new ApiClient();
 
 function Form(props) {
   const { requestId } = props;

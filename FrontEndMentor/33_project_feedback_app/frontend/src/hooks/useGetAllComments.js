@@ -1,8 +1,8 @@
 /* eslint-disable unicorn/filename-case */
 import { useEffect, useState } from 'react';
-import HttpAPI from '../services/httpAPI';
+import ApiClient from '../services/ApiHttp';
 
-const API = new HttpAPI();
+const API = new ApiClient();
 
 function useComments(requestId) {
   const [isLoading, setIsLoading] = useState(false);

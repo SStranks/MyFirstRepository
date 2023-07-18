@@ -2,12 +2,12 @@
 import { useState } from 'react';
 import ProfileIcon from '../../assets/img/image-elijah.jpg';
 import { useUser } from '../../context/UserContext';
-import HttpAPI from '../../services/httpAPI';
+import ApiClient from '../../services/ApiHttp';
 import ButtonSubmit from '../custom/button/ButtonSubmit';
 import InputTextarea from '../custom/textarea/InputTextArea';
 import styles from './_Comment.module.scss';
 
-const API = new HttpAPI();
+const API = new ApiClient();
 
 function Comment(props) {
   const {

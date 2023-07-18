@@ -1,8 +1,9 @@
 /* eslint-disable unicorn/filename-case */
 import { useEffect, useState } from 'react';
-import HttpAPI from '../services/httpAPI';
+import ApiService from '../services/Services';
+// import ApiClient from '../services/ApiHttp';
 
-const API = new HttpAPI();
+// const API = new ApiClient();
 
 function useRequests() {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,15 +15,9 @@ function useRequests() {
       try {
         setIsLoading(true);
         setIsError('');
-
-        const res = await API.get('/requests');
-        const {
-          data: { requests: resData },
-        } = res;
-
-        setRequests(resData);
+        const data = await ApiService.getAllRequests();
+        setRequests(data);
       } catch (error) {
-        console.log('HELP2');
         setIsError(error.message);
       } finally {
         setIsLoading(false);

@@ -2,10 +2,10 @@
 import { useState } from 'react';
 import IconArrowUp from '../../../assets/svg/shared/icon-arrow-up.svg';
 import { useUser } from '../../../context/UserContext';
-import HttpAPI from '../../../services/httpAPI';
+import ApiClient from '../../../services/ApiHttp';
 import styles from './_Upvote.module.scss';
 
-const API = new HttpAPI();
+const API = new ApiClient();
 
 function Upvote(props) {
   const { upvotes: upvotesNum, requestId } = props;
@@ -16,12 +16,15 @@ function Upvote(props) {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const request = await API.patch(
+      const res = await API.patch(
         `/requests/${requestId}/upvote?userId=${userId}`
       );
+      const { data } = res;
 
-      if (!voted) {
-        setUpvotes((prev) => prev + 1);
+      if (data) {
+        setUpvotes(data.request.upvotes);
+        setVoted(true);
+      } else {
         setVoted(true);
       }
     } catch (error) {

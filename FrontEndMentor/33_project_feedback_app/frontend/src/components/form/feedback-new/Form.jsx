@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import IconNewFeedback from '../../../assets/svg/shared/icon-new-feedback.svg';
-import HttpAPI from '../../../services/httpAPI';
+import ApiClient from '../../../services/ApiHttp';
 import Button from '../../custom/button/Button';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import Dropdown from '../../custom/dropdown/design2/Dropdown';
@@ -8,7 +8,7 @@ import InputText from '../../custom/input-text/InputText';
 import InputTextArea from '../../custom/textarea/InputTextArea';
 import styles from './_Form.module.scss';
 
-const API = new HttpAPI();
+const API = new ApiClient();
 const CATEGORIES = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
 
 function Form(props) {

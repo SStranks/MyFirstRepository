@@ -206,8 +206,14 @@ const updateRequestUpvote = catchAsync(async (req, res, next) => {
 
       const { upvotes } = userDoc;
 
-      if (upvotes.some((el) => el.toString() === requestId))
-        throw new AppError('Duplicate upvote', 404);
+      // If user has already voted on this request
+      if (upvotes.some((el) => el.toString() === requestId)) {
+        return res.status(204).json({
+          status: 'success',
+          data: undefined,
+        });
+      }
+      // throw new AppError('Duplicate upvote', 409);
 
       const userDocUpdated = await UserModel.findByIdAndUpdate(
         userId,
