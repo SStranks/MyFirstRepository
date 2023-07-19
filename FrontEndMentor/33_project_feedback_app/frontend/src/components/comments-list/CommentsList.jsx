@@ -1,14 +1,8 @@
 /* eslint-disable react/prop-types */
 import { Fragment } from 'react';
+import useComments from '../../hooks/useGetAllComments.js';
 import Comment from '../comment/Comment.jsx';
 import styles from './_CommentsList.module.scss';
-
-// Development Data
-// import JSONData from '../../data/data.json';
-// import ApiClient from '../../services/ApiHttp.js';
-import useComments from '../../hooks/useGetAllComments.js';
-
-// const API = new ApiClient();
 
 function Comments(props) {
   const { request } = props;

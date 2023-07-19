@@ -1,12 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import IconArrowUp from '../../../assets/svg/shared/icon-arrow-up.svg';
 import { useUser } from '../../../context/UserContext';
-// import ApiClient from '../../../services/ApiHttp';
-import styles from './_Upvote.module.scss';
-
-// const API = new ApiClient();
 import ApiService from '../../../services/Services.js';
+import styles from './_Upvote.module.scss';
 
 function Upvote(props) {
   const { upvotes: upvotesNum, requestId } = props;
@@ -21,7 +19,10 @@ function Upvote(props) {
       setUpvotes(responseData.upvotes);
       setVoted(true);
     }
-    if (responseData === 'duplicate upvote') setVoted(true);
+    if (responseData === 'duplicate upvote') {
+      toast.error('Already Upvoted!', { duration: 3000 });
+      setVoted(true);
+    }
   };
 
   return (

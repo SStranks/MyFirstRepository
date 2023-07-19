@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import IconEditFeedback from '../../../assets/svg/shared/icon-edit-feedback.svg';
 import ApiService from '../../../services/Services';
@@ -52,8 +53,9 @@ function Form(props) {
         if (responseData) {
           setModalOpen(false);
           navigate('/');
+          toast.success('Request Updated!');
         } else {
-          // TODO:  Show Error
+          toast.error('Request Update Failed!');
         }
       }
     }
@@ -64,9 +66,9 @@ function Form(props) {
       if (responseData === 204) {
         setModalOpen(false);
         navigate('/');
+        toast.success('Request Deleted!');
       } else {
-        //   // TODO:  Pop up error with toast?
-        //   console.log('ERROR', error);
+        toast.error('Request Deletion Failed!');
       }
     }
   };

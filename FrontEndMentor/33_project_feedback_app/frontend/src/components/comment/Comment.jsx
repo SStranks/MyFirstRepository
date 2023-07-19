@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import ProfileIcon from '../../assets/img/image-elijah.jpg';
 import { useUser } from '../../context/UserContext';
 import ApiService from '../../services/Services';
@@ -50,9 +51,9 @@ function Comment(props) {
 
       if (responseData) {
         // TODO:  Reload page
-        console.log(responseData);
+        toast.success('Comment Posted!');
       } else {
-        // TODO:  Show Error
+        toast.error('Comment Posting Failed!');
       }
     }
   };

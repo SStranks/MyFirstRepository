@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { toast } from 'react-hot-toast';
 import IconNewFeedback from '../../../assets/svg/shared/icon-new-feedback.svg';
 import ApiService from '../../../services/Services';
 import Button from '../../custom/button/Button';
@@ -35,11 +36,10 @@ function Form(props) {
       const responseData = await ApiService.postRequest(requestBody);
 
       if (responseData) {
-        //   // TODO:  Pop up success with toast?
+        toast.success('Request Created!');
         setModalOpen(false);
       } else {
-        //   // TODO:  Pop up error with toast?
-        //   console.log('ERROR', error);
+        toast.error('Request Creation Failed!');
       }
     }
   };

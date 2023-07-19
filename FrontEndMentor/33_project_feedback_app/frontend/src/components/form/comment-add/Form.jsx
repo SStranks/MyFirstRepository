@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { useUser } from '../../../context/UserContext';
 import ApiService from '../../../services/Services';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
@@ -35,10 +36,10 @@ function Form(props) {
       );
 
       if (responseData) {
-        // TODO:  Reload page
-        console.log(responseData);
+        // TODO:  Reload page - React Query
+        toast.success('Comment Posted!');
       } else {
-        // TODO:  Show Error
+        toast.error('Comment Posting Failed');
       }
     }
   };

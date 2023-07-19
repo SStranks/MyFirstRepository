@@ -1,0 +1,9 @@
+@use 'variables' as *;
+
+/*   Exports                        */
+:export {
+  colorToastMagenta: $magenta;
+  colorToastRoyalBlue: $royal-blue;
+  colorToastRed: $toast-red;
+  colorToastMuteBlue: $toast-mute-blue;
+}

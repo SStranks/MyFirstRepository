@@ -7,13 +7,6 @@ function useComments(requestId) {
   const [isError, setIsError] = useState('');
   const [comments, setComments] = useState();
 
-  // const responseData = await ApiService.getAllRequests();
-  // if (responseData) {
-  //   setRequests(responseData);
-  // } else {
-  //   setIsError('Failed to reach server');
-  // }
-
   useEffect(() => {
     async function getAllRequests() {
       if (!requestId) return;
