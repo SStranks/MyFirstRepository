@@ -2,10 +2,11 @@
 import { useState } from 'react';
 import IconArrowUp from '../../../assets/svg/shared/icon-arrow-up.svg';
 import { useUser } from '../../../context/UserContext';
-import ApiClient from '../../../services/ApiHttp';
+// import ApiClient from '../../../services/ApiHttp';
 import styles from './_Upvote.module.scss';
 
-const API = new ApiClient();
+// const API = new ApiClient();
+import ApiService from '../../../services/Services.js';
 
 function Upvote(props) {
   const { upvotes: upvotesNum, requestId } = props;
@@ -15,21 +16,12 @@ function Upvote(props) {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await API.patch(
-        `/requests/${requestId}/upvote?userId=${userId}`
-      );
-      const { data } = res;
-
-      if (data) {
-        setUpvotes(data.request.upvotes);
-        setVoted(true);
-      } else {
-        setVoted(true);
-      }
-    } catch (error) {
-      console.log('ERROR', error);
+    const responseData = await ApiService.patchRequestUpvote(requestId, userId);
+    if (responseData.upvotes) {
+      setUpvotes(responseData.upvotes);
+      setVoted(true);
     }
+    if (responseData === 'duplicate upvote') setVoted(true);
   };
 
   return (

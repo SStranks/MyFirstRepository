@@ -1,12 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { useUser } from '../../../context/UserContext';
-import ApiClient from '../../../services/ApiHttp';
+import ApiService from '../../../services/Services';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import InputTextArea from '../../custom/textarea/InputTextArea';
 import styles from './_Form.module.scss';
-
-const API = new ApiClient();
 
 function Form(props) {
   const { requestId } = props;
@@ -29,16 +27,18 @@ function Form(props) {
       const dataObject = new FormData(formElement);
       const { comment: content } = Object.fromEntries(dataObject.entries());
 
-      try {
-        const res = await API.post(`/comments?request=${requestId}`, {
-          user,
-          content,
-        });
-        console.log(res);
-        // TODO:  Pop up success with toast?
-      } catch (error) {
-        // TODO:  Pop up error with toast?
-        console.log('ERROR', error);
+      const requestBody = { user, content };
+      const responseData = await ApiService.postComment(
+        requestId,
+        undefined,
+        requestBody
+      );
+
+      if (responseData) {
+        // TODO:  Reload page
+        console.log(responseData);
+      } else {
+        // TODO:  Show Error
       }
     }
   };

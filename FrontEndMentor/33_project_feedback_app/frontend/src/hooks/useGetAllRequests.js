@@ -1,9 +1,6 @@
 /* eslint-disable unicorn/filename-case */
 import { useEffect, useState } from 'react';
 import ApiService from '../services/Services';
-// import ApiClient from '../services/ApiHttp';
-
-// const API = new ApiClient();
 
 function useRequests() {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,16 +9,15 @@ function useRequests() {
 
   useEffect(() => {
     async function getAllRequests() {
-      try {
-        setIsLoading(true);
-        setIsError('');
-        const data = await ApiService.getAllRequests();
-        setRequests(data);
-      } catch (error) {
-        setIsError(error.message);
-      } finally {
-        setIsLoading(false);
+      setIsLoading(true);
+      setIsError('');
+      const responseData = await ApiService.getAllRequests();
+      if (responseData) {
+        setRequests(responseData);
+      } else {
+        setIsError('Failed to reach server');
       }
+      setIsLoading(false);
     }
 
     getAllRequests();

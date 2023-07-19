@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from 'react-router-dom';
 import IconEditFeedback from '../../../assets/svg/shared/icon-edit-feedback.svg';
-import ApiClient from '../../../services/ApiHttp';
+import ApiService from '../../../services/Services';
 import Button from '../../custom/button/Button';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import Dropdown from '../../custom/dropdown/design2/Dropdown';
@@ -9,7 +9,6 @@ import InputText from '../../custom/input-text/InputText';
 import Textarea from '../../custom/textarea/InputTextArea';
 import styles from './_Form.module.scss';
 
-const API = new ApiClient();
 const CATEGORIES = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
 const STATUS = ['Suggestion', 'Planned', 'In-Progress', 'Live'];
 
@@ -42,36 +41,32 @@ function Form(props) {
           description: newDescription,
         } = Object.fromEntries(dataObject.entries());
 
-        try {
-          const { request: data } = await API.patch(`requests/${id}`, {
-            title: newTitle,
-            category: newCategory,
-            description: newDescription,
-            status: newStatus,
-          });
+        const requestBody = {
+          title: newTitle,
+          category: newCategory,
+          description: newDescription,
+          status: newStatus,
+        };
+        const responseData = await ApiService.patchRequest(id, requestBody);
 
-          // TODO:  Pop up success with toast?
+        if (responseData) {
           setModalOpen(false);
           navigate('/');
-        } catch (error) {
-          // TODO:  Pop up error with toast?
-          console.log('ERROR', error);
+        } else {
+          // TODO:  Show Error
         }
       }
     }
 
     if (value === 'delete') {
-      try {
-        const res = await API.delete(`/requests/${id}`);
+      const responseData = await ApiService.deleteRequest(id);
 
-        console.log(res);
-
-        // TODO:  Pop up success with toast?
+      if (responseData === 204) {
         setModalOpen(false);
         navigate('/');
-      } catch (error) {
-        // TODO:  Pop up error with toast?
-        console.log('ERROR', error);
+      } else {
+        //   // TODO:  Pop up error with toast?
+        //   console.log('ERROR', error);
       }
     }
   };

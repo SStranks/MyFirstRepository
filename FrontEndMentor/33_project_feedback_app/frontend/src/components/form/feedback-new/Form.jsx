@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import IconNewFeedback from '../../../assets/svg/shared/icon-new-feedback.svg';
-import ApiClient from '../../../services/ApiHttp';
+import ApiService from '../../../services/Services';
 import Button from '../../custom/button/Button';
 import ButtonSubmit from '../../custom/button/ButtonSubmit';
 import Dropdown from '../../custom/dropdown/design2/Dropdown';
@@ -8,7 +8,6 @@ import InputText from '../../custom/input-text/InputText';
 import InputTextArea from '../../custom/textarea/InputTextArea';
 import styles from './_Form.module.scss';
 
-const API = new ApiClient();
 const CATEGORIES = ['Feature', 'UI', 'UX', 'Enhancement', 'Bug'];
 
 function Form(props) {
@@ -32,17 +31,15 @@ function Form(props) {
         dataObject.entries()
       );
 
-      try {
-        const { request } = await API.post('/requests', {
-          title,
-          category,
-          description,
-        });
-        // TODO:  Pop up success with toast?
+      const requestBody = { title, category, description };
+      const responseData = await ApiService.postRequest(requestBody);
+
+      if (responseData) {
+        //   // TODO:  Pop up success with toast?
         setModalOpen(false);
-      } catch (error) {
-        // TODO:  Pop up error with toast?
-        console.log('ERROR', error);
+      } else {
+        //   // TODO:  Pop up error with toast?
+        //   console.log('ERROR', error);
       }
     }
   };

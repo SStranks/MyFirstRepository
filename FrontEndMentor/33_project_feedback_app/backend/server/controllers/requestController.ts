@@ -95,6 +95,7 @@ const updateRequest = catchAsync(
   }
 );
 
+// TODO:  Need to delete all associated comments and find user upvotes and remove.
 const deleteRequest = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const request = await RequestModel.findByIdAndDelete(req.params.id);
@@ -208,12 +209,11 @@ const updateRequestUpvote = catchAsync(async (req, res, next) => {
 
       // If user has already voted on this request
       if (upvotes.some((el) => el.toString() === requestId)) {
-        return res.status(204).json({
+        return res.status(200).json({
           status: 'success',
-          data: undefined,
+          data: { request: 'duplicate upvote' },
         });
       }
-      // throw new AppError('Duplicate upvote', 409);
 
       const userDocUpdated = await UserModel.findByIdAndUpdate(
         userId,

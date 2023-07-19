@@ -15,7 +15,7 @@ function Comments(props) {
   const [comments, isLoading, error] = useComments(request?.id);
   const numberOfComments = comments?.results;
 
-  const commentsList = comments?.resComments.map((el, i, arr) => (
+  const commentsList = comments?.data.map((el, i, arr) => (
     <Fragment key={el.id}>
       <Comment
         commentId={el.id}

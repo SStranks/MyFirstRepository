@@ -2,12 +2,10 @@
 import { useState } from 'react';
 import ProfileIcon from '../../assets/img/image-elijah.jpg';
 import { useUser } from '../../context/UserContext';
-import ApiClient from '../../services/ApiHttp';
+import ApiService from '../../services/Services';
 import ButtonSubmit from '../custom/button/ButtonSubmit';
 import InputTextarea from '../custom/textarea/InputTextArea';
 import styles from './_Comment.module.scss';
-
-const API = new ApiClient();
 
 function Comment(props) {
   const {
@@ -43,19 +41,18 @@ function Comment(props) {
       const dataObject = new FormData(formElement);
       const { comment } = Object.fromEntries(dataObject.entries());
 
-      try {
-        const res = await API.post(
-          `/comments?request=${requestId}&comment=${commentId}`,
-          {
-            user,
-            content: comment,
-          }
-        );
-        console.log(res);
-        // TODO:  Pop up success with toast?
-      } catch (error) {
-        // TODO:  Pop up error with toast?
-        console.log('ERROR', error);
+      const requestBody = { user, content: comment };
+      const responseData = await ApiService.postComment(
+        requestId,
+        commentId,
+        requestBody
+      );
+
+      if (responseData) {
+        // TODO:  Reload page
+        console.log(responseData);
+      } else {
+        // TODO:  Show Error
       }
     }
   };

@@ -1,34 +1,34 @@
 /* eslint-disable unicorn/filename-case */
 import { useEffect, useState } from 'react';
-import ApiClient from '../services/ApiHttp';
-
-const API = new ApiClient();
+import ApiService from '../services/Services';
 
 function useComments(requestId) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState('');
   const [comments, setComments] = useState();
 
+  // const responseData = await ApiService.getAllRequests();
+  // if (responseData) {
+  //   setRequests(responseData);
+  // } else {
+  //   setIsError('Failed to reach server');
+  // }
+
   useEffect(() => {
     async function getAllRequests() {
       if (!requestId) return;
-      try {
-        setIsLoading(true);
-        setIsError('');
 
-        const res = await API.get(`/requests/comments/${requestId}`);
-        const {
-          results,
-          data: { resComments },
-        } = res;
+      setIsLoading(true);
+      setIsError('');
 
-        setComments({ resComments, results });
-      } catch (error) {
-        console.log('HELP2');
-        setIsError(error.message);
-      } finally {
-        setIsLoading(false);
+      const responseData = await ApiService.getAllComments(requestId);
+      if (responseData) {
+        const { data, results } = responseData;
+        setComments({ data, results });
+      } else {
+        setIsError('Failed to reach server');
       }
+      setIsLoading(false);
     }
 
     getAllRequests();

@@ -45,7 +45,7 @@ export default class ApiClient {
   async delete(url, config = {}) {
     try {
       const res = await this.client.delete(url, config);
-      return res.data;
+      return res;
     } catch (error) {
       handleServiceError(error);
     }
