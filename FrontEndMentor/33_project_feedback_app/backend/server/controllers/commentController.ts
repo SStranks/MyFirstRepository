@@ -12,8 +12,6 @@ const createComment = catchAsync(async (req, res, next) => {
   const { user, content } = req.body;
   const commentData = { user, content, requestId };
 
-  console.log(requestId, commentId);
-
   if (!commentId) {
     // Find request document; add the new comment ID to request document comment[].
     const comment = await catchAsyncTransaction(
