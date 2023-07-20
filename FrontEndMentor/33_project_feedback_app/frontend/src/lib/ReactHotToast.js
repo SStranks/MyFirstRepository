@@ -1,4 +1,4 @@
-import { Toaster as HotToaster } from 'react-hot-toast';
+import { Toaster as ReactHotToast } from 'react-hot-toast';
 import styles from '../assets/sass/_exports.module.scss';
 
 const toasterOptions = {
@@ -40,7 +40,7 @@ const toasterOptions = {
 
 export default function Toaster() {
   return (
-    <HotToaster
+    <ReactHotToast
       position={toasterOptions.position}
       reverseOrder={toasterOptions.reverseOrder}
       gutter={toasterOptions.gutter}
