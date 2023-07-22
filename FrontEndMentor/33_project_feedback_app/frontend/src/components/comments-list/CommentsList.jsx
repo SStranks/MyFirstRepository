@@ -6,7 +6,7 @@ import styles from './_CommentsList.module.scss';
 
 function Comments(props) {
   const { request } = props;
-  const [comments, isLoading, error] = useComments(request?.id);
+  const [comments, isLoading, error] = useComments(request);
   const numberOfComments = comments?.results;
 
   const commentsList = comments?.data.map((el, i, arr) => (

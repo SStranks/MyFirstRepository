@@ -2,19 +2,19 @@
 import { useEffect, useState } from 'react';
 import ApiService from '../services/Services';
 
-function useComments(requestId) {
+function useComments(request) {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState('');
   const [comments, setComments] = useState();
 
   useEffect(() => {
     async function getAllRequests() {
-      if (!requestId) return;
+      if (!request) return;
 
       setIsLoading(true);
       setIsError('');
 
-      const responseData = await ApiService.getAllComments(requestId);
+      const responseData = await ApiService.getAllComments(request.id);
       if (responseData) {
         const { data, results } = responseData;
         setComments({ data, results });
@@ -25,7 +25,7 @@ function useComments(requestId) {
     }
 
     getAllRequests();
-  }, [requestId]);
+  }, [request]);
 
   return [comments, isLoading, isError];
 }

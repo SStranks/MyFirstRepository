@@ -103,7 +103,7 @@ export default class ApiServiceClient {
       return responseData;
     } catch (error) {
       console.error(error);
-      return false;
+      throw new Error(error.message);
     }
   }
 }
