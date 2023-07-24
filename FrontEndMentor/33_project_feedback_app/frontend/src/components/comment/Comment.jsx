@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import ProfileIcon from '../../assets/img/image-elijah.jpg';
@@ -7,6 +8,20 @@ import ApiService from '../../services/Services';
 import ButtonSubmit from '../custom/button/ButtonSubmit';
 import InputTextarea from '../custom/textarea/InputTextArea';
 import styles from './_Comment.module.scss';
+
+const postReply = async (variables) => {
+  const { requestId, commentId, requestBody } = variables;
+  try {
+    const responseData = await ApiService.postComment(
+      requestId,
+      commentId,
+      requestBody
+    );
+    return responseData;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
 function Comment(props) {
   const {
@@ -21,6 +36,8 @@ function Comment(props) {
   } = props;
   const [formActive, setFormActive] = useState(false);
   const user = useUser();
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({ mutationFn: postReply });
 
   const btnReplyClickHandler = () => {
     setFormActive(true);
@@ -43,18 +60,19 @@ function Comment(props) {
       const { comment } = Object.fromEntries(dataObject.entries());
 
       const requestBody = { user, content: comment };
-      const responseData = await ApiService.postComment(
-        requestId,
-        commentId,
-        requestBody
+      mutate(
+        { requestId, commentId, requestBody },
+        {
+          onSuccess: () => {
+            toast.success('Comment Posted!');
+            queryClient.invalidateQueries({ queryKey: ['requests'] });
+            setFormActive(false);
+          },
+          onError: () => {
+            toast.error('Comment Posting Failed!');
+          },
+        }
       );
-
-      if (responseData) {
-        // TODO:  Reload page
-        toast.success('Comment Posted!');
-      } else {
-        toast.error('Comment Posting Failed!');
-      }
     }
   };
 

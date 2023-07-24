@@ -9,12 +9,12 @@ import InputTextArea from '../../custom/textarea/InputTextArea';
 import styles from './_Form.module.scss';
 
 const postComment = async (variables) => {
-  const { requestId: _requestId, _, requestBody: _requestBody } = variables;
+  const { requestId, _, requestBody } = variables;
   try {
     const responseData = await ApiService.postComment(
-      _requestId,
+      requestId,
       _,
-      _requestBody
+      requestBody
     );
     return responseData;
   } catch (error) {

@@ -90,7 +90,10 @@ function SuggestionBoard(props) {
         </div>
         <div className={styles['grid__sub-grid-2']}>
           <main>
-            <UtilityBarSuggestions requests={requests} dispatch={dispatch} />
+            <UtilityBarSuggestions
+              requests={filterRequestsByCategoryTag}
+              dispatch={dispatch}
+            />
             <SuggestionsList
               requests={filterRequestsByCategoryTag}
               isLoading={isLoading}
