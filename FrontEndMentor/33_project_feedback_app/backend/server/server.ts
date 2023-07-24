@@ -3,19 +3,20 @@
 // import { replaceTscAliasPaths } from 'tsc-alias';
 // replaceTscAliasPaths({ configFile: '../tsconfig.json' });
 
+import { rollbarServer } from '#Controllers/rollbarController';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 // Unhandled Exception Errors: Needs to be before any runtime code.
 process.on('uncaughtException', (error: Error) => {
+  rollbarServer.critical(error);
   console.log('Uncaught Exception. Shutting down server');
   console.log(error.name, error.message);
   process.exit(1);
 });
 
 import { connectDB } from '#Config/db';
-import { rollbarServer } from '#Controllers/rollbarController';
 import app from './app';
 
 connectDB();
@@ -30,7 +31,7 @@ const server = app.listen(PORT, () => {
 
 // Unhandled Rejection Errors
 process.on('unhandledRejection', (error: Error) => {
-  rollbarServer.error(error);
+  rollbarServer.critical(error);
   console.log('Unhandled Rejection. Shutting down server');
   console.log(error.name, error.message);
   server.close(() => {
