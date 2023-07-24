@@ -15,6 +15,7 @@ process.on('uncaughtException', (error: Error) => {
 });
 
 import { connectDB } from '#Config/db';
+import { rollbarServer } from '#Controllers/rollbarController';
 import app from './app';
 
 connectDB();
@@ -29,6 +30,7 @@ const server = app.listen(PORT, () => {
 
 // Unhandled Rejection Errors
 process.on('unhandledRejection', (error: Error) => {
+  rollbarServer.error(error);
   console.log('Unhandled Rejection. Shutting down server');
   console.log(error.name, error.message);
   server.close(() => {

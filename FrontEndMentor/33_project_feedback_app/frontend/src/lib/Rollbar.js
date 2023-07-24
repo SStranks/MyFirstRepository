@@ -3,8 +3,8 @@ import { ErrorBoundary, Provider } from '@rollbar/react';
 
 const rollbarConfig = {
   enabled: process.env.ROLLBAR_ENABLED,
-  accessToken: process.env.ROLLBAR_POST_CLIENT_ITEM,
   environment: process.env.NODE_ENV,
+  endpoint: `${process.env.API_HOST}/rollbar`,
 };
 
 function RollbarProvider({ children }) {

@@ -21,15 +21,15 @@ const container = document.querySelector('#root');
 const root = createRoot(container);
 root.render(
   <React.StrictMode>
-    {/* <RollbarProvider> */}
-    {/* <RollbarErrorBoundary fallbackUI={ErrorFallback}> */}
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </QueryClientProvider>
-    {/* </RollbarErrorBoundary> */}
-    {/* </RollbarProvider> */}
+    <RollbarProvider>
+      <RollbarErrorBoundary fallbackUI={ErrorFallback}>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </QueryClientProvider>
+      </RollbarErrorBoundary>
+    </RollbarProvider>
   </React.StrictMode>
 );

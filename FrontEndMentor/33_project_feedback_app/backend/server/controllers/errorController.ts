@@ -2,6 +2,7 @@
 /* eslint-disable unicorn/numeric-separators-style */
 import AppError from '#Utils/appError';
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import { rollbarServer } from './rollbarController';
 
 const handleCastErrorDB = (err: any) => {
   const message = `Invalid ${err.path}: ${err.value}`;
@@ -47,6 +48,7 @@ const sendErrorProd = (err: any, res: Response) => {
     });
   } else {
     // Log Error
+    rollbarServer.error(err);
     console.log('NON OPERATIONAL ERROR:', err);
     // Response
     res.status(500).json({
