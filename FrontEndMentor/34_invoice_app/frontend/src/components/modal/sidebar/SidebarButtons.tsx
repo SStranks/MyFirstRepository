@@ -8,7 +8,7 @@ function SidebarButtons(props: SidebarButtonsProps): JSX.Element {
   const { children } = props;
 
   return (
-    <div className={styles['container-btns']}>
+    <div className={styles.containerBtns}>
       {children}
       {/* <div className={styles.container__buttons}>{children}</div> */}
     </div>
