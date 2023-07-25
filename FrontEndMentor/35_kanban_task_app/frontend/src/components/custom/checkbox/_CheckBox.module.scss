@@ -4,7 +4,7 @@
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
 
-.custom-checkbox {
+.customCheckbox {
   @include mx.body-m;
   position: relative;
   display: flex;
@@ -32,7 +32,7 @@
     width: 0;
   }
 
-  &__new-checkbox {
+  &__newCheckbox {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -44,7 +44,7 @@
     transition: a.$Theme-transition-bg;
   }
 
-  &__icon-check {
+  &__iconCheck {
     height: auto;
   }
 

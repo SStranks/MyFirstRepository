@@ -173,10 +173,10 @@ function TaskAdd(props: ElemProps): JSX.Element {
         </div>
         <div className={styles.form__group}>
           <p>Sub-Tasks</p>
-          <div className={styles['form__sub-tasks']}>{subTasks}</div>
+          <div className={styles.form__subTasks}>{subTasks}</div>
           <button
             type="button"
-            className={styles['form__btn-new-sub-task']}
+            className={styles.form__btnNewSubTask}
             onClick={btnNewSubtaskClickHandler}>
             + Add New Sub-Task
           </button>
@@ -190,7 +190,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
             returnData={returnDataHandler}
           />
         </div>
-        <button type="submit" className={styles['form__btn-create-task']}>
+        <button type="submit" className={styles.form__btnCreateTask}>
           Create Task
         </button>
       </form>

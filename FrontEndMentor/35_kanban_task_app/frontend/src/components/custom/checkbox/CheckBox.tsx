@@ -22,23 +22,23 @@ function CheckBox(props: ElemProps): JSX.Element {
   };
 
   return (
-    <label htmlFor={inputName} className={styles['custom-checkbox']}>
+    <label htmlFor={inputName} className={styles.customCheckbox}>
       <input
         type="checkbox"
         id={inputName}
         checked={checked}
         onChange={changeHandler}
       />
-      <div className={styles['custom-checkbox__new-checkbox']}>
+      <div className={styles.customCheckbox__newCheckbox}>
         {checked && (
           <img
             src={IconCheck}
-            className={styles['custom-checkbox__icon-check']}
+            className={styles.customCheckbox__iconCheck}
             alt=""
           />
         )}
       </div>
-      <p className={styles['custom-checkbox__title']}>{title}</p>
+      <p className={styles.customCheckbox__title}>{title}</p>
     </label>
   );
 }

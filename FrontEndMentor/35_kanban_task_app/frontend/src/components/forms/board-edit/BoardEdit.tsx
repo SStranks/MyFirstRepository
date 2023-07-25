@@ -174,15 +174,15 @@ function BoardEdit(props: ElemProps): JSX.Element {
         </div>
         <div className={styles.form__group}>
           <p>Columns</p>
-          <div className={styles['form__sub-tasks']}>{columns}</div>
+          <div className={styles.form__subTasks}>{columns}</div>
           <button
             type="button"
-            className={styles['form__btn-new-column']}
+            className={styles.form__btnNewColumn}
             onClick={btnNewColumnClickHandler}>
             + Add New Column
           </button>
         </div>
-        <button type="submit" className={styles['form__btn-create-board']}>
+        <button type="submit" className={styles.form__btnCreateBoard}>
           Save Changes
         </button>
       </form>

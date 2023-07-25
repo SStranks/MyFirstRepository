@@ -44,12 +44,12 @@ function InputTextSubtask(props: ElemProps): JSX.Element {
 
   return (
     <div
-      className={`${styles['sub-task']} ${error && !text ? styles.error : ''}`}
+      className={`${styles.subTask} ${error && !text ? styles.error : ''}`}
       ref={subtaskRef}>
-      <div className={styles['sub-task__container']}>
+      <div className={styles.subTask__container}>
         <input
           type="text"
-          className={styles['sub-task__input']}
+          className={styles.subTask__input}
           name={inputName}
           placeholder={placeholderText[0]}
           // placeholder={placeholderText[listId % placeholderText.length]}

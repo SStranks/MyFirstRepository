@@ -42,7 +42,7 @@ function ColumnGrid(props: ElemProps): JSX.Element {
   };
 
   return (
-    <div className={styles['column-grid']} onClickCapture={onClickHandler}>
+    <div className={styles.columnGrid} onClickCapture={onClickHandler}>
       {columns}
       {activeBoard && <ColumnEmpty activeBoard={activeBoard} />}
     </div>

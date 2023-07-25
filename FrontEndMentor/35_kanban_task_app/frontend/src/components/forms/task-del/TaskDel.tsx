@@ -55,16 +55,16 @@ function TaskDelete(props: ElemProps): JSX.Element {
           Are you sure you want to delete the &apos;Build settings UI&apos; task
           and its subtasks? This action cannot be reversed.
         </p>
-        <div className={styles['form__btn-group']}>
+        <div className={styles.form__btnGroup}>
           <button
             type="button"
-            className={styles['form__btn-delete']}
+            className={styles.form__btnDelete}
             onClick={deleteBtnClickHandler}>
             Delete
           </button>
           <button
             type="button"
-            className={styles['form__btn-cancel']}
+            className={styles.form__btnCancel}
             onClick={cancelBtnClickHandler}>
             Cancel
           </button>

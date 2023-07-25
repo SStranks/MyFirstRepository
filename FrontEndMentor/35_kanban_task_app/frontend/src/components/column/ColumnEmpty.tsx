@@ -19,10 +19,10 @@ function ColumnEmpty(props: ElemProps): JSX.Element {
   };
 
   return (
-    <div className={styles['column-empty']}>
+    <div className={styles.columnEmpty}>
       <button
         type="button"
-        className={styles['column-empty__btn']}
+        className={styles.columnEmpty__btn}
         onClick={newColumnBtnClickHandler}>
         <p>+ New Column</p>
       </button>

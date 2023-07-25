@@ -22,8 +22,8 @@ const sidebarHide = () => {
     `${listItems.length * 0.15 + 0.075}s`
   );
 
-  sidebarElement.classList.add(styles['animation-hide']);
-  sidebarElement.classList.remove(styles['animation-show']);
+  sidebarElement.classList.add(styles.animationHide);
+  sidebarElement.classList.remove(styles.animationShow);
 };
 
 const sidebarShow = () => {
@@ -32,7 +32,7 @@ const sidebarShow = () => {
   listItems.forEach((el, i) => {
     (el as HTMLElement).style.setProperty('--delay-li', `${i}`);
   });
-  sidebarElement.classList.add(styles['animation-show']);
+  sidebarElement.classList.add(styles.animationShow);
 };
 
 type ElemProps = {
@@ -79,7 +79,7 @@ function Aside(props: ElemProps): JSX.Element {
           {boardListItems}
           {boards.length > 0 && (
             <li
-              className={styles['new-board']}
+              className={styles.newBoard}
               data-board-id="create-new"
               data-listnum>
               <img src={IconBoard} alt="" />

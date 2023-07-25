@@ -127,8 +127,8 @@ function RootModal(props: ElemProps): JSX.Element | null {
     // const modalProps = state.modalProps[el as keyof typeof MODAL_COMPONENTS];
     return (
       // eslint-disable-next-line react/no-array-index-key, @typescript-eslint/no-explicit-any
-      <div className={styles['animation-fade-in']} key={i}>
-        <div className={styles['sub-container']}>
+      <div className={styles.animationFadeIn} key={i}>
+        <div className={styles.subContainer}>
           <ModalComponent
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             {...(modalProps as any)}
@@ -150,7 +150,7 @@ function RootModal(props: ElemProps): JSX.Element | null {
 
   return ReactDOM.createPortal(
     <div
-      className={`${styles.container} ${styles['animation-fade-in']}`}
+      className={`${styles.container} ${styles.animationFadeIn}`}
       onClickCapture={modalClickHandler}
       id="root-modal">
       {activeComponents[activeComponents.length - 1]}

@@ -24,10 +24,10 @@ function Error(props: ElemProps): JSX.Element {
           There was an error transferring data for &apos;{title}&apos;. Please
           try again!
         </p>
-        <div className={styles['error__btn-group']}>
+        <div className={styles.error__btnGroup}>
           <button
             type="button"
-            className={styles['error__btn-delete']}
+            className={styles.error__btnDelete}
             onClick={proceedBtnClickHandler}>
             Proceed
           </button>

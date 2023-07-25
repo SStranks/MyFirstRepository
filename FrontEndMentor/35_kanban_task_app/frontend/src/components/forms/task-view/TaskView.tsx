@@ -231,18 +231,18 @@ function TaskView(props: ElemProps): JSX.Element {
 
   return (
     <form className={styles.container} id="form-1">
-      <div className={styles['task-view']}>
-        <div className={styles['task-view__header']}>
+      <div className={styles.taskView}>
+        <div className={styles.taskView__header}>
           <p>{task.title}</p>
-          <div className={styles['task-view__menu']}>
+          <div className={styles.taskView__menu}>
             <button
               type="button"
-              className={styles['task-view__menu__btn']}
+              className={styles.taskView__menu__btn}
               onClick={menuBtnClickHandler}>
               <img src={IconVerticalEllipsis} alt="" />
             </button>
             <div
-              className={`${styles['task-view__dropdown']} hidden`}
+              className={`${styles.taskView__dropdown} hidden`}
               ref={menuRef}
               onClickCapture={menuClickCaptureHandler}>
               <p>Edit Task</p>
@@ -250,14 +250,14 @@ function TaskView(props: ElemProps): JSX.Element {
             </div>
           </div>
         </div>
-        <p className={styles['task-view__description']}>{task.description}</p>
+        <p className={styles.taskView__description}>{task.description}</p>
         <div>
-          <p className={styles['task-view__sub-tasks-title']}>
+          <p className={styles.taskView__subTasksTitle}>
             Subtasks ({tasksComplete} of {task.subtasks.length})
           </p>
-          <div className={styles['task-view__sub-tasks']}>{subtasksElems}</div>
+          <div className={styles.taskView__subTasks}>{subtasksElems}</div>
         </div>
-        <div className={styles['task-view__status']}>
+        <div className={styles.taskView__status}>
           <p>Current Status</p>
           <Dropdown
             name="input-status"

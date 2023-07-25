@@ -39,19 +39,19 @@
     }
   }
 
-  &__sub-tasks {
+  &__subTasks {
     display: flex;
     flex-direction: column;
     row-gap: f.px2em(12);
     margin-bottom: f.px2em(12);
   }
 
-  &__btn-new-sub-task {
+  &__btnNewSubTask {
     @include btn.btn-secondary;
     width: 100%;
   }
 
-  &__btn-create-task {
+  &__btnCreateTask {
     @include btn.btn-primary-s;
   }
 }

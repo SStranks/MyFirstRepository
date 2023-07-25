@@ -3,7 +3,7 @@
 @use '#Sass/abstracts/media-queries' as mq;
 @use '#Sass/abstracts/mixins' as mx;
 
-.column-grid {
+.columnGrid {
   display: flex;
   column-gap: f.px2em(24);
   width: 100%;

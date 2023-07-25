@@ -54,17 +54,17 @@ function BoardDelete(props: ElemProps): JSX.Element {
           Are you sure you want to delete the &apos;Platform Launch&apos; board?
           This action will remove all columns and tasks and cannot be reversed.
         </p>
-        <div className={styles['form__btn-group']}>
+        <div className={styles.form__btnGroup}>
           <button
             type="button"
             onClick={deleteBtnClickHandler}
-            className={styles['form__btn-delete']}>
+            className={styles.form__btnDelete}>
             Delete
           </button>
           <button
             type="button"
             onClick={cancelBtnClickHandler}
-            className={styles['form__btn-cancel']}>
+            className={styles.form__btnCancel}>
             Cancel
           </button>
         </div>

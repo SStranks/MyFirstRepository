@@ -9,7 +9,7 @@
   margin: auto 0;
 }
 
-.task-view {
+.taskView {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -76,13 +76,13 @@
     color: c.$col-1g;
   }
 
-  &__sub-tasks-title {
+  &__subTasksTitle {
     @include mx.body-m;
     margin-bottom: f.px2em(16);
     color: c.$col-1g;
   }
 
-  &__sub-tasks {
+  &__subTasks {
     display: flex;
     flex-direction: column;
     row-gap: f.px2em(8);
@@ -97,7 +97,7 @@
   }
 }
 
-.sub-task {
+.subTask {
   width: 100%;
   padding: f.px2em(12);
   border-radius: v.$border-radius-forms-subtask;

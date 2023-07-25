@@ -34,12 +34,12 @@
     color: c.$col-1g;
   }
 
-  &__btn-group {
+  &__btnGroup {
     display: flex;
     column-gap: f.px2em(16);
   }
 
-  &__btn-delete {
+  &__btnDelete {
     @include btn.btn-destructive;
     width: 100%;
   }

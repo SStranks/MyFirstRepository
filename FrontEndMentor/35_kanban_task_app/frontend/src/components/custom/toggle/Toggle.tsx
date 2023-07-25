@@ -7,7 +7,7 @@ const themeToggle = () => {
 
 function Toggle() {
   return (
-    <div className={styles['toggle-slider']}>
+    <div className={styles.toggleSlider}>
       <label htmlFor="theme-switch">
         <input type="checkbox" id="theme-switch" onClick={themeToggle} />
         <span />
