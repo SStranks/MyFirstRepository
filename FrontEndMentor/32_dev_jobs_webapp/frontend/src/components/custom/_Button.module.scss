@@ -26,13 +26,13 @@ button {
   }
 }
 
-.btn-text {
+.btnText {
   @include media(mobile-large, mobile-medium, mobile-small) {
     display: none;
   }
 }
 
-.btn-icon {
+.btnIcon {
   @include media(
     desktop-large,
     desktop-medium,
@@ -44,6 +44,6 @@ button {
   }
 }
 
-.btn-icon-none {
+.btnIconNone {
   display: none;
 }

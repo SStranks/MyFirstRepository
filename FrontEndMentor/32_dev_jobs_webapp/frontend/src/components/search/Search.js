@@ -60,7 +60,7 @@ function Search(props) {
   };
 
   return (
-    <form className={styles['search-bar']} onSubmit={submitHandler}>
+    <form className={styles.searchBar} onSubmit={submitHandler}>
       <Modal
         onChangeHandler={onChangeHandler}
         searchFields={searchFields}
@@ -70,9 +70,9 @@ function Search(props) {
         isSearching={isSearching}
         submitHandler={submitHandler}
       />
-      <div className={styles['search-bar__compartment']}>
-        <div className={styles['search-bar__compartment__sub']}>
-          <img src={IconSearch} alt="" id={styles['input-img-search']} />
+      <div className={styles.searchBar__compartment}>
+        <div className={styles.searchBar__compartment__sub}>
+          <img src={IconSearch} alt="" id={styles.inputImgSearch} />
           <input
             type="text"
             name="search"
@@ -82,12 +82,12 @@ function Search(props) {
           />
         </div>
       </div>
-      <div className={styles['search-bar__compartment']}>
-        <div className={styles['search-bar__compartment__sub']}>
-          <img src={IconFilter} id={styles['img-filter-desktop']} alt="" />
+      <div className={styles.searchBar__compartment}>
+        <div className={styles.searchBar__compartment__sub}>
+          <img src={IconFilter} id={styles.imgFilterDesktop} alt="" />
           <img
             src={IconFilterMobile}
-            id={styles['img-filter-mobile']}
+            id={styles.imgFilterMobile}
             alt=""
             onClick={modalHandler}
             aria-hidden
@@ -95,17 +95,17 @@ function Search(props) {
           <input
             type="text"
             name="filter"
-            id="input-filter-location"
+            id="inputFilterLocation"
             value={searchFields.filter}
             onChange={(e) => onChangeHandler(e)}
             placeholder="Filter by location..."
           />
         </div>
       </div>
-      <div className={styles['search-bar__compartment']}>
+      <div className={styles.searchBar__compartment}>
         <Checkbox
           text="Full Time Only"
-          id={styles['checkbox-control']}
+          id={styles.checkboxControl}
           name="time"
           checked={searchFields.time}
           onChange={() =>

@@ -1,7 +1,7 @@
 @use '../../assets/styles/variables' as *;
 @use '../../assets/styles/mixins' as *;
 
-.search-bar {
+.searchBar {
   display: grid;
   grid-template-columns: minmax(auto, 40%) minmax(auto, 25%) minmax(345px, 35%);
   height: 80px;
@@ -99,25 +99,25 @@
   }
 }
 
-#input-filter-location {
+#inputFilterLocation {
   @include media(mobile-large, mobile-medium, mobile-small) {
     display: none;
   }
 }
 
-#input-img-search {
+#inputImgSearch {
   @include media(mobile-large, mobile-medium, mobile-small) {
     display: none;
   }
 }
 
-#img-filter-desktop {
+#imgFilterDesktop {
   @include media(mobile-large, mobile-medium, mobile-small) {
     display: none;
   }
 }
 
-#img-filter-mobile {
+#imgFilterMobile {
   @include media(
     tablet-regular,
     tablet-small,
@@ -131,7 +131,7 @@
   cursor: pointer;
 }
 
-#checkbox-control {
+#checkboxControl {
   @include media(mobile-large, mobile-medium, mobile-small) {
     display: none;
   }

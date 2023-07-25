@@ -1,16 +1,16 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './_Button.module.scss';
+import React from 'react';
 import IconSearch from '../../assets/svg/desktop/icon-search.svg';
+import styles from './_Button.module.scss';
 
 function ButtonSubmit(props) {
   const { text, value, disabled, modal } = props;
 
   return (
     <button type="submit" className={styles} value={value} disabled={disabled}>
-      <span className={modal ? null : styles['btn-text']}>{text}</span>
+      <span className={modal ? null : styles.btnText}>{text}</span>
       <img
-        className={modal ? styles['btn-icon-none'] : styles['btn-icon']}
+        className={modal ? styles.btnIconNone : styles.btnIcon}
         src={IconSearch}
         alt=""
       />

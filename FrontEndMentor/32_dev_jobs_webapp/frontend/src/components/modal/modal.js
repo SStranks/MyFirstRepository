@@ -1,10 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
-import PropTypes from 'prop-types';
-import styles from './_modal.module.scss';
-import Checkbox from '../custom/Checkbox';
-import ButtonSubmit from '../custom/ButtonSubmit';
 import IconFilter from '../../assets/svg/desktop/icon-location.svg';
+import ButtonSubmit from '../custom/ButtonSubmit';
+import Checkbox from '../custom/Checkbox';
+import styles from './_modal.module.scss';
 
 function Modal(props) {
   const {
@@ -46,7 +46,7 @@ function Modal(props) {
           <div className={styles.compartment}>
             <Checkbox
               text="Full Time Only"
-              id={styles['checkbox-control-mob']}
+              id={styles.checkboxControlMob}
               name="time"
               checked={searchFields.time}
               onChange={() =>

@@ -1,7 +1,7 @@
 @use '../../assets/styles/variables' as *;
 @use '../../assets/styles/mixins' as *;
 
-.checkbox-control {
+.checkboxControl {
   display: grid;
   grid-template-columns: auto auto;
   & label {

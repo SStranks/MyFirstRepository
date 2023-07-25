@@ -1,12 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import styles from './_Checkbox.module.scss';
 
 function Checkbox(props) {
   const { text, id, name, checked, onChange } = props;
 
   return (
-    <div className={styles['checkbox-control']} id={id}>
+    <div className={styles.checkboxControl} id={id}>
       <input
         type="checkbox"
         id={id}
