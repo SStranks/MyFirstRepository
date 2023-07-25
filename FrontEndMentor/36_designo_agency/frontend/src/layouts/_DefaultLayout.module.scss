@@ -6,7 +6,7 @@
 .container {
   background-color: c.$col-1c;
 
-  &__sub-container {
+  &__subContainer {
     padding: v.$padding-desktop;
 
     @include mq.desktop-small {

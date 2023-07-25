@@ -15,7 +15,7 @@ function Quality(props: ElemProps): JSX.Element {
       <div className={styles.image}>
         <img src={illustration} alt="" />
         <div
-          className={styles['bg-circle']}
+          className={styles.bgCircle}
           style={{ transform: `rotate(${bgRotation})` }}
         />
       </div>

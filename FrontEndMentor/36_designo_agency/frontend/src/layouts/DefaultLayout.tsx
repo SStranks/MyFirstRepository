@@ -11,7 +11,7 @@ function DefaultLayout(props: PropsWithChildren): JSX.Element {
 
   return (
     <div className={styles.container}>
-      <div className={styles['container__sub-container']}>{children}</div>
+      <div className={styles.container__subContainer}>{children}</div>
       <Footer />
     </div>
   );

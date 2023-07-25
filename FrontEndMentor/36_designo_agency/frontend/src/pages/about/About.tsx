@@ -29,9 +29,9 @@ function About(): JSX.Element {
         <img className={styles.header__img} src={ImgHero} alt="" />
       </header>
       <section
-        className={`${styles.card} ${styles['card-1']}`}
+        className={`${styles.card} ${styles.cardNum1}`}
         aria-labelledby="section_1">
-        <img className={styles['card-1__img']} src={ImgTalent} alt="" />
+        <img className={styles.cardNum1__img} src={ImgTalent} alt="" />
         <div className={styles.card__info}>
           <h2 id="section_1">World-class talent</h2>
           <p>
@@ -62,9 +62,9 @@ function About(): JSX.Element {
         />
       </div>
       <section
-        className={`${styles.card} ${styles['card-2']}`}
+        className={`${styles.card} ${styles.cardNum2}`}
         aria-labelledby="section_2">
-        <img className={styles['card-2__img']} src={ImgRealDeal} alt="" />
+        <img className={styles.cardNum2__img} src={ImgRealDeal} alt="" />
         <div className={styles.card__info}>
           <h2 id="section_2">The real deal</h2>
           <p>

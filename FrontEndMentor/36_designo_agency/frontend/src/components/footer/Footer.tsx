@@ -58,13 +58,11 @@ function Footer(): JSX.Element {
         <div className={styles.footer__info}>
           <div className={styles.footer__details}>
             <div>
-              <p className={styles['footer__bold-text']}>
-                Designo Central Office
-              </p>
+              <p className={styles.footer__boldText}>Designo Central Office</p>
               <p>3386 Wellington Street</p>
               <p>Toronto, Ontario M9C 3J5</p>
             </div>
-            <div className={styles['footer__bold-text']}>
+            <div className={styles.footer__boldText}>
               <p>Contact Us &#40;Central Office&#41;</p>
               <p>P : +1 253-863-8967</p>
               <p>M : contact@designo.co</p>
