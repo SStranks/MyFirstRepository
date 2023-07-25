@@ -38,8 +38,8 @@ function Header(props) {
         />
       </button>
       {modalActive ? (
-        <div className={styles['mobile-modal']}>
-          <div className={styles['mobile-modal__side']}>
+        <div className={styles.mobileModal}>
+          <div className={styles.mobileModal__side}>
             <AsideTags setCategoryFilter={setCategoryFilter} />
             <AsideRoadmap requests={requests} />
           </div>

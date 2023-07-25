@@ -50,10 +50,10 @@ function RoadmapList(props) {
 
   return (
     <div className={styles.grid}>
-      <form className={styles['grid__mobile-nav']}>
-        <label className={styles['grid__mobile-nav__label']} htmlFor="planned">
+      <form className={styles.grid__mobileNav}>
+        <label className={styles.grid__mobileNav__label} htmlFor="planned">
           <input
-            className={styles['grid__mobile-nav__radio']}
+            className={styles.grid__mobileNav__radio}
             type="radio"
             name="mobile-filter"
             value="planned"
@@ -61,37 +61,34 @@ function RoadmapList(props) {
             onChange={radioInputHandler}
             defaultChecked
           />
-          Planned <br className={styles['grid__mobile-nav__label__br']} />(
+          Planned <br className={styles.grid__mobileNav__label__br} />(
           {plannedNum})
         </label>
-        <label
-          className={styles['grid__mobile-nav__label']}
-          htmlFor="in-progress">
+        <label className={styles.grid__mobileNav__label} htmlFor="in-progress">
           <input
-            className={styles['grid__mobile-nav__radio']}
+            className={styles.grid__mobileNav__radio}
             type="radio"
             name="mobile-filter"
             value="in-progress"
             id="in-progress"
             onChange={radioInputHandler}
           />
-          In-Progress <br className={styles['grid__mobile-nav__label__br']} />(
+          In-Progress <br className={styles.grid__mobileNav__label__br} />(
           {inProgressNum})
         </label>
-        <label className={styles['grid__mobile-nav__label']} htmlFor="live">
+        <label className={styles.grid__mobileNav__label} htmlFor="live">
           <input
-            className={styles['grid__mobile-nav__radio']}
+            className={styles.grid__mobileNav__radio}
             type="radio"
             name="mobile-filter"
             id="live"
             value="live"
             onChange={radioInputHandler}
           />
-          Live <br className={styles['grid__mobile-nav__label__br']} />(
-          {liveNum})
+          Live <br className={styles.grid__mobileNav__label__br} />({liveNum})
         </label>
         <div
-          className={`${styles['grid__mobile-nav__activebar']} ${
+          className={`${styles.grid__mobileNav__activebar} ${
             requestStatusFilter === 'planned'
               ? styles.col1
               : requestStatusFilter === 'in-progress'
@@ -100,7 +97,7 @@ function RoadmapList(props) {
           }`}
         />
       </form>
-      <div className={styles['grid__mobile-nav__title']}>
+      <div className={styles.grid__mobileNav__title}>
         {requestStatusFilter === 'planned' && (
           <>
             <h3>{`Planned (${plannedNum})`}</h3>

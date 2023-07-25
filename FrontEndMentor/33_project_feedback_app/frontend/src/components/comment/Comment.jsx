@@ -78,7 +78,7 @@ function Comment(props) {
 
   const commentReplies = replies
     ? replies.map((el) => (
-        <div className={styles['comment__replies-container']} key={el.id}>
+        <div className={styles.comment__repliesContainer} key={el.id}>
           <Comment
             requestId={requestId}
             commentId={el.id}
@@ -111,7 +111,7 @@ function Comment(props) {
       {parent && replies ? (
         // Vertical line grid-row-end: Our CSS Grid is implicit, therefore we can't specify a span value in the CSS as the number is dynamic.
         <div
-          className={styles['comment__vertical-line']}
+          className={styles.comment__verticalLine}
           style={{ gridRowEnd: `${replies.length + 2}` }}
         />
       ) : (

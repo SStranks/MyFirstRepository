@@ -24,7 +24,7 @@
   column-gap: f.px2em(30);
   height: 100%;
 
-  &__sub-grid-1 {
+  &__subGrid1 {
     display: flex;
     flex-direction: column;
     row-gap: f.px2em(24);
@@ -44,7 +44,7 @@
     }
   }
 
-  &__sub-grid-2 {
+  &__subGrid2 {
     display: grid;
     grid-template-columns: 1fr;
     row-gap: f.px2em(24);

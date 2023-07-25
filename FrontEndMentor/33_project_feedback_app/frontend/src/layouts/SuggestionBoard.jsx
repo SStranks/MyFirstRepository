@@ -77,7 +77,7 @@ function SuggestionBoard(props) {
   return (
     <div className={styles.container}>
       <div className={styles.grid}>
-        <div className={styles['grid__sub-grid-1']}>
+        <div className={styles.grid__subGrid1}>
           <header>
             <Header requests={requests} setCategoryFilter={setCategoryFilter} />
           </header>
@@ -88,7 +88,7 @@ function SuggestionBoard(props) {
             <AsideRoadmap requests={requests} />
           </aside>
         </div>
-        <div className={styles['grid__sub-grid-2']}>
+        <div className={styles.grid__subGrid2}>
           <main>
             <UtilityBarSuggestions
               requests={filterRequestsByCategoryTag}

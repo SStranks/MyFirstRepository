@@ -33,7 +33,7 @@ function SuggestionsList(props) {
   return list.length > 0 ? (
     <div className={styles.list}>{list}</div>
   ) : (
-    <div className={styles['no-list']}>
+    <div className={styles.noList}>
       <img src={NoFeedbackImg} alt="" />
       <span>There is no feedback yet.</span>
       <p>
