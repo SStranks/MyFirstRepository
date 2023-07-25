@@ -135,7 +135,7 @@ function Home(): JSX.Element {
               </Link>
             </div>
           </div>
-          <picture className={styles['yx1-picture']}>
+          <picture className={styles.yx1Picture}>
             <source
               srcSet="/img/home/desktop/image-earphones-yx1.jpg"
               media="(min-wdith: 800px)"
@@ -155,7 +155,7 @@ function Home(): JSX.Element {
               height="400px"
             />
             <img
-              className={styles['yx1-img']}
+              className={styles.yx1Img}
               src="/img/home/desktop/image-earphones-yx1.jpg"
               alt="product YX1 earphones"
             />

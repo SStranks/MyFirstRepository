@@ -154,7 +154,7 @@
   }
 }
 
-.yx1-img {
+.yx1Img {
   object-fit: cover;
   width: 100%;
   min-width: 320px;
@@ -387,13 +387,13 @@
   }
 }
 
-.yx1-picture {
+.yx1Picture {
   @include mq.media(tablet-mini, tablet-micro, mobile-all) {
     grid-column: 1 / span 2;
   }
 }
 
-.yx1-img {
+.yx1Img {
   @include mq.media(tablet-regular, tablet-small, tablet-mini, tablet-micro) {
     aspect-ratio: 339/320;
     min-width: unset;
