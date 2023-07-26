@@ -1,0 +1,47 @@
+@use '#Sass/functions' as f;
+
+.customCheckbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  column-gap: f.px2em(16);
+  // padding: f.px2em(12);
+  border-radius: 2px;
+
+  &:hover {
+    & .customCheckbox__newCheckbox {
+      border: 1px solid var(--color-checkbox-hover);
+    }
+  }
+
+  &__title {
+    flex: 1;
+  }
+
+  & > input {
+    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  &__newCheckbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 16px;
+    width: 16px;
+    background-color: var(--color-checkbox-unchecked);
+    border-radius: 2px;
+    // transition: a.$Theme-transition-bg;
+  }
+
+  &__iconCheck {
+    height: auto;
+  }
+
+  & > input:checked ~ .customCheckbox__newCheckbox {
+    background-color: var(--color-checkbox-checked);
+  }
+}

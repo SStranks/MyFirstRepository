@@ -81,6 +81,25 @@
   }
 }
 
+/* -------------------------------- */
+/*   Extend Click Area              */
+/* -------------------------------- */
+
+@mixin extend-clickarea($x: 175%, $y: 150%, $visible: true) {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: $x;
+    height: $y;
+    @if $visible == true {
+      background: rgba(239, 172, 207, 0.8);
+    }
+  }
+}
+
 /*   Errors                         */
 @mixin input-error {
   $element: &;
