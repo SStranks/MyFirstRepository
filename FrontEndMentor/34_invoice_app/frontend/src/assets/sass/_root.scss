@@ -41,6 +41,7 @@
   --color-checkbox-unchecked: #{$color-2a};
   --color-checkbox-checked: #{$color-1a};
   --color-checkbox-hover: #{$color-1a};
+  --color-dropshadow: #{$dropshadow-light};
   // --color-placeholder: hsl(216deg, 5%, 57%);
   // --color-input-text: #{$Dark_Grey};
 }
@@ -65,6 +66,12 @@
   --color-button-status-pending: #{$color-5d};
   --color-button-status-draft: #{$color-5e};
   --color-button-status-draft-text: #{$color-2a};
+
+  --color-checkbox-unchecked: #{$color-1c};
+  --color-checkbox-checked: #{$color-1a};
+  --color-checkbox-hover: #{$color-1a};
+  --color-dropshadow: #{$dropshadow-dark};
+
   //   --color-placeholder: hsl(216deg, 5%, 57%);
   //   --color-input-text: #{$White};
 }

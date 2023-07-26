@@ -1,6 +1,7 @@
 @use '#Sass/variables' as *;
 @use '#Sass/mixins' as *;
 @use '#Sass/functions' as f;
+@use '#Sass/animations' as a;
 
 .container {
   position: relative;
@@ -15,9 +16,9 @@
   row-gap: 16px;
   width: 190px;
   padding: f.px2em(24);
-  background-color: white;
+  background-color: var(--color-elements-2);
   border-radius: 8px;
-  box-shadow: 0 10px 20px 0 $dropshadow;
+  box-shadow: 0 10px 20px 0 var(--color-dropshadow);
   transform: translate(50%, 110%);
   z-index: 5;
 }
@@ -34,16 +35,21 @@
   background-color: transparent;
 
   @include extend-clickarea(120%, 150%, false);
-
   @include media(mobile-small) {
     flex-direction: column;
     justify-content: center;
     row-gap: 4px;
   }
 
-  & > h3 > span {
-    @include media(mobile-all) {
-      display: none;
+  & > h3 {
+    color: var(--color-text-p);
+    transition: a.$Theme-transition;
+
+    & > span {
+      @include media(mobile-all) {
+        display: none;
+        transition: a.$Theme-transition;
+      }
     }
   }
 

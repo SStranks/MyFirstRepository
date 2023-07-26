@@ -5,7 +5,6 @@
   display: flex;
   align-items: center;
   column-gap: f.px2em(16);
-  // padding: f.px2em(12);
   border-radius: 2px;
 
   &:hover {
@@ -16,6 +15,7 @@
 
   &__title {
     flex: 1;
+    color: var(--color-text-h);
   }
 
   & > input {
