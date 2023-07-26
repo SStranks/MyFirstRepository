@@ -2,10 +2,10 @@ import Dropdown from '#Components/custom/dropdown/Dropdown';
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
-import { AppDispatchContext } from '#Context/AppContext';
+import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
-import { TBoard, TReturnData } from '#Types/types';
+import { TAppStateContext, TBoard, TReturnData } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
@@ -18,6 +18,15 @@ import {
 import { useContext, useState } from 'react';
 import styles from './_TaskAdd.module.scss';
 
+const extractData = (state: TAppStateContext, activeBoard: TBoard) => {
+  console.log('TASKADD EXTRACT DATA');
+  const board = state.boards.find((el) => el._id === activeBoard._id);
+  // NOTE:  el.name, el._id
+  const columnList = board?.columns.map((el) => [el.name, el._id]);
+  if (!columnList) throw new Error('Incongruence in data!');
+  return { columnList };
+};
+
 const INITIAL_SUBTASKS = ['', ''];
 
 type ElemProps = {
@@ -25,9 +34,11 @@ type ElemProps = {
   taskStatus: { current: string; statusArr: string[] };
 };
 
-// FUNCTION COMPONENT //
 function TaskAdd(props: ElemProps): JSX.Element {
   const { activeBoard, taskStatus } = props;
+  const state = useContext(AppStateContext);
+  // NOTE:  Extract data is running on every re-render, need to amend.
+  const { columnList } = extractData(state, activeBoard);
   const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
   const [formData, setFormData] = useState({
@@ -40,8 +51,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
     'input-status': {
       value: taskStatus.current,
       error: false,
-      // DEBUG:  This needs fixing
-      statusArr: [[...taskStatus.statusArr], ['a']],
+      statusArr: columnList,
       inputName: 'input-status',
     },
     'input-group-1': { ...genGroupInputs(INITIAL_SUBTASKS, 'subtask') },

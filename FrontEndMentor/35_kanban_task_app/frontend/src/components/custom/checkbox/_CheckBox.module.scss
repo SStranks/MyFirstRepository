@@ -48,11 +48,11 @@
     height: auto;
   }
 
-  & > input:checked ~ .custom-checkbox__new-checkbox {
+  & > input:checked ~ .customCheckbox__newCheckbox {
     background-color: c.$col-1a;
   }
 
-  & > input:checked ~ .custom-checkbox__title {
+  & > input:checked ~ .customCheckbox__title {
     text-decoration: line-through;
     color: var(--thm-chkbox-default-label-text-strikethrough);
   }

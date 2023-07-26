@@ -99,7 +99,7 @@ const updateTask = catchAsync(
       return next(new AppError('Unable to commit document!', 404));
     }
 
-    console.log('BOARD', board);
+    // console.log('BOARD', board);
 
     res.status(200).json({
       status: 'success',
@@ -163,4 +163,4 @@ const deleteTask = catchAsync(
   }
 );
 
-export { getAllTasks, createTask, updateTask, getTask, deleteTask };
+export { createTask, deleteTask, getAllTasks, getTask, updateTask };

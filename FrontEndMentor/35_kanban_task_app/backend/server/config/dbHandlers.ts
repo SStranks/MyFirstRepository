@@ -25,8 +25,6 @@ const getAll = <T>(Model: Model<T>) =>
 
     if (!docs) return next(new AppError('No documents found in DB!', 404));
 
-    console.log(docs);
-
     res.status(200).json({
       status: 'success',
       results: docs.length,
@@ -85,4 +83,4 @@ const updateOne = <T>(Model: Model<T>) =>
     });
   });
 
-export { getOne, getAll, createOne, deleteOne, updateOne };
+export { createOne, deleteOne, getAll, getOne, updateOne };

@@ -42,9 +42,9 @@ type ElemProps = {
   columnList: string[][];
 };
 
-// FUNCTION COMPONENT //
 function TaskEdit(props: ElemProps): JSX.Element {
   const { task, selectTask, columnList } = props;
+  console.log(columnList);
   const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
   const [formData, setFormData] = useState({
@@ -113,7 +113,7 @@ function TaskEdit(props: ElemProps): JSX.Element {
     try {
       const response = await (columnId === newColumnId
         ? fetch(
-            `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}xxxx`,
+            `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
             {
               method: 'PATCH',
               headers: { 'Content-Type': 'application/json' },
