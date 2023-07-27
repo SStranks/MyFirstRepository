@@ -6,9 +6,12 @@ const btnNewInvoiceClickHandler = () => {
   console.log('btnNewInvoiceClickHandle clicked');
 };
 
-function UtilityBar(): JSX.Element {
-  // Temporary Dev
-  const number = 7;
+interface IProps {
+  numberInvoicesTotal: number;
+}
+
+function UtilityBar(props: IProps): JSX.Element {
+  const { numberInvoicesTotal } = props;
 
   return (
     <div className={styles.container}>
@@ -16,7 +19,7 @@ function UtilityBar(): JSX.Element {
         <h1>Invoices</h1>
         <p>
           <span>There are </span>
-          {number}
+          {numberInvoicesTotal}
           <span> total </span>invoices
         </p>
       </div>

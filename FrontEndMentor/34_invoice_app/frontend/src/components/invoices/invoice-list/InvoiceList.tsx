@@ -1,24 +1,25 @@
 import Invoice from '#Components/invoices/invoice/Invoice';
+import { IInvoice } from '#Services/ApiServiceClient';
 import IllustrationEmpty from '#Svg/illustration-empty.svg';
-// TEMP DEV:  // Data
-import JSONData from '#Data/data.json';
-
 import styles from './InvoiceList.module.scss';
 
-function InvoiceList(): JSX.Element {
-  // TEMP DEV:  // Data
-  const invoices = JSONData.map((el) => (
+interface IProps {
+  invoices: IInvoice[] | undefined;
+}
+
+function InvoiceList(props: IProps): JSX.Element {
+  const { invoices } = props;
+  const invoicesList = invoices?.map((el) => (
     <Invoice
       key={el.id}
       invoiceId={el.id}
+      slug={el.slug}
       paymentDue={el.paymentDue}
       clientName={el.clientName}
       total={el.total}
       status={el.status}
     />
   ));
-
-  // const invoices = undefined;
 
   const noInvoices = (
     <>
@@ -34,7 +35,7 @@ function InvoiceList(): JSX.Element {
   return (
     <div className={styles.container}>
       {(invoices && (
-        <div className={styles.container__invoices}>{invoices}</div>
+        <div className={styles.container__invoices}>{invoicesList}</div>
       )) || <div className={styles.container__noInvoices}>{noInvoices}</div>}
     </div>
   );

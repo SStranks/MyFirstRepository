@@ -2,9 +2,10 @@ import ButtonDeleteModal from '#Components/custom/buttons/delete-modal/ButtonDel
 import ButtonEditModal from '#Components/custom/buttons/edit-modal/ButtonEditModal';
 import Button from '#Components/custom/buttons/generic/Button';
 import Status from '#Components/custom/buttons/status/Status';
-import JSONData from '#Data/data.json';
 import ContentLayout from '#Layouts/ContentLayout';
+import ApiService from '#Services/Services';
 import IconArrowLeft from '#Svg/icon-arrow-left.svg';
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styles from './InvoiceEdit.module.scss';
@@ -12,17 +13,30 @@ import styles from './InvoiceEdit.module.scss';
 // TEMP DEV: .
 const btnFunc = () => console.log('Temp Btn Click');
 
-function InvoiceEdit(): JSX.Element {
-  const { id: invoiceId } = useParams();
+async function getInvoice(invoiceId: string) {
+  const responseData = await ApiService.getInvoice(invoiceId);
+  return responseData;
+}
 
-  // Get Invoice ID data
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const invoice = JSONData.find((el) => el.id === invoiceId)!;
+type TParams = {
+  id: string;
+};
+
+function InvoiceEdit(): JSX.Element | null {
+  const { id: invoiceId } = useParams() as TParams;
+  const { data: invoice, isLoading } = useQuery({
+    queryKey: [invoiceId],
+    queryFn: () => getInvoice(invoiceId),
+  });
+
+  // TODO:  Proper Loading and Error handling
+  // eslint-disable-next-line unicorn/no-null
+  if (isLoading || !invoice) return null;
 
   // Invoice Items
-  const invoiceItems = invoice.items.map((item) => {
+  const invoiceItems = invoice?.items.map((item) => {
     return (
-      <React.Fragment key={`${invoice.id}${item.name}`}>
+      <React.Fragment key={invoice.id}>
         <p className={styles['container__invoice__payment__grid__name--black']}>
           {item.name}
         </p>
@@ -98,7 +112,7 @@ function InvoiceEdit(): JSX.Element {
                   className={
                     styles['container__invoice__identity__code--black']
                   }>
-                  {invoice.id}
+                  {invoice.slug}
                 </span>
               </p>
               <p>{invoice.description}</p>
