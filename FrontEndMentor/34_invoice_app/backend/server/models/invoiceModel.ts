@@ -1,6 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable func-names */
 /* eslint-disable unicorn/no-array-reduce */
+import formatDate from '#Utils/formatDate';
 import mongoose from 'mongoose';
+import { customAlphabet } from 'nanoid';
 import validator from 'validator';
 import { IAddress, addressSchema } from './addressSchema';
 
@@ -12,8 +15,9 @@ interface IItem {
 }
 
 interface IInvoice {
-  createdAt: Date;
-  paymentDue: Date;
+  slug: string;
+  createdAt: () => string;
+  paymentDue: () => string;
   description: string;
   paymentTerms: number;
   clientName: string;
@@ -53,11 +57,28 @@ itemSchema.virtual('total').get(function () {
   return this.quantity * this.price;
 });
 
+// Convert Date to dd/month(mmm)/yyyy
+function convertDate(date: Date) {
+  return formatDate(date);
+}
+
+const nanoid = customAlphabet('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ', 6);
+
+// ------------------------------------------------------------------- //
+// ------------------------     SCHEMA     --------------------------- //
+// ------------------------------------------------------------------- //
+
 const invoiceSchema = new mongoose.Schema<IInvoice>(
   {
+    slug: {
+      type: String,
+      default: nanoid(),
+      immutable: true,
+    },
     createdAt: {
       type: Date,
       default: Date.now(),
+      get: convertDate,
     },
     paymentDue: {
       type: Date,
@@ -66,6 +87,7 @@ const invoiceSchema = new mongoose.Schema<IInvoice>(
         date.setDate(date.getDate() + 30);
         return date;
       },
+      get: convertDate,
     },
     description: {
       type: String,
@@ -110,7 +132,7 @@ const invoiceSchema = new mongoose.Schema<IInvoice>(
   },
   {
     id: false,
-    toJSON: { virtuals: true },
+    toJSON: { virtuals: true, getters: true },
     toObject: { virtuals: true },
   }
 );
@@ -119,6 +141,10 @@ invoiceSchema.virtual('total').get(function () {
   return this.items.reduce((acc, cur) => {
     return acc + cur.total;
   }, 0);
+});
+
+invoiceSchema.virtual('id').get(function () {
+  return this._id.toHexString();
 });
 
 const Invoice = mongoose.model('Invoice', invoiceSchema);

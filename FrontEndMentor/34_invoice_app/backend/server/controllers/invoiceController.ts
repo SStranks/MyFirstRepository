@@ -9,22 +9,24 @@ const getAllInvoices = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const invoices = await Invoice.find(
       {},
-      'createdAt clientName items total status'
+      'id slug paymentDue clientName items total status'
     ).transform((docs) => {
       return docs.map((doc) => {
-        const { _id, createdAt, clientName, total, status } = doc;
-        return { _id, createdAt, clientName, total, status };
+        const { id, slug, paymentDue, clientName, total, status } = doc;
+        return { id, slug, paymentDue, clientName, total, status };
       });
     });
 
     if (!invoices)
       return next(new AppError('No documents for current user', 404));
 
+    // console.log('ALL INVOICES', invoices);
+
     return res.status(200).json({
       status: 'success',
       results: invoices.length,
       data: {
-        data: invoices,
+        invoices,
       },
     });
   }
@@ -45,7 +47,7 @@ const getInvoice = catchAsync(
     return res.status(200).json({
       status: 'success',
       data: {
-        data: invoice,
+        invoice,
       },
     });
   }
@@ -58,7 +60,7 @@ const createInvoice = catchAsync(
     return res.status(201).json({
       status: 'success',
       data: {
-        data: invoice,
+        invoice,
       },
     });
   }
@@ -77,7 +79,7 @@ const updateInvoice = catchAsync(
     return res.status(200).json({
       status: 'success',
       data: {
-        data: invoice,
+        invoice,
       },
     });
   }
