@@ -1,14 +1,16 @@
 import CheckBox from '#Components/custom/checkbox/CheckBox';
+import { IFilterStatus } from '#Components/main/Main';
 import ArrowDown from '#Svg/icon-arrow-down.svg';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from './DropdownFilterStatus.module.scss';
 
-function Dropdown(): JSX.Element {
-  const [filterStatus, setFilterStatus] = useState({
-    draft: false,
-    pending: false,
-    paid: false,
-  });
+interface IProps {
+  filterStatus: IFilterStatus;
+  setFilterStatus: React.Dispatch<React.SetStateAction<IFilterStatus>>;
+}
+
+function Dropdown(props: IProps): JSX.Element {
+  const { filterStatus, setFilterStatus } = props;
   const dropdownContainerRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const iconArrowRef = useRef<HTMLImageElement>(null);
