@@ -5,16 +5,20 @@ import Status from '#Components/custom/buttons/status/Status';
 import ContentLayout from '#Layouts/ContentLayout';
 import ApiService from '#Services/Services';
 import IconArrowLeft from '#Svg/icon-arrow-left.svg';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
+import { toast } from 'react-hot-toast';
 import { Link, useParams } from 'react-router-dom';
 import styles from './InvoiceEdit.module.scss';
 
-// TEMP DEV: .
-const btnFunc = () => console.log('Temp Btn Click');
-
 async function getInvoice(invoiceId: string) {
   const responseData = await ApiService.getInvoice(invoiceId);
+  return responseData;
+}
+
+async function patchInvoiceStatus(invoiceId: string) {
+  const responseData = await ApiService.patchInvoiceStatus(invoiceId);
+  if (!responseData) throw new Error('Unable to update invoice');
   return responseData;
 }
 
@@ -28,10 +32,23 @@ function InvoiceEdit(): JSX.Element | null {
     queryKey: [invoiceId],
     queryFn: () => getInvoice(invoiceId),
   });
+  const queryClient = useQueryClient();
+  const { mutateAsync } = useMutation({ mutationFn: patchInvoiceStatus });
 
   // TODO:  Proper Loading and Error handling
   // eslint-disable-next-line unicorn/no-null
   if (isLoading || !invoice) return null;
+
+  const markInvoicePaidBtnClickHandler = () => {
+    toast.promise(mutateAsync(invoiceId), {
+      loading: 'Updating Invoice Status',
+      success: () => {
+        queryClient.invalidateQueries({ queryKey: [invoiceId] });
+        return 'Invoice Status Updated';
+      },
+      error: (error) => `${error.message}`,
+    });
+  };
 
   // Invoice Items
   const invoiceItems = invoice?.items.map((item) => {
@@ -97,7 +114,7 @@ function InvoiceEdit(): JSX.Element | null {
             <Button
               text="Mark as Paid"
               color="purple"
-              onClick={btnFunc}
+              onClick={markInvoicePaidBtnClickHandler}
               value="Paid"
               disabled={false}
             />

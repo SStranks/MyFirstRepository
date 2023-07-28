@@ -23,7 +23,7 @@ export default class ApiClient implements IApiClient {
   protected createAxiosClient(): AxiosInstance {
     return axios.create({
       baseURL: `${process.env.API_HOST}/api/v1`,
-      timeout: 1000,
+      timeout: 5000,
       headers: { 'Content-Type': 'application/json' },
     });
   }

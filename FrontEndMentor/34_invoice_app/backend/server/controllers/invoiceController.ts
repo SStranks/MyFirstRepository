@@ -85,6 +85,31 @@ const updateInvoice = catchAsync(
   }
 );
 
+const updateInvoiceStatus = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { status } = req.body;
+    console.log(status);
+    const invoice = await Invoice.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!invoice)
+      return next(new AppError('No document found with that ID', 404));
+
+    return res.status(200).json({
+      status: 'success',
+      data: {
+        invoice,
+      },
+    });
+  }
+);
+
 const deleteInvoice = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const invoice = await Invoice.findByIdAndDelete(req.params.id);
@@ -105,4 +130,5 @@ export {
   getAllInvoices,
   getInvoice,
   updateInvoice,
+  updateInvoiceStatus,
 };

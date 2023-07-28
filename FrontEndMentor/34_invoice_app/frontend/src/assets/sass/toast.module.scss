@@ -1,0 +1,16 @@
+@use '#Sass/animations' as *;
+
+.toastDefault {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 16px 24px;
+  background-color: var(--color-toast-bg);
+  color: var(--color-toast-text);
+  transition: $Theme-transition;
+}
+
+// .toastSuccess {}
+
+// .toastError {}
+
+// .toastCustom {}

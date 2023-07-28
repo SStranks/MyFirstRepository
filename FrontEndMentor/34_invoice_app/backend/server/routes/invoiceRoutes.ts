@@ -4,6 +4,7 @@ import {
   getAllInvoices,
   getInvoice,
   updateInvoice,
+  updateInvoiceStatus,
 } from '#Controllers/invoiceController';
 import express from 'express';
 
@@ -16,5 +17,7 @@ invoiceRouter
   .get(getInvoice)
   .patch(updateInvoice)
   .delete(deleteInvoice);
+
+invoiceRouter.route('/:id/status').patch(updateInvoiceStatus);
 
 export default invoiceRouter;

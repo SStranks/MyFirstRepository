@@ -1,7 +1,7 @@
 // NOTE:  ! This file is not complete. Basic working structure. Depends on backend API types
 import { IApiClient } from './ApiHttp';
 
-// type TBody = { [x: string]: unknown };
+type TBody = { [x: string]: unknown };
 
 interface TApiExpressResponse<T> {
   status: string;
@@ -78,6 +78,22 @@ export default class ApiServiceClient implements IApiServiceClient {
       const response = await this.ApiServiceClient.get<
         TApiExpressResponse<IResInvoice>
       >(`/invoices/${id}`);
+      const {
+        data: { invoice: responseData },
+      } = response;
+      return responseData;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
+
+  async patchInvoiceStatus(id: string): Promise<IInvoice | undefined> {
+    try {
+      const response = await this.ApiServiceClient.patch<
+        TBody,
+        TApiExpressResponse<IResInvoice>
+      >(`/invoices/${id}/status`, { status: 'paid' });
       const {
         data: { invoice: responseData },
       } = response;
