@@ -1,0 +1,55 @@
+@use '#Sass/variables' as *;
+@use '#Sass/mixins' as *;
+@use '#Sass/functions' as f;
+@use '#Sass/animations' as a;
+
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 f.px2em(24);
+  // To allow click-through to Modal component background
+  pointer-events: none;
+
+  &__card {
+    @include body-3;
+    // To allow click events for the ModalConfirmDelete card/buttons
+    pointer-events: all;
+    padding: f.px2em(48);
+    color: $color-2b;
+    background-color: var(--color-elements);
+    border-radius: $border-radius-1;
+    transition: a.$Theme-transition;
+
+    @include media(mobile-all) {
+      padding: f.px2em(32);
+    }
+
+    &__title {
+      @include body-4;
+      @include text-modifier-black;
+      margin-bottom: f.px2em(12);
+    }
+
+    &__message {
+      font-size: f.px2rem(14);
+    }
+
+    &__buttons {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      column-gap: f.px2em(8);
+      margin-top: f.px2em(16);
+
+      @include media(mobile-all) {
+        margin-top: f.px2em(24);
+      }
+    }
+  }
+}

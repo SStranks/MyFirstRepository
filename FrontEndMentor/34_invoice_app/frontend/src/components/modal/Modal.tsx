@@ -37,7 +37,6 @@ function Modal(props: ModalProps): JSX.Element | null {
     };
   }, [isOpen, setIsOpen]);
 
-  // eslint-disable-next-line unicorn/no-null
   if (!isOpen) return null;
 
   const domNode = document.querySelector('#modal') as HTMLElement;

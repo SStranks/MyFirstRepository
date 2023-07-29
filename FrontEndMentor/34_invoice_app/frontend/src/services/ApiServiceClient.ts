@@ -49,6 +49,10 @@ export interface IResInvoice {
 
 export interface IApiServiceClient {
   getAllInvoices(): Promise<IInvoice[] | undefined>;
+  getInvoice(id: string): Promise<IInvoice | undefined>;
+  getInvoice(id: string): Promise<IInvoice | undefined>;
+  patchInvoiceStatus(id: string): Promise<IInvoice | undefined>;
+  deleteInvoice(id: string): Promise<number | boolean>;
 }
 
 export default class ApiServiceClient implements IApiServiceClient {
@@ -101,6 +105,17 @@ export default class ApiServiceClient implements IApiServiceClient {
     } catch (error) {
       console.error(error);
       return undefined;
+    }
+  }
+
+  async deleteInvoice(id: string) {
+    try {
+      const response = await this.ApiServiceClient.delete(`/invoices/${id}`);
+      const { status: statusCode } = response;
+      return statusCode;
+    } catch (error) {
+      console.error(error);
+      return false;
     }
   }
 }

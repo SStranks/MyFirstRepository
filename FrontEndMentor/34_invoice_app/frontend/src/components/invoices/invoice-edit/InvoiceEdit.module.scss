@@ -2,6 +2,7 @@
 @use '#Sass/mixins' as *;
 @use '#Sass/functions' as f;
 @use '#Sass/animations' as a;
+@use '#Sass/components/buttons' as btn;
 
 .container {
   @include media(tablet-medium) {
@@ -56,6 +57,11 @@
         justify-content: space-between;
         width: 100%;
       }
+    }
+
+    &__deleteBtn {
+      @include btn.btn-component;
+      @include btn.btn-component-red;
     }
 
     &__buttons {

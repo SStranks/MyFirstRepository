@@ -1,11 +1,12 @@
 import BtnNewInvoice from '#Components/custom/buttons/new-invoice/BtnNewInvoice';
 import DropdownFilterStatus from '#Components/custom/dropdown/filter-status/DropdownFilterStatus';
 import { IFilterStatus } from '#Components/main/Main';
+// import ModalSidebar from '#Components/modal/sidebar/ModalSidebar';
+import Modal from '#Components/modal_v2/Modal';
+import ModalSidebar from '#Components/modal_v2/ModalSidebar';
+import ReactPortal from '#Components/modal_v2/ReactPortal';
+import { useState } from 'react';
 import styles from './UtilityBar.module.scss';
-
-const btnNewInvoiceClickHandler = () => {
-  console.log('btnNewInvoiceClickHandle clicked');
-};
 
 interface IProps {
   numberInvoicesTotal: number | undefined;
@@ -15,6 +16,11 @@ interface IProps {
 
 function UtilityBar(props: IProps): JSX.Element {
   const { numberInvoicesTotal, filterStatus, setFilterStatus } = props;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const btnNewInvoiceClickHandler = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <div className={styles.container}>
@@ -35,6 +41,11 @@ function UtilityBar(props: IProps): JSX.Element {
           disabled={undefined}
         />
       </div>
+      <ReactPortal wrapperId="modal">
+        <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+          <ModalSidebar title="New Invoice" code="" />
+        </Modal>
+      </ReactPortal>
     </div>
   );
 }

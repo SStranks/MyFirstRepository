@@ -1,4 +1,4 @@
-import ButtonDeleteModal from '#Components/custom/buttons/delete-modal/ButtonDeleteModal';
+// import ButtonDeleteModal from '#Components/custom/buttons/delete-modal/ButtonDeleteModal';
 import ButtonEditModal from '#Components/custom/buttons/edit-modal/ButtonEditModal';
 import Button from '#Components/custom/buttons/generic/Button';
 import Status from '#Components/custom/buttons/status/Status';
@@ -8,7 +8,7 @@ import IconArrowLeft from '#Svg/icon-arrow-left.svg';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import React from 'react';
 import { toast } from 'react-hot-toast';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styles from './InvoiceEdit.module.scss';
 
 async function getInvoice(invoiceId: string) {
@@ -22,27 +22,53 @@ async function patchInvoiceStatus(invoiceId: string) {
   return responseData;
 }
 
+async function deleteInvoice(invoiceId: string) {
+  const responseData = await ApiService.deleteInvoice(invoiceId);
+  if (responseData !== 204) throw new Error('Unable to update invoice');
+  return responseData;
+}
+
 type TParams = {
   id: string;
 };
 
 function InvoiceEdit(): JSX.Element | null {
+  const navigate = useNavigate();
   const { id: invoiceId } = useParams() as TParams;
   const { data: invoice, isLoading } = useQuery({
     queryKey: [invoiceId],
     queryFn: () => getInvoice(invoiceId),
   });
   const queryClient = useQueryClient();
-  const { mutateAsync } = useMutation({ mutationFn: patchInvoiceStatus });
+  const { mutateAsync: mutateAsyncPatchInvoiceStatus } = useMutation({
+    mutationFn: patchInvoiceStatus,
+  });
+  const { mutateAsync: mutateAsyncDeleteInvoice } = useMutation({
+    mutationFn: deleteInvoice,
+  });
 
   // TODO:  Proper Loading and Error handling
-  // eslint-disable-next-line unicorn/no-null
   if (isLoading || !invoice) return null;
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
+  const deleteInvoiceBtnClickHandler = () => {
+    toast.promise(mutateAsyncDeleteInvoice(invoiceId), {
+      loading: 'Deleting Invoice',
+      success: () => {
+        queryClient.removeQueries({ queryKey: [invoiceId] });
+        queryClient.invalidateQueries({ queryKey: ['invoices'] });
+        navigate('/');
+        return 'Invoice Deleted';
+      },
+      error: (error) => `${error.message}`,
+    });
+  };
+
   const markInvoicePaidBtnClickHandler = () => {
-    toast.promise(mutateAsync(invoiceId), {
+    toast.promise(mutateAsyncPatchInvoiceStatus(invoiceId), {
       loading: 'Updating Invoice Status',
       success: () => {
+        queryClient.invalidateQueries({ queryKey: ['invoices'] });
         queryClient.invalidateQueries({ queryKey: [invoiceId] });
         return 'Invoice Status Updated';
       },
@@ -99,18 +125,19 @@ function InvoiceEdit(): JSX.Element | null {
             <Status status={invoice.status} />
           </div>
           <div className={styles.container__statusBar__buttons}>
+            {/* // REFACTOR:  Buttons to regular buttons with styles in src/sass */}
             <ButtonEditModal
               text="Edit"
               color="grey"
               value="Edit"
               disabled={false}
             />
-            <ButtonDeleteModal
-              text="Delete"
-              color="red"
-              value="Delete"
-              disabled={false}
-            />
+            <button
+              className={styles.container__statusBar__deleteBtn}
+              type="button"
+              onClick={deleteInvoiceBtnClickHandler}>
+              Delete
+            </button>
             <Button
               text="Mark as Paid"
               color="purple"
