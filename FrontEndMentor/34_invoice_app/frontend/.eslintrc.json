@@ -69,6 +69,7 @@
       }
     ],
     "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-null": "off",
     "arrow-body-style": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/extensions": "off"

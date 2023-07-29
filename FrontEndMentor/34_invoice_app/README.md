@@ -69,6 +69,7 @@ Captured at the following breakpoints from the live solution: Desktop - 1440px, 
 - [TS and Webpack 5: Configuring Aliases](https://www.basefactor.com/configuring-aliases-in-webpack-vs-code-typescript-jest)
 - [NPM: eslint-import-resolver-typrscript](https://www.npmjs.com/package/eslint-import-resolver-typescript)
 - [React Portals & Modals](https://dev.to/link2twenty/react-using-portals-to-make-a-modal-2kdf)
+- [React Query - Mutation Promises](https://tanstack.com/query/v4/docs/react/guides/mutations#promises)
 - [Github - ESLint](https://github.com/expressjs/generator/issues/78)
 - [Github - TS and Webpack 5](https://github.com/webpack/webpack/discussions/15076#discussioncomment-1887720)
 - [Github - TS and ESLint-Plugin-Import](https://github.com/import-js/eslint-plugin-import/issues/1485)
