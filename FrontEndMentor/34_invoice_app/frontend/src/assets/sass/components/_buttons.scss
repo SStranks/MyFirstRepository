@@ -1,38 +1,64 @@
 @use '#Sass/variables' as *;
 @use '#Sass/mixins' as *;
 @use '#Sass/functions' as f;
+@use '#Sass/animations' as a;
 
-@mixin btn-component {
+@mixin btn-theme-wrapper($transition: '', $border-radius: 0) {
+  border-radius: $border-radius;
+  transition: $transition;
+}
+
+@mixin btn-element {
   @include btn-default;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $white;
   padding: f.px2em(17) f.px2em(24);
-  border-radius: $border-radius-3;
+  color: inherit;
+  background-color: transparent;
+  transition: a.$btn-hover;
 }
 
-@mixin btn-component-grey {
+@mixin btn-grey {
   color: $color-2c;
-  background-color: $color-4h;
+  background-color: var(--color-button-cancel);
+}
 
+@mixin btn-grey-hover {
   &:hover {
     background-color: $color-2a;
   }
 }
 
-@mixin btn-component-red {
-  background-color: $color-3a;
+@mixin btn-purple {
+  color: $white;
+  background-color: $color-1a;
+}
 
+@mixin btn-purple-hover {
+  &:hover {
+    background-color: $color-5b;
+  }
+}
+
+@mixin btn-red {
+  color: $white;
+  background-color: $color-3a;
+}
+
+@mixin btn-red-hover {
   &:hover {
     background-color: $color-5a;
   }
 }
 
-@mixin btn-component-purple {
-  background-color: $color-1a;
+@mixin btn-navy {
+  color: $white;
+  background-color: $color-4a;
+}
 
+@mixin btn-navy-hover {
   &:hover {
-    background-color: $color-5b;
+    background-color: $color-2d;
   }
 }

@@ -48,10 +48,20 @@ const itemSchema = new mongoose.Schema<IItem>(
   },
   {
     id: false,
-    toJSON: { virtuals: true },
+    toJSON: {
+      virtuals: true,
+      transform: (doc, ret) => {
+        const { _id, ...rest } = ret;
+        return rest;
+      },
+    },
     toObject: { virtuals: true },
   }
 );
+
+itemSchema.virtual('id').get(function () {
+  return this._id.toHexString();
+});
 
 itemSchema.virtual('total').get(function () {
   return this.quantity * this.price;

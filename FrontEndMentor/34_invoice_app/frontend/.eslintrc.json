@@ -42,6 +42,7 @@
     "no-console": "off",
     // Typescript Rules --
     "react/prop-types": "off",
+    "react/require-default-props": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     // Typescript Rules --

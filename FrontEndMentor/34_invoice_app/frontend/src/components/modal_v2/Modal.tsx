@@ -14,7 +14,6 @@ interface IContext {
 interface IProps {
   isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  // modalContent: JSX.Element;
 }
 
 export const ModalContext = createContext<IContext | undefined>(undefined);
@@ -27,7 +26,6 @@ function Modal(props: PropsWithChildren<IProps>): JSX.Element | null {
     const { current } = modalRef;
     // On click of modal background; close modal.
     const clickHandler = (e: MouseEvent) => {
-      console.log(e.target, current);
       return e.target === current && setIsModalOpen(false);
     };
     // On press of ESC key; close modal.

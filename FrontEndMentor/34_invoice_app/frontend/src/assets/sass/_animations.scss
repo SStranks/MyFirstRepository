@@ -17,4 +17,6 @@
 @use 'variables' as *;
 
 /*   Theme Transitions              */
-$Theme-transition: background 1s, color 1s, fill 1s;
+$Theme-transition: background-color 1s, color 1s, fill 1s;
+
+$btn-hover: background-color 0.2s ease-in;

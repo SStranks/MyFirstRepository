@@ -4,11 +4,6 @@ import { createPortal } from 'react-dom';
 // Creates a flexible ReactPortal component. Will insert DOM element if no wrappedId exists.
 // https://github.com/KRRISH96/react-portal-overlay/blob/main/src/components/ReactPortal.js
 
-// type PortalChildren = {
-//   children: JSX.Element | JSX.Element[];
-//   wrapperId: string;
-// };
-
 interface IPortal {
   wrapperId: string;
 }

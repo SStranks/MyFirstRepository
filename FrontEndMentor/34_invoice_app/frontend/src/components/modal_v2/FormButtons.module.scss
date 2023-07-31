@@ -2,8 +2,9 @@
 @use '#Sass/mixins' as *;
 @use '#Sass/functions' as f;
 @use '#Sass/animations' as a;
+@use '#Sass/components/buttons' as btn;
 
-.containerBtns {
+.container {
   position: sticky;
   bottom: 0;
   display: flex;
@@ -49,5 +50,55 @@
 .active {
   &::before {
     opacity: 0;
+  }
+}
+
+.btnCancel {
+  @include btn.btn-theme-wrapper(a.$Theme-transition, $border-radius-3);
+  @include btn.btn-grey;
+
+  & > button {
+    @include btn.btn-element;
+    @include btn.btn-grey-hover;
+  }
+}
+
+.btnDiscard {
+  @include btn.btn-theme-wrapper(a.$Theme-transition, $border-radius-3);
+  @include btn.btn-grey;
+
+  & > button {
+    @include btn.btn-element;
+    @include btn.btn-grey-hover;
+  }
+}
+
+.btnSaveDraft {
+  @include btn.btn-theme-wrapper(a.$Theme-transition, $border-radius-3);
+  @include btn.btn-navy;
+
+  & > button {
+    @include btn.btn-element;
+    @include btn.btn-navy-hover;
+  }
+}
+
+.btnSaveSend {
+  @include btn.btn-theme-wrapper(a.$Theme-transition, $border-radius-3);
+  @include btn.btn-purple;
+
+  & > button {
+    @include btn.btn-element;
+    @include btn.btn-purple-hover;
+  }
+}
+
+.btnSaveChanges {
+  @include btn.btn-theme-wrapper(a.$Theme-transition, $border-radius-3);
+  @include btn.btn-purple;
+
+  & > button {
+    @include btn.btn-element;
+    @include btn.btn-purple-hover;
   }
 }

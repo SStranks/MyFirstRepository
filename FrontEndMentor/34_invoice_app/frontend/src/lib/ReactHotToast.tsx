@@ -8,20 +8,46 @@ const toasterOptions: ToasterProps = {
   containerClassName: '',
   containerStyle: { margin: '8px' },
   toastOptions: {
-    // Define default options
-    className: styles.toastDefault,
+    // ------------------------------ //
+    // ---- Default Toast options --- //
+    // ------------------------------ //
+    // id: '',
+    // icon: '',
     duration: 5000,
-    // Default options for specific types
+    // ariaProps: {},
+    className: styles.toastDefault,
+    // style: {},
+    // position: '',
+    // iconTheme: {},
+    // ------------------------------ //
+    // ---- Success Toast Options --- //
+    // ------------------------------ //
     success: {
+      className: styles.toastSuccess,
       duration: 3000,
       iconTheme: {
         primary: 'green',
         secondary: 'white',
       },
     },
+    // ------------------------------ //
+    // ---- Error Toast Options ----- //
+    // ------------------------------ //
     error: {
       duration: 5000,
     },
+    // ------------------------------ //
+    // ---- Loading Toast Options --- //
+    // ------------------------------ //
+    loading: {},
+    // ------------------------------ //
+    // ---- Blank Toast Options ----- //
+    // ------------------------------ //
+    blank: {},
+    // ------------------------------ //
+    // ---- Custom Toast Options ---- //
+    // ------------------------------ //
+    custom: {},
   },
 };
 

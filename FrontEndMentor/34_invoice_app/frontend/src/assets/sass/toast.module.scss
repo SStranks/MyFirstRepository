@@ -9,7 +9,9 @@
   transition: $Theme-transition;
 }
 
-// .toastSuccess {}
+.toastSuccess {
+  background-color: purple;
+}
 
 // .toastError {}
 

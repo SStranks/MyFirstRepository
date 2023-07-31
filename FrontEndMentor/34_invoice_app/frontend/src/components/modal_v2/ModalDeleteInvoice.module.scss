@@ -2,6 +2,7 @@
 @use '#Sass/mixins' as *;
 @use '#Sass/functions' as f;
 @use '#Sass/animations' as a;
+@use '#Sass/components/buttons' as btn;
 
 .container {
   position: fixed;
@@ -50,6 +51,26 @@
       @include media(mobile-all) {
         margin-top: f.px2em(24);
       }
+    }
+  }
+
+  &__cancelBtn {
+    @include btn.btn-theme-wrapper(a.$Theme-transition, $border-radius-3);
+    @include btn.btn-grey;
+
+    & > button {
+      @include btn.btn-element;
+      @include btn.btn-grey-hover;
+    }
+  }
+
+  &__deleteBtn {
+    @include btn.btn-theme-wrapper(a.$Theme-transition, $border-radius-3);
+    @include btn.btn-red;
+
+    & > button {
+      @include btn.btn-element;
+      @include btn.btn-red-hover;
     }
   }
 }

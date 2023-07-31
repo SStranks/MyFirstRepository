@@ -3,16 +3,16 @@ import ArrowRight from '#Svg/icon-arrow-right.svg';
 import { Link } from 'react-router-dom';
 import styles from './Invoice.module.scss';
 
-type CompProps = {
+interface IProps {
   invoiceId: string;
   slug: string;
   paymentDue: string;
   clientName: string;
   total: number;
   status: string;
-};
+}
 
-function Invoice(props: CompProps): JSX.Element {
+function Invoice(props: IProps): JSX.Element {
   const { invoiceId, slug, paymentDue, clientName, total, status } = props;
 
   return (
