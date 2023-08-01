@@ -1,4 +1,5 @@
 import Button from '#Components/custom/buttons/generic/Button';
+import DropdownPaymentTerms from '#Components/custom/dropdown/payment-terms/DropdownPaymentTerms';
 import { IInvoice } from '#Services/ApiServiceClient';
 import IconDelete from '#Svg/icon-delete.svg';
 
@@ -8,6 +9,7 @@ interface IProps {
   invoice?: IInvoice;
 }
 
+// REFACTOR:  Need to utilize labels and inputs - see template files.
 function FormInvoice(props: IProps): JSX.Element {
   const { invoice } = props;
   return (
@@ -69,7 +71,7 @@ function FormInvoice(props: IProps): JSX.Element {
         </div>
         <div className="">
           <p>Payment Terms</p>
-          <input type="text" />
+          <DropdownPaymentTerms value={invoice?.paymentTerms} />
         </div>
         <div className={styles.form__details__description}>
           <p>Project Description</p>

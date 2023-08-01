@@ -126,6 +126,7 @@
 @mixin btn-default {
   font-size: f.px2rem(15);
   font-weight: 500;
+  font-family: inherit;
   line-height: f.px2rem(15);
   letter-spacing: -0.25px;
   color: $white;

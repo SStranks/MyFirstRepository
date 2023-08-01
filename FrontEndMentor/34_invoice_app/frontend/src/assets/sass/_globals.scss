@@ -63,22 +63,14 @@ img {
   height: 100%;
 }
 
-// ul,
-// ol {
-//   padding-left: 1em;
-//   & li {
-//     padding-left: 1.5em;
-//   }
-// }
-
 button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  font-family: inherit;
-  border-radius: 10px;
   cursor: pointer;
+  border: none;
+  text-decoration: none;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 input {

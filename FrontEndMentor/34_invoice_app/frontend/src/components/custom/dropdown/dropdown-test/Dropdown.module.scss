@@ -1,0 +1,51 @@
+@mixin baseStyle {
+  width: 100%;
+  padding: 8px 16px;
+  color: white;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+.selectContainer {
+  position: relative;
+  width: 200px;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+
+  & select {
+    display: none;
+  }
+}
+
+.select {
+  @include baseStyle;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  text-align: left;
+  background-color: dodgerblue;
+}
+
+.selectList {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 5;
+
+  & li {
+    @include baseStyle;
+  }
+
+  &--hidden {
+    display: none;
+  }
+}
+
+.selectList li:hover,
+.selectCurrentlySelected {
+  background-color: hsla(0deg, 0%, 0%, 0.1);
+}

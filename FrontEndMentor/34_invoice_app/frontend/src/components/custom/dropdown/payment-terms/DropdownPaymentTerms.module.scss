@@ -4,5 +4,58 @@
 @use '#Sass/animations' as a;
 
 .container {
-  color: red;
+  position: relative;
+  width: 100%;
+  margin-top: f.px2em(10);
+  background-color: var(--color-form-input-bg);
+  border: 1px solid var(--color-form-input-border);
+  border-radius: $border-radius-5;
+  transition: a.$Theme-transition;
+}
+
+.dropdownBtn {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: f.px2em(15) f.px2em(20);
+  font-size: inherit;
+  font-weight: 700;
+  color: var(--color-text-p);
+  background-color: transparent;
+  border-radius: $border-radius-5;
+  transition: a.$Theme-transition;
+
+  &--active {
+    outline: 1px solid $color-1a;
+
+    & > img {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.dropdownList {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  font-size: inherit;
+  font-weight: 700;
+  color: var(--color-text-p);
+  background-color: var(--color-form-input-bg);
+  transform: translateY(calc(100% + 8px));
+  box-shadow: 0 10px 20px 0 var(--color-dropshadow);
+  transition: a.$Theme-transition;
+
+  & > ul {
+    list-style: none;
+
+    & > li {
+      padding: f.px2em(15) f.px2em(20);
+      color: inherit;
+      border-bottom: 1px solid var(--color-form-input-border);
+      transition: a.$Theme-transition;
+    }
+  }
 }
