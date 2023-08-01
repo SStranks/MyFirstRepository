@@ -7,12 +7,16 @@
   cursor: pointer;
 }
 
-.selectContainer {
-  position: relative;
-  width: 200px;
+@mixin fontStyle {
   font-family: inherit;
   font-weight: inherit;
   font-size: inherit;
+}
+
+.selectContainer {
+  @include fontStyle;
+  position: relative;
+  width: 200px;
 
   & select {
     display: none;
@@ -37,7 +41,22 @@
   z-index: 5;
 
   & li {
-    @include baseStyle;
+    list-style: none;
+
+    & label {
+      @include baseStyle;
+      @include fontStyle;
+      display: block;
+    }
+
+    & input[type='radio'] {
+      width: 0;
+      height: 0;
+      padding: 0;
+      margin: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
   }
 
   &--hidden {

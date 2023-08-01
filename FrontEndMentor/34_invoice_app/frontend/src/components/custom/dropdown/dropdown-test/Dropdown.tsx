@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import styles from './Dropdown.module.scss';
+import useDropdown from './useDropdown';
 
 interface IProps {
   optionsArray?: string[];
@@ -21,46 +22,15 @@ function Dropdown(props: IProps): JSX.Element {
     optionsArray = defaultOptions,
     namespace = 'default_select_namespace',
   } = props;
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-  const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [currentOption, setCurrentOption] = useState(optionsArray[0]);
   const selectContainerRef = useRef<HTMLDivElement>(null);
   const selectListRef = useRef<HTMLUListElement>(null);
-
-  // Close dropdown if click outside component
-  useEffect(() => {
-    const clickOutsideHandler = (e: MouseEvent) => {
-      if (
-        e.target !== selectListRef.current &&
-        !selectContainerRef.current?.contains(e.target as HTMLElement)
-      ) {
-        selectListRef.current?.classList.add(styles['selectList--hidden']);
-        setIsDropdownOpen(false);
-      }
-    };
-
-    document?.addEventListener('click', clickOutsideHandler);
-    return () => document?.addEventListener('click', clickOutsideHandler);
-  }, []);
-
-  const listItemClickHandler = (e: React.MouseEvent) => {
-    const divElementText = (e.target as HTMLDivElement).textContent;
-    setIsDropdownOpen(false);
-    setCurrentOption(divElementText as string);
-  };
-
-  console.log(isDropdownOpen, isFocus);
-
-  // const selectKeyHandler = (e: React.KeyboardEvent) => {
-  //   console.log(e.key);
-  //   // NOTE: Use e.key
-  //   if (e.code === 'Enter') setIsDropdownOpen((prev) => !prev);
-  //   if (e.code === 'Escape') setIsDropdownOpen(false);
-  // };
-
-  const keydownHandler2 = () => {
-    console.log('Key', setCurrentOption);
-  };
+  const {
+    isDropdownOpen,
+    setIsDropdownOpen,
+    setIsFocus,
+    currentOption,
+    setCurrentOption,
+  } = useDropdown({ selectContainerRef, selectListRef, optionsArray });
 
   return (
     <div className={styles.selectContainer} ref={selectContainerRef}>
@@ -95,19 +65,32 @@ function Dropdown(props: IProps): JSX.Element {
         role="listbox"
         tabIndex={-1}
         ref={selectListRef}>
-        {optionsArray.map((string, i) => {
+        {optionsArray.map((option, i) => {
           if (i === 0) return null;
           return (
             <li
               key={i}
               className={`${styles.selectList__option} ${
-                string === currentOption ? styles.selectCurrentlySelected : ''
+                option === currentOption ? styles.selectCurrentlySelected : ''
               }`}
-              onClick={listItemClickHandler}
-              onKeyDown={keydownHandler2}
               role="option"
-              aria-selected={string === currentOption}>
-              {string}
+              aria-selected={option === currentOption}>
+              <label htmlFor={`${namespace}_radio_${i}`}>
+                <input
+                  type="radio"
+                  id={`${namespace}_radio_${i}`}
+                  name={`${namespace}_radio`}
+                  value={option}
+                  className={
+                    option === currentOption
+                      ? styles.selectCurrentlySelected
+                      : ''
+                  }
+                  checked={option === currentOption}
+                  onChange={() => setCurrentOption(option)}
+                />
+                <span>{option}</span>
+              </label>
             </li>
           );
         })}
