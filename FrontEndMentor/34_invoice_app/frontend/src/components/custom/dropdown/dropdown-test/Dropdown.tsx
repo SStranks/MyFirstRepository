@@ -6,6 +6,7 @@ import useDropdown from './useDropdown';
 interface IProps {
   optionsArray?: string[];
   namespace?: string;
+  ariaLabel: string;
 }
 
 const defaultOptions = [
@@ -21,39 +22,32 @@ function Dropdown(props: IProps): JSX.Element {
   const {
     optionsArray = defaultOptions,
     namespace = 'default_select_namespace',
+    ariaLabel,
   } = props;
   const selectContainerRef = useRef<HTMLDivElement>(null);
   const selectListRef = useRef<HTMLUListElement>(null);
   const {
     isDropdownOpen,
     setIsDropdownOpen,
-    setIsFocus,
     currentOption,
     setCurrentOption,
+    highlightedIndex,
+    setHighlightedIndex,
   } = useDropdown({ selectContainerRef, selectListRef, optionsArray });
 
   return (
     <div className={styles.selectContainer} ref={selectContainerRef}>
-      <select>
-        {optionsArray.map((string, i) => {
-          return (
-            <option key={i} value={i}>
-              {string}
-            </option>
-          );
-        })}
-      </select>
       <button
         className={styles.select}
         type="button"
-        onClick={() => {
-          setIsDropdownOpen(true);
-        }}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
+        onClick={() => setIsDropdownOpen((prev) => !prev)}
         role="combobox"
+        aria-activedescendant={`${namespace}_element_${currentOption}`}
+        aria-autocomplete="none"
         aria-controls={`${namespace}_dropdown`}
         aria-expanded={isDropdownOpen}
+        aria-haspopup="listbox"
+        aria-label={ariaLabel}
         tabIndex={0}>
         {currentOption}
       </button>
@@ -65,27 +59,25 @@ function Dropdown(props: IProps): JSX.Element {
         role="listbox"
         tabIndex={-1}
         ref={selectListRef}>
-        {optionsArray.map((option, i) => {
-          if (i === 0) return null;
+        {optionsArray.map((option, index) => {
+          if (index === 0) return null;
           return (
             <li
-              key={i}
+              key={index}
+              id={`${namespace}_element_${option}`}
               className={`${styles.selectList__option} ${
-                option === currentOption ? styles.selectCurrentlySelected : ''
-              }`}
+                option === currentOption ? styles.optionSelected : ''
+              } ${index === highlightedIndex ? styles.optionHighlighted : ''}`}
+              onFocus={() => setHighlightedIndex(index)}
+              onMouseOver={() => setHighlightedIndex(index)}
               role="option"
               aria-selected={option === currentOption}>
-              <label htmlFor={`${namespace}_radio_${i}`}>
+              <label htmlFor={`${namespace}_radio_${index}`}>
                 <input
                   type="radio"
-                  id={`${namespace}_radio_${i}`}
+                  id={`${namespace}_radio_${index}`}
                   name={`${namespace}_radio`}
                   value={option}
-                  className={
-                    option === currentOption
-                      ? styles.selectCurrentlySelected
-                      : ''
-                  }
                   checked={option === currentOption}
                   onChange={() => setCurrentOption(option)}
                 />

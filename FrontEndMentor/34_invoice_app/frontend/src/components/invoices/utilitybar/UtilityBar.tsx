@@ -30,7 +30,7 @@ function UtilityBar(props: IProps): JSX.Element {
           <p>There are {numberInvoicesTotal} total invoices</p>
         )}
       </div>
-      <Dropdown />
+      <Dropdown ariaLabel="Select" />
       <div className={styles.container__controls}>
         <DropdownFilterStatus
           filterStatus={filterStatus}
