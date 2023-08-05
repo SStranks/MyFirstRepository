@@ -1,19 +1,39 @@
 import IconCalender from '#Svg/icon-calendar.svg';
 import { useEffect, useRef, useState } from 'react';
 import styles from './DatePicker.module.scss';
+import { formatDate, isValidDate } from './dateUtil';
 // import DropdownContainer from './DropdownContainer';
 
 // DEBUG:  onMouseDown - can't get selectionStart (caret not yet placed). The default date input automatically highlights the appropriate mm/dd/yyyy portion onMouseDown (not onClick).
 // DEBUG:  similar to above; when clicking on input in blur state it needs to select where the cursor is.
 // DEBUG:  tabbing through input: need to have focus shift immediately to next focusable input.
 
-function DatePicker(): JSX.Element {
+const TODAY_DATE = new Date().toLocaleDateString('en-GB');
+
+const validatePropDate = (date: Date | undefined) => {
+  if (date === undefined) return date;
+  const formattedDate = formatDate(date);
+  const isDateValid = isValidDate(formattedDate);
+  if (!isDateValid) throw new Error('Invalid Date');
+  return formattedDate;
+};
+
+// Expect format: new Date('January 01, 1999') to avoid 0 based errors.
+interface IProps {
+  min?: Date;
+  max?: Date;
+}
+
+function DatePicker(props: IProps): JSX.Element {
+  const { min, max } = props;
+  const { current: minDate } = useRef(validatePropDate(min));
+  const { current: maxDate } = useRef(validatePropDate(max));
+  const [currentDate, setCurrentDate] = useState(TODAY_DATE);
+  console.log(minDate, maxDate, currentDate, setCurrentDate);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const dropdownContainerRef = useRef<HTMLDivElement>(null);
-  const dropdownPanelRef = useRef<HTMLDivElement>(null);
   const dropdownInputRef = useRef<HTMLInputElement>(null);
-
-  const currentDate = new Date().toLocaleDateString('en-GB');
+  const dropdownPanelRef = useRef<HTMLDivElement>(null);
 
   // Handle clicks outside of component; close dropdown
   useEffect(() => {
@@ -40,6 +60,16 @@ function DatePicker(): JSX.Element {
       ? 'MM'
       : 'YYYY';
   };
+
+  // const incrementValue = (selectStart: number) => {
+  //   const datePortion = inputDatePortion(selectStart);
+  //   switch (datePortion) {
+  //     case 'DD':
+  //     case 'MM':
+  //     case 'YYYY':
+  //     default:
+  //   }
+  // };
 
   const inputSelection = (inputSelectPosition = 0) => {
     let selectStart = inputSelectPosition;
@@ -92,6 +122,7 @@ function DatePicker(): JSX.Element {
         return inputSelection(selectStart + 3);
       case 'ArrowUp':
         // TODO: .
+        // incrementValue(selectStart);
         return null;
       case 'ArrowDown':
         // TODO: .
@@ -110,6 +141,7 @@ function DatePicker(): JSX.Element {
       <div className={styles.dropdownSelect}>
         <input
           type="text"
+          readOnly
           ref={dropdownInputRef}
           value={currentDate}
           onClick={inputOnClick}

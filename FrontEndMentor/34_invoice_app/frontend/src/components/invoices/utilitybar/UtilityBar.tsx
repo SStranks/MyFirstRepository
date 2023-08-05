@@ -32,7 +32,10 @@ function UtilityBar(props: IProps): JSX.Element {
         )}
       </div>
       {/* // TEMP DEV: Datepicker and dropdown testing */}
-      <DatePicker />
+      <DatePicker
+        min={new Date('January 01, 1999')}
+        // max={new Date('September 17, 2000')}
+      />
       {/* <Dropdown ariaLabel="Select" /> */}
       <div className={styles.container__controls}>
         <DropdownFilterStatus
