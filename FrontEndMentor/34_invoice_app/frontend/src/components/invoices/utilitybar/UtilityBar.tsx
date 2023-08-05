@@ -1,5 +1,6 @@
 import BtnNewInvoice from '#Components/custom/buttons/new-invoice/BtnNewInvoice';
-import Dropdown from '#Components/custom/dropdown/dropdown-test/Dropdown';
+// import Dropdown from '#Components/custom/dropdown/dropdown-test/Dropdown';
+import DatePicker from '#Components/custom/date-picker/DatePicker';
 import DropdownFilterStatus from '#Components/custom/dropdown/filter-status/DropdownFilterStatus';
 import { IFilterStatus } from '#Components/main/Main';
 import Modal from '#Components/modal_v2/Modal';
@@ -30,7 +31,9 @@ function UtilityBar(props: IProps): JSX.Element {
           <p>There are {numberInvoicesTotal} total invoices</p>
         )}
       </div>
-      <Dropdown ariaLabel="Select" />
+      {/* // TEMP DEV: Datepicker and dropdown testing */}
+      <DatePicker />
+      {/* <Dropdown ariaLabel="Select" /> */}
       <div className={styles.container__controls}>
         <DropdownFilterStatus
           filterStatus={filterStatus}

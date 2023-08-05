@@ -1,0 +1,58 @@
+.container {
+  width: 240px;
+  position: relative;
+}
+
+.dropdownSelect {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  &__iconBtn {
+    background-color: transparent;
+  }
+}
+
+.dropdownPanel {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 240px;
+  padding: 17px 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px 0 hsla(231deg, 38%, 45%, 0.25);
+  transform: translateY(calc(100% + 8px));
+
+  &--active {
+    display: block;
+  }
+}
+
+// NOTE:  Compound Component Versions
+// .container {
+// }
+
+// .dropdown {
+//   width: 240px;
+
+//   &__button {
+//     width: 100%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     padding: 17px 20px;
+//     background-color: white;
+//     border-radius: 8px;
+//   }
+
+//   &__panel {
+//     height: 240px;
+//     padding: 17px 20px;
+//     background-color: white;
+//     border-radius: 8px;
+//     box-shadow: 0 10px 20px 0 hsla(231deg, 38%, 45%, 0.25);
+//   }
+// }

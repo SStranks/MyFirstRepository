@@ -1,0 +1,23 @@
+$panel-y-offset: 8px;
+
+.container {
+  position: relative;
+}
+
+.button {
+  width: 100%;
+  background-color: transparent;
+}
+
+.panel {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(calc(100% + $panel-y-offset));
+
+  &--active {
+    display: block;
+  }
+}

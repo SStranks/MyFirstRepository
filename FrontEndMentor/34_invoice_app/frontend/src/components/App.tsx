@@ -1,4 +1,4 @@
-import useInvoices from '#Hooks/useGetAllInvoices';
+// import useInvoices from '#Hooks/useGetAllInvoices';
 import DefaultLayout from '#Layouts/DefaultLayout';
 import Toaster from '#Lib/ReactHotToast';
 import { Route, Routes } from 'react-router-dom';
@@ -6,8 +6,9 @@ import InvoiceEdit from './invoices/invoice-edit/InvoiceEdit';
 import Main from './main/Main';
 
 function App(): JSX.Element {
-  const [invoices, isLoading, isError] = useInvoices();
-  console.log(isLoading, isError);
+  // const [invoices, isLoading, isError] = useInvoices();
+  // console.log(isLoading, isError);
+  const invoices = undefined;
 
   return (
     <DefaultLayout>

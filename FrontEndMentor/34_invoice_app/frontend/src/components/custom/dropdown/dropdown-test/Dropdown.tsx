@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import { useRef } from 'react';
 import styles from './Dropdown.module.scss';
 import useDropdown from './useDropdown';
@@ -63,7 +62,7 @@ function Dropdown(props: IProps): JSX.Element {
           if (index === 0) return null;
           return (
             <li
-              key={index}
+              key={option}
               id={`${namespace}_element_${option}`}
               className={`${styles.selectList__option} ${
                 option === currentOption ? styles.optionSelected : ''
