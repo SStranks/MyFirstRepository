@@ -1,6 +1,6 @@
 import BtnNewInvoice from '#Components/custom/buttons/new-invoice/BtnNewInvoice';
 // import Dropdown from '#Components/custom/dropdown/dropdown-test/Dropdown';
-import DatePicker from '#Components/custom/date-picker/DatePicker';
+import DatePicker from '#Components/custom/date-picker/InputDate';
 import DropdownFilterStatus from '#Components/custom/dropdown/filter-status/DropdownFilterStatus';
 import { IFilterStatus } from '#Components/main/Main';
 import Modal from '#Components/modal_v2/Modal';

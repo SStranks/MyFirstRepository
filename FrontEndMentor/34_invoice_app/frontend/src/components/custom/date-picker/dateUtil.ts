@@ -54,8 +54,6 @@ export const MONTHS_STRING = {
   December: 'Dec',
 };
 
-export const CUR_DATE = formatDate(new Date());
-
 export const CUR_YEAR: number = +new Date().getFullYear();
 
 export const CUR_MONTH: number = +new Date().getMonth() + 1;

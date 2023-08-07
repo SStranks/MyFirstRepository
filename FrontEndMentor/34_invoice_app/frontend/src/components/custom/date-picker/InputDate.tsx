@@ -1,6 +1,7 @@
 import IconCalender from '#Svg/icon-calendar.svg';
 import { useEffect, useRef, useState } from 'react';
-import styles from './DatePicker.module.scss';
+import styles from './InputDate.module.scss';
+import InputDatePicker from './InputDatePicker';
 import { formatDate, isValidDate } from './dateUtil';
 // import DropdownContainer from './DropdownContainer';
 
@@ -8,8 +9,9 @@ import { formatDate, isValidDate } from './dateUtil';
 // DEBUG:  similar to above; when clicking on input in blur state it needs to select where the cursor is.
 // DEBUG:  tabbing through input: need to have focus shift immediately to next focusable input.
 
-const TODAY_DATE = new Date().toLocaleDateString('en-GB');
+const TODAY_DATE = new Date();
 
+// REFACTOR:  Too many responsibilities.
 const validatePropDate = (date: Date | undefined) => {
   if (date === undefined) return date;
   const formattedDate = formatDate(date);
@@ -24,19 +26,20 @@ interface IProps {
   max?: Date;
 }
 
+// NOTE:  Improved keyboard accessibility; if the user increments the month/year, and the day is invalid (too high) then it automatically reduces the day to the largest valid value for that month.
 function DatePicker(props: IProps): JSX.Element {
   const { min, max } = props;
   const { current: minDate } = useRef(validatePropDate(min));
   const { current: maxDate } = useRef(validatePropDate(max));
-  const [currentDate, setCurrentDate] = useState(TODAY_DATE);
+  const [currentDate, setCurrentDate] = useState<Date>(TODAY_DATE);
   console.log(minDate, maxDate, currentDate, setCurrentDate);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const dropdownContainerRef = useRef<HTMLDivElement>(null);
-  const dropdownInputRef = useRef<HTMLInputElement>(null);
   const dropdownPanelRef = useRef<HTMLDivElement>(null);
 
-  // Handle clicks outside of component; close dropdown
+  // Click and Keyboard Event Handlers
   useEffect(() => {
+    // Handle clicks outside of component; close dropdown
     const container = dropdownContainerRef.current;
     const clickHandler = (e: MouseEvent) => {
       if (
@@ -48,108 +51,25 @@ function DatePicker(props: IProps): JSX.Element {
       }
     };
 
+    // Handle keyboard event; spacebar to open dropdown
+    const keyHandler = (e: KeyboardEvent) => {
+      if (e.key === ' ') setIsDropdownOpen(true);
+    };
+    container?.addEventListener('keydown', keyHandler);
+
     document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
+    return () => {
+      document.removeEventListener('click', clickHandler);
+      container?.removeEventListener('keydown', keyHandler);
+    };
   }, []);
-
-  // eslint-disable-next-line unicorn/consistent-function-scoping
-  const inputDatePortion = (inputSelectPosition: number) => {
-    return inputSelectPosition === 0
-      ? 'DD'
-      : inputSelectPosition === 3
-      ? 'MM'
-      : 'YYYY';
-  };
-
-  // const incrementValue = (selectStart: number) => {
-  //   const datePortion = inputDatePortion(selectStart);
-  //   switch (datePortion) {
-  //     case 'DD':
-  //     case 'MM':
-  //     case 'YYYY':
-  //     default:
-  //   }
-  // };
-
-  const inputSelection = (inputSelectPosition = 0) => {
-    let selectStart = inputSelectPosition;
-    let selectEnd = 0;
-    const { current: input } = dropdownInputRef;
-    input?.setSelectionRange(0, 0);
-
-    switch (true) {
-      case selectStart <= 2:
-        selectStart = 0;
-        selectEnd = 2;
-        break;
-      case selectStart >= 3 && selectStart <= 4:
-        selectStart = 3;
-        selectEnd = 5;
-        break;
-      case selectStart >= 5:
-        selectStart = 6;
-        selectEnd = 10;
-        break;
-      default:
-    }
-    return input?.setSelectionRange(selectStart, selectEnd);
-  };
-
-  const inputOnClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const input = e.target as HTMLInputElement;
-    const selectStart = input.selectionStart || 0;
-    inputSelection(selectStart);
-  };
-
-  const inputOnKey = (e: React.KeyboardEvent) => {
-    e.preventDefault();
-    const input = e.target as HTMLInputElement;
-    const selectStart = input.selectionStart || 0;
-    switch (e.key) {
-      case 'Tab':
-        if (e.shiftKey) {
-          return inputDatePortion(selectStart) === 'DD'
-            ? dropdownInputRef.current?.blur()
-            : inputSelection(selectStart - 3);
-        }
-        return inputDatePortion(selectStart) === 'YYYY'
-          ? dropdownInputRef.current?.blur()
-          : inputSelection(selectStart + 3);
-      case 'ArrowLeft':
-        return inputSelection(selectStart - 3);
-      case 'ArrowRight':
-        return inputSelection(selectStart + 3);
-      case 'ArrowUp':
-        // TODO: .
-        // incrementValue(selectStart);
-        return null;
-      case 'ArrowDown':
-        // TODO: .
-        return null;
-      default:
-        return null;
-    }
-  };
-
-  const inputOnFocus = () => {
-    inputSelection();
-  };
 
   return (
     <div className={styles.container} ref={dropdownContainerRef}>
       <div className={styles.dropdownSelect}>
-        <input
-          type="text"
-          readOnly
-          ref={dropdownInputRef}
-          value={currentDate}
-          onClick={inputOnClick}
-          // onMouseUp={(e) => e.preventDefault()}
-          onFocus={inputOnFocus}
-          onKeyDown={inputOnKey}
-          onMouseMove={(e) => e.preventDefault()} // Prevent highlighting
-          onTouchMove={(e) => e.preventDefault()} // Prevent highlighting
+        <InputDatePicker
+          currentDate={currentDate}
+          setCurrentDate={setCurrentDate}
         />
         <button
           type="button"
