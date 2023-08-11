@@ -4,6 +4,8 @@ import { formatDate, getNumberOfDaysInMonth } from './dateUtil';
 interface IProps {
   currentDate?: Date;
   setCurrentDate?: React.Dispatch<React.SetStateAction<Date>>;
+  min?: Date;
+  max?: Date;
 }
 
 const inputDatePortion = (inputSelectPosition: number) => {
@@ -14,10 +16,28 @@ const inputDatePortion = (inputSelectPosition: number) => {
     : 'YYYY';
 };
 
-// TODO:  Padding zeros on years < 999
+// NOTE:  Works - issue is detecting shift-tab focus event.
+// const nextElementFocus = (element: Node) => {
+//   const allFocusableElements = document.querySelectorAll(
+//     'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled]), details:not([disabled]), summary:not(:disabled)'
+//   );
+
+//   // eslint-disable-next-line unicorn/prefer-spread
+//   const curElementIndex = Array.from(allFocusableElements).findIndex(
+//     (node: Node) => node.isEqualNode(element)
+//   );
+//   return (
+//     allFocusableElements[curElementIndex + 1] as HTMLInputElement
+//   ).focus();
+// };
+
 function InputDatePicker(props: IProps): JSX.Element {
-  const { currentDate: currentDateProp, setCurrentDate: setCurrentDateProp } =
-    props;
+  const {
+    currentDate: currentDateProp,
+    setCurrentDate: setCurrentDateProp,
+    min,
+    max,
+  } = props;
   const [currentDateInternal, setCurrentDateInternal] = useState<Date>(() => {
     return currentDateProp === undefined ? new Date() : currentDateProp;
   });
@@ -25,13 +45,20 @@ function InputDatePicker(props: IProps): JSX.Element {
     null
   );
   const [lastKeyPress, setLastKeyPress] = useState<string | null>(null);
-  const [datePortionHasFocus, setDatePortionHasFocus] = useState<boolean>();
   const dropdownInputRef = useRef<HTMLInputElement>(null);
 
   // If Date is managed by parent component, use that components state setter function.
   const setCurrentDate = (date: Date) => {
-    if (setCurrentDateProp === undefined) return setCurrentDateInternal(date);
-    return setCurrentDateProp(date);
+    let constrainDate;
+    if (min) {
+      constrainDate = date < min ? min : date;
+    }
+    if (max) {
+      constrainDate = date > max ? max : date;
+    }
+    if (setCurrentDateProp === undefined)
+      return setCurrentDateInternal(constrainDate || date);
+    return setCurrentDateProp(constrainDate || date);
   };
 
   // If Date is managed by parent component, use that components state value.
@@ -43,7 +70,6 @@ function InputDatePicker(props: IProps): JSX.Element {
     let selectEnd = 0;
     const { current: input } = dropdownInputRef;
     input?.setSelectionRange(0, 0);
-
     switch (true) {
       case selectStart <= 2:
         selectStart = 0;
@@ -59,77 +85,66 @@ function InputDatePicker(props: IProps): JSX.Element {
         break;
       default:
     }
-    setDatePortionHasFocus(selectStart === 0);
     return input?.setSelectionRange(selectStart, selectEnd);
   };
 
-  // Set focus to portion of input date
+  // NOTE:  This is a workaround, but doesn't differentiate between clicks and key changing the selection.
+  // Set focus to portion of input date. Can't use React 'onMouseDown'; fires before DOM element selection position is updated.
+  // useEffect(() => {
+  //   const selectionChange = (e: Event) => {
+  //     console.log(e);
+  //     if (document.activeElement === dropdownInputRef.current) {
+  //       const selectStart = dropdownInputRef.current?.selectionStart || 0;
+  //       console.log('FIRED');
+  //       inputSelection(selectStart);
+  //     }
+  //   };
+  //   document.addEventListener('selectionchange', selectionChange);
+  //   return () =>
+  //     document.removeEventListener('selectionchange', selectionChange);
+  // });
+
   useEffect(() => {
     if (inputSelectPosition === null) return;
     inputSelection(inputSelectPosition);
   });
 
-  const incrementValue = (selectStart: number) => {
-    const datePortion = inputDatePortion(selectStart);
-    switch (datePortion) {
-      case 'DD':
-        return setCurrentDate(
-          new Date(new Date(currentDate).setDate(currentDate.getDate() + 1))
-        );
-      case 'MM':
-        return setCurrentDate(
-          new Date(new Date(currentDate).setMonth(currentDate.getMonth() + 1))
-        );
-      case 'YYYY':
-        return setCurrentDate(
-          new Date(
-            new Date(currentDate).setFullYear(currentDate.getFullYear() + 1)
-          )
-        );
-      default:
-        return null;
-    }
-  };
+  // Set last key press; used in conjunction with date select position as a faux-focus determination.
+  useEffect(() => {
+    if (inputSelectPosition === null) return;
+    setLastKeyPress(null);
+  }, [inputSelectPosition]);
 
-  const decrementValue = (selectStart: number) => {
-    const datePortion = inputDatePortion(selectStart);
-    switch (datePortion) {
-      case 'DD':
-        return setCurrentDate(
-          new Date(new Date(currentDate).setDate(currentDate.getDate() - 1))
-        );
-      case 'MM':
-        return setCurrentDate(
-          new Date(new Date(currentDate).setMonth(currentDate.getMonth() - 1))
-        );
-      case 'YYYY':
-        return setCurrentDate(
-          new Date(
-            new Date(currentDate).setFullYear(currentDate.getFullYear() - 1)
-          )
-        );
-      default:
-        return null;
-    }
-  };
-
-  const inputOnClick = (e: React.MouseEvent) => {
+  // eslint-disable-next-line unicorn/consistent-function-scoping
+  const inputOnMouseUp = (e: React.MouseEvent) => {
     e.preventDefault();
-    const input = e.target as HTMLInputElement;
-    const selectStart = input.selectionStart;
-    setInputSelectPosition(selectStart);
   };
 
-  // DEBUG:  When DD is 02, swtiching to MM, then back, first press of 1 || 2 sets it immediately to 11 || 22
+  const inputOnMouseDown = (e: React.MouseEvent) => {
+    setTimeout(() => {
+      const input = e.target as HTMLInputElement;
+      const selectStart = input.selectionStart;
+      setInputSelectPosition(selectStart);
+    }, 0);
+  };
+
+  // DEBUG:  Tabbing in/out goes to Body, then next element. Possible to skip body?
   const inputOnKey = (e: React.KeyboardEvent) => {
     e.preventDefault();
     const input = e.target as HTMLInputElement;
     const selectStart = input.selectionStart || 0;
     const datePortion = inputDatePortion(selectStart);
+    let date = currentDate.getDate();
+    const month = currentDate.getMonth() + 1;
+    const year = currentDate.getFullYear();
+    const daysInMonth = getNumberOfDaysInMonth(year, month);
     setLastKeyPress(e.key);
-    console.log(e.key, lastKeyPress);
+    // console.log(e.key);
 
     switch (e.key) {
+      case 'Backspace':
+        // TODO:  Set to 'DD' etc.
+        return null;
       case 'Tab':
         if (e.shiftKey) {
           return datePortion === 'DD'
@@ -144,454 +159,215 @@ function InputDatePicker(props: IProps): JSX.Element {
       case 'ArrowRight':
         return setInputSelectPosition(selectStart + 3);
       case 'ArrowUp':
-        return incrementValue(selectStart);
-      case 'ArrowDown':
-        return decrementValue(selectStart);
-      case '0':
         if (datePortion === 'DD') {
-          switch (true) {
-            case datePortionHasFocus && lastKeyPress === '1': {
-              setInputSelectPosition(selectStart + 3);
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(10))
-              );
-            }
-            case datePortionHasFocus && lastKeyPress === '2': {
-              setInputSelectPosition(selectStart + 3);
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(20))
-              );
-            }
-            case datePortionHasFocus && lastKeyPress === '3': {
-              const month = currentDate.getMonth() + 1;
-              const year = currentDate.getFullYear();
-              const daysInMonth = getNumberOfDaysInMonth(year, month);
-              setInputSelectPosition(selectStart + 3);
-
-              return setCurrentDate(
-                new Date(
-                  new Date(currentDate).setDate(
-                    daysInMonth >= 30 ? 30 : daysInMonth
-                  )
-                )
-              );
-            }
-            default:
-              if (lastKeyPress === '0') {
-                setInputSelectPosition(selectStart + 3);
-                setCurrentDate(new Date(new Date(currentDate).setDate(1)));
-              }
-          }
+          return setCurrentDate(
+            new Date(
+              new Date(currentDate).setDate(
+                date + 1 > daysInMonth ? 1 : date + 1
+              )
+            )
+          );
         }
         if (datePortion === 'MM') {
+          return setCurrentDate(
+            new Date(new Date(currentDate).setMonth(month + 1 > 12 ? 0 : month))
+          );
+        }
+        return setCurrentDate(
+          new Date(
+            new Date(currentDate).setFullYear(year + 1 > 9999 ? 9999 : year + 1)
+          )
+        );
+      case 'ArrowDown':
+        if (datePortion === 'DD') {
+          return setCurrentDate(
+            new Date(
+              new Date(currentDate).setDate(
+                date - 1 < 1 ? daysInMonth : date - 1
+              )
+            )
+          );
+        }
+        if (datePortion === 'MM') {
+          return setCurrentDate(
+            new Date(
+              new Date(currentDate).setMonth(month - 1 < 1 ? 11 : month - 2)
+            )
+          );
+        }
+        return setCurrentDate(
+          new Date(
+            new Date(currentDate).setFullYear(year - 1 < 1 ? 1 : year - 1)
+          )
+        );
+      case '0':
+        if (datePortion === 'DD') {
+          if (lastKeyPress) {
+            setInputSelectPosition(selectStart + 3);
+            const newDate = date * 10;
+            return setCurrentDate(
+              new Date(
+                new Date(currentDate).setDate(Math.min(newDate, daysInMonth))
+              )
+            );
+          }
+          return setCurrentDate(new Date(new Date(currentDate).setDate(1)));
+        }
+        if (datePortion === 'MM') {
+          if (lastKeyPress) {
+            setInputSelectPosition(selectStart + 3);
+            return setCurrentDate(
+              new Date(
+                new Date(currentDate).setMonth(lastKeyPress === '0' ? 0 : 9)
+              )
+            );
+          }
           return setCurrentDate(new Date(new Date(currentDate).setMonth(0)));
         }
         if (datePortion === 'YYYY') {
-          const year = currentDate.getFullYear();
-          switch (true) {
-            case year <= 999:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(year * 10))
-              );
-            default:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(1))
-              );
+          if (lastKeyPress && year <= 999) {
+            return setCurrentDate(
+              new Date(new Date(currentDate).setFullYear(year * 10))
+            );
           }
+          return setCurrentDate(new Date(new Date(currentDate).setFullYear(1)));
         }
         return null;
       case '1':
         if (datePortion === 'DD') {
-          const date = currentDate.getDate();
-          switch (true) {
-            case date <= 2 && lastKeyPress !== '0': {
-              setInputSelectPosition(selectStart + 3);
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(date * 10 + 1))
-              );
-            }
-            case date === 3: {
-              const month = currentDate.getMonth() + 1;
-              const year = currentDate.getFullYear();
-              const daysInMonth = getNumberOfDaysInMonth(year, month);
-              setInputSelectPosition(selectStart + 3);
+          if (lastKeyPress) {
+            setInputSelectPosition(selectStart + 3);
+            if (lastKeyPress === '0') date = 0;
+            const newDate = date * 10 + 1;
 
-              return setCurrentDate(
-                new Date(
-                  new Date(currentDate).setDate(
-                    daysInMonth >= 30 ? 30 : daysInMonth
-                  )
-                )
-              );
-            }
-            default:
-              if (lastKeyPress === '0') setInputSelectPosition(selectStart + 3);
-              return setCurrentDate(new Date(new Date(currentDate).setDate(1)));
+            return setCurrentDate(
+              new Date(
+                new Date(currentDate).setDate(Math.min(newDate, daysInMonth))
+              )
+            );
           }
+          return setCurrentDate(new Date(new Date(currentDate).setDate(1)));
         }
         if (datePortion === 'MM') {
-          const month = currentDate.getMonth() + 1;
-          if (month === 1) setInputSelectPosition(selectStart + 3);
-          return setCurrentDate(
-            new Date(new Date(currentDate).setMonth(month === 1 ? 10 : 0))
-          );
-        }
-
-        if (datePortion === 'YYYY') {
-          const year = currentDate.getFullYear();
-          switch (true) {
-            case year <= 999:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(year * 10 + 1))
-              );
-            default:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(1))
-              );
+          if (lastKeyPress) {
+            setInputSelectPosition(selectStart + 3);
+            return setCurrentDate(
+              new Date(
+                new Date(currentDate).setMonth(lastKeyPress === '0' ? 0 : 10)
+              )
+            );
           }
+          return setCurrentDate(new Date(new Date(currentDate).setMonth(0)));
+        }
+        if (datePortion === 'YYYY') {
+          if (lastKeyPress && year <= 999) {
+            return setCurrentDate(
+              new Date(new Date(currentDate).setFullYear(year * 10))
+            );
+          }
+          return setCurrentDate(new Date(new Date(currentDate).setFullYear(1)));
         }
         return null;
       case '2':
         if (datePortion === 'DD') {
-          const date = currentDate.getDate();
-          switch (true) {
-            case date <= 2 && lastKeyPress !== '0': {
-              setInputSelectPosition(selectStart + 3);
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(date * 10 + 2))
-              );
-            }
-            default: {
-              if (lastKeyPress === '0') setInputSelectPosition(selectStart + 3);
-              return setCurrentDate(new Date(new Date(currentDate).setDate(2)));
-            }
-          }
-        }
+          if (lastKeyPress) {
+            setInputSelectPosition(selectStart + 3);
+            if (lastKeyPress === '0') date = 0;
+            const newDate = date * 10 + 2;
 
+            return setCurrentDate(
+              new Date(
+                new Date(currentDate).setDate(Math.min(newDate, daysInMonth))
+              )
+            );
+          }
+          return setCurrentDate(new Date(new Date(currentDate).setDate(2)));
+        }
         if (datePortion === 'MM') {
-          const month = currentDate.getMonth() + 1;
-          if (month === 1) setInputSelectPosition(selectStart + 3);
-          return setCurrentDate(
-            new Date(new Date(currentDate).setMonth(month === 1 ? 11 : 1))
-          );
+          if (lastKeyPress) {
+            setInputSelectPosition(selectStart + 3);
+            return setCurrentDate(
+              new Date(
+                new Date(currentDate).setMonth(lastKeyPress === '0' ? 1 : 11)
+              )
+            );
+          }
+          return setCurrentDate(new Date(new Date(currentDate).setMonth(1)));
         }
         if (datePortion === 'YYYY') {
-          const year = currentDate.getFullYear();
-          switch (true) {
-            case year <= 999:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(year * 10 + 2))
-              );
-            default:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(2))
-              );
+          if (lastKeyPress && year <= 999) {
+            return setCurrentDate(
+              new Date(new Date(currentDate).setFullYear(year * 10 + 2))
+            );
           }
+          return setCurrentDate(new Date(new Date(currentDate).setFullYear(2)));
         }
         return null;
       case '3':
         if (datePortion === 'DD') {
-          const date = currentDate.getDate();
-          switch (true) {
-            case lastKeyPress === '0':
-              setInputSelectPosition(selectStart + 3);
-              return setCurrentDate(new Date(new Date(currentDate).setDate(3)));
-            case (date === 1 || date === 2) && lastKeyPress !== '0': {
-              setInputSelectPosition(selectStart + 3);
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(date * 10 + 3))
-              );
-            }
-            case lastKeyPress === '3': {
-              const month = currentDate.getMonth() + 1;
-              const year = currentDate.getFullYear();
-              const daysInMonth = getNumberOfDaysInMonth(year, month);
-              setInputSelectPosition(selectStart + 3);
+          if (lastKeyPress) {
+            setInputSelectPosition(selectStart + 3);
+            if (lastKeyPress === '0') date = 0;
+            const newDate = date * 10 + 3;
 
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(daysInMonth))
-              );
-            }
-            default: {
-              return setCurrentDate(new Date(new Date(currentDate).setDate(3)));
-            }
+            return setCurrentDate(
+              new Date(
+                new Date(currentDate).setDate(Math.min(newDate, daysInMonth))
+              )
+            );
           }
+          return setCurrentDate(new Date(new Date(currentDate).setDate(3)));
         }
-
         if (datePortion === 'MM') {
           setInputSelectPosition(selectStart + 3);
           return setCurrentDate(new Date(new Date(currentDate).setMonth(2)));
         }
         if (datePortion === 'YYYY') {
-          const year = currentDate.getFullYear();
-          switch (true) {
-            case year <= 999:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(year * 10 + 3))
-              );
-            default:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(3))
-              );
+          if (lastKeyPress && year <= 999) {
+            return setCurrentDate(
+              new Date(new Date(currentDate).setFullYear(year * 10 + 3))
+            );
           }
+          return setCurrentDate(new Date(new Date(currentDate).setFullYear(3)));
         }
         return null;
       case '4':
-        if (datePortion === 'DD') {
-          const date = currentDate.getDate();
-          setInputSelectPosition(selectStart + 3);
-          switch (true) {
-            case date <= 2: {
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(date * 10 + 4))
-              );
-            }
-            case lastKeyPress === '3': {
-              const month = currentDate.getMonth() + 1;
-              const year = currentDate.getFullYear();
-              const daysInMonth = getNumberOfDaysInMonth(year, month);
-              setInputSelectPosition(selectStart + 3);
-
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(daysInMonth))
-              );
-            }
-            default: {
-              return setCurrentDate(new Date(new Date(currentDate).setDate(4)));
-            }
-          }
-        }
-        if (datePortion === 'MM') {
-          setInputSelectPosition(selectStart + 3);
-          return setCurrentDate(new Date(new Date(currentDate).setMonth(3)));
-        }
-        if (datePortion === 'YYYY') {
-          const year = currentDate.getFullYear();
-          switch (true) {
-            case year <= 999:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(year * 10 + 4))
-              );
-            default:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(4))
-              );
-          }
-        }
-        return null;
       case '5':
-        if (datePortion === 'DD') {
-          const date = currentDate.getDate();
-          setInputSelectPosition(selectStart + 3);
-          switch (true) {
-            case date <= 2: {
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(date * 10 + 5))
-              );
-            }
-            case lastKeyPress === '3': {
-              const month = currentDate.getMonth() + 1;
-              const year = currentDate.getFullYear();
-              const daysInMonth = getNumberOfDaysInMonth(year, month);
-              setInputSelectPosition(selectStart + 3);
-
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(daysInMonth))
-              );
-            }
-            default: {
-              return setCurrentDate(new Date(new Date(currentDate).setDate(5)));
-            }
-          }
-        }
-        if (datePortion === 'MM') {
-          setInputSelectPosition(selectStart + 3);
-          return setCurrentDate(new Date(new Date(currentDate).setMonth(4)));
-        }
-        if (datePortion === 'YYYY') {
-          const year = currentDate.getFullYear();
-          switch (true) {
-            case year <= 999:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(year * 10 + 5))
-              );
-            default:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(5))
-              );
-          }
-        }
-        return null;
       case '6':
-        if (datePortion === 'DD') {
-          const date = currentDate.getDate();
-          setInputSelectPosition(selectStart + 3);
-          switch (true) {
-            case date <= 2: {
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(date * 10 + 6))
-              );
-            }
-            case lastKeyPress === '3': {
-              const month = currentDate.getMonth() + 1;
-              const year = currentDate.getFullYear();
-              const daysInMonth = getNumberOfDaysInMonth(year, month);
-              setInputSelectPosition(selectStart + 3);
-
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(daysInMonth))
-              );
-            }
-            default: {
-              return setCurrentDate(new Date(new Date(currentDate).setDate(6)));
-            }
-          }
-        }
-        if (datePortion === 'MM') {
-          setInputSelectPosition(selectStart + 3);
-          return setCurrentDate(new Date(new Date(currentDate).setMonth(5)));
-        }
-        if (datePortion === 'YYYY') {
-          const year = currentDate.getFullYear();
-          switch (true) {
-            case year <= 999:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(year * 10 + 6))
-              );
-            default:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(6))
-              );
-          }
-        }
-        return null;
       case '7':
-        if (datePortion === 'DD') {
-          const date = currentDate.getDate();
-          setInputSelectPosition(selectStart + 3);
-          switch (true) {
-            case date <= 2: {
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(date * 10 + 7))
-              );
-            }
-            case lastKeyPress === '3': {
-              const month = currentDate.getMonth() + 1;
-              const year = currentDate.getFullYear();
-              const daysInMonth = getNumberOfDaysInMonth(year, month);
-              setInputSelectPosition(selectStart + 3);
-
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(daysInMonth))
-              );
-            }
-            default: {
-              return setCurrentDate(new Date(new Date(currentDate).setDate(7)));
-            }
-          }
-        }
-        if (datePortion === 'MM') {
-          setInputSelectPosition(selectStart + 3);
-          return setCurrentDate(new Date(new Date(currentDate).setMonth(6)));
-        }
-        if (datePortion === 'YYYY') {
-          const year = currentDate.getFullYear();
-          switch (true) {
-            case year <= 999:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(year * 10 + 7))
-              );
-            default:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(7))
-              );
-          }
-        }
-        return null;
       case '8':
-        if (datePortion === 'DD') {
-          const date = currentDate.getDate();
-          setInputSelectPosition(selectStart + 3);
-          switch (true) {
-            case date <= 2: {
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(date * 10 + 8))
-              );
-            }
-            case lastKeyPress === '3': {
-              const month = currentDate.getMonth() + 1;
-              const year = currentDate.getFullYear();
-              const daysInMonth = getNumberOfDaysInMonth(year, month);
-              setInputSelectPosition(selectStart + 3);
-
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(daysInMonth))
-              );
-            }
-            default: {
-              return setCurrentDate(new Date(new Date(currentDate).setDate(8)));
-            }
-          }
-        }
-        if (datePortion === 'MM') {
-          setInputSelectPosition(selectStart + 3);
-          return setCurrentDate(new Date(new Date(currentDate).setMonth(7)));
-        }
-        if (datePortion === 'YYYY') {
-          const year = currentDate.getFullYear();
-          switch (true) {
-            case year <= 999:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(year * 10 + 8))
-              );
-            default:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(8))
-              );
-          }
-        }
-        return null;
       case '9':
         if (datePortion === 'DD') {
-          const date = currentDate.getDate();
-          setInputSelectPosition(selectStart + 3);
-          switch (true) {
-            case date <= 2: {
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(date * 10 + 9))
-              );
-            }
-            case lastKeyPress === '3': {
-              const month = currentDate.getMonth() + 1;
-              const year = currentDate.getFullYear();
-              const daysInMonth = getNumberOfDaysInMonth(year, month);
-              setInputSelectPosition(selectStart + 3);
+          if (lastKeyPress) {
+            setInputSelectPosition(selectStart + 3);
+            if (lastKeyPress === '0') date = 0;
+            const newDate = date * 10 + Number(e.key);
 
-              return setCurrentDate(
-                new Date(new Date(currentDate).setDate(daysInMonth))
-              );
-            }
-            default: {
-              return setCurrentDate(new Date(new Date(currentDate).setDate(9)));
-            }
+            return setCurrentDate(
+              new Date(
+                new Date(currentDate).setDate(Math.min(newDate, daysInMonth))
+              )
+            );
           }
+          return setCurrentDate(new Date(new Date(currentDate).setDate(3)));
         }
         if (datePortion === 'MM') {
           setInputSelectPosition(selectStart + 3);
-          return setCurrentDate(new Date(new Date(currentDate).setMonth(8)));
+          return setCurrentDate(
+            new Date(new Date(currentDate).setMonth(Number(e.key) - 1))
+          );
         }
         if (datePortion === 'YYYY') {
-          const year = currentDate.getFullYear();
-          switch (true) {
-            case year <= 999:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(year * 10 + 9))
-              );
-            default:
-              return setCurrentDate(
-                new Date(new Date(currentDate).setFullYear(9))
-              );
+          if (lastKeyPress && year <= 999) {
+            return setCurrentDate(
+              new Date(
+                new Date(currentDate).setFullYear(year * 10 + Number(e.key))
+              )
+            );
           }
+          return setCurrentDate(
+            new Date(new Date(currentDate).setFullYear(Number(e.key)))
+          );
         }
         return null;
       default:
@@ -599,8 +375,13 @@ function InputDatePicker(props: IProps): JSX.Element {
     }
   };
 
+  // eslint-disable-next-line unicorn/consistent-function-scoping
   const inputOnFocus = () => {
     setInputSelectPosition(0);
+  };
+
+  const inputOnBlur = () => {
+    setInputSelectPosition(null);
   };
 
   return (
@@ -609,9 +390,11 @@ function InputDatePicker(props: IProps): JSX.Element {
       readOnly
       ref={dropdownInputRef}
       value={formatDate(currentDate)}
-      onClick={inputOnClick}
-      // onMouseUp={(e) => e.preventDefault()}
+      // placeholder="dd/mm/yyyy"
+      onMouseUp={inputOnMouseUp}
+      onMouseDown={inputOnMouseDown}
       onFocus={inputOnFocus}
+      onBlur={inputOnBlur}
       onKeyDown={inputOnKey}
       onMouseMove={(e) => e.preventDefault()} // Prevent highlighting
       onTouchMove={(e) => e.preventDefault()} // Prevent highlighting

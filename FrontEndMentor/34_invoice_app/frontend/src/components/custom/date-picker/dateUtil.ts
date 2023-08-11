@@ -1,7 +1,18 @@
-const DATE_FORMATTER = new Intl.DateTimeFormat('en-GB');
+const DATE_FORMATTER = new Intl.DateTimeFormat('en-GB', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
 
 export function formatDate(date: number | Date | undefined) {
-  return DATE_FORMATTER.format(date);
+  console.log('DATE', date);
+  const newDate = DATE_FORMATTER.formatToParts(date).map((obj) => {
+    if (obj.type === 'year') {
+      return obj.value.padStart(4, '0');
+    }
+    return obj.value;
+  });
+  return newDate.join('');
 }
 
 export const DAYS_NUMERICAL = [

@@ -1,0 +1,52 @@
+.container {
+  font-weight: 700;
+}
+
+.dataBar {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin-bottom: 32px;
+
+  & > button {
+    // NOTE:  Need to amend - see Todo notes/amending global styles.
+    background-color: transparent;
+    & > img {
+      height: fit-content;
+    }
+  }
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 8px;
+
+  &__date {
+    // NOTE:  Need to amend - see Todo notes/amending global styles.
+    background-color: transparent;
+    &--active {
+      background-color: blue;
+    }
+    &--outOfBounds {
+      color: lightgray;
+    }
+    &:hover {
+      background-color: lightblue;
+    }
+  }
+}
+
+.buttonsBar {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+
+  & > button {
+    // NOTE:  Need to amend - see Todo notes/amending global styles.
+    background-color: transparent;
+  }
+}

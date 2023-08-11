@@ -81,3 +81,4 @@ Captured at the following breakpoints from the live solution: Desktop - 1440px, 
 - [Stackoverflow - TS Config and JSX](https://stackoverflow.com/questions/64656055/react-refers-to-a-umd-global-but-the-current-file-is-a-module)
 - [Stackoverflow - TS Type; setState](https://stackoverflow.com/questions/65823778/how-can-i-define-typescript-type-for-a-setstate-function-when-react-dispatchrea)
 - [Stackoverflow - Webkit-Scrollbar-Thumb](https://stackoverflow.com/questions/16819116/unable-to-set-the-width-of-webkit-scrollbar-thumb)
+- [Stackoverflow - Selectionchange Event](https://stackoverflow.com/questions/46651479/reacting-to-selection-changes-in-an-html-textarea)
