@@ -5,7 +5,7 @@ const DATE_FORMATTER = new Intl.DateTimeFormat('en-GB', {
 });
 
 export function formatDate(date: number | Date | undefined) {
-  console.log('DATE', date);
+  // console.log('DATE', date);
   const newDate = DATE_FORMATTER.formatToParts(date).map((obj) => {
     if (obj.type === 'year') {
       return obj.value.padStart(4, '0');
@@ -71,11 +71,12 @@ export const CUR_MONTH: number = +new Date().getMonth() + 1;
 
 export const CUR_DAY: number = +new Date().getDate();
 
+// Month; January = 1
 export function getNumberOfDaysInMonth(
   year = CUR_YEAR,
   month = CUR_MONTH
 ): number {
-  return new Date(year, month, 0).getDate();
+  return new Date(year, month + 1, 0).getDate();
 }
 
 export function getDatePortions(

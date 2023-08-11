@@ -1,8 +1,23 @@
 import IconArrowLeft from '#Svg/icon-arrow-left.svg';
 import IconArrowRight from '#Svg/icon-arrow-right.svg';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styles from './InputDateCalendar.module.scss';
 import { formatDate, getNumberOfDaysInMonth } from './dateUtil';
+
+const DAYS_LETTER_SUNDAY = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+const DAYS_LETTER_MONDAY = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+const tableHeaderSunday = DAYS_LETTER_SUNDAY.map((el, i) => {
+  // eslint-disable-next-line react/no-array-index-key
+  return <p key={i}>{el}</p>;
+});
+const tableHeaderMonday = DAYS_LETTER_MONDAY.map((el, i) => {
+  // eslint-disable-next-line react/no-array-index-key
+  return <p key={i}>{el}</p>;
+});
+const tableHeader = {
+  Sunday: tableHeaderSunday,
+  Monday: tableHeaderMonday,
+};
 
 interface IProps {
   currentDate?: Date;
@@ -10,6 +25,7 @@ interface IProps {
   setDropdownOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   min?: Date;
   max?: Date;
+  dayHeaders?: 'Sunday' | 'Monday';
 }
 
 function InputDateCalendar(props: IProps): JSX.Element {
@@ -19,6 +35,7 @@ function InputDateCalendar(props: IProps): JSX.Element {
     setDropdownOpen,
     min,
     max,
+    dayHeaders = 'Sunday',
   } = props;
   const [currentDateInternal, setCurrentDateInternal] = useState<Date>(() => {
     return currentDateProp === undefined ? new Date() : currentDateProp;
@@ -29,13 +46,11 @@ function InputDateCalendar(props: IProps): JSX.Element {
     'button:not([tabindex="-1"])'
   );
 
-  console.log('FOCUSABLE ELEMENTS', focusableElements);
-
+  // Initialize tabbing - confines focus to within the calendar component.
   useEffect(() => {
     const keyHandler = (e: KeyboardEvent) => {
       const { activeElement } = document;
       if (focusableElements && activeElement) {
-        console.log('ACIVE ELEMENT', activeElement);
         // eslint-disable-next-line unicorn/prefer-spread
         const curElementIndex = Array.from(focusableElements).findIndex(
           (node: Node) => node.isEqualNode(activeElement)
@@ -68,59 +83,112 @@ function InputDateCalendar(props: IProps): JSX.Element {
   }, [focusableElements]);
 
   // If Date is managed by parent component, use that components state setter function.
-  const setCurrentDate = (date: Date) => {
-    let constrainDate;
-    if (min) {
-      constrainDate = date < min ? min : date;
-    }
-    if (max) {
-      constrainDate = date > max ? max : date;
-    }
-    if (setCurrentDateProp === undefined)
-      return setCurrentDateInternal(constrainDate || date);
-    return setCurrentDateProp(constrainDate || date);
-  };
+  const setCurrentDate = useCallback(
+    (date: Date) => {
+      let constrainDate;
+      if (min) {
+        constrainDate = date < min ? min : date;
+      }
+      if (max) {
+        constrainDate = date > max ? max : date;
+      }
+      if (setCurrentDateProp === undefined)
+        return setCurrentDateInternal(constrainDate || date);
+      return setCurrentDateProp(constrainDate || date);
+    },
+    [max, min, setCurrentDateProp]
+  );
 
   // If Date is managed by parent component, use that components state value.
   const currentDate =
     currentDateProp === undefined ? currentDateInternal : currentDateProp;
 
-  const currentDateDay = currentDate.getDate();
-  const currentDateMonth = currentDate.getMonth();
-  const currentDateYear = currentDate.getFullYear();
-  const currentDateDaysInMonth = getNumberOfDaysInMonth(
-    currentDateYear,
-    currentDateMonth
-  );
+  const currentMonthTable = useMemo(() => {
+    let dayOffset = 0;
+    const currentDateDay = currentDate.getDate();
+    const currentDateMonth = currentDate.getMonth();
+    const currentDateYear = currentDate.getFullYear();
+    const currentDateDaysInMonth = getNumberOfDaysInMonth(
+      currentDateYear,
+      currentDateMonth
+    );
+    const currentDateFirstDay = new Date(
+      currentDateYear,
+      currentDateMonth,
+      1
+    ).getDay();
 
-  const dateOnClick = (date: Date) => {
-    if (setDropdownOpen) setDropdownOpen(false);
-    setCurrentDate(date);
-  };
-
-  const currentMonthTable = [...Array.from({ length: 35 })].map((_, i) => {
-    const dateValue =
-      i + 1 > currentDateDaysInMonth ? i - currentDateDaysInMonth + 1 : i + 1;
-    const dateMonth =
-      dateValue !== i + 1 ? currentDateMonth + 1 : currentDateMonth;
-    const newDate = new Date(
-      new Date(currentDate).setMonth(dateMonth, dateValue)
+    const previousMonth = new Date(
+      new Date(currentDate).setMonth(currentDateMonth - 1)
+    );
+    const previousMonthDaysInMonth = getNumberOfDaysInMonth(
+      previousMonth.getFullYear(),
+      previousMonth.getMonth()
     );
 
-    return (
-      <button
-        type="button"
-        className={`${styles.calendar__date} ${
-          i + 1 === currentDateDay ? styles['calendar__date--active'] : ''
-        } ${dateValue !== i + 1 ? styles['calendar__date--outOfBounds'] : ''}`}
-        onClick={() => dateOnClick(newDate)}
-        /*  eslint-disable-next-line react/no-array-index-key */
-        key={i}
-        tabIndex={i + 1 !== currentDateDay ? -1 : 0}>
-        <p>{dateValue}</p>
-      </button>
+    if (dayHeaders) {
+      if (dayHeaders === 'Sunday') dayOffset = currentDateFirstDay;
+      if (dayHeaders === 'Monday') dayOffset = (currentDateFirstDay + 6) % 7;
+    }
+
+    const dateOnClick = (date: Date) => {
+      if (setDropdownOpen) setDropdownOpen(false);
+      setCurrentDate(date);
+    };
+
+    console.log(
+      'PREV MONTH DAYS NUM',
+      previousMonthDaysInMonth,
+      'PREV MONTH',
+      previousMonth,
+      'OFFSET',
+      dayOffset
     );
-  });
+
+    const arrayLength = dayOffset + currentDateDaysInMonth > 35 ? 42 : 35;
+    const calendarTable = [...Array.from({ length: arrayLength })].map(
+      (_, i) => {
+        let dateValue;
+        let dateMonth;
+        if (i < dayOffset) {
+          dateValue = previousMonthDaysInMonth - (dayOffset - (i + 1));
+          dateMonth = currentDateMonth - 1;
+        } else if (i >= currentDateDaysInMonth + dayOffset) {
+          dateValue = i - currentDateDaysInMonth - dayOffset + 1;
+          dateMonth = currentDateMonth + 1;
+        } else {
+          dateValue = i + 1 - dayOffset;
+          dateMonth = currentDateMonth;
+        }
+
+        const newDate = new Date(
+          new Date(currentDate).setMonth(dateMonth, dateValue)
+        );
+
+        return (
+          <button
+            type="button"
+            className={`${styles.calendar__date} ${
+              dateValue === currentDateDay
+                ? styles['calendar__date--active']
+                : ''
+            } ${
+              dateMonth !== currentDateMonth
+                ? styles['calendar__date--outOfBounds']
+                : ''
+            } `}
+            onClick={() => dateOnClick(newDate)}
+            /*  eslint-disable-next-line react/no-array-index-key */
+            key={i}
+            tabIndex={i + 1 !== currentDateDay ? -1 : 0}>
+            <p>{dateValue}</p>
+          </button>
+        );
+      }
+    );
+
+    return calendarTable;
+  }, [currentDate, setCurrentDate, setDropdownOpen, dayHeaders]);
 
   const prevMonthBtn = () => {
     const curMonth = currentDate.getMonth();
@@ -159,7 +227,10 @@ function InputDateCalendar(props: IProps): JSX.Element {
           <img src={IconArrowRight} alt="" />
         </button>
       </div>
-      <div className={styles.calendar}>{currentMonthTable}</div>
+      <div className={styles.calendar}>
+        {dayHeaders && tableHeader[dayHeaders]}
+        {currentMonthTable}
+      </div>
       <div className={styles.buttonsBar}>
         <button type="button" onClick={clearBtn}>
           Clear

@@ -20,10 +20,11 @@
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-auto-rows: 1fr;
   justify-items: center;
   align-items: center;
   gap: 8px;
+  margin-bottom: 16px;
 
   &__date {
     // NOTE:  Need to amend - see Todo notes/amending global styles.
