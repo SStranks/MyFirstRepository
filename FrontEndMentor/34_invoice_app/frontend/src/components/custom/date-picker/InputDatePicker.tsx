@@ -31,6 +31,7 @@ const inputDatePortion = (inputSelectPosition: number) => {
 //   ).focus();
 // };
 
+// TODO:  If min/max; disable month buttons and grey out + disable dates that fall outside boundary.
 function InputDatePicker(props: IProps): JSX.Element {
   const {
     currentDate: currentDateProp,

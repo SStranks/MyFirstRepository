@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  align-content: center;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.input {
+  border: none;
+  text-align: center;
+  // width: 0;
+  // height: 0;
+  // opacity: 0;
+}
+
+.inputDelimiter {
+  min-width: 0.15ch;
+  margin-inline: 2px;
+}
+
+.displayValue {
+  position: relative;
+  padding: 1px;
+}
+
+.active {
+  color: white;
+  transition: all 0.3s ease-in-out;
+  background-color: #3297fd;
+  // &::before {
+  //   content: '';
+  //   position: absolute;
+  //   height: 110%;
+  //   width: 110%;
+  //   transition: all 0.3s ease-in-out;
+  //   z-index: -1;
+  // }
+}

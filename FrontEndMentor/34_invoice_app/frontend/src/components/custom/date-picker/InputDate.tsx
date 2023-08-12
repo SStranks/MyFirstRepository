@@ -2,8 +2,9 @@ import IconCalender from '#Svg/icon-calendar.svg';
 import { useEffect, useRef, useState } from 'react';
 import styles from './InputDate.module.scss';
 import InputDateCalendar from './InputDateCalendar';
-import InputDatePicker from './InputDatePicker';
+// import InputDatePicker from './InputDatePicker';
 import { formatDate, isValidDate } from './dateUtil';
+import InputDatePicker2 from './InputDatePicker2';
 // import DropdownContainer from './DropdownContainer';
 
 // DEBUG:  onMouseDown - can't get selectionStart (caret not yet placed). The default date input automatically highlights the appropriate mm/dd/yyyy portion onMouseDown (not onClick).
@@ -81,7 +82,13 @@ function DatePicker(props: IProps): JSX.Element {
           value={formatDate(currentDate)}
           pattern="\d{2}-\d{2}-\d{4}"
         />
-        <InputDatePicker
+        {/* <InputDatePicker
+          min={minDate}
+          max={maxDate}
+          currentDate={currentDate}
+          setCurrentDate={setCurrentDate}
+        /> */}
+        <InputDatePicker2
           min={minDate}
           max={maxDate}
           currentDate={currentDate}

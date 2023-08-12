@@ -1,7 +1,9 @@
+/* eslint-disable unicorn/consistent-function-scoping */
 import IconArrowLeft from '#Svg/icon-arrow-left.svg';
 import IconArrowRight from '#Svg/icon-arrow-right.svg';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styles from './InputDateCalendar.module.scss';
+// import InputDateCalendarPicker from './InputDateCalendarPicker';
 import { formatDate, getNumberOfDaysInMonth } from './dateUtil';
 
 const DAYS_LETTER_SUNDAY = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
@@ -40,6 +42,7 @@ function InputDateCalendar(props: IProps): JSX.Element {
   const [currentDateInternal, setCurrentDateInternal] = useState<Date>(() => {
     return currentDateProp === undefined ? new Date() : currentDateProp;
   });
+  const [calendarPickerOpen, setCalendarPickerOpen] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const focusableElements = containerRef.current?.querySelectorAll(
@@ -136,15 +139,6 @@ function InputDateCalendar(props: IProps): JSX.Element {
       setCurrentDate(date);
     };
 
-    console.log(
-      'PREV MONTH DAYS NUM',
-      previousMonthDaysInMonth,
-      'PREV MONTH',
-      previousMonth,
-      'OFFSET',
-      dayOffset
-    );
-
     const arrayLength = dayOffset + currentDateDaysInMonth > 35 ? 42 : 35;
     const calendarTable = [...Array.from({ length: arrayLength })].map(
       (_, i) => {
@@ -206,7 +200,7 @@ function InputDateCalendar(props: IProps): JSX.Element {
   const clearBtn = () => {
     if (setDropdownOpen) setDropdownOpen(false);
     // TODO:  Need to set date to default string - might need to change input to three inputs with placeholder texts?
-    // setCurrentDate(new Date('dd/mm/yyyy'));
+    setCurrentDate(new Date('dd/mm/yyyy'));
     console.log('CLEAR BTN');
   };
 
@@ -216,13 +210,28 @@ function InputDateCalendar(props: IProps): JSX.Element {
     console.log('TODAY BTN');
   };
 
+  const dateBtn = () => {
+    setCalendarPickerOpen(true);
+    console.log('DATE BTN', calendarPickerOpen);
+  };
+
   return (
     <div className={styles.container} ref={containerRef}>
+      {/* // TODO:  Complete this component later - not required for this project */}
+      {/* <InputDateCalendarPicker
+        calendarPickerOpen={calendarPickerOpen}
+        setCalendarPickerOpen={setCalendarPickerOpen}
+      /> */}
       <div className={styles.dataBar}>
         <button type="button" onClick={prevMonthBtn}>
           <img src={IconArrowLeft} alt="" />
         </button>
-        <p>{formatDate(currentDate)}</p>
+        <button
+          type="button"
+          onClick={dateBtn}
+          className={styles.dataBar__dateBtn}>
+          {formatDate(currentDate)}
+        </button>
         <button type="button" onClick={nextMonthBtn}>
           <img src={IconArrowRight} alt="" />
         </button>
