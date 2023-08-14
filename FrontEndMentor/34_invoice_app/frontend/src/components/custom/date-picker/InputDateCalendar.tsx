@@ -30,6 +30,8 @@ interface IProps {
   dayHeaders?: 'Sunday' | 'Monday';
 }
 
+// TODO:  Set autofocus on current day when openning the calendar
+// REFACTOR:  Change calendar to be conditionally rendered, not CSS display none.
 function InputDateCalendar(props: IProps): JSX.Element {
   const {
     currentDate: currentDateProp,
@@ -53,7 +55,7 @@ function InputDateCalendar(props: IProps): JSX.Element {
   useEffect(() => {
     const keyHandler = (e: KeyboardEvent) => {
       const { activeElement } = document;
-      if (focusableElements && activeElement) {
+      if (focusableElements && containerRef.current?.focus) {
         // eslint-disable-next-line unicorn/prefer-spread
         const curElementIndex = Array.from(focusableElements).findIndex(
           (node: Node) => node.isEqualNode(activeElement)

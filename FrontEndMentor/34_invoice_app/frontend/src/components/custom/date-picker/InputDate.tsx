@@ -1,7 +1,7 @@
 import IconCalender from '#Svg/icon-calendar.svg';
 import { useEffect, useRef, useState } from 'react';
 import styles from './InputDate.module.scss';
-import InputDateCalendar from './InputDateCalendar';
+// import InputDateCalendar from './InputDateCalendar';
 // import InputDatePicker from './InputDatePicker';
 import { formatDate, isValidDate } from './dateUtil';
 import InputDatePicker2 from './InputDatePicker2';
@@ -37,9 +37,7 @@ function DatePicker(props: IProps): JSX.Element {
   const { min, max, required } = props;
   const { current: minDate } = useRef(validatePropDate(min));
   const { current: maxDate } = useRef(validatePropDate(max));
-  const [currentDate, setCurrentDate] = useState<Date>(TODAY_DATE);
-  if (Math.random() === 0.3234)
-    console.log(minDate, maxDate, currentDate, setCurrentDate);
+  const [currentDate, setCurrentDate] = useState<Date>(() => TODAY_DATE);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const dropdownContainerRef = useRef<HTMLDivElement>(null);
   const dropdownPanelRef = useRef<HTMLDivElement>(null);
@@ -93,6 +91,9 @@ function DatePicker(props: IProps): JSX.Element {
           max={maxDate}
           currentDate={currentDate}
           setCurrentDate={setCurrentDate}
+          delimiter="/"
+          // test={test}
+          // setTest={setTest}
         />
         <button
           type="button"
@@ -106,11 +107,11 @@ function DatePicker(props: IProps): JSX.Element {
           isDropdownOpen ? styles['dropdownPanel--active'] : ''
         }`}
         ref={dropdownPanelRef}>
-        <InputDateCalendar
+        {/* <InputDateCalendar
           currentDate={currentDate}
           setCurrentDate={setCurrentDate}
           setDropdownOpen={setIsDropdownOpen}
-        />
+        /> */}
       </div>
     </div>
   );
