@@ -1,7 +1,7 @@
 import IconCalender from '#Svg/icon-calendar.svg';
 import { useEffect, useRef, useState } from 'react';
 import styles from './InputDate.module.scss';
-// import InputDateCalendar from './InputDateCalendar';
+import InputDateCalendar from './InputDateCalendar';
 // import InputDatePicker from './InputDatePicker';
 import { formatDate, isValidDate } from './dateUtil';
 import InputDatePicker2 from './InputDatePicker2';
@@ -11,7 +11,12 @@ import InputDatePicker2 from './InputDatePicker2';
 // DEBUG:  similar to above; when clicking on input in blur state it needs to select where the cursor is.
 // DEBUG:  tabbing through input: need to have focus shift immediately to next focusable input. This could be done by changing the date to three seperate inputs and letting the browser handle the tab process.
 
-const TODAY_DATE = new Date();
+let TODAY_DATE = new Date();
+TODAY_DATE = new Date(
+  TODAY_DATE.getFullYear(),
+  TODAY_DATE.getMonth(),
+  TODAY_DATE.getDate()
+);
 
 // REFACTOR:  Too many responsibilities.
 const validatePropDate = (date: Date | undefined): Date | undefined => {
@@ -92,8 +97,6 @@ function DatePicker(props: IProps): JSX.Element {
           currentDate={currentDate}
           setCurrentDate={setCurrentDate}
           delimiter="/"
-          // test={test}
-          // setTest={setTest}
         />
         <button
           type="button"
@@ -102,17 +105,17 @@ function DatePicker(props: IProps): JSX.Element {
           <img src={IconCalender} alt="" />
         </button>
       </div>
-      <div
-        className={`${styles.dropdownPanel} ${
-          isDropdownOpen ? styles['dropdownPanel--active'] : ''
-        }`}
-        ref={dropdownPanelRef}>
-        {/* <InputDateCalendar
-          currentDate={currentDate}
-          setCurrentDate={setCurrentDate}
-          setDropdownOpen={setIsDropdownOpen}
-        /> */}
-      </div>
+      {isDropdownOpen && (
+        <div className={styles.dropdownPanel} ref={dropdownPanelRef}>
+          <InputDateCalendar
+            currentDate={currentDate}
+            setCurrentDate={setCurrentDate}
+            setDropdownOpen={setIsDropdownOpen}
+            min={minDate}
+            max={maxDate}
+          />
+        </div>
+      )}
     </div>
   );
 }

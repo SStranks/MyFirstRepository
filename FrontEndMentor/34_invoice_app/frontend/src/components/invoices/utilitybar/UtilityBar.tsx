@@ -33,8 +33,8 @@ function UtilityBar(props: IProps): JSX.Element {
       </div>
       {/* // TEMP DEV: Datepicker and dropdown testing */}
       <DatePicker
-      // min={new Date('February 03, 1999')}
-      // max={new Date('September 17, 2000')}
+        min={new Date('February 03, 2022')}
+        max={new Date('October 17, 2023')}
       />
       {/* <Dropdown ariaLabel="Select" /> */}
       <div className={styles.container__controls}>

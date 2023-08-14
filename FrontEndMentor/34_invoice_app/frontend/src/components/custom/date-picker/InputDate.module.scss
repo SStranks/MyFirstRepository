@@ -23,7 +23,6 @@
 }
 
 .dropdownPanel {
-  display: none;
   position: absolute;
   left: 0;
   right: 0;
@@ -34,10 +33,6 @@
   border-radius: 8px;
   box-shadow: 0 10px 20px 0 hsla(231deg, 38%, 45%, 0.25);
   transform: translateY(calc(100% + 8px));
-
-  &--active {
-    display: block;
-  }
 }
 
 // NOTE:  Compound Component Versions
