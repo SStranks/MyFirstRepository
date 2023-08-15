@@ -52,6 +52,13 @@ function InputDatePicker(props: IProps): JSX.Element {
   const formattedMonth = formattedDate[1];
   const formattedYear = formattedDate[2];
 
+  // Get next input node focus; rotation amount (+/-)
+  const rotateFocus = () => {
+    const { activeElement } = document;
+    if (activeElement === inputDayRef.current) inputMonthRef.current?.focus();
+    if (activeElement === inputMonthRef.current) inputYearRef.current?.focus();
+  };
+
   // Handle arrow key navigation between date fields
   useEffect(() => {
     const { current } = containerRef;
@@ -59,16 +66,26 @@ function InputDatePicker(props: IProps): JSX.Element {
       const { activeElement } = document;
       if (current?.contains(activeElement)) {
         if (e.key === 'ArrowRight') {
-          if (activeElement === inputDayRef.current)
+          e.stopPropagation();
+          if (activeElement === inputDayRef.current) {
+            inputDayRef.current?.blur();
             inputMonthRef.current?.focus();
-          if (activeElement === inputMonthRef.current)
+          }
+          if (activeElement === inputMonthRef.current) {
+            inputMonthRef.current?.blur();
             inputYearRef.current?.focus();
+          }
         }
         if (e.key === 'ArrowLeft') {
-          if (activeElement === inputYearRef.current)
+          e.stopPropagation();
+          if (activeElement === inputYearRef.current) {
+            inputYearRef.current?.blur();
             inputMonthRef.current?.focus();
-          if (activeElement === inputMonthRef.current)
+          }
+          if (activeElement === inputMonthRef.current) {
+            inputMonthRef.current?.blur();
             inputDayRef.current?.focus();
+          }
         }
       }
     };
@@ -330,6 +347,7 @@ function InputDatePicker(props: IProps): JSX.Element {
         currentDay={currentDay}
         daysInMonth={daysInMonth}
         inputRef={inputDayRef}
+        rotateFocus={rotateFocus}
       />
       <p className={styles.inputDelimiter}>{delimiter}</p>
       <InputDatePicker2Month
@@ -338,6 +356,7 @@ function InputDatePicker(props: IProps): JSX.Element {
         displayValue={formattedMonth}
         currentMonth={currentMonth}
         inputRef={inputMonthRef}
+        rotateFocus={rotateFocus}
       />
       <p className={styles.inputDelimiter}>{delimiter}</p>
       <InputDatePicker2Year
@@ -346,6 +365,7 @@ function InputDatePicker(props: IProps): JSX.Element {
         displayValue={formattedYear}
         currentYear={currentYear}
         inputRef={inputYearRef}
+        rotateFocus={rotateFocus}
       />
     </div>
   );

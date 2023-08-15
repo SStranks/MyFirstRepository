@@ -8,6 +8,7 @@ interface IProps {
   currentDay: number;
   daysInMonth: number;
   inputRef: RefObject<HTMLInputElement>;
+  rotateFocus: () => void;
 }
 
 function InputDatePicker2Day(props: IProps): JSX.Element {
@@ -18,13 +19,14 @@ function InputDatePicker2Day(props: IProps): JSX.Element {
     currentDay,
     daysInMonth,
     inputRef,
+    rotateFocus,
   } = props;
   const [lastKeyPress, setLastKeyPress] = useState<string | null>(null);
   const displayValueRef = useRef<HTMLParagraphElement>(null);
-  // const inputRef = useRef<HTMLInputElement>(null);
 
   const inputOnKeyDown = (e: React.KeyboardEvent) => {
     // console.log(e.key);
+    setLastKeyPress(e.key);
     let date = currentDay;
 
     switch (e.key) {
@@ -52,6 +54,7 @@ function InputDatePicker2Day(props: IProps): JSX.Element {
       case '0':
         if (lastKeyPress) {
           const newDate = date * 10;
+          rotateFocus();
           return setCurrentDate(
             new Date(
               new Date(currentDate).setDate(Math.min(newDate, daysInMonth))
@@ -63,7 +66,7 @@ function InputDatePicker2Day(props: IProps): JSX.Element {
         if (lastKeyPress) {
           if (lastKeyPress === '0') date = 0;
           const newDate = date * 10 + 1;
-
+          rotateFocus();
           return setCurrentDate(
             new Date(
               new Date(currentDate).setDate(Math.min(newDate, daysInMonth))
@@ -75,7 +78,7 @@ function InputDatePicker2Day(props: IProps): JSX.Element {
         if (lastKeyPress) {
           if (lastKeyPress === '0') date = 0;
           const newDate = date * 10 + 2;
-
+          rotateFocus();
           return setCurrentDate(
             new Date(
               new Date(currentDate).setDate(Math.min(newDate, daysInMonth))
@@ -87,7 +90,7 @@ function InputDatePicker2Day(props: IProps): JSX.Element {
         if (lastKeyPress) {
           if (lastKeyPress === '0') date = 0;
           const newDate = date * 10 + 3;
-
+          rotateFocus();
           return setCurrentDate(
             new Date(
               new Date(currentDate).setDate(Math.min(newDate, daysInMonth))
@@ -104,7 +107,7 @@ function InputDatePicker2Day(props: IProps): JSX.Element {
         if (lastKeyPress) {
           if (lastKeyPress === '0') date = 0;
           const newDate = date * 10 + Number(e.key);
-
+          rotateFocus();
           return setCurrentDate(
             new Date(
               new Date(currentDate).setDate(Math.min(newDate, daysInMonth))

@@ -7,16 +7,24 @@ interface IProps {
   displayValue: string;
   currentMonth: number;
   inputRef: RefObject<HTMLInputElement>;
+  rotateFocus: () => void;
 }
 
 function InputDatePicker2Month(props: IProps): JSX.Element {
-  const { currentDate, setCurrentDate, displayValue, currentMonth, inputRef } =
-    props;
+  const {
+    currentDate,
+    setCurrentDate,
+    displayValue,
+    currentMonth,
+    inputRef,
+    rotateFocus,
+  } = props;
   const [lastKeyPress, setLastKeyPress] = useState<string | null>(null);
   const displayValueRef = useRef<HTMLParagraphElement>(null);
 
   const inputOnKeyDown = (e: React.KeyboardEvent) => {
     // console.log(e.key);
+    setLastKeyPress(e.key);
 
     switch (e.key) {
       case 'Backspace':
@@ -42,6 +50,7 @@ function InputDatePicker2Month(props: IProps): JSX.Element {
         );
       case '0':
         if (lastKeyPress) {
+          rotateFocus();
           return setCurrentDate(
             new Date(
               new Date(currentDate).setMonth(lastKeyPress === '0' ? 0 : 9)
@@ -51,6 +60,7 @@ function InputDatePicker2Month(props: IProps): JSX.Element {
         return setCurrentDate(new Date(new Date(currentDate).setMonth(0)));
       case '1':
         if (lastKeyPress) {
+          rotateFocus();
           return setCurrentDate(
             new Date(
               new Date(currentDate).setMonth(lastKeyPress === '0' ? 0 : 10)
@@ -60,6 +70,7 @@ function InputDatePicker2Month(props: IProps): JSX.Element {
         return setCurrentDate(new Date(new Date(currentDate).setMonth(0)));
       case '2':
         if (lastKeyPress) {
+          rotateFocus();
           return setCurrentDate(
             new Date(
               new Date(currentDate).setMonth(lastKeyPress === '0' ? 1 : 11)
@@ -68,13 +79,13 @@ function InputDatePicker2Month(props: IProps): JSX.Element {
         }
         return setCurrentDate(new Date(new Date(currentDate).setMonth(1)));
       case '3':
-        return setCurrentDate(new Date(new Date(currentDate).setMonth(2)));
       case '4':
       case '5':
       case '6':
       case '7':
       case '8':
       case '9':
+        rotateFocus();
         return setCurrentDate(
           new Date(new Date(currentDate).setMonth(Number(e.key) - 1))
         );
@@ -88,6 +99,7 @@ function InputDatePicker2Month(props: IProps): JSX.Element {
   };
 
   const inputOnBlur = () => {
+    console.log('BLUR MONTH');
     displayValueRef.current?.classList.remove(styles.active);
     setLastKeyPress(null);
   };

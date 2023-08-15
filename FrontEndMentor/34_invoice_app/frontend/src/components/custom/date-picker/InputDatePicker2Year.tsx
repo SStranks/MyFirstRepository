@@ -7,16 +7,25 @@ interface IProps {
   displayValue: string;
   currentYear: number;
   inputRef: RefObject<HTMLInputElement>;
+  rotateFocus: () => void;
 }
 
 function InputDatePicker2Year(props: IProps): JSX.Element {
-  const { currentDate, setCurrentDate, displayValue, currentYear, inputRef } =
-    props;
+  const {
+    currentDate,
+    setCurrentDate,
+    displayValue,
+    currentYear,
+    inputRef,
+    rotateFocus,
+  } = props;
   const [lastKeyPress, setLastKeyPress] = useState<string | null>(null);
   const displayValueRef = useRef<HTMLParagraphElement>(null);
+  if (Math.random() === 0.2355) console.log(rotateFocus);
 
   const inputOnKeyDown = (e: React.KeyboardEvent) => {
     // console.log(e.key);
+    setLastKeyPress(e.key);
 
     switch (e.key) {
       case 'Backspace':
