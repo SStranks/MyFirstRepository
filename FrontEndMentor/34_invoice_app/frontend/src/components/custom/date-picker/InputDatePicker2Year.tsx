@@ -7,7 +7,7 @@ interface IProps {
   displayValue: string;
   currentYear: number;
   inputRef: RefObject<HTMLInputElement>;
-  rotateFocus: () => void;
+  disabled: boolean;
 }
 
 function InputDatePicker2Year(props: IProps): JSX.Element {
@@ -17,11 +17,10 @@ function InputDatePicker2Year(props: IProps): JSX.Element {
     displayValue,
     currentYear,
     inputRef,
-    rotateFocus,
+    disabled,
   } = props;
   const [lastKeyPress, setLastKeyPress] = useState<string | null>(null);
   const displayValueRef = useRef<HTMLParagraphElement>(null);
-  if (Math.random() === 0.2355) console.log(rotateFocus);
 
   const inputOnKeyDown = (e: React.KeyboardEvent) => {
     // console.log(e.key);
@@ -111,17 +110,13 @@ function InputDatePicker2Year(props: IProps): JSX.Element {
 
   return (
     <>
-      <label htmlFor="inputYear">
-        <p className={styles.displayValue} ref={displayValueRef}>
-          {displayValue}
-        </p>
-      </label>
       <input
         type="text"
         className={styles.input}
         id="inputYear"
         ref={inputRef}
         readOnly
+        disabled={disabled}
         value={displayValue}
         onKeyDown={inputOnKeyDown}
         onMouseMove={(e) => e.preventDefault()} // Prevent highlighting
@@ -129,6 +124,11 @@ function InputDatePicker2Year(props: IProps): JSX.Element {
         onFocus={inputOnFocus}
         onBlur={inputOnBlur}
       />
+      <label htmlFor="inputYear">
+        <p className={styles.displayValue} ref={displayValueRef}>
+          {displayValue}
+        </p>
+      </label>
     </>
   );
 }

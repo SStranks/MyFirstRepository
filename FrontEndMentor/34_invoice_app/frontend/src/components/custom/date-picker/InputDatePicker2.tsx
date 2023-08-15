@@ -357,6 +357,10 @@ function InputDatePicker(props: IProps): JSX.Element {
         currentMonth={currentMonth}
         inputRef={inputMonthRef}
         rotateFocus={rotateFocus}
+        disabled={
+          min?.getFullYear() === max?.getFullYear() &&
+          min?.getMonth() === max?.getMonth()
+        }
       />
       <p className={styles.inputDelimiter}>{delimiter}</p>
       <InputDatePicker2Year
@@ -365,7 +369,7 @@ function InputDatePicker(props: IProps): JSX.Element {
         displayValue={formattedYear}
         currentYear={currentYear}
         inputRef={inputYearRef}
-        rotateFocus={rotateFocus}
+        disabled={min?.getFullYear() === max?.getFullYear()}
       />
     </div>
   );

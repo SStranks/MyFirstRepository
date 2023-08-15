@@ -8,6 +8,7 @@ interface IProps {
   currentMonth: number;
   inputRef: RefObject<HTMLInputElement>;
   rotateFocus: () => void;
+  disabled: boolean;
 }
 
 function InputDatePicker2Month(props: IProps): JSX.Element {
@@ -18,6 +19,7 @@ function InputDatePicker2Month(props: IProps): JSX.Element {
     currentMonth,
     inputRef,
     rotateFocus,
+    disabled,
   } = props;
   const [lastKeyPress, setLastKeyPress] = useState<string | null>(null);
   const displayValueRef = useRef<HTMLParagraphElement>(null);
@@ -99,24 +101,19 @@ function InputDatePicker2Month(props: IProps): JSX.Element {
   };
 
   const inputOnBlur = () => {
-    console.log('BLUR MONTH');
     displayValueRef.current?.classList.remove(styles.active);
     setLastKeyPress(null);
   };
 
   return (
     <>
-      <label htmlFor="inputMonth">
-        <p className={styles.displayValue} ref={displayValueRef}>
-          {displayValue}
-        </p>
-      </label>
       <input
         type="text"
         className={styles.input}
         id="inputMonth"
         ref={inputRef}
         readOnly
+        disabled={disabled}
         value={displayValue}
         onKeyDown={inputOnKeyDown}
         onMouseMove={(e) => e.preventDefault()} // Prevent highlighting
@@ -124,6 +121,11 @@ function InputDatePicker2Month(props: IProps): JSX.Element {
         onFocus={inputOnFocus}
         onBlur={inputOnBlur}
       />
+      <label htmlFor="inputMonth">
+        <p className={styles.displayValue} ref={displayValueRef}>
+          {displayValue}
+        </p>
+      </label>
     </>
   );
 }

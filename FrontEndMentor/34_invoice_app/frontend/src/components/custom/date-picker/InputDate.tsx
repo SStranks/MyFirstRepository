@@ -7,18 +7,15 @@ import { formatDate, isValidDate } from './dateUtil';
 import InputDatePicker2 from './InputDatePicker2';
 // import DropdownContainer from './DropdownContainer';
 
-// DEBUG:  onMouseDown - can't get selectionStart (caret not yet placed). The default date input automatically highlights the appropriate mm/dd/yyyy portion onMouseDown (not onClick).
-// DEBUG:  similar to above; when clicking on input in blur state it needs to select where the cursor is.
-// DEBUG:  tabbing through input: need to have focus shift immediately to next focusable input. This could be done by changing the date to three seperate inputs and letting the browser handle the tab process.
+const setInitialDate = (min: Date | undefined, max: Date | undefined) => {
+  // Create date; remove time portion.
+  let date = new Date();
+  date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  if (min && date < min) date = min;
+  if (max && date > max) date = max;
+  return date;
+};
 
-let TODAY_DATE = new Date();
-TODAY_DATE = new Date(
-  TODAY_DATE.getFullYear(),
-  TODAY_DATE.getMonth(),
-  TODAY_DATE.getDate()
-);
-
-// REFACTOR:  Too many responsibilities.
 const validatePropDate = (date: Date | undefined): Date | undefined => {
   if (date === undefined) return date;
   const formattedDate = formatDate(date);
@@ -42,7 +39,9 @@ function DatePicker(props: IProps): JSX.Element {
   const { min, max, required } = props;
   const { current: minDate } = useRef(validatePropDate(min));
   const { current: maxDate } = useRef(validatePropDate(max));
-  const [currentDate, setCurrentDate] = useState<Date>(() => TODAY_DATE);
+  const [currentDate, setCurrentDate] = useState<Date>(
+    setInitialDate(minDate, maxDate)
+  );
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const dropdownContainerRef = useRef<HTMLDivElement>(null);
   const dropdownPanelRef = useRef<HTMLDivElement>(null);
