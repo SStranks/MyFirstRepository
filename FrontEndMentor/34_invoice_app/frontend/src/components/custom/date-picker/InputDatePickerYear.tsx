@@ -10,7 +10,7 @@ interface IProps {
   disabled: boolean;
 }
 
-function InputDatePicker2Year(props: IProps): JSX.Element {
+function InputDatePickerYear(props: IProps): JSX.Element {
   const {
     currentDate,
     setCurrentDate,
@@ -27,9 +27,6 @@ function InputDatePicker2Year(props: IProps): JSX.Element {
     setLastKeyPress(e.key);
 
     switch (e.key) {
-      case 'Backspace':
-        // TODO:  Set to 'DD' etc.
-        return null;
       case 'ArrowUp':
         e.preventDefault();
         return setCurrentDate(
@@ -133,4 +130,4 @@ function InputDatePicker2Year(props: IProps): JSX.Element {
   );
 }
 
-export default InputDatePicker2Year;
+export default InputDatePickerYear;

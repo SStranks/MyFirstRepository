@@ -11,7 +11,7 @@ interface IProps {
   rotateFocus: () => void;
 }
 
-function InputDatePicker2Day(props: IProps): JSX.Element {
+function InputDatePickerDay(props: IProps): JSX.Element {
   const {
     currentDate,
     setCurrentDate,
@@ -30,9 +30,6 @@ function InputDatePicker2Day(props: IProps): JSX.Element {
     let date = currentDay;
 
     switch (e.key) {
-      case 'Backspace':
-        // TODO:  Set to 'DD' etc.
-        return null;
       case 'ArrowUp':
         e.preventDefault();
         return setCurrentDate(
@@ -155,4 +152,4 @@ function InputDatePicker2Day(props: IProps): JSX.Element {
   );
 }
 
-export default InputDatePicker2Day;
+export default InputDatePickerDay;

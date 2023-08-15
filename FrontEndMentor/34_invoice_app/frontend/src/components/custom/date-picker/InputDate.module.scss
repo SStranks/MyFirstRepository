@@ -10,6 +10,11 @@
   position: relative;
   display: flex;
   align-items: center;
+
+  & p {
+    font-family: inherit;
+    font-weight: inherit;
+  }
 }
 
 .dropdownSelect {
@@ -24,15 +29,16 @@
 
 .dropdownPanel {
   position: absolute;
-  left: 0;
+  left: 50%;
   right: 0;
   bottom: 0;
+  width: fit-content;
   height: fit-content;
   padding: 17px 20px;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 10px 20px 0 hsla(231deg, 38%, 45%, 0.25);
-  transform: translateY(calc(100% + 8px));
+  transform: translate(-50%, calc(100% + 8px));
 }
 
 // NOTE:  Compound Component Versions

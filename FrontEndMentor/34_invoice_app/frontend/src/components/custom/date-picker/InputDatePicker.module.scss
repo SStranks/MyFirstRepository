@@ -23,6 +23,10 @@
 .inputDelimiter {
   min-width: 0.15ch;
   margin-inline: 2px;
+
+  &--inactive {
+    opacity: 25%;
+  }
 }
 
 .displayValue {

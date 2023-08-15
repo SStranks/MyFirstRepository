@@ -2,10 +2,8 @@ import IconCalender from '#Svg/icon-calendar.svg';
 import { useEffect, useRef, useState } from 'react';
 import styles from './InputDate.module.scss';
 import InputDateCalendar from './InputDateCalendar';
-// import InputDatePicker from './InputDatePicker';
+import InputDatePicker from './InputDatePicker';
 import { formatDate, isValidDate } from './dateUtil';
-import InputDatePicker2 from './InputDatePicker2';
-// import DropdownContainer from './DropdownContainer';
 
 const setInitialDate = (min: Date | undefined, max: Date | undefined) => {
   // Create date; remove time portion.
@@ -84,13 +82,7 @@ function DatePicker(props: IProps): JSX.Element {
           value={formatDate(currentDate)}
           pattern="\d{2}-\d{2}-\d{4}"
         />
-        {/* <InputDatePicker
-          min={minDate}
-          max={maxDate}
-          currentDate={currentDate}
-          setCurrentDate={setCurrentDate}
-        /> */}
-        <InputDatePicker2
+        <InputDatePicker
           min={minDate}
           max={maxDate}
           currentDate={currentDate}
@@ -120,37 +112,3 @@ function DatePicker(props: IProps): JSX.Element {
 }
 
 export default DatePicker;
-
-// NOTE:  Compound Component Version
-// function DatePicker(): JSX.Element {
-//   const currentDate = '21 Aug 2021';
-//   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-
-//   const onClick = (e: React.MouseEvent) => {
-//     e.stopPropagation();
-//     setIsDropdownOpen((prev) => !prev);
-//   };
-
-//   return (
-//     <div className={styles.container}>
-//       <button type="button" onClick={onClick}>
-//         Click
-//       </button>
-//       <DropdownContainer
-//         appendClass={styles.dropdown}
-//         openDropdown={isDropdownOpen}>
-//         <DropdownContainer.ButtonContainer>
-//           <div className={styles.dropdown__button}>
-//             <p>{currentDate}</p>
-//             <img src={IconCalender} alt="" />
-//           </div>
-//         </DropdownContainer.ButtonContainer>
-//         <DropdownContainer.PanelContainer>
-//           <div className={styles.dropdown__panel}>
-//             <p>Some Content</p>
-//           </div>
-//         </DropdownContainer.PanelContainer>
-//       </DropdownContainer>
-//     </div>
-//   );
-// }

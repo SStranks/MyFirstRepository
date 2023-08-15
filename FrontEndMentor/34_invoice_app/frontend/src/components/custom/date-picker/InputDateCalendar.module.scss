@@ -1,6 +1,15 @@
+@use '#Sass/variables' as *;
+
 .container {
   position: relative;
-  font-weight: 700;
+  width: fit-content;
+
+  & p,
+  button {
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 16px;
+  }
 }
 
 .dataBar {
@@ -13,16 +22,16 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    font-weight: 700;
   }
 
   & > button {
-    font-weight: 700;
     // NOTE:  Need to amend - see Todo notes/amending global styles.
     background-color: transparent;
+
     & > img {
       height: fit-content;
     }
+
     &:disabled > img {
       opacity: 25%;
     }
@@ -35,18 +44,37 @@
   grid-auto-rows: 1fr;
   justify-items: center;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   margin-bottom: 16px;
 
   &__date {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
     // NOTE:  Need to amend - see Todo notes/amending global styles.
     background-color: transparent;
+
     &:hover {
-      background-color: lightblue;
+      color: $color-1b;
     }
-    &--active {
-      background-color: rgb(106, 106, 245);
+
+    &--active::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: $color-1a;
+      transform: translate(-50%, -50%);
+      opacity: 70%;
+      z-index: -1;
     }
+
     &--outOfBounds {
       color: lightgray;
       &:hover {

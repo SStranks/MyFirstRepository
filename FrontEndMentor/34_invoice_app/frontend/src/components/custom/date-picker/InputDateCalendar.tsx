@@ -5,7 +5,6 @@ import IconArrowLeft from '#Svg/icon-arrow-left.svg';
 import IconArrowRight from '#Svg/icon-arrow-right.svg';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styles from './InputDateCalendar.module.scss';
-// import InputDateCalendarPicker from './InputDateCalendarPicker';
 import { formatDate, getNumberOfDaysInMonth } from './dateUtil';
 
 const DAYS_LETTER_SUNDAY = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
@@ -32,7 +31,6 @@ interface IProps {
   dayHeaders?: 'Sunday' | 'Monday';
 }
 
-// TODO:  Set autofocus on current day when openning the calendar
 // REFACTOR:  Change calendar to be conditionally rendered, not CSS display none.
 function InputDateCalendar(props: IProps): JSX.Element {
   const {
@@ -41,12 +39,12 @@ function InputDateCalendar(props: IProps): JSX.Element {
     setDropdownOpen,
     min,
     max,
-    dayHeaders = 'Sunday',
+    dayHeaders,
   } = props;
   const [currentDateInternal, setCurrentDateInternal] = useState<Date>(() => {
     return currentDateProp === undefined ? new Date() : currentDateProp;
   });
-  const [calendarPickerOpen, setCalendarPickerOpen] = useState<boolean>(false);
+  // const [calendarPickerOpen, setCalendarPickerOpen] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // If Date is managed by parent component, use that components state setter function.
@@ -83,7 +81,7 @@ function InputDateCalendar(props: IProps): JSX.Element {
     const keyHandler = (e: KeyboardEvent) => {
       const { activeElement } = document;
       const focusableElements = containerRef.current?.querySelectorAll(
-        'button:not([tabindex="-1"])'
+        'button:not([tabindex="-1"], :disabled)'
       );
 
       if (focusableElements) {
@@ -236,41 +234,30 @@ function InputDateCalendar(props: IProps): JSX.Element {
   const prevMonthBtn = () => {
     const curMonth = currentDate.getMonth();
     setCurrentDate(new Date(new Date(currentDate.setMonth(curMonth - 1))));
-    console.log('PREVMONTH BTN');
   };
 
   const nextMonthBtn = () => {
     const curMonth = currentDate.getMonth();
-    // NOTE:  Need to set minimum; next month may have less days than current, therefore Date will flip over another month (wrong)
     setCurrentDate(new Date(new Date(currentDate.setMonth(curMonth + 1))));
-    console.log('NEXTMONTH BTN');
   };
 
   const clearBtn = () => {
     if (setDropdownOpen) setDropdownOpen(false);
     // TODO:  Need to set date to default string - might need to change input to three inputs with placeholder texts?
     setCurrentDate(new Date('dd/mm/yyyy'));
-    console.log('CLEAR BTN');
   };
 
   const todayBtn = () => {
     if (setDropdownOpen) setDropdownOpen(false);
     setCurrentDate(new Date());
-    console.log('TODAY BTN');
   };
 
-  const dateBtn = () => {
-    setCalendarPickerOpen(true);
-    console.log('DATE BTN', calendarPickerOpen);
-  };
+  // const dateBtn = () => {
+  //   setCalendarPickerOpen(true);
+  // };
 
   return (
     <div className={styles.container} ref={containerRef}>
-      {/* // TODO:  Complete this component later - not required for this project */}
-      {/* <InputDateCalendarPicker
-        calendarPickerOpen={calendarPickerOpen}
-        setCalendarPickerOpen={setCalendarPickerOpen}
-      /> */}
       <div className={styles.dataBar}>
         <button
           type="button"
@@ -285,10 +272,7 @@ function InputDateCalendar(props: IProps): JSX.Element {
           }>
           <img src={IconArrowLeft} alt="" />
         </button>
-        <button
-          type="button"
-          onClick={dateBtn}
-          className={styles.dataBar__dateBtn}>
+        <button type="button" className={styles.dataBar__dateBtn}>
           {formatDate(currentDate)}
         </button>
         <button
@@ -310,7 +294,8 @@ function InputDateCalendar(props: IProps): JSX.Element {
         {currentMonthTable}
       </div>
       <div className={styles.buttonsBar}>
-        <button type="button" onClick={clearBtn}>
+        {/* // TODO:  Add in functionality for clearing date to dd/mm/yyyy text */}
+        <button type="button" onClick={clearBtn} disabled>
           Clear
         </button>
         <button type="button" onClick={todayBtn}>
