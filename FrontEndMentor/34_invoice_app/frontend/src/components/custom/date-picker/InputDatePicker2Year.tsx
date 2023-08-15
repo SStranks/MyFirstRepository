@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { RefObject, useRef, useState } from 'react';
 import styles from './InputDatePicker.module.scss';
 
 interface IProps {
@@ -6,7 +6,7 @@ interface IProps {
   setCurrentDate: (date: Date) => void;
   displayValue: string;
   currentYear: number;
-  inputRef: React.Ref<HTMLInputElement>;
+  inputRef: RefObject<HTMLInputElement>;
 }
 
 function InputDatePicker2Year(props: IProps): JSX.Element {
@@ -114,8 +114,6 @@ function InputDatePicker2Year(props: IProps): JSX.Element {
         ref={inputRef}
         readOnly
         value={displayValue}
-        // onMouseUp={inputOnMouseUp}
-        // onMouseDown={inputOnMouseDown}
         onKeyDown={inputOnKeyDown}
         onMouseMove={(e) => e.preventDefault()} // Prevent highlighting
         onTouchMove={(e) => e.preventDefault()} // Prevent highlighting

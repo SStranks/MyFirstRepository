@@ -52,13 +52,9 @@ function InputDateCalendar(props: IProps): JSX.Element {
   // If Date is managed by parent component, use that components state setter function.
   const setCurrentDate = useCallback(
     (date: Date) => {
-      let constrainDate;
-      if (min) {
-        constrainDate = date < min ? min : date;
-      }
-      if (max) {
-        constrainDate = date > max ? max : date;
-      }
+      let constrainDate = date;
+      if (min && date < min) constrainDate = min;
+      if (max && date > max) constrainDate = max;
       if (setCurrentDateProp === undefined)
         return setCurrentDateInternal(constrainDate || date);
       return setCurrentDateProp(constrainDate || date);
