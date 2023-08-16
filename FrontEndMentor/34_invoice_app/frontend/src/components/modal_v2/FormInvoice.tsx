@@ -47,6 +47,7 @@ function FormInvoice(props: IProps): JSX.Element {
             <p className={styles.form__inputLabel}>Street Address</p>
             <input
               type="text"
+              className={styles.form__input}
               id="fromStreetAddress"
               defaultValue={invoice?.senderAddress.street}
             />
@@ -56,6 +57,7 @@ function FormInvoice(props: IProps): JSX.Element {
           <p className={styles.form__inputLabel}>City</p>
           <input
             type="text"
+            className={styles.form__input}
             id="fromCity"
             defaultValue={invoice?.senderAddress.city}
           />
@@ -64,6 +66,7 @@ function FormInvoice(props: IProps): JSX.Element {
           <p className={styles.form__inputLabel}>Post Code</p>
           <input
             type="text"
+            className={styles.form__input}
             id="fromPostCode"
             defaultValue={invoice?.senderAddress.postCode}
           />
@@ -71,6 +74,7 @@ function FormInvoice(props: IProps): JSX.Element {
         <label htmlFor="fromCountry">
           <p className={styles.form__inputLabel}>Country</p>
           <input
+            className={styles.form__input}
             type="text"
             id="fromCountry"
             defaultValue={invoice?.senderAddress.country}
@@ -83,6 +87,7 @@ function FormInvoice(props: IProps): JSX.Element {
           <p className={styles.form__inputLabel}>Client&#39;s Name</p>
           <input
             type="text"
+            className={styles.form__input}
             id="toClientName"
             defaultValue={invoice?.clientName}
           />
@@ -91,6 +96,7 @@ function FormInvoice(props: IProps): JSX.Element {
           <p className={styles.form__inputLabel}>Client&#39;s Email</p>
           <input
             type="text"
+            className={styles.form__input}
             id="toClientEmail"
             defaultValue={invoice?.clientEmail}
           />
@@ -99,6 +105,7 @@ function FormInvoice(props: IProps): JSX.Element {
           <p className={styles.form__inputLabel}>Street Address</p>
           <input
             type="text"
+            className={styles.form__input}
             id="toClientStreet"
             defaultValue={invoice?.clientAddress.street}
           />
@@ -107,6 +114,7 @@ function FormInvoice(props: IProps): JSX.Element {
           <p className={styles.form__inputLabel}>City</p>
           <input
             type="text"
+            className={styles.form__input}
             id="toClientCity"
             defaultValue={invoice?.clientAddress.city}
           />
@@ -115,6 +123,7 @@ function FormInvoice(props: IProps): JSX.Element {
           <p className={styles.form__inputLabel}>Post Code</p>
           <input
             type="text"
+            className={styles.form__input}
             id="toClientPostCode"
             defaultValue={invoice?.clientAddress.postCode}
           />
@@ -123,6 +132,7 @@ function FormInvoice(props: IProps): JSX.Element {
           <p className={styles.form__inputLabel}>Country</p>
           <input
             type="text"
+            className={styles.form__input}
             id="toClientCountry"
             defaultValue={invoice?.clientAddress.country}
           />
@@ -148,6 +158,7 @@ function FormInvoice(props: IProps): JSX.Element {
           <p className={styles.form__inputLabel}>Project Description</p>
           <input
             type="text"
+            className={styles.form__input}
             id="projectDescription"
             defaultValue={invoice?.description}
           />
@@ -161,19 +172,14 @@ function FormInvoice(props: IProps): JSX.Element {
           <p>Price</p>
           <p>Total</p>
           {FormItems}
-          <div className={styles.form__itemlist__grid__btnAddItem}>
-            <button type="button" onClick={addNewFormItemOnClick}>
-              + Add New Item
-            </button>
-            {/* <Button
-              text="+ Add New Item"
-              color="grey"
-              // eslint-disable-next-line unicorn/no-useless-undefined
-              onClick={addNewFormItemOnClick}
-              value="additem"
-              disabled={false}
-            /> */}
-          </div>
+          {/* <div className={styles.form__itemlist__grid__btnAddItem}> */}
+          <button
+            type="button"
+            className={styles.form__itemlist__grid__btnAddItem}
+            onClick={addNewFormItemOnClick}>
+            + Add New Item
+          </button>
+          {/* </div> */}
         </div>
       </div>
     </form>

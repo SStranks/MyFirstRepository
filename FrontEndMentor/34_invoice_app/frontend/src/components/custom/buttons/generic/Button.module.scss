@@ -3,6 +3,8 @@
 @use '#Sass/functions' as f;
 @use '#Sass/animations' as a;
 
+// REFACTOR:  When refactoring Sass into new template 7-in-1; place this into button file;
+// NOTE:  Code currently copied into FormInvoice.module.scss for Add New Item button.
 .container {
   @include btn-default;
   display: flex;

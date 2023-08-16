@@ -6,6 +6,7 @@
 // Variables
 $margin-btm: f.px2em(42);
 
+// REFACTOR:  Too messy
 .form {
   position: relative;
   height: 100%;
@@ -156,12 +157,25 @@ $margin-btm: f.px2em(42);
       &__btnAddItem {
         grid-column: 1 / span 5;
         width: 100%;
+        @include btn-default;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: f.px2em(17) f.px2em(24);
+        border-radius: $border-radius-3;
+        color: $color-2c;
+        background-color: var(--color-form-input-button);
+        transition: a.$Theme-transition;
+
+        &:hover {
+          background-color: $color-2a;
+        }
       }
     }
   }
 
-  input[type='text'],
-  input[type='number'] {
+  &__input {
     width: 100%;
     padding: f.px2em(15) f.px2em(20);
     background-color: var(--color-form-input-bg);

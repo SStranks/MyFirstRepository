@@ -18,13 +18,13 @@ function FormItem(props: IProps): JSX.Element {
     price: priceProp,
     total: totalProp,
   } = props;
-  const [name, setName] = useState<string>(nameProp || '');
-  const [quantity, setQuantity] = useState<number>(quantityProp || 1);
-  const [price, setPrice] = useState<number>(priceProp || 0);
-  const [total, setTotal] = useState<number>(totalProp || price * quantity);
+  const [name, setName] = useState<string | undefined>(nameProp);
+  const [quantity, setQuantity] = useState<number | undefined>(quantityProp);
+  const [price, setPrice] = useState<number | undefined>(priceProp);
+  const [total, setTotal] = useState<number | undefined>(totalProp);
 
   useEffect(() => {
-    setTotal(quantity * price);
+    if (quantity && price) setTotal(quantity * price);
   }, [quantity, price]);
 
   const nameOnChange = (e: React.ChangeEvent) => {
@@ -47,25 +47,25 @@ function FormItem(props: IProps): JSX.Element {
   return (
     <Fragment key={id}>
       <input
-        className={styles.name}
+        className={`${styles.name} ${styles.input}`}
         type="text"
         value={name}
         onChange={nameOnChange}
       />
       <input
-        className={styles.quantity}
+        className={`${styles.quantity} ${styles.input}`}
         type="number"
         min={1}
         value={quantity}
         onChange={quantityOnChange}
       />
       <input
-        className={styles.price}
+        className={`${styles.price} ${styles.input}`}
         type="number"
         value={price}
         onChange={priceOnChange}
       />
-      <input type="number" readOnly className={styles.total} value={total} />
+      <p className={styles.total}>{total}</p>
       <button type="button" onClick={deleteOnClick}>
         <img className={styles.deleteBtn} src={IconDelete} alt="" />
       </button>
