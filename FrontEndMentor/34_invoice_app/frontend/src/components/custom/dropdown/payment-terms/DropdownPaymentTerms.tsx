@@ -4,11 +4,12 @@ import styles from './DropdownPaymentTerms.module.scss';
 
 interface IProps {
   value: number | undefined;
+  labelId?: string;
   appendClass?: string;
 }
 
 function DropdownPaymentTerms(props: IProps): JSX.Element {
-  const { value, appendClass } = props;
+  const { value, labelId, appendClass } = props;
   const [currentValue, setCurrentValue] = useState<number>(
     value !== undefined ? value : 30
   );
@@ -20,9 +21,11 @@ function DropdownPaymentTerms(props: IProps): JSX.Element {
     dropdownBtnRef.current?.classList.toggle(styles['dropdownBtn--active']);
   };
 
-  const listItemClicHandler = (val: number) => {
-    setCurrentValue(val);
+  const listItemClickHandler = (e: React.MouseEvent, val: number) => {
+    e.preventDefault();
     dropdownBtnClickHandler();
+    setCurrentValue(val);
+    dropdownBtnRef.current?.focus();
   };
 
   return (
@@ -31,6 +34,7 @@ function DropdownPaymentTerms(props: IProps): JSX.Element {
         <button
           type="button"
           className={styles.dropdownBtn}
+          id={labelId}
           onClick={dropdownBtnClickHandler}
           ref={dropdownBtnRef}>
           <p>{`Net ${currentValue} Day${currentValue > 1 ? 's' : ''}`}</p>
@@ -41,22 +45,26 @@ function DropdownPaymentTerms(props: IProps): JSX.Element {
         <div className={styles.dropdownList}>
           <ul>
             <li>
-              <button type="button" onClick={() => listItemClicHandler(1)}>
+              <button type="button" onClick={(e) => listItemClickHandler(e, 1)}>
                 Net 1 Day
               </button>
             </li>
             <li>
-              <button type="button" onClick={() => listItemClicHandler(7)}>
+              <button type="button" onClick={(e) => listItemClickHandler(e, 7)}>
                 Net 7 Days
               </button>
             </li>
             <li>
-              <button type="button" onClick={() => listItemClicHandler(14)}>
+              <button
+                type="button"
+                onClick={(e) => listItemClickHandler(e, 14)}>
                 Net 14 Days
               </button>
             </li>
             <li>
-              <button type="button" onClick={() => listItemClicHandler(30)}>
+              <button
+                type="button"
+                onClick={(e) => listItemClickHandler(e, 30)}>
                 Net 30 Days
               </button>
             </li>

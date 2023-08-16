@@ -11,6 +11,7 @@ interface IProps {
   min?: Date;
   max?: Date;
   delimiter: '/' | ' ';
+  labelId?: string;
 }
 
 function InputDatePicker(props: IProps): JSX.Element {
@@ -20,6 +21,7 @@ function InputDatePicker(props: IProps): JSX.Element {
     min,
     max,
     delimiter,
+    labelId,
   } = props;
   const [currentDateInternal, setCurrentDateInternal] = useState<Date>(() => {
     return currentDateProp === undefined ? new Date() : currentDateProp;
@@ -103,6 +105,7 @@ function InputDatePicker(props: IProps): JSX.Element {
         daysInMonth={daysInMonth}
         inputRef={inputDayRef}
         rotateFocus={rotateFocus}
+        labelId={labelId}
       />
       <p className={styles.inputDelimiter}>{delimiter}</p>
       <InputDatePickerMonth

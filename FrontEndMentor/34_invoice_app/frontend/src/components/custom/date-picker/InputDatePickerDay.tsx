@@ -9,6 +9,7 @@ interface IProps {
   daysInMonth: number;
   inputRef: RefObject<HTMLInputElement>;
   rotateFocus: () => void;
+  labelId?: string;
 }
 
 function InputDatePickerDay(props: IProps): JSX.Element {
@@ -20,6 +21,7 @@ function InputDatePickerDay(props: IProps): JSX.Element {
     daysInMonth,
     inputRef,
     rotateFocus,
+    labelId,
   } = props;
   const [lastKeyPress, setLastKeyPress] = useState<string | null>(null);
   const displayValueRef = useRef<HTMLParagraphElement>(null);
@@ -130,7 +132,7 @@ function InputDatePickerDay(props: IProps): JSX.Element {
 
   return (
     <>
-      <label htmlFor="inputDay">
+      <label htmlFor={labelId}>
         <p className={styles.displayValue} ref={displayValueRef}>
           {displayValue}
         </p>
@@ -138,7 +140,7 @@ function InputDatePickerDay(props: IProps): JSX.Element {
       <input
         type="text"
         className={styles.input}
-        id="inputDay"
+        id={labelId}
         ref={inputRef}
         readOnly
         value={displayValue}

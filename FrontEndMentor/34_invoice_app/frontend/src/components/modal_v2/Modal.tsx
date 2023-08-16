@@ -24,10 +24,12 @@ function Modal(props: PropsWithChildren<IProps>): JSX.Element | null {
 
   useEffect(() => {
     const { current } = modalRef;
+
     // On click of modal background; close modal.
     const clickHandler = (e: MouseEvent) => {
       return e.target === current && setIsModalOpen(false);
     };
+
     // On press of ESC key; close modal.
     const keyHandler = (e: KeyboardEvent) =>
       (e.key === 'Escape' || e.key === 'Esc') && setIsModalOpen(false);

@@ -16,25 +16,29 @@ const setInitialDate = (min: Date | undefined, max: Date | undefined) => {
 
 const validatePropDate = (date: Date | undefined): Date | undefined => {
   if (date === undefined) return date;
-  const formattedDate = formatDate(date);
+  // Remove time component if present
+  const newDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  // Check validity of date
+  const formattedDate = formatDate(newDate);
   const isDateValid = isValidDate(formattedDate);
   if (!isDateValid) {
     console.error(date, formattedDate);
     throw new Error('Invalid Date');
   }
-  return date;
+  return newDate;
 };
 
 // Expect format: new Date('January 01, 1999') to avoid 0 based errors.
 interface IProps {
   min?: Date;
   max?: Date;
+  labelId?: string;
   required?: boolean;
 }
 
 // NOTE:  Improved keyboard accessibility; if the user increments the month/year, and the day is invalid (too high) then it automatically reduces the day to the largest valid value for that month.
 function DatePicker(props: IProps): JSX.Element {
-  const { min, max, required } = props;
+  const { min, max, labelId, required } = props;
   const { current: minDate } = useRef(validatePropDate(min));
   const { current: maxDate } = useRef(validatePropDate(max));
   const [currentDate, setCurrentDate] = useState<Date>(
@@ -50,6 +54,7 @@ function DatePicker(props: IProps): JSX.Element {
     const container = dropdownContainerRef.current;
     const clickHandler = (e: MouseEvent) => {
       if (
+        isDropdownOpen &&
         e.target !== dropdownPanelRef.current &&
         !container?.contains(e.target as HTMLElement)
       ) {
@@ -70,7 +75,7 @@ function DatePicker(props: IProps): JSX.Element {
       document.removeEventListener('click', clickHandler);
       container?.removeEventListener('keydown', keyHandler);
     };
-  }, []);
+  }, [isDropdownOpen]);
 
   return (
     <div className={styles.container} ref={dropdownContainerRef}>
@@ -88,6 +93,7 @@ function DatePicker(props: IProps): JSX.Element {
           currentDate={currentDate}
           setCurrentDate={setCurrentDate}
           delimiter="/"
+          labelId={labelId}
         />
         <button
           type="button"

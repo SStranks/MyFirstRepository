@@ -11,23 +11,34 @@
   border: 1px solid var(--color-form-input-border);
   border-radius: $border-radius-5;
   transition: a.$Theme-transition;
+
+  &:has(:focus) {
+    border: 1px solid $color-1a;
+  }
+
+  & button {
+    font-family: inherit;
+    font-weight: 700;
+    font-size: inherit;
+  }
 }
 
 .dropdownBtn {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: f.px2em(15) f.px2em(20);
-  font-size: inherit;
-  font-weight: 700;
   color: var(--color-text-p);
   background-color: transparent;
   border-radius: $border-radius-5;
   transition: a.$Theme-transition;
 
-  &--active {
-    outline: 1px solid $color-1a;
+  &:focus {
+    outline: none;
+  }
 
+  &--active {
     & > img {
       transform: rotate(180deg);
     }
@@ -40,8 +51,6 @@
   left: 0;
   right: 0;
   width: 100%;
-  font-size: inherit;
-  font-weight: 700;
   color: var(--color-text-p);
   background-color: var(--color-form-input-bg);
   transform: translateY(calc(100% + 8px));
@@ -56,6 +65,10 @@
       color: inherit;
       border-bottom: 1px solid var(--color-form-input-border);
       transition: a.$Theme-transition;
+
+      & button:hover {
+        color: $color-1a;
+      }
     }
   }
 }

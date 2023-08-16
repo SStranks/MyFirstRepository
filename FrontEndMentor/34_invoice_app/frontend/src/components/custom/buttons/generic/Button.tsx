@@ -3,7 +3,7 @@ import styles from './Button.module.scss';
 type ButtonProps = {
   text: string;
   color: string;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent) => void;
   value: string;
   disabled: boolean;
 };

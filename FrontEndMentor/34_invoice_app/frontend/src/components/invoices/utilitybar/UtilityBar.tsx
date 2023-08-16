@@ -1,6 +1,4 @@
 import BtnNewInvoice from '#Components/custom/buttons/new-invoice/BtnNewInvoice';
-// import Dropdown from '#Components/custom/dropdown/dropdown-test/Dropdown';
-import DatePicker from '#Components/custom/date-picker/InputDate';
 import DropdownFilterStatus from '#Components/custom/dropdown/filter-status/DropdownFilterStatus';
 import { IFilterStatus } from '#Components/main/Main';
 import Modal from '#Components/modal_v2/Modal';
@@ -31,12 +29,6 @@ function UtilityBar(props: IProps): JSX.Element {
           <p>There are {numberInvoicesTotal} total invoices</p>
         )}
       </div>
-      {/* // TEMP DEV: Datepicker and dropdown testing */}
-      <DatePicker
-        min={new Date('July 03, 2023')}
-        max={new Date('July 17, 2023')}
-      />
-      {/* <Dropdown ariaLabel="Select" /> */}
       <div className={styles.container__controls}>
         <DropdownFilterStatus
           filterStatus={filterStatus}

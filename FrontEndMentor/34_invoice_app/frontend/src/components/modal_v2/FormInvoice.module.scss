@@ -56,11 +56,6 @@ $margin-btm: f.px2em(42);
       grid-template-columns: repeat(2, 1fr);
     }
 
-    & input[type='text'] {
-      margin-top: f.px2em(10);
-      margin-bottom: f.px2em(24);
-    }
-
     & > p {
       margin-bottom: f.px2em(24);
       font-weight: 700;
@@ -69,6 +64,7 @@ $margin-btm: f.px2em(42);
 
     &__street {
       grid-column: 1 / span 3;
+      margin-bottom: f.px2em(24);
 
       @include media(tablet-medium, tablet-small, mobile-all) {
         grid-column: 1 / span 2;
@@ -94,7 +90,6 @@ $margin-btm: f.px2em(42);
     }
 
     & input[type='text'] {
-      margin-top: f.px2em(10);
       margin-bottom: f.px2em(24);
     }
 
@@ -129,12 +124,12 @@ $margin-btm: f.px2em(42);
     margin-bottom: $margin-btm;
 
     & input[type='text'] {
-      margin-top: f.px2em(10);
       margin-bottom: f.px2em(24);
     }
 
     &__description {
       grid-column: 1 / span 2;
+      margin-top: f.px2em(24);
     }
   }
 
@@ -162,30 +157,11 @@ $margin-btm: f.px2em(42);
         grid-column: 1 / span 5;
         width: 100%;
       }
-
-      &--col1 {
-        grid-column: 1;
-      }
-
-      &--col2 {
-        grid-column: 2;
-      }
-
-      &--col3 {
-        grid-column: 3;
-      }
-
-      &--col4 {
-        grid-column: 4;
-      }
-
-      &--col5 {
-        grid-column: 5;
-      }
     }
   }
 
-  input[type='text'] {
+  input[type='text'],
+  input[type='number'] {
     width: 100%;
     padding: f.px2em(15) f.px2em(20);
     background-color: var(--color-form-input-bg);
@@ -198,5 +174,11 @@ $margin-btm: f.px2em(42);
       outline: none;
       border: 1px solid $color-1a;
     }
+  }
+
+  &__inputLabel {
+    margin-bottom: f.px2em(10);
+    color: $color-2c;
+    font-weight: initial;
   }
 }

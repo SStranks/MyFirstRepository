@@ -150,18 +150,22 @@ function InputDateCalendar(props: IProps): JSX.Element {
       let newDate;
       switch (e.key) {
         case 'ArrowUp':
+          e.preventDefault();
           newDate = new Date(new Date(currentDate).setDate(currentDateDay - 7));
           if (min && newDate < min) return null;
           return setCurrentDate(newDate);
         case 'ArrowDown':
+          e.preventDefault();
           newDate = new Date(new Date(currentDate).setDate(currentDateDay + 7));
           if (max && newDate > max) return null;
           return setCurrentDate(new Date(newDate));
         case 'ArrowLeft':
+          e.preventDefault();
           newDate = new Date(new Date(currentDate).setDate(currentDateDay - 1));
           if (min && newDate < min) return null;
           return setCurrentDate(new Date(newDate));
         case 'ArrowRight':
+          e.preventDefault();
           newDate = new Date(new Date(currentDate).setDate(currentDateDay + 1));
           if (max && newDate > max) return null;
           return setCurrentDate(new Date(newDate));

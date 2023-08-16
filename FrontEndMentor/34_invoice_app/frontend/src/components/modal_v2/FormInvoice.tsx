@@ -1,9 +1,10 @@
-import Button from '#Components/custom/buttons/generic/Button';
+import InputDate from '#Components/custom/date-picker/InputDate';
 import DropdownPaymentTerms from '#Components/custom/dropdown/payment-terms/DropdownPaymentTerms';
 import { IInvoice } from '#Services/ApiServiceClient';
-import IconDelete from '#Svg/icon-delete.svg';
+import { useState } from 'react';
 
 import styles from './FormInvoice.module.scss';
+import FormItem from './FormItem';
 
 interface IProps {
   invoice?: IInvoice;
@@ -12,71 +13,145 @@ interface IProps {
 // REFACTOR:  Need to utilize labels and inputs - see template files.
 function FormInvoice(props: IProps): JSX.Element {
   const { invoice } = props;
+  const [FormItems, setFormItems] = useState(() => {
+    if (invoice) {
+      return invoice.items.map((item) => {
+        return (
+          <FormItem
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            quantity={item.quantity}
+            price={item.price}
+            total={item.total}
+          />
+        );
+      });
+    }
+    return [<FormItem key="initial" />];
+  });
+
+  // eslint-disable-next-line unicorn/consistent-function-scoping
+  const addNewFormItemOnClick = (e: React.MouseEvent) => {
+    // TODO:  Need to fix the key for new formItem.
+    setFormItems((prev) => [...prev, <FormItem key={`a${prev.length + 1}`} />]);
+    console.log('new item', e);
+  };
+
   return (
     <form className={styles.form} action="">
       <div className={styles.form__from}>
         <p>Bill From</p>
         <div className={styles.form__from__street}>
-          <p>Street Address</p>
-          <input type="text" defaultValue={invoice?.senderAddress.street} />
+          <label htmlFor="fromStreetAddress">
+            <p className={styles.form__inputLabel}>Street Address</p>
+            <input
+              type="text"
+              id="fromStreetAddress"
+              defaultValue={invoice?.senderAddress.street}
+            />
+          </label>
         </div>
-        <div className="">
-          <p>City</p>
-          <input type="text" defaultValue={invoice?.senderAddress.city} />
-        </div>
-        <div className="">
-          <p>Post Code</p>
-          <input type="text" defaultValue={invoice?.senderAddress.postCode} />
-        </div>
-        <div className="">
-          <p>Country</p>
-          <input type="text" defaultValue={invoice?.senderAddress.country} />
-        </div>
+        <label htmlFor="fromCity">
+          <p className={styles.form__inputLabel}>City</p>
+          <input
+            type="text"
+            id="fromCity"
+            defaultValue={invoice?.senderAddress.city}
+          />
+        </label>
+        <label htmlFor="fromPostCode">
+          <p className={styles.form__inputLabel}>Post Code</p>
+          <input
+            type="text"
+            id="fromPostCode"
+            defaultValue={invoice?.senderAddress.postCode}
+          />
+        </label>
+        <label htmlFor="fromCountry">
+          <p className={styles.form__inputLabel}>Country</p>
+          <input
+            type="text"
+            id="fromCountry"
+            defaultValue={invoice?.senderAddress.country}
+          />
+        </label>
       </div>
       <div className={styles.form__to}>
         <p>Bill To</p>
-        <div className={styles.form__to__name}>
-          <p>Client&#39;s Name</p>
-          <input type="text" defaultValue={invoice?.clientName} />
-        </div>
-        <div className={styles.form__to__email}>
-          <p>Client&#39;s Email</p>
-          <input type="text" defaultValue={invoice?.clientEmail} />
-        </div>
-        <div className={styles.form__to__address}>
-          <p>Street Address</p>
-          <input type="text" defaultValue={invoice?.clientAddress.street} />
-        </div>
-        <div className="">
-          <p>City</p>
-          <input type="text" defaultValue={invoice?.clientAddress.city} />
-        </div>
-        <div className="">
-          <p>Post Code</p>
-          <input type="text" defaultValue={invoice?.clientAddress.postCode} />
-        </div>
-        <div className={styles.form__to__country}>
-          <p>Country</p>
-          <input type="text" defaultValue={invoice?.clientAddress.country} />
-        </div>
-      </div>
-      <div className={styles.form__details}>
-        <div className="">
-          <p>Invoice Date</p>
+        <label htmlFor="toClientName" className={styles.form__to__name}>
+          <p className={styles.form__inputLabel}>Client&#39;s Name</p>
           <input
             type="text"
-            defaultValue={invoice?.createdAt}
-            disabled={invoice !== undefined}
+            id="toClientName"
+            defaultValue={invoice?.clientName}
           />
-        </div>
-        <div className="">
-          <p>Payment Terms</p>
-          <DropdownPaymentTerms value={invoice?.paymentTerms} />
-        </div>
-        <div className={styles.form__details__description}>
-          <p>Project Description</p>
-          <input type="text" defaultValue={invoice?.description} />
-        </div>
+        </label>
+        <label htmlFor="toClientEmail" className={styles.form__to__email}>
+          <p className={styles.form__inputLabel}>Client&#39;s Email</p>
+          <input
+            type="text"
+            id="toClientEmail"
+            defaultValue={invoice?.clientEmail}
+          />
+        </label>
+        <label htmlFor="toClientStreet" className={styles.form__to__address}>
+          <p className={styles.form__inputLabel}>Street Address</p>
+          <input
+            type="text"
+            id="toClientStreet"
+            defaultValue={invoice?.clientAddress.street}
+          />
+        </label>
+        <label htmlFor="toClientCity">
+          <p className={styles.form__inputLabel}>City</p>
+          <input
+            type="text"
+            id="toClientCity"
+            defaultValue={invoice?.clientAddress.city}
+          />
+        </label>
+        <label htmlFor="toClientPostCode">
+          <p className={styles.form__inputLabel}>Post Code</p>
+          <input
+            type="text"
+            id="toClientPostCode"
+            defaultValue={invoice?.clientAddress.postCode}
+          />
+        </label>
+        <label htmlFor="toClientCountry" className={styles.form__to__country}>
+          <p className={styles.form__inputLabel}>Country</p>
+          <input
+            type="text"
+            id="toClientCountry"
+            defaultValue={invoice?.clientAddress.country}
+          />
+        </label>
+      </div>
+      <div className={styles.form__details}>
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="invoiceDate">
+          <p className={styles.form__inputLabel}>Invoice Date</p>
+          <InputDate min={new Date()} labelId="invoiceDate" />
+        </label>
+        {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+        <label htmlFor="paymentTerms">
+          <p className={styles.form__inputLabel}>Payment Terms</p>
+          <DropdownPaymentTerms
+            value={invoice?.paymentTerms}
+            labelId="paymentTerms"
+          />
+        </label>
+        <label
+          htmlFor="projectDescription"
+          className={styles.form__details__description}>
+          <p className={styles.form__inputLabel}>Project Description</p>
+          <input
+            type="text"
+            id="projectDescription"
+            defaultValue={invoice?.description}
+          />
+        </label>
       </div>
       <div className={styles.form__itemlist}>
         <p className={styles.form__itemlist__title}>Item List</p>
@@ -85,24 +160,19 @@ function FormInvoice(props: IProps): JSX.Element {
           <p>Qty.</p>
           <p>Price</p>
           <p>Total</p>
-          <input className={styles['form__itemlist__grid--col1']} type="text" />
-          <input className={styles['form__itemlist__grid--col2']} type="text" />
-          <input className={styles['form__itemlist__grid--col3']} type="text" />
-          <p className={styles['form__itemlist__grid--col4']}>£156.00</p>
-          <img
-            className={styles['form__itemlist__grid--col5']}
-            src={IconDelete}
-            alt=""
-          />
+          {FormItems}
           <div className={styles.form__itemlist__grid__btnAddItem}>
-            <Button
+            <button type="button" onClick={addNewFormItemOnClick}>
+              + Add New Item
+            </button>
+            {/* <Button
               text="+ Add New Item"
               color="grey"
               // eslint-disable-next-line unicorn/no-useless-undefined
-              onClick={() => undefined}
+              onClick={addNewFormItemOnClick}
               value="additem"
               disabled={false}
-            />
+            /> */}
           </div>
         </div>
       </div>
