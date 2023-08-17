@@ -172,14 +172,12 @@ function FormInvoice(props: IProps): JSX.Element {
           <p>Price</p>
           <p>Total</p>
           {FormItems}
-          {/* <div className={styles.form__itemlist__grid__btnAddItem}> */}
           <button
             type="button"
             className={styles.form__itemlist__grid__btnAddItem}
             onClick={addNewFormItemOnClick}>
             + Add New Item
           </button>
-          {/* </div> */}
         </div>
       </div>
     </form>
