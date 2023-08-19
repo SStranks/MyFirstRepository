@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/no-useless-undefined */
 import IconDelete from '#Svg/icon-delete.svg';
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './FormItem.module.scss';
 import InputPrice from './InputPrice';
 
@@ -16,8 +16,8 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
   useGrouping: true,
 });
 
-interface IProps {
-  id?: string;
+export interface IProps {
+  id: string;
   name?: string;
   quantity?: number;
   price?: number;
@@ -84,10 +84,11 @@ function FormItem(props: IProps): JSX.Element {
   };
 
   return (
-    <Fragment key={id}>
+    <div key={id} data-itemId={id} className={styles.container}>
       <input
         className={`${styles.name} ${styles.input}`}
         type="text"
+        name={`${id}-itemName`}
         value={name}
         onChange={nameOnChange}
         required
@@ -95,6 +96,7 @@ function FormItem(props: IProps): JSX.Element {
       <input
         className={`${styles.quantity} ${styles.input}`}
         type="number"
+        name={`${id}-itemQuantity`}
         ref={quantityRef}
         min={1}
         max={99}
@@ -108,6 +110,7 @@ function FormItem(props: IProps): JSX.Element {
       <InputPrice
         price={price}
         setPrice={setPrice}
+        name={`${id}-itemPrice`}
         currencyFormatter={numberFormatter}
         required
       />
@@ -115,7 +118,7 @@ function FormItem(props: IProps): JSX.Element {
       <button type="button" onClick={deleteOnClick}>
         <img className={styles.deleteBtn} src={IconDelete} alt="" />
       </button>
-    </Fragment>
+    </div>
   );
 }
 

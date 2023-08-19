@@ -4,6 +4,7 @@ import styles from './FormItem.module.scss';
 interface IProps {
   price?: string | number | undefined;
   setPrice?: React.Dispatch<React.SetStateAction<number | string | undefined>>;
+  name: string;
   currencyFormatter?: Intl.NumberFormat;
   required: boolean;
 }
@@ -12,6 +13,7 @@ function InputPrice(props: IProps): JSX.Element {
   const {
     price: priceProp,
     setPrice: setPriceProp,
+    name,
     currencyFormatter: currencyFormatterProp,
     required,
   } = props;
@@ -75,6 +77,7 @@ function InputPrice(props: IProps): JSX.Element {
     <input
       className={`${styles.price} ${styles.input}`}
       type="number"
+      name={name}
       step={0.01}
       pattern="^\d*(\.\d{0,2})?$"
       min={0}

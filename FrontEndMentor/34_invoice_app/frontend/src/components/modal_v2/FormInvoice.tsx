@@ -1,35 +1,60 @@
 import InputDate from '#Components/custom/date-picker/InputDate';
 import DropdownPaymentTerms from '#Components/custom/dropdown/payment-terms/DropdownPaymentTerms';
-import { IInvoice } from '#Services/ApiServiceClient';
+import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import { IInvoice, IItem } from '#Services/ApiServiceClient';
 import React, { useState } from 'react';
+import FormItem from './FormItem';
 
 import styles from './FormInvoice.module.scss';
-import FormItem from './FormItem';
+
+interface INewFormItem {
+  id: string;
+  name: undefined;
+  quantity: undefined;
+  price: undefined;
+  total: undefined;
+}
+
+type FormItem = INewFormItem & IItem;
+
+const newFormItem = (id: string): INewFormItem => {
+  return {
+    id,
+    name: undefined,
+    quantity: undefined,
+    price: undefined,
+    total: undefined,
+  };
+};
 
 interface IProps {
   invoice?: IInvoice;
 }
 
-// REFACTOR:  Need to utilize labels and inputs - see template files.
 function FormInvoice(props: IProps): JSX.Element {
   const { invoice } = props;
-  const [FormItems, setFormItems] = useState(() => {
-    if (invoice) {
-      return invoice.items.map((item) => {
-        return (
-          <FormItem
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            quantity={item.quantity}
-            price={item.price}
-            total={item.total}
-          />
-        );
-      });
-    }
-    return [<FormItem key="initial" />];
-  });
+  const generateId = useComponentIdGenerator();
+  // const [FormItems, setFormItems] = useState(() => {
+  //   if (invoice) {
+  //     return invoice.items.map((item) => {
+  //       return (
+  //         <FormItem
+  //           key={item.id}
+  //           id={item.id}
+  //           name={item.name}
+  //           quantity={item.quantity}
+  //           price={item.price}
+  //           total={item.total}
+  //         />
+  //       );
+  //     });
+  //   }
+  //   const id = `new-${generateId()}`;
+  //   return [<FormItem key={id} id={id.toString()} />];
+  // });
+  const [formItems, setFormItems] = useState<FormItem[]>(
+    invoice?.items ?? [newFormItem(`new-${generateId()}`)]
+  );
 
   const formOnSumbit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,10 +91,20 @@ function FormInvoice(props: IProps): JSX.Element {
   };
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
-  const addNewFormItemOnClick = (e: React.MouseEvent) => {
-    // TODO:  Need to fix the key for new formItem.
-    setFormItems((prev) => [...prev, <FormItem key={`a${prev.length + 1}`} />]);
-    console.log('new item', e);
+  const addNewFormItemOnClick = () => {
+    const id = `new-${generateId()}`;
+    setFormItems((prev) => [...prev, newFormItem(id)]);
+  };
+  // // eslint-disable-next-line unicorn/consistent-function-scoping
+  // const addNewFormItemOnClick = () => {
+  //   const id = `new-${generateId()}`;
+  //   setFormItems((prev) => [...prev, <FormItem key={id} id={id} />]);
+  // };
+
+  const deleteFormItemOnClick = (id: string) => {
+    setFormItems((prev) => {
+      return prev.filter((formItem) => formItem.id !== id);
+    });
   };
 
   return (
@@ -231,7 +266,7 @@ function FormInvoice(props: IProps): JSX.Element {
           <p>Qty.</p>
           <p>Price</p>
           <p>Total</p>
-          {FormItems}
+          {formItems}
           <button
             type="button"
             className={styles.form__itemlist__grid__btnAddItem}
