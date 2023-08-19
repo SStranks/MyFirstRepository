@@ -7,6 +7,7 @@
 $margin-btm: f.px2em(42);
 
 // REFACTOR:  Too messy
+// REFACTOR:  Form submission styles to 'base' folder?
 .form {
   position: relative;
   height: 100%;
@@ -124,10 +125,6 @@ $margin-btm: f.px2em(42);
     column-gap: f.px2em(24);
     margin-bottom: $margin-btm;
 
-    & input[type='text'] {
-      margin-bottom: f.px2em(24);
-    }
-
     &__description {
       grid-column: 1 / span 2;
       margin-top: f.px2em(24);
@@ -194,5 +191,24 @@ $margin-btm: f.px2em(42);
     margin-bottom: f.px2em(10);
     color: $color-2c;
     font-weight: initial;
+  }
+
+  &__submitted {
+    & .form__input:invalid {
+      outline: none;
+      border: 1px solid $color-3a;
+    }
+
+    & .form__inputLabel:has(+ input:invalid) {
+      color: $color-3a;
+    }
+
+    & .form__inputLabel:has(+ div[id='paymentTerms'] input:invalid) {
+      color: $color-3a;
+
+      & + div[id='paymentTerms'] {
+        border: 1px solid $color-3a;
+      }
+    }
   }
 }

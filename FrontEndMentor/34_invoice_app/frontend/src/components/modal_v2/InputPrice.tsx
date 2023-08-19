@@ -28,6 +28,7 @@ function InputPrice(props: IProps): JSX.Element {
   // If price is managed by parent component, use that components state value.
   const price = priceProp === undefined ? priceInternal : priceProp;
 
+  // If currency/number formatter is managed by parent component, use that.
   const currencyFormatter = useMemo(() => {
     if (currencyFormatterProp === undefined)
       return new Intl.NumberFormat('en-US', {

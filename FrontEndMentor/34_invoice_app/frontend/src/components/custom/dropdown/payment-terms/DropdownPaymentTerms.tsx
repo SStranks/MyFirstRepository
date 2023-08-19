@@ -1,5 +1,5 @@
 import IconArrow from '#Svg/icon-arrow-down.svg';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './DropdownPaymentTerms.module.scss';
 
 interface IProps {
@@ -8,13 +8,33 @@ interface IProps {
   appendClass?: string;
 }
 
+// TODO:  Dropdown keydown/up navigate options in list
 function DropdownPaymentTerms(props: IProps): JSX.Element {
   const { value, labelId, appendClass } = props;
-  const [currentValue, setCurrentValue] = useState<number>(
-    value !== undefined ? value : 30
-  );
+  const [currentValue, setCurrentValue] = useState<number | undefined>(value);
+  // const [currentValue, setCurrentValue] = useState<number>(
+  //   value !== undefined ? value : 30
+  // );
   const [listOpen, setListOpen] = useState<boolean>(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const dropdownBtnRef = useRef<HTMLButtonElement>(null);
+
+  // Handle clicks outside of component; close dropdown
+  useEffect(() => {
+    const { current } = containerRef;
+    const clickHandler = (e: MouseEvent) => {
+      if (
+        current &&
+        listOpen &&
+        e.target !== current &&
+        !current.contains(e.target as HTMLElement)
+      ) {
+        setListOpen(false);
+      }
+    };
+    document.addEventListener('click', clickHandler);
+    return () => document.removeEventListener('click', clickHandler);
+  }, [listOpen]);
 
   const dropdownBtnClickHandler = () => {
     setListOpen((prev) => !prev);
@@ -28,16 +48,30 @@ function DropdownPaymentTerms(props: IProps): JSX.Element {
     dropdownBtnRef.current?.focus();
   };
 
+  const displayValue = currentValue
+    ? `Net ${currentValue} Day${currentValue > 1 ? 's' : ''}`
+    : '';
+
   return (
-    <div className={`${styles.container} ${appendClass}`}>
-      <label htmlFor="dropdownBtn">
+    <div
+      id={labelId}
+      className={`${styles.container} ${appendClass}`}
+      ref={containerRef}>
+      <label htmlFor={labelId}>
         <button
           type="button"
           className={styles.dropdownBtn}
           id={labelId}
           onClick={dropdownBtnClickHandler}
           ref={dropdownBtnRef}>
-          <p>{`Net ${currentValue} Day${currentValue > 1 ? 's' : ''}`}</p>
+          <input type="text" className="hidden" value={displayValue} required />
+          <input
+            type="text"
+            className={styles.dropdownBtn__hiddenInput}
+            name="paymentTerms"
+            value={displayValue}
+            readOnly
+          />
           <img src={IconArrow} alt="" />
         </button>
       </label>

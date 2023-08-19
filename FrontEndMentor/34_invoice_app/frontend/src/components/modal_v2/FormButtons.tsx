@@ -47,9 +47,7 @@ function DiscardBtn(): JSX.Element | null {
 function SaveDraftBtn(): JSX.Element | null {
   return (
     <div className={styles.btnSaveDraft}>
-      <button
-        type="button"
-        onClick={() => console.log('Save as Draft Clicked')}>
+      <button type="submit" form="submitFormInvoice">
         Save as Draft
       </button>
     </div>

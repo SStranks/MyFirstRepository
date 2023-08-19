@@ -3,6 +3,7 @@
 @use '#Sass/functions' as f;
 @use '#Sass/animations' as a;
 
+// REFACTOR:  Error styles to be refactored into 'base' SASS
 .container {
   position: relative;
   width: 100%;
@@ -33,6 +34,11 @@
   background-color: transparent;
   border-radius: $border-radius-5;
   transition: a.$Theme-transition;
+
+  &__hiddenInput {
+    outline: none;
+    border: none;
+  }
 
   &:focus {
     outline: none;
