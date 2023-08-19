@@ -82,3 +82,4 @@ Captured at the following breakpoints from the live solution: Desktop - 1440px, 
 - [Stackoverflow - TS Type; setState](https://stackoverflow.com/questions/65823778/how-can-i-define-typescript-type-for-a-setstate-function-when-react-dispatchrea)
 - [Stackoverflow - Webkit-Scrollbar-Thumb](https://stackoverflow.com/questions/16819116/unable-to-set-the-width-of-webkit-scrollbar-thumb)
 - [Stackoverflow - Selectionchange Event](https://stackoverflow.com/questions/46651479/reacting-to-selection-changes-in-an-html-textarea)
+- [Stackoverflow - Submit Form from outside](https://stackoverflow.com/questions/7020659/submit-form-using-a-button-outside-the-form-tag)
