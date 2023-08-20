@@ -22,6 +22,7 @@ export interface IProps {
   quantity?: number;
   price?: number;
   total?: number;
+  deleteItem: (id: string) => void;
 }
 
 function FormItem(props: IProps): JSX.Element {
@@ -31,6 +32,7 @@ function FormItem(props: IProps): JSX.Element {
     quantity: quantityProp,
     price: priceProp,
     total: totalProp,
+    deleteItem,
   } = props;
   const [name, setName] = useState<string>(nameProp ?? '');
   const [quantity, setQuantity] = useState<number | undefined>(
@@ -79,12 +81,12 @@ function FormItem(props: IProps): JSX.Element {
   };
 
   // eslint-disable-next-line unicorn/consistent-function-scoping
-  const deleteOnClick = (e: React.MouseEvent) => {
-    console.log('delete', e);
+  const deleteOnClick = () => {
+    deleteItem(id);
   };
 
   return (
-    <div key={id} data-itemId={id} className={styles.container}>
+    <div key={id} className={styles.container}>
       <input
         className={`${styles.name} ${styles.input}`}
         type="text"

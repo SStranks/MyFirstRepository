@@ -12,9 +12,6 @@ interface IProps {
 function DropdownPaymentTerms(props: IProps): JSX.Element {
   const { value, labelId, appendClass } = props;
   const [currentValue, setCurrentValue] = useState<number | undefined>(value);
-  // const [currentValue, setCurrentValue] = useState<number>(
-  //   value !== undefined ? value : 30
-  // );
   const [listOpen, setListOpen] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const dropdownBtnRef = useRef<HTMLButtonElement>(null);
@@ -54,19 +51,25 @@ function DropdownPaymentTerms(props: IProps): JSX.Element {
 
   return (
     <div
-      id={labelId}
+      id="dropdownPaymentTerms"
       className={`${styles.container} ${appendClass}`}
       ref={containerRef}>
       <label htmlFor={labelId}>
         <button
           type="button"
           className={styles.dropdownBtn}
-          id={labelId}
           onClick={dropdownBtnClickHandler}
           ref={dropdownBtnRef}>
-          <input type="text" className="hidden" value={displayValue} required />
           <input
             type="text"
+            className="hidden"
+            name="paymentTerms"
+            defaultValue={displayValue}
+            required
+          />
+          <input
+            type="text"
+            id={labelId}
             className={styles.dropdownBtn__hiddenInput}
             name="paymentTerms"
             value={displayValue}

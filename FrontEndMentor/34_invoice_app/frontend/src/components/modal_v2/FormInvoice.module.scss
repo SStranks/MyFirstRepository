@@ -185,6 +185,10 @@ $margin-btm: f.px2em(42);
       outline: none;
       border: 1px solid $color-1a;
     }
+
+    &::placeholder {
+      color: $form-placeholder;
+    }
   }
 
   &__inputLabel {
@@ -203,10 +207,10 @@ $margin-btm: f.px2em(42);
       color: $color-3a;
     }
 
-    & .form__inputLabel:has(+ div[id='paymentTerms'] input:invalid) {
+    & .form__inputLabel:has(+ div[id='dropdownPaymentTerms'] input:invalid) {
       color: $color-3a;
 
-      & + div[id='paymentTerms'] {
+      & + div[id='dropdownPaymentTerms'] {
         border: 1px solid $color-3a;
       }
     }

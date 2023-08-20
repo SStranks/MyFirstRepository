@@ -17,13 +17,13 @@ interface INewFormItem {
 
 type FormItem = INewFormItem & IItem;
 
-const newFormItem = (id: string): INewFormItem => {
+const newFormItem = (id: string) => {
   return {
     id,
-    name: undefined,
-    quantity: undefined,
-    price: undefined,
-    total: undefined,
+    name: '',
+    quantity: 0,
+    price: 0,
+    total: 0,
   };
 };
 
@@ -52,9 +52,7 @@ function FormInvoice(props: IProps): JSX.Element {
   //   const id = `new-${generateId()}`;
   //   return [<FormItem key={id} id={id.toString()} />];
   // });
-  const [formItems, setFormItems] = useState<FormItem[]>(
-    invoice?.items ?? [newFormItem(`new-${generateId()}`)]
-  );
+  const [formItems, setFormItems] = useState(invoice?.items || []);
 
   const formOnSumbit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,6 +92,7 @@ function FormInvoice(props: IProps): JSX.Element {
   const addNewFormItemOnClick = () => {
     const id = `new-${generateId()}`;
     setFormItems((prev) => [...prev, newFormItem(id)]);
+    // setFormItems((prev) => [...prev, newFormItem(id)]);
   };
   // // eslint-disable-next-line unicorn/consistent-function-scoping
   // const addNewFormItemOnClick = () => {
@@ -106,6 +105,19 @@ function FormInvoice(props: IProps): JSX.Element {
       return prev.filter((formItem) => formItem.id !== id);
     });
   };
+
+  const formItemsComponents = formItems.map((formItem) => {
+    return (
+      <FormItem
+        key={formItem.id}
+        id={formItem.id}
+        name={formItem.name}
+        quantity={formItem.quantity}
+        price={formItem.price}
+        deleteItem={deleteFormItemOnClick}
+      />
+    );
+  });
 
   return (
     <form
@@ -178,10 +190,11 @@ function FormInvoice(props: IProps): JSX.Element {
         <label htmlFor="toClientEmail" className={styles.form__to__email}>
           <p className={styles.form__inputLabel}>Client&#39;s Email</p>
           <input
-            type="text"
+            type="email"
             className={styles.form__input}
             id="toClientEmail"
             name="toClientEmail"
+            placeholder="e.g. email@example.com"
             defaultValue={invoice?.clientEmail}
             required
           />
@@ -254,6 +267,7 @@ function FormInvoice(props: IProps): JSX.Element {
             className={styles.form__input}
             id="projectDescription"
             name="projectDescription"
+            placeholder="e.g. Graphic Design Service"
             defaultValue={invoice?.description}
             required
           />
@@ -266,7 +280,7 @@ function FormInvoice(props: IProps): JSX.Element {
           <p>Qty.</p>
           <p>Price</p>
           <p>Total</p>
-          {formItems}
+          {formItemsComponents}
           <button
             type="button"
             className={styles.form__itemlist__grid__btnAddItem}
