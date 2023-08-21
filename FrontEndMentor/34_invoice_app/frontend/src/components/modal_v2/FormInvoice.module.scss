@@ -91,14 +91,11 @@ $margin-btm: f.px2em(42);
       grid-template-columns: repeat(2, 1fr);
     }
 
-    & input[type='text'] {
-      margin-bottom: f.px2em(24);
-    }
-
     &__name,
     &__email,
     &__address {
       grid-column: 1 / span 3;
+      margin-bottom: f.px2em(24);
 
       @include media(tablet-medium, tablet-small, mobile-all) {
         grid-column: 1 / span 2;
@@ -137,6 +134,7 @@ $margin-btm: f.px2em(42);
     &__title {
       @include body-4;
       margin-bottom: f.px2em(16);
+      color: $color-2c;
     }
 
     &__grid {
@@ -146,6 +144,7 @@ $margin-btm: f.px2em(42);
       row-gap: f.px2em(18);
       column-gap: f.px2em(16);
       align-items: center;
+      color: $color-2c;
 
       & > img {
         height: auto;
@@ -192,9 +191,30 @@ $margin-btm: f.px2em(42);
   }
 
   &__inputLabel {
-    margin-bottom: f.px2em(10);
+    position: relative;
     color: $color-2c;
     font-weight: initial;
+
+    & > :last-child {
+      margin-top: f.px2em(10);
+      // background-color: green;
+    }
+  }
+
+  &__inputError {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 40%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: $color-3a;
+    font-weight: initial;
+
+    &:has(+ input:valid) {
+      display: none;
+    }
   }
 
   &__submitted {
@@ -203,16 +223,25 @@ $margin-btm: f.px2em(42);
       border: 1px solid $color-3a;
     }
 
-    & .form__inputLabel:has(+ input:invalid) {
+    & .form__inputLabel:has(> input:invalid) {
       color: $color-3a;
     }
 
-    & .form__inputLabel:has(+ div[id='dropdownPaymentTerms'] input:invalid) {
+    // Custom dropdown component
+    &
+      .form__inputLabel:has(
+        > div[data-input-element='paymentTerms'] input:invalid
+      ) {
       color: $color-3a;
 
-      & + div[id='dropdownPaymentTerms'] {
+      & > div[data-input-element='paymentTerms'] {
         border: 1px solid $color-3a;
       }
+    }
+
+    // Custom FormItem component
+    & input[data-input-element='formItem']:invalid {
+      border: 1px solid $color-3a;
     }
   }
 }

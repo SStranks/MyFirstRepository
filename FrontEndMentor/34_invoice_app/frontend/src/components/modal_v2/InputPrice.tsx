@@ -6,6 +6,7 @@ interface IProps {
   setPrice?: React.Dispatch<React.SetStateAction<number | string | undefined>>;
   name: string;
   currencyFormatter?: Intl.NumberFormat;
+  'data-input-element'?: string;
   required: boolean;
 }
 
@@ -15,6 +16,7 @@ function InputPrice(props: IProps): JSX.Element {
     setPrice: setPriceProp,
     name,
     currencyFormatter: currencyFormatterProp,
+    'data-input-element': dataInputElement,
     required,
   } = props;
   const [priceInternal, setPriceInternal] = useState<
@@ -85,6 +87,7 @@ function InputPrice(props: IProps): JSX.Element {
       onKeyDown={priceOnKeyDown}
       onChange={priceOnChange}
       onBlur={priceOnBlur}
+      data-input-element={dataInputElement}
       required={required}
     />
   );

@@ -34,24 +34,6 @@ interface IProps {
 function FormInvoice(props: IProps): JSX.Element {
   const { invoice } = props;
   const generateId = useComponentIdGenerator();
-  // const [FormItems, setFormItems] = useState(() => {
-  //   if (invoice) {
-  //     return invoice.items.map((item) => {
-  //       return (
-  //         <FormItem
-  //           key={item.id}
-  //           id={item.id}
-  //           name={item.name}
-  //           quantity={item.quantity}
-  //           price={item.price}
-  //           total={item.total}
-  //         />
-  //       );
-  //     });
-  //   }
-  //   const id = `new-${generateId()}`;
-  //   return [<FormItem key={id} id={id.toString()} />];
-  // });
   const [formItems, setFormItems] = useState(invoice?.items || []);
 
   const formOnSumbit = (e: React.FormEvent) => {
@@ -75,8 +57,12 @@ function FormInvoice(props: IProps): JSX.Element {
     if (invalidInputs) {
       // eslint-disable-next-line unicorn/no-array-for-each
       invalidInputs.forEach((el) => {
-        const textElem = el.nextSibling?.childNodes[0] as Element;
-        textElem.textContent = (el as HTMLInputElement).validationMessage;
+        const inputLabels = (el as HTMLInputElement)?.labels;
+        if (inputLabels && inputLabels[0]?.firstElementChild) {
+          inputLabels[0].firstElementChild.textContent = (
+            el as HTMLInputElement
+          ).validationMessage;
+        }
       });
     }
 
@@ -88,17 +74,10 @@ function FormInvoice(props: IProps): JSX.Element {
     }
   };
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const addNewFormItemOnClick = () => {
     const id = `new-${generateId()}`;
     setFormItems((prev) => [...prev, newFormItem(id)]);
-    // setFormItems((prev) => [...prev, newFormItem(id)]);
   };
-  // // eslint-disable-next-line unicorn/consistent-function-scoping
-  // const addNewFormItemOnClick = () => {
-  //   const id = `new-${generateId()}`;
-  //   setFormItems((prev) => [...prev, <FormItem key={id} id={id} />]);
-  // };
 
   const deleteFormItemOnClick = (id: string) => {
     setFormItems((prev) => {
@@ -128,8 +107,11 @@ function FormInvoice(props: IProps): JSX.Element {
       <div className={styles.form__from}>
         <p>Bill From</p>
         <div className={styles.form__from__street}>
-          <label htmlFor="fromStreetAddress">
-            <p className={styles.form__inputLabel}>Street Address</p>
+          <label
+            htmlFor="fromStreetAddress"
+            className={styles.form__inputLabel}>
+            Street Address
+            <p className={styles.form__inputError} />
             <input
               type="text"
               className={styles.form__input}
@@ -140,8 +122,9 @@ function FormInvoice(props: IProps): JSX.Element {
             />
           </label>
         </div>
-        <label htmlFor="fromCity">
-          <p className={styles.form__inputLabel}>City</p>
+        <label htmlFor="fromCity" className={styles.form__inputLabel}>
+          City
+          <p className={styles.form__inputError} />
           <input
             type="text"
             className={styles.form__input}
@@ -151,8 +134,9 @@ function FormInvoice(props: IProps): JSX.Element {
             required
           />
         </label>
-        <label htmlFor="fromPostCode">
-          <p className={styles.form__inputLabel}>Post Code</p>
+        <label htmlFor="fromPostCode" className={styles.form__inputLabel}>
+          Post Code
+          <p className={styles.form__inputError} />
           <input
             type="text"
             className={styles.form__input}
@@ -162,8 +146,9 @@ function FormInvoice(props: IProps): JSX.Element {
             required
           />
         </label>
-        <label htmlFor="fromCountry">
-          <p className={styles.form__inputLabel}>Country</p>
+        <label htmlFor="fromCountry" className={styles.form__inputLabel}>
+          Country
+          <p className={styles.form__inputError} />
           <input
             type="text"
             className={styles.form__input}
@@ -176,8 +161,11 @@ function FormInvoice(props: IProps): JSX.Element {
       </div>
       <div className={styles.form__to}>
         <p>Bill To</p>
-        <label htmlFor="toClientName" className={styles.form__to__name}>
-          <p className={styles.form__inputLabel}>Client&#39;s Name</p>
+        <label
+          htmlFor="toClientName"
+          className={`${styles.form__inputLabel} ${styles.form__to__name}`}>
+          Client&#39;s Name
+          <p className={styles.form__inputError} />
           <input
             type="text"
             className={styles.form__input}
@@ -187,8 +175,11 @@ function FormInvoice(props: IProps): JSX.Element {
             required
           />
         </label>
-        <label htmlFor="toClientEmail" className={styles.form__to__email}>
-          <p className={styles.form__inputLabel}>Client&#39;s Email</p>
+        <label
+          htmlFor="toClientEmail"
+          className={`${styles.form__inputLabel} ${styles.form__to__email}`}>
+          Client&#39;s Email
+          <p className={styles.form__inputError} />
           <input
             type="email"
             className={styles.form__input}
@@ -199,8 +190,11 @@ function FormInvoice(props: IProps): JSX.Element {
             required
           />
         </label>
-        <label htmlFor="toClientStreet" className={styles.form__to__address}>
-          <p className={styles.form__inputLabel}>Street Address</p>
+        <label
+          htmlFor="toClientStreet"
+          className={`${styles.form__inputLabel} ${styles.form__to__address}`}>
+          Street Address
+          <p className={styles.form__inputError} />
           <input
             type="text"
             className={styles.form__input}
@@ -210,8 +204,9 @@ function FormInvoice(props: IProps): JSX.Element {
             required
           />
         </label>
-        <label htmlFor="toClientCity">
-          <p className={styles.form__inputLabel}>City</p>
+        <label htmlFor="toClientCity" className={styles.form__inputLabel}>
+          City
+          <p className={styles.form__inputError} />
           <input
             type="text"
             className={styles.form__input}
@@ -221,8 +216,9 @@ function FormInvoice(props: IProps): JSX.Element {
             required
           />
         </label>
-        <label htmlFor="toClientPostCode">
-          <p className={styles.form__inputLabel}>Post Code</p>
+        <label htmlFor="toClientPostCode" className={styles.form__inputLabel}>
+          Post Code
+          <p className={styles.form__inputError} />
           <input
             type="text"
             className={styles.form__input}
@@ -232,8 +228,11 @@ function FormInvoice(props: IProps): JSX.Element {
             required
           />
         </label>
-        <label htmlFor="toClientCountry" className={styles.form__to__country}>
-          <p className={styles.form__inputLabel}>Country</p>
+        <label
+          htmlFor="toClientCountry"
+          className={`${styles.form__inputLabel} ${styles.form__to__country}`}>
+          Country
+          <p className={styles.form__inputError} />
           <input
             type="text"
             className={styles.form__input}
@@ -246,13 +245,15 @@ function FormInvoice(props: IProps): JSX.Element {
       </div>
       <div className={styles.form__details}>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label htmlFor="invoiceDate">
-          <p className={styles.form__inputLabel}>Invoice Date</p>
+        <label htmlFor="invoiceDate" className={styles.form__inputLabel}>
+          Invoice Date
+          <p className={styles.form__inputError} />
           <InputDate labelId="invoiceDate" />
         </label>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-        <label htmlFor="paymentTerms">
-          <p className={styles.form__inputLabel}>Payment Terms</p>
+        <label htmlFor="paymentTerms" className={styles.form__inputLabel}>
+          Payment Terms
+          <p className={styles.form__inputError} />
           <DropdownPaymentTerms
             value={invoice?.paymentTerms}
             labelId="paymentTerms"
@@ -260,8 +261,9 @@ function FormInvoice(props: IProps): JSX.Element {
         </label>
         <label
           htmlFor="projectDescription"
-          className={styles.form__details__description}>
-          <p className={styles.form__inputLabel}>Project Description</p>
+          className={`${styles.form__inputLabel} ${styles.form__details__description}`}>
+          Project Description
+          <p className={styles.form__inputError} />
           <input
             type="text"
             className={styles.form__input}

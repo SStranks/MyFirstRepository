@@ -93,6 +93,7 @@ function FormItem(props: IProps): JSX.Element {
         name={`${id}-itemName`}
         value={name}
         onChange={nameOnChange}
+        data-input-element="formItem"
         required
       />
       <input
@@ -107,6 +108,7 @@ function FormItem(props: IProps): JSX.Element {
         onKeyDown={quantityOnKeyDown}
         onChange={quantityOnChange}
         onBlur={quantityOnBlur}
+        data-input-element="formItem"
         required
       />
       <InputPrice
@@ -114,6 +116,7 @@ function FormItem(props: IProps): JSX.Element {
         setPrice={setPrice}
         name={`${id}-itemPrice`}
         currencyFormatter={numberFormatter}
+        data-input-element="formItem"
         required
       />
       <p className={styles.total}>{currencyFormatter.format(total)}</p>

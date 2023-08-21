@@ -51,9 +51,9 @@ function DropdownPaymentTerms(props: IProps): JSX.Element {
 
   return (
     <div
-      id="dropdownPaymentTerms"
       className={`${styles.container} ${appendClass}`}
-      ref={containerRef}>
+      ref={containerRef}
+      data-input-element="paymentTerms">
       <label htmlFor={labelId}>
         <button
           type="button"
