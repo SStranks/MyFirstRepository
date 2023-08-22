@@ -12,6 +12,7 @@ interface IProps {
   max?: Date;
   delimiter: '/' | ' ';
   labelId?: string;
+  disabled?: boolean;
 }
 
 function InputDatePicker(props: IProps): JSX.Element {
@@ -22,6 +23,7 @@ function InputDatePicker(props: IProps): JSX.Element {
     max,
     delimiter,
     labelId,
+    disabled,
   } = props;
   const [currentDateInternal, setCurrentDateInternal] = useState<Date>(() => {
     return currentDateProp === undefined ? new Date() : currentDateProp;
@@ -106,8 +108,14 @@ function InputDatePicker(props: IProps): JSX.Element {
         inputRef={inputDayRef}
         rotateFocus={rotateFocus}
         labelId={labelId}
+        disabled={disabled}
       />
-      <p className={styles.inputDelimiter}>{delimiter}</p>
+      <p
+        className={`${styles.inputDelimiter} ${
+          disabled ? styles['inputDelimiter--inactive'] : ''
+        }`}>
+        {delimiter}
+      </p>
       <InputDatePickerMonth
         currentDate={currentDate}
         setCurrentDate={setCurrentDate}
@@ -116,16 +124,18 @@ function InputDatePicker(props: IProps): JSX.Element {
         inputRef={inputMonthRef}
         rotateFocus={rotateFocus}
         disabled={
-          min !== undefined &&
-          max !== undefined &&
-          min?.getFullYear() === max?.getFullYear() &&
-          min?.getMonth() === max?.getMonth()
+          disabled ||
+          (min !== undefined &&
+            max !== undefined &&
+            min?.getFullYear() === max?.getFullYear() &&
+            min?.getMonth() === max?.getMonth())
         }
       />
       <p
         className={`${styles.inputDelimiter} ${
-          min?.getFullYear() === max?.getFullYear() &&
-          min?.getMonth() === max?.getMonth()
+          disabled ||
+          (min?.getFullYear() === max?.getFullYear() &&
+            min?.getMonth() === max?.getMonth())
             ? styles['inputDelimiter--inactive']
             : ''
         }`}>
@@ -138,9 +148,10 @@ function InputDatePicker(props: IProps): JSX.Element {
         currentYear={currentYear}
         inputRef={inputYearRef}
         disabled={
-          min !== undefined &&
-          max !== undefined &&
-          min?.getFullYear() === max?.getFullYear()
+          disabled ||
+          (min !== undefined &&
+            max !== undefined &&
+            min?.getFullYear() === max?.getFullYear())
         }
       />
     </div>

@@ -5,9 +5,13 @@ import InputDateCalendar from './InputDateCalendar';
 import InputDatePicker from './InputDatePicker';
 import { formatDate, isValidDate } from './dateUtil';
 
-const setInitialDate = (min: Date | undefined, max: Date | undefined) => {
+const setInitialDate = (
+  initialDate: string | undefined,
+  min: Date | undefined,
+  max: Date | undefined
+) => {
   // Create date; remove time portion.
-  let date = new Date();
+  let date = initialDate ? new Date(initialDate) : new Date();
   date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
   if (min && date < min) date = min;
   if (max && date > max) date = max;
@@ -30,19 +34,21 @@ const validatePropDate = (date: Date | undefined): Date | undefined => {
 
 // Expect format: new Date('January 01, 1999') to avoid 0 based errors.
 interface IProps {
+  initialDate?: string;
   min?: Date;
   max?: Date;
   labelId?: string;
+  disabled?: boolean;
   required?: boolean;
 }
 
 // NOTE:  Improved keyboard accessibility; if the user increments the month/year, and the day is invalid (too high) then it automatically reduces the day to the largest valid value for that month.
 function DatePicker(props: IProps): JSX.Element {
-  const { min, max, labelId, required } = props;
+  const { initialDate, min, max, labelId, disabled, required } = props;
   const { current: minDate } = useRef(validatePropDate(min));
   const { current: maxDate } = useRef(validatePropDate(max));
   const [currentDate, setCurrentDate] = useState<Date>(
-    setInitialDate(minDate, maxDate)
+    setInitialDate(initialDate, minDate, maxDate)
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const dropdownContainerRef = useRef<HTMLDivElement>(null);
@@ -94,11 +100,13 @@ function DatePicker(props: IProps): JSX.Element {
           setCurrentDate={setCurrentDate}
           delimiter="/"
           labelId={labelId}
+          disabled={disabled}
         />
         <button
           type="button"
           className={styles.dropdownSelect__iconBtn}
-          onClick={() => setIsDropdownOpen((prev) => !prev)}>
+          onClick={() => setIsDropdownOpen((prev) => !prev)}
+          disabled={disabled}>
           <img src={IconCalender} alt="" />
         </button>
       </div>

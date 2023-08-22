@@ -44,10 +44,11 @@ function DiscardBtn(): JSX.Element | null {
   );
 }
 
+// NOTE:  Buttons external to form; onSubmit references e.nativeEvent.submitter.name e.g 'saveDraft'
 function SaveDraftBtn(): JSX.Element | null {
   return (
     <div className={styles.btnSaveDraft}>
-      <button type="submit" form="submitFormInvoice">
+      <button type="submit" form="submitFormInvoice" name="saveDraft">
         Save as Draft
       </button>
     </div>
@@ -57,9 +58,7 @@ function SaveDraftBtn(): JSX.Element | null {
 function SaveSendBtn(): JSX.Element | null {
   return (
     <div className={styles.btnSaveSend}>
-      <button
-        type="button"
-        onClick={() => console.log('Save and Send Clicked')}>
+      <button type="submit" form="submitFormInvoice" name="saveSend">
         Save & Send
       </button>
     </div>
@@ -69,7 +68,7 @@ function SaveSendBtn(): JSX.Element | null {
 function SaveChangesBtn(): JSX.Element | null {
   return (
     <div className={styles.btnSaveChanges}>
-      <button type="button" onClick={() => console.log('Save Changes Clicked')}>
+      <button type="submit" form="submitFormInvoice" name="saveChanges">
         Save Changes
       </button>
     </div>

@@ -3,7 +3,6 @@
   align-content: center;
   font-family: inherit;
   font-weight: 700;
-  cursor: pointer;
 }
 
 .input {
@@ -25,6 +24,7 @@
   margin-inline: 2px;
 
   &--inactive {
+    cursor: default;
     opacity: 25%;
   }
 }

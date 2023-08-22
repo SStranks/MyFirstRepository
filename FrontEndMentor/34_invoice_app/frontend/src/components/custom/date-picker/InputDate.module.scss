@@ -15,6 +15,10 @@
     border: 1px solid $color-1a;
   }
 
+  &:has(button:disabled) {
+    cursor: default;
+  }
+
   & p {
     font-family: inherit;
     font-weight: inherit;

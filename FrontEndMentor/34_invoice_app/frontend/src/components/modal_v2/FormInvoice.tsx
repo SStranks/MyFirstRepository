@@ -69,6 +69,11 @@ function FormInvoice(props: IProps): JSX.Element {
     // Submit if valid
     if (isValid) {
       const dataObject = new FormData(formElement);
+      // TODO:  Use the external submit button 'name' attribute to determine specific action
+      const submitButtonName = (
+        (e.nativeEvent as SubmitEvent)?.submitter as HTMLButtonElement
+      )?.name;
+      console.log('SUBMITTED BY', submitButtonName);
       // Faux Submission
       console.log(Object.fromEntries(dataObject.entries()));
     }
@@ -248,7 +253,11 @@ function FormInvoice(props: IProps): JSX.Element {
         <label htmlFor="invoiceDate" className={styles.form__inputLabel}>
           Invoice Date
           <p className={styles.form__inputError} />
-          <InputDate labelId="invoiceDate" />
+          <InputDate
+            initialDate={invoice?.createdAt}
+            labelId="invoiceDate"
+            disabled={Boolean(invoice?.createdAt)}
+          />
         </label>
         {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
         <label htmlFor="paymentTerms" className={styles.form__inputLabel}>

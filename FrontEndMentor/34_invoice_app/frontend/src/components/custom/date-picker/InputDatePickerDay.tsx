@@ -10,6 +10,7 @@ interface IProps {
   inputRef: RefObject<HTMLInputElement>;
   rotateFocus: () => void;
   labelId?: string;
+  disabled?: boolean;
 }
 
 function InputDatePickerDay(props: IProps): JSX.Element {
@@ -22,6 +23,7 @@ function InputDatePickerDay(props: IProps): JSX.Element {
     inputRef,
     rotateFocus,
     labelId,
+    disabled,
   } = props;
   const [lastKeyPress, setLastKeyPress] = useState<string | null>(null);
   const displayValueRef = useRef<HTMLParagraphElement>(null);
@@ -132,11 +134,6 @@ function InputDatePickerDay(props: IProps): JSX.Element {
 
   return (
     <>
-      <label htmlFor={labelId}>
-        <p className={styles.displayValue} ref={displayValueRef}>
-          {displayValue}
-        </p>
-      </label>
       <input
         type="text"
         className={styles.input}
@@ -149,7 +146,13 @@ function InputDatePickerDay(props: IProps): JSX.Element {
         onTouchMove={(e) => e.preventDefault()} // Prevent highlighting
         onFocus={inputOnFocus}
         onBlur={inputOnBlur}
+        disabled={disabled}
       />
+      <label htmlFor={labelId}>
+        <p className={styles.displayValue} ref={displayValueRef}>
+          {displayValue}
+        </p>
+      </label>
     </>
   );
 }
