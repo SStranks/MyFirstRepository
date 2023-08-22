@@ -83,3 +83,4 @@ Captured at the following breakpoints from the live solution: Desktop - 1440px, 
 - [Stackoverflow - Webkit-Scrollbar-Thumb](https://stackoverflow.com/questions/16819116/unable-to-set-the-width-of-webkit-scrollbar-thumb)
 - [Stackoverflow - Selectionchange Event](https://stackoverflow.com/questions/46651479/reacting-to-selection-changes-in-an-html-textarea)
 - [Stackoverflow - Submit Form from outside](https://stackoverflow.com/questions/7020659/submit-form-using-a-button-outside-the-form-tag)
+- [Stackoverflow - Typescript SubmitEvent](https://stackoverflow.com/a/68969821/20274651)
