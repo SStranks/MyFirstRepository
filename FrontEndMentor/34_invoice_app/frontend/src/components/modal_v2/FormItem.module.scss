@@ -41,4 +41,9 @@
 
 .deleteBtn {
   grid-column: 5;
+
+  &:hover {
+    filter: invert(67%) sepia(43%) saturate(6707%) hue-rotate(327deg)
+      brightness(98%) contrast(88%);
+  }
 }

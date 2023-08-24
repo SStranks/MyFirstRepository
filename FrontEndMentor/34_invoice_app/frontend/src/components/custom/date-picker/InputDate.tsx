@@ -52,6 +52,7 @@ function DatePicker(props: IProps): JSX.Element {
     setInitialDate(initialDate, minDate, maxDate)
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const dropdownButtonRef = useRef<HTMLButtonElement>(null);
   const dropdownContainerRef = useRef<HTMLDivElement>(null);
   const dropdownPanelRef = useRef<HTMLDivElement>(null);
 
@@ -72,8 +73,17 @@ function DatePicker(props: IProps): JSX.Element {
 
     // Handle keyboard event; spacebar to open dropdown
     const keyHandler = (e: KeyboardEvent) => {
-      if (e.key === ' ') setIsDropdownOpen(true);
-      if (e.key === 'Escape') setIsDropdownOpen(false);
+      switch (e.key) {
+        case ' ':
+          setIsDropdownOpen(true);
+          break;
+        case 'Escape':
+        case 'Esc':
+          setIsDropdownOpen(false);
+          dropdownButtonRef.current?.focus();
+          break;
+        default:
+      }
     };
     container?.addEventListener('keydown', keyHandler);
 
@@ -107,6 +117,7 @@ function DatePicker(props: IProps): JSX.Element {
           type="button"
           className={styles.dropdownSelect__iconBtn}
           onClick={() => setIsDropdownOpen((prev) => !prev)}
+          ref={dropdownButtonRef}
           disabled={disabled}>
           <img src={IconCalender} alt="" />
         </button>

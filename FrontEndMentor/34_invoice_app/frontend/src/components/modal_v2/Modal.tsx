@@ -33,13 +33,9 @@ function Modal(props: PropsWithChildren<IProps>): JSX.Element | null {
     // On press of ESC key; close modal.
     const keyHandler = (e: KeyboardEvent) => {
       const { activeElement } = document;
-      // eslint-disable-next-line unicorn/prefer-set-has
-      const inputs = ['button', 'input'];
+      const inputs = new Set(['button', 'input']);
       // Abort if an input has focus
-      if (
-        activeElement &&
-        inputs.includes(activeElement?.tagName.toLowerCase())
-      ) {
+      if (activeElement && inputs.has(activeElement?.tagName.toLowerCase())) {
         return null;
       }
       return (e.key === 'Escape' || e.key === 'Esc') && setIsModalOpen(false);

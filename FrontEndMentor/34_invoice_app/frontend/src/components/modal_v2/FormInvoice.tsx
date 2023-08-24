@@ -240,7 +240,7 @@ function FormInvoice(props: IProps): JSX.Element {
               className={styles.form__input}
               name="senderAddressStreet"
               id="senderAddressStreet"
-              defaultValue={invoice?.senderAddress.street}
+              defaultValue={invoice?.senderAddress?.street}
               required
             />
           </label>
@@ -253,7 +253,7 @@ function FormInvoice(props: IProps): JSX.Element {
             className={styles.form__input}
             id="senderAddressCity"
             name="senderAddressCity"
-            defaultValue={invoice?.senderAddress.city}
+            defaultValue={invoice?.senderAddress?.city}
             required
           />
         </label>
@@ -267,7 +267,7 @@ function FormInvoice(props: IProps): JSX.Element {
             className={styles.form__input}
             id="senderAddressPostCode"
             name="senderAddressPostCode"
-            defaultValue={invoice?.senderAddress.postCode}
+            defaultValue={invoice?.senderAddress?.postCode}
             required
           />
         </label>
@@ -281,7 +281,7 @@ function FormInvoice(props: IProps): JSX.Element {
             className={styles.form__input}
             id="senderAddressCountry"
             name="senderAddressCountry"
-            defaultValue={invoice?.senderAddress.country}
+            defaultValue={invoice?.senderAddress?.country}
             required
           />
         </label>

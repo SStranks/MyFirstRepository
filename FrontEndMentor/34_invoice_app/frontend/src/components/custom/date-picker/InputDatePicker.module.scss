@@ -3,6 +3,11 @@
   align-content: center;
   font-family: inherit;
   font-weight: 700;
+  color: inherit;
+
+  & > label {
+    color: inherit;
+  }
 }
 
 .input {
@@ -31,6 +36,7 @@
 
 .displayValue {
   padding: 1px;
+  color: inherit;
 }
 
 .active {

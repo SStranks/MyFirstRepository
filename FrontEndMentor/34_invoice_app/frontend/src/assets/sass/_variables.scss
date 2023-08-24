@@ -41,6 +41,10 @@ $color-5d: hsl(256deg, 16%, 18%);
 $color-5e: hsl(233deg, 25%, 21%);
 $color-5f: hsl(228deg, 29%, 7%);
 $color-5g: hsl(231deg, 67%, 99%);
+$color-5h: hsl(231deg, 28%, 7%, 0.08);
+$color-5i: hsl(231deg, 75%, 93%, 0.08);
+$color-5j: hsla(231deg, 28%, 7%, 0.4);
+$color-5k: hsla(255deg, 100%, 100%, 0.4);
 
 $white: hsl(0deg, 0%, 100%);
 $black: hsl(0deg, 0%, 0%);
@@ -52,8 +56,6 @@ $modal-bg: hsla(0deg, 0%, 0%, 0.5);
 /*   Modal Background        */
 $dropshadow-light: hsla(231deg, 38%, 45%, 0.25);
 $dropshadow-dark: hsla(0deg, 0%, 0%, 0.25);
-/*   Placeholder Text               */
-$form-placeholder: hsla(231deg, 28%, 7%, 0.4);
 /*   Faded Buttons                  */
 // $dim-magenta: hsl(282deg, 90%, 66%);
 /*   Utility Bar Dropdown           */
