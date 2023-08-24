@@ -38,7 +38,13 @@
   "rules": {
     "prettier/prettier": ["error"],
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "no-console": "off",
     // Typescript Rules --
     "react/prop-types": "off",
@@ -70,6 +76,8 @@
       }
     ],
     "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-array-for-each": "off",
+    "unicorn/no-array-reduce": "off",
     "unicorn/no-null": "off",
     "arrow-body-style": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
