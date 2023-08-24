@@ -75,6 +75,7 @@ Captured at the following breakpoints from the live solution: Desktop - 1440px, 
 - [Github - TS and ESLint-Plugin-Import](https://github.com/import-js/eslint-plugin-import/issues/1485)
 - [Github - TS and SASS Modules](https://github.com/vercel/next.js/issues/9690)
 - [Github - TS Config](https://github.com/microsoft/TypeScript/issues/43838)
+- [Github - nullish coalescing assignment](https://github.com/remix-run/remix/discussions/1541#discussioncomment-2647854)
 - [Stackoverflow - TS and ESLint](https://stackoverflow.com/questions/59265981/typescript-eslint-missing-file-extension-ts-import-extensions)
 - [Stackoverflow - TS Config and ESLint](https://stackoverflow.com/questions/62474451/tsconfigs-path-parameter-and-eslint)
 - [Stackoverflow - TS and NodeJS](https://stackoverflow.com/questions/40616272/an-import-path-cannot-end-with-ts-nodejs-and-visual-code)
