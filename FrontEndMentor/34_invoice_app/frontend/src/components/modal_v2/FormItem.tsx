@@ -18,7 +18,8 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 
 export interface IProps {
   id: string;
-  name?: string;
+  index: number;
+  itemName?: string;
   quantity?: number;
   price?: number;
   total?: number;
@@ -28,13 +29,14 @@ export interface IProps {
 function FormItem(props: IProps): JSX.Element {
   const {
     id,
-    name: nameProp,
+    index,
+    itemName: itemNameProp,
     quantity: quantityProp,
     price: priceProp,
     total: totalProp,
     deleteItem,
   } = props;
-  const [name, setName] = useState<string>(nameProp ?? '');
+  const [itemName, setItemName] = useState<string>(itemNameProp ?? '');
   const [quantity, setQuantity] = useState<number | undefined>(
     quantityProp ?? 1
   );
@@ -50,14 +52,23 @@ function FormItem(props: IProps): JSX.Element {
   }, [quantity, price]);
 
   const nameOnChange = (e: React.ChangeEvent) => {
-    setName((e.target as HTMLInputElement).value);
+    setItemName((e.target as HTMLInputElement).value);
   };
 
   const quantityOnKeyDown = (e: React.KeyboardEvent) => {
     switch (true) {
-      case quantity === 0 && e.key === '0':
+      case e.key === 'Backspace':
+      case e.key === 'Tab':
+      case e.key === 'ArrowUp':
+      case e.key === 'ArrowDown':
+      case e.key === 'ArrowLeft':
+      case e.key === 'ArrowRight':
+        return null;
+      case e.key === '-':
+      case e.key === '+':
+      case e.key === 'e':
         return e.preventDefault();
-      case quantity === 0 && !Number.isNaN(Number(e.key)):
+      case quantity === 0 && e.key === '0':
         return e.preventDefault();
       default:
         return null;
@@ -90,8 +101,8 @@ function FormItem(props: IProps): JSX.Element {
       <input
         className={`${styles.name} ${styles.input}`}
         type="text"
-        name={`${id}-itemName`}
-        value={name}
+        name={`listItem-${index}-${id}-name`}
+        value={itemName}
         onChange={nameOnChange}
         data-input-element="formItem"
         required
@@ -99,7 +110,7 @@ function FormItem(props: IProps): JSX.Element {
       <input
         className={`${styles.quantity} ${styles.input}`}
         type="number"
-        name={`${id}-itemQuantity`}
+        name={`listItem-${index}-${id}-quantity`}
         ref={quantityRef}
         min={1}
         max={99}
@@ -114,7 +125,7 @@ function FormItem(props: IProps): JSX.Element {
       <InputPrice
         price={price}
         setPrice={setPrice}
-        name={`${id}-itemPrice`}
+        name={`listItem-${index}-${id}-price`}
         currencyFormatter={numberFormatter}
         data-input-element="formItem"
         required

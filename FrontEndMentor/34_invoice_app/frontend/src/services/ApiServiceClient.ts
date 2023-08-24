@@ -1,7 +1,7 @@
 // NOTE:  ! This file is not complete. Basic working structure. Depends on backend API types
 import { IApiClient } from './ApiHttp';
 
-type TBody = { [x: string]: unknown };
+export type TBody = { [x: string]: unknown };
 
 interface TApiExpressResponse<T> {
   status: string;
@@ -51,7 +51,8 @@ export interface IResInvoice {
 export interface IApiServiceClient {
   getAllInvoices(): Promise<IInvoice[] | undefined>;
   getInvoice(id: string): Promise<IInvoice | undefined>;
-  getInvoice(id: string): Promise<IInvoice | undefined>;
+  postInvoice(data: TBody): Promise<IInvoice | undefined>;
+  patchInvoice(id: string, data: TBody): Promise<IInvoice | undefined>;
   patchInvoiceStatus(id: string): Promise<IInvoice | undefined>;
   deleteInvoice(id: string): Promise<number | boolean>;
 }
@@ -83,6 +84,38 @@ export default class ApiServiceClient implements IApiServiceClient {
       const response = await this.ApiServiceClient.get<
         TApiExpressResponse<IResInvoice>
       >(`/invoices/${id}`);
+      const {
+        data: { invoice: responseData },
+      } = response;
+      return responseData;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
+
+  async postInvoice(data: TBody): Promise<IInvoice | undefined> {
+    try {
+      const response = await this.ApiServiceClient.post<
+        TBody,
+        TApiExpressResponse<IResInvoice>
+      >('/invoices', data);
+      const {
+        data: { invoice: responseData },
+      } = response;
+      return responseData;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
+
+  async patchInvoice(id: string, data: TBody): Promise<IInvoice | undefined> {
+    try {
+      const response = await this.ApiServiceClient.patch<
+        TBody,
+        TApiExpressResponse<IResInvoice>
+      >(`/invoices/${id}`, data);
       const {
         data: { invoice: responseData },
       } = response;

@@ -8,17 +8,17 @@ interface IProps {
   appendClass?: string;
 }
 
-// TODO:  Dropdown keydown/up navigate options in list
 function DropdownPaymentTerms(props: IProps): JSX.Element {
   const { value, labelId, appendClass } = props;
   const [currentValue, setCurrentValue] = useState<number | undefined>(value);
   const [listOpen, setListOpen] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const dropdownBtnRef = useRef<HTMLButtonElement>(null);
+  const ULRef = useRef<HTMLUListElement>(null);
 
-  // Handle clicks outside of component; close dropdown
   useEffect(() => {
     const { current } = containerRef;
+    // Handle clicks outside of component; close dropdown
     const clickHandler = (e: MouseEvent) => {
       if (
         current &&
@@ -29,8 +29,45 @@ function DropdownPaymentTerms(props: IProps): JSX.Element {
         setListOpen(false);
       }
     };
+
+    // On press of ESC key; close modal.
+    let index = 0;
+    const buttonElements = ULRef.current?.querySelectorAll('button');
+    const keyHandler = (e: KeyboardEvent) => {
+      if (listOpen) {
+        switch (e.key) {
+          case 'Escape':
+          case 'Esc':
+            e.stopPropagation();
+            dropdownBtnRef.current?.focus();
+            setListOpen(false);
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            if (buttonElements) {
+              index =
+                (index - 1 + buttonElements.length) % buttonElements.length;
+              buttonElements[index].focus();
+            }
+            break;
+          case 'ArrowDown':
+            e.preventDefault();
+            if (buttonElements) {
+              index = (index + 1) % buttonElements.length;
+              buttonElements[index].focus();
+            }
+            break;
+          default:
+        }
+      }
+    };
+
     document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
+    current?.addEventListener('keydown', keyHandler);
+    return () => {
+      document.removeEventListener('click', clickHandler);
+      current?.removeEventListener('keydown', keyHandler);
+    };
   }, [listOpen]);
 
   const dropdownBtnClickHandler = () => {
@@ -64,15 +101,17 @@ function DropdownPaymentTerms(props: IProps): JSX.Element {
             type="text"
             className="hidden"
             name="paymentTerms"
-            defaultValue={displayValue}
+            value={currentValue ?? ''}
+            onChange={() => null}
+            tabIndex={-1}
             required
           />
           <input
             type="text"
             id={labelId}
             className={styles.dropdownBtn__hiddenInput}
-            name="paymentTerms"
             value={displayValue}
+            tabIndex={-1}
             readOnly
           />
           <img src={IconArrow} alt="" />
@@ -80,7 +119,7 @@ function DropdownPaymentTerms(props: IProps): JSX.Element {
       </label>
       {listOpen && (
         <div className={styles.dropdownList}>
-          <ul>
+          <ul ref={ULRef}>
             <li>
               <button type="button" onClick={(e) => listItemClickHandler(e, 1)}>
                 Net 1 Day

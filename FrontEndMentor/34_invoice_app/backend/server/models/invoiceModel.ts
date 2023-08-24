@@ -16,8 +16,8 @@ interface IItem {
 
 interface IInvoice {
   slug: string;
-  createdAt: () => string;
-  paymentDue: () => string;
+  createdAt: Date;
+  paymentDue: string;
   description: string;
   paymentTerms: number;
   clientName: string;
@@ -88,16 +88,11 @@ const invoiceSchema = new mongoose.Schema<IInvoice>(
     createdAt: {
       type: Date,
       default: Date.now(),
-      get: convertDate,
-    },
-    paymentDue: {
-      type: Date,
-      default: () => {
-        const date = new Date();
-        date.setDate(date.getDate() + 30);
-        return date;
+      set: (str: string) => {
+        const dateParts = str.split('/');
+        const newDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
+        return new Date(newDate);
       },
-      get: convertDate,
     },
     description: {
       type: String,
@@ -130,6 +125,11 @@ const invoiceSchema = new mongoose.Schema<IInvoice>(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
+    // TODO:  After creating sign-up functionality; have option when creating/updating invoice to use the default user address or add a new one.
+    // senderAddress: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'User',
+    // },
     clientAddress: {
       type: addressSchema,
       required: true,
@@ -142,10 +142,26 @@ const invoiceSchema = new mongoose.Schema<IInvoice>(
   },
   {
     id: false,
-    toJSON: { virtuals: true, getters: true },
+    toJSON: {
+      virtuals: true,
+      getters: true,
+      transform: (doc, ret) => {
+        const { createdAt: createdAtOld, ...rest } = ret;
+        const createdAt = convertDate(createdAtOld);
+        return { createdAt, ...rest };
+      },
+    },
     toObject: { virtuals: true },
   }
 );
+
+invoiceSchema.virtual('paymentDue').get(function () {
+  const { createdAt, paymentTerms } = this;
+  const newDate = convertDate(
+    new Date(createdAt.setDate(createdAt.getDate() + paymentTerms))
+  );
+  return newDate;
+});
 
 invoiceSchema.virtual('total').get(function () {
   return this.items.reduce((acc, cur) => {

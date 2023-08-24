@@ -31,20 +31,31 @@ function Modal(props: PropsWithChildren<IProps>): JSX.Element | null {
     };
 
     // On press of ESC key; close modal.
-    const keyHandler = (e: KeyboardEvent) =>
-      (e.key === 'Escape' || e.key === 'Esc') && setIsModalOpen(false);
+    const keyHandler = (e: KeyboardEvent) => {
+      const { activeElement } = document;
+      // eslint-disable-next-line unicorn/prefer-set-has
+      const inputs = ['button', 'input'];
+      // Abort if an input has focus
+      if (
+        activeElement &&
+        inputs.includes(activeElement?.tagName.toLowerCase())
+      ) {
+        return null;
+      }
+      return (e.key === 'Escape' || e.key === 'Esc') && setIsModalOpen(false);
+    };
 
     if (isModalOpen) {
       current?.addEventListener('click', clickHandler);
       document?.addEventListener('keyup', keyHandler);
       // Disable TAB cycling on App
-      // document.querySelector('#root')?.setAttribute('inert', 'true');
+      document.querySelector('#root')?.setAttribute('inert', 'true');
     }
 
     return () => {
       current?.removeEventListener('click', clickHandler);
-      current?.removeEventListener('keyup', keyHandler);
-      // document.querySelector('#root')?.removeAttribute('inert');
+      document?.removeEventListener('keyup', keyHandler);
+      document.querySelector('#root')?.removeAttribute('inert');
     };
   }, [isModalOpen, setIsModalOpen]);
 

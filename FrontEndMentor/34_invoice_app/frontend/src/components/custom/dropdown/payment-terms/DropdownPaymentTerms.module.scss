@@ -60,19 +60,27 @@
   background-color: var(--color-form-input-bg);
   transform: translateY(calc(100% + 8px));
   box-shadow: 0 10px 20px 0 var(--color-dropshadow);
+  border-radius: $border-radius-5;
   transition: a.$Theme-transition;
+  // REFACTOR:  Add to dropdown manager
+  z-index: 10;
 
   & > ul {
     list-style: none;
 
     & > li {
-      padding: f.px2em(15) f.px2em(20);
       color: inherit;
       border-bottom: 1px solid var(--color-form-input-border);
       transition: a.$Theme-transition;
 
-      & button:hover {
-        color: $color-1a;
+      & button {
+        width: 100%;
+        padding: f.px2em(15) f.px2em(20);
+        text-align: left;
+
+        &:hover {
+          color: $color-1a;
+        }
       }
     }
   }

@@ -11,9 +11,11 @@ $margin-btm: f.px2em(42);
 .form {
   position: relative;
   height: 100%;
-  margin-left: f.px2em(160);
+  // REFACTOR:  Margin-left is currently the sidebar width, which is fixed.
+  margin-left: 103px;
   margin-right: 12px;
   padding-bottom: f.px2em(200);
+  padding-left: f.px2em(56);
   padding-right: f.px2em(16);
   overflow-y: scroll;
 
@@ -178,6 +180,9 @@ $margin-btm: f.px2em(42);
     border: 1px solid var(--color-form-input-border);
     border-radius: $border-radius-5;
     font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: a.$Theme-transition;
 
     &:focus {

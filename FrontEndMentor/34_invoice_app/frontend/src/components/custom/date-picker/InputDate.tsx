@@ -38,13 +38,14 @@ interface IProps {
   min?: Date;
   max?: Date;
   labelId?: string;
+  name?: string;
   disabled?: boolean;
   required?: boolean;
 }
 
 // NOTE:  Improved keyboard accessibility; if the user increments the month/year, and the day is invalid (too high) then it automatically reduces the day to the largest valid value for that month.
 function DatePicker(props: IProps): JSX.Element {
-  const { initialDate, min, max, labelId, disabled, required } = props;
+  const { initialDate, min, max, labelId, name, disabled, required } = props;
   const { current: minDate } = useRef(validatePropDate(min));
   const { current: maxDate } = useRef(validatePropDate(max));
   const [currentDate, setCurrentDate] = useState<Date>(
@@ -86,10 +87,10 @@ function DatePicker(props: IProps): JSX.Element {
   return (
     <div className={styles.container} ref={dropdownContainerRef}>
       <div className={styles.dropdownSelect}>
-        {/* // TODO:  Use this hidden input for form submission validation */}
         <input
           type="hidden"
           required={required}
+          name={name ?? 'inputDate'}
           value={formatDate(currentDate)}
           pattern="\d{2}-\d{2}-\d{4}"
         />

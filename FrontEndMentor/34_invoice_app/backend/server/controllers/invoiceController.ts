@@ -9,7 +9,7 @@ const getAllInvoices = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const invoices = await Invoice.find(
       {},
-      'id slug paymentDue clientName items total status'
+      'id slug paymentDue clientName paymentTerms createdAt items total status'
     ).transform((docs) => {
       return docs.map((doc) => {
         const { id, slug, paymentDue, clientName, total, status } = doc;
@@ -43,6 +43,8 @@ const getInvoice = catchAsync(
 
     if (!invoice)
       return next(new AppError('No document found with that ID', 404));
+
+    // console.log('INVOICE', invoice);
 
     return res.status(200).json({
       status: 'success',

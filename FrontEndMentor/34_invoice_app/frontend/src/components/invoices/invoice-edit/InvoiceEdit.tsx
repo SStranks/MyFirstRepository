@@ -110,7 +110,7 @@ function InvoiceEdit(): JSX.Element | null {
           <div className={styles.container__statusBar}>
             <div className={styles.container__statusBar__status}>
               <p>Status</p>
-              <Status status={invoice.status} />
+              <Status status={invoice?.status} />
             </div>
             <div className={styles.container__statusBar__buttons}>
               {/* // REFACTOR:  Buttons to regular buttons with styles in src/sass */}
@@ -140,20 +140,20 @@ function InvoiceEdit(): JSX.Element | null {
                     className={
                       styles['container__invoice__identity__code--black']
                     }>
-                    {invoice.slug}
+                    {invoice?.slug}
                   </span>
                 </p>
-                <p>{invoice.description}</p>
+                <p>{invoice?.description}</p>
               </div>
               <div className="">
                 <p>
-                  {invoice.senderAddress.street}
+                  {invoice?.senderAddress?.street}
                   <br />
-                  {invoice.senderAddress.city}
+                  {invoice?.senderAddress?.city}
                   <br />
-                  {invoice.senderAddress.postCode}
+                  {invoice?.senderAddress?.postCode}
                   <br />
-                  {invoice.senderAddress.country}
+                  {invoice?.senderAddress?.country}
                 </p>
               </div>
             </div>
@@ -164,14 +164,14 @@ function InvoiceEdit(): JSX.Element | null {
                   className={
                     styles['container__invoice__details__date--black']
                   }>
-                  {invoice.createdAt}
+                  {invoice?.createdAt}
                 </p>
               </div>
               <div className={styles.container__invoice__details__due}>
                 <p>Payment Due</p>
                 <p
                   className={styles['container__invoice__details__due--black']}>
-                  {invoice.paymentDue}
+                  {invoice?.paymentDue}
                 </p>
               </div>
               <div className={styles.container__invoice__details__recipient}>
@@ -180,12 +180,12 @@ function InvoiceEdit(): JSX.Element | null {
                   className={
                     styles['container__invoice__details__recipient--black']
                   }>
-                  {invoice.clientName}
+                  {invoice?.clientName}
                 </p>
-                <p>{invoice.clientAddress.street}</p>
-                <p>{invoice.clientAddress.city}</p>
-                <p>{invoice.clientAddress.postCode}</p>
-                <p>{invoice.clientAddress.country}</p>
+                <p>{invoice?.clientAddress.street}</p>
+                <p>{invoice?.clientAddress.city}</p>
+                <p>{invoice?.clientAddress.postCode}</p>
+                <p>{invoice?.clientAddress.country}</p>
               </div>
               <div className={styles.container__invoice__details__email}>
                 <p>Sent to</p>
@@ -193,7 +193,7 @@ function InvoiceEdit(): JSX.Element | null {
                   className={
                     styles['container__invoice__details__email--black']
                   }>
-                  {invoice.clientEmail}
+                  {invoice?.clientEmail}
                 </p>
               </div>
             </div>
@@ -222,7 +222,7 @@ function InvoiceEdit(): JSX.Element | null {
                   Amount Due
                 </p>
                 <p className={styles.container__invoice__payment__total__total}>
-                  £ {invoice.total}
+                  £ {invoice?.total}
                 </p>
               </div>
             </div>
