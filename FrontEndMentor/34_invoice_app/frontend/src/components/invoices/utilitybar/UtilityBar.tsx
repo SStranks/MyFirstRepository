@@ -1,9 +1,9 @@
 import BtnNewInvoice from '#Components/custom/buttons/new-invoice/BtnNewInvoice';
 import DropdownFilterStatus from '#Components/custom/dropdown/filter-status/DropdownFilterStatus';
 import { IFilterStatus } from '#Components/main/Main';
-import Modal from '#Components/modal_v2/Modal';
-import ModalNewInvoice from '#Components/modal_v2/ModalNewInvoice';
-import ReactPortal from '#Components/modal_v2/ReactPortal';
+import Modal from '#Components/modal/Modal';
+import ModalNewInvoice from '#Components/modal/ModalNewInvoice';
+import ReactPortal from '#Components/modal/ReactPortal';
 import { useState } from 'react';
 import styles from './UtilityBar.module.scss';
 

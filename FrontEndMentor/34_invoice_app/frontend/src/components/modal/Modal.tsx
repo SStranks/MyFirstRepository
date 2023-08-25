@@ -1,51 +1,83 @@
-import { useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import {
+  PropsWithChildren,
+  createContext,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import styles from './Modal.module.scss';
+import useScrollLock from './useScrollLock';
 
-type ModalProps = {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  modalContent: JSX.Element;
-};
+interface IContext {
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-function Modal(props: ModalProps): JSX.Element | null {
-  const { isOpen, setIsOpen, modalContent } = props;
+interface IProps {
+  isModalOpen: boolean;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const ModalContext = createContext<IContext | undefined>(undefined);
+
+function Modal(props: PropsWithChildren<IProps>): JSX.Element | null {
+  const { isModalOpen, setIsModalOpen, children } = props;
   const modalRef = useRef<HTMLDivElement>(null);
+  useScrollLock(isModalOpen);
 
   useEffect(() => {
     const { current } = modalRef;
+
     // On click of modal background; close modal.
     const clickHandler = (e: MouseEvent) => {
-      console.log(e.target, current);
-      return e.target === current && setIsOpen(false);
+      return e.target === current && setIsModalOpen(false);
     };
-    // On press of ESC key; close modal.
-    const keyHandler = (e: KeyboardEvent) =>
-      (e.key === 'Escape' || e.key === 'Esc') && setIsOpen(false);
 
-    if (isOpen) {
+    // On press of ESC key; close modal.
+    const keyHandler = (e: KeyboardEvent) => {
+      const { activeElement } = document;
+      const inputs = new Set([
+        'a',
+        'area',
+        'button',
+        'details',
+        'input',
+        'iframe',
+        'select',
+        'textarea',
+      ]);
+      // Abort if an input has focus
+      if (activeElement && inputs.has(activeElement?.tagName.toLowerCase())) {
+        return null;
+      }
+      return (e.key === 'Escape' || e.key === 'Esc') && setIsModalOpen(false);
+    };
+
+    if (isModalOpen) {
       current?.addEventListener('click', clickHandler);
       document?.addEventListener('keyup', keyHandler);
       // Disable TAB cycling on App
-      // document.querySelector('#root')?.setAttribute('inert', 'true');
+      document.querySelector('#root')?.setAttribute('inert', 'true');
     }
 
     return () => {
       current?.removeEventListener('click', clickHandler);
-      current?.removeEventListener('keyup', keyHandler);
-      // document.querySelector('#root')?.removeAttribute('inert');
+      document?.removeEventListener('keyup', keyHandler);
+      document.querySelector('#root')?.removeAttribute('inert');
     };
-  }, [isOpen, setIsOpen]);
+  }, [isModalOpen, setIsModalOpen]);
 
-  if (!isOpen) return null;
+  const contextValue = useMemo(() => {
+    return { setIsModalOpen };
+  }, [setIsModalOpen]);
 
-  const domNode = document.querySelector('#modal') as HTMLElement;
+  if (!isModalOpen) return null;
 
-  return ReactDOM.createPortal(
-    <div className={styles.container} ref={modalRef}>
-      {modalContent}
-    </div>,
-    domNode
+  return (
+    <ModalContext.Provider value={contextValue}>
+      <div className={styles.container} ref={modalRef}>
+        {children}
+      </div>
+    </ModalContext.Provider>
   );
 }
 
