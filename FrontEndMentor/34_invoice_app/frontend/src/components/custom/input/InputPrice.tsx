@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react';
-import styles from './FormItem.module.scss';
 
 interface IProps {
   price?: string | number | undefined;
   setPrice?: React.Dispatch<React.SetStateAction<number | string | undefined>>;
   name: string;
-  currencyFormatter?: Intl.NumberFormat;
+  currencyFormatter?: (input: number) => string;
   'data-input-element'?: string;
   required: boolean;
+  appendClass?: string;
 }
 
 function InputPrice(props: IProps): JSX.Element {
@@ -18,6 +18,7 @@ function InputPrice(props: IProps): JSX.Element {
     currencyFormatter: currencyFormatterProp,
     'data-input-element': dataInputElement,
     required,
+    appendClass,
   } = props;
   const [priceInternal, setPriceInternal] = useState<
     number | string | undefined
@@ -34,12 +35,15 @@ function InputPrice(props: IProps): JSX.Element {
 
   // If currency/number formatter is managed by parent component, use that.
   const currencyFormatter = useMemo(() => {
-    if (currencyFormatterProp === undefined)
-      return new Intl.NumberFormat('en-US', {
+    if (currencyFormatterProp === undefined) {
+      const NUMBER_FORMATTER = new Intl.NumberFormat('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
         useGrouping: false,
       });
+      const numberFormatter = (input: number) => NUMBER_FORMATTER.format(input);
+      return numberFormatter;
+    }
     return currencyFormatterProp;
   }, [currencyFormatterProp]);
 
@@ -71,13 +75,13 @@ function InputPrice(props: IProps): JSX.Element {
   };
 
   const priceOnBlur = () => {
-    const formattedValue = currencyFormatter.format(Number(price ?? 0));
+    const formattedValue = currencyFormatter(Number(price ?? 0));
     return setPrice(formattedValue);
   };
 
   return (
     <input
-      className={`${styles.price} ${styles.input}`}
+      className={`${appendClass}`}
       type="number"
       name={name}
       step={0.01}

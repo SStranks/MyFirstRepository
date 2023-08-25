@@ -6,6 +6,7 @@ import ReactPortal from '#Components/modal/ReactPortal';
 import ContentLayout from '#Layouts/ContentLayout';
 import ApiService from '#Services/Services';
 import IconArrowLeft from '#Svg/icon-arrow-left.svg';
+import currencyFormatter from '#Utils/currencyFormatter';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { toast } from 'react-hot-toast';
@@ -74,11 +75,11 @@ function InvoiceEdit(): JSX.Element | null {
           {item.quantity}
         </p>
         <p className={styles.container__invoice__payment__grid__price}>
-          £ {item.price}
+          £ {currencyFormatter(item.price)}
         </p>
         <p
           className={styles['container__invoice__payment__grid__total--black']}>
-          £ {item.total}
+          £ {currencyFormatter(item.total)}
         </p>
         <div className={styles.container__invoice__payment__grid__mobile}>
           <p className={styles.container__invoice__payment__grid__mobile__name}>
@@ -86,11 +87,11 @@ function InvoiceEdit(): JSX.Element | null {
           </p>
           <p
             className={styles.container__invoice__payment__grid__mobile__price}>
-            £ {item.price}
+            £ {currencyFormatter(item.price)}
           </p>
           <p
             className={styles.container__invoice__payment__grid__mobile__combo}>
-            £ {item.total} x {item.price}
+            £ {`${currencyFormatter(item.total)} x ${item.price}`}
           </p>
         </div>
       </React.Fragment>
@@ -222,7 +223,7 @@ function InvoiceEdit(): JSX.Element | null {
                   Amount Due
                 </p>
                 <p className={styles.container__invoice__payment__total__total}>
-                  £ {invoice?.total}
+                  £ {currencyFormatter(invoice?.total)}
                 </p>
               </div>
             </div>

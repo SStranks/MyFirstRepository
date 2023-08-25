@@ -1,5 +1,6 @@
 import Status from '#Components/custom/buttons/status/Status';
 import ArrowRight from '#Svg/icon-arrow-right.svg';
+import currencyFormatter from '#Utils/currencyFormatter';
 import { Link } from 'react-router-dom';
 import styles from './Invoice.module.scss';
 
@@ -23,7 +24,7 @@ function Invoice(props: IProps): JSX.Element {
         </p>
         <p className={styles.container__date}>Due {paymentDue}</p>
         <p className={styles.container__name}>{clientName}</p>
-        <p className={styles.container__amount}>£ {total.toFixed(2)}</p>
+        <p className={styles.container__amount}>£ {currencyFormatter(total)}</p>
         <div className={styles.container__status}>
           <Status status={status} />
         </div>

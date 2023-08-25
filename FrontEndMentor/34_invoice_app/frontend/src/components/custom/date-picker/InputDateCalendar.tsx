@@ -1,14 +1,15 @@
-/* eslint-disable unicorn/prefer-dom-node-dataset */
 /* eslint-disable unicorn/prefer-spread */
-/* eslint-disable unicorn/consistent-function-scoping */
 import IconArrowLeft from '#Svg/icon-arrow-left.svg';
 import IconArrowRight from '#Svg/icon-arrow-right.svg';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import styles from './InputDateCalendar.module.scss';
-import { formatDate, getNumberOfDaysInMonth } from './dateUtil';
+import {
+  DAYS_LETTER_MONDAY,
+  DAYS_LETTER_SUNDAY,
+  formatDate,
+  getNumberOfDaysInMonth,
+} from './dateUtil';
 
-const DAYS_LETTER_SUNDAY = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-const DAYS_LETTER_MONDAY = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 const tableHeaderSunday = DAYS_LETTER_SUNDAY.map((el, i) => {
   // eslint-disable-next-line react/no-array-index-key
   return <p key={i}>{el}</p>;

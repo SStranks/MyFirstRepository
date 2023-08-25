@@ -15,6 +15,9 @@ export function formatDate(date: number | Date | undefined) {
   return newDate.join('');
 }
 
+export const DAYS_LETTER_SUNDAY = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+export const DAYS_LETTER_MONDAY = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+
 export const DAYS_NUMERICAL = [
   'Sunday',
   'Monday',

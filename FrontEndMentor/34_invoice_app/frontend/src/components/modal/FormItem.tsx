@@ -1,20 +1,9 @@
-/* eslint-disable unicorn/no-useless-undefined */
+import InputPrice from '#Components/custom/input/InputPrice';
 import IconDelete from '#Svg/icon-delete.svg';
+import currencyFormatter from '#Utils/currencyFormatter';
+import numberFormatter from '#Utils/numberFormatter';
 import { useEffect, useRef, useState } from 'react';
 import styles from './FormItem.module.scss';
-import InputPrice from './InputPrice';
-
-const numberFormatter = new Intl.NumberFormat('en-US', {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-  useGrouping: false,
-});
-
-const currencyFormatter = new Intl.NumberFormat('en-US', {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-  useGrouping: true,
-});
 
 export interface IProps {
   id: string;
@@ -91,7 +80,6 @@ function FormItem(props: IProps): JSX.Element {
     return null;
   };
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const deleteOnClick = () => {
     deleteItem(id);
   };
@@ -129,8 +117,9 @@ function FormItem(props: IProps): JSX.Element {
         currencyFormatter={numberFormatter}
         data-input-element="formItem"
         required
+        appendClass={`${styles.price} ${styles.input}`}
       />
-      <p className={styles.total}>{currencyFormatter.format(total)}</p>
+      <p className={styles.total}>{currencyFormatter(total)}</p>
       <button type="button" onClick={deleteOnClick}>
         <img className={styles.deleteBtn} src={IconDelete} alt="" />
       </button>
