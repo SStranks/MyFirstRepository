@@ -61,32 +61,23 @@
 
     &__editBtn {
       @include btn.btn-theme-wrapper(a.$Theme-transition, $border-radius-3);
+      @include btn.btn-element;
       @include btn.btn-grey;
-
-      & > button {
-        @include btn.btn-element;
-        @include btn.btn-grey-hover;
-      }
+      @include btn.btn-grey-hover;
     }
 
     &__deleteBtn {
       @include btn.btn-theme-wrapper(a.$Theme-transition, $border-radius-3);
+      @include btn.btn-element;
       @include btn.btn-red;
-
-      & > button {
-        @include btn.btn-element;
-        @include btn.btn-red-hover;
-      }
+      @include btn.btn-red-hover;
     }
 
     &__markPaidBtn {
       @include btn.btn-theme-wrapper(a.$Theme-transition, $border-radius-3);
+      @include btn.btn-element;
       @include btn.btn-purple;
-
-      & > button {
-        @include btn.btn-element;
-        @include btn.btn-purple-hover;
-      }
+      @include btn.btn-purple-hover;
     }
 
     &__buttons {

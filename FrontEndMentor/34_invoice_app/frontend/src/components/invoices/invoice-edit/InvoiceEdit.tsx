@@ -114,22 +114,24 @@ function InvoiceEdit(): JSX.Element | null {
               <Status status={invoice?.status} />
             </div>
             <div className={styles.container__statusBar__buttons}>
-              {/* // REFACTOR:  Buttons to regular buttons with styles in src/sass */}
-              <div className={styles.container__statusBar__editBtn}>
-                <button type="button" onClick={editBtnClickHandler}>
-                  Edit
-                </button>
-              </div>
-              <div className={styles.container__statusBar__deleteBtn}>
-                <button type="button" onClick={deleteInvoiceBtnClickHandler}>
-                  Delete
-                </button>
-              </div>
-              <div className={styles.container__statusBar__markPaidBtn}>
-                <button type="button" onClick={markInvoicePaidBtnClickHandler}>
-                  Mark as Paid
-                </button>
-              </div>
+              <button
+                type="button"
+                className={styles.container__statusBar__editBtn}
+                onClick={editBtnClickHandler}>
+                Edit
+              </button>
+              <button
+                type="button"
+                className={styles.container__statusBar__deleteBtn}
+                onClick={deleteInvoiceBtnClickHandler}>
+                Delete
+              </button>
+              <button
+                type="button"
+                className={styles.container__statusBar__markPaidBtn}
+                onClick={markInvoicePaidBtnClickHandler}>
+                Mark as Paid
+              </button>
             </div>
           </div>
           <div className={styles.container__invoice}>
