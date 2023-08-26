@@ -16,7 +16,7 @@ $margin-btm: f.px2em(42);
   margin-right: 12px;
   padding-bottom: f.px2em(200);
   padding-left: f.px2em(56);
-  padding-right: f.px2em(16);
+  padding-right: f.px2em(56);
   overflow-y: scroll;
 
   @include media(tablet-all, mobile-all) {

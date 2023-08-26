@@ -9,6 +9,6 @@
   left: 0;
   right: 0;
   background-color: $modal-bg;
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(2px);
   z-index: f.z('modal-container');
 }

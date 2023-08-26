@@ -35,6 +35,7 @@
   transition: a.$Theme-transition;
 
   &__hiddenInput {
+    width: 0;
     outline: none;
     border: none;
   }

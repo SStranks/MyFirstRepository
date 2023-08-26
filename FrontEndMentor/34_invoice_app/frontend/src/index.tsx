@@ -1,5 +1,5 @@
 import QueryClientProvider from '#Lib/ReactQuery';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -15,7 +15,7 @@ const root = createRoot(container!);
 root.render(
   <React.StrictMode>
     <QueryClientProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       <BrowserRouter>
         <App />
       </BrowserRouter>
