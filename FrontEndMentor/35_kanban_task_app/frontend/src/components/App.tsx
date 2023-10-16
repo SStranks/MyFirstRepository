@@ -17,7 +17,7 @@ function App(): JSX.Element {
     useState<TRootModalDispatchContext>({} as TRootModalDispatchContext);
   const [activeBoardId, setActiveBoardId] = useState<string>('');
 
-  console.log('APP RENDER');
+  // console.log('APP RENDER');
 
   useEffect(() => {
     // Fetch data from backend

@@ -15,7 +15,7 @@ function ColumnGrid(props: ElemProps): JSX.Element {
   const { activeBoard } = props;
   const modalDispatch = useContext(RootModalDispatchContext);
 
-  console.log('COLUMN GRID RENDER');
+  // console.log('COLUMN GRID RENDER');
 
   const columns = activeBoard?.columns.map((el, i) => (
     <Column
