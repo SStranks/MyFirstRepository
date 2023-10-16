@@ -6,21 +6,22 @@ import { TBoard } from '#Types/types';
 import { useContext } from 'react';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 
+import { AppDispatchContext } from '#Context/AppContext';
 import styles from './_ColumnGrid.module.scss';
 
 type ElemProps = {
   activeBoard: TBoard;
 };
 
-// TODO:  Need to figure out how to integrate both DnD and click handler for individual task modal.
 function ColumnGrid(props: ElemProps): JSX.Element {
   const { activeBoard } = props;
+  const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
 
-  // console.log('COLUMN GRID RENDER');
+  console.log('COLUMN GRID RENDER', activeBoard);
 
   const columns = activeBoard?.columns.map((el, i) => (
-    <Droppable droppableId={el._id} key={el._id}>
+    <Droppable droppableId={`${i}`} key={el._id}>
       {(provided, snapshot) => (
         <Column
           // eslint-disable-next-line react/jsx-props-no-spreading
@@ -50,9 +51,25 @@ function ColumnGrid(props: ElemProps): JSX.Element {
     }
   };
 
-  // eslint-disable-next-line unicorn/consistent-function-scoping
   const onDragEndHandler = (result: DropResult) => {
-    if (!result.destination) console.log('OUTSIDE');
+    // If dragged falls outside of droppable areas
+    if (!result.destination) return;
+    const newBoard = { ...activeBoard };
+    // Extract task from source column
+    const [reorderedTask] = newBoard.columns[
+      Number(result.source.droppableId)
+    ].tasks.splice(result.source.index, 1);
+    // Add task to destination column
+    newBoard.columns[Number(result.destination.droppableId)].tasks.splice(
+      result.destination.index,
+      0,
+      reorderedTask
+    );
+
+    appDispatch({
+      type: 'edit-board',
+      payload: { id: { boardId: activeBoard._id }, data: newBoard },
+    });
   };
 
   return (

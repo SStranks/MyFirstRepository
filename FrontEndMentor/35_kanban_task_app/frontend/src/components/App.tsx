@@ -19,6 +19,7 @@ function App(): JSX.Element {
 
   // console.log('APP RENDER');
 
+  // TODO:  React Query. Separate out functionality - doing too many things.
   useEffect(() => {
     // Fetch data from backend
     (async function fetchData() {

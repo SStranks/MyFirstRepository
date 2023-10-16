@@ -61,8 +61,50 @@
     }
   }
 
-  &--dragging {
-    background-color: red !important;
+  &__dragging {
+    &--0 {
+      outline: 4px solid c.$col-3a;
+    }
+
+    &--1 {
+      outline: 4px solid c.$col-3b;
+    }
+
+    &--2 {
+      outline: 4px solid c.$col-3c;
+    }
+
+    &--3 {
+      outline: 4px solid c.$col-3d;
+    }
+
+    &--4 {
+      outline: 4px solid c.$col-3e;
+    }
+
+    &--5 {
+      outline: 4px solid c.$col-3f;
+    }
+
+    &--6 {
+      outline: 4px solid c.$col-3g;
+    }
+
+    &--7 {
+      outline: 4px solid c.$col-3h;
+    }
+
+    &--8 {
+      outline: 4px solid c.$col-3i;
+    }
+
+    &--9 {
+      outline: 4px solid c.$col-3j;
+    }
+
+    &--10 {
+      outline: 4px solid c.$col-3k;
+    }
   }
 
   &__task {

@@ -24,7 +24,7 @@ const updateTask = (state: TAppStateContext, payload: TAppContextPayload) => {
   return { ...newState };
 };
 
-// NOTE:  This is updating entire board state. Refactor.
+// REFACTOR:  This is updating entire board state. Refactor.
 const editTask = (state: TAppStateContext, payload: TAppContextPayload) => {
   const newState = state;
   const { boardId } = payload.id;
@@ -57,6 +57,7 @@ const addBoard = (state: TAppStateContext, payload: TAppContextPayload) => {
 };
 
 const editBoard = (state: TAppStateContext, payload: TAppContextPayload) => {
+  console.log('PAYLOAD', payload);
   const newState = state;
   const boardIdx = newState.boards.findIndex(
     (b) => b._id === payload.id.boardId

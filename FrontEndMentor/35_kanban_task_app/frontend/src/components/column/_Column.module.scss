@@ -94,3 +94,55 @@
     }
   }
 }
+
+.droppable {
+  &--1 {
+    outline: 1px dashed c.$col-3a;
+    outline-offset: 10px;
+    border-radius: v.$border-radius-task;
+  }
+
+  &--2 {
+    outline: 1px dashed c.$col-3b;
+    outline-offset: 10px;
+    border-radius: v.$border-radius-task;
+  }
+
+  &--3 {
+    outline: 1px dashed c.$col-3c;
+    outline-offset: 10px;
+    border-radius: v.$border-radius-task;
+  }
+
+  &--4 {
+    outline: 2px solid c.$col-3d;
+  }
+
+  &--5 {
+    outline: 2px solid c.$col-3e;
+  }
+
+  &--6 {
+    outline: 2px solid c.$col-3f;
+  }
+
+  &--7 {
+    outline: 2px solid c.$col-3g;
+  }
+
+  &--8 {
+    outline: 2px solid c.$col-3h;
+  }
+
+  &--9 {
+    outline: 2px solid c.$col-3i;
+  }
+
+  &--10 {
+    outline: 2px solid c.$col-3j;
+  }
+
+  &--11 {
+    outline: 2px solid c.$col-3k;
+  }
+}

@@ -1,10 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import {
-  DraggableProvided,
-  DraggableStateSnapshot,
-  DraggingStyle,
-  NotDraggingStyle,
-} from 'react-beautiful-dnd';
+import { DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
 import styles from './_Task.module.scss';
 
 type ElemProps = {
@@ -32,31 +27,19 @@ function Task(props: ElemProps): JSX.Element {
     columnNum,
   } = props;
 
-  const onDragStyle = (
-    isDragging: boolean,
-    draggableStyle: DraggingStyle | NotDraggingStyle | undefined
-    // eslint-disable-next-line unicorn/consistent-function-scoping
-  ) => ({
-    // change background colour if dragging
-    background: isDragging ? 'red' : '',
-
-    // styles we need to apply on draggables
-    ...draggableStyle,
-  });
+  const { draggingOver, isDragging } = dndSnapshot;
 
   return (
     <div
-      className={`${styles.card} ${styles[`column--${columnNum}`]}`}
+      className={`${styles.card} ${styles[`column--${columnNum}`]} ${
+        isDragging ? `${styles[`card__dragging--${draggingOver}`]}` : ''
+      }`}
       data-task-id={taskId}
       data-column-id={columnId}
       data-board-id={boardId}
       ref={dndProvided.innerRef}
       {...dndProvided.draggableProps}
-      {...dndProvided.dragHandleProps}
-      style={onDragStyle(
-        dndSnapshot.isDragging,
-        dndProvided.draggableProps.style
-      )}>
+      {...dndProvided.dragHandleProps}>
       <p className={styles.card__task}>{title}</p>
       <p className={styles.card__subtask}>
         {subTasksNumComplete} of {numOfSubTasks} sub-tasks

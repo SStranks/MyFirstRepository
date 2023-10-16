@@ -54,19 +54,13 @@ function Column(props: ElemProps): JSX.Element {
     );
   });
 
-  const onDragStyle = (
-    isDraggingOver: boolean
-    // eslint-disable-next-line unicorn/consistent-function-scoping
-  ) => ({
-    background: isDraggingOver ? 'blue' : '',
-  });
-
   return (
     <div
-      className={styles.column}
+      className={`${styles.column} ${
+        dndSnapshot.isDraggingOver ? styles[`droppable--${columnNum}`] : ''
+      }`}
       data-column-id={columnId}
-      ref={dndProvided.innerRef}
-      style={onDragStyle(dndSnapshot.isDraggingOver)}>
+      ref={dndProvided.innerRef}>
       <div className={styles.status}>
         <div
           className={`${styles.status__bullet} ${
