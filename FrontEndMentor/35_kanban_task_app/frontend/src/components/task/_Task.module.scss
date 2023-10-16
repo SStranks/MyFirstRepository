@@ -61,6 +61,10 @@
     }
   }
 
+  &--dragging {
+    background-color: red !important;
+  }
+
   &__task {
     @include mx.header-m;
     margin-bottom: f.px2em(8);
