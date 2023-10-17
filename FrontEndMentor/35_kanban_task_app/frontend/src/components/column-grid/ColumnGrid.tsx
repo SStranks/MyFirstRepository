@@ -66,6 +66,18 @@ function ColumnGrid(props: ElemProps): JSX.Element {
       reorderedTask
     );
 
+    // Local store tasks order
+    const tasksIdOrder = activeBoard.columns.map((column) => {
+      const tasks = column.tasks.map((task) => task._id);
+      return { [column._id]: tasks };
+    });
+
+    localStorage.setItem(
+      `board-${activeBoard._id}-taskOrder`,
+      JSON.stringify(tasksIdOrder)
+    );
+
+    // Update local state
     appDispatch({
       type: 'edit-board',
       payload: { id: { boardId: activeBoard._id }, data: newBoard },

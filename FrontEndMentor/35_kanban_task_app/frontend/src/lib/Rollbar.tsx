@@ -9,8 +9,9 @@ interface IErrorBoundary {
 
 const rollbarConfig: Rollbar.Configuration = {
   enabled: !!process.env.ROLLBAR_ENABLED,
+  accessToken: process.env.ROLLBAR_POST_CLIENT_ITEM,
   environment: process.env.NODE_ENV,
-  endpoint: `${process.env.API_HOST}/rollbar`,
+  // endpoint: `${process.env.API_HOST}/rollbar`,
 };
 
 function RollbarProvider(props: PropsWithChildren): JSX.Element {

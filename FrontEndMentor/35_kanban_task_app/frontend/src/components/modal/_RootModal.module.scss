@@ -29,6 +29,14 @@
   margin-inline: 16px;
 }
 
+.pointerEvents {
+  pointer-events: auto;
+}
+
+.noPointerEvents {
+  pointer-events: none;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;

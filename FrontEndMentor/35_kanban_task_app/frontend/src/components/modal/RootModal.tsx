@@ -127,13 +127,17 @@ function RootModal(props: ElemProps): JSX.Element | null {
     // const modalProps = state.modalProps[el as keyof typeof MODAL_COMPONENTS];
     return (
       // eslint-disable-next-line react/no-array-index-key, @typescript-eslint/no-explicit-any
-      <div className={styles.animationFadeIn} key={i}>
-        <div className={styles.subContainer}>
-          <ModalComponent
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            {...(modalProps as any)}
-            // key={i}
-          />
+      <div
+        className={`${styles.animationFadeIn} ${styles.noPointerEvents}`}
+        key={i}>
+        <div className={`${styles.subContainer}`}>
+          <div className={styles.pointerEvents}>
+            <ModalComponent
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              {...(modalProps as any)}
+              // key={i}
+            />
+          </div>
         </div>
       </div>
     );

@@ -101,7 +101,6 @@ function BoardEdit(props: ElemProps): JSX.Element {
         throw new Error(`${response.status}: ${response.statusText}`);
 
       const content = await response.json();
-      console.log(content);
 
       appDispatch({
         type: 'edit-board',
