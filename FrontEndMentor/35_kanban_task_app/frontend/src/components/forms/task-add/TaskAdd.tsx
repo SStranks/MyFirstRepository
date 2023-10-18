@@ -92,7 +92,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
     // Send data to backend API
     try {
       const response = await fetch(
-        `http://${process.env.API_HOST}/api/v1/boards/${activeBoard._id}/${columnId}`,
+        `${process.env.API_HOST}/api/v1/boards/${activeBoard._id}/${columnId}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

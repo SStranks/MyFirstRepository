@@ -5,13 +5,13 @@ import { useContext } from 'react';
 import styles from './_Main.module.scss';
 
 type ElemProps = {
-  activeBoard: TBoard;
+  activeBoard: TBoard | undefined;
 };
 
 function Main(props: ElemProps): JSX.Element {
   const { activeBoard } = props;
   const modalDispatch = useContext(RootModalDispatchContext);
-  const isBoardEmpty = (activeBoard as TBoard)?.columns.length === 0;
+  const isBoardEmpty = activeBoard?.columns.length === 0;
 
   const addNewBtnClickHandler = () => {
     modalDispatch({

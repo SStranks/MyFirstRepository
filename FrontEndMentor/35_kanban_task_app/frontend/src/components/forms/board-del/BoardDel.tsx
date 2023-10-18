@@ -18,7 +18,7 @@ function BoardDelete(props: ElemProps): JSX.Element {
     (async () => {
       try {
         const response = await fetch(
-          `http://${process.env.API_HOST}/api/v1/boards/${activeBoardId}`,
+          `${process.env.API_HOST}/api/v1/boards/${activeBoardId}`,
           { method: 'DELETE', headers: { 'Content-Type': 'application/json' } }
         );
 
@@ -29,7 +29,7 @@ function BoardDelete(props: ElemProps): JSX.Element {
           type: 'delete-board',
           payload: { id: { boardId: activeBoardId }, data: { x: undefined } },
         });
-        setActiveBoardId(state.boards[state.boards.length - 2]._id);
+        setActiveBoardId(state.boards[0]._id || '');
         return modalDispatch({ type: 'close-modal' });
       } catch (error) {
         console.error(error);

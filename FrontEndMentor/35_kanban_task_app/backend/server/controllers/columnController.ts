@@ -77,6 +77,7 @@ const updateColumn = catchAsync(
     // NOTE:  In FE API call, need to pass in taskId and columnId of the column to move task to;
     // NOTE:  Obj should look: {taskId: x, newColumnId: x, newTask: { ... }}
     // NOTE:  Remove/add operations.. what if one fails and the other succeeds?
+    // REFACTOR:  Need to use the 'transaction' - see FEM33
     try {
       const task = board.columns.id(columnId)?.tasks.id(req.body.taskId);
       task?.remove();
@@ -168,4 +169,4 @@ const deleteColumn = catchAsync(
   }
 );
 
-export { getAllColumns, createColumn, updateColumn, getColumn, deleteColumn };
+export { createColumn, deleteColumn, getAllColumns, getColumn, updateColumn };

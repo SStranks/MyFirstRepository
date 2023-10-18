@@ -5,7 +5,7 @@ import { TBoard, TBoardInfo } from '#Types/types';
 import styles from './_DefaultLayout.module.scss';
 
 type ElemProps = {
-  boardData: { boards: TBoardInfo; activeBoard: TBoard };
+  boardData: { boardsList: TBoardInfo; activeBoard: TBoard | undefined };
   activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -20,7 +20,7 @@ function DefaultLayout(props: ElemProps): JSX.Element {
       />
       <div className={styles.container__subcontainer}>
         <Aside
-          boards={boardData.boards}
+          boardsList={boardData.boardsList}
           activeBoardId={activeBoardId}
           setActiveBoardId={setActiveBoardId}
         />

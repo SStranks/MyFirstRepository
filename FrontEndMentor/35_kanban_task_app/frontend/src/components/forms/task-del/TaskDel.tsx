@@ -17,7 +17,7 @@ function TaskDelete(props: ElemProps): JSX.Element {
     (async () => {
       try {
         const response = await fetch(
-          `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
+          `${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
           {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },

@@ -4,43 +4,36 @@ import RootModalDispatchContext, {
 } from '#Context/RootModalContext';
 import useAppReducer from '#Hooks/useAppReducer';
 import Home from '#Pages/Home';
-import { TAppStateContext, TBoard } from '#Types/types';
+import ApiService from '#Services/Services';
+import { TAppStateContext } from '#Types/types';
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import RootModal from './modal/RootModal';
 
-const INITIAL_LOCALSTORAGE = window.localStorage.getItem('active-board');
+const INITIAL_ACTIVEBOARD = window.localStorage.getItem('active-board');
 
 function App(): JSX.Element {
   const [state, appDispatch] = useAppReducer({ boards: [] });
   const [rootModalDispatch, setRootModalDispatch] =
     useState<TRootModalDispatchContext>({} as TRootModalDispatchContext);
-  const [activeBoardId, setActiveBoardId] = useState<string>('');
-
-  // console.log('APP RENDER');
+  const [activeBoardId, setActiveBoardId] = useState<string>(
+    INITIAL_ACTIVEBOARD || ''
+  );
 
   // TODO:  React Query. Separate out functionality - doing too many things.
   useEffect(() => {
     // Fetch data from backend
     (async function fetchData() {
       try {
-        const response = await fetch(
-          `http://${process.env.API_HOST}/api/v1/boards`,
-          {
-            method: 'GET',
-          }
-        );
-        const JSONdata = await response.json();
+        const responseData = await ApiService.getAllBoards();
+        if (!responseData) throw new Error('Unable to get boards!');
 
-        if (!response.ok)
-          throw new Error(`${response.status}: ${response.statusText}`);
-
-        // Set App initial state data
-        appDispatch({ type: 'set-initial', payload: JSONdata });
-        // Set ActiveBoardId; if no localstorage use the first board in returned collection
-        return INITIAL_LOCALSTORAGE !== null
-          ? setActiveBoardId(INITIAL_LOCALSTORAGE)
-          : setActiveBoardId(JSONdata.data.data[0]._id);
+        // Set API Data into local state
+        return appDispatch({
+          type: 'set-initial',
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          payload: responseData as any,
+        });
       } catch (error) {
         console.error(error);
         return rootModalDispatch({
@@ -50,29 +43,31 @@ function App(): JSX.Element {
         });
       }
     })();
+    // console.log('USE EFFECT');
   }, [appDispatch, rootModalDispatch]);
 
-  const boards = state.boards?.map((board) => ({
+  useEffect(() => {
+    // Always set current active board to local storage
+    window.localStorage.setItem('active-board', activeBoardId);
+  }, [activeBoardId]);
+
+  console.log('STATE', state.boards);
+
+  const boardsList = state.boards?.map((board) => ({
     name: board.name,
     id: board._id,
   }));
 
-  const activeBoard = state.boards?.find(
-    (item) => item._id === activeBoardId
-  ) as TBoard;
+  const activeBoard = state.boards?.find((item) => item._id === activeBoardId);
 
-  const data = { boards, activeBoard };
+  const data = { boardsList, activeBoard };
 
   return (
     <RootModalDispatchContext.Provider
       value={rootModalDispatch as TRootModalDispatchContext}>
       <AppDispatchContext.Provider value={appDispatch}>
         <AppStateContext.Provider value={state as TAppStateContext}>
-          <RootModal
-            setRootModalDispatch={setRootModalDispatch}
-            // activeBoardId={activeBoardId}
-            // setActiveBoardId={setActiveBoardId}
-          />
+          <RootModal setRootModalDispatch={setRootModalDispatch} />
           <Routes>
             <Route
               path="/"

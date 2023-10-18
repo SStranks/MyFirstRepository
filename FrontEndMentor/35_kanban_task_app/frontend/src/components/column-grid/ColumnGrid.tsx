@@ -10,7 +10,7 @@ import { AppDispatchContext } from '#Context/AppContext';
 import styles from './_ColumnGrid.module.scss';
 
 type ElemProps = {
-  activeBoard: TBoard;
+  activeBoard: TBoard | undefined;
 };
 
 function ColumnGrid(props: ElemProps): JSX.Element {
@@ -52,6 +52,7 @@ function ColumnGrid(props: ElemProps): JSX.Element {
   };
 
   const onDragEndHandler = (result: DropResult) => {
+    if (!activeBoard) return;
     // If dragged falls outside of droppable areas
     if (!result.destination) return;
     const newBoard = { ...activeBoard };

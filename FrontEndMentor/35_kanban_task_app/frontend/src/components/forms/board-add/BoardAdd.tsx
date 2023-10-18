@@ -18,8 +18,13 @@ import styles from './_BoardAdd.module.scss';
 
 const INITIAL_COLUMNS = ['Todo', 'Doing', 'Done'];
 
+type ElemProps = {
+  setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
+};
+
 // FUNCTION COMPONENT //
-function BoardAdd(): JSX.Element {
+function BoardAdd(props: ElemProps): JSX.Element {
+  const { setActiveBoardId } = props;
   const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
   const genId = useComponentIdGenerator();
@@ -49,14 +54,11 @@ function BoardAdd(): JSX.Element {
     };
     // Send data to backend API
     try {
-      const response = await fetch(
-        `http://${process.env.API_HOST}/api/v1/boards`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newBoard),
-        }
-      );
+      const response = await fetch(`${process.env.API_HOST}/api/v1/boards`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newBoard),
+      });
 
       if (!response.ok)
         throw new Error(`${response.status}: ${response.statusText}`);
@@ -66,7 +68,8 @@ function BoardAdd(): JSX.Element {
       modalDispatch({
         type: 'close-modal',
       });
-      return appDispatch({ type: 'add-board', payload: content.data.data });
+      appDispatch({ type: 'add-board', payload: content.data.data });
+      return setActiveBoardId(content.data.data._id);
     } catch (error) {
       console.error(error);
       return modalDispatch({

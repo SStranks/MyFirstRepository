@@ -2,7 +2,7 @@ import DefaultLayout from '#Layouts/DefaultLayout';
 import { TBoard, TBoardInfo } from '#Types/types';
 
 type ElemProps = {
-  boardData: { boards: TBoardInfo; activeBoard: TBoard };
+  boardData: { boardsList: TBoardInfo; activeBoard: TBoard | undefined };
   activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };

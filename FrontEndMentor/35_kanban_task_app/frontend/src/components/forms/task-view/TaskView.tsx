@@ -100,7 +100,7 @@ function TaskView(props: ElemProps): JSX.Element {
             };
             const { boardId, columnId, taskId } = selectTask;
             const response = await fetch(
-              `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
+              `${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
               {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
@@ -141,7 +141,7 @@ function TaskView(props: ElemProps): JSX.Element {
             const { boardId, columnId, taskId } = selectTask;
             const newColumnId = formData['input-status'].columnId;
             const response = await fetch(
-              `http://${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}`,
+              `${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}`,
               {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },

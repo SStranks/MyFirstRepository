@@ -9,7 +9,7 @@ import { useContext, useRef } from 'react';
 import styles from './_Nav.module.scss';
 
 type ElemProps = {
-  activeBoard: TBoard;
+  activeBoard: TBoard | undefined;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
@@ -49,7 +49,7 @@ function Nav(props: ElemProps): JSX.Element {
       modalDispatch({
         type: 'open-modal',
         modalType: 'board-delete',
-        modalProps: { activeBoardId: activeBoard._id, setActiveBoardId },
+        modalProps: { activeBoardId: activeBoard?._id, setActiveBoardId },
       });
     }
   };

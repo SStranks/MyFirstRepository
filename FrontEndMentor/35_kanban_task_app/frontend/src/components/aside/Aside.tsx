@@ -36,17 +36,17 @@ const sidebarShow = () => {
 };
 
 type ElemProps = {
-  boards: TBoardInfo;
+  boardsList: TBoardInfo;
   activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
 function Aside(props: ElemProps): JSX.Element {
-  const { boards, activeBoardId, setActiveBoardId } = props;
+  const { boardsList, activeBoardId, setActiveBoardId } = props;
   const modalDispatch = useContext(RootModalDispatchContext);
 
-  const numOfBoards = boards.length;
-  const boardListItems = (boards as TBoardInfo).map(({ name, id }, i) => (
+  const numOfBoards = boardsList.length;
+  const boardListItems = (boardsList as TBoardInfo).map(({ name, id }, i) => (
     <li
       key={id}
       className={id === activeBoardId ? styles.active : ''}
@@ -64,10 +64,10 @@ function Aside(props: ElemProps): JSX.Element {
       modalDispatch({
         type: 'open-modal',
         modalType: 'board-add',
+        modalProps: { setActiveBoardId },
       });
     } else if (boardId) {
       setActiveBoardId(boardId);
-      window.localStorage.setItem('active-board', boardId);
     }
   };
 
@@ -77,15 +77,14 @@ function Aside(props: ElemProps): JSX.Element {
         <h2>ALL BOARDS ({numOfBoards})</h2>
         <ul onClickCapture={onListClickHandler}>
           {boardListItems}
-          {boards.length > 0 && (
-            <li
-              className={styles.newBoard}
-              data-board-id="create-new"
-              data-listnum>
-              <img src={IconBoard} alt="" />
-              <p>+ Create New Board</p>
-            </li>
-          )}
+
+          <li
+            className={styles.newBoard}
+            data-board-id="create-new"
+            data-listnum>
+            <img src={IconBoard} alt="" />
+            <p>+ Create New Board</p>
+          </li>
         </ul>
       </div>
       <div className={styles.sidebar__controls}>

@@ -71,7 +71,8 @@ const setInitialState = (payload: TAppContextPayload) => {
   // });
 
   // return { boards } as TAppStateContext;
-  const newState = { boards: payload.data.data };
+  const data: unknown = payload;
+  const newState = { boards: data };
   return newState as TAppStateContext;
 };
 
@@ -117,9 +118,7 @@ const deleteTask = (state: TAppStateContext, payload: TAppContextPayload) => {
 const addBoard = (state: TAppStateContext, payload: TAppContextPayload) => {
   console.log('ADDBOARD REDUCER', state, payload);
   const newBoard = payload as unknown;
-  const prevBoards = state.boards;
-  prevBoards.push(newBoard as TBoard);
-  const newState = { boards: prevBoards };
+  const newState = { boards: [...state.boards, newBoard as TBoard] };
   return newState;
 };
 

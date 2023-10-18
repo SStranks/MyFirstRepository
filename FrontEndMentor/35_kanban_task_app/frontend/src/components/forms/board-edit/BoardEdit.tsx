@@ -89,7 +89,7 @@ function BoardEdit(props: ElemProps): JSX.Element {
     // NOTE:  Replacing the entire boards-columns data from the frontend, is this the best approach? Can we use .pre hook on the backend to amend column names/delete columns according to ID's passed perhaps?
     try {
       const response = await fetch(
-        `http://${process.env.API_HOST}/api/v1/boards/${activeBoard._id}`,
+        `${process.env.API_HOST}/api/v1/boards/${activeBoard._id}`,
         {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
