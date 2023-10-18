@@ -40,6 +40,8 @@
     "no-unused-vars": "off", // Rule handled by "@typescript-eslint/no-unused-vars": "warn"
     "no-console": "off",
     "no-underscore-dangle": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "error",
     // Typescript Rules --
     "react/prop-types": "off",
     "react/require-default-props": "off",
