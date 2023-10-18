@@ -82,3 +82,4 @@ Captured at the following breakpoints from the live solution: Desktop - 1440px, 
 - [Stackoverflow - TS & NodeJS: cannot get absolute paths](https://stackoverflow.com/questions/73447818/cannot-get-the-absolute-paths-working-in-typescript-nodejs-project)
 - [Stackoverflow - TS: path aliases at runtime](https://stackoverflow.com/questions/60067281/typescript-path-aliases-not-resolved-correctly-at-runtime)
 - [Stackoverflow - Redux modal synchronous actions](https://stackoverflow.com/questions/35623656/how-can-i-display-a-modal-dialog-in-redux-that-performs-asynchronous-actions/35641680)
+- [Stackoverflow - No-use-before-define typescript interfaces](https://stackoverflow.com/questions/70769202/no-use-before-define-typescript-interfaces)
