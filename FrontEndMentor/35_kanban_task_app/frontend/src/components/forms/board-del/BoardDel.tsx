@@ -1,5 +1,6 @@
 import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
+import ApiService from '#Services/Services';
 import { useContext } from 'react';
 import styles from './_BoardDel.module.scss';
 
@@ -17,13 +18,8 @@ function BoardDelete(props: ElemProps): JSX.Element {
   const deleteBtnClickHandler = () => {
     (async () => {
       try {
-        const response = await fetch(
-          `${process.env.API_HOST}/api/v1/boards/${activeBoardId}`,
-          { method: 'DELETE', headers: { 'Content-Type': 'application/json' } }
-        );
-
-        if (!response.ok)
-          throw new Error(`${response.status}: ${response.statusText}`);
+        const responseData = await ApiService.deleteBoard(`${activeBoardId}`);
+        if (!responseData) throw new Error('Could not delete board!');
 
         appDispatch({
           type: 'delete-board',

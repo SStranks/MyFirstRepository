@@ -1,4 +1,8 @@
-import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
+import {
+  AppDispatchContext,
+  AppStateContext,
+  TAppContextPayload,
+} from '#Context/AppContext';
 import RootModalDispatchContext, {
   TRootModalDispatchContext,
 } from '#Context/RootModalContext';
@@ -25,14 +29,13 @@ function App(): JSX.Element {
     // Fetch data from backend
     (async function fetchData() {
       try {
-        const responseData = await ApiService.getAllBoards();
+        const responseData: unknown = await ApiService.getAllBoards();
         if (!responseData) throw new Error('Unable to get boards!');
 
         // Set API Data into local state
         return appDispatch({
           type: 'set-initial',
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          payload: responseData as any,
+          payload: responseData as TAppContextPayload,
         });
       } catch (error) {
         console.error(error);

@@ -1,8 +1,10 @@
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
-import { AppDispatchContext } from '#Context/AppContext';
+import { AppDispatchContext, TAppContextPayload } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import { IBoard } from '#Services/ApiServiceClient';
+import ApiService from '#Services/Services';
 import { TReturnData } from '#Types/types';
 import {
   addInputToGroup,
@@ -54,22 +56,19 @@ function BoardAdd(props: ElemProps): JSX.Element {
     };
     // Send data to backend API
     try {
-      const response = await fetch(`${process.env.API_HOST}/api/v1/boards`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newBoard),
-      });
+      const responseData: IBoard | undefined = await ApiService.postBoard(
+        newBoard
+      );
+      if (!responseData) throw new Error('Unable to post board!');
 
-      if (!response.ok)
-        throw new Error(`${response.status}: ${response.statusText}`);
-
-      // Update app state with new board
-      const content = await response.json();
       modalDispatch({
         type: 'close-modal',
       });
-      appDispatch({ type: 'add-board', payload: content.data.data });
-      return setActiveBoardId(content.data.data._id);
+      appDispatch({
+        type: 'add-board',
+        payload: responseData as unknown as TAppContextPayload,
+      });
+      return setActiveBoardId(responseData._id);
     } catch (error) {
       console.error(error);
       return modalDispatch({

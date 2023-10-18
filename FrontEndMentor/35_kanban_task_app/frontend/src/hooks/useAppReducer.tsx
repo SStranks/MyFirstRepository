@@ -78,18 +78,18 @@ const setInitialState = (payload: TAppContextPayload) => {
 
 const addTask = (state: TAppStateContext, payload: TAppContextPayload) => {
   const newState = state;
-  const newBoard = payload.data.data as TBoard;
+  const newBoard = payload as unknown as TBoard;
   const board = newState.boards.findIndex((b) => b._id === newBoard._id);
   newState.boards[board] = newBoard;
   return { ...newState };
 };
 
 const updateTask = (state: TAppStateContext, payload: TAppContextPayload) => {
-  const newState = state;
+  const newState = { ...state };
   const { boardId } = payload.id;
   const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
   newState.boards[boardIdx] = payload.data.board as TBoard;
-  return { ...newState };
+  return newState;
 };
 
 // REFACTOR:  This is updating entire board state. Refactor.

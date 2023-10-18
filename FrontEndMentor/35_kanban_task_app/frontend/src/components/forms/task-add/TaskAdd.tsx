@@ -2,10 +2,16 @@ import Dropdown from '#Components/custom/dropdown/Dropdown';
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
-import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
+import {
+  AppDispatchContext,
+  AppStateContext,
+  TAppContextPayload,
+} from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
-import { TAppStateContext, TBoard, TReturnData } from '#Types/types';
+import { IBoard } from '#Services/ApiServiceClient';
+import ApiService from '#Services/Services';
+import { TAppStateContext, TBoard, TColumn, TReturnData } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
@@ -86,27 +92,25 @@ function TaskAdd(props: ElemProps): JSX.Element {
       })),
     };
 
-    const selectedColumn = activeBoard.columns.find((c) => c.name === status);
-    const columnId = selectedColumn?._id;
+    const selectedColumn = activeBoard.columns.find(
+      (c) => c.name === status
+    ) as TColumn;
+    const columnId = selectedColumn._id;
 
     // Send data to backend API
     try {
-      const response = await fetch(
-        `${process.env.API_HOST}/api/v1/boards/${activeBoard._id}/${columnId}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newTask),
-        }
+      const responseData: IBoard | undefined = await ApiService.postTask(
+        activeBoard._id,
+        columnId,
+        newTask
       );
+      if (!responseData) throw new Error('Could not post task!');
 
-      if (!response.ok)
-        throw new Error(`${response.status}: ${response.statusText}`);
-
-      // Update app state with new board
-      const content = await response.json();
       modalDispatch({ type: 'close-modal' });
-      return appDispatch({ type: 'add-task', payload: content });
+      return appDispatch({
+        type: 'add-task',
+        payload: responseData as unknown as TAppContextPayload,
+      });
     } catch (error) {
       console.error(error);
       return modalDispatch({

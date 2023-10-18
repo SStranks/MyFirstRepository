@@ -1,8 +1,10 @@
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
-import { AppDispatchContext } from '#Context/AppContext';
+import { AppDispatchContext, TAppContextPayload } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import { IBoard } from '#Services/ApiServiceClient';
+import ApiService from '#Services/Services';
 import { TBoard, TNestedInputProp, TReturnData } from '#Types/types';
 import {
   addInputToGroup,
@@ -88,23 +90,18 @@ function BoardEdit(props: ElemProps): JSX.Element {
     // NOTE:  Need to think about column names in relation to IDs: 1) We need the IDs because if the user renames a column, how will we know which column to amend in the DB? 2) We need a warning that if they remove a column here then all task data will be erased!
     // NOTE:  Replacing the entire boards-columns data from the frontend, is this the best approach? Can we use .pre hook on the backend to amend column names/delete columns according to ID's passed perhaps?
     try {
-      const response = await fetch(
-        `${process.env.API_HOST}/api/v1/boards/${activeBoard._id}`,
-        {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(newBoard),
-        }
+      const responseData: IBoard | undefined = await ApiService.patchBoard(
+        `${activeBoard._id}`,
+        newBoard
       );
-
-      if (!response.ok)
-        throw new Error(`${response.status}: ${response.statusText}`);
-
-      const content = await response.json();
+      if (!responseData) throw new Error('Could not patch board!');
 
       appDispatch({
         type: 'edit-board',
-        payload: { id: { boardId: activeBoard._id }, data: content.data.data },
+        payload: {
+          id: { boardId: activeBoard._id },
+          data: responseData as unknown as TAppContextPayload,
+        },
       });
       return modalDispatch({
         type: 'close-modal',

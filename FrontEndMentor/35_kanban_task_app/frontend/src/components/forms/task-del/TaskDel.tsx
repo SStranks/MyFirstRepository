@@ -1,5 +1,6 @@
 import { AppDispatchContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
+import ApiService from '#Services/Services';
 import { useContext } from 'react';
 import styles from './_TaskDel.module.scss';
 
@@ -16,16 +17,12 @@ function TaskDelete(props: ElemProps): JSX.Element {
     const { boardId, columnId, taskId } = id;
     (async () => {
       try {
-        const response = await fetch(
-          `${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
-          {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-          }
+        const responseData = await ApiService.deleteTask(
+          boardId,
+          columnId,
+          taskId
         );
-
-        if (!response.ok)
-          throw new Error(`${response.status}: ${response.statusText}`);
+        if (!responseData) throw new Error('Could not delete task!');
 
         modalDispatch({ type: 'close-all', modalType: undefined });
         return appDispatch({

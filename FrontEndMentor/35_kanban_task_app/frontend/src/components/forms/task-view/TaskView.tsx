@@ -2,6 +2,7 @@ import CheckBox from '#Components/custom/checkbox/CheckBox';
 import Dropdown from '#Components/custom/dropdown/Dropdown';
 import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
+import ApiService from '#Services/Services';
 import IconVerticalEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import {
   TAppStateContext,
@@ -99,22 +100,21 @@ function TaskView(props: ElemProps): JSX.Element {
               ),
             };
             const { boardId, columnId, taskId } = selectTask;
-            const response = await fetch(
-              `${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
-              {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newTask),
-              }
-            );
-            if (!response.ok)
-              throw new Error(`${response.status}: ${response.statusText}`);
 
-            const content = await response.json();
+            const responseData = await ApiService.patchTask(
+              boardId,
+              columnId,
+              taskId,
+              newTask
+            );
+            if (!responseData) throw new Error('Could not patch task!');
 
             return appDispatch({
               type: 'update-task',
-              payload: { id: { boardId }, data: content.data },
+              payload: {
+                id: { boardId },
+                data: { board: responseData },
+              },
             });
           } catch (error) {
             console.error(error);
@@ -125,7 +125,7 @@ function TaskView(props: ElemProps): JSX.Element {
             });
           }
         };
-        const updateColumn = async () => {
+        const updateTaskColumn = async () => {
           try {
             const newTask = {
               title: task.title,
@@ -169,7 +169,7 @@ function TaskView(props: ElemProps): JSX.Element {
         if (origTaskColumnId === formData['input-status'].columnId) {
           updateTask();
         } else {
-          updateColumn();
+          updateTaskColumn();
         }
       }
     };

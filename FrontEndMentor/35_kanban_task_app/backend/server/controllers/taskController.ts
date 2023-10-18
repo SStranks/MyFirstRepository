@@ -52,9 +52,7 @@ const createTask = catchAsync(
     res.status(201).json({
       status: 'success',
       results: 1,
-      data: {
-        data: board,
-      },
+      data: { data: board },
     });
   }
 );
@@ -104,7 +102,7 @@ const updateTask = catchAsync(
     res.status(200).json({
       status: 'success',
       results: 1,
-      data: { board },
+      data: { data: board },
     });
   }
 );
