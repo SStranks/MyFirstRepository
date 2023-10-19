@@ -61,6 +61,11 @@ export interface IApiServiceClient {
     taskId: string,
     data: IBody
   ): Promise<IBoard | undefined>;
+  patchTaskColumn(
+    boardId: string,
+    columnId: string,
+    data: IBody
+  ): Promise<IBoard | undefined>;
   deleteTask(
     boardId: string,
     columnId: string,
@@ -164,6 +169,30 @@ export default class ApiServiceClient implements IApiServiceClient {
         IBody,
         IApiExpressResponse<IResBoard>
       >(`boards/${boardId}/${columnId}/${taskId}`, data);
+      const {
+        data: { data: responseData },
+      } = response;
+      return responseData;
+    } catch (error) {
+      console.error(error);
+      return undefined;
+    }
+  }
+
+  async patchTaskColumn(
+    boardId: string,
+    columnId: string,
+    data: IBody
+  ): Promise<IBoard | undefined> {
+    try {
+      const response = await this.ApiServiceClient.patch<
+        IBody,
+        IApiExpressResponse<IResBoard>
+      >(
+        `boards/${boardId}/${columnId}
+      `,
+        data
+      );
       const {
         data: { data: responseData },
       } = response;

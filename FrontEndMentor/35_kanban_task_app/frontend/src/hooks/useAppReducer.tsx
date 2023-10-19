@@ -1,6 +1,6 @@
-/* eslint-disable no-underscore-dangle */
 import { TAppContextAction, TAppContextPayload } from '#Context/AppContext';
 import { TAppStateContext, TBoard } from '#Types/types';
+import { generateOrderedTasks, orderStateTasks } from '#Utils/taskSorting';
 import { useCallback, useReducer } from 'react';
 
 const setInitialState = (payload: TAppContextPayload) => {
@@ -72,8 +72,21 @@ const setInitialState = (payload: TAppContextPayload) => {
 
   // return { boards } as TAppStateContext;
   const data: unknown = payload;
-  const newState = { boards: data };
-  return newState as TAppStateContext;
+  let newState = { boards: data as TBoard[] } as TAppStateContext;
+
+  // Synchronise API data with localStorage ordering of tasks
+  const localStorageTaskOrderJSON =
+    window.localStorage.getItem('boards-taskOrder');
+  if (localStorageTaskOrderJSON !== null) {
+    const localStorageTaskOrder = JSON.parse(localStorageTaskOrderJSON);
+    newState = orderStateTasks(newState, localStorageTaskOrder);
+  } else {
+    const newOrderedTasks = generateOrderedTasks(newState);
+    const JSONData = JSON.stringify(newOrderedTasks);
+    window.localStorage.setItem('boards-taskOrder', JSONData);
+  }
+
+  return newState;
 };
 
 const addTask = (state: TAppStateContext, payload: TAppContextPayload) => {
@@ -90,15 +103,6 @@ const updateTask = (state: TAppStateContext, payload: TAppContextPayload) => {
   const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
   newState.boards[boardIdx] = payload.data.board as TBoard;
   return newState;
-};
-
-// REFACTOR:  This is updating entire board state. Refactor.
-const editTask = (state: TAppStateContext, payload: TAppContextPayload) => {
-  const newState = state;
-  const { boardId } = payload.id;
-  const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
-  newState.boards[boardIdx] = payload.data as TBoard;
-  return { ...newState };
 };
 
 const deleteTask = (state: TAppStateContext, payload: TAppContextPayload) => {
@@ -142,7 +146,6 @@ const ACTIONS = {
   SETINITIALSTATE: 'set-initial',
   ADDTASK: 'add-task',
   UPDATETASK: 'update-task',
-  EDITTASK: 'edit-task',
   DELETETASK: 'delete-task',
   ADDBOARD: 'add-board',
   EDITBOARD: 'edit-board',
@@ -162,9 +165,6 @@ const reducer = (
     }
     case ACTIONS.UPDATETASK: {
       return updateTask(state, action.payload);
-    }
-    case ACTIONS.EDITTASK: {
-      return editTask(state, action.payload);
     }
     case ACTIONS.DELETETASK: {
       return deleteTask(state, action.payload);

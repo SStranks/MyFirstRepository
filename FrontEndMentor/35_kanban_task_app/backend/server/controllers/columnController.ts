@@ -3,47 +3,6 @@ import AppError from '#Utils/appError';
 import catchAsync from '#Utils/catchAsync';
 import { NextFunction, Request, Response } from 'express';
 
-// NOTE:  Can we delete this? To get all columns you can just query for a board and access the columns directly on the result.
-const getAllColumns = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
-    const board = await Board.findById(req.params.boardId);
-
-    if (!board) return next(new AppError('No document found in DB!', 404));
-
-    const columns = board.columns;
-
-    res.status(200).json({
-      status: 'success',
-      results: columns.length,
-      data: {
-        columns,
-      },
-    });
-  }
-);
-
-const getColumn = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
-    let board = await Board.findById(req.params.boardId);
-
-    if (!board) return next(new AppError('No document found in DB!', 404));
-
-    const column = board.columns.find(
-      (c) => c._id.toString() === req.params.columnId
-    );
-
-    if (!column) return next(new AppError('No document found in DB!', 404));
-
-    res.status(200).json({
-      status: 'success',
-      results: 1,
-      data: {
-        column,
-      },
-    });
-  }
-);
-
 const createColumn = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     let board = await Board.findById(req.params.boardId);
@@ -92,7 +51,7 @@ const updateColumn = catchAsync(
     res.status(201).json({
       status: 'success',
       results: 1,
-      data: { board },
+      data: { data: board },
     });
 
     // let board = await Board.findById(req.params.boardId);
@@ -169,4 +128,4 @@ const deleteColumn = catchAsync(
   }
 );
 
-export { createColumn, deleteColumn, getAllColumns, getColumn, updateColumn };
+export { createColumn, deleteColumn, updateColumn };

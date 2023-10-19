@@ -140,22 +140,17 @@ function TaskView(props: ElemProps): JSX.Element {
             };
             const { boardId, columnId, taskId } = selectTask;
             const newColumnId = formData['input-status'].columnId;
-            const response = await fetch(
-              `${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}`,
-              {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ taskId, newColumnId, newTask }),
-              }
+            const data = { taskId, newColumnId, newTask };
+            const responseData = await ApiService.patchTaskColumn(
+              boardId,
+              columnId,
+              data
             );
-            if (!response.ok)
-              throw new Error(`${response.status}: ${response.statusText}`);
-
-            const content = await response.json();
+            if (!responseData) throw new Error('Could not patch task column!');
 
             return appDispatch({
               type: 'update-task',
-              payload: { id: { boardId }, data: content.data },
+              payload: { id: { boardId }, data: { board: responseData } },
             });
           } catch (error) {
             console.error(error);

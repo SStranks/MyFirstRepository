@@ -8,15 +8,11 @@ import {
 import {
   createColumn,
   deleteColumn,
-  getAllColumns,
-  getColumn,
   updateColumn,
 } from '#Controllers/columnController';
 import {
   createTask,
   deleteTask,
-  getAllTasks,
-  getTask,
   updateTask,
 } from '#Controllers/taskController';
 import express from 'express';
@@ -34,14 +30,12 @@ boardRouter
 
 boardRouter
   .route('/:boardId/:columnId')
-  .get(getColumn)
   .post(createTask)
   .patch(updateColumn)
   .delete(deleteColumn);
 
 boardRouter
   .route('/:boardId/:columnId/:taskId')
-  .get(getTask)
   .patch(updateTask)
   .delete(deleteTask);
 

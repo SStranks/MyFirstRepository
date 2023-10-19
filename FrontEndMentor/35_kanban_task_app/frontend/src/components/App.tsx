@@ -54,7 +54,7 @@ function App(): JSX.Element {
     window.localStorage.setItem('active-board', activeBoardId);
   }, [activeBoardId]);
 
-  console.log('STATE', state.boards);
+  // console.log('STATE', state.boards);
 
   const boardsList = state.boards?.map((board) => ({
     name: board.name,

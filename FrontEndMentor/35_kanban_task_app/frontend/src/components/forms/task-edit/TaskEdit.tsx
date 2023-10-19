@@ -5,6 +5,7 @@ import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
 import { AppDispatchContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
+import ApiService from '#Services/Services';
 import {
   TNestedInputProp,
   TReturnData,
@@ -111,32 +112,28 @@ function TaskEdit(props: ElemProps): JSX.Element {
     const newColumnId = formData['input-status'].columnId;
 
     try {
-      const response = await (columnId === newColumnId
-        ? fetch(
-            `${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}/${taskId}`,
-            {
-              method: 'PATCH',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(newTask),
-            }
-          )
-        : fetch(
-            `${process.env.API_HOST}/api/v1/boards/${boardId}/${columnId}`,
-            {
-              method: 'PATCH',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ taskId, newColumnId, newTask }),
-            }
-          ));
+      let responseData;
+      if (columnId === newColumnId) {
+        responseData = await ApiService.patchTask(
+          boardId,
+          columnId,
+          taskId,
+          newTask
+        );
+      } else {
+        const data = { taskId, newColumnId, newTask };
+        responseData = await ApiService.patchTaskColumn(
+          boardId,
+          columnId,
+          data
+        );
+      }
 
-      if (!response.ok)
-        throw new Error(`${response.status}: ${response.statusText}`);
-
-      const content = await response.json();
+      if (!responseData) throw new Error('Could not patch task!');
 
       appDispatch({
         type: 'update-task',
-        payload: { id: { boardId }, data: content.data },
+        payload: { id: { boardId }, data: { board: responseData } },
       });
       return modalDispatch({ type: 'close-all', modalType: undefined });
     } catch (error) {

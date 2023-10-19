@@ -6,7 +6,6 @@ import {
   updateOne,
 } from '#Config/dbHandlers';
 import { Board } from '#Models/boardModel';
-// import catchAsync from '#Utils/catchAsync';
 
 const getBoard = getOne(Board);
 
@@ -18,4 +17,4 @@ const updateBoard = updateOne(Board);
 
 const deleteBoard = deleteOne(Board);
 
-export { getBoard, getAllBoards, createBoard, deleteBoard, updateBoard };
+export { createBoard, deleteBoard, getAllBoards, getBoard, updateBoard };

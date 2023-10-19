@@ -53,36 +53,36 @@ function ColumnGrid(props: ElemProps): JSX.Element {
 
   const onDragEndHandler = (result: DropResult) => {
     if (!activeBoard) return;
-    // If dragged falls outside of droppable areas
-    if (!result.destination) return;
-    const newBoard = { ...activeBoard };
-    // Extract task from source column
-    const [reorderedTask] = newBoard.columns[
-      Number(result.source.droppableId)
-    ].tasks.splice(result.source.index, 1);
-    // Add task to destination column
-    newBoard.columns[Number(result.destination.droppableId)].tasks.splice(
-      result.destination.index,
-      0,
-      reorderedTask
-    );
+    if (!result.destination) return; // If dragged falls outside of droppable areas;
+    console.log('DND', appDispatch);
+    // const newBoard = { ...activeBoard };
+    // // Extract task from source column
+    // const [reorderedTask] = newBoard.columns[
+    //   Number(result.source.droppableId)
+    // ].tasks.splice(result.source.index, 1);
+    // // Add task to destination column
+    // newBoard.columns[Number(result.destination.droppableId)].tasks.splice(
+    //   result.destination.index,
+    //   0,
+    //   reorderedTask
+    // );
 
-    // Local store tasks order
-    const tasksIdOrder = activeBoard.columns.map((column) => {
-      const tasks = column.tasks.map((task) => task._id);
-      return { [column._id]: tasks };
-    });
+    // // Local store tasks order
+    // const tasksIdOrder = activeBoard.columns.map((column) => {
+    //   const tasks = column.tasks.map((task) => task._id);
+    //   return { [column._id]: tasks };
+    // });
 
-    localStorage.setItem(
-      `board-${activeBoard._id}-taskOrder`,
-      JSON.stringify(tasksIdOrder)
-    );
+    // localStorage.setItem(
+    //   `board-${activeBoard._id}-taskOrder`,
+    //   JSON.stringify(tasksIdOrder)
+    // );
 
-    // Update local state
-    appDispatch({
-      type: 'edit-board',
-      payload: { id: { boardId: activeBoard._id }, data: newBoard },
-    });
+    // // Update local state
+    // appDispatch({
+    //   type: 'edit-board',
+    //   payload: { id: { boardId: activeBoard._id }, data: newBoard },
+    // });
   };
 
   return (
