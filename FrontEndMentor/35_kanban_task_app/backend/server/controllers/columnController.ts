@@ -39,6 +39,7 @@ const updateColumn = catchAsync(
     // REFACTOR:  Need to use the 'transaction' - see FEM33
     try {
       const task = board.columns.id(columnId)?.tasks.id(req.body.taskId);
+      if (!task) throw new Error();
       task?.remove();
       const newColumn = board.columns
         .id(req.body.newColumnId)

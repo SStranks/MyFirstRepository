@@ -46,7 +46,7 @@ function App(): JSX.Element {
         });
       }
     })();
-    // console.log('USE EFFECT');
+    console.log('USE EFFECT');
   }, [appDispatch, rootModalDispatch]);
 
   useEffect(() => {

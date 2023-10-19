@@ -7,6 +7,8 @@ import { useContext } from 'react';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 
 import { AppDispatchContext } from '#Context/AppContext';
+import ApiService from '#Services/Services';
+// import { IOrderedTasks } from '#Utils/taskSorting';
 import styles from './_ColumnGrid.module.scss';
 
 type ElemProps = {
@@ -18,7 +20,7 @@ function ColumnGrid(props: ElemProps): JSX.Element {
   const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
 
-  console.log('COLUMN GRID RENDER', activeBoard);
+  // console.log('COLUMN GRID RENDER', activeBoard);
 
   const columns = activeBoard?.columns.map((el, i) => (
     <Droppable droppableId={`${i}`} key={el._id}>
@@ -51,38 +53,75 @@ function ColumnGrid(props: ElemProps): JSX.Element {
     }
   };
 
-  const onDragEndHandler = (result: DropResult) => {
+  const onDragEndHandler = async (result: DropResult) => {
     if (!activeBoard) return;
     if (!result.destination) return; // If dragged falls outside of droppable areas;
-    console.log('DND', appDispatch);
-    // const newBoard = { ...activeBoard };
-    // // Extract task from source column
-    // const [reorderedTask] = newBoard.columns[
-    //   Number(result.source.droppableId)
-    // ].tasks.splice(result.source.index, 1);
-    // // Add task to destination column
-    // newBoard.columns[Number(result.destination.droppableId)].tasks.splice(
-    //   result.destination.index,
-    //   0,
-    //   reorderedTask
-    // );
+    const board = { ...activeBoard };
+    const { _id: boardId } = board;
+    const fromColumnId = board.columns[Number(result.source.droppableId)]._id;
+    const toColumnId =
+      board.columns[Number(result.destination.droppableId)]._id;
 
-    // // Local store tasks order
-    // const tasksIdOrder = activeBoard.columns.map((column) => {
-    //   const tasks = column.tasks.map((task) => task._id);
-    //   return { [column._id]: tasks };
+    // Adjust the task position within the board data structure
+    const [reorderedTask] = board.columns[
+      Number(result.source.droppableId)
+    ].tasks.splice(result.source.index, 1);
+    // Add task to destination column
+    board.columns[Number(result.destination.droppableId)].tasks.splice(
+      result.destination.index,
+      0,
+      reorderedTask
+    );
+
+    // If task is being moved to another column, update API
+    if (fromColumnId !== toColumnId) {
+      try {
+        const { _id, ...rest } = reorderedTask;
+        const newTask = { ...rest };
+        const data = {
+          taskId: _id,
+          newColumnId: toColumnId,
+          newTask,
+        };
+
+        const responseData = await ApiService.patchTaskColumn(
+          boardId,
+          fromColumnId,
+          data
+        );
+        if (!responseData) throw new Error('Could not commit change!');
+      } catch (error) {
+        console.log(error);
+        // Reverse the task column move
+        const [reverseTask] = board.columns[
+          Number(result.destination.droppableId)
+        ].tasks.splice(result.destination.index, 1);
+        board.columns[Number(result.source.droppableId)].tasks.splice(
+          result.source.index,
+          0,
+          reverseTask
+        );
+      }
+    }
+
+    appDispatch({
+      type: 'update-task',
+      payload: { id: { boardId }, data: { board } },
+    });
+
+    // NOTE:  Need to move this localStorage logic to useAppReducer.
+    // Modify the localStorage 'ordered tasks' for active board
+    // console.log(2, board.columns);
+    // const boardOrderedTasks = board.columns.map((column) => {
+    //   const tasks = column.tasks.map((el) => el._id);
+    //   return { _id: column._id, tasks };
     // });
-
-    // localStorage.setItem(
-    //   `board-${activeBoard._id}-taskOrder`,
-    //   JSON.stringify(tasksIdOrder)
+    // const localStorageJSON: IOrderedTasks[] = JSON.parse(
+    //   window.localStorage.getItem('boards-taskOrder') as string
     // );
-
-    // // Update local state
-    // appDispatch({
-    //   type: 'edit-board',
-    //   payload: { id: { boardId: activeBoard._id }, data: newBoard },
-    // });
+    // const boardIndex = localStorageJSON.findIndex((el) => el._id === boardId);
+    // localStorageJSON[boardIndex].columns = boardOrderedTasks;
+    // localStorage.setItem('boards-taskOrder', JSON.stringify(localStorageJSON));
   };
 
   return (
