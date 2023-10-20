@@ -41,7 +41,6 @@ const taskSchema = new mongoose.Schema<TTask, TaskModelType>({
   subtasks: [{ type: subtaskSchema, required: false }],
 });
 
-// const Task = mongoose.model<TTask>('Task', taskSchema);
+const Task = mongoose.model<TTask>('Task', taskSchema);
 
-// export { Task, taskSchema, TTask };
-export { taskSchema, TTask, TaskModelType };
+export { TTask, Task, TaskModelType, taskSchema };
