@@ -61,6 +61,7 @@ Captured at the following breakpoints from the live solution: Desktop - 1440px, 
 
 ### Useful resources
 
+- [MDN: visibilityChange](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilitychange_event)
 - [useComponentId](https://gist.github.com/sqren/fc897c1629979e669714893df966b1b7)
 - [TS: Declare/Type Nested Object](https://bobbyhadz.com/blog/typescript-type-nested-object)
 - [JS: closest(); practical use cases](https://css-tricks.com/practical-use-cases-for-javascripts-closest-method/)
