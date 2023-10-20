@@ -1,6 +1,6 @@
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
-import { AppDispatchContext, TAppContextPayload } from '#Context/AppContext';
+import { AppDispatchContext, IAppContextPayload } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import { IBoard } from '#Services/ApiServiceClient';
@@ -66,7 +66,7 @@ function BoardAdd(props: ElemProps): JSX.Element {
       });
       appDispatch({
         type: 'add-board',
-        payload: responseData as unknown as TAppContextPayload,
+        payload: responseData as unknown as IAppContextPayload,
       });
       return setActiveBoardId(responseData._id);
     } catch (error) {

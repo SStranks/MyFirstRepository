@@ -1,7 +1,7 @@
 import {
   AppDispatchContext,
   AppStateContext,
-  TAppContextPayload,
+  IAppContextPayload,
 } from '#Context/AppContext';
 import RootModalDispatchContext, {
   TRootModalDispatchContext,
@@ -17,12 +17,37 @@ import RootModal from './modal/RootModal';
 const INITIAL_ACTIVEBOARD = window.localStorage.getItem('active-board');
 
 function App(): JSX.Element {
-  const [state, appDispatch] = useAppReducer({ boards: [] });
+  const [state, appDispatch] = useAppReducer({
+    boards: [],
+    localStoragePending: false,
+    localStorageData: undefined,
+  });
   const [rootModalDispatch, setRootModalDispatch] =
     useState<TRootModalDispatchContext>({} as TRootModalDispatchContext);
   const [activeBoardId, setActiveBoardId] = useState<string>(
     INITIAL_ACTIVEBOARD || ''
   );
+
+  // Commit tasks ordering to localStorage when tab/browser visibility changes and data is pending
+  useEffect(() => {
+    console.log('TIME EFFECT');
+    const saveTaskOrderToLocalStorage = () => {
+      if (document.visibilityState === 'hidden' && state.localStoragePending) {
+        const timeStamp = new Date().toTimeString().slice(0, 8);
+        window.localStorage.setItem('FART', JSON.stringify(timeStamp));
+        appDispatch({
+          type: 'localStoragePending',
+          localStorage: { localStoragePending: false },
+        });
+      }
+    };
+    document.addEventListener('visibilitychange', saveTaskOrderToLocalStorage);
+    return () =>
+      document.removeEventListener(
+        'visibilitychange',
+        saveTaskOrderToLocalStorage
+      );
+  }, [appDispatch, state.localStoragePending]);
 
   // TODO:  React Query. Separate out functionality - doing too many things.
   useEffect(() => {
@@ -32,10 +57,12 @@ function App(): JSX.Element {
         const responseData: unknown = await ApiService.getAllBoards();
         if (!responseData) throw new Error('Unable to get boards!');
 
+        console.log(responseData);
+
         // Set API Data into local state
         return appDispatch({
           type: 'set-initial',
-          payload: responseData as TAppContextPayload,
+          payload: responseData as IAppContextPayload,
         });
       } catch (error) {
         console.error(error);

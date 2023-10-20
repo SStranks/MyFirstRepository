@@ -1,6 +1,6 @@
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
-import { AppDispatchContext, TAppContextPayload } from '#Context/AppContext';
+import { AppDispatchContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import { IBoard } from '#Services/ApiServiceClient';
@@ -100,7 +100,7 @@ function BoardEdit(props: ElemProps): JSX.Element {
         type: 'edit-board',
         payload: {
           id: { boardId: activeBoard._id },
-          data: responseData as unknown as TAppContextPayload,
+          data: responseData as TBoard,
         },
       });
       return modalDispatch({

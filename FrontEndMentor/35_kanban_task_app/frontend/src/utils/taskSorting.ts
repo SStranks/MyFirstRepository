@@ -74,7 +74,7 @@ export const orderStateTasks = (
     window.localStorage.setItem('boards-taskOrder', JSONString);
   }
 
-  return { boards: sortedBoards };
+  return { ...state, boards: sortedBoards };
 };
 
 // create: export saveToLocalStorage;

@@ -5,7 +5,7 @@ import InputTextArea from '#Components/custom/input-textarea/InputTextArea';
 import {
   AppDispatchContext,
   AppStateContext,
-  TAppContextPayload,
+  IAppContextPayload,
 } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
@@ -109,7 +109,7 @@ function TaskAdd(props: ElemProps): JSX.Element {
       modalDispatch({ type: 'close-modal' });
       return appDispatch({
         type: 'add-task',
-        payload: responseData as unknown as TAppContextPayload,
+        payload: responseData as unknown as IAppContextPayload,
       });
     } catch (error) {
       console.error(error);

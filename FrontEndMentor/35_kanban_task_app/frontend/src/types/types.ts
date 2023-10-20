@@ -36,6 +36,8 @@ export type TBoardInfo = { name: string; id: string }[];
 
 export type TAppStateContext = {
   boards: TBoard[];
+  localStoragePending: boolean;
+  localStorageData: string | undefined;
 };
 
 export type TSelectTask = {

@@ -1,11 +1,21 @@
-import { TAppContextAction, TAppContextPayload } from '#Context/AppContext';
+import { IAppContextPayload, TAppContextAction } from '#Context/AppContext';
 import { TAppStateContext, TBoard } from '#Types/types';
-import { generateOrderedTasks, orderStateTasks } from '#Utils/taskSorting';
+import { orderStateTasks } from '#Utils/taskSorting';
 import { useCallback, useReducer } from 'react';
 
-const setInitialState = (payload: TAppContextPayload) => {
+const setLocalStoragePending = (
+  state: TAppStateContext,
+  localStoragePending: boolean
+) => {
+  return { ...state, localStoragePending };
+};
+
+const setInitialState = (
+  state: TAppStateContext,
+  payload: IAppContextPayload
+) => {
   const data: unknown = payload;
-  let newState = { boards: data as TBoard[] } as TAppStateContext;
+  let newState = { ...state, boards: data as TBoard[] };
 
   // Synchronise API data with localStorage ordering of tasks
   const localStorageTaskOrderJSON =
@@ -14,15 +24,18 @@ const setInitialState = (payload: TAppContextPayload) => {
     const localStorageTaskOrder = JSON.parse(localStorageTaskOrderJSON);
     newState = orderStateTasks(newState, localStorageTaskOrder);
   } else {
-    const newOrderedTasks = generateOrderedTasks(newState);
-    const JSONData = JSON.stringify(newOrderedTasks);
-    window.localStorage.setItem('boards-taskOrder', JSONData);
+    newState = setLocalStoragePending(newState, true);
+    // console.log(123);
+    // newState = generateOrderedTasks(newState);
+    // const newOrderedTasks = generateOrderedTasks(newState);
+    // console.log(newOrderedTasks);
+    // const JSONData = JSON.stringify(newOrderedTasks);
+    // window.localStorage.setItem('boards-taskOrder', JSONData);
   }
-
   return newState;
 };
 
-const addTask = (state: TAppStateContext, payload: TAppContextPayload) => {
+const addTask = (state: TAppStateContext, payload: IAppContextPayload) => {
   const newState = state;
   const newBoard = payload as unknown as TBoard;
   const board = newState.boards.findIndex((b) => b._id === newBoard._id);
@@ -30,15 +43,16 @@ const addTask = (state: TAppStateContext, payload: TAppContextPayload) => {
   return { ...newState };
 };
 
-const updateTask = (state: TAppStateContext, payload: TAppContextPayload) => {
+const updateTask = (state: TAppStateContext, payload: IAppContextPayload) => {
+  console.log('UPDATE TASK REDUCER');
   const newState = { ...state };
-  const { boardId } = payload.id;
+  const boardId = payload.id?.boardId;
   const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
-  newState.boards[boardIdx] = payload.data.board as TBoard;
+  newState.boards[boardIdx] = payload.data?.board as TBoard;
   return newState;
 };
 
-const deleteTask = (state: TAppStateContext, payload: TAppContextPayload) => {
+const deleteTask = (state: TAppStateContext, payload: IAppContextPayload) => {
   const newState = state;
   const { boardId, columnId, taskId } = payload.id;
   const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
@@ -52,30 +66,33 @@ const deleteTask = (state: TAppStateContext, payload: TAppContextPayload) => {
   return { ...newState };
 };
 
-const addBoard = (state: TAppStateContext, payload: TAppContextPayload) => {
+const addBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
   console.log('ADDBOARD REDUCER', state, payload);
   const newBoard = payload as unknown;
-  const newState = { boards: [...state.boards, newBoard as TBoard] };
+  const newState = { ...state, boards: [...state.boards, newBoard as TBoard] };
   return newState;
 };
 
-const editBoard = (state: TAppStateContext, payload: TAppContextPayload) => {
+const editBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
   console.log('PAYLOAD', payload);
   const newState = state;
   const boardIdx = newState.boards.findIndex(
-    (b) => b._id === payload.id.boardId
+    (b) => b._id === payload.id?.boardId
   );
   newState.boards[boardIdx] = payload.data as TBoard;
   return { ...newState };
 };
 
-const deleteBoard = (state: TAppStateContext, payload: TAppContextPayload) => {
-  const filterBoards = state.boards.filter((b) => b._id !== payload.id.boardId);
-  const newState = { boards: filterBoards };
+const deleteBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
+  const filterBoards = state.boards.filter(
+    (b) => b._id !== payload.id?.boardId
+  );
+  const newState = { ...state, boards: filterBoards };
   return newState;
 };
 
 const ACTIONS = {
+  SETLOCALSTORAGEPENDING: 'localStoragePending',
   SETINITIALSTATE: 'set-initial',
   ADDTASK: 'add-task',
   UPDATETASK: 'update-task',
@@ -90,25 +107,47 @@ const reducer = (
   action: TAppContextAction
 ): TAppStateContext => {
   switch (action.type) {
+    case ACTIONS.SETLOCALSTORAGEPENDING: {
+      if (action.localStorage?.localStoragePending === undefined)
+        throw new Error('Reducer payload undefined');
+      return setLocalStoragePending(
+        state,
+        action.localStorage.localStoragePending
+      );
+    }
     case ACTIONS.SETINITIALSTATE: {
-      return setInitialState(action.payload);
+      if (action.payload === undefined)
+        throw new Error('Reducer payload undefined');
+      return setInitialState(state, action.payload);
     }
     case ACTIONS.ADDTASK: {
+      if (action.payload === undefined)
+        throw new Error('Reducer payload undefined');
       return addTask(state, action.payload);
     }
     case ACTIONS.UPDATETASK: {
+      if (action.payload === undefined)
+        throw new Error('Reducer payload undefined');
       return updateTask(state, action.payload);
     }
     case ACTIONS.DELETETASK: {
+      if (action.payload === undefined)
+        throw new Error('Reducer payload undefined');
       return deleteTask(state, action.payload);
     }
     case ACTIONS.ADDBOARD: {
+      if (action.payload === undefined)
+        throw new Error('Reducer payload undefined');
       return addBoard(state, action.payload);
     }
     case ACTIONS.EDITBOARD: {
+      if (action.payload === undefined)
+        throw new Error('Reducer payload undefined');
       return editBoard(state, action.payload);
     }
     case ACTIONS.DELETEBOARD: {
+      if (action.payload === undefined)
+        throw new Error('Reducer payload undefined');
       return deleteBoard(state, action.payload);
     }
     default: {

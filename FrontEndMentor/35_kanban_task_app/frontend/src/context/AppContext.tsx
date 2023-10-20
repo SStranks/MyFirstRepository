@@ -1,16 +1,22 @@
 import { TAppStateContext } from '#Types/types';
 import React from 'react';
 
-export type TAppContextPayload = {
+export interface IAppContextPayload {
   id: { boardId: string; columnId?: string; taskId?: string };
   data: {
     [key: string]: unknown;
   };
-};
+}
+
+export interface IAppContextLocalStorage {
+  localStoragePending?: boolean;
+  localStorageData?: string; // JSON
+}
 
 export type TAppContextAction = {
   type: string;
-  payload: TAppContextPayload;
+  payload?: IAppContextPayload;
+  localStorage?: IAppContextLocalStorage;
 };
 
 type TAppDispatchContext = React.Dispatch<TAppContextAction>;
