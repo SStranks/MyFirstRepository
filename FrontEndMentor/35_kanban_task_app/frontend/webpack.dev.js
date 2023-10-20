@@ -16,10 +16,6 @@ export default merge(common, {
     publicPath: '/',
     // assetModuleFilename: 'images/[name][ext]',
   },
-  watch: {
-    poll: 2000,
-    ignored: ['/node_modules/', '/nginx/'],
-  },
   devtool: 'inline-source-map',
   devServer: {
     port: 3000,
