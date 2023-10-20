@@ -19,62 +19,63 @@ export const generateOrderedTasks = (
 
 export const orderStateTasks = (
   state: TAppStateContext,
-  localStorage: IOrderedTasks[]
+  localStorageJSON: string
 ): TAppStateContext => {
   const newState = { ...state };
+  const localStorage: IOrderedTasks[] = JSON.parse(localStorageJSON);
   let isDataSynchronized = true;
-  const sortedBoards = newState.boards.map((board) => {
-    const boardIndex = localStorage.findIndex((el) => el._id === board._id);
+  const sortedBoards = newState.boards.map((stateBoard) => {
+    const boardIndex = localStorage.findIndex(
+      (el) => el._id === stateBoard._id
+    );
     if (boardIndex === -1) {
       isDataSynchronized = false;
-      return board;
+      return stateBoard;
     }
 
-    const sortedColumns = board.columns.map((column) => {
+    const sortedColumns = stateBoard.columns.map((stateColumn) => {
       const columnIndex = localStorage[boardIndex].columns.findIndex(
-        (localCol) => localCol._id === column._id
+        (localCol) => localCol._id === stateColumn._id
       );
       if (columnIndex === -1) {
         isDataSynchronized = false;
-        return column;
+        return stateColumn;
       }
 
       const sortedTasks: TTask[] = [];
       const sortedTaskIds = new Set();
 
       // NOTE:  Could optimize this portion by converting state tasks into hashmap first, deleting sorted tasks from it, then merging the remainder at the end.
-      newState.boards[boardIndex].columns[columnIndex].tasks.forEach(
-        (localTask) => {
-          const taskIndex = column.tasks.findIndex(
-            (apiTask) => apiTask._id === localTask._id
+      localStorage[boardIndex].columns[columnIndex].tasks.forEach(
+        (localStorageTaskId) => {
+          const taskIndex = stateColumn.tasks.findIndex(
+            (stateTask) => stateTask._id === localStorageTaskId
           );
           if (taskIndex !== -1) {
-            sortedTasks.push(column.tasks[taskIndex]);
-            sortedTaskIds.add(column.tasks[taskIndex]._id);
+            sortedTasks.push(stateColumn.tasks[taskIndex]);
+            sortedTaskIds.add(stateColumn.tasks[taskIndex]._id);
           } else {
             isDataSynchronized = false;
           }
         }
       );
 
-      const missingTasks = column.tasks.filter(
-        (apiTask) => !sortedTaskIds.has(apiTask._id)
+      const missingTasks = stateColumn.tasks.filter(
+        (stateTask) => !sortedTaskIds.has(stateTask._id)
       );
       if (missingTasks.length > 0) isDataSynchronized = false;
 
-      return { ...column, tasks: [...sortedTasks, ...missingTasks] };
+      return { ...stateColumn, tasks: [...sortedTasks, ...missingTasks] };
     });
-    return { ...board, columns: sortedColumns };
+    return { ...stateBoard, columns: sortedColumns };
   });
 
   // If boards or tasks are not synchronised, recreate localStorage
-  if (!isDataSynchronized) {
-    const newOrderedTasks = generateOrderedTasks(newState);
-    const JSONString = JSON.stringify(newOrderedTasks);
-    window.localStorage.setItem('boards-taskOrder', JSONString);
-  }
+  if (!isDataSynchronized) newState.localStoragePending = true;
 
-  return { ...state, boards: sortedBoards };
+  console.log(newState, isDataSynchronized, localStorage, sortedBoards);
+
+  return { ...newState, boards: sortedBoards };
 };
 
 // create: export saveToLocalStorage;

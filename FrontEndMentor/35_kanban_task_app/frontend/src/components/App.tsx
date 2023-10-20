@@ -30,11 +30,14 @@ function App(): JSX.Element {
 
   // Commit tasks ordering to localStorage when tab/browser visibility changes and data is pending
   useEffect(() => {
-    console.log('TIME EFFECT');
     const saveTaskOrderToLocalStorage = () => {
-      if (document.visibilityState === 'hidden' && state.localStoragePending) {
-        const timeStamp = new Date().toTimeString().slice(0, 8);
-        window.localStorage.setItem('FART', JSON.stringify(timeStamp));
+      if (
+        document.visibilityState === 'hidden' &&
+        state.localStoragePending &&
+        state.localStorageData
+      ) {
+        // const timeStamp = new Date().toTimeString().slice(0, 8);
+        window.localStorage.setItem('boards-taskOrder', state.localStorageData);
         appDispatch({
           type: 'localStoragePending',
           localStorage: { localStoragePending: false },
@@ -47,7 +50,7 @@ function App(): JSX.Element {
         'visibilitychange',
         saveTaskOrderToLocalStorage
       );
-  }, [appDispatch, state.localStoragePending]);
+  }, [appDispatch, state.localStorageData, state.localStoragePending]);
 
   // TODO:  React Query. Separate out functionality - doing too many things.
   useEffect(() => {
@@ -57,7 +60,7 @@ function App(): JSX.Element {
         const responseData: unknown = await ApiService.getAllBoards();
         if (!responseData) throw new Error('Unable to get boards!');
 
-        console.log(responseData);
+        // console.log("USE EFFECT", responseData);
 
         // Set API Data into local state
         return appDispatch({
@@ -73,7 +76,6 @@ function App(): JSX.Element {
         });
       }
     })();
-    console.log('USE EFFECT');
   }, [appDispatch, rootModalDispatch]);
 
   useEffect(() => {

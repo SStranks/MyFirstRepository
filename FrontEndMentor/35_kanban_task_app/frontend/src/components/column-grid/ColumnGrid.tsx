@@ -108,20 +108,6 @@ function ColumnGrid(props: ElemProps): JSX.Element {
       type: 'update-task',
       payload: { id: { boardId }, data: { board } },
     });
-
-    // NOTE:  Need to move this localStorage logic to useAppReducer.
-    // Modify the localStorage 'ordered tasks' for active board
-    // console.log(2, board.columns);
-    // const boardOrderedTasks = board.columns.map((column) => {
-    //   const tasks = column.tasks.map((el) => el._id);
-    //   return { _id: column._id, tasks };
-    // });
-    // const localStorageJSON: IOrderedTasks[] = JSON.parse(
-    //   window.localStorage.getItem('boards-taskOrder') as string
-    // );
-    // const boardIndex = localStorageJSON.findIndex((el) => el._id === boardId);
-    // localStorageJSON[boardIndex].columns = boardOrderedTasks;
-    // localStorage.setItem('boards-taskOrder', JSON.stringify(localStorageJSON));
   };
 
   return (

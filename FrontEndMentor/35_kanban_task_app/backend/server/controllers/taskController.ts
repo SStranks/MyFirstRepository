@@ -16,12 +16,15 @@ const createTask = catchAsync(
     if (column === -1)
       return next(new AppError('No document found in DB!', 404));
 
+    let task;
     try {
-      board.columns[column].tasks.push(req.body);
+      task = board.columns[column].tasks.push(req.body);
       board = await board.save();
     } catch (error) {
       return next(new AppError('Unable to commit document', 404));
     }
+
+    console.log('TASK', task);
 
     res.status(201).json({
       status: 'success',

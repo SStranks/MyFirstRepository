@@ -1,6 +1,10 @@
 import { IAppContextPayload, TAppContextAction } from '#Context/AppContext';
 import { TAppStateContext, TBoard } from '#Types/types';
-import { orderStateTasks } from '#Utils/taskSorting';
+import {
+  IOrderedTasks,
+  generateOrderedTasks,
+  orderStateTasks,
+} from '#Utils/taskSorting';
 import { useCallback, useReducer } from 'react';
 
 const setLocalStoragePending = (
@@ -8,6 +12,12 @@ const setLocalStoragePending = (
   localStoragePending: boolean
 ) => {
   return { ...state, localStoragePending };
+};
+
+const setLocalStorageData = (state: TAppStateContext) => {
+  const newOrderedTasks: IOrderedTasks[] = generateOrderedTasks(state);
+  const localStorageData = JSON.stringify(newOrderedTasks);
+  return { ...state, localStorageData };
 };
 
 const setInitialState = (
@@ -21,39 +31,38 @@ const setInitialState = (
   const localStorageTaskOrderJSON =
     window.localStorage.getItem('boards-taskOrder');
   if (localStorageTaskOrderJSON !== null) {
-    const localStorageTaskOrder = JSON.parse(localStorageTaskOrderJSON);
-    newState = orderStateTasks(newState, localStorageTaskOrder);
+    newState = orderStateTasks(newState, localStorageTaskOrderJSON);
+    if (newState.localStoragePending) newState = setLocalStorageData(newState);
   } else {
     newState = setLocalStoragePending(newState, true);
-    // console.log(123);
-    // newState = generateOrderedTasks(newState);
-    // const newOrderedTasks = generateOrderedTasks(newState);
-    // console.log(newOrderedTasks);
-    // const JSONData = JSON.stringify(newOrderedTasks);
-    // window.localStorage.setItem('boards-taskOrder', JSONData);
+    newState = setLocalStorageData(newState);
   }
   return newState;
 };
 
 const addTask = (state: TAppStateContext, payload: IAppContextPayload) => {
-  const newState = state;
+  let newState = { ...state };
   const newBoard = payload as unknown as TBoard;
   const board = newState.boards.findIndex((b) => b._id === newBoard._id);
   newState.boards[board] = newBoard;
-  return { ...newState };
+  newState = setLocalStoragePending(newState, true);
+  newState = setLocalStorageData(newState);
+  return newState;
 };
 
 const updateTask = (state: TAppStateContext, payload: IAppContextPayload) => {
   console.log('UPDATE TASK REDUCER');
-  const newState = { ...state };
+  let newState = { ...state };
   const boardId = payload.id?.boardId;
   const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
   newState.boards[boardIdx] = payload.data?.board as TBoard;
+  newState = setLocalStoragePending(newState, true);
+  newState = setLocalStorageData(newState);
   return newState;
 };
 
 const deleteTask = (state: TAppStateContext, payload: IAppContextPayload) => {
-  const newState = state;
+  let newState = { ...state };
   const { boardId, columnId, taskId } = payload.id;
   const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
   const columnIdx = newState.boards[boardIdx].columns.findIndex(
@@ -63,7 +72,9 @@ const deleteTask = (state: TAppStateContext, payload: IAppContextPayload) => {
     (t) => t._id !== taskId
   );
   newState.boards[boardIdx].columns[columnIdx].tasks = newTasks;
-  return { ...newState };
+  newState = setLocalStoragePending(newState, true);
+  newState = setLocalStorageData(newState);
+  return newState;
 };
 
 const addBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
@@ -75,12 +86,14 @@ const addBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
 
 const editBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
   console.log('PAYLOAD', payload);
-  const newState = state;
+  let newState = { ...state };
   const boardIdx = newState.boards.findIndex(
     (b) => b._id === payload.id?.boardId
   );
   newState.boards[boardIdx] = payload.data as TBoard;
-  return { ...newState };
+  newState = setLocalStoragePending(newState, true);
+  newState = setLocalStorageData(newState);
+  return newState;
 };
 
 const deleteBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
