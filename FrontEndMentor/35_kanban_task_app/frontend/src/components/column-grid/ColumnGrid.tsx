@@ -1,14 +1,14 @@
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/jsx-props-no-spreading */
 import Column from '#Components/column/Column';
 import ColumnEmpty from '#Components/column/ColumnEmpty';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import { TBoard } from '#Types/types';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 
+import DeleteTask from '#Components/task/DeleteTask';
 import { AppDispatchContext } from '#Context/AppContext';
 import ApiService from '#Services/Services';
-// import { IOrderedTasks } from '#Utils/taskSorting';
 import styles from './_ColumnGrid.module.scss';
 
 type ElemProps = {
@@ -23,22 +23,32 @@ function ColumnGrid(props: ElemProps): JSX.Element {
   // console.log('COLUMN GRID RENDER', activeBoard);
 
   const columns = activeBoard?.columns.map((el, i) => (
-    <Droppable droppableId={`${i}`} key={el._id}>
-      {(provided, snapshot) => (
-        <Column
-          // eslint-disable-next-line react/jsx-props-no-spreading
-          {...provided.droppableProps}
-          dndProvided={provided}
-          dndSnapshot={snapshot}
-          boardId={activeBoard._id}
-          columnId={el._id}
-          columnNum={i + 1}
-          columnTitle={el.name}
-          numOfTasks={el.tasks.length}
-          tasks={el.tasks}
-        />
-      )}
-    </Droppable>
+    <div className={styles.columnContainer} key={el._id}>
+      <Droppable droppableId={`${i}`}>
+        {(provided, snapshot) => (
+          <Column
+            {...provided.droppableProps}
+            dndProvided={provided}
+            dndSnapshot={snapshot}
+            boardId={activeBoard._id}
+            columnId={el._id}
+            columnNum={i + 1}
+            columnTitle={el.name}
+            numOfTasks={el.tasks.length}
+            tasks={el.tasks}
+          />
+        )}
+      </Droppable>
+      <Droppable droppableId={`deleteTask-${i}`}>
+        {(provided, snapshot) => (
+          <DeleteTask
+            {...provided.droppableProps}
+            dndProvided={provided}
+            dndSnapshot={snapshot}
+          />
+        )}
+      </Droppable>
+    </div>
   ));
 
   const onClickHandler = (e: React.MouseEvent) => {
@@ -56,6 +66,36 @@ function ColumnGrid(props: ElemProps): JSX.Element {
   const onDragEndHandler = async (result: DropResult) => {
     if (!activeBoard) return;
     if (!result.destination) return; // If dragged falls outside of droppable areas;
+    if (result.destination.droppableId.startsWith('delete')) {
+      // Delete Task
+      const board = { ...activeBoard };
+      const boardId = board._id;
+      const columnId = board.columns[Number(result.source.droppableId)]._id;
+      const [task] = board.columns[
+        Number(result.source.droppableId)
+      ].tasks.splice(result.source.index, 1);
+      const taskId = task._id;
+      try {
+        const responseData = await ApiService.deleteTask(
+          boardId,
+          columnId,
+          taskId
+        );
+        if (!responseData) throw new Error('Could not delete task!');
+
+        appDispatch({
+          type: 'delete-task',
+          payload: {
+            id: { boardId, columnId, taskId },
+            data: { x: undefined },
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+      return;
+    }
+
     const board = { ...activeBoard };
     const { _id: boardId } = board;
     const fromColumnId = board.columns[Number(result.source.droppableId)]._id;

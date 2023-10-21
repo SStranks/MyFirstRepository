@@ -15,3 +15,9 @@
     padding: f.px2em(24) f.px2em(16);
   }
 }
+
+.columnContainer {
+  display: flex;
+  flex-direction: column;
+  row-gap: f.px2em(20);
+}

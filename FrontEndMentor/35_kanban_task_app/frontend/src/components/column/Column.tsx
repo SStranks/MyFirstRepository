@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import Task from '#Components/task/Task';
 import { TSubTaskObj, TTask } from '#Types/types';
 import {

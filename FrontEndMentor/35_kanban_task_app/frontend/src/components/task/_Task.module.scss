@@ -61,6 +61,54 @@
     }
   }
 
+  &:focus {
+    &.column {
+      &--1 {
+        outline: 4px solid c.$col-3a;
+      }
+
+      &--2 {
+        outline: 4px solid c.$col-3b;
+      }
+
+      &--3 {
+        outline: 4px solid c.$col-3c;
+      }
+
+      &--4 {
+        outline: 4px solid c.$col-3d;
+      }
+
+      &--5 {
+        outline: 4px solid c.$col-3e;
+      }
+
+      &--6 {
+        outline: 4px solid c.$col-3f;
+      }
+
+      &--7 {
+        outline: 4px solid c.$col-3g;
+      }
+
+      &--8 {
+        outline: 4px solid c.$col-3h;
+      }
+
+      &--9 {
+        outline: 4px solid c.$col-3i;
+      }
+
+      &--10 {
+        outline: 4px solid c.$col-3j;
+      }
+
+      &--11 {
+        outline: 4px solid c.$col-3k;
+      }
+    }
+  }
+
   &__dragging {
     &--0 {
       outline: 4px solid c.$col-3a;
@@ -112,11 +160,38 @@
     margin-bottom: f.px2em(8);
     color: var(--thm-task-title);
     transition: a.$Theme-transition-color;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__subtask {
     @include mx.body-m;
     color: c.$col-1g;
     transition: a.$Theme-transition-color;
+  }
+}
+
+.deleteCard {
+  // visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 87.5px;
+  background-color: transparent;
+  border-radius: v.$border-radius-task;
+  outline: 8px dashed red;
+  outline-offset: -8px;
+
+  &__text {
+    @include mx.header-m;
+    color: red;
+    // color: var(--thm-task-title);
+    transition: a.$Theme-transition-color;
+  }
+
+  &__dragging {
+    visibility: visible;
+    background-color: blue;
   }
 }
