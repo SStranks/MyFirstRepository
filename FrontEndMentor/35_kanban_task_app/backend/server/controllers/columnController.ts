@@ -1,13 +1,14 @@
 import { Board } from '#Models/boardModel';
-import { Task } from '#Models/taskModel';
 import AppError from '#Utils/appError';
 import catchAsync from '#Utils/catchAsync';
 import { NextFunction, Request, Response } from 'express';
 
+// NOTE:  Currently not being utilized - 'new column' uses the 'board edit' modal.
 const createColumn = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    let board = await Board.findById(req.params.boardId);
+    const { boardId } = req.params;
 
+    let board = await Board.findById(boardId);
     if (!board) return next(new AppError('No document found in DB!', 404));
 
     try {
@@ -25,27 +26,22 @@ const createColumn = catchAsync(
   }
 );
 
-// // For moving a task from one column to another.
+// For moving a task from one column to another.
 const updateColumn = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
+    // NOTE:  In FE API call: req.body; the task, and column to move to.
     const { boardId, columnId } = req.params;
     const { newColumnId, taskId, newTask } = req.body;
 
-    let board = await Board.findOne({ 'columns._id': columnId });
+    let board = await Board.findById(boardId);
     if (!board) return next(new AppError('No document found in DB!', 404));
 
-    // NOTE:  In FE API call, need to pass in taskId and columnId of the column to move task to;
-    // NOTE:  Obj should look: {taskId: x, newColumnId: x, newTask: { ... }}
-    // NOTE:  Remove/add operations.. what if one fails and the other succeeds?
-    // REFACTOR:  Need to use the 'transaction' - see FEM33
     try {
       const task = board.columns.id(columnId)?.tasks.id(taskId);
       if (!task) throw new Error();
+
       board.columns.id(columnId)?.tasks.pull(task);
-      await board.save();
-      const newTaskSubDoc = await Task.create(newTask);
-      newTaskSubDoc._id = taskId;
-      board.columns.id(req.body.newColumnId)?.tasks.push(newTaskSubDoc);
+      board.columns.id(newColumnId)?.tasks.push(newTask);
       await board.save();
     } catch {
       return next(new AppError('Unable to commit document', 404));
@@ -61,12 +57,13 @@ const updateColumn = catchAsync(
 
 const deleteColumn = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const board = await Board.findById(req.params.boardId);
+    const { boardId, columnId } = req.params;
 
+    const board = await Board.findById(boardId);
     if (!board) return next(new AppError('No document found in DB!', 404));
 
     try {
-      board.columns.id(req.params.columnId)?.remove();
+      board.columns.id(columnId)?.remove();
       await board.save();
     } catch (error) {
       return next(new AppError('No document found in DB!', 404));

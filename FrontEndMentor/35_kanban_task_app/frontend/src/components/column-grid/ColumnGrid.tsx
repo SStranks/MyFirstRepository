@@ -77,7 +77,7 @@ function ColumnGrid(props: ElemProps): JSX.Element {
     if (fromColumnId !== toColumnId) {
       try {
         const { _id, ...rest } = reorderedTask;
-        const newTask = { ...rest };
+        const newTask = { ...rest, _id };
         const data = {
           taskId: _id,
           newColumnId: toColumnId,

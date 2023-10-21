@@ -5,26 +5,26 @@ import { NextFunction, Request, Response } from 'express';
 
 const createTask = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    let board = await Board.findById(req.params.boardId);
+    const { boardId, columnId } = req.params;
+    const { title, description, status, subtasks } = req.body;
 
+    let board = await Board.findById(boardId);
     if (!board) return next(new AppError('No document found in DB!', 404));
 
-    const column = board.columns.findIndex(
-      (c) => c._id.toString() === req.params.columnId
+    const columnIndex = board.columns.findIndex(
+      (c) => c._id.toString() === columnId
     );
 
-    if (column === -1)
+    if (columnIndex === -1)
       return next(new AppError('No document found in DB!', 404));
 
-    let task;
     try {
-      task = board.columns[column].tasks.push(req.body);
-      board = await board.save();
+      const newTask = { title, description, status, subtasks };
+      board.columns[columnIndex].tasks.push(newTask);
+      await board.save();
     } catch (error) {
       return next(new AppError('Unable to commit document', 404));
     }
-
-    console.log('TASK', task);
 
     res.status(201).json({
       status: 'success',
@@ -36,45 +36,20 @@ const createTask = catchAsync(
 
 const updateTask = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    // NOTE:  This works.
-    // const board = await Board.findOneAndUpdate(
-    //   {
-    //     _id: req.params.boardId,
-    //   },
-    //   {
-    //     $set: {
-    //       'columns.$[r].tasks.$[t].title': req.body.title,
-    //       'columns.$[r].tasks.$[t].status': req.body.status,
-    //       'columns.$[r].tasks.$[t].description': req.body.description,
-    //     },
-    //   },
-    //   {
-    //     new: true,
-    //     runValidators: true,
-    //     arrayFilters: [
-    //       { 'r._id': req.params.columnId },
-    //       { 't._id': req.params.taskId },
-    //     ],
-    //   }
-    // );
+    const { boardId, columnId, taskId } = req.params;
+    const { title, description, status, subtasks } = req.body;
 
-    // NOTE:  .set() is currently not performing validation.
-    const board = await Board.findById(req.params.boardId);
-
+    const board = await Board.findById(boardId);
     if (!board) return next(new AppError('No document found in DB!', 404));
 
     try {
-      const task = board.columns
-        .id(req.params.columnId)
-        ?.tasks.id(req.params.taskId);
+      const task = board.columns.id(columnId)?.tasks.id(taskId);
       if (task === null || task === undefined) throw new Error();
-      task.set(req.body);
+      task.set({ title, description, status, subtasks });
       await board.save();
     } catch (error) {
       return next(new AppError('Unable to commit document!', 404));
     }
-
-    // console.log('BOARD', board);
 
     res.status(200).json({
       status: 'success',
@@ -86,19 +61,20 @@ const updateTask = catchAsync(
 
 const deleteTask = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const board = await Board.findById(req.params.boardId);
+    const { boardId, columnId, taskId } = req.params;
 
+    const board = await Board.findById(boardId);
     if (!board) return next(new AppError('No document found in DB!', 404));
 
     const column = board.columns.findIndex(
-      (c) => c._id.toString() === req.params.columnId
+      (c) => c._id.toString() === columnId
     );
 
     if (column === -1)
       return next(new AppError('No document found in DB!', 404));
 
     try {
-      board.columns[column].tasks.id(req.params.taskId)?.remove();
+      board.columns[column].tasks.id(taskId)?.remove();
       await board.save();
     } catch (error) {
       return next(new AppError('No document found in DB!', 404));

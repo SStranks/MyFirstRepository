@@ -51,7 +51,7 @@ const addTask = (state: TAppStateContext, payload: IAppContextPayload) => {
 };
 
 const updateTask = (state: TAppStateContext, payload: IAppContextPayload) => {
-  console.log('UPDATE TASK REDUCER');
+  console.log('UPDATETASK REDUCER');
   let newState = { ...state };
   const boardId = payload.id?.boardId;
   const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
@@ -80,12 +80,14 @@ const deleteTask = (state: TAppStateContext, payload: IAppContextPayload) => {
 const addBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
   console.log('ADDBOARD REDUCER', state, payload);
   const newBoard = payload as unknown;
-  const newState = { ...state, boards: [...state.boards, newBoard as TBoard] };
+  let newState = { ...state, boards: [...state.boards, newBoard as TBoard] };
+  newState = setLocalStoragePending(newState, true);
+  newState = setLocalStorageData(newState);
   return newState;
 };
 
 const editBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
-  console.log('PAYLOAD', payload);
+  console.log('EDITBOARD REDUCER', payload);
   let newState = { ...state };
   const boardIdx = newState.boards.findIndex(
     (b) => b._id === payload.id?.boardId
@@ -100,7 +102,9 @@ const deleteBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
   const filterBoards = state.boards.filter(
     (b) => b._id !== payload.id?.boardId
   );
-  const newState = { ...state, boards: filterBoards };
+  let newState = { ...state, boards: filterBoards };
+  newState = setLocalStoragePending(newState, true);
+  newState = setLocalStorageData(newState);
   return newState;
 };
 

@@ -73,8 +73,6 @@ export const orderStateTasks = (
   // If boards or tasks are not synchronised, recreate localStorage
   if (!isDataSynchronized) newState.localStoragePending = true;
 
-  console.log(newState, isDataSynchronized, localStorage, sortedBoards);
-
   return { ...newState, boards: sortedBoards };
 };
 

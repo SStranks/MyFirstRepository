@@ -28,6 +28,8 @@ function App(): JSX.Element {
     INITIAL_ACTIVEBOARD || ''
   );
 
+  console.log('APP RENDER');
+
   // Commit tasks ordering to localStorage when tab/browser visibility changes and data is pending
   useEffect(() => {
     const saveTaskOrderToLocalStorage = () => {
@@ -36,7 +38,6 @@ function App(): JSX.Element {
         state.localStoragePending &&
         state.localStorageData
       ) {
-        // const timeStamp = new Date().toTimeString().slice(0, 8);
         window.localStorage.setItem('boards-taskOrder', state.localStorageData);
         appDispatch({
           type: 'localStoragePending',
