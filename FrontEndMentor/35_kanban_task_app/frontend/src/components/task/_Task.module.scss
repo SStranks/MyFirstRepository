@@ -174,24 +174,39 @@
 
 .deleteCard {
   // visibility: hidden;
+  opacity: 10%;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 87.5px;
-  background-color: transparent;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 0.2),
+    rgba(255, 0, 0, 0.2) 10px,
+    transparent 10px,
+    transparent 20px
+  );
   border-radius: v.$border-radius-task;
-  outline: 8px dashed red;
-  outline-offset: -8px;
+  outline: 5px dashed rgba(255, 0, 0, 0.6);
+  outline-offset: -5px;
+  transition: 0.5s all ease;
 
   &__text {
     @include mx.header-m;
-    color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     // color: var(--thm-task-title);
+    padding: f.px2em(5) f.px2em(10);
+    color: red;
+    background-color: var(--thm-bg-main);
     transition: a.$Theme-transition-color;
+    transform: translate(-50%, -50%);
   }
 
   &__dragging {
-    visibility: visible;
-    background-color: blue;
+    opacity: 100;
+    outline-offset: 0px;
   }
 }

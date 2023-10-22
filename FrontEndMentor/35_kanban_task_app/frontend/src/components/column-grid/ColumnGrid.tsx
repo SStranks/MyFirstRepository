@@ -3,7 +3,7 @@ import Column from '#Components/column/Column';
 import ColumnEmpty from '#Components/column/ColumnEmpty';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import { TBoard } from '#Types/types';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 
 import DeleteTask from '#Components/task/DeleteTask';
@@ -19,8 +19,10 @@ function ColumnGrid(props: ElemProps): JSX.Element {
   const { activeBoard } = props;
   const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);
+  const [dragActive, setDragActive] = useState<boolean>(false);
 
   // console.log('COLUMN GRID RENDER', activeBoard);
+  console.log('COLUMN GRID RENDER', dragActive);
 
   const columns = activeBoard?.columns.map((el, i) => (
     <div className={styles.columnContainer} key={el._id}>
@@ -45,6 +47,8 @@ function ColumnGrid(props: ElemProps): JSX.Element {
             {...provided.droppableProps}
             dndProvided={provided}
             dndSnapshot={snapshot}
+            numOfTasks={el.tasks.length}
+            dragActive={dragActive}
           />
         )}
       </Droppable>
@@ -63,7 +67,12 @@ function ColumnGrid(props: ElemProps): JSX.Element {
     }
   };
 
+  const onDragStart = () => {
+    setDragActive(true);
+  };
+
   const onDragEndHandler = async (result: DropResult) => {
+    setDragActive(false);
     if (!activeBoard) return;
     if (!result.destination) return; // If dragged falls outside of droppable areas;
     if (result.destination.droppableId.startsWith('delete')) {
@@ -151,7 +160,7 @@ function ColumnGrid(props: ElemProps): JSX.Element {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEndHandler}>
+    <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEndHandler}>
       <div className={styles.columnGrid} onClickCapture={onClickHandler}>
         {columns}
         {activeBoard && <ColumnEmpty activeBoard={activeBoard} />}
