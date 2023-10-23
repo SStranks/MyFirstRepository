@@ -4,6 +4,8 @@
 @use '#Sass/abstracts/mixins' as mx;
 @use '#Sass/abstracts/variables' as v;
 
+// REFACTOR:  Consolidate and tidy up
+// REFACTOR:  Outline colours 1-10; move to SASS foundation files.
 .card {
   cursor: pointer;
   width: 100%;
@@ -155,6 +157,10 @@
     }
   }
 
+  &__hoverOverDelete {
+    opacity: 65%;
+  }
+
   &__task {
     @include mx.header-m;
     margin-bottom: f.px2em(8);
@@ -173,7 +179,6 @@
 }
 
 .deleteCard {
-  // visibility: hidden;
   opacity: 10%;
   position: relative;
   display: flex;
@@ -188,8 +193,8 @@
     transparent 20px
   );
   border-radius: v.$border-radius-task;
-  outline: 5px dashed rgba(255, 0, 0, 0.6);
-  outline-offset: -5px;
+  outline: 4px dashed rgba(255, 0, 0, 0.6);
+  outline-offset: -4px;
   transition: 0.5s all ease;
 
   &__text {
@@ -197,6 +202,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    // TODO:  Add in styles to SASS foundation files
     // color: var(--thm-task-title);
     padding: f.px2em(5) f.px2em(10);
     color: red;

@@ -98,19 +98,19 @@
 
 .droppable {
   &--1 {
-    outline: 1px dashed c.$col-3a;
+    outline: 2px dashed c.$col-3a;
     outline-offset: 10px;
     border-radius: v.$border-radius-task;
   }
 
   &--2 {
-    outline: 1px dashed c.$col-3b;
+    outline: 2px dashed c.$col-3b;
     outline-offset: 10px;
     border-radius: v.$border-radius-task;
   }
 
   &--3 {
-    outline: 1px dashed c.$col-3c;
+    outline: 2px dashed c.$col-3c;
     outline-offset: 10px;
     border-radius: v.$border-radius-task;
   }

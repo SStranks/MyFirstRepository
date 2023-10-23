@@ -33,6 +33,10 @@ function Task(props: ElemProps): JSX.Element {
     <div
       className={`${styles.card} ${styles[`column--${columnNum}`]} ${
         isDragging ? `${styles[`card__dragging--${draggingOver}`]}` : ''
+      } ${
+        draggingOver?.startsWith('delete')
+          ? `${styles.card__hoverOverDelete}`
+          : ''
       }`}
       data-task-id={taskId}
       data-column-id={columnId}
