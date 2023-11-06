@@ -5,7 +5,6 @@
 @use '#Sass/abstracts/variables' as v;
 
 // REFACTOR:  Consolidate and tidy up
-// REFACTOR:  Outline colours 1-10; move to SASS foundation files.
 .card {
   cursor: pointer;
   width: 100%;
@@ -17,143 +16,23 @@
 
   &:hover {
     &.column {
-      &--1 {
-        outline: 1px solid c.$col-3a;
-      }
-
-      &--2 {
-        outline: 1px solid c.$col-3b;
-      }
-
-      &--3 {
-        outline: 1px solid c.$col-3c;
-      }
-
-      &--4 {
-        outline: 1px solid c.$col-3d;
-      }
-
-      &--5 {
-        outline: 1px solid c.$col-3e;
-      }
-
-      &--6 {
-        outline: 1px solid c.$col-3f;
-      }
-
-      &--7 {
-        outline: 1px solid c.$col-3g;
-      }
-
-      &--8 {
-        outline: 1px solid c.$col-3h;
-      }
-
-      &--9 {
-        outline: 1px solid c.$col-3i;
-      }
-
-      &--10 {
-        outline: 1px solid c.$col-3j;
-      }
-
-      &--11 {
-        outline: 1px solid c.$col-3k;
+      @include mx.colorTheme using ($color) {
+        outline: 1px solid $color;
       }
     }
   }
 
   &:focus {
     &.column {
-      &--1 {
-        outline: 4px solid c.$col-3a;
-      }
-
-      &--2 {
-        outline: 4px solid c.$col-3b;
-      }
-
-      &--3 {
-        outline: 4px solid c.$col-3c;
-      }
-
-      &--4 {
-        outline: 4px solid c.$col-3d;
-      }
-
-      &--5 {
-        outline: 4px solid c.$col-3e;
-      }
-
-      &--6 {
-        outline: 4px solid c.$col-3f;
-      }
-
-      &--7 {
-        outline: 4px solid c.$col-3g;
-      }
-
-      &--8 {
-        outline: 4px solid c.$col-3h;
-      }
-
-      &--9 {
-        outline: 4px solid c.$col-3i;
-      }
-
-      &--10 {
-        outline: 4px solid c.$col-3j;
-      }
-
-      &--11 {
-        outline: 4px solid c.$col-3k;
+      @include mx.colorTheme using ($color) {
+        outline: 4px solid $color;
       }
     }
   }
 
   &__dragging {
-    &--0 {
-      outline: 4px solid c.$col-3a;
-    }
-
-    &--1 {
-      outline: 4px solid c.$col-3b;
-    }
-
-    &--2 {
-      outline: 4px solid c.$col-3c;
-    }
-
-    &--3 {
-      outline: 4px solid c.$col-3d;
-    }
-
-    &--4 {
-      outline: 4px solid c.$col-3e;
-    }
-
-    &--5 {
-      outline: 4px solid c.$col-3f;
-    }
-
-    &--6 {
-      outline: 4px solid c.$col-3g;
-    }
-
-    &--7 {
-      outline: 4px solid c.$col-3h;
-    }
-
-    &--8 {
-      outline: 4px solid c.$col-3i;
-    }
-
-    &--9 {
-      outline: 4px solid c.$col-3j;
-    }
-
-    &--10 {
-      outline: 4px solid c.$col-3k;
+    @include mx.colorTheme(true) using ($color) {
+      outline: 4px solid $color;
     }
   }
 

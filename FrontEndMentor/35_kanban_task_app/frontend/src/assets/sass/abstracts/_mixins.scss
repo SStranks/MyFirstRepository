@@ -14,6 +14,7 @@
 /* -------------------------------- */
 
 /*   Imports                        */
+@use 'sass:list';
 @use 'animations' as a;
 @use 'colors' as c;
 @use 'functions' as f;
@@ -153,6 +154,24 @@
 //     }
 //   }
 // }
+
+/* -------------------------------- */
+/*   Colors: Column, Bullets        */
+/* -------------------------------- */
+
+@mixin colorTheme($zero-index: false) {
+  $j: 0;
+  @if $zero-index == true {
+    $j: 1;
+  }
+
+  @for $i from 1 through list.length(c.$col-theme-list) {
+    $color: list.nth(c.$col-theme-list, $i);
+    &--#{$i - $j} {
+      @content ($color);
+    }
+  }
+}
 
 /* -------------------------------- */
 /*   Fluid Typogrpahy               */

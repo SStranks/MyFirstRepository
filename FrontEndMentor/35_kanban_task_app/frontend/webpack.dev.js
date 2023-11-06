@@ -38,6 +38,10 @@ export default merge(common, {
     liveReload: true,
     // historyApiFallback: true,
   },
+  stats: {
+    loggingDebug: ['sass-loader'],
+    errorDetails: true,
+  },
   module: {
     rules: [
       {

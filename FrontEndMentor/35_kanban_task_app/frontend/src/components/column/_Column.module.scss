@@ -23,48 +23,8 @@
     height: 15px;
     border-radius: 100%;
 
-    &--1 {
-      background-color: c.$col-3a;
-    }
-
-    &--2 {
-      background-color: c.$col-3b;
-    }
-
-    &--3 {
-      background-color: c.$col-3c;
-    }
-
-    &--4 {
-      background-color: c.$col-3d;
-    }
-
-    &--5 {
-      background-color: c.$col-3e;
-    }
-
-    &--6 {
-      background-color: c.$col-3f;
-    }
-
-    &--7 {
-      background-color: c.$col-3g;
-    }
-
-    &--8 {
-      background-color: c.$col-3h;
-    }
-
-    &--9 {
-      background-color: c.$col-3i;
-    }
-
-    &--10 {
-      background-color: c.$col-3j;
-    }
-
-    &--11 {
-      background-color: c.$col-3k;
+    @include mx.colorTheme using ($color) {
+      background-color: $color;
     }
   }
 
@@ -97,53 +57,9 @@
 }
 
 .droppable {
-  &--1 {
-    outline: 2px dashed c.$col-3a;
+  @include mx.colorTheme using ($color) {
+    outline: 2px dashed $color;
     outline-offset: 10px;
     border-radius: v.$border-radius-task;
-  }
-
-  &--2 {
-    outline: 2px dashed c.$col-3b;
-    outline-offset: 10px;
-    border-radius: v.$border-radius-task;
-  }
-
-  &--3 {
-    outline: 2px dashed c.$col-3c;
-    outline-offset: 10px;
-    border-radius: v.$border-radius-task;
-  }
-
-  &--4 {
-    outline: 2px solid c.$col-3d;
-  }
-
-  &--5 {
-    outline: 2px solid c.$col-3e;
-  }
-
-  &--6 {
-    outline: 2px solid c.$col-3f;
-  }
-
-  &--7 {
-    outline: 2px solid c.$col-3g;
-  }
-
-  &--8 {
-    outline: 2px solid c.$col-3h;
-  }
-
-  &--9 {
-    outline: 2px solid c.$col-3i;
-  }
-
-  &--10 {
-    outline: 2px solid c.$col-3j;
-  }
-
-  &--11 {
-    outline: 2px solid c.$col-3k;
   }
 }
