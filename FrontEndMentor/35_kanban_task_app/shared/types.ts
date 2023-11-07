@@ -1,25 +1,25 @@
-export interface TSubTask {
+export interface ISubTask {
   _id: string;
   title: string;
   isCompleted: boolean;
 }
 
-export interface TTask {
+export interface ITask {
   _id: string;
   title: string;
   description: string;
   status: string;
-  subtasks: TSubTask[];
+  subtasks: ISubTask[];
 }
 
-export interface TColumn {
+export interface IColumn {
   _id: string;
   name: string;
-  tasks: TTask[];
+  tasks: ITask[];
 }
 
-export interface TBoard {
+export interface IBoard {
   _id: string;
   name: string;
-  columns: TColumn[];
+  columns: IColumn[];
 }

@@ -1,14 +1,14 @@
-import type { TColumn, TTask } from '#Shared/types';
+import type { IColumn, ITask } from '#Shared/types';
 import { taskSchema } from '#Models/taskModel';
 import mongoose, { Model, Types } from 'mongoose';
 
-export interface IColumnDocumentProps {
-  tasks: Types.DocumentArray<TTask>;
+export interface IColumnDocumentOverrides {
+  tasks: Types.DocumentArray<ITask>;
 }
 
-type TColumnModelType = Model<TColumn, {}, IColumnDocumentProps>;
+type TColumnModel = Model<IColumn, {}, IColumnDocumentOverrides>;
 
-const columnSchema = new mongoose.Schema<TColumn, TColumnModelType>({
+const columnSchema = new mongoose.Schema<IColumn, TColumnModel>({
   name: {
     type: 'String',
     maxLength: 30,
@@ -18,4 +18,4 @@ const columnSchema = new mongoose.Schema<TColumn, TColumnModelType>({
   tasks: [{ type: taskSchema, required: false }],
 });
 
-export { columnSchema, TColumnModelType };
+export { columnSchema, TColumnModel };

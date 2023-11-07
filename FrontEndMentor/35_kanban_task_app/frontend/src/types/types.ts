@@ -1,9 +1,9 @@
-import type { TBoard } from '#Shared/types';
+import type { IBoard } from '#Shared/types';
 
 export type TBoardInfo = { name: string; id: string }[];
 
 export type TAppStateContext = {
-  boards: TBoard[];
+  boards: IBoard[];
   localStoragePending: boolean;
   localStorageData: string | undefined;
 };

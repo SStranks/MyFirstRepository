@@ -1,13 +1,13 @@
-import type { TTask, TSubTask } from '#Shared/types';
-import mongoose, { Model, Types } from 'mongoose';
+import type { ITask, ISubTask } from '#Shared/types';
+import mongoose, { Model } from 'mongoose';
 
-interface ITaskDocumentProps {
-  subtasks: Types.DocumentArray<TSubTask>;
+interface ITaskDocumentOverrides {
+  subtasks: ISubTask[];
 }
 
-type TTaskModelType = Model<TTask, {}, ITaskDocumentProps>;
+type TTaskModel = Model<ITask, {}, ITaskDocumentOverrides>;
 
-const subtaskSchema = new mongoose.Schema<TSubTask>({
+const subtaskSchema = new mongoose.Schema<ISubTask>({
   title: {
     type: 'String',
     maxLength: 100,
@@ -17,7 +17,7 @@ const subtaskSchema = new mongoose.Schema<TSubTask>({
   isCompleted: { type: 'Boolean', required: true, default: false },
 });
 
-const taskSchema = new mongoose.Schema<TTask, TTaskModelType>({
+const taskSchema = new mongoose.Schema<ITask, TTaskModel>({
   title: {
     type: 'String',
     maxLength: 100,
@@ -29,6 +29,6 @@ const taskSchema = new mongoose.Schema<TTask, TTaskModelType>({
   subtasks: [{ type: subtaskSchema, required: false }],
 });
 
-const Task = mongoose.model<TTask>('Task', taskSchema);
+const Task = mongoose.model<ITask>('Task', taskSchema);
 
-export { Task, TTaskModelType, taskSchema };
+export { Task, TTaskModel, taskSchema };
