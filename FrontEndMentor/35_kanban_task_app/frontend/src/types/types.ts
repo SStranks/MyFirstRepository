@@ -1,37 +1,5 @@
-/* eslint-disable unicorn/filename-case */
+import type { TBoard } from '#Shared/types';
 
-// ------------- //
-// Backend Types
-// ------------- //
-export type TSubTaskObj = {
-  _id: string;
-  title: string;
-  isCompleted: boolean;
-};
-
-export type TTask = {
-  _id: string;
-  title: string;
-  description: string;
-  status: string;
-  subtasks: TSubTaskObj[];
-};
-
-export type TColumn = {
-  _id: string;
-  name: string;
-  tasks: TTask[];
-};
-
-export type TBoard = {
-  _id: string;
-  name: string;
-  columns: TColumn[];
-};
-
-// -------------- //
-// Frontend Types
-// -------------- //
 export type TBoardInfo = { name: string; id: string }[];
 
 export type TAppStateContext = {

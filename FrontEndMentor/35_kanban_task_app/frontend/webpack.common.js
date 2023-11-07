@@ -22,6 +22,10 @@ export default {
       ),
     ],
     alias: {
+      '#Shared': path.resolve(
+        path.dirname(url.fileURLToPath(import.meta.url)),
+        '../shared'
+      ),
       '#Img': path.resolve(
         path.dirname(url.fileURLToPath(import.meta.url)),
         'src/assets/img'

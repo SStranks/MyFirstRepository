@@ -1,5 +1,5 @@
-import { TaskModelType, taskSchema, TTask } from '#Models/taskModel';
-import mongoose, { Document, Model, Types } from 'mongoose';
+import { taskSchema, TTask } from '#Models/taskModel';
+import mongoose, { Model, Types } from 'mongoose';
 
 interface TColumn {
   _id: string;

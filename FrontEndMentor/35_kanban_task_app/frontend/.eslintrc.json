@@ -67,6 +67,7 @@
           "index.(js|jsx|ts|tsx)",
           "webpack.*",
           ".d.ts",
+          "types.ts",
           ".test.ts",
           "use\\w*.tsx"
         ]

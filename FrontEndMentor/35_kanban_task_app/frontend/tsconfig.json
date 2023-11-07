@@ -38,6 +38,7 @@
     "baseUrl": "./" /* Specify the base directory to resolve non-relative module names. */,
     // NOTE:  // Paths is for alias imports
     "paths": {
+      "#Shared/*": ["../shared/*"],
       "#Img/*": ["src/assets/img/*"],
       "#Sass/*": ["src/assets/sass/*"],
       "#Svg/*": ["src/assets/svg/*"],
@@ -124,6 +125,6 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
 
-  "include": ["src/**/*", "global.d.ts", "jest.setup.ts"],
+  "include": ["src/**/*", "../shared/*", "global.d.ts", "jest.setup.ts"],
   "exclude": ["node_modules", "public"]
 }
