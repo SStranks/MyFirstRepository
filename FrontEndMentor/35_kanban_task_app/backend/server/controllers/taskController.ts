@@ -2,6 +2,7 @@ import { Board } from '#Models/boardModel';
 import AppError from '#Utils/appError';
 import catchAsync from '#Utils/catchAsync';
 import { NextFunction, Request, Response } from 'express';
+import { Types } from 'mongoose';
 
 const createTask = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -43,7 +44,8 @@ const updateTask = catchAsync(
     if (!board) return next(new AppError('No document found in DB!', 404));
 
     try {
-      const task = board.columns.id(columnId)?.tasks.id(taskId);
+      const task = board.columns.id(columnId)?.tasks?.id(taskId);
+
       if (task === null || task === undefined) throw new Error();
       task.set({ title, description, status, subtasks });
       await board.save();

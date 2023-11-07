@@ -1,25 +1,25 @@
-export type TSubTaskObj = {
+export interface TSubTask {
   _id: string;
   title: string;
   isCompleted: boolean;
-};
+}
 
-export type TTask = {
+export interface TTask {
   _id: string;
   title: string;
   description: string;
   status: string;
-  subtasks: TSubTaskObj[];
-};
+  subtasks: TSubTask[];
+}
 
-export type TColumn = {
+export interface TColumn {
   _id: string;
   name: string;
   tasks: TTask[];
-};
+}
 
-export type TBoard = {
+export interface TBoard {
   _id: string;
   name: string;
   columns: TColumn[];
-};
+}
