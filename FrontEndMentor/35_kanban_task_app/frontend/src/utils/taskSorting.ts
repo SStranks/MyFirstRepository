@@ -1,4 +1,5 @@
-import { TAppStateContext, TTask } from '#Types/types';
+import type { ITask } from '#Shared/types';
+import { TAppStateContext } from '#Types/types';
 
 export interface IOrderedTasks {
   _id: string;
@@ -42,7 +43,7 @@ export const orderStateTasks = (
         return stateColumn;
       }
 
-      const sortedTasks: TTask[] = [];
+      const sortedTasks: ITask[] = [];
       const sortedTaskIds = new Set();
 
       // NOTE:  Could optimize this portion by converting state tasks into hashmap first, deleting sorted tasks from it, then merging the remainder at the end.

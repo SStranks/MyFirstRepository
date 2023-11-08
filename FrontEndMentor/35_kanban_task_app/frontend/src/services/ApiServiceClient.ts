@@ -1,70 +1,47 @@
 // NOTE:  ! This file is not complete. Basic working structure. Depends on backend API types
+import type { IBoard } from '#Shared/types';
+import type {
+  IPostBoardRequestDTO,
+  IPatchBoardRequestDTO,
+  IPostTaskRequestDTO,
+  IPatchTaskRequestDTO,
+  IPatchTaskColumnRequestDTO,
+} from './ApiRequestDto';
+import type {
+  IBoardResponseDTO,
+  IAllBoardsResponseDTO,
+} from './ApiResponseDto';
 import { IApiClient } from './ApiHttp';
 
-export interface IBody {
-  [x: string]: unknown;
-}
-
-interface IApiExpressResponse<T> {
+interface IApiResponse<T> {
   status: string;
   results?: number;
   data: T;
 }
 
-export interface IBoard {
-  _id: string;
-  name: string;
-  columns: IColumn[];
-}
-
-export interface IColumn {
-  _id: string;
-  name: string;
-  tasks: ITask[];
-}
-
-export interface ITask {
-  _id: string;
-  title: string;
-  description: string;
-  status: string;
-  subtasks: ISubTask[];
-}
-
-export interface ISubTask {
-  _id: string;
-  title: string;
-  isCompleted: boolean;
-}
-
-export interface IResAllBoards {
-  data: IBoard[] | [];
-}
-
-export interface IResBoard {
-  data: IBoard;
-}
-
 export interface IApiServiceClient {
   getAllBoards(): Promise<IBoard[] | undefined>;
-  postBoard(data: IBody): Promise<IBoard | undefined>;
-  patchBoard(id: string, data: IBody): Promise<IBoard | undefined>;
-  deleteBoard(id: string): Promise<number | boolean>;
+  postBoard(data: IPostBoardRequestDTO): Promise<IBoard | undefined>;
+  patchBoard(
+    boardId: string,
+    data: IPatchBoardRequestDTO
+  ): Promise<IBoard | undefined>;
+  deleteBoard(boardId: string): Promise<number | boolean>;
   postTask(
     boardId: string,
     columnId: string,
-    data: IBody
+    data: IPostTaskRequestDTO
   ): Promise<IBoard | undefined>;
   patchTask(
     boardId: string,
     columnId: string,
     taskId: string,
-    data: IBody
+    data: IPatchTaskRequestDTO
   ): Promise<IBoard | undefined>;
   patchTaskColumn(
     boardId: string,
     columnId: string,
-    data: IBody
+    data: IPatchTaskColumnRequestDTO
   ): Promise<IBoard | undefined>;
   deleteTask(
     boardId: string,
@@ -83,7 +60,7 @@ export default class ApiServiceClient implements IApiServiceClient {
   async getAllBoards(): Promise<IBoard[] | undefined> {
     try {
       const response = await this.ApiServiceClient.get<
-        IApiExpressResponse<IResAllBoards>
+        IApiResponse<IAllBoardsResponseDTO>
       >('/boards');
       const {
         data: { data: responseData },
@@ -95,11 +72,11 @@ export default class ApiServiceClient implements IApiServiceClient {
     }
   }
 
-  async postBoard(data: IBody): Promise<IBoard | undefined> {
+  async postBoard(data: IPostBoardRequestDTO): Promise<IBoard | undefined> {
     try {
       const response = await this.ApiServiceClient.post<
-        IBody,
-        IApiExpressResponse<IResBoard>
+        IPostBoardRequestDTO,
+        IApiResponse<IBoardResponseDTO>
       >('/boards', data);
       const {
         data: { data: responseData },
@@ -111,12 +88,15 @@ export default class ApiServiceClient implements IApiServiceClient {
     }
   }
 
-  async patchBoard(id: string, data: IBody): Promise<IBoard | undefined> {
+  async patchBoard(
+    boardId: string,
+    data: IPatchBoardRequestDTO
+  ): Promise<IBoard | undefined> {
     try {
       const response = await this.ApiServiceClient.patch<
-        IBody,
-        IApiExpressResponse<IResBoard>
-      >(`boards/${id}`, data);
+        IPatchBoardRequestDTO,
+        IApiResponse<IBoardResponseDTO>
+      >(`boards/${boardId}`, data);
       const {
         data: { data: responseData },
       } = response;
@@ -127,9 +107,9 @@ export default class ApiServiceClient implements IApiServiceClient {
     }
   }
 
-  async deleteBoard(id: string): Promise<number | boolean> {
+  async deleteBoard(boardId: string): Promise<number | boolean> {
     try {
-      const response = await this.ApiServiceClient.delete(`boards/${id}`);
+      const response = await this.ApiServiceClient.delete(`boards/${boardId}`);
       const { status: statusCode } = response;
       return statusCode;
     } catch (error) {
@@ -141,12 +121,12 @@ export default class ApiServiceClient implements IApiServiceClient {
   async postTask(
     boardId: string,
     columnId: string,
-    data: IBody
+    data: IPostTaskRequestDTO
   ): Promise<IBoard | undefined> {
     try {
       const response = await this.ApiServiceClient.post<
-        IBody,
-        IApiExpressResponse<IResBoard>
+        IPostTaskRequestDTO,
+        IApiResponse<IBoardResponseDTO>
       >(`boards/${boardId}/${columnId}`, data);
       const {
         data: { data: responseData },
@@ -162,12 +142,12 @@ export default class ApiServiceClient implements IApiServiceClient {
     boardId: string,
     columnId: string,
     taskId: string,
-    data: IBody
+    data: IPatchTaskRequestDTO
   ): Promise<IBoard | undefined> {
     try {
       const response = await this.ApiServiceClient.patch<
-        IBody,
-        IApiExpressResponse<IResBoard>
+        IPatchTaskRequestDTO,
+        IApiResponse<IBoardResponseDTO>
       >(`boards/${boardId}/${columnId}/${taskId}`, data);
       const {
         data: { data: responseData },
@@ -182,12 +162,12 @@ export default class ApiServiceClient implements IApiServiceClient {
   async patchTaskColumn(
     boardId: string,
     columnId: string,
-    data: IBody
+    data: IPatchTaskColumnRequestDTO
   ): Promise<IBoard | undefined> {
     try {
       const response = await this.ApiServiceClient.patch<
-        IBody,
-        IApiExpressResponse<IResBoard>
+        IPatchTaskColumnRequestDTO,
+        IApiResponse<IBoardResponseDTO>
       >(
         `boards/${boardId}/${columnId}
       `,

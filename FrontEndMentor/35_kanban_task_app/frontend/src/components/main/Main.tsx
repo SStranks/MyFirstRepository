@@ -1,11 +1,11 @@
+import type { IBoard } from '#Shared/types';
 import ColumnGrid from '#Components/column-grid/ColumnGrid';
 import RootModalDispatchContext from '#Context/RootModalContext';
-import { TBoard } from '#Types/types';
 import { useContext } from 'react';
 import styles from './_Main.module.scss';
 
 type ElemProps = {
-  activeBoard: TBoard | undefined;
+  activeBoard: IBoard | undefined;
 };
 
 function Main(props: ElemProps): JSX.Element {

@@ -1,3 +1,8 @@
+import type {
+  IPatchTaskColumnRequestDTO,
+  IPatchTaskRequestDTO,
+} from '#Services/ApiRequestDto';
+import type { ITask } from '#Shared/types';
 import Dropdown from '#Components/custom/dropdown/Dropdown';
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
@@ -6,12 +11,7 @@ import { AppDispatchContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import ApiService from '#Services/Services';
-import {
-  TNestedInputProp,
-  TReturnData,
-  TSelectTask,
-  TTask,
-} from '#Types/types';
+import { TNestedInputProp, TReturnData, TSelectTask } from '#Types/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
@@ -23,7 +23,7 @@ import {
 import React, { useContext, useState } from 'react';
 import styles from './_TaskEdit.module.scss';
 
-const genGroupInputs = (task: TTask) => {
+const genGroupInputs = (task: ITask) => {
   return task.subtasks.reduce((acc, cur) => {
     const key = `input-subtask-${cur._id}`;
     acc[key] = {
@@ -38,7 +38,7 @@ const genGroupInputs = (task: TTask) => {
 };
 
 type ElemProps = {
-  task: TTask;
+  task: ITask;
   selectTask: TSelectTask;
   columnList: string[][];
 };
@@ -84,6 +84,11 @@ function TaskEdit(props: ElemProps): JSX.Element {
     }
     // All form inputs have been validated. Submit form data.
     const formInputData = new FormData(e.target as HTMLFormElement);
+    // const title = formInputData.get('input-title') as string;
+    // const description = formInputData.get('input-description') as string;
+    // const status = formInputData.get('input-status') as string;
+    // const rest = formInputData.get('input-group-1');
+
     const {
       'input-title': title,
       'input-description': description,
@@ -106,7 +111,7 @@ function TaskEdit(props: ElemProps): JSX.Element {
       description,
       status,
       subtasks: newSubtasks,
-    };
+    } as IPatchTaskRequestDTO;
 
     const { boardId, columnId, taskId } = selectTask;
     const newColumnId = formData['input-status'].columnId;
@@ -121,7 +126,11 @@ function TaskEdit(props: ElemProps): JSX.Element {
           newTask
         );
       } else {
-        const data = { taskId, newColumnId, newTask };
+        const data = {
+          taskId,
+          newColumnId,
+          newTask,
+        } as IPatchTaskColumnRequestDTO;
         responseData = await ApiService.patchTaskColumn(
           boardId,
           columnId,

@@ -1,15 +1,15 @@
+import {
+  IPatchTaskColumnRequestDTO,
+  IPostTaskRequestDTO,
+} from '#Services/ApiRequestDto';
 import CheckBox from '#Components/custom/checkbox/CheckBox';
 import Dropdown from '#Components/custom/dropdown/Dropdown';
 import { AppDispatchContext, AppStateContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import ApiService from '#Services/Services';
 import IconVerticalEllipsis from '#Svg/icon-vertical-ellipsis.svg';
-import {
-  TAppStateContext,
-  TReturnData,
-  TSelectTask,
-  TTask,
-} from '#Types/types';
+import { TAppStateContext, TReturnData, TSelectTask } from '#Types/types';
+import type { ITask } from '#Shared/types';
 import { updateInput, updateInputFromGroup } from '#Utils/formFunctions';
 import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import styles from './_TaskView.module.scss';
@@ -39,7 +39,7 @@ type SubtaskType = {
 };
 
 // TODO:  Need to refactor handling of generating inputs/checkboxes, as it is similar but different to group inputs on other forms (different properties; value vs title, isCompleted vs error, etc)
-const genSubtaskInputs = (task: TTask): SubtaskType => {
+const genSubtaskInputs = (task: ITask): SubtaskType => {
   console.log('GEN SUB TASK', task);
   return task.subtasks.reduce((acc, cur) => {
     const key = `input-checkbox-${cur._id}`;
@@ -98,7 +98,7 @@ function TaskView(props: ElemProps): JSX.Element {
                   isCompleted: t.value,
                 })
               ),
-            };
+            } as IPostTaskRequestDTO;
             const { boardId, columnId, taskId } = selectTask;
 
             const responseData = await ApiService.patchTask(
@@ -140,7 +140,11 @@ function TaskView(props: ElemProps): JSX.Element {
             };
             const { boardId, columnId, taskId } = selectTask;
             const newColumnId = formData['input-status'].columnId;
-            const data = { taskId, newColumnId, newTask };
+            const data = {
+              taskId,
+              newColumnId,
+              newTask,
+            } as IPatchTaskColumnRequestDTO;
             const responseData = await ApiService.patchTaskColumn(
               boardId,
               columnId,

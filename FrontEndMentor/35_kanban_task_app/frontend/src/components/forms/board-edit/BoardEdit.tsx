@@ -1,11 +1,12 @@
+import type { IPostBoardRequestDTO } from '#Services/ApiRequestDto';
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import { AppDispatchContext } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
-import { IBoard } from '#Services/ApiServiceClient';
 import ApiService from '#Services/Services';
-import { TBoard, TNestedInputProp, TReturnData } from '#Types/types';
+import { TNestedInputProp, TReturnData } from '#Types/types';
+import type { IBoard } from '#Shared/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
@@ -18,7 +19,7 @@ import { useContext, useState } from 'react';
 import styles from './_BoardEdit.module.scss';
 
 // TODO:  Also in task edit - there's a function in formfunctions this is based from, need to refactor all of it.
-const genGroupInputs = (activeBoard: TBoard) => {
+const genGroupInputs = (activeBoard: IBoard) => {
   return activeBoard.columns.reduce((acc, cur) => {
     const key = `input-column-${cur._id}`;
     acc[key] = {
@@ -32,7 +33,7 @@ const genGroupInputs = (activeBoard: TBoard) => {
 };
 
 type ElemProps = {
-  activeBoard: TBoard;
+  activeBoard: IBoard;
 };
 
 // FUNCTION COMPONENT //
@@ -84,7 +85,7 @@ function BoardEdit(props: ElemProps): JSX.Element {
     const newBoard = {
       name,
       columns: newColumns,
-    };
+    } as IPostBoardRequestDTO;
 
     // Send data to backend API
     // NOTE:  Need to think about column names in relation to IDs: 1) We need the IDs because if the user renames a column, how will we know which column to amend in the DB? 2) We need a warning that if they remove a column here then all task data will be erased!
@@ -100,7 +101,8 @@ function BoardEdit(props: ElemProps): JSX.Element {
         type: 'edit-board',
         payload: {
           id: { boardId: activeBoard._id },
-          data: responseData as TBoard,
+          // TEST:  Does this work now?
+          data: { responseData },
         },
       });
       return modalDispatch({

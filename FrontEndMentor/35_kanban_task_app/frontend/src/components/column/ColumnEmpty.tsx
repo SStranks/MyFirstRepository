@@ -1,10 +1,10 @@
+import type { IBoard } from '#Shared/types';
 import RootModalDispatchContext from '#Context/RootModalContext';
-import { TBoard } from '#Types/types';
 import { useContext } from 'react';
 import styles from './_Column.module.scss';
 
 type ElemProps = {
-  activeBoard: TBoard;
+  activeBoard: IBoard;
 };
 
 function ColumnEmpty(props: ElemProps): JSX.Element {

@@ -1,3 +1,4 @@
+import type { IPostTaskRequestDTO } from '#Services/ApiRequestDto';
 import Dropdown from '#Components/custom/dropdown/Dropdown';
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
@@ -9,9 +10,9 @@ import {
 } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
-import { IBoard } from '#Services/ApiServiceClient';
 import ApiService from '#Services/Services';
-import { TAppStateContext, TBoard, TColumn, TReturnData } from '#Types/types';
+import { TAppStateContext, TReturnData } from '#Types/types';
+import type { IBoard, IColumn } from '#Shared/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,
@@ -24,7 +25,7 @@ import {
 import { useContext, useState } from 'react';
 import styles from './_TaskAdd.module.scss';
 
-const extractData = (state: TAppStateContext, activeBoard: TBoard) => {
+const extractData = (state: TAppStateContext, activeBoard: IBoard) => {
   console.log('TASKADD EXTRACT DATA');
   const board = state.boards.find((el) => el._id === activeBoard._id);
   // NOTE:  el.name, el._id
@@ -36,7 +37,7 @@ const extractData = (state: TAppStateContext, activeBoard: TBoard) => {
 const INITIAL_SUBTASKS = ['', ''];
 
 type ElemProps = {
-  activeBoard: TBoard;
+  activeBoard: IBoard;
   taskStatus: { current: string; statusArr: string[] };
 };
 
@@ -90,11 +91,11 @@ function TaskAdd(props: ElemProps): JSX.Element {
         title: c,
         isCompleted: false,
       })),
-    };
+    } as IPostTaskRequestDTO;
 
     const selectedColumn = activeBoard.columns.find(
       (c) => c.name === status
-    ) as TColumn;
+    ) as IColumn;
     const columnId = selectedColumn._id;
 
     // Send data to backend API

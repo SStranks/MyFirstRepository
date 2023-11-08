@@ -1,5 +1,5 @@
+import type { ITask, ISubTask } from '#Shared/types';
 import Task from '#Components/task/Task';
-import { TSubTaskObj, TTask } from '#Types/types';
 import {
   Draggable,
   DroppableProvided,
@@ -15,7 +15,7 @@ type ElemProps = {
   columnNum: number;
   columnTitle: string;
   numOfTasks: number;
-  tasks: TTask[];
+  tasks: ITask[];
 };
 
 function Column(props: ElemProps): JSX.Element {
@@ -32,7 +32,7 @@ function Column(props: ElemProps): JSX.Element {
 
   const tasksCards = tasks.map((el, i) => {
     const completedSubTasks = el.subtasks.filter(
-      (obj: TSubTaskObj) => obj.isCompleted === true
+      (obj: ISubTask) => obj.isCompleted === true
     ).length;
     return (
       <Draggable key={el._id} draggableId={el._id} index={i}>

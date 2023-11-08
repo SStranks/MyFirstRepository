@@ -1,8 +1,9 @@
+import type { IBoard } from '#Shared/types';
 import DefaultLayout from '#Layouts/DefaultLayout';
-import { TBoard, TBoardInfo } from '#Types/types';
+import { TBoardInfo } from '#Types/types';
 
 type ElemProps = {
-  boardData: { boardsList: TBoardInfo; activeBoard: TBoard | undefined };
+  boardData: { boardsList: TBoardInfo; activeBoard: IBoard | undefined };
   activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };

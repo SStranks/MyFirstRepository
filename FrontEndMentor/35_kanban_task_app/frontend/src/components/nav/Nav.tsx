@@ -1,15 +1,15 @@
+import type { IBoard } from '#Shared/types';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import IconAddTaskMobile from '#Svg/icon-add-task-mobile.svg';
 import IconEllipsis from '#Svg/icon-vertical-ellipsis.svg';
 import LogoDark from '#Svg/logo-dark.svg';
 import LogoLight from '#Svg/logo-light.svg';
 import LogoMobile from '#Svg/logo-mobile.svg';
-import { TBoard } from '#Types/types';
 import { useContext, useRef } from 'react';
 import styles from './_Nav.module.scss';
 
 type ElemProps = {
-  activeBoard: TBoard | undefined;
+  activeBoard: IBoard | undefined;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 

@@ -1,5 +1,6 @@
+import type { IBoard } from '#Shared/types';
 import { IAppContextPayload, TAppContextAction } from '#Context/AppContext';
-import { TAppStateContext, TBoard } from '#Types/types';
+import { TAppStateContext } from '#Types/types';
 import {
   IOrderedTasks,
   generateOrderedTasks,
@@ -25,7 +26,7 @@ const setInitialState = (
   payload: IAppContextPayload
 ) => {
   const data: unknown = payload;
-  let newState = { ...state, boards: data as TBoard[] };
+  let newState = { ...state, boards: data as IBoard[] };
 
   // Synchronise API data with localStorage ordering of tasks
   const localStorageTaskOrderJSON =
@@ -42,7 +43,7 @@ const setInitialState = (
 
 const addTask = (state: TAppStateContext, payload: IAppContextPayload) => {
   let newState = { ...state };
-  const newBoard = payload as unknown as TBoard;
+  const newBoard = payload as unknown as IBoard;
   const board = newState.boards.findIndex((b) => b._id === newBoard._id);
   newState.boards[board] = newBoard;
   newState = setLocalStoragePending(newState, true);
@@ -55,7 +56,7 @@ const updateTask = (state: TAppStateContext, payload: IAppContextPayload) => {
   let newState = { ...state };
   const boardId = payload.id?.boardId;
   const boardIdx = newState.boards.findIndex((b) => b._id === boardId);
-  newState.boards[boardIdx] = payload.data?.board as TBoard;
+  newState.boards[boardIdx] = payload.data?.board as IBoard;
   newState = setLocalStoragePending(newState, true);
   newState = setLocalStorageData(newState);
   return newState;
@@ -80,7 +81,7 @@ const deleteTask = (state: TAppStateContext, payload: IAppContextPayload) => {
 const addBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
   console.log('ADDBOARD REDUCER', state, payload);
   const newBoard = payload as unknown;
-  let newState = { ...state, boards: [...state.boards, newBoard as TBoard] };
+  let newState = { ...state, boards: [...state.boards, newBoard as IBoard] };
   newState = setLocalStoragePending(newState, true);
   newState = setLocalStorageData(newState);
   return newState;
@@ -92,7 +93,7 @@ const editBoard = (state: TAppStateContext, payload: IAppContextPayload) => {
   const boardIdx = newState.boards.findIndex(
     (b) => b._id === payload.id?.boardId
   );
-  newState.boards[boardIdx] = payload.data as TBoard;
+  newState.boards[boardIdx] = payload.data as unknown as IBoard;
   newState = setLocalStoragePending(newState, true);
   newState = setLocalStorageData(newState);
   return newState;

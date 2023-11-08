@@ -3,7 +3,7 @@ import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
 import { AppDispatchContext, IAppContextPayload } from '#Context/AppContext';
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
-import { IBoard } from '#Services/ApiServiceClient';
+import type { IBoard, IColumn } from '#Shared/types';
 import ApiService from '#Services/Services';
 import { TReturnData } from '#Types/types';
 import {
@@ -48,11 +48,11 @@ function BoardAdd(props: ElemProps): JSX.Element {
     const formInputData = new FormData(e.target as HTMLFormElement);
     const { 'input-title': name, ...rest } = Object.fromEntries(
       formInputData.entries()
-    );
+    ) as Record<string, string>;
     // Format data according to schema
     const newBoard = {
       name,
-      columns: Object.values(rest).map((c) => ({ name: c })),
+      columns: Object.values(rest).map((c) => ({ name: c })) as IColumn[],
     };
     // Send data to backend API
     try {
@@ -66,6 +66,7 @@ function BoardAdd(props: ElemProps): JSX.Element {
       });
       appDispatch({
         type: 'add-board',
+        // DEBUG:  Type casting?
         payload: responseData as unknown as IAppContextPayload,
       });
       return setActiveBoardId(responseData._id);

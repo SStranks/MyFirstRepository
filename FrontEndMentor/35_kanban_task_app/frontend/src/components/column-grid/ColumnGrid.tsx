@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import type { IBoard } from '#Shared/types';
 import Column from '#Components/column/Column';
 import ColumnEmpty from '#Components/column/ColumnEmpty';
 import RootModalDispatchContext from '#Context/RootModalContext';
-import { TBoard } from '#Types/types';
 import React, { useContext, useState } from 'react';
 import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
 
@@ -12,7 +12,7 @@ import ApiService from '#Services/Services';
 import styles from './_ColumnGrid.module.scss';
 
 type ElemProps = {
-  activeBoard: TBoard | undefined;
+  activeBoard: IBoard | undefined;
 };
 
 function ColumnGrid(props: ElemProps): JSX.Element {
