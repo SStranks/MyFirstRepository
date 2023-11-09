@@ -1,6 +1,6 @@
-import { Board } from '#Models/boardModel';
-import AppError from '#Utils/appError';
-import catchAsync from '#Utils/catchAsync';
+import { Board } from '#Models/boardModel.js';
+import AppError from '#Utils/appError.js';
+import catchAsync from '#Utils/catchAsync.js';
 import { NextFunction, Request, Response } from 'express';
 
 // NOTE:  Currently not being utilized - 'new column' uses the 'board edit' modal.

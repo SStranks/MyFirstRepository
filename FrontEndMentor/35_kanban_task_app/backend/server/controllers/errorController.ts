@@ -1,4 +1,4 @@
-import AppError from '#Utils/appError';
+import AppError from '#Utils/appError.js';
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 
 const handleCastErrorDB = (err: any) => {

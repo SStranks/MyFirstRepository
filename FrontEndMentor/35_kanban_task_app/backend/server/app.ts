@@ -1,9 +1,9 @@
 import cors from 'cors';
 import express, { Application, NextFunction, Request, Response } from 'express';
 
-import globalErrorHandler from '#Controllers/errorController';
-import boardRouter from '#Routes/boardRoutes';
-import AppError from '#Utils/appError';
+import globalErrorHandler from '#Controllers/errorController.js';
+import boardRouter from '#Routes/boardRoutes.js';
+import AppError from '#Utils/appError.js';
 
 const app: Application = express();
 app.use(express.json());

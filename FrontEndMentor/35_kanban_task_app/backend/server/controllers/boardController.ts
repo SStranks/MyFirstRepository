@@ -4,8 +4,8 @@ import {
   getAll,
   getOne,
   updateOne,
-} from '#Config/dbHandlers';
-import { Board } from '#Models/boardModel';
+} from '#Config/dbHandlers.js';
+import { Board } from '#Models/boardModel.js';
 
 const getBoard = getOne(Board);
 

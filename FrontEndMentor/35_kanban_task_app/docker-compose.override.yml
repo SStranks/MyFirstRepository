@@ -9,6 +9,7 @@ services:
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     volumes:
+      - ./shared:/shared:ro
       - ./backend:/backend:ro
     env_file:
       - ./backend/.env.dev

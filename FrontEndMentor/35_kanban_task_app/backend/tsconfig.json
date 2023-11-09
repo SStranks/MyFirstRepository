@@ -29,17 +29,17 @@
 
     /* Modules */
     "module": "ES2022" /* Specify what module code is generated. */,
-    // "rootDir": "./",                                  /* Specify the root folder within your source files. */
+    // "rootDir": "./" /* Specify the root folder within your source files. */,
     "moduleResolution": "Node" /* Specify how TypeScript looks up a file from a given module specifier. */,
-    "baseUrl": "./" /* Specify the base directory to resolve non-relative module names. */,
+    "baseUrl": "./server" /* Specify the base directory to resolve non-relative module names. */,
     // NOTE:  // Paths is for alias imports
     "paths": {
-      "#Shared/*": ["../shared/*"],
-      "#Config/*": ["server/config/*"],
-      "#Controllers/*": ["server/controllers/*"],
-      "#Models/*": ["server/models/*"],
-      "#Routes/*": ["server/routes/*"],
-      "#Utils/*": ["server/utils/*"]
+      "#Shared/*": ["../../shared/*"],
+      "#Config/*": ["config/*"],
+      "#Controllers/*": ["controllers/*"],
+      "#Models/*": ["models/*"],
+      "#Routes/*": ["routes/*"],
+      "#Utils/*": ["utils/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */ /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
@@ -116,6 +116,8 @@
     "esm": true,
     "require": ["tsconfig-paths/register"],
     "experimentalSpecifierResolution": "node"
+    // "transpileOnly": true
+    // "files": true
   },
 
   "tsc-alias": {
@@ -124,6 +126,7 @@
     // "outDir": "./dist"
   },
 
-  "include": ["server/**/*.ts", "../shared/*"],
+  "include": ["server/**/*.ts"],
   "exclude": ["node_modules"]
+  // "files": ["../shared/types.ts"]
 }

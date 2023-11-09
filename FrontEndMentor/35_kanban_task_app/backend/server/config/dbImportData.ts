@@ -1,5 +1,5 @@
-import connectDB from '#Config/db';
-import { Board } from '#Models/boardModel';
+import connectDB from '#Config/db.js';
+import { Board } from '#Models/boardModel.js';
 import dotenv from 'dotenv';
 import * as fs from 'fs';
 import mongoose from 'mongoose';

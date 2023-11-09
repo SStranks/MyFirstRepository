@@ -1,8 +1,7 @@
-import { Board } from '#Models/boardModel';
-import AppError from '#Utils/appError';
-import catchAsync from '#Utils/catchAsync';
+import { Board } from '#Models/boardModel.js';
+import AppError from '#Utils/appError.js';
+import catchAsync from '#Utils/catchAsync.js';
 import { NextFunction, Request, Response } from 'express';
-import { Types } from 'mongoose';
 
 const createTask = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -13,7 +12,7 @@ const createTask = catchAsync(
     if (!board) return next(new AppError('No document found in DB!', 404));
 
     const columnIndex = board.columns.findIndex(
-      (c) => c._id.toString() === columnId
+      (c) => c._id?.toString() === columnId
     );
 
     if (columnIndex === -1)
@@ -69,7 +68,7 @@ const deleteTask = catchAsync(
     if (!board) return next(new AppError('No document found in DB!', 404));
 
     const column = board.columns.findIndex(
-      (c) => c._id.toString() === columnId
+      (c) => c._id?.toString() === columnId
     );
 
     if (column === -1)

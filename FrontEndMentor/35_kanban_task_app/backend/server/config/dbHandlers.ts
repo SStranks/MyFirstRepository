@@ -1,5 +1,5 @@
-import AppError from '#Utils/appError';
-import catchAsync from '#Utils/catchAsync';
+import AppError from '#Utils/appError.js';
+import catchAsync from '#Utils/catchAsync.js';
 import { NextFunction, Request, Response } from 'express';
 import { Model } from 'mongoose';
 

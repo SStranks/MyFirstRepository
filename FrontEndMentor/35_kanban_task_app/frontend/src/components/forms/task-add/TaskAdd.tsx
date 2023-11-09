@@ -1,4 +1,6 @@
+import type { IBoard, IColumn } from '#Shared/types';
 import type { IPostTaskRequestDTO } from '#Services/ApiRequestDto';
+import { TAppStateContext, TReturnData } from '#Types/types';
 import Dropdown from '#Components/custom/dropdown/Dropdown';
 import InputText from '#Components/custom/input-text/InputText';
 import InputTextSubtask from '#Components/custom/input-text/InputTextSubtask';
@@ -11,8 +13,6 @@ import {
 import RootModalDispatchContext from '#Context/RootModalContext';
 import useComponentIdGenerator from '#Hooks/useComponentIdGenerator';
 import ApiService from '#Services/Services';
-import { TAppStateContext, TReturnData } from '#Types/types';
-import type { IBoard, IColumn } from '#Shared/types';
 import {
   addInputToGroup,
   deleteInputFromGroup,

@@ -4,17 +4,17 @@ import {
   getAllBoards,
   getBoard,
   updateBoard,
-} from '#Controllers/boardController';
+} from '#Controllers/boardController.js';
 import {
   createColumn,
   deleteColumn,
   updateColumn,
-} from '#Controllers/columnController';
+} from '#Controllers/columnController.js';
 import {
   createTask,
   deleteTask,
   updateTask,
-} from '#Controllers/taskController';
+} from '#Controllers/taskController.js';
 import express from 'express';
 
 const boardRouter = express.Router();

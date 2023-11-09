@@ -1,9 +1,11 @@
-// NOTE:  Uncomment during production build - substitutes all alias names for actual paths.
-// import { replaceTscAliasPaths } from 'tsc-alias';
-// replaceTscAliasPaths({ configFile: '../tsconfig.json' });
-
-import dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv';
+import { replaceTscAliasPaths } from 'tsc-alias';
+if (process.env.NODE_ENV === 'development') {
+  configDotenv();
+}
+if (process.env.NODE_ENV === 'production') {
+  replaceTscAliasPaths();
+}
 
 // Unhandled Exception Errors: Needs to be before any runtime code.
 process.on('uncaughtException', (err: any) => {
@@ -12,8 +14,9 @@ process.on('uncaughtException', (err: any) => {
   process.exit(1);
 });
 
-import connectDB from '#Config/db';
-import app from './app';
+import connectDB from '#Config/db.js';
+import app from './app.js';
+import { configDotenv } from 'dotenv';
 connectDB();
 
 const PORT = process.env.NODE_DOCKER_PORT || 3000;
