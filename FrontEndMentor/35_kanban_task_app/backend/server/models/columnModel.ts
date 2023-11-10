@@ -1,6 +1,4 @@
-// import type { ITask, IColumn } from '../../../shared/types.ts';
 import type { IColumn, ITask } from '#Shared/types.d.ts';
-// import type { ITask, IColumn } from '../types.ts'; // NOTE:  Works.
 import { taskSchema } from '#Models/taskModel.js';
 import mongoose, { Model, Types } from 'mongoose';
 

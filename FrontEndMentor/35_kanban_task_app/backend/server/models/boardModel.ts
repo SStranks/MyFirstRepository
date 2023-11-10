@@ -1,6 +1,4 @@
 import type { IBoard, IColumn } from '#Shared/types.d.ts';
-// import type { IBoard, IColumn } from '../../../shared/types.d.ts';
-// import type { IBoard, IColumn } from '../types.ts'; // NOTE:  Works (file inside root structure)
 import { IColumnDocumentOverrides, columnSchema } from '#Models/columnModel.js';
 import mongoose, { Model, Types } from 'mongoose';
 

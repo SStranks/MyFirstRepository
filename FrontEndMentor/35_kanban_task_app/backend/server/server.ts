@@ -1,4 +1,4 @@
-import 'dotenv';
+import { configDotenv } from 'dotenv';
 import { replaceTscAliasPaths } from 'tsc-alias';
 if (process.env.NODE_ENV === 'development') {
   configDotenv();
@@ -16,7 +16,6 @@ process.on('uncaughtException', (err: any) => {
 
 import connectDB from '#Config/db.js';
 import app from './app.js';
-import { configDotenv } from 'dotenv';
 connectDB();
 
 const PORT = process.env.NODE_DOCKER_PORT || 3000;
