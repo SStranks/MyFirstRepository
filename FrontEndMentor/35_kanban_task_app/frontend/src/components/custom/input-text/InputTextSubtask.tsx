@@ -24,6 +24,7 @@ type ElemProps = {
 function InputTextSubtask(props: ElemProps): JSX.Element {
   const { inputName, value, groupId, error, deleteInput, returnData } = props;
   const [text, setText] = useState('');
+  // DEBUG:  Is this ref being utilized?
   const subtaskRef = useRef<HTMLDivElement>(null);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

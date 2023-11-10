@@ -14,6 +14,7 @@ type ElemProps = {
 function InputText(props: ElemProps): JSX.Element {
   const { placeholder, inputName, value, groupId, error, returnData } = props;
   const [text, setText] = useState('');
+  // DEBUG:  Is this ref being utilized?
   const element = useRef<HTMLDivElement>(null);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

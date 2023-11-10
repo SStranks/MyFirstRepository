@@ -1,0 +1,20 @@
+@use '#Sass/abstracts/functions' as f;
+@use '#Sass/components/buttons' as btn;
+
+.listItems {
+  display: flex;
+  flex-direction: column;
+  row-gap: f.px2em(12);
+  margin-bottom: f.px2em(12);
+
+  &__input {
+    display: flex;
+    align-items: center;
+    column-gap: f.px2em(16);
+  }
+}
+
+.btnNewColumn {
+  @include btn.btn-secondary;
+  width: 100%;
+}
