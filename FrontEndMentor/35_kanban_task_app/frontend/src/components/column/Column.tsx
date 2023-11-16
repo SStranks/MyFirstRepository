@@ -7,7 +7,7 @@ import {
 } from 'react-beautiful-dnd';
 import styles from './_Column.module.scss';
 
-type ElemProps = {
+type TProps = {
   dndProvided: DroppableProvided;
   dndSnapshot: DroppableStateSnapshot;
   boardId: string;
@@ -18,7 +18,7 @@ type ElemProps = {
   tasks: ITask[];
 };
 
-function Column(props: ElemProps): JSX.Element {
+function Column(props: TProps): JSX.Element {
   const {
     dndProvided,
     dndSnapshot,

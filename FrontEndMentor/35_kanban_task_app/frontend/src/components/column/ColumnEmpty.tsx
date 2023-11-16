@@ -3,11 +3,11 @@ import RootModalDispatchContext from '#Context/RootModalContext';
 import { useContext } from 'react';
 import styles from './_Column.module.scss';
 
-type ElemProps = {
+type TProps = {
   activeBoard: IBoard;
 };
 
-function ColumnEmpty(props: ElemProps): JSX.Element {
+function ColumnEmpty(props: TProps): JSX.Element {
   const { activeBoard } = props;
   const rootModalDispatch = useContext(RootModalDispatchContext);
   const newColumnBtnClickHandler = () => {

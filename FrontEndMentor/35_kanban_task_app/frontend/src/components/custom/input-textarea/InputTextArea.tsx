@@ -2,7 +2,7 @@ import { TReturnData } from '#Types/types';
 import { useEffect, useRef, useState } from 'react';
 import styles from './_InputTextArea.module.scss';
 
-type ElemProps = {
+type TProps = {
   placeholder: string;
   inputName: string;
   value: string;
@@ -11,7 +11,7 @@ type ElemProps = {
   returnData: (arg: TReturnData) => void;
 };
 
-function TextArea(props: ElemProps): JSX.Element {
+function TextArea(props: TProps): JSX.Element {
   const {
     placeholder,
     inputName,

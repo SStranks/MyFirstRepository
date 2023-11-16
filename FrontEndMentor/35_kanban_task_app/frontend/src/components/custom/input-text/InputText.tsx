@@ -2,7 +2,7 @@ import { TReturnData } from '#Types/types';
 import { useEffect, useRef, useState } from 'react';
 import styles from './_InputText.module.scss';
 
-type ElemProps = {
+type TProps = {
   placeholder: string;
   inputName: string;
   value: string;
@@ -11,7 +11,7 @@ type ElemProps = {
   returnData: (arg: TReturnData) => void;
 };
 
-function InputText(props: ElemProps): JSX.Element {
+function InputText(props: TProps): JSX.Element {
   const { placeholder, inputName, value, groupId, error, returnData } = props;
   const [text, setText] = useState('');
   // DEBUG:  Is this ref being utilized?

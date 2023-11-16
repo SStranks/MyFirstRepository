@@ -2,7 +2,7 @@ import IconCheck from '#Svg/icon-check.svg';
 import { TReturnData } from '#Types/types';
 import styles from './_CheckBox.module.scss';
 
-type ElemProps = {
+type TProps = {
   title: string;
   checked: boolean;
   inputName: string;
@@ -10,7 +10,7 @@ type ElemProps = {
   returnData: (data: TReturnData) => void;
 };
 
-function CheckBox(props: ElemProps): JSX.Element {
+function CheckBox(props: TProps): JSX.Element {
   const { title, checked, inputName, groupId, returnData } = props;
 
   const changeHandler = (e: React.ChangeEvent) => {

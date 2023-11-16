@@ -2,13 +2,13 @@ import type { IBoard } from '#Shared/types';
 import DefaultLayout from '#Layouts/DefaultLayout';
 import { TBoardInfo } from '#Types/types';
 
-type ElemProps = {
+type TProps = {
   boardData: { boardsList: TBoardInfo; activeBoard: IBoard | undefined };
   activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
-function Home(props: ElemProps): JSX.Element {
+function Home(props: TProps): JSX.Element {
   const { boardData, activeBoardId, setActiveBoardId } = props;
   return (
     <DefaultLayout

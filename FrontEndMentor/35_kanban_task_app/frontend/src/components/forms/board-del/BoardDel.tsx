@@ -4,12 +4,12 @@ import ApiService from '#Services/Services';
 import { useContext } from 'react';
 import styles from './_BoardDel.module.scss';
 
-type ElemProps = {
+type TProps = {
   activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
-function BoardDelete(props: ElemProps): JSX.Element {
+function BoardDelete(props: TProps): JSX.Element {
   const { activeBoardId, setActiveBoardId } = props;
   const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);

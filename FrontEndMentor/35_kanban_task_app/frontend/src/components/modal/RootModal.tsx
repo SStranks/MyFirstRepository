@@ -1,6 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
-import BoardAdd from '#Components/forms/board-add/BoardAdd';
+// import BoardAdd from '#Components/forms/board-add/BoardAdd';
+import BoardAdd2 from '#Components/forms/board-add/BoardAdd2';
 import BoardDelete from '#Components/forms/board-del/BoardDel';
 import BoardEdit from '#Components/forms/board-edit/BoardEdit';
 import Error from '#Components/forms/error/Error';
@@ -22,7 +23,7 @@ const MODAL_COMPONENTS = {
   'task-view': TaskView,
   'task-edit': TaskEdit,
   'task-delete': TaskDelete,
-  'board-add': BoardAdd,
+  'board-add': BoardAdd2,
   'board-edit': BoardEdit,
   'board-delete': BoardDelete,
 };
@@ -82,13 +83,13 @@ const reducer = (
   }
 };
 
-type ElemProps = {
+type TProps = {
   setRootModalDispatch: React.Dispatch<
     React.SetStateAction<React.Dispatch<TRootModalContextAction>>
   >;
 };
 
-function RootModal(props: ElemProps): JSX.Element | null {
+function RootModal(props: TProps): JSX.Element | null {
   const { setRootModalDispatch } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
 

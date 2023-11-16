@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import styles from './_Toggle.module.scss';
 
 const themeToggle = () => {
@@ -9,8 +10,8 @@ function Toggle() {
   return (
     <div className={styles.toggleSlider}>
       <label htmlFor="theme-switch">
-        <input type="checkbox" id="theme-switch" onClick={themeToggle} />
         <span />
+        <input type="checkbox" id="theme-switch" onClick={themeToggle} />
       </label>
     </div>
   );

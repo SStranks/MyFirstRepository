@@ -55,11 +55,11 @@ const genSubtaskInputs = (task: ITask): SubtaskType => {
   }, {} as SubtaskType);
 };
 
-type ElemProps = {
+type TProps = {
   selectTask: TSelectTask;
 };
 
-function TaskView(props: ElemProps): JSX.Element {
+function TaskView(props: TProps): JSX.Element {
   const { selectTask } = props;
   const state = useContext(AppStateContext);
   const appDispatch = useContext(AppDispatchContext);

@@ -36,12 +36,12 @@ const extractData = (state: TAppStateContext, activeBoard: IBoard) => {
 
 const INITIAL_SUBTASKS = ['', ''];
 
-type ElemProps = {
+type TProps = {
   activeBoard: IBoard;
   taskStatus: { current: string; statusArr: string[] };
 };
 
-function TaskAdd(props: ElemProps): JSX.Element {
+function TaskAdd(props: TProps): JSX.Element {
   const { activeBoard, taskStatus } = props;
   const state = useContext(AppStateContext);
   // NOTE:  Extract data is running on every re-render, need to amend.

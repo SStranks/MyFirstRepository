@@ -12,7 +12,7 @@ const placeholderText = [
   'e.g. Enjoy coffee and smile more',
 ];
 
-type ElemProps = {
+type TProps = {
   inputName: string;
   value: string;
   groupId: string;
@@ -21,7 +21,7 @@ type ElemProps = {
   returnData: (arg: TReturnData) => void;
 };
 
-function InputTextSubtask(props: ElemProps): JSX.Element {
+function InputTextSubtask(props: TProps): JSX.Element {
   const { inputName, value, groupId, error, deleteInput, returnData } = props;
   const [text, setText] = useState('');
   // DEBUG:  Is this ref being utilized?

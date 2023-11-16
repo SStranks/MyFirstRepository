@@ -11,11 +11,11 @@ import { AppDispatchContext } from '#Context/AppContext';
 import ApiService from '#Services/Services';
 import styles from './_ColumnGrid.module.scss';
 
-type ElemProps = {
+type TProps = {
   activeBoard: IBoard | undefined;
 };
 
-function ColumnGrid(props: ElemProps): JSX.Element {
+function ColumnGrid(props: TProps): JSX.Element {
   const { activeBoard } = props;
   const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);

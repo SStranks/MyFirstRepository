@@ -2,7 +2,7 @@
 import { DraggableProvided, DraggableStateSnapshot } from 'react-beautiful-dnd';
 import styles from './_Task.module.scss';
 
-type ElemProps = {
+type TProps = {
   dndProvided: DraggableProvided;
   dndSnapshot: DraggableStateSnapshot;
   taskId: string;
@@ -14,7 +14,7 @@ type ElemProps = {
   columnNum: number;
 };
 
-function Task(props: ElemProps): JSX.Element {
+function Task(props: TProps): JSX.Element {
   const {
     dndProvided,
     dndSnapshot,

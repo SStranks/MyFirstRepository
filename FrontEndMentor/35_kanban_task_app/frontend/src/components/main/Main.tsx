@@ -4,11 +4,11 @@ import RootModalDispatchContext from '#Context/RootModalContext';
 import { useContext } from 'react';
 import styles from './_Main.module.scss';
 
-type ElemProps = {
+type TProps = {
   activeBoard: IBoard | undefined;
 };
 
-function Main(props: ElemProps): JSX.Element {
+function Main(props: TProps): JSX.Element {
   const { activeBoard } = props;
   const modalDispatch = useContext(RootModalDispatchContext);
   const isBoardEmpty = activeBoard?.columns.length === 0;

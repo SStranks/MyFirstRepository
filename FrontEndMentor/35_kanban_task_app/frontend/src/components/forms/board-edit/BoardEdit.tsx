@@ -32,12 +32,12 @@ const genGroupInputs = (activeBoard: IBoard) => {
   }, {} as TNestedInputProp);
 };
 
-type ElemProps = {
+type TProps = {
   activeBoard: IBoard;
 };
 
 // FUNCTION COMPONENT //
-function BoardEdit(props: ElemProps): JSX.Element {
+function BoardEdit(props: TProps): JSX.Element {
   const { activeBoard } = props;
   const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);

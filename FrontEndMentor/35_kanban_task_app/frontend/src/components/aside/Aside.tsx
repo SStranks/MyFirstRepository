@@ -35,13 +35,13 @@ const sidebarShow = () => {
   sidebarElement.classList.add(styles.animationShow);
 };
 
-type ElemProps = {
+type TProps = {
   boardsList: TBoardInfo;
   activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
-function Aside(props: ElemProps): JSX.Element {
+function Aside(props: TProps): JSX.Element {
   const { boardsList, activeBoardId, setActiveBoardId } = props;
   const modalDispatch = useContext(RootModalDispatchContext);
 

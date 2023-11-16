@@ -2,11 +2,11 @@ import RootModalDispatchContext from '#Context/RootModalContext';
 import { useContext } from 'react';
 import styles from './_Error.module.scss';
 
-type ElemProps = {
+type TProps = {
   title: string;
 };
 
-function Error(props: ElemProps): JSX.Element {
+function Error(props: TProps): JSX.Element {
   const { title } = props;
   const modalDispatch = useContext(RootModalDispatchContext);
 

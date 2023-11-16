@@ -4,11 +4,11 @@ import ApiService from '#Services/Services';
 import { useContext } from 'react';
 import styles from './_TaskDel.module.scss';
 
-type ElemProps = {
+type TProps = {
   id: { boardId: string; columnId: string; taskId: string };
 };
 
-function TaskDelete(props: ElemProps): JSX.Element {
+function TaskDelete(props: TProps): JSX.Element {
   const { id } = props;
   const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);

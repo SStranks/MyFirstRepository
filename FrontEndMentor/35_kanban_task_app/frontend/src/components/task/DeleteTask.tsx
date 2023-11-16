@@ -1,14 +1,14 @@
 import { DroppableProvided, DroppableStateSnapshot } from 'react-beautiful-dnd';
 import styles from './_Task.module.scss';
 
-type ElemProps = {
+type TProps = {
   dndProvided: DroppableProvided;
   dndSnapshot: DroppableStateSnapshot;
   numOfTasks: number;
   dragActive: boolean;
 };
 
-function DeleteTask(props: ElemProps): JSX.Element {
+function DeleteTask(props: TProps): JSX.Element {
   const { dndProvided, dndSnapshot, numOfTasks, dragActive } = props;
   const { isDraggingOver } = dndSnapshot;
 

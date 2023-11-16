@@ -16,11 +16,11 @@ import styles from './_BoardAdd.module.scss';
 
 const INITIAL_COLUMNS = ['Todo', 'Doing', 'Done'];
 
-type ElemProps = {
+type TProps = {
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
-function BoardAdd(props: ElemProps): JSX.Element {
+function BoardAdd(props: TProps): JSX.Element {
   const { setActiveBoardId } = props;
   const appDispatch = useContext(AppDispatchContext);
   const modalDispatch = useContext(RootModalDispatchContext);

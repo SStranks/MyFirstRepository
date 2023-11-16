@@ -3,14 +3,14 @@ import { TReturnData } from '#Types/types';
 import { useEffect, useRef } from 'react';
 import styles from './_Dropdown.module.scss';
 
-type ElemProps = {
+type TProps = {
   name: string;
   currentListItem: string;
   listItems: string[][];
   returnData: (data: TReturnData) => void;
 };
 
-function Dropdown(props: ElemProps): JSX.Element {
+function Dropdown(props: TProps): JSX.Element {
   const { name, currentListItem, listItems, returnData } = props;
   const dropdownContainer = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);

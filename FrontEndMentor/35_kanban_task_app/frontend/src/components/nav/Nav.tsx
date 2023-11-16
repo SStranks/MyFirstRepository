@@ -8,12 +8,12 @@ import LogoMobile from '#Svg/logo-mobile.svg';
 import { useContext, useRef } from 'react';
 import styles from './_Nav.module.scss';
 
-type ElemProps = {
+type TProps = {
   activeBoard: IBoard | undefined;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
-function Nav(props: ElemProps): JSX.Element {
+function Nav(props: TProps): JSX.Element {
   const { activeBoard, setActiveBoardId } = props;
   const modalDispatch = useContext(RootModalDispatchContext);
   const boardOptionsRef = useRef<HTMLDivElement>(null);

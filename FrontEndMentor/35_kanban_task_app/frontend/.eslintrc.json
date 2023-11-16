@@ -73,6 +73,7 @@
         ]
       }
     ],
+    "unicorn/expiring-todo-comments": "off",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/no-array-for-each": "off",
     "unicorn/no-array-reduce": "off",

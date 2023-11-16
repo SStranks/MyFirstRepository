@@ -19,12 +19,12 @@ interface IFormData {
   };
 }
 
-type ElemProps = {
+type TProps = {
   formData: IFormData;
   setFormData: React.Dispatch<React.SetStateAction<IFormData>>;
 };
 
-function DynamicInputList(props: ElemProps): JSX.Element {
+function DynamicInputList(props: TProps): JSX.Element {
   const { formData, setFormData } = props;
   const genId = useComponentIdGenerator();
 

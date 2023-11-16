@@ -5,13 +5,13 @@ import Nav from '#Components/nav/Nav';
 import { TBoardInfo } from '#Types/types';
 import styles from './_DefaultLayout.module.scss';
 
-type ElemProps = {
+type TProps = {
   boardData: { boardsList: TBoardInfo; activeBoard: IBoard | undefined };
   activeBoardId: string;
   setActiveBoardId: React.Dispatch<React.SetStateAction<string>>;
 };
 
-function DefaultLayout(props: ElemProps): JSX.Element {
+function DefaultLayout(props: TProps): JSX.Element {
   const { boardData, activeBoardId, setActiveBoardId } = props;
   return (
     <div className={styles.container}>

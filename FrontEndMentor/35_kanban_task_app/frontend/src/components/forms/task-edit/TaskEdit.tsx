@@ -37,13 +37,13 @@ const genGroupInputs = (task: ITask) => {
   }, {} as TNestedInputProp);
 };
 
-type ElemProps = {
+type TProps = {
   task: ITask;
   selectTask: TSelectTask;
   columnList: string[][];
 };
 
-function TaskEdit(props: ElemProps): JSX.Element {
+function TaskEdit(props: TProps): JSX.Element {
   const { task, selectTask, columnList } = props;
   console.log(columnList);
   const appDispatch = useContext(AppDispatchContext);
